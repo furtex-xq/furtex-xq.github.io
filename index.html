@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Проекты Давида</title>
-<meta name="description" content="Мои Android-приложения: Tidemark, Math for Speed, Python с нуля до профи, Monko и Dealio. Описание и скачивание APK.">
-<link rel="icon" href="img/mfs-icon.webp">
+<title>Ansaro Technologies</title>
+<meta name="description" content="Android-приложения от Ansaro Technologies (nochevvsky — Davyd, Давид): Tidemark, Math for Speed, Python с нуля до профи, Monko и Dealio. Описание и скачивание APK.">
+<link rel="icon" href="img/monko-icon.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -146,6 +146,27 @@ nav ul a:hover{color:var(--text)}
 .sec-title h2{font-size:clamp(26px,4vw,40px)}
 .sec-title p{color:var(--muted);max-width:360px;font-size:15px}
 
+.by{margin-top:22px;color:var(--muted);font-size:15px}
+.by a b{color:var(--text);border-bottom:1px solid var(--line2)}
+.socials{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.soc{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:9px 15px;border-radius:12px;border:1px solid var(--line2);background:var(--card);transition:.2s}
+.soc svg{width:17px;height:17px}
+.soc.tg svg,.link.tg svg{color:#2aabee}.soc.ig svg,.link.ig svg{color:#e1306c}
+.soc:hover{transform:translateY(-2px);border-color:var(--muted)}
+.maker{display:block;font-size:12.5px;color:var(--dim);margin-top:6px;font-weight:600}
+.about{margin:90px 0 0;scroll-margin-top:84px}
+.about-card{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;padding:46px;border-radius:32px;border:1px solid var(--line);background:linear-gradient(135deg,#121a2c,#14110b)}
+.about h2{font-size:clamp(26px,4vw,40px);margin:8px 0 14px}
+.about p{color:var(--muted);font-size:16.5px}
+.about p a b{color:var(--text)}
+.kicker{color:var(--gold);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:12.5px}
+.links{display:grid;gap:10px}
+.link{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--line2);transition:.2s}
+.link:hover{transform:translateX(4px);border-color:var(--muted)}
+.link svg{width:26px;height:26px;flex:none}
+.link b{display:block;font-size:15px}.link small{color:var(--dim);font-size:13px}
+@media(max-width:820px){.about-card{grid-template-columns:1fr;padding:28px 22px;gap:24px}}
+.flinks a{white-space:nowrap}
 footer{border-top:1px solid var(--line);margin-top:80px;padding:36px 0 50px;color:var(--dim);font-size:14px}
 footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 footer a{color:var(--muted)}footer a:hover{color:var(--text)}
@@ -159,23 +180,30 @@ footer a{color:var(--muted)}footer a:hover{color:var(--text)}
 <div class="glow"></div><div class="grain"></div>
 
 <nav><div class="wrap">
-  <a class="logo" href="#"><i></i>furtex</a>
+  <a class="logo" href="#"><i></i>Ansaro Technologies</a>
   <ul>
     <li><a href="#tidemark">Tidemark</a></li>
     <li><a href="#mfs">Math for Speed</a></li>
     <li><a href="#python">Python</a></li>
     <li><a href="#monko">Monko</a></li>
     <li><a href="#dealio">Dealio</a></li>
+    <li><a href="#about">Контакты</a></li>
   </ul>
 </div></nav>
 
 <header class="hero"><div class="wrap">
-  <div class="tag"><b></b>Android-приложения · APK для скачивания</div>
-  <h1>Я делаю приложения, <span>которыми пользуюсь сам</span></h1>
+  <div class="tag"><b></b>Ansaro Technologies · Android-приложения</div>
+  <h1>Приложения, <span>которыми пользуешься каждый день</span></h1>
   <p>Крипто-трекер, тренажёр устного счёта, учебник по Python, финансы и поиск скидок. Выбери проект, почитай, что он умеет, и скачай APK прямо на телефон.</p>
+  <div class="by">Создатель — <a href="https://instagram.com/nochevvsky" target="_blank" rel="noopener"><b>nochevvsky</b></a> (Davyd, Давид), основатель Ansaro Technologies</div>
+  <div class="socials">
+    <a class="soc tg" href="https://t.me/AnsaroTechnologies" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1.1-1 .2-1.5L20.5 2.7c.9-.3 1.6.2 1.4 1.6z"/></svg>@AnsaroTechnologies</a>
+    <a class="soc tg" href="https://t.me/VoxyG" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1.1-1 .2-1.5L20.5 2.7c.9-.3 1.6.2 1.4 1.6z"/></svg>@VoxyG</a>
+    <a class="soc ig" href="https://instagram.com/nochevvsky" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@nochevvsky</a>
+  </div>
   <div class="stats">
     <div><b>5</b><span>проектов</span></div>
-    <div><b>3</b><span>готовы к установке</span></div>
+    <div><b>4</b><span>готовы к установке</span></div>
     <div><b>Android</b><span>платформа</span></div>
   </div>
 </div></header>
@@ -186,17 +214,17 @@ footer a{color:var(--muted)}footer a:hover{color:var(--text)}
   <a href="#tidemark" style="--c:var(--blue)"><img src="img/tidemark-icon.webp" alt=""><div><b>Tidemark</b><small>Криптовалюты</small></div></a>
   <a href="#mfs" style="--c:var(--gold)"><img src="img/mfs-icon.webp" alt=""><div><b>Math for Speed</b><small>Устный счёт</small></div></a>
   <a href="#python" style="--c:var(--py)"><svg class="ico" viewBox="0 0 42 42"><rect width="42" height="42" rx="11" fill="#141b2a"/><path d="M20.6 8c-6.4 0-6 2.8-6 2.8v2.9h6.1v.9h-8.5S8 14.1 8 20.6s3.6 6.2 3.6 6.2h2.2v-3s-.1-3.6 3.5-3.6h6s3.4.1 3.4-3.3v-5.6S27.2 8 20.6 8zm-3.4 2a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z" fill="#4b8bbe"/><path d="M21.4 34c6.4 0 6-2.8 6-2.8v-2.9h-6.1v-.9h8.5s4.2.5 4.2-6-3.6-6.2-3.6-6.2h-2.2v3s.1 3.6-3.5 3.6h-6s-3.4-.1-3.4 3.3v5.6S14.8 34 21.4 34zm3.4-2a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2z" fill="#ffd43b"/></svg><div><b>Python</b><small>Учебник</small></div></a>
-  <a href="#monko" style="--c:var(--gold)"><img src="img/monko-icon.webp" alt=""><div><b>Monko</b><small>Скоро</small></div></a>
+  <a href="#monko" style="--c:var(--gold)"><img src="img/monko-icon.webp" alt=""><div><b>Monko</b><small>Финансы</small></div></a>
   <a href="#dealio" style="--c:var(--lime)"><img src="img/dealio-icon.webp" alt=""><div><b>Dealio</b><small>Скоро</small></div></a>
 </div>
 
-<div class="sec-title reveal"><h2>Проекты</h2><p>Готовые приложения можно скачать. Остальные — в работе, но уже можно посмотреть дизайн.</p></div>
+<div class="sec-title reveal"><h2>Проекты</h2><p>Все приложения сделаны в Ansaro Technologies. Dealio ещё в разработке, но дизайн уже можно посмотреть.</p></div>
 
 <!-- TIDEMARK -->
 <section class="proj reveal" id="tidemark" style="--c:var(--blue)">
   <div class="grid">
     <div>
-      <div class="head"><img src="img/tidemark-icon.webp" alt="Иконка Tidemark"><div><small>Крипто-трекер · Flutter</small><h2>Tidemark</h2></div></div>
+      <div class="head"><img src="img/tidemark-icon.webp" alt="Иконка Tidemark"><div><small>Крипто-трекер · Flutter</small><h2>Tidemark</h2><span class="maker">by Ansaro Technologies</span></div></div>
       <p class="lead">Все криптовалюты в одном месте: живые цены, профессиональные графики, портфель и обучение для новичков.</p>
       <ul class="feats">
         <li><span><b>Цены в реальном времени</b> — все монеты CoinGecko, обновление через Binance WebSocket</span></li>
@@ -234,7 +262,7 @@ footer a{color:var(--muted)}footer a:hover{color:var(--text)}
 <section class="proj reveal" id="mfs" style="--c:var(--gold)">
   <div class="grid">
     <div>
-      <div class="head"><img src="img/mfs-icon.webp" alt="Иконка Math for Speed"><div><small>Тренажёр · Устный счёт</small><h2>Math for Speed</h2></div></div>
+      <div class="head"><img src="img/mfs-icon.webp" alt="Иконка Math for Speed"><div><small>Тренажёр · Устный счёт</small><h2>Math for Speed</h2><span class="maker">by Ansaro Technologies</span></div></div>
       <p class="lead">Тренажёр устного счёта на скорость. Решай примеры быстрее таймера, прокачивай уровень и держи серию.</p>
       <ul class="feats">
         <li><span><b>Режимы</b> — Спринт, Марафон, Дуэль и другие</span></li>
@@ -264,7 +292,7 @@ footer a{color:var(--muted)}footer a:hover{color:var(--text)}
 <section class="proj reveal" id="python" style="--c:var(--py)">
   <div class="grid">
     <div>
-      <div class="head"><svg class="ico" viewBox="0 0 42 42"><rect width="42" height="42" rx="11" fill="#141b2a"/><path d="M20.6 8c-6.4 0-6 2.8-6 2.8v2.9h6.1v.9h-8.5S8 14.1 8 20.6s3.6 6.2 3.6 6.2h2.2v-3s-.1-3.6 3.5-3.6h6s3.4.1 3.4-3.3v-5.6S27.2 8 20.6 8zm-3.4 2a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z" fill="#4b8bbe"/><path d="M21.4 34c6.4 0 6-2.8 6-2.8v-2.9h-6.1v-.9h8.5s4.2.5 4.2-6-3.6-6.2-3.6-6.2h-2.2v3s.1 3.6-3.5 3.6h-6s-3.4-.1-3.4 3.3v5.6S14.8 34 21.4 34zm3.4-2a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2z" fill="#ffd43b"/></svg><div><small>Учебник · Программирование</small><h2>Python с нуля до профи</h2></div></div>
+      <div class="head"><svg class="ico" viewBox="0 0 42 42"><rect width="42" height="42" rx="11" fill="#141b2a"/><path d="M20.6 8c-6.4 0-6 2.8-6 2.8v2.9h6.1v.9h-8.5S8 14.1 8 20.6s3.6 6.2 3.6 6.2h2.2v-3s-.1-3.6 3.5-3.6h6s3.4.1 3.4-3.3v-5.6S27.2 8 20.6 8zm-3.4 2a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z" fill="#4b8bbe"/><path d="M21.4 34c6.4 0 6-2.8 6-2.8v-2.9h-6.1v-.9h8.5s4.2.5 4.2-6-3.6-6.2-3.6-6.2h-2.2v3s.1 3.6-3.5 3.6h-6s-3.4-.1-3.4 3.3v5.6S14.8 34 21.4 34zm3.4-2a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2z" fill="#ffd43b"/></svg><div><small>Учебник · Программирование</small><h2>Python с нуля до профи</h2><span class="maker">by Ansaro Technologies</span></div></div>
       <p class="lead">Полное руководство по Python в приложении: от первой строки кода до профессиональной разработки. Главы идут строго в порядке изучения.</p>
       <ul class="feats">
         <li><span><b>Часть I. Основы</b> — переменные, строки, условия, циклы, коллекции, функции</span></li>
@@ -300,20 +328,21 @@ footer a{color:var(--muted)}footer a:hover{color:var(--text)}
 
 <!-- MONKO -->
 <section class="proj reveal" id="monko" style="--c:var(--gold)">
-  <span class="soon">В разработке</span>
   <div class="grid">
     <div>
-      <div class="head"><img src="img/monko-icon.webp" alt="Логотип Monko"><div><small>Финансы · Личный бюджет</small><h2>Monko</h2></div></div>
+      <div class="head"><img src="img/monko-icon.webp" alt="Логотип Monko"><div><small>Финансы · Личный бюджет</small><h2>Monko</h2><span class="maker">by Ansaro Technologies</span></div></div>
       <p class="lead">Красивый учёт личных денег: видно, сколько у тебя есть, куда уходит и сколько останется к концу месяца.</p>
       <ul class="feats">
-        <li><span><b>Общий баланс</b> — наличные, карта и накопления в разных валютах</span></li>
-        <li><span><b>Расходы, доходы, переводы</b> — в одно касание</span></li>
-        <li><span><b>Прогноз и тренды</b> — «за таким темпом за месяц выйдет…»</span></li>
-        <li><span><b>Бюджеты и история</b> — на что больше всего тратишь</span></li>
+        <li><span><b>Счета и баланс</b> — наличные, карты и накопления в разных валютах с актуальными курсами</span></li>
+        <li><span><b>Расходы, доходы, переводы</b> — в одно касание, плюс сканирование чеков</span></li>
+        <li><span><b>Бюджеты, конверты и цели</b> — планируй и копи на мечту</span></li>
+        <li><span><b>Долги, подписки и календарь платежей</b> — ничего не забудешь</span></li>
+        <li><span><b>Статистика и прогноз</b> — графики, тренды и итоги периода</span></li>
       </ul>
+      <div class="chips"><span>Мультивалютность</span><span>Режим для бизнеса</span><span>PIN-защита</span><span>Резервные копии</span><span>Достижения</span></div>
       <div class="dl">
-        <span class="btn off">APK скоро появится</span>
-        <div class="meta">Сейчас готов дизайн</div>
+        <a class="btn" href="https://github.com/furtex-xq/furtex-xq.github.io/releases/latest/download/Monko.apk" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 20h14"/></svg>Скачать APK</a>
+        <div class="meta"><b>Версия 1.0.0</b><br>193 МБ · Android</div>
       </div>
     </div>
     <div class="visual">
@@ -330,7 +359,7 @@ footer a{color:var(--muted)}footer a:hover{color:var(--text)}
   <span class="soon">В разработке</span>
   <div class="grid">
     <div>
-      <div class="head"><img src="img/dealio-icon.webp" alt="Иконка Dealio"><div><small>Покупки · Скидки</small><h2>Dealio</h2></div></div>
+      <div class="head"><img src="img/dealio-icon.webp" alt="Иконка Dealio"><div><small>Покупки · Скидки</small><h2>Dealio</h2><span class="maker">by Ansaro Technologies</span></div></div>
       <p class="lead">Compare. Save. Everywhere. Сравнивает цены в магазинах рядом и находит, где купить дешевле.</p>
       <ul class="feats">
         <li><span><b>Лучшие скидки дня</b> — Lidl, Kaufland, Albert, BILLA, Tesco</span></li>
@@ -339,8 +368,8 @@ footer a{color:var(--muted)}footer a:hover{color:var(--text)}
         <li><span><b>Магазины на карте</b>, категории, уведомления о падении цены</span></li>
       </ul>
       <div class="dl">
-        <span class="btn off">APK скоро появится</span>
-        <div class="meta">Сейчас готов дизайн</div>
+        <span class="btn off">Скоро — в разработке</span>
+        <div class="meta">Следи за новостями в <a href="https://t.me/AnsaroTechnologies" target="_blank" rel="noopener" style="color:var(--c)">Telegram</a></div>
       </div>
     </div>
     <div class="visual">
@@ -359,11 +388,26 @@ footer a{color:var(--muted)}footer a:hover{color:var(--text)}
   </div>
 </section>
 
+<section class="about reveal" id="about">
+  <div class="about-card">
+    <div>
+      <small class="kicker">Создатель</small>
+      <h2>Ansaro Technologies</h2>
+      <p>Студия, которая делает приложения для Android: финансы, крипта, обучение и полезные инструменты. Основатель и разработчик — <a href="https://instagram.com/nochevvsky" target="_blank" rel="noopener"><b>nochevvsky</b></a> (Davyd, Давид).</p>
+    </div>
+    <div class="links">
+      <a href="https://t.me/AnsaroTechnologies" target="_blank" rel="noopener" class="link tg"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1.1-1 .2-1.5L20.5 2.7c.9-.3 1.6.2 1.4 1.6z"/></svg><span><b>@AnsaroTechnologies</b><small>Telegram студии</small></span></a>
+      <a href="https://t.me/VoxyG" target="_blank" rel="noopener" class="link tg"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1.1-1 .2-1.5L20.5 2.7c.9-.3 1.6.2 1.4 1.6z"/></svg><span><b>@VoxyG</b><small>Telegram</small></span></a>
+      <a href="https://instagram.com/nochevvsky" target="_blank" rel="noopener" class="link ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span><b>@nochevvsky</b><small>Instagram · Davyd (Давид)</small></span></a>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer><div class="wrap">
-  <span>© 2026 · Сделано с любовью к своим проектам</span>
-  <a href="https://github.com/furtex-xq" target="_blank" rel="noopener">GitHub · furtex-xq</a>
+  <span>© 2026 Ansaro Technologies · создатель <a href="https://instagram.com/nochevvsky" target="_blank" rel="noopener">nochevvsky</a> (Davyd, Давид)</span>
+  <span class="flinks"><a href="https://t.me/AnsaroTechnologies" target="_blank" rel="noopener">tg @AnsaroTechnologies</a> · <a href="https://t.me/VoxyG" target="_blank" rel="noopener">tg @VoxyG</a> · <a href="https://instagram.com/nochevvsky" target="_blank" rel="noopener">ig @nochevvsky</a></span>
 </div></footer>
 
 <script>
