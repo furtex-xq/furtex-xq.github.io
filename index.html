@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Проекты Давида</title>
+<meta name="description" content="Мои Android-приложения: Tidemark, Math for Speed, Python с нуля до профи, Monko и Dealio. Описание и скачивание APK.">
+<link rel="icon" href="img/mfs-icon.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08090c; --bg2:#0e1016; --card:#12151c; --line:#1f2430; --line2:#2a3040;
+  --text:#eef0f5; --muted:#8b93a7; --dim:#5d6578;
+  --gold:#e3b862; --lime:#b6e22b; --blue:#4f8dff; --py:#ffd43b; --pyblue:#4b8bbe;
+  --r:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:16px/1.6 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:Unbounded,sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+
+/* фон */
+.glow{position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:
+   radial-gradient(600px 400px at 15% -5%,rgba(79,141,255,.18),transparent 70%),
+   radial-gradient(500px 380px at 90% 10%,rgba(227,184,98,.12),transparent 70%),
+   radial-gradient(700px 500px at 50% 110%,rgba(182,226,43,.07),transparent 70%)}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:56px 56px;mask-image:linear-gradient(#000,transparent 70%)}
+
+/* шапка */
+nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(8,9,12,.7);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:Unbounded;font-weight:700;font-size:18px;display:flex;align-items:center;gap:10px}
+.logo i{width:12px;height:12px;border-radius:4px;background:linear-gradient(135deg,var(--blue),var(--gold));display:block}
+nav ul{display:flex;gap:26px;list-style:none;font-size:14px;color:var(--muted)}
+nav ul a:hover{color:var(--text)}
+@media(max-width:720px){nav ul{display:none}}
+
+/* hero */
+.hero{padding:96px 0 72px}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);border:1px solid var(--line2);border-radius:99px;padding:6px 14px;margin-bottom:26px}
+.tag b{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime)}
+.hero h1{font-size:clamp(38px,7vw,78px);max-width:900px}
+.hero h1 span{background:linear-gradient(90deg,var(--blue),#9b7bff 45%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:clamp(16px,2vw,19px);max-width:620px;margin-top:22px}
+.stats{display:flex;gap:40px;margin-top:44px;flex-wrap:wrap}
+.stats div b{font-family:Unbounded;font-size:30px;display:block}
+.stats div span{color:var(--dim);font-size:14px}
+
+/* быстрый список */
+.rail{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:96px}
+.rail a{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;align-items:center;gap:12px;transition:.25s}
+.rail a:hover{border-color:var(--c);transform:translateY(-3px)}
+.rail img,.rail .ico{width:42px;height:42px;border-radius:11px;flex:none}
+.rail b{font-size:14px;display:block;line-height:1.25}
+.rail small{font-size:12px;color:var(--dim)}
+@media(max-width:980px){.rail{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.rail{gap:8px}.rail a{padding:12px;gap:10px}.rail img,.rail .ico{width:36px;height:36px}}
+@media(max-width:640px){main .sec-title{display:block}main .sec-title p{margin-top:10px}}
+
+/* проект */
+.proj{position:relative;border:1px solid var(--line);border-radius:32px;background:linear-gradient(180deg,var(--card),var(--bg2));padding:52px;margin-bottom:36px;overflow:hidden;scroll-margin-top:84px}
+.proj::before{content:"";position:absolute;width:520px;height:520px;right:-160px;top:-220px;border-radius:50%;background:var(--c);opacity:.1;filter:blur(90px);pointer-events:none}
+.proj .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center;position:relative}
+.head{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+.head img,.head .ico{width:72px;height:72px;border-radius:20px;box-shadow:0 10px 30px -8px var(--c)}
+.head h2{font-size:clamp(26px,3.6vw,38px)}
+.head small{color:var(--c);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.lead{font-size:18px;color:#c9cedb;margin-bottom:24px}
+.feats{list-style:none;display:grid;gap:11px;margin-bottom:30px}
+.feats li{display:flex;gap:12px;color:var(--muted);font-size:15px}
+.feats li::before{content:"✓";flex:none;width:20px;height:20px;margin-top:2px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--c);background:color-mix(in srgb,var(--c) 16%,transparent)}
+.feats li b{color:var(--text);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+.chips span{font-size:12.5px;color:var(--muted);border:1px solid var(--line2);border-radius:99px;padding:4px 12px}
+.dl{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--c);color:#0a0b0e;font-weight:700;border-radius:16px;padding:15px 24px;transition:.2s;box-shadow:0 12px 34px -12px var(--c)}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn svg{width:22px;height:22px}
+.btn.off{background:transparent;color:var(--muted);border:1px dashed var(--line2);box-shadow:none;cursor:default}
+.btn.off:hover{transform:none;filter:none}
+.meta{font-size:13px;color:var(--dim);line-height:1.5}
+.meta b{color:var(--muted);font-weight:600}
+
+/* визуалы */
+.visual{display:flex;justify-content:center;align-items:center;min-height:380px;position:relative}
+.phone{width:min(260px,70%);border-radius:34px;border:7px solid #1b1f29;background:#000;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.9),0 0 0 1px var(--line2)}
+.phones{display:flex;gap:14px;align-items:center}
+.phones .phone{width:200px}
+.phones .phone:nth-child(2){transform:translateY(30px)}
+.bigicon{width:220px;height:220px;border-radius:52px;box-shadow:0 30px 90px -20px var(--c);animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-12px) rotate(-2deg)}}
+.mock{border-radius:20px;overflow:hidden;border:1px solid var(--line2);max-height:520px;box-shadow:0 30px 70px -30px #000}
+.mock img{object-fit:cover;object-position:top}
+
+/* псевдо-интерфейсы */
+.screen{width:260px;border-radius:34px;border:7px solid #1b1f29;background:var(--sbg);padding:22px 18px;box-shadow:0 40px 80px -30px rgba(0,0,0,.9);font-size:12px}
+.mfs-q{font-family:Unbounded;font-size:34px;text-align:center;margin:30px 0 22px;color:#fff}
+.mfs-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mfs-opts span{border:1px solid #3a3222;border-radius:14px;padding:14px 0;text-align:center;font-family:Unbounded;font-size:18px;color:#e9dcc0}
+.mfs-opts span.ok{background:var(--gold);color:#16120a;border-color:var(--gold)}
+.mfs-top{display:flex;justify-content:space-between;color:#a8977a}
+.bar{height:6px;border-radius:9px;background:#2a2418;margin-top:14px;overflow:hidden}
+.bar i{display:block;height:100%;width:64%;background:linear-gradient(90deg,#b8862f,var(--gold));animation:tick 4s linear infinite}
+@keyframes tick{from{width:100%}to{width:0}}
+.tm-price{font-family:Unbounded;font-size:24px;color:#fff;margin:4px 0}
+.tm-up{color:#3ee08f;font-weight:700}
+.tm-chart{margin:14px -4px 10px}
+.tm-row{display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid #1d2a4a;color:#a9b8de}
+.tm-row b{color:#fff}
+.code{font-family:ui-monospace,Consolas,monospace;font-size:12px;line-height:1.75;background:#0d1117;border-radius:14px;padding:14px;color:#c9d1d9;margin-top:12px}
+.code .k{color:#ff7b72}.code .f{color:#d2a8ff}.code .s{color:#a5d6ff}.code .c{color:#6e7681}
+.pyc{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.pyc span{font-size:11px;padding:4px 9px;border-radius:99px;background:#1c2433;color:#9fb6d8}
+.pyc span.on{background:var(--py);color:#1a1606}
+
+.soon{position:absolute;top:22px;right:22px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c);border:1px solid var(--c);border-radius:99px;padding:5px 12px;z-index:2}
+
+@media(max-width:900px){
+  .proj{padding:30px 22px;border-radius:26px}
+  .proj .grid{grid-template-columns:1fr;gap:34px}
+  .visual{min-height:0;order:-1}
+  .phones .phone{width:44%}
+  .soon{top:14px;right:14px}
+}
+
+/* установка */
+.how{margin:110px 0 40px}
+.how h2{font-size:clamp(26px,4vw,40px);margin-bottom:12px}
+.how>p{color:var(--muted);margin-bottom:34px;max-width:600px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px}
+.step i{font-style:normal;font-family:Unbounded;font-size:13px;color:var(--bg);background:var(--text);width:30px;height:30px;border-radius:9px;display:grid;place-items:center;margin-bottom:16px}
+.step h3{font-size:16px;margin-bottom:8px;font-family:Manrope;letter-spacing:0}
+.step p{color:var(--muted);font-size:14.5px}
+@media(max-width:820px){.steps{grid-template-columns:1fr}}
+
+.sec-title{display:flex;align-items:end;justify-content:space-between;margin-bottom:26px;gap:20px}
+.sec-title h2{font-size:clamp(26px,4vw,40px)}
+.sec-title p{color:var(--muted);max-width:360px;font-size:15px}
+
+footer{border-top:1px solid var(--line);margin-top:80px;padding:36px 0 50px;color:var(--dim);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:var(--muted)}footer a:hover{color:var(--text)}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="glow"></div><div class="grain"></div>
+
+<nav><div class="wrap">
+  <a class="logo" href="#"><i></i>furtex</a>
+  <ul>
+    <li><a href="#tidemark">Tidemark</a></li>
+    <li><a href="#mfs">Math for Speed</a></li>
+    <li><a href="#python">Python</a></li>
+    <li><a href="#monko">Monko</a></li>
+    <li><a href="#dealio">Dealio</a></li>
+  </ul>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="tag"><b></b>Android-приложения · APK для скачивания</div>
+  <h1>Я делаю приложения, <span>которыми пользуюсь сам</span></h1>
+  <p>Крипто-трекер, тренажёр устного счёта, учебник по Python, финансы и поиск скидок. Выбери проект, почитай, что он умеет, и скачай APK прямо на телефон.</p>
+  <div class="stats">
+    <div><b>5</b><span>проектов</span></div>
+    <div><b>3</b><span>готовы к установке</span></div>
+    <div><b>Android</b><span>платформа</span></div>
+  </div>
+</div></header>
+
+<main class="wrap">
+
+<div class="rail">
+  <a href="#tidemark" style="--c:var(--blue)"><img src="img/tidemark-icon.webp" alt=""><div><b>Tidemark</b><small>Криптовалюты</small></div></a>
+  <a href="#mfs" style="--c:var(--gold)"><img src="img/mfs-icon.webp" alt=""><div><b>Math for Speed</b><small>Устный счёт</small></div></a>
+  <a href="#python" style="--c:var(--py)"><svg class="ico" viewBox="0 0 42 42"><rect width="42" height="42" rx="11" fill="#141b2a"/><path d="M20.6 8c-6.4 0-6 2.8-6 2.8v2.9h6.1v.9h-8.5S8 14.1 8 20.6s3.6 6.2 3.6 6.2h2.2v-3s-.1-3.6 3.5-3.6h6s3.4.1 3.4-3.3v-5.6S27.2 8 20.6 8zm-3.4 2a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z" fill="#4b8bbe"/><path d="M21.4 34c6.4 0 6-2.8 6-2.8v-2.9h-6.1v-.9h8.5s4.2.5 4.2-6-3.6-6.2-3.6-6.2h-2.2v3s.1 3.6-3.5 3.6h-6s-3.4-.1-3.4 3.3v5.6S14.8 34 21.4 34zm3.4-2a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2z" fill="#ffd43b"/></svg><div><b>Python</b><small>Учебник</small></div></a>
+  <a href="#monko" style="--c:var(--gold)"><img src="img/monko-icon.webp" alt=""><div><b>Monko</b><small>Скоро</small></div></a>
+  <a href="#dealio" style="--c:var(--lime)"><img src="img/dealio-icon.webp" alt=""><div><b>Dealio</b><small>Скоро</small></div></a>
+</div>
+
+<div class="sec-title reveal"><h2>Проекты</h2><p>Готовые приложения можно скачать. Остальные — в работе, но уже можно посмотреть дизайн.</p></div>
+
+<!-- TIDEMARK -->
+<section class="proj reveal" id="tidemark" style="--c:var(--blue)">
+  <div class="grid">
+    <div>
+      <div class="head"><img src="img/tidemark-icon.webp" alt="Иконка Tidemark"><div><small>Крипто-трекер · Flutter</small><h2>Tidemark</h2></div></div>
+      <p class="lead">Все криптовалюты в одном месте: живые цены, профессиональные графики, портфель и обучение для новичков.</p>
+      <ul class="feats">
+        <li><span><b>Цены в реальном времени</b> — все монеты CoinGecko, обновление через Binance WebSocket</span></li>
+        <li><span><b>Графики как у трейдеров</b> — свечи, таймфреймы от 1m до 1M, MA, EMA, Bollinger, RSI, MACD, рисование линий</span></li>
+        <li><span><b>Портфель</b> — сделки, прибыль и убыток, распределение активов</span></li>
+        <li><span><b>Уведомления о цене</b>, стакан заявок, сравнение цен на 5 биржах</span></li>
+        <li><span><b>Обучение</b> — словарь из 64 терминов, тест, интерактивный урок «Как читать график»</span></li>
+      </ul>
+      <div class="chips"><span>USD · EUR · UAH · USDT</span><span>RU · UK · EN</span><span>Сленг-режим 🚀</span><span>Новости и индекс страха</span></div>
+      <div class="dl">
+        <a class="btn" href="https://github.com/furtex-xq/furtex-xq.github.io/releases/latest/download/Tidemark.apk" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 20h14"/></svg>Скачать APK</a>
+        <div class="meta"><b>Версия 1.0.0</b><br>71 МБ · Android</div>
+      </div>
+    </div>
+    <div class="visual">
+      <div class="screen" style="--sbg:linear-gradient(180deg,#0c1631,#0a0f22)">
+        <div style="display:flex;justify-content:space-between;color:#7f93c4"><span>Bitcoin · BTC</span><span>★</span></div>
+        <div class="tm-price">$ 112 480</div>
+        <div class="tm-up">▲ 3,42% за 24ч</div>
+        <svg class="tm-chart" viewBox="0 0 220 110" width="100%">
+          <defs><linearGradient id="tg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4f8dff" stop-opacity=".45"/><stop offset="1" stop-color="#4f8dff" stop-opacity="0"/></linearGradient></defs>
+          <path d="M0 88 L18 80 L34 84 L52 66 L70 72 L88 54 L104 60 L122 42 L140 50 L158 30 L176 38 L196 16 L220 22 L220 110 L0 110Z" fill="url(#tg)"/>
+          <path d="M0 88 L18 80 L34 84 L52 66 L70 72 L88 54 L104 60 L122 42 L140 50 L158 30 L176 38 L196 16 L220 22" fill="none" stroke="#6aa2ff" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="196" cy="16" r="5" fill="#fff"/><circle cx="196" cy="16" r="10" fill="#4f8dff" opacity=".35"/>
+        </svg>
+        <div class="tm-row"><span>Ethereum</span><b>$ 4 120</b></div>
+        <div class="tm-row"><span>Solana</span><b>$ 238,5</b></div>
+        <div class="tm-row"><span>Портфель</span><b style="color:#3ee08f">+ 18,2%</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MFS -->
+<section class="proj reveal" id="mfs" style="--c:var(--gold)">
+  <div class="grid">
+    <div>
+      <div class="head"><img src="img/mfs-icon.webp" alt="Иконка Math for Speed"><div><small>Тренажёр · Устный счёт</small><h2>Math for Speed</h2></div></div>
+      <p class="lead">Тренажёр устного счёта на скорость. Решай примеры быстрее таймера, прокачивай уровень и держи серию.</p>
+      <ul class="feats">
+        <li><span><b>Режимы</b> — Спринт, Марафон, Дуэль и другие</span></li>
+        <li><span><b>Уровни и опыт</b> — XP, серии ответов, заморозка серии</span></li>
+        <li><span><b>Награды и статистика</b> — достижения и подробный прогресс</span></li>
+        <li><span><b>Учебник</b> — приёмы быстрого счёта в уме</span></li>
+      </ul>
+      <div class="chips"><span>RU · UK · EN · DE · PL · CS</span><span>Работает офлайн</span><span>Весит 1 МБ</span></div>
+      <div class="dl">
+        <a class="btn" href="https://github.com/furtex-xq/furtex-xq.github.io/releases/latest/download/MathForSpeed.apk" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 20h14"/></svg>Скачать APK</a>
+        <div class="meta"><b>Последняя сборка</b><br>1 МБ · Android</div>
+      </div>
+    </div>
+    <div class="visual">
+      <div class="screen" style="--sbg:linear-gradient(180deg,#14110b,#0a0907)">
+        <div class="mfs-top"><span>Спринт</span><span>🔥 серия 12</span></div>
+        <div class="bar"><i></i></div>
+        <div class="mfs-q">47 × 6</div>
+        <div class="mfs-opts"><span>272</span><span class="ok">282</span><span>292</span><span>248</span></div>
+        <div style="text-align:center;color:#a8977a;margin-top:20px">Уровень 10 · 2 340 XP</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PYTHON -->
+<section class="proj reveal" id="python" style="--c:var(--py)">
+  <div class="grid">
+    <div>
+      <div class="head"><svg class="ico" viewBox="0 0 42 42"><rect width="42" height="42" rx="11" fill="#141b2a"/><path d="M20.6 8c-6.4 0-6 2.8-6 2.8v2.9h6.1v.9h-8.5S8 14.1 8 20.6s3.6 6.2 3.6 6.2h2.2v-3s-.1-3.6 3.5-3.6h6s3.4.1 3.4-3.3v-5.6S27.2 8 20.6 8zm-3.4 2a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z" fill="#4b8bbe"/><path d="M21.4 34c6.4 0 6-2.8 6-2.8v-2.9h-6.1v-.9h8.5s4.2.5 4.2-6-3.6-6.2-3.6-6.2h-2.2v3s.1 3.6-3.5 3.6h-6s-3.4-.1-3.4 3.3v5.6S14.8 34 21.4 34zm3.4-2a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2z" fill="#ffd43b"/></svg><div><small>Учебник · Программирование</small><h2>Python с нуля до профи</h2></div></div>
+      <p class="lead">Полное руководство по Python в приложении: от первой строки кода до профессиональной разработки. Главы идут строго в порядке изучения.</p>
+      <ul class="feats">
+        <li><span><b>Часть I. Основы</b> — переменные, строки, условия, циклы, коллекции, функции</span></li>
+        <li><span><b>Часть II. Средний уровень</b> — ООП, файлы, исключения, генераторы, декораторы</span></li>
+        <li><span><b>Часть III. Продвинутый</b> — typing, asyncio, метапрограммирование, устройство Python</span></li>
+        <li><span><b>Часть IV–V. Профи</b> — тесты, Git, SOLID, алгоритмы, базы данных, FastAPI и Django</span></li>
+      </ul>
+      <div class="chips"><span>30+ глав</span><span>Упражнения</span><span>Новичок → Middle+</span></div>
+      <div class="dl">
+        <a class="btn" href="https://github.com/furtex-xq/furtex-xq.github.io/releases/latest/download/PythonBook.apk" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 20h14"/></svg>Скачать APK</a>
+        <div class="meta"><b>Последняя сборка</b><br>55 МБ · Android</div>
+      </div>
+    </div>
+    <div class="visual">
+      <div class="screen" style="--sbg:linear-gradient(180deg,#121826,#0b0f18)">
+        <div style="color:#8ea2c4">Глава 13</div>
+        <div style="font-family:Unbounded;font-size:17px;color:#fff;margin-top:4px">Замыкания и декораторы</div>
+        <div class="pyc"><span class="on">Часть II</span><span>12 мин</span><span>Junior</span></div>
+<pre class="code"><span class="k">def</span> <span class="f">timer</span>(fn):
+    <span class="k">def</span> <span class="f">wrap</span>(*a):
+        t = time()
+        r = fn(*a)
+        <span class="f">print</span>(<span class="s">f"{time()-t:.2f}s"</span>)
+        <span class="k">return</span> r
+    <span class="k">return</span> wrap
+<span class="c"># @timer над функцией</span></pre>
+        <div class="bar" style="background:#1c2433"><i style="width:62%;animation:none;background:linear-gradient(90deg,var(--pyblue),var(--py))"></i></div>
+        <div style="color:#8ea2c4;margin-top:8px">Прочитано 13 из 30</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MONKO -->
+<section class="proj reveal" id="monko" style="--c:var(--gold)">
+  <span class="soon">В разработке</span>
+  <div class="grid">
+    <div>
+      <div class="head"><img src="img/monko-icon.webp" alt="Логотип Monko"><div><small>Финансы · Личный бюджет</small><h2>Monko</h2></div></div>
+      <p class="lead">Красивый учёт личных денег: видно, сколько у тебя есть, куда уходит и сколько останется к концу месяца.</p>
+      <ul class="feats">
+        <li><span><b>Общий баланс</b> — наличные, карта и накопления в разных валютах</span></li>
+        <li><span><b>Расходы, доходы, переводы</b> — в одно касание</span></li>
+        <li><span><b>Прогноз и тренды</b> — «за таким темпом за месяц выйдет…»</span></li>
+        <li><span><b>Бюджеты и история</b> — на что больше всего тратишь</span></li>
+      </ul>
+      <div class="dl">
+        <span class="btn off">APK скоро появится</span>
+        <div class="meta">Сейчас готов дизайн</div>
+      </div>
+    </div>
+    <div class="visual">
+      <div class="phones">
+        <div class="phone"><img src="img/monko-1.webp" alt="Главный экран Monko" loading="lazy"></div>
+        <div class="phone"><img src="img/monko-2.webp" alt="Экран Monko" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEALIO -->
+<section class="proj reveal" id="dealio" style="--c:var(--lime)">
+  <span class="soon">В разработке</span>
+  <div class="grid">
+    <div>
+      <div class="head"><img src="img/dealio-icon.webp" alt="Иконка Dealio"><div><small>Покупки · Скидки</small><h2>Dealio</h2></div></div>
+      <p class="lead">Compare. Save. Everywhere. Сравнивает цены в магазинах рядом и находит, где купить дешевле.</p>
+      <ul class="feats">
+        <li><span><b>Лучшие скидки дня</b> — Lidl, Kaufland, Albert, BILLA, Tesco</span></li>
+        <li><span><b>Сравнение цен</b> — один товар во всех магазинах сразу</span></li>
+        <li><span><b>Умная корзина</b> — подбирает самую выгодную комбинацию</span></li>
+        <li><span><b>Магазины на карте</b>, категории, уведомления о падении цены</span></li>
+      </ul>
+      <div class="dl">
+        <span class="btn off">APK скоро появится</span>
+        <div class="meta">Сейчас готов дизайн</div>
+      </div>
+    </div>
+    <div class="visual">
+      <div class="mock"><img src="img/dealio-screens.webp" alt="Макеты экранов Dealio" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="how reveal" id="install">
+  <h2>Как установить APK</h2>
+  <p>Приложения не из Google Play, поэтому Android один раз спросит разрешение. Это нормально.</p>
+  <div class="steps">
+    <div class="step"><i>1</i><h3>Скачай файл</h3><p>Открой этот сайт с телефона и нажми «Скачать APK» у нужного приложения.</p></div>
+    <div class="step"><i>2</i><h3>Разреши установку</h3><p>Когда телефон спросит — разреши браузеру «устанавливать неизвестные приложения».</p></div>
+    <div class="step"><i>3</i><h3>Открой и пользуйся</h3><p>Нажми на скачанный файл → «Установить». Иконка появится на рабочем столе.</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer><div class="wrap">
+  <span>© 2026 · Сделано с любовью к своим проектам</span>
+  <a href="https://github.com/furtex-xq" target="_blank" rel="noopener">GitHub · furtex-xq</a>
+</div></footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
