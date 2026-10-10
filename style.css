@@ -391,3 +391,9 @@ footer .fl{display:flex;gap:18px;flex-wrap:wrap}
 .ava img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .link.own .li{background:#000;overflow:hidden;box-shadow:0 0 0 1.5px rgba(255,255,255,.25)}
 .link.own .li img{width:100%;height:100%;object-fit:cover}
+
+/* ===== логотип Ansaro (аватар) в шапке и в центре первого экрана ===== */
+.mk{width:34px;height:34px;border-radius:50%;background:#000;overflow:hidden;box-shadow:0 0 0 1.5px rgba(255,255,255,.28),0 6px 18px -6px rgba(255,255,255,.35)}
+.mk img{width:100%;height:100%;object-fit:cover;display:block}
+.orbit .core{background:#000;border-radius:50%;overflow:hidden;animation:none;box-shadow:0 30px 90px -20px #8b5cf6,0 0 0 2px rgba(255,255,255,.22),0 0 0 12px var(--glass)}
+.orbit .core img{width:100%;height:100%;object-fit:cover;display:block}
