@@ -616,3 +616,10 @@ html.demo-open body>*:not(.demo),html.demo-open body>*:not(.demo) *{transition:n
 .vt code{font-family:ui-monospace,Consolas,monospace;font-size:11.5px;color:var(--dim)}
 .vt.warn{background:linear-gradient(var(--solid),var(--solid2)) padding-box,linear-gradient(rgba(251,191,36,.6),rgba(251,191,36,.2)) border-box}
 .vt.warn .ok{background:rgba(251,191,36,.16);color:#fbbf24}
+
+/* ===== плашка «Для устройств Android» ===== */
+.os{display:inline-flex;align-items:center;gap:8px;width:fit-content;margin:-6px 0 20px;padding:6px 14px 6px 10px;border-radius:99px;font-size:13px;font-weight:700;color:var(--text);
+  border:1px solid transparent;background:linear-gradient(var(--solid),var(--solid2)) padding-box,linear-gradient(rgba(61,220,132,.6),rgba(61,220,132,.2)) border-box;box-shadow:inset 0 1px 0 var(--hi),0 0 26px -6px rgba(61,220,132,.5)}
+.os svg{width:20px;height:20px;flex:none}
+.pills{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.pills .pill,.pills .os{margin:0}

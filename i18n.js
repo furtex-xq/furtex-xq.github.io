@@ -9,6 +9,7 @@ ru: {
 },
 
 uk: {
+  "os":"Для пристроїв Android",
   "vt.clean":"загроз не знайдено",
   "vt.flag":"є спрацювання, відкрий звіт",
   "vt.checked":"Перевірено",
@@ -126,6 +127,7 @@ uk: {
 },
 
 en: {
+  "os":"For Android devices",
   "vt.clean":"no threats found",
   "vt.flag":"some engines flagged it, open the report",
   "vt.checked":"Checked",
@@ -243,6 +245,7 @@ en: {
 },
 
 cs: {
+  "os":"Pro zařízení s Androidem",
   "vt.clean":"žádné hrozby nenalezeny",
   "vt.flag":"některé antiviry hlásí nález, otevři zprávu",
   "vt.checked":"Zkontrolováno",
