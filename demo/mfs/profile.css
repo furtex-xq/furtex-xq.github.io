@@ -1,0 +1,522 @@
+/* =========================================================
+   Кнопка «Играть», шкала сложности, лестница, профиль и короны
+   ========================================================= */
+
+/* ---------- Кнопка «Играть» в нижней панели ---------- */
+.nav-fab {
+  width: 68px; height: 68px; margin-top: -36px; border: 0; padding: 0;
+  background:
+    radial-gradient(120% 90% at 30% 18%, rgba(255, 255, 255, .75) 0%, rgba(255, 255, 255, 0) 38%),
+    conic-gradient(from 210deg, #b87a12, #ffd25a, #fff1b8, #ffd25a, #eba92c, #b87a12);
+  box-shadow:
+    0 0 0 5px #0b0b0b,
+    0 0 0 6.5px rgba(255, 214, 110, .55),
+    0 10px 28px rgba(235, 169, 44, .45),
+    inset 0 -6px 10px rgba(120, 70, 0, .45),
+    inset 0 3px 4px rgba(255, 255, 255, .6);
+}
+.nav-fab .fab-ico { margin-left: 3px; }
+.nav-fab .fab-ico svg { width: 28px; height: 28px; display: block; fill: #2a1a02; filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .45)); }
+.fx-on .nav-fab::before { inset: -8px; border-color: rgba(255, 214, 110, .5); }
+
+/* ---------- Шкала сложности ---------- */
+.lvl-bars { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; margin-right: 7px; vertical-align: -1px; }
+.lvl-bars b { width: 3px; border-radius: 2px; background: rgba(255, 255, 255, .15); }
+.lvl-bars b:nth-child(1) { height: 5px; }
+.lvl-bars b:nth-child(2) { height: 8px; }
+.lvl-bars b:nth-child(3) { height: 12px; }
+.on .lvl-bars.n1 b:nth-child(-n+1), .on .lvl-bars.n2 b:nth-child(-n+2), .on .lvl-bars.n3 b:nth-child(-n+3) { background: var(--gold-light); box-shadow: 0 0 6px var(--gold); }
+.fx-on .on .lvl-bars b { animation: lvlGrow .45s cubic-bezier(.2, .9, .3, 1.4) both; transform-origin: bottom; }
+.fx-on .on .lvl-bars b:nth-child(2) { animation-delay: .06s; }
+.fx-on .on .lvl-bars b:nth-child(3) { animation-delay: .12s; }
+@keyframes lvlGrow { from { transform: scaleY(.2); } }
+
+/* ---------- Лестница ---------- */
+.ladder-card {
+  width: 100%; display: flex; align-items: center; gap: 16px; margin: 0 0 18px; padding: 18px;
+  border-radius: 24px; text-align: left; color: var(--text); font: inherit; cursor: pointer; position: relative; overflow: hidden;
+  background: radial-gradient(120% 140% at 0% 0%, rgba(235, 169, 44, .2), transparent 55%), var(--card-grad);
+  border: 1.5px solid var(--gold); box-shadow: var(--shadow), var(--gold-glow);
+}
+.ld-ico .ill { width: 58px; height: 58px; }
+.ld-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.ld-main small { color: var(--gold); font-weight: 800; letter-spacing: .14em; text-transform: uppercase; font-size: 11px; }
+.ld-main b { font: 700 24px var(--font-brand); color: var(--gold-light); }
+.ld-main > span:not(.ld-bar) { color: var(--text-2); font-size: 13px; }
+.ld-main em { font-style: normal; color: var(--muted); font-size: 12px; }
+.ld-bar { height: 5px; border-radius: 4px; background: rgba(255, 255, 255, .08); overflow: hidden; margin: 4px 0 2px; }
+.ld-bar i { display: block; height: 100%; border-radius: inherit; background: var(--gold-grad); }
+.ld-go { width: 46px; height: 46px; flex: none; display: grid; place-items: center; border-radius: 50%; background: var(--gold-grad); box-shadow: var(--gold-glow); }
+.ld-go .ill { width: 22px; height: 22px; color: #2a1a02; }
+.level-badge.ladder { background: var(--gold-grad); color: var(--gold-ink); }
+.blitz-dots.ladder i { height: 8px; }
+.ladder-banner.fail { border: 1px solid rgba(229, 72, 77, .5); color: var(--text-2); }
+
+/* ---------- Аватар, корона, ник ---------- */
+.pf-avatar {
+  --pc: var(--gold); position: relative; display: inline-grid; place-items: center; flex: none;
+  width: 58px; height: 58px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%, rgba(255, 255, 255, .55), transparent 45%), var(--pc);
+  box-shadow: 0 0 0 2px #0b0b0b, 0 0 0 3.5px var(--gold), 0 6px 18px rgba(0, 0, 0, .5);
+}
+.pf-face { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; color: #1b1406; font: 800 22px var(--font-brand); }
+.pf-face .ill { width: 62%; height: 62%; color: #1b1406; }
+.pf-crown { position: absolute; left: 50%; top: -44%; width: 78%; transform: translateX(-50%) rotate(-8deg); filter: drop-shadow(0 3px 4px rgba(0, 0, 0, .55)); pointer-events: none; }
+.pf-crown svg { width: 100%; height: auto; display: block; }
+.pf-avatar.md { width: 52px; height: 52px; }
+.pf-avatar.xl { width: 96px; height: 96px; }
+.pf-avatar.xl .pf-face { font-size: 38px; }
+.pf-avatar.legend::after {
+  content: ""; position: absolute; inset: -5px; border-radius: 50%; padding: 2.5px;
+  background: linear-gradient(120deg, #ffd37a, #ff7ab8, #7ad7ff, #b98cff, #ffd37a);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+}
+.set-profile .pf-avatar { margin-top: 10px; }
+
+.greet { margin-top: 18px; }
+.greet-avatar { position: relative; background: none; border: 0; padding: 0; cursor: pointer; flex: none; }
+.greet-avatar .lvl-badge {
+  position: absolute; right: -6px; bottom: -4px; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 999px;
+  display: grid; place-items: center; font: 800 12px var(--font-brand); color: var(--gold-ink); background: var(--gold-grad);
+  box-shadow: 0 0 0 2px #0b0b0b;
+}
+.greet-text { min-width: 0; }
+.greet-text h1 { margin: 0; overflow-wrap: anywhere; }
+.greet.pos-center { flex-direction: column; text-align: center; }
+.greet.pos-center .pf-socials { justify-content: center; }
+.greet.pos-right { flex-direction: row-reverse; text-align: right; }
+.greet.pos-right .pf-socials { justify-content: flex-end; }
+
+.pf-socials { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.pf-socials:empty { display: none; }
+.pf-social {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px 4px 5px; border-radius: 999px; cursor: pointer;
+  font: 600 13px var(--font-body); color: var(--text-2); background: rgba(255, 255, 255, .04); border: 1px solid var(--line);
+}
+.pf-social .ill { width: 22px; height: 22px; }
+.pf-social.sm { font-size: 12px; padding: 2px 8px 2px 3px; }
+.pf-social.sm .ill { width: 18px; height: 18px; }
+
+/* ---------- Экран профиля ---------- */
+.pf-hero { display: flex; align-items: center; gap: 22px; padding: 44px 22px 22px; }
+.pf-hero.pos-center { flex-direction: column; text-align: center; }
+.pf-hero.pos-center .pf-socials { justify-content: center; }
+.pf-hero.pos-right { flex-direction: row-reverse; text-align: right; }
+.pf-hero.pos-right .pf-socials { justify-content: flex-end; }
+.pf-info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.pf-nick { font: 700 26px var(--font-brand); color: var(--gold-light); overflow-wrap: anywhere; }
+.pf-info small { color: var(--muted); }
+.pf-pad { padding: 14px; }
+.pf-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.pf-opt {
+  aspect-ratio: 1; display: grid; place-items: center; border-radius: 16px; cursor: pointer;
+  background: linear-gradient(180deg, #191919, #111); border: 1px solid var(--line-soft);
+}
+.pf-opt .ill { width: 60%; height: 60%; }
+.pf-opt.on { border-color: var(--gold); box-shadow: var(--gold-glow); background: linear-gradient(180deg, #221b0c, #120e05); }
+.pf-letter { font: 800 24px var(--font-brand); color: var(--gold-light); }
+.pf-colors { display: flex; justify-content: space-between; gap: 8px; margin-top: 14px; }
+.pf-color { flex: 1; height: 34px; border-radius: 12px; background: var(--c); border: 2px solid transparent; cursor: pointer; }
+.pf-color.on { border-color: #fff; box-shadow: 0 0 0 2px var(--c), 0 0 14px var(--c); }
+
+.crown-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.crown-opt {
+  --cc: #555; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 14px 8px 12px; border-radius: 18px;
+  text-align: center; cursor: pointer; font: inherit; color: var(--text);
+  background: linear-gradient(180deg, #171717, #0f0f0f); border: 1px solid var(--line-soft);
+}
+.crown-pic { width: 64px; height: 44px; display: grid; place-items: center; }
+.crown-pic svg { width: 100%; height: auto; }
+.crown-none { font: 700 28px var(--font-brand); color: var(--muted); }
+.crown-opt b { font-size: 13px; }
+.crown-opt small { font-size: 11px; color: var(--muted); line-height: 1.3; }
+.crown-opt.on { border-color: var(--cc); box-shadow: 0 0 18px color-mix(in srgb, var(--cc) 35%, transparent); }
+.crown-opt.on small { color: var(--cc); font-weight: 700; }
+.crown-opt.locked .crown-pic { filter: grayscale(1) brightness(.45); }
+.crown-opt.locked b { color: var(--muted); }
+.crown-opt.legend.on { border-color: #ff7ab8; }
+.social-ico .ill { width: 26px; height: 26px; }
+@media (max-width: 420px) {
+  .pf-grid { gap: 8px; }
+  .pf-hero { gap: 16px; }
+}
+.segmented button:has(.lvl-bars) { white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; gap: 0; padding-left: 4px; padding-right: 4px; }
+.lvl-mult { margin-left: 6px; padding: 1px 6px; border-radius: 999px; font-size: 11px; font-weight: 800; color: var(--muted); background: rgba(255, 255, 255, .06); }
+.on .lvl-mult { color: var(--gold-ink); background: var(--gold-grad); }
+
+/* ---------- Блеск на редких коронах ---------- */
+.fx-on .crown-svg .gloss { animation: crownGloss 3.2s ease-in-out infinite; }
+@keyframes crownGloss { 0%, 55% { transform: skewX(-20deg) translateX(0); } 100% { transform: skewX(-20deg) translateX(110px); } }
+.fx-on .crown-svg.ultra { animation: crownUltra 4s linear infinite; }
+@keyframes crownUltra { to { filter: hue-rotate(360deg) drop-shadow(0 0 4px #fff); } }
+.crown-opt.locked .gloss { display: none; }
+
+/* ---------- Открытие сундука ---------- */
+.chest-ov {
+  --rc: #aaa; --shake: 1000ms;
+  position: fixed; inset: 0; z-index: 9000; display: grid; place-items: center; overflow: hidden;
+  background: radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--rc) 22%, #0a0a0a) 0%, rgba(5, 5, 5, .96) 62%);
+  animation: coIn .3s ease both;
+}
+.chest-ov.closing { animation: coOut .26s ease forwards; }
+@keyframes coIn { from { opacity: 0; } }
+@keyframes coOut { to { opacity: 0; transform: scale(1.04); } }
+
+.co-rays {
+  position: absolute; left: 50%; top: 42%; width: 160vmax; height: 160vmax; margin: -80vmax 0 0 -80vmax; opacity: 0;
+  background: repeating-conic-gradient(from 0deg, color-mix(in srgb, var(--rc) 55%, transparent) 0 6deg, transparent 6deg 18deg);
+  -webkit-mask: radial-gradient(circle, #000 0, transparent 55%); mask: radial-gradient(circle, #000 0, transparent 55%);
+  transition: opacity .4s ease;
+}
+.chest-ov.open .co-rays { opacity: 1; animation: coSpin 14s linear infinite; }
+.r-mythic .co-rays { background: repeating-conic-gradient(from 0deg, #ffd37a 0 5deg, transparent 5deg 12deg, #ff7ab8 12deg 17deg, transparent 17deg 24deg, #7ad7ff 24deg 29deg, transparent 29deg 36deg); }
+@keyframes coSpin { to { transform: rotate(360deg); } }
+
+.co-stage { position: relative; width: min(62vw, 260px); transform: translateY(-4vh); transition: transform .5s cubic-bezier(.2, .9, .3, 1.2); }
+.co-chest { width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 20px 30px rgba(0, 0, 0, .6)); }
+.co-light { opacity: 0; transition: opacity .3s ease; }
+.co-lid { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .45s cubic-bezier(.2, .9, .3, 1.4); }
+.chest-ov.shake .co-stage { animation: coShake var(--shake) cubic-bezier(.36, .07, .19, .97) both; }
+@keyframes coShake {
+  0% { transform: translateY(-4vh) scale(.9); }
+  10% { transform: translateY(-4vh) rotate(-3deg); }
+  20% { transform: translateY(-4vh) rotate(3deg); }
+  35% { transform: translateY(-4vh) rotate(-5deg) scale(1.03); }
+  50% { transform: translateY(-4vh) rotate(6deg) scale(1.06); }
+  65% { transform: translateY(-4vh) rotate(-8deg) scale(1.09); }
+  80% { transform: translateY(-4vh) rotate(9deg) scale(1.12); }
+  92% { transform: translateY(-4vh) rotate(-10deg) scale(1.15); }
+  100% { transform: translateY(-4vh) scale(1.18); }
+}
+.chest-ov.open .co-lid { transform: translateY(-30%) rotate(-16deg); }
+.chest-ov.open .co-light { opacity: 1; animation: coGlow 1.2s ease-in-out infinite alternate; }
+@keyframes coGlow { to { opacity: .6; } }
+.chest-ov.loot .co-stage { transform: translateY(-24vh) scale(.62); }
+
+.co-loot {
+  position: absolute; left: 16px; right: 16px; bottom: max(28px, env(safe-area-inset-bottom)); max-width: 460px; margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center; gap: 16px; opacity: 0; pointer-events: none;
+}
+.chest-ov.loot .co-loot { opacity: 1; pointer-events: auto; }
+.co-title { font: 800 26px var(--font-brand); color: var(--rc); text-shadow: 0 0 18px color-mix(in srgb, var(--rc) 60%, transparent); }
+.r-mythic .co-title { background: linear-gradient(90deg, #ffd37a, #ff7ab8, #7ad7ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.co-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.co-card {
+  min-width: 96px; padding: 14px 16px; border-radius: 18px; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  background: linear-gradient(180deg, #1c1c1c, #101010); border: 1.5px solid color-mix(in srgb, var(--rc) 70%, transparent);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--rc) 25%, transparent);
+  opacity: 0; transform: translateY(24px) scale(.8);
+}
+.chest-ov.loot .co-card { animation: coCard .5s cubic-bezier(.2, .9, .3, 1.4) forwards; }
+.chest-ov.loot .co-card:nth-child(2) { animation-delay: .12s; }
+.chest-ov.loot .co-card:nth-child(3) { animation-delay: .28s; }
+@keyframes coCard { to { opacity: 1; transform: none; } }
+.co-card b { font: 800 24px var(--font-brand); color: var(--text); }
+.co-card small { color: var(--muted); font-size: 12px; text-align: center; }
+.co-card.item { --cc: var(--rc); min-width: 150px; border-color: var(--cc); box-shadow: 0 0 30px color-mix(in srgb, var(--cc) 45%, transparent); }
+.co-card.item .crown-pic { width: 84px; height: 58px; }
+.co-card.item b { font-size: 17px; color: var(--cc); }
+.co-card.item.ultra { border-color: transparent; background: linear-gradient(180deg, #1c1c1c, #101010) padding-box, linear-gradient(120deg, #ffd37a, #ff7ab8, #7ad7ff, #b98cff) border-box; }
+.co-loot .btn { min-width: 200px; }
+/* Лучи мягче и только вокруг сундука */
+.co-rays {
+  width: 130vmax; height: 130vmax; margin: -65vmax 0 0 -65vmax;
+  background: repeating-conic-gradient(from 0deg, color-mix(in srgb, var(--rc) 30%, transparent) 0 5deg, transparent 5deg 15deg);
+  -webkit-mask: radial-gradient(circle closest-side, #000 0%, rgba(0, 0, 0, .5) 22%, transparent 48%);
+  mask: radial-gradient(circle closest-side, #000 0%, rgba(0, 0, 0, .5) 22%, transparent 48%);
+}
+.chest-ov.open .co-rays { opacity: .9; }
+.r-mythic .co-rays { background: repeating-conic-gradient(from 0deg, rgba(255, 211, 122, .4) 0 4deg, transparent 4deg 12deg, rgba(255, 122, 184, .4) 12deg 16deg, transparent 16deg 24deg, rgba(122, 215, 255, .4) 24deg 28deg, transparent 28deg 36deg); }
+/* Закрытые короны — приглушённый цвет, чтобы было видно, какая какая */
+.crown-opt.locked .crown-pic { filter: saturate(.35) brightness(.55); }
+
+/* ---------- Рамки аватара ---------- */
+.pf-avatar.sm { width: 46px; height: 46px; }
+.pf-avatar.sm .pf-face { font-size: 18px; }
+.pf-avatar.has-frame { box-shadow: 0 0 0 2px #0b0b0b, 0 6px 18px rgba(0, 0, 0, .5); }
+.pf-avatar.has-frame::before {
+  content: ""; position: absolute; inset: -5px; border-radius: 50%; padding: 3.5px; z-index: 1; pointer-events: none;
+  background: linear-gradient(135deg, var(--f1), var(--f2), var(--f1), var(--f2));
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--f1) 50%, transparent);
+}
+.pf-avatar.fr-thick::before { inset: -7px; padding: 5px; }
+.pf-avatar.fr-rainbow::before { background: conic-gradient(#ffd37a, #ff7ab8, #b98cff, #7ad7ff, #7affc1, #ffd37a); }
+.pf-avatar.fr-void::before { background: conic-gradient(#000, #7a2cff, #000, #ff2cc4, #000, #2cf4ff, #000); }
+.pf-avatar.fr-void { box-shadow: 0 0 0 2px #0b0b0b, 0 0 26px rgba(122, 44, 255, .6); }
+.fx-on .pf-avatar.fr-anim::before { animation: frShift 3.5s ease-in-out infinite alternate; }
+.fx-on .pf-avatar.fr-rainbow::before { animation: frSpin 4s linear infinite; }
+@keyframes frShift { to { background-position: 100% 100%; } }
+@keyframes frSpin { to { transform: rotate(360deg); } }
+.pf-avatar.has-frame.legend::after { display: none; }
+.frame-pic { height: 58px; display: grid; place-items: center; }
+.crown-opt.locked .frame-pic { filter: saturate(.35) brightness(.55); }
+
+/* ---------- Артефакты ---------- */
+.art-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+.art-slot {
+  --ac: var(--gold); height: 92px; border-radius: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  border: 1.5px dashed var(--line-strong); color: var(--muted); font: 700 24px var(--font-brand); background: rgba(255, 255, 255, .02);
+}
+.art-slot small { font: 500 11px var(--font-body); text-align: center; padding: 0 6px; }
+.art-slot .ill { width: 36px; height: 36px; }
+.art-slot.on { border: 1.5px solid var(--ac); background: linear-gradient(180deg, #1b1b1b, #101010); box-shadow: 0 0 18px color-mix(in srgb, var(--ac) 35%, transparent); color: var(--text); cursor: pointer; }
+.art-slot.locked { opacity: .5; border-style: solid; }
+.art-slot.locked .ill { width: 22px; height: 22px; }
+.art-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.art-opt {
+  --ac: var(--gold); display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 14px 8px 12px; border-radius: 18px;
+  text-align: center; cursor: pointer; font: inherit; color: var(--text); background: linear-gradient(180deg, #171717, #0f0f0f); border: 1px solid var(--line-soft);
+}
+.art-pic { width: 54px; height: 54px; display: grid; place-items: center; border-radius: 16px; background: radial-gradient(circle, color-mix(in srgb, var(--ac) 28%, transparent), transparent 70%); }
+.art-pic .ill { width: 40px; height: 40px; }
+.art-opt b { font-size: 13px; }
+.art-lvl { color: var(--ac); font-size: 12px; letter-spacing: .08em; }
+.art-opt small { font-size: 11px; color: var(--text-2); line-height: 1.3; }
+.art-opt em { font-style: normal; font-size: 10.5px; color: var(--muted); line-height: 1.3; }
+.art-opt.on { border-color: var(--ac); box-shadow: 0 0 18px color-mix(in srgb, var(--ac) 35%, transparent); }
+.art-opt.on em { color: var(--ac); font-weight: 700; }
+.art-opt.locked .art-pic, .art-opt.locked b { filter: saturate(.3) brightness(.6); }
+.art-opt.ultra:not(.locked) { border-color: transparent; background: linear-gradient(180deg, #171717, #0f0f0f) padding-box, linear-gradient(120deg, #ffd37a, #ff7ab8, #7ad7ff) border-box; }
+.game-arts { display: inline-flex; gap: 2px; margin-left: 8px; }
+.game-arts i { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: color-mix(in srgb, var(--ac) 22%, transparent); }
+.game-arts .ill { width: 16px; height: 16px; }
+.feedback .fb-rule .ill { width: 18px; height: 18px; }
+
+/* Добыча в окне сундука */
+.co-card .art-pic { width: 70px; height: 70px; }
+.co-card .art-pic .ill { width: 52px; height: 52px; }
+.co-card .frame-pic { height: 70px; }
+.co-card .frame-pic .pf-avatar { width: 56px; height: 56px; }
+.co-card .art-eff { color: var(--text-2) !important; max-width: 180px; }
+
+/* ---------- Экран игры без прыжков: у всего, что меняется во время игры, постоянный размер ---------- */
+.game-top { flex-wrap: nowrap; }
+.game-top .pill { min-width: 0; overflow: hidden; white-space: nowrap; flex-shrink: 1; }
+.game-stats b { font-variant-numeric: tabular-nums; }
+.problem-card { position: relative; }
+.golden-tag { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); margin: 0; white-space: nowrap; z-index: 2; }
+.fx-on .golden-tag:not([hidden]) { animation: goldenInAbs .5s cubic-bezier(.2, .9, .3, 1.4) both; }
+@keyframes goldenInAbs { from { transform: translateX(-50%) scale(.4) rotate(-8deg); opacity: 0; } }
+.problem { display: block; height: 110px; min-height: 0; line-height: 110px; overflow: hidden; white-space: normal; }
+.problem.long { line-height: 1.3; padding-top: 6px; box-sizing: border-box; font-size: clamp(18px, 5.2vw, 28px); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+.feedback { height: 3.9em; min-height: 0; overflow: hidden; line-height: 1.3; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+.feedback .fb-rule { margin-top: 2px; }
+.rec-chase { height: 30px; box-sizing: border-box; }
+/* OK на всю ширину — последний ряд не висит одной кнопкой */
+.numpad .np-ok { grid-column: 1 / -1; }
+
+/* ---------- Части предметов: пазл 2×2 ---------- */
+.puzzle { --pz: var(--gold); position: relative; width: 64px; height: 64px; display: block; flex: none; }
+.puzzle.lg { width: 104px; height: 104px; }
+.puzzle.xl { width: min(46vw, 190px); height: min(46vw, 190px); }
+.pz-pic {
+  position: absolute; inset: 4%; display: grid; place-items: center; border-radius: 14%;
+  background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--pz) 38%, #1a1a1a), #0f0f0f 72%);
+}
+.pz-pic > span { transform: scale(var(--pzs, .9)); }
+.puzzle.lg .pz-pic > span { --pzs: 1.3; }
+.puzzle.xl .pz-pic > span { --pzs: 2.4; }
+.pz-pic .art-pic { background: none; }
+.pz-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+/* Шов между кусочками: тёмный контур + светлая «нарисованная» линия */
+.pz-seam { fill: none; stroke: #120c03; stroke-width: 3.2; stroke-linejoin: round; paint-order: stroke; }
+.pz-seam { filter: drop-shadow(0 0 0 transparent); }
+.pz-fog { stroke: none; opacity: .94; }
+.pz-hole { fill: none; stroke: color-mix(in srgb, var(--pz) 70%, #fff); stroke-width: 1.6; stroke-dasharray: 4 3.5; stroke-linecap: round; stroke-linejoin: round; opacity: .75; }
+.puzzle.done .pz-seam { stroke: color-mix(in srgb, var(--pz) 45%, #120c03); stroke-width: 1.6; }
+.puzzle.done { filter: drop-shadow(0 0 8px color-mix(in srgb, var(--pz) 60%, transparent)); }
+.puzzle.ultra .pz-pic { background: radial-gradient(circle at 50% 40%, #3a2a4a, #0f0f0f 72%); }
+.fx-on .puzzle.ultra { animation: crownUltra 4s linear infinite; }
+
+/* Новые кусочки: сначала в стороне и прозрачные, потом влетают на место */
+.pz-seam.fresh { fill: color-mix(in srgb, var(--pz) 55%, #fff); fill-opacity: 0; stroke: #fff; stroke-width: 3; }
+.pz-seam.fresh { transform: translate(var(--dx), var(--dy)) scale(.7) rotate(-14deg); transform-box: fill-box; transform-origin: center; opacity: 0; }
+.pz-go .pz-seam.fresh { animation: pzIn .6s cubic-bezier(.2, .9, .3, 1.3) forwards; animation-delay: calc(var(--i) * .15s); }
+@keyframes pzIn {
+  0% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(.7) rotate(-14deg); fill-opacity: .9; }
+  60% { opacity: 1; fill-opacity: .7; }
+  80% { transform: none; fill-opacity: .35; stroke: #fff; }
+  100% { opacity: 1; transform: none; fill-opacity: 0; stroke: #120c03; stroke-width: 3.2; }
+}
+.puzzle.done .pz-seam.fresh { animation-name: pzInDone; }
+@keyframes pzInDone {
+  0% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(.7) rotate(-14deg); fill-opacity: .9; }
+  80% { transform: none; fill-opacity: .35; }
+  100% { opacity: 1; transform: none; fill-opacity: 0; }
+}
+/* Без анимаций всё сразу на месте */
+body:not(.fx-on) .pz-seam.fresh { opacity: 1; transform: none; fill-opacity: 0; }
+
+.piece-ico { width: 16px; height: 16px; flex: none; vertical-align: -3px; }
+.piece-ico path { fill: var(--pz); stroke: #120c03; stroke-width: 5; stroke-linejoin: round; }
+
+.part-card { min-width: 180px !important; }
+.part-card .puzzle { margin: 2px 0 4px; }
+.part-tag {
+  display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 999px;
+  font: 800 12px var(--font-brand); color: #1a1206; background: var(--gold-grad, #ebb53d);
+}
+.part-bar { display: block; width: 140px; height: 7px; border-radius: 99px; background: #262626; overflow: hidden; border: 1px solid #000; }
+.part-bar i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, color-mix(in srgb, var(--cc) 70%, #000), var(--cc)); transition: width .9s cubic-bezier(.2, .9, .3, 1) .2s; }
+
+.parts-empty {
+  display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 18px;
+  border: 1.5px dashed var(--line); color: var(--muted); font-size: 13px; line-height: 1.4;
+}
+.parts-empty .piece-ico { width: 34px; height: 34px; }
+.parts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 10px; }
+.part-opt {
+  --cc: var(--gold); display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 8px 10px;
+  border-radius: 18px; background: linear-gradient(180deg, #1a1a1a, #111); border: 1.5px solid color-mix(in srgb, var(--cc) 35%, var(--line));
+  color: var(--text); font: inherit; cursor: pointer; min-width: 0;
+}
+.part-opt b { font-size: 12.5px; text-align: center; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; max-width: 100%; white-space: nowrap; }
+.part-opt small { font-size: 11px; color: var(--muted); }
+.part-opt .part-bar { width: 100%; height: 5px; }
+.part-opt.ready { border-color: var(--cc); box-shadow: 0 0 16px color-mix(in srgb, var(--cc) 40%, transparent); }
+.part-opt.ready small { color: var(--cc); font-weight: 800; }
+.fx-on .part-opt.ready { animation: partReady 1.6s ease-in-out infinite; }
+@keyframes partReady { 50% { box-shadow: 0 0 26px color-mix(in srgb, var(--cc) 65%, transparent); transform: translateY(-2px); } }
+
+.craft-stage { position: relative; transform: translateY(-14vh); transition: transform .5s cubic-bezier(.2, .9, .3, 1.2); }
+.craft-ov.loot .craft-stage { transform: translateY(-20vh) scale(.9); }
+.craft-ov .co-card.item { min-width: 170px; }
+.pz-go .pz-fog.fading { animation: pzFog .5s ease forwards; animation-delay: calc(var(--i) * .15s + .3s); }
+@keyframes pzFog { to { opacity: 0; } }
+body:not(.fx-on) .pz-fog.fading { opacity: 0; }
+.pz-pic { inset: 3.7%; border-radius: 3px; }
+.co-cards { align-items: center; }
+.puzzle.done .pz-seam:not(.fresh) { stroke-opacity: .55; }
+
+/* ---------- Мастерская ---------- */
+.forge-entry {
+  width: 100%; margin: 14px 0 4px; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 20px;
+  background: linear-gradient(135deg, #221a0b, #121212 60%); border: 1.5px solid var(--line); color: var(--text); font: inherit; text-align: left; cursor: pointer;
+}
+.forge-entry.hot { border-color: var(--gold); box-shadow: var(--gold-glow); }
+.fx-on .forge-entry.hot .fe-ico { animation: feKnock 1.8s ease-in-out infinite; }
+@keyframes feKnock { 0%, 70%, 100% { transform: none; } 78% { transform: rotate(-8deg) translateY(-2px); } 86% { transform: rotate(4deg); } }
+.fe-ico { width: 46px; height: 46px; flex: none; display: grid; place-items: center; border-radius: 14px; background: radial-gradient(circle, rgba(235, 181, 61, .22), transparent 70%); }
+.fe-ico .ill { width: 40px; height: 40px; }
+.fe-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.fe-main b { font: 800 17px var(--font-brand); }
+.fe-main small { color: var(--muted); font-size: 12.5px; }
+.forge-entry.hot .fe-main small { color: var(--gold-light); font-weight: 700; }
+.coin-chip {
+  flex: none; display: inline-flex; align-items: center; gap: 4px; padding: 5px 10px 5px 6px; border-radius: 999px;
+  background: #1c1608; border: 1px solid rgba(235, 181, 61, .45); font: 800 14px var(--font-brand); color: var(--gold-light); font-variant-numeric: tabular-nums;
+}
+.coin-chip .ill, .req .ill, .forge-how .ill { width: 20px; height: 20px; }
+
+.back-link { background: none; border: 0; color: var(--gold-light); font: 700 14px var(--font-brand); padding: 4px 0; cursor: pointer; }
+.forge-hero { display: flex; align-items: center; gap: 16px; }
+.fh-ico { width: 74px; height: 74px; flex: none; display: grid; place-items: center; border-radius: 22px; background: radial-gradient(circle, rgba(235, 181, 61, .3), transparent 70%); }
+.fh-ico .ill { width: 64px; height: 64px; }
+.fx-on .fh-ico .ill { animation: fhBob 3s ease-in-out infinite; }
+@keyframes fhBob { 50% { transform: translateY(-4px) rotate(-4deg); } }
+.fh-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.fh-main small { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+.fh-num { font: 800 34px/1.05 var(--font-brand); background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; font-variant-numeric: tabular-nums; }
+.fh-next { font-size: 12.5px; color: var(--text-2, #cfcfcf); }
+.forge-hero .ld-bar { display: block; height: 7px; border-radius: 99px; background: #262626; overflow: hidden; margin-top: 4px; }
+.forge-hero .ld-bar i { display: block; height: 100%; background: var(--gold-grad); border-radius: inherit; }
+
+.forge-how { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 12px 2px 14px; color: var(--muted); font-size: 12.5px; }
+.forge-how span { display: inline-flex; align-items: center; gap: 6px; }
+.copy-ico { width: 18px; height: 18px; flex: none; }
+.copy-ico rect { fill: #cfd6de; stroke: #120c03; stroke-width: 1.8; }
+.copy-ico rect:first-child { fill: #8a939c; }
+
+.forge-tabs button { position: relative; }
+.tab-dot { display: inline-grid; place-items: center; min-width: 17px; height: 17px; margin-left: 5px; padding: 0 4px; border-radius: 99px; background: var(--bad, #ff5468); color: #fff; font: 800 10.5px var(--font-brand); font-style: normal; vertical-align: 1px; }
+
+.forge-list { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+.forge-card {
+  --rc: #aaa; position: relative; display: flex; align-items: center; gap: 12px; padding: 12px 12px 12px 16px; border-radius: 20px;
+  background: linear-gradient(180deg, #1a1a1a, #111); border: 1.5px solid color-mix(in srgb, var(--rc) 35%, #2a2a2a); overflow: hidden;
+}
+.forge-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--rc); opacity: .8; }
+.forge-card.r-ultra { border-color: transparent; background: linear-gradient(180deg, #1a1a1a, #111) padding-box, linear-gradient(120deg, #ffd37a, #ff7ab8, #7ad7ff, #b98cff) border-box; }
+.forge-card.r-ultra::before { background: linear-gradient(#ffd37a, #ff7ab8, #7ad7ff); }
+.forge-card.ready { border-color: var(--gold); box-shadow: 0 0 18px rgba(235, 181, 61, .25); }
+.forge-card.max { background: linear-gradient(135deg, color-mix(in srgb, var(--rc) 14%, #151515), #111); }
+.fc-pic { position: relative; width: 70px; height: 70px; flex: none; display: grid; place-items: center; border-radius: 18px; background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--cc) 30%, #1a1a1a), #0f0f0f 72%); }
+.fc-pic .crown-pic { width: 58px; height: 40px; }
+.fc-pic .art-pic { width: 58px; height: 58px; background: none; }
+.fc-pic .frame-pic { height: 60px; }
+.fc-lv {
+  position: absolute; right: -5px; bottom: -5px; min-width: 24px; height: 24px; padding: 0 5px; display: grid; place-items: center; border-radius: 99px;
+  background: var(--gold-grad); color: #1a1206; font: 900 12.5px var(--font-brand); font-style: normal; border: 2px solid #111;
+}
+.fc-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+.fc-head { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+.fc-head b { font: 800 15.5px var(--font-brand); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fc-rar { flex: none; font: 800 10px var(--font-brand); letter-spacing: .06em; text-transform: uppercase; color: var(--rc); }
+.r-ultra .fc-rar { background: linear-gradient(90deg, #ffd37a, #ff7ab8, #7ad7ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lv-pips { display: flex; gap: 3px; }
+.lv-pips i { flex: 1; max-width: 18px; height: 6px; border-radius: 3px; background: #2a2a2a; border: 1px solid #000; }
+.lv-pips i.on { background: linear-gradient(180deg, color-mix(in srgb, var(--rc, var(--gold)) 60%, #fff), var(--rc, var(--gold))); box-shadow: 0 0 5px color-mix(in srgb, var(--rc, var(--gold)) 50%, transparent); }
+.fc-eff { color: var(--text-2, #cfcfcf); font-size: 12px; line-height: 1.35; }
+.fc-next { color: var(--ok, #5fd391); font-weight: 700; }
+.fc-req { display: flex; gap: 8px; flex-wrap: wrap; }
+.req { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px 3px 5px; border-radius: 99px; background: #1f1f1f; border: 1px solid #333; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.req b { color: var(--bad, #ff5468); font-family: var(--font-brand); }
+.req.ok { border-color: color-mix(in srgb, var(--ok, #5fd391) 50%, #333); }
+.req.ok b { color: var(--ok, #5fd391); }
+.fc-maxed { display: inline-flex; align-items: center; gap: 5px; font: 800 12px var(--font-brand); color: var(--rc); }
+.fc-maxed .ill { width: 18px; height: 18px; }
+.fc-btn {
+  flex: none; width: 62px; align-self: stretch; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border-radius: 16px;
+  background: #1f1f1f; border: 1.5px dashed #3a3a3a; color: var(--muted); font: 800 11.5px var(--font-brand); cursor: pointer;
+}
+.fc-btn .ill { width: 30px; height: 30px; opacity: .55; }
+.forge-card.ready .fc-btn { background: var(--gold-grad); border: 1.5px solid #120c03; color: #1a1206; box-shadow: 0 4px 0 #7a4f08; }
+.forge-card.ready .fc-btn .ill { opacity: 1; }
+.fx-on .forge-card.ready .fc-btn .ill { animation: fcTap 1.4s ease-in-out infinite; transform-origin: 80% 80%; }
+@keyframes fcTap { 0%, 60%, 100% { transform: none; } 70% { transform: rotate(-22deg); } 80% { transform: rotate(6deg); } }
+.forge-card.ready .fc-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #7a4f08; }
+
+.opt-lv { position: absolute; top: 8px; right: 8px; padding: 1px 7px; border-radius: 99px; background: rgba(0, 0, 0, .55); border: 1px solid var(--cc); color: var(--cc); font: 800 10.5px var(--font-brand); font-style: normal; }
+.crown-opt { position: relative; }
+.coin-banner { width: 100%; display: flex; align-items: center; gap: 10px; font: inherit; text-align: left; cursor: pointer; }
+.coin-banner .ill { width: 30px; height: 30px; flex: none; }
+
+/* Ковка */
+.fg-stage { position: relative; width: 240px; height: 230px; transform: translateY(-12vh); transition: transform .5s cubic-bezier(.2, .9, .3, 1.2); }
+.forge-ov.loot .fg-stage { transform: translateY(-26vh) scale(.8); }
+.fg-glow { position: absolute; left: 50%; top: 42%; width: 190px; height: 190px; margin: -95px 0 0 -95px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--rc) 55%, transparent), transparent 65%); opacity: .35; transition: opacity .4s; }
+.forge-ov.open .fg-glow { opacity: 1; animation: coGlow 1.2s ease-in-out infinite alternate; }
+.fg-anvil { position: absolute; left: 50%; bottom: 0; width: 170px; margin-left: -85px; }
+.fg-anvil .ill { width: 170px; height: 170px; filter: drop-shadow(0 14px 20px rgba(0, 0, 0, .6)); }
+.fg-item { position: absolute; left: 50%; top: 44px; width: 96px; height: 80px; margin-left: -48px; display: grid; place-items: center; z-index: 1; }
+.fg-item .crown-pic { width: 96px; height: 66px; }
+.fg-item .art-pic { width: 84px; height: 84px; }
+.fg-item .art-pic .ill { width: 64px; height: 64px; }
+.fg-item .frame-pic .pf-avatar { width: 72px; height: 72px; }
+.forge-ov.open .fg-item { filter: drop-shadow(0 0 16px var(--rc)); }
+.fg-hammer { position: absolute; left: 110px; top: 0; width: 130px; height: 90px; transform-origin: 100% 60%; transform: rotate(-40deg); z-index: 2; }
+.fg-hammer > span { position: absolute; left: 0; top: 10px; width: 70px; height: 70px; transform: rotate(-90deg); }
+.fg-hammer .ill { width: 70px; height: 70px; }
+.fg-hammer::after { content: ""; position: absolute; left: 58px; right: 0; top: 50px; height: 9px; border-radius: 5px; background: linear-gradient(#f5a25c, #9a5a1f); border: 2px solid #120c03; }
+.forging .fg-hammer { animation: fgHit .42s cubic-bezier(.5, 0, .7, 1) 3; }
+.forge-ov.open .fg-hammer { opacity: 0; transition: opacity .3s; }
+@keyframes fgHit { 0% { transform: rotate(-40deg); } 70% { transform: rotate(12deg); } 100% { transform: rotate(-40deg); } }
+.fg-lv { position: absolute; left: 0; right: 0; top: calc(50% + 2vh); display: flex; justify-content: center; align-items: center; gap: 12px; font: 900 40px var(--font-brand); color: var(--muted); opacity: 0; transition: opacity .3s; pointer-events: none; }
+.forging .fg-lv { opacity: 1; }
+.forge-ov.loot .fg-lv { top: calc(38% - 6vh); }
+.fg-lv .to { color: var(--rc); text-shadow: 0 0 18px var(--rc); transform: scale(.4); opacity: 0; transition: transform .45s cubic-bezier(.2, .9, .3, 1.6), opacity .3s; }
+.forge-ov.open .fg-lv .to { transform: none; opacity: 1; }
+.forge-ov.open .fg-lv .from { text-decoration: line-through; opacity: .5; }
+.forge-ov .co-card.item { --rc: var(--cc); min-width: 200px; }
+.forge-ov .co-card .lv-pips { width: 170px; }
+
+/* Молот: рукоять справа, бьёт головкой по предмету */
+.fg-hammer { left: 92px; top: 6px; width: 84px; height: 84px; transform-origin: 84% 52%; transform: rotate(45deg); }
+.fg-hammer > span { left: 0; top: 0; width: 84px; height: 84px; }
+.fg-hammer .ill { width: 84px; height: 84px; }
+.fg-hammer::after { display: none; }
+@keyframes fgHit { 0% { transform: rotate(45deg); } 70% { transform: rotate(-4deg); } 100% { transform: rotate(45deg); } }
