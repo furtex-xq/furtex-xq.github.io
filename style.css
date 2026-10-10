@@ -531,3 +531,14 @@ footer .wrap{position:relative;padding-top:26px;border-top:1px solid var(--hair)
 .stat b{display:block;font-family:Unbounded,sans-serif;font-size:21px;line-height:1.25;margin:3px 0 2px;background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat i{display:block;font-style:normal;font-size:12px;color:var(--muted);line-height:1.35;min-height:16px}
 @media(max-width:560px){.stats{grid-template-columns:1fr 1fr}.stat b{font-size:18px}}
+/* карточка проекта не должна прокручиваться внутри себя (иначе снизу появляется пустота) */
+.proj>.in{overflow:hidden;overflow:clip}
+/* плитки статистики: компактнее */
+.stats{gap:8px;margin-top:18px}
+.stat{padding:10px 13px;border-radius:14px}
+.stat small{font-size:10.5px}
+.stat b{font-size:17px;margin:2px 0 1px}
+.stat i{font-size:11.5px;min-height:15px}
+/* Карточки обрезают декоративное свечение, но не должны прокручиваться внутри
+   (overflow:hidden остаётся прокручиваемым программно и давал пустоту снизу). */
+.proj>.in,.about-card>.in,.app,.step,.demo-phone,footer{overflow:clip}
