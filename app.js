@@ -15,7 +15,7 @@
   dict.ru = dict.ru || {};
   $$('[data-i]').forEach(el => { if (!(el.dataset.i in dict.ru)) dict.ru[el.dataset.i] = el.innerHTML; });
   if (!('u.title' in dict.ru)) dict.ru['u.title'] = 'Обновления';
-  Object.assign(dict.ru, { 'demo.hint.mfs': 'Это настоящее приложение, а не видео. Нажимай кнопки, решай примеры. Прогресс сохраняется только в этом браузере.', 'demo.hint.tm': 'Это веб-версия настоящего приложения с живыми ценами. Открывай монеты, смотри графики и индикаторы. Новости обновляются раз в час. Графики некоторых редких монет в браузере могут не загрузиться, а уведомления работают только в приложении на телефоне.', 'demo.hint.py': 'Это веб-версия настоящего приложения. Читай главы, проходи тесты и запускай код на Python прямо здесь. Интерфейс приложения на русском. Прогресс сохраняется только в этом браузере.', 'demo.hint.monko': 'Это веб-версия настоящего приложения с демо-данными. Добавляй расходы, смотри статистику и бюджеты. Сканер чеков, уведомления и резервные копии работают только в приложении на телефоне.', 'demo.full': 'Открыть на весь экран', 'demo.close': 'Закрыть', 'demo.reset': 'Сбросить демо', 'demo.resetAsk': 'Вернуть демо в исходное состояние? Всё, что ты в нём изменил, будет удалено.', 'demo.loading': 'Загружается…' });
+  Object.assign(dict.ru, { 'demo.hint.mfs': 'Это настоящее приложение, а не видео. Нажимай кнопки, решай примеры. Прогресс сохраняется только в этом браузере.', 'demo.hint.tm': 'Это веб-версия настоящего приложения с живыми ценами. Открывай монеты, смотри графики и индикаторы. Новости обновляются раз в час. Графики некоторых редких монет в браузере могут не загрузиться, а уведомления работают только в приложении на телефоне.', 'demo.hint.py': 'Это веб-версия настоящего приложения. Читай главы, проходи тесты и запускай код на Python прямо здесь. Интерфейс приложения на русском. Прогресс сохраняется только в этом браузере.', 'demo.hint.monko': 'Это веб-версия настоящего приложения с демо-данными. Добавляй расходы, смотри статистику и бюджеты. Сканер чеков, уведомления и резервные копии работают только в приложении на телефоне.', 'demo.full': 'Открыть на весь экран', 'demo.close': 'Закрыть', 'demo.reset': 'Сбросить демо', 'demo.resetAsk': 'Вернуть демо в исходное состояние? Всё, что ты в нём изменил, будет удалено.', 'demo.loading': 'Загружается…', 'st.dl': 'Скачивания', 'st.views': 'Просмотры', 'st.demo': 'Запуски демо', 'st.last': 'последнее', 'st.lastv': 'последний', 'st.none': 'пока не было', 'st.now': 'только что' });
 
   function detectLang() {
     const saved = store.get('lang');
@@ -43,6 +43,7 @@
     $$('.lang-menu button').forEach(b => b.classList.toggle('on', b.dataset.lang === l));
     cars.forEach(c => c.caption());
     renderCounts();
+    renderStats();
     demoTexts();
   }
 
@@ -135,12 +136,15 @@
   }
 
   /* ===== счётчики скачиваний ===== */
+  // Скачивания с прежнего сервера. К ним прибавляется живой счётчик GitHub, поэтому число растёт дальше само.
+  const DL_BASE_COUNT = { 'Monko.apk': 874, 'PythonBook.apk': 463, 'MathForSpeed.apk': 647, 'Tidemark.apk': 536 };
+  const dlTotal = name => (DL_BASE_COUNT[name] || 0) + ((counts && counts[name]) || 0);
   let counts = null;
   function renderCounts() {
-    if (!counts) return;
+    renderStats();
     const fmt = (window.I18N_DL || {})[lang] || (n => String(n));
     $$('[data-cnt]').forEach(el => {
-      const n = counts[el.dataset.cnt];
+      const n = dlTotal(el.dataset.cnt);
       if (n > 0) { el.textContent = '⬇ ' + fmt(n); el.classList.add('ok'); }
     });
   }
@@ -230,6 +234,93 @@
   /* ===== анимации останавливаются, когда блок не на экране ===== */
   const pauser = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('paused', !e.isIntersecting)), { rootMargin: '100px' });
   $$('.hero, .marquee, .proj').forEach(el => pauser.observe(el));
+
+  /* ===== статистика проектов: просмотры, запуски демо, время последнего просмотра и скачивания =====
+     У сайта нет своего сервера, поэтому числа хранит бесплатный сервис-счётчик (abacus).
+     Скачивания считает GitHub (плюс базовые числа выше). Время хранится как обычное число (секунды). */
+  const STAT_API = 'https://abacus.jasoncameron.dev';
+  const STAT_NS = 'furtex-xq-site';
+  const STAT_KEYS = {"vt-tidemark": "ad5554ff-1874-4465-9aa7-555d658730a0", "vt-mfs": "7cf06a36-e76b-48db-8da8-d9ab38781002", "vt-python": "03c5522b-9a53-40ee-bc2a-c33faa5e50e6", "vt-monko": "fdd2a2f7-0a94-4bd3-9239-3f5102374ab1", "vt-dealio": "f43045dd-3185-41a9-bc65-d4833a458f34", "dt-tidemark": "4d353e70-70f0-403a-badb-d177e801e7a1", "dt-mfs": "c8b43504-43f5-418e-9b6e-a9ec953472a8", "dt-python": "54cd7313-4d1a-4378-a773-63b7abd60883", "dt-monko": "bc1c28c0-902e-4ff0-9643-173e3289ad2b"};
+  const statData = {};
+  let statChain = Promise.resolve();
+  // запросы идут по одному с паузой: у сервиса ограничение на частоту
+  const statReq = (path, opt) => {
+    const run = () => fetch(STAT_API + path, opt).then(r => (r.ok ? r.json() : null)).catch(() => null);
+    const p = statChain.then(run);
+    statChain = p.then(() => new Promise(r => setTimeout(r, 260)));
+    return p;
+  };
+  const statGet = k => statReq(`/get/${STAT_NS}/${k}`).then(r => (r && typeof r.value === 'number' ? r.value : 0));
+  const statHit = k => statReq(`/hit/${STAT_NS}/${k}`).then(r => (r && typeof r.value === 'number' ? r.value : 0));
+  const statStamp = k => {
+    const now = Math.floor(Date.now() / 1000);
+    if (STAT_KEYS[k]) statReq(`/set/${STAT_NS}/${k}?value=${now}`, { method: 'POST', headers: { Authorization: 'Bearer ' + STAT_KEYS[k] } });
+    return now;
+  };
+  const ago = ts => {
+    if (!ts) return t('st.none');
+    const d = Math.max(0, Date.now() / 1000 - ts);
+    if (d < 60) return t('st.now');
+    const loc = lang === 'cs' ? 'cs' : lang === 'uk' ? 'uk' : lang === 'en' ? 'en' : 'ru';
+    try {
+      const f = new Intl.RelativeTimeFormat(loc, { numeric: 'auto' });
+      if (d < 3600) return f.format(-Math.round(d / 60), 'minute');
+      if (d < 86400) return f.format(-Math.round(d / 3600), 'hour');
+      if (d < 86400 * 30) return f.format(-Math.round(d / 86400), 'day');
+    } catch (e) {}
+    return new Date(ts * 1000).toLocaleDateString(loc);
+  };
+  const num = n => Number(n || 0).toLocaleString(lang === 'en' ? 'en' : 'ru');
+  function renderStats() {
+    $$('[data-stats]').forEach(box => {
+      const app = box.dataset.stats, apk = box.dataset.apk, d = statData[app];
+      if (!d && !apk) return;
+      let html = '';
+      if (apk) html += `<div class="stat"><small>${t('st.dl')}</small><b>${num(dlTotal(apk))}</b><i>${d ? t('st.last') + ': ' + ago(d.dt) : ''}</i></div>`;
+      if (d) {
+        html += `<div class="stat"><small>${t('st.views')}</small><b>${num(d.v)}</b><i>${t('st.lastv')}: ${ago(d.vt)}</i></div>`;
+        if (apk) html += `<div class="stat"><small>${t('st.demo')}</small><b>${num(d.demo)}</b><i></i></div>`;
+      }
+      box.innerHTML = html;
+    });
+  }
+  async function loadStats(app, countView) {
+    const hasApk = !!(document.querySelector(`[data-stats="${app}"]`) || {}).dataset?.apk;
+    const d = statData[app] || (statData[app] = { v: 0, vt: 0, dt: 0, demo: 0 });
+    if (countView) {
+      const prevSeen = await statGet('vt-' + app);       // время прошлого просмотра — до того, как запишем свой
+      d.v = await statHit('v-' + app);
+      d.vt = prevSeen;
+      statStamp('vt-' + app);
+    } else {
+      d.v = await statGet('v-' + app);
+      d.vt = await statGet('vt-' + app);
+    }
+    renderStats();
+    if (hasApk) { d.dt = await statGet('dt-' + app); d.demo = await statGet('demo-' + app); renderStats(); }
+  }
+  if (document.querySelector('[data-stats]')) {
+    renderStats();
+    const seen = k => { try { if (sessionStorage.getItem(k)) return true; sessionStorage.setItem(k, '1'); } catch (e) {} return false; };
+    const sio = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      sio.unobserve(e.target);
+      const app = e.target.id;
+      loadStats(app, !seen('seen-' + app));               // один просмотр на посетителя за сеанс
+    }), { threshold: .25 });
+    $$('.proj[id]').forEach(el => sio.observe(el));
+    // нажатие «Скачать APK» запоминает время последнего скачивания
+    $$('.proj[id] a.btn[download]').forEach(a => a.addEventListener('click', () => {
+      const app = a.closest('.proj').id;
+      const now = statStamp('dt-' + app);
+      if (statData[app]) { statData[app].dt = now; renderStats(); }
+    }));
+    $$('.proj[id] [data-demo]').forEach(b => b.addEventListener('click', () => {
+      const app = b.closest('.proj').id;
+      statHit('demo-' + app).then(v => { if (statData[app] && v) { statData[app].demo = v; renderStats(); } });
+    }));
+    setInterval(renderStats, 60000);                       // «5 минут назад» обновляется само
+  }
 
   /* ===== онлайн-демо: приложение открывается в окне на сайте ===== */
   // какие ключи хранилища браузера принадлежат какому демо (для кнопки «Сбросить демо»)

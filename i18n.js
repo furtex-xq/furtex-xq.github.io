@@ -9,6 +9,13 @@ ru: {
 },
 
 uk: {
+  "st.dl":"Завантаження",
+  "st.views":"Перегляди",
+  "st.demo":"Запуски демо",
+  "st.last":"останнє",
+  "st.lastv":"останній",
+  "st.none":"поки не було",
+  "st.now":"щойно",
   "k.apps":"застосунків",
   "k.demo":"онлайн-демо",
   "k.lang":"мови сайту",
@@ -105,6 +112,13 @@ uk: {
 },
 
 en: {
+  "st.dl":"Downloads",
+  "st.views":"Views",
+  "st.demo":"Demo launches",
+  "st.last":"last",
+  "st.lastv":"last",
+  "st.none":"none yet",
+  "st.now":"just now",
   "k.apps":"apps",
   "k.demo":"online demos",
   "k.lang":"site languages",
@@ -201,6 +215,13 @@ en: {
 },
 
 cs: {
+  "st.dl":"Stažení",
+  "st.views":"Zobrazení",
+  "st.demo":"Spuštění dema",
+  "st.last":"poslední",
+  "st.lastv":"poslední",
+  "st.none":"zatím žádné",
+  "st.now":"právě teď",
   "k.apps":"aplikací",
   "k.demo":"online dema",
   "k.lang":"jazyky webu",
