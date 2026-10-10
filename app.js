@@ -36,6 +36,14 @@
     lang = l;
     document.documentElement.lang = l === 'uk' ? 'uk' : l;
     $$('[data-i]').forEach(el => { const v = t(el.dataset.i); if (v) el.innerHTML = v; });
+    // даты обновлений со временем: показываем то же время, что в записи, на языке сайта
+    const dloc = l === 'cs' ? 'cs' : l === 'uk' ? 'uk' : l === 'en' ? 'en-GB' : 'ru';
+    $$('time[data-ts]').forEach(el => {
+      try {
+        const d = new Date(el.dataset.ts + ':00Z');
+        el.textContent = new Intl.DateTimeFormat(dloc, { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC' }).format(d);
+      } catch (e) {}
+    });
     const dt = document.body.dataset.title;
     if (dt) document.title = t(dt) + ' · Ansaro Technologies';
     const cur = document.getElementById('langCur');
@@ -138,7 +146,7 @@
 
   /* ===== счётчики скачиваний ===== */
   // Скачивания с прежнего сервера. К ним прибавляется живой счётчик GitHub, поэтому число растёт дальше само.
-  const DL_BASE_COUNT = { 'Monko.apk': 874, 'PythonBook.apk': 463, 'MathForSpeed.apk': 647, 'Tidemark.apk': 537 };
+  const DL_BASE_COUNT = { 'Monko.apk': 876, 'PythonBook.apk': 463, 'MathForSpeed.apk': 647, 'Tidemark.apk': 537 };
   const dlTotal = name => (DL_BASE_COUNT[name] || 0) + ((counts && counts[name]) || 0);
   let counts = null;
   function renderCounts() {

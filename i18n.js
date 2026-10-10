@@ -9,6 +9,11 @@ ru: {
 },
 
 uk: {
+  "hero.pill":"Вийшли Monko 1.0.1 і Tidemark 1.0.2",
+  "mk.n3":"Оновлення заради довіри: застосунок підписано власним ключем Ansaro Technologies, і перевірка VirusTotal тепер чиста.",
+  "mk.w1":"<b>Чому вийшло оновлення</b>: попередня збірка була підписана тестовим ключем, і один антивірус із 67 позначав її як «потенційно небажану». Із власним підписом результат 0 із 67",
+  "mk.w2":"<b>Прибрано зайві дозволи</b>: запис звуку, вікна поверх інших застосунків, розпізнавання активності, запис на спільний диск і фонова служба. Застосунок ними не користувався",
+  "mk.w3":"<b>Важливо</b>: нова версія не встановлюється поверх старої. Спершу збережи дані (Налаштування → Дані та резервні копії → Поділитися даними), видали стару версію, встанови нову й обери «Імпорт із файлу»",
   "os":"Для пристроїв Android",
   "vt.clean":"загроз не знайдено",
   "vt.flag":"є спрацювання, відкрий звіт",
@@ -55,7 +60,7 @@ uk: {
   "demo.hint.monko":"Це вебверсія справжнього застосунку з демо-даними. Додавай витрати, дивись статистику та бюджети. Сканер чеків, сповіщення й резервні копії працюють лише в застосунку на телефоні.",
   "try":"Спробувати онлайн","try.hint":"Без встановлення, просто в браузері","demo.hint.mfs":"Це справжній застосунок, а не відео. Натискай кнопки, розв’язуй приклади. Прогрес зберігається лише в цьому браузері.","demo.full":"Відкрити на весь екран","demo.close":"Закрити",
   'nav.updates':'Оновлення','nav.contacts':'Контакти','u.apps':'Застосунки',
-  'hero.pill':'Monko 1.0 вже можна завантажити',
+  
   'hero.title':'Застосунки, які <span class="grad">хочеться відкривати</span>',
   'hero.sub':'Ansaro Technologies створює Android-застосунки для грошей, крипти, навчання та швидкості думки. Обери застосунок, подивись, що він уміє, і встанови APK просто на телефон.',
   'hero.dl':'Завантажити застосунки','hero.creator':'Творець і власник',
@@ -127,6 +132,11 @@ uk: {
 },
 
 en: {
+  "hero.pill":"Monko 1.0.1 and Tidemark 1.0.2 are out",
+  "mk.n3":"An update for trust: the app is now signed with Ansaro Technologies’ own key, and the VirusTotal check comes back clean.",
+  "mk.w1":"<b>Why this update</b>: the previous build was signed with a test key, and one antivirus out of 67 flagged it as “potentially unwanted”. With our own signature the result is 0 of 67",
+  "mk.w2":"<b>Unneeded permissions removed</b>: audio recording, drawing over other apps, activity recognition, writing to shared storage and the foreground service. The app never used them",
+  "mk.w3":"<b>Important</b>: the new version cannot be installed over the old one. First save your data (Settings → Data & backups → Share data), uninstall the old version, install the new one and choose “Import from file”",
   "os":"For Android devices",
   "vt.clean":"no threats found",
   "vt.flag":"some engines flagged it, open the report",
@@ -173,7 +183,7 @@ en: {
   "demo.hint.monko":"This is the web version of the real app with demo data. Add expenses, explore stats and budgets. Receipt scanning, notifications and backups only work in the phone app.",
   "try":"Try it online","try.hint":"No install, right in your browser","demo.hint.mfs":"This is the real app, not a video. Tap the buttons and solve problems. Progress is saved only in this browser.","demo.full":"Open full screen","demo.close":"Close",
   'nav.updates':'Updates','nav.contacts':'Contacts','u.apps':'Apps',
-  'hero.pill':'Monko 1.0 is out — download now',
+  
   'hero.title':'Apps you’ll <span class="grad">actually want to open</span>',
   'hero.sub':'Ansaro Technologies builds Android apps for money, crypto, learning and quick thinking. Pick an app, see what it can do and install the APK right on your phone.',
   'hero.dl':'Download apps','hero.creator':'Creator and owner',
@@ -245,6 +255,11 @@ en: {
 },
 
 cs: {
+  "hero.pill":"Vyšly Monko 1.0.1 a Tidemark 1.0.2",
+  "mk.n3":"Aktualizace kvůli důvěře: aplikace je podepsaná vlastním klíčem Ansaro Technologies a kontrola VirusTotal je teď čistá.",
+  "mk.w1":"<b>Proč vyšla aktualizace</b>: předchozí sestavení bylo podepsané testovacím klíčem a jeden antivirus ze 67 ho označoval jako „potenciálně nežádoucí“. S vlastním podpisem je výsledek 0 ze 67",
+  "mk.w2":"<b>Odebrána zbytečná oprávnění</b>: nahrávání zvuku, okna přes jiné aplikace, rozpoznávání aktivity, zápis na sdílené úložiště a služba na pozadí. Aplikace je nepoužívala",
+  "mk.w3":"<b>Důležité</b>: novou verzi nelze nainstalovat přes starou. Nejdřív si ulož data (Nastavení → Data a zálohy → Sdílet data), odinstaluj starou verzi, nainstaluj novou a zvol „Import ze souboru“",
   "os":"Pro zařízení s Androidem",
   "vt.clean":"žádné hrozby nenalezeny",
   "vt.flag":"některé antiviry hlásí nález, otevři zprávu",
@@ -291,7 +306,7 @@ cs: {
   "demo.hint.monko":"Tohle je webová verze skutečné aplikace s ukázkovými daty. Přidávej výdaje, prohlížej statistiky a rozpočty. Skenování účtenek, upozornění a zálohy fungují jen v aplikaci v telefonu.",
   "try":"Vyzkoušet online","try.hint":"Bez instalace, přímo v prohlížeči","demo.hint.mfs":"Tohle je skutečná aplikace, ne video. Klikej na tlačítka a počítej příklady. Pokrok se ukládá jen v tomto prohlížeči.","demo.full":"Otevřít na celou obrazovku","demo.close":"Zavřít",
   'nav.updates':'Novinky','nav.contacts':'Kontakty','u.apps':'Aplikace',
-  'hero.pill':'Monko 1.0 je ke stažení',
+  
   'hero.title':'Aplikace, které <span class="grad">budeš chtít otevírat</span>',
   'hero.sub':'Ansaro Technologies vytváří aplikace pro Android na peníze, kryptoměny, učení a rychlé myšlení. Vyber si aplikaci, podívej se, co umí, a nainstaluj APK přímo do telefonu.',
   'hero.dl':'Stáhnout aplikace','hero.creator':'Tvůrce a majitel',

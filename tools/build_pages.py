@@ -21,7 +21,7 @@ APPS = {
                    cat='EducationalApplication', apk='PythonBook.apk', ver=None),
     'monko': dict(name='Monko', title='Monko — личные финансы для Android',
                   desc='Monko: счета в разных валютах, бюджеты, цели, долги и статистика в премиальном дизайне. Онлайн-демо и скачивание APK.',
-                  cat='FinanceApplication', apk='Monko.apk', ver='1.0.0'),
+                  cat='FinanceApplication', apk='Monko.apk', ver='1.0.1'),
     'dealio': dict(name='Dealio', title='Dealio — сравнение цен и скидок',
                    desc='Dealio сравнивает цены в магазинах рядом и подсказывает, где купить дешевле. Приложение в разработке.',
                    cat='ShoppingApplication', apk=None, ver=None),
