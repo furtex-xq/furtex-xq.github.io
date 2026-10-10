@@ -9,6 +9,9 @@ ru: {
 },
 
 uk: {
+  "k.apps":"застосунків",
+  "k.demo":"онлайн-демо",
+  "k.lang":"мови сайту",
   "ab.tgOwner":"Telegram власника · написати особисто",
   "f.by":"творець і власник",
   "ab.dev":"nochevvsky · Davyd (Давид) · засновник і власник",
@@ -102,6 +105,9 @@ uk: {
 },
 
 en: {
+  "k.apps":"apps",
+  "k.demo":"online demos",
+  "k.lang":"site languages",
   "ab.tgOwner":"Owner’s Telegram · message directly",
   "f.by":"creator and owner",
   "ab.dev":"nochevvsky · Davyd · founder and owner",
@@ -195,6 +201,9 @@ en: {
 },
 
 cs: {
+  "k.apps":"aplikací",
+  "k.demo":"online dema",
+  "k.lang":"jazyky webu",
   "ab.tgOwner":"Telegram majitele · napsat osobně",
   "f.by":"tvůrce a majitel",
   "ab.dev":"nochevvsky · Davyd (David) · zakladatel a majitel",

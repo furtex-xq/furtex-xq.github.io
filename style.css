@@ -397,3 +397,127 @@ footer .fl{display:flex;gap:18px;flex-wrap:wrap}
 .mk img{width:100%;height:100%;object-fit:cover;display:block}
 .orbit .core{background:#000;border-radius:50%;overflow:hidden;animation:none;box-shadow:0 30px 90px -20px #8b5cf6,0 0 0 2px rgba(255,255,255,.22),0 0 0 12px var(--glass)}
 .orbit .core img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* =====================================================================
+   ПРЕМИУМ-СЛОЙ: тонкие световые рамки, блики, зерно, металлические заголовки
+   ===================================================================== */
+:root{--solid:#100c24;--solid2:#151030;--hair:rgba(255,255,255,.13);--hi:rgba(255,255,255,.07);--metal:linear-gradient(180deg,#ffffff 20%,#b6b0d8);--ease:cubic-bezier(.2,.8,.2,1)}
+:root[data-theme="light"]{--solid:#ffffff;--solid2:#faf8ff;--hair:rgba(40,25,110,.14);--hi:rgba(255,255,255,.9);--metal:linear-gradient(180deg,#1b1436 20%,#5a4f8f)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--solid:#ffffff;--solid2:#faf8ff;--hair:rgba(40,25,110,.14);--hi:rgba(255,255,255,.9);--metal:linear-gradient(180deg,#1b1436 20%,#5a4f8f)}}
+
+::selection{background:#8b5cf6;color:#fff}
+html{scrollbar-color:#3d3670 transparent}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:linear-gradient(#5b4fb0,#a1418a);border-radius:99px;border:2px solid var(--bg)}
+::-webkit-scrollbar-track{background:transparent}
+h1,h2{text-wrap:balance}
+p{text-wrap:pretty}
+
+/* зерно поверх фона: убирает «пластиковость» градиентов */
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- шапка ---------- */
+nav .bar{height:62px;border-radius:22px;border-color:var(--hair);box-shadow:inset 0 1px 0 var(--hi),0 18px 40px -26px rgba(0,0,0,.7)}
+nav ul a{position:relative}
+nav ul a.cur::after,nav ul a:hover::after{content:"";position:absolute;left:14px;right:14px;bottom:3px;height:2px;border-radius:2px;background:var(--rainbow);opacity:.9}
+.ibtn{border-color:var(--hair);box-shadow:inset 0 1px 0 var(--hi)}
+.nav-cta{box-shadow:inset 0 -2px 0 rgba(0,0,0,.12),0 8px 22px -10px rgba(255,255,255,.5)}
+
+/* ---------- первый экран ---------- */
+.hero{position:relative;padding:84px 0 46px;isolation:isolate}
+.hero::before{content:"";position:absolute;z-index:-1;left:50%;top:-140px;width:min(1200px,140vw);height:760px;translate:-50% 0;pointer-events:none;
+  background:conic-gradient(from 180deg at 50% 0%,transparent 41%,rgba(139,92,246,.30) 47%,rgba(255,255,255,.20) 50%,rgba(236,72,153,.26) 53%,transparent 59%);
+  -webkit-mask-image:radial-gradient(60% 75% at 50% 0%,#000 20%,transparent 78%);mask-image:radial-gradient(60% 75% at 50% 0%,#000 20%,transparent 78%)}
+.hero::after{content:"";position:absolute;z-index:-1;inset:-40px 0 0;pointer-events:none;
+  background-image:linear-gradient(var(--hair) 1px,transparent 1px),linear-gradient(90deg,var(--hair) 1px,transparent 1px);background-size:64px 64px;opacity:.45;
+  -webkit-mask-image:radial-gradient(70% 60% at 50% 20%,#000,transparent 75%);mask-image:radial-gradient(70% 60% at 50% 20%,#000,transparent 75%)}
+.hero h1{font-size:clamp(40px,6.6vw,82px);letter-spacing:-.04em;line-height:1.02}
+.hero p.sub{font-size:clamp(16px,1.7vw,19.5px);line-height:1.65}
+.pill{position:relative;border:1px solid transparent;background:linear-gradient(var(--solid),var(--solid)) padding-box,linear-gradient(120deg,rgba(34,211,238,.7),rgba(139,92,246,.5),rgba(236,72,153,.7)) border-box;box-shadow:inset 0 1px 0 var(--hi),0 10px 30px -16px #8b5cf6}
+.b-main{position:relative;box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -2px 0 rgba(0,0,0,.14),0 0 0 1px rgba(255,255,255,.1),0 18px 44px -14px #8b5cf6;letter-spacing:.005em}
+.b-ghost{border-color:var(--hair);box-shadow:inset 0 1px 0 var(--hi)}
+.creator{border-color:var(--hair);box-shadow:inset 0 1px 0 var(--hi),0 20px 40px -30px #000}
+.kpis{display:flex;gap:0;margin-top:34px;border-radius:20px;border:1px solid var(--hair);background:var(--glass);box-shadow:inset 0 1px 0 var(--hi);width:fit-content;max-width:100%;overflow:hidden}
+.kpis div{padding:14px 26px;border-right:1px solid var(--hair)}
+.kpis div:last-child{border-right:0}
+.kpis b{display:block;font-family:Unbounded,sans-serif;font-weight:800;font-size:26px;line-height:1.1;background:var(--metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kpis span{font-size:12.5px;color:var(--muted);font-weight:600;white-space:nowrap}
+@media(max-width:520px){.kpis{width:100%}.kpis div{flex:1;padding:12px 10px;text-align:center}.kpis b{font-size:21px}.kpis span{white-space:normal;font-size:11.5px}}
+.orbit .ring{border-color:var(--hair)}
+.orbit .ico{box-shadow:0 22px 44px -14px var(--g),0 0 0 1px rgba(255,255,255,.16),inset 0 1px 0 rgba(255,255,255,.25)}
+
+/* ---------- бегущая строка ---------- */
+.marquee{background:transparent;border-color:var(--hair)}
+.marquee div{font-family:Manrope,sans-serif;font-weight:800;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;padding:20px 0}
+
+/* ---------- заголовки секций ---------- */
+.kicker{padding:6px 14px;border-radius:99px;border:1px solid var(--hair);box-shadow:inset 0 1px 0 var(--hi);letter-spacing:.18em;font-size:11.5px}
+.sec-head h2,.about h2,.subhead{background:var(--metal);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.035em}
+.sec-head h2{font-size:clamp(32px,5vw,58px)}
+.sec-head p{font-size:17.5px}
+
+/* ---------- световая рамка, которая следует за курсором ---------- */
+.app,.step,.link,.nums div,.news{border:1px solid transparent;
+  background:linear-gradient(var(--solid),var(--solid2)) padding-box,
+             radial-gradient(260px circle at var(--mx,50%) var(--my,-40%),var(--glowc,rgba(255,255,255,.55)),transparent 70%) border-box,
+             linear-gradient(var(--hair),var(--hair)) border-box;
+  box-shadow:inset 0 1px 0 var(--hi),0 24px 50px -36px rgba(0,0,0,.8)}
+.app{--glowc:var(--c)}
+.app:hover{box-shadow:inset 0 1px 0 var(--hi),0 30px 60px -30px var(--c)}
+.app img,.app svg.pi{box-shadow:0 16px 34px -12px var(--c),0 0 0 1px rgba(255,255,255,.12)}
+.step{--glowc:#8b5cf6}
+.link{--glowc:#a78bfa}
+.proj{background:radial-gradient(520px circle at var(--mx,20%) var(--my,-10%),color-mix(in srgb,var(--c1) 70%,#fff),transparent 46%),
+                 linear-gradient(140deg,var(--c1),transparent 38%,transparent 62%,var(--c2));
+      box-shadow:0 50px 100px -60px var(--c1)}
+.proj>.in{box-shadow:inset 0 1px 0 var(--hi)}
+.about-card{box-shadow:0 60px 120px -70px #8b5cf6}
+.about-card>.in{box-shadow:inset 0 1px 0 var(--hi)}
+
+/* ---------- карточка приложения ---------- */
+.head img,.head svg.pi{box-shadow:0 18px 44px -12px var(--c1),0 0 0 1px rgba(255,255,255,.14),inset 0 1px 0 rgba(255,255,255,.3)}
+.head h2,.head h1{letter-spacing:-.035em}
+.lead{font-size:18.5px;line-height:1.6}
+.chips span{border-color:var(--hair);box-shadow:inset 0 1px 0 var(--hi)}
+.btn{box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -2px 0 rgba(0,0,0,.16),0 0 0 1px rgba(255,255,255,.12),0 18px 44px -14px var(--c1)}
+.btn:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 -2px 0 rgba(0,0,0,.16),0 0 0 1px rgba(255,255,255,.2),0 26px 56px -14px var(--c1)}
+.btn.alt{box-shadow:inset 0 1px 0 var(--hi)}
+.btn-try{box-shadow:inset 0 1px 0 var(--hi)}
+.qr{border-color:var(--hair);box-shadow:inset 0 1px 0 var(--hi)}
+
+/* ---------- телефон: металлическая рамка, блик на стекле, цветная тень ---------- */
+.frame{padding:11px;background:linear-gradient(145deg,#6a6496 0%,#1a1634 22%,#0a0817 60%,#3a345f 100%);
+  box-shadow:0 70px 110px -46px rgba(0,0,0,.9),0 40px 80px -40px color-mix(in srgb,var(--c1) 55%,transparent),
+             inset 0 0 0 1.5px rgba(255,255,255,.22),inset 0 0 0 4.5px #05040c,inset 0 2px 3px 5px rgba(255,255,255,.05)}
+.frame::after{content:"";position:absolute;inset:11px;border-radius:34px;pointer-events:none;z-index:2;
+  background:linear-gradient(118deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.04) 22%,transparent 34%);mix-blend-mode:screen}
+.frame::before{box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.visual::before{opacity:.36}
+.car-nav button{border-color:var(--hair);box-shadow:inset 0 1px 0 var(--hi)}
+
+/* ---------- шаги установки ---------- */
+.step .no{font-size:72px;letter-spacing:-.05em}
+.step h3{font-size:19px}
+
+/* ---------- разделители ---------- */
+.how::before,.about::before{content:"";display:block;height:1px;margin:0 auto 90px;max-width:760px;background:linear-gradient(90deg,transparent,var(--hair) 30%,rgba(139,92,246,.7) 50%,var(--hair) 70%,transparent)}
+.how,.about{margin-top:90px}
+
+/* ---------- подвал с крупной надписью ---------- */
+footer{position:relative;margin-top:110px;border-top:0;padding:0 0 46px;overflow:hidden}
+.wordmark{font-family:Unbounded,sans-serif;font-weight:800;text-align:center;line-height:.86;letter-spacing:-.04em;font-size:clamp(64px,19vw,290px);
+  color:transparent;-webkit-text-stroke:1px var(--hair);user-select:none;pointer-events:none;margin-bottom:-.12em;
+  -webkit-mask-image:linear-gradient(#000 10%,transparent 92%);mask-image:linear-gradient(#000 10%,transparent 92%)}
+footer .wrap{position:relative;padding-top:26px;border-top:1px solid var(--hair)}
+
+/* ---------- лента обновлений ---------- */
+.entry .body>div{box-shadow:inset 0 1px 0 var(--hi)}
+
+@media (max-width:900px),(pointer:coarse){
+  .hero{padding-top:30px}
+  .hero::before{top:-60px;height:520px}
+  .frame::after{mix-blend-mode:normal}
+}
+/* точка статуса «скоро» не должна наследовать отступы плашки .soon */
+.app .st.soon{padding:0;width:8px;height:8px;top:12px;right:12px;border-radius:50%;font-size:0;z-index:auto}

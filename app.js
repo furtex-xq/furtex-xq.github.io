@@ -196,13 +196,35 @@
     const orb = document.querySelector('.orbit');
     if (orb) {
       let ticking = false, heroOn = true;
-      new IntersectionObserver(es => { heroOn = es[0].isIntersecting; }).observe(orb);
+      const place = () => { orb.style.transform = `translate3d(0,${(Math.min(scrollY, 1400) * 0.12).toFixed(1)}px,0)`; };
+      // при возврате на первый экран (в том числе прыжком) сразу ставим иконки на место
+      new IntersectionObserver(es => { heroOn = es[0].isIntersecting; if (heroOn) place(); }).observe(orb);
       addEventListener('scroll', () => {
         if (ticking || !heroOn) return;
         ticking = true;
-        requestAnimationFrame(() => { orb.style.transform = `translate3d(0,${(scrollY * 0.12).toFixed(1)}px,0)`; ticking = false; });
+        requestAnimationFrame(() => { place(); ticking = false; });
       }, { passive: true });
     }
+  }
+
+  /* ===== световые рамки: подсветка края карточки там, где курсор ===== */
+  if (fine && !calm) {
+    const GLOW = '.proj, .app, .step, .link, .nums div, .news';
+    let gf = 0, gx = 0, gy = 0, gt = null;
+    document.addEventListener('pointermove', e => {
+      gx = e.clientX; gy = e.clientY; gt = e.target;
+      if (gf) return;
+      gf = requestAnimationFrame(() => {
+        gf = 0;
+        let el = gt && gt.closest ? gt.closest(GLOW) : null;
+        while (el) {
+          const r = el.getBoundingClientRect();
+          el.style.setProperty('--mx', (gx - r.left).toFixed(0) + 'px');
+          el.style.setProperty('--my', (gy - r.top).toFixed(0) + 'px');
+          el = el.parentElement ? el.parentElement.closest(GLOW) : null;
+        }
+      });
+    }, { passive: true });
   }
 
   /* ===== анимации останавливаются, когда блок не на экране ===== */
