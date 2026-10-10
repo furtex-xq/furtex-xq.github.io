@@ -63,6 +63,8 @@
   };
   document.getElementById('themeBtn')?.addEventListener('click', () => {
     const next = isDark() ? 'light' : 'dark';
+    document.body.style.transition = 'background .35s, color .35s';
+    setTimeout(() => { document.body.style.transition = ''; }, 400);
     document.documentElement.dataset.theme = next;
     store.set('theme', next);
     syncThemeColor();
@@ -111,7 +113,7 @@
     return { caption: mark };
   });
 
-  /* ===== QR-коды ===== */
+  /* ===== QR-коды (только на компьютере: библиотека на телефоне не грузится) ===== */
   function makeQR() {
     if (!window.qrcode) return;
     $$('[data-qr]').forEach(box => {
@@ -122,8 +124,12 @@
       box.classList.add('ready');
     });
   }
-  if (document.querySelector('[data-qr]')) {
-    if (window.qrcode) makeQR(); else window.addEventListener('load', makeQR);
+  if (fine && innerWidth > 900 && document.querySelector('[data-qr]')) {
+    const sc = document.createElement('script');
+    sc.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js';
+    sc.onload = makeQR;
+    const idle = window.requestIdleCallback || (f => setTimeout(f, 800));
+    idle(() => document.head.appendChild(sc));
   }
 
   /* ===== счётчики скачиваний ===== */
@@ -153,46 +159,79 @@
     } catch (e) {}
   }
 
-  /* ===== эффекты ===== */
+  /* ===== эффекты (только мышь; на телефоне не запускаются) ===== */
   if (fine && !calm) {
     const spot = document.querySelector('.spot');
     let mx = 0, my = 0, raf = 0;
     addEventListener('pointermove', e => {
       mx = e.clientX; my = e.clientY;
-      spot?.classList.add('on');
-      if (!raf) raf = requestAnimationFrame(() => { raf = 0; if (spot) spot.style.transform = `translate(${mx}px,${my}px)`; });
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        if (spot) { spot.classList.add('on'); spot.style.transform = `translate3d(${mx}px,${my}px,0)`; }
+      });
     }, { passive: true });
-    document.addEventListener('pointerleave', () => spot?.classList.remove('on'));
+    document.documentElement.addEventListener('pointerleave', () => spot?.classList.remove('on'));
 
     $$('.tilt').forEach(el => {
       const max = el.classList.contains('frame') ? 10 : 7;
+      let rect = null, f = 0, px = 0, py = 0;
+      el.addEventListener('pointerenter', () => { rect = el.getBoundingClientRect(); });
       el.addEventListener('pointermove', e => {
-        const r = el.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-        el.style.transform = `perspective(900px) rotateY(${x * max}deg) rotateX(${-y * max}deg) translateY(-4px)`;
-      });
-      el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+        px = e.clientX; py = e.clientY;
+        if (f || !rect) return;
+        f = requestAnimationFrame(() => {
+          f = 0;
+          if (!rect) return;
+          const x = (px - rect.left) / rect.width - .5, y = (py - rect.top) / rect.height - .5;
+          el.style.transform = `perspective(900px) rotateY(${(x * max).toFixed(2)}deg) rotateX(${(-y * max).toFixed(2)}deg) translateY(-4px)`;
+        });
+      }, { passive: true });
+      el.addEventListener('pointerleave', () => { rect = null; el.style.transform = ''; });
     });
-  }
-  if (!calm) {
-    const aur = document.querySelector('.aurora'), orb = document.querySelector('.orbit');
-    let ticking = false;
-    addEventListener('scroll', () => {
-      if (ticking) return; ticking = true;
-      requestAnimationFrame(() => {
-        const y = scrollY;
-        if (aur) aur.style.transform = `translateY(${y * -0.08}px)`;
-        if (orb && y < 1200) orb.style.transform = `translateY(${y * 0.12}px) rotate(${y * 0.02}deg)`;
-        ticking = false;
-      });
-    }, { passive: true });
+
+    // параллакс иконок — только пока первый экран виден
+    const orb = document.querySelector('.orbit');
+    if (orb) {
+      let ticking = false, heroOn = true;
+      new IntersectionObserver(es => { heroOn = es[0].isIntersecting; }).observe(orb);
+      addEventListener('scroll', () => {
+        if (ticking || !heroOn) return;
+        ticking = true;
+        requestAnimationFrame(() => { orb.style.transform = `translate3d(0,${(scrollY * 0.12).toFixed(1)}px,0)`; ticking = false; });
+      }, { passive: true });
+    }
   }
 
+  /* ===== анимации останавливаются, когда блок не на экране ===== */
+  const pauser = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('paused', !e.isIntersecting)), { rootMargin: '100px' });
+  $$('.hero, .marquee, .proj').forEach(el => pauser.observe(el));
+
   /* ===== появление блоков ===== */
+  let pending = $$('.reveal');
+  const show = el => { el.classList.add('in-view'); };
   const io = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+    if (e.isIntersecting) { show(e.target); io.unobserve(e.target); }
   }), { threshold: .08 });
-  $$('.reveal').forEach(el => io.observe(el));
+  pending.forEach(el => io.observe(el));
+  // запасной способ: если наблюдатель не сработал, проверяем положение при прокрутке
+  let rv = false;
+  const sweep = () => {
+    rv = false;
+    const h = innerHeight;
+    pending = pending.filter(el => {
+      if (el.classList.contains('in-view')) return false;
+      const r = el.getBoundingClientRect();
+      if (r.top < h * .94 && r.bottom > 0) { show(el); io.unobserve(el); return false; }
+      return true;
+    });
+    if (!pending.length) { removeEventListener('scroll', onScroll); clearInterval(guard); }
+  };
+  const onScroll = () => { if (!rv) { rv = true; setTimeout(sweep, 120); } };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('hashchange', () => setTimeout(sweep, 150));
+  const guard = setInterval(sweep, 900);
+  setTimeout(sweep, 400);
 
   applyLang(lang);
   loadCounts();

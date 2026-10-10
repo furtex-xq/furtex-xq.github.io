@@ -3,7 +3,7 @@
   --bg:#0a0718; --text:#f5f3ff; --muted:#a9a3c9; --dim:#6f6992; --lead:#dcd8f2; --chip:#d6d1f0;
   --glass:rgba(255,255,255,.045); --glass2:rgba(255,255,255,.08); --stroke:rgba(255,255,255,.09); --stroke2:rgba(255,255,255,.16);
   --card:linear-gradient(160deg,rgba(22,17,48,.92),rgba(12,9,28,.96));
-  --about:#0f0b22; --navbg:rgba(16,12,36,.6); --aur:.55; --dots:rgba(255,255,255,.07); --inv:#0a0718; --invbg:#f5f3ff;
+  --about:#0f0b22; --navbg:rgba(16,12,36,.6); --navsolid:rgba(16,12,36,.96); --aur:.55; --dots:rgba(255,255,255,.07); --inv:#0a0718; --invbg:#f5f3ff;
   --rainbow:linear-gradient(100deg,#22d3ee,#8b5cf6 35%,#ec4899 65%,#fbbf24);
   --green:#34d399; --amber:#fbbf24;
   color-scheme:dark;
@@ -12,7 +12,7 @@
   --bg:#f7f4ff; --text:#17122e; --muted:#5b5480; --dim:#8c86a8; --lead:#2f2850; --chip:#3d3563;
   --glass:rgba(255,255,255,.7); --glass2:rgba(255,255,255,.95); --stroke:rgba(40,25,110,.09); --stroke2:rgba(40,25,110,.15);
   --card:linear-gradient(160deg,rgba(255,255,255,.94),rgba(246,242,255,.96));
-  --about:#ffffff; --navbg:rgba(255,255,255,.72); --aur:.3; --dots:rgba(40,25,110,.08); --inv:#ffffff; --invbg:#17122e;
+  --about:#ffffff; --navbg:rgba(255,255,255,.72); --navsolid:rgba(255,255,255,.97); --aur:.3; --dots:rgba(40,25,110,.08); --inv:#ffffff; --invbg:#17122e;
   --rainbow:linear-gradient(100deg,#0891b2,#7c3aed 35%,#db2777 65%,#d97706);
   color-scheme:light;
 }
@@ -21,7 +21,7 @@
     --bg:#f7f4ff; --text:#17122e; --muted:#5b5480; --dim:#8c86a8; --lead:#2f2850; --chip:#3d3563;
     --glass:rgba(255,255,255,.7); --glass2:rgba(255,255,255,.95); --stroke:rgba(40,25,110,.09); --stroke2:rgba(40,25,110,.15);
     --card:linear-gradient(160deg,rgba(255,255,255,.94),rgba(246,242,255,.96));
-    --about:#ffffff; --navbg:rgba(255,255,255,.72); --aur:.3; --dots:rgba(40,25,110,.08); --inv:#ffffff; --invbg:#17122e;
+    --about:#ffffff; --navbg:rgba(255,255,255,.72); --navsolid:rgba(255,255,255,.97); --aur:.3; --dots:rgba(40,25,110,.08); --inv:#ffffff; --invbg:#17122e;
     --rainbow:linear-gradient(100deg,#0891b2,#7c3aed 35%,#db2777 65%,#d97706);
     color-scheme:light;
   }
@@ -29,23 +29,24 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font:16px/1.6 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .4s,color .4s}
+body{background:var(--bg);color:var(--text);font:16px/1.6 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 img{display:block;max-width:100%}
 .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
 h1,h2,h3{font-family:Unbounded,sans-serif;font-weight:700;letter-spacing:-.025em;line-height:1.08}
-.grad{background:var(--rainbow);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shift 8s linear infinite}
+.grad{background:var(--rainbow);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .grad{animation:shift 8s linear infinite}
 @keyframes shift{to{background-position:200% center}}
 
 /* ===== фон ===== */
-.aurora{position:fixed;inset:-10% 0 0;z-index:-2;overflow:hidden;pointer-events:none;will-change:transform}
-.aurora i{position:absolute;border-radius:50%;filter:blur(110px);opacity:var(--aur);animation:drift 22s ease-in-out infinite alternate}
-.aurora i:nth-child(1){width:620px;height:620px;background:#7c3aed;left:-180px;top:-120px}
-.aurora i:nth-child(2){width:520px;height:520px;background:#db2777;right:-160px;top:10%;animation-duration:26s}
-.aurora i:nth-child(3){width:560px;height:560px;background:#0891b2;left:30%;top:55%;animation-duration:30s}
-.aurora i:nth-child(4){width:420px;height:420px;background:#f59e0b;right:5%;bottom:-100px;animation-duration:24s}
-@keyframes drift{to{transform:translate(90px,70px) scale(1.15)}}
+.aurora{position:fixed;left:0;top:0;width:100%;height:120vh;z-index:-2;pointer-events:none;opacity:var(--aur);
+  background:
+    radial-gradient(46vmax 46vmax at 0% 0%,rgba(124,58,237,.95),transparent 70%),
+    radial-gradient(40vmax 40vmax at 100% 14%,rgba(219,39,119,.8),transparent 70%),
+    radial-gradient(44vmax 44vmax at 45% 78%,rgba(8,145,178,.7),transparent 70%),
+    radial-gradient(34vmax 34vmax at 96% 100%,rgba(245,158,11,.55),transparent 70%)}
+.aurora i{display:none}
 .noise{position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(var(--dots) 1px,transparent 1px);background-size:28px 28px;mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 75%)}
 .spot{position:fixed;left:0;top:0;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;pointer-events:none;z-index:-1;
   background:radial-gradient(circle,rgba(139,92,246,.22),rgba(236,72,153,.08) 40%,transparent 70%);opacity:0;transition:opacity .4s;will-change:transform}
@@ -54,7 +55,7 @@ h1,h2,h3{font-family:Unbounded,sans-serif;font-weight:700;letter-spacing:-.025em
 /* ===== навигация ===== */
 nav{position:sticky;top:0;z-index:40;padding:14px 0}
 nav .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;height:60px;padding:0 10px 0 18px;border-radius:20px;
-  background:var(--navbg);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid var(--stroke)}
+  background:var(--navbg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--stroke)}
 .logo{font-family:Unbounded;font-weight:700;font-size:16px;display:flex;align-items:center;gap:11px;white-space:nowrap}
 .mk{width:30px;height:30px;border-radius:10px;background:var(--rainbow);display:grid;place-items:center;font-size:15px;color:#fff;font-weight:800;box-shadow:0 6px 20px -6px #8b5cf6}
 nav ul{display:flex;gap:2px;list-style:none;font-size:14px;font-weight:600;color:var(--muted)}
@@ -98,11 +99,11 @@ nav ul a:hover,nav ul a.cur{color:var(--text);background:var(--glass2)}
 .creator b{font-size:15px}
 .creator .n{color:var(--muted);font-weight:500}
 
-.orbit{position:relative;aspect-ratio:1;max-width:460px;width:100%;justify-self:center;will-change:transform}
+.orbit{position:relative;aspect-ratio:1;max-width:460px;width:100%;justify-self:center}
 .orbit .ring{position:absolute;inset:8%;border-radius:50%;border:1px dashed var(--stroke2);animation:spin 60s linear infinite}
 .orbit .ring.r2{inset:26%;border-style:solid;border-color:var(--stroke);animation-direction:reverse}
 @keyframes spin{to{transform:rotate(360deg)}}
-.orbit .core{position:absolute;inset:34%;border-radius:32%;background:var(--rainbow);background-size:200% 200%;animation:shift 6s linear infinite;display:grid;place-items:center;
+.orbit .core{position:absolute;inset:34%;border-radius:32%;background:linear-gradient(135deg,#22d3ee,#8b5cf6 45%,#ec4899);display:grid;place-items:center;
   font-family:Unbounded;font-weight:800;font-size:clamp(26px,4vw,44px);color:#fff;box-shadow:0 30px 90px -20px #8b5cf6,0 0 0 10px var(--glass)}
 .orbit .ico{position:absolute;width:22%;aspect-ratio:1;border-radius:28%;overflow:hidden;box-shadow:0 18px 40px -12px var(--g),0 0 0 1px rgba(255,255,255,.12);animation:bob 6s ease-in-out infinite;transition:transform .3s}
 .orbit .ico:hover{transform:scale(1.12)}
@@ -171,8 +172,8 @@ nav ul a:hover,nav ul a.cur{color:var(--text);background:var(--glass2)}
 .dl{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 .btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:12px;font-weight:800;color:#0a0718;border-radius:18px;padding:17px 28px;
   background:linear-gradient(110deg,var(--c1),var(--c2));box-shadow:0 16px 40px -14px var(--c1);transition:transform .25s,box-shadow .25s}
-.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:shine 3.6s ease-in-out infinite}
-@keyframes shine{0%,60%{left:-60%}100%{left:130%}}
+.btn::after{content:"";position:absolute;top:0;left:0;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-160%) skewX(-20deg);animation:shine 3.6s ease-in-out infinite;will-change:transform}
+@keyframes shine{0%,60%{transform:translateX(-160%) skewX(-20deg)}100%{transform:translateX(330%) skewX(-20deg)}}
 .btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 22px 50px -14px var(--c1)}
 .btn svg{width:22px;height:22px}
 .btn.alt{background:var(--glass);color:var(--text);border:1px solid var(--stroke2);box-shadow:none}
@@ -206,7 +207,7 @@ nav ul a:hover,nav ul a.cur{color:var(--text);background:var(--glass2)}
 
 /* ===== карусель ===== */
 .visual{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px}
-.visual::before{content:"";position:absolute;top:8%;width:78%;aspect-ratio:1;border-radius:50%;background:conic-gradient(from 0deg,var(--c1),var(--c2),var(--c1));filter:blur(70px);opacity:.33;pointer-events:none}
+.visual::before{content:"";position:absolute;top:2%;width:110%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,var(--c1),var(--c2) 35%,transparent 68%);opacity:.3;pointer-events:none}
 .frame{position:relative;width:276px;aspect-ratio:9/19.3;border-radius:44px;padding:10px;background:linear-gradient(160deg,#2c2754,#100d22);
   box-shadow:0 50px 90px -30px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.14),inset 0 0 0 1px rgba(255,255,255,.05);transform-style:preserve-3d;transition:transform .2s ease-out}
 .frame::before{content:"";position:absolute;top:14px;left:50%;translate:-50% 0;width:58px;height:15px;border-radius:99px;background:#000;z-index:3}
@@ -324,3 +325,14 @@ footer .fl{display:flex;gap:18px;flex-wrap:wrap}
 .reveal.in-view{opacity:1;transform:none}
 .tilt{transition:transform .25s ease-out}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* ===== производительность ===== */
+.paused,.paused *,.paused *::before,.paused *::after{animation-play-state:paused!important}
+.orbit .ico,.marquee div{will-change:transform}
+@media (max-width:900px),(pointer:coarse){
+  nav .bar{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--navsolid)}
+  .lang-menu{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--navsolid)}
+  .orbit .ring{animation:none}
+  .frame{box-shadow:0 30px 50px -24px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.14)}
+  .spot{display:none}
+}
