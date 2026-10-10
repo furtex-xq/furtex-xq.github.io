@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="trunk" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9a6a40"/><stop offset="1" stop-color="#5e3d22"/></linearGradient><radialGradient id="crown" cx="0.35" cy="0.3" r="0.75"><stop offset="0" stop-color="#a6dc74"/><stop offset="1" stop-color="#24561a"/></radialGradient></defs><ellipse cx="50" cy="93" rx="30" ry="5" fill="#000" opacity=".28"/>
+<path d="M44 94 Q46 76 44 58 L56 58 Q54 76 58 94z" fill="url(#trunk)"/>
+<path d="M50 70 L36 58 M52 66 L64 56" stroke="#6b4a2b" stroke-width="4" stroke-linecap="round"/>
+<circle cx="50" cy="34" r="26" fill="url(#crown)"/><circle cx="28" cy="50" r="18" fill="url(#crown)"/><circle cx="72" cy="50" r="18" fill="url(#crown)"/>
+<circle cx="50" cy="56" r="16" fill="url(#crown)"/>
+<g fill="#e0524a"><circle cx="34" cy="40" r="4.5"/><circle cx="62" cy="30" r="4.5"/><circle cx="68" cy="56" r="4.5"/><circle cx="42" cy="58" r="4"/></g>
+<g fill="#fff" opacity=".6"><circle cx="33" cy="39" r="1.4"/><circle cx="61" cy="29" r="1.4"/><circle cx="67" cy="55" r="1.4"/></g>
+<path d="M38 18 q10 -8 22 -4" stroke="#d6f5b6" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/></svg>

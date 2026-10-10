@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 120 120">
+<rect x="8" y="8" width="84" height="84" rx="10" fill="#34442a"/>
+<g stroke="#ecc98f" stroke-width="2.5" opacity=".9"><path d="M36 8 v84 M64 8 v84 M8 36 h84 M8 64 h84"/></g>
+<text x="50" y="58" font-size="20" fill="#fff" font-family="monospace" font-weight="700" text-anchor="middle">n×n</text></svg>

@@ -1,0 +1,1214 @@
+{
+ "parts": [
+  {
+   "id": "I",
+   "title": "Основы",
+   "subtitle": "Синтаксис, типы, коллекции, функции",
+   "chapters": [
+    {
+     "id": "1",
+     "title": "Введение в Python",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Что такое Python",
+       "num": "1.1",
+       "md": "Python — высокоуровневый интерпретируемый язык программирования общего назначения, созданный Гвидо ван Россумом (первый релиз — 1991 г.). Главная идея языка — **читаемость кода**.\n\nКлючевые свойства:\n- **Интерпретируемый** — код выполняется построчно интерпретатором (на самом деле сначала компилируется в байт-код `.pyc`, затем выполняется виртуальной машиной).\n- **Динамическая типизация** — тип переменной определяется во время выполнения.\n- **Строгая типизация** — Python не преобразует типы неявно: `\"5\" + 5` вызовет ошибку.\n- **Мультипарадигменный** — поддерживает процедурный, объектно-ориентированный и функциональный стили.\n- **«Батарейки в комплекте»** — огромная стандартная библиотека.\n\nГде используется Python: веб-бэкенд (Django, FastAPI), анализ данных и наука (pandas, NumPy), машинное обучение и ИИ (PyTorch, scikit-learn), автоматизация и скрипты, DevOps, тестирование, парсинг, боты, игры (pygame), встраиваемые системы (MicroPython)."
+      },
+      {
+       "title": "Версии Python",
+       "num": "1.2",
+       "md": "Используйте **Python 3** (актуальные версии — 3.12, 3.13, 3.14). Python 2 официально мёртв с 2020 года. Новая минорная версия выходит каждый октябрь."
+      },
+      {
+       "title": "Установка",
+       "num": "1.3",
+       "md": "- **Windows**: скачайте установщик с python.org, обязательно отметьте галочку **«Add Python to PATH»**.\n- **macOS**: `brew install python` или установщик с python.org.\n- **Linux**: обычно уже установлен; `sudo apt install python3 python3-pip python3-venv`.\n\nПроверка:\n```bash\npython --version      # Windows\npython3 --version     # macOS / Linux\n```"
+      },
+      {
+       "title": "Где писать код",
+       "num": "1.4",
+       "md": "- **REPL** (интерактивный режим): наберите `python` в терминале. Удобно для экспериментов.\n- **IDLE** — простая среда, идёт вместе с Python.\n- **VS Code** + расширение Python — самый популярный бесплатный выбор.\n- **PyCharm** — мощная IDE специально для Python.\n- **Jupyter Notebook** — для анализа данных."
+      },
+      {
+       "title": "Первая программа",
+       "num": "1.5",
+       "md": "Создайте файл `hello.py`:\n```python\nprint(\"Привет, мир!\")\n```\nЗапустите:\n```bash\npython hello.py\n```"
+      },
+      {
+       "title": "Синтаксис: главное",
+       "num": "1.6",
+       "md": "```python\n# Это комментарий — интерпретатор его игнорирует\n\n# Блоки кода выделяются ОТСТУПАМИ (стандарт — 4 пробела), а не скобками\nif 5 > 3:\n    print(\"Пять больше трёх\")   # внутри блока\nprint(\"Конец\")                  # вне блока\n\n# Одна инструкция — одна строка. Точка с запятой не нужна.\nx = 10\n\n# Длинную строку можно перенести внутри скобок\ntotal = (1 + 2 + 3\n         + 4 + 5)\n\n# Многострочная строка (часто как документация)\n\"\"\"\nЭто многострочная строка.\n\"\"\"\n```"
+      },
+      {
+       "title": "Дзен Python и PEP 8",
+       "num": "1.7",
+       "md": "Наберите в REPL `import this` — увидите «Дзен Python», философию языка:\n«Красивое лучше уродливого. Явное лучше неявного. Простое лучше сложного. Читаемость имеет значение.»\n\n**PEP 8** — официальный стиль кода:\n- отступ 4 пробела;\n- длина строки до 79 (на практике часто 88–100) символов;\n- переменные и функции: `snake_case`;\n- классы: `PascalCase`;\n- константы: `UPPER_CASE`;\n- пробелы вокруг операторов: `a = b + 1`;\n- две пустые строки между функциями верхнего уровня."
+      },
+      {
+       "title": "Как работает Python (кратко)",
+       "num": "1.8",
+       "md": "```\nисходный код (.py) → компилятор → байт-код (.pyc в __pycache__) → виртуальная машина CPython → результат\n```\nCPython — эталонная реализация на C. Есть и другие: PyPy (быстрая, с JIT), MicroPython (микроконтроллеры), Jython, IronPython.\n\n### Упражнения к главе 1\n1. Установите Python и VS Code. Выведите своё имя через `print`.\n2. Выполните `import this` и прочтите Дзен Python.\n3. Посчитайте в REPL: `2 ** 100`. Обратите внимание — Python работает с целыми числами любого размера."
+      }
+     ]
+    },
+    {
+     "id": "2",
+     "title": "Переменные, типы данных и операторы",
+     "minutes": 4,
+     "sections": [
+      {
+       "title": "Переменные",
+       "num": "2.1",
+       "md": "Переменная в Python — это **имя, которое ссылается на объект** в памяти. Всё в Python — объект.\n\n```python\nage = 25            # имя age ссылается на объект int 25\nname = \"Анна\"\nage = \"двадцать пять\"  # можно перепривязать к объекту другого типа\n\na = b = c = 0        # множественное присваивание\nx, y = 1, 2          # распаковка\nx, y = y, x          # обмен значений без временной переменной\n```\n\nПравила имён: буквы, цифры, `_`; не начинаются с цифры; регистр важен (`Age` ≠ `age`); нельзя использовать ключевые слова (`if`, `for`, `class`…)."
+      },
+      {
+       "title": "Встроенные типы данных",
+       "num": "2.2",
+       "md": "| Тип | Пример | Изменяемый? |\n|---|---|---|\n| `int` — целое | `42`, `-7`, `1_000_000` | нет |\n| `float` — дробное | `3.14`, `1e-5` | нет |\n| `complex` — комплексное | `2 + 3j` | нет |\n| `bool` — логическое | `True`, `False` | нет |\n| `str` — строка | `\"текст\"` | нет |\n| `NoneType` | `None` | нет |\n| `list` — список | `[1, 2, 3]` | **да** |\n| `tuple` — кортеж | `(1, 2, 3)` | нет |\n| `dict` — словарь | `{\"a\": 1}` | **да** |\n| `set` — множество | `{1, 2, 3}` | **да** |\n| `frozenset` | `frozenset({1, 2})` | нет |\n| `bytes` / `bytearray` | `b\"abc\"` | нет / да |\n\n```python\ntype(42)        # <class 'int'>\nisinstance(42, int)   # True — предпочтительный способ проверки типа\n```"
+      },
+      {
+       "title": "Числа",
+       "num": "2.3",
+       "md": "```python\n10 + 3    # 13   сложение\n10 - 3    # 7    вычитание\n10 * 3    # 30   умножение\n10 / 3    # 3.3333333333333335  деление (всегда float)\n10 // 3   # 3    целочисленное деление (округление вниз)\n10 % 3    # 1    остаток\n10 ** 3   # 1000 степень\n-7 // 2   # -4   (вниз, а не к нулю!)\ndivmod(10, 3)  # (3, 1)\n\nabs(-5)        # 5\nround(3.14159, 2)  # 3.14\nround(2.5)     # 2 — «банковское округление» к чётному!\nmax(1, 5, 3), min(1, 5, 3)\n\n0b1010   # 10 — двоичная запись\n0o17     # 15 — восьмеричная\n0xFF     # 255 — шестнадцатеричная\nbin(10), oct(15), hex(255)\n```\n\n**Ловушка float:**\n```python\n0.1 + 0.2 == 0.3          # False! (0.30000000000000004)\nimport math\nmath.isclose(0.1 + 0.2, 0.3)   # True\nfrom decimal import Decimal\nDecimal(\"0.1\") + Decimal(\"0.2\")  # Decimal('0.3') — для денег\n```"
+      },
+      {
+       "title": "Преобразование типов",
+       "num": "2.4",
+       "md": "```python\nint(\"42\")       # 42\nint(3.99)       # 3 (отбрасывает дробную часть)\nfloat(\"3.14\")   # 3.14\nstr(100)        # \"100\"\nbool(0), bool(\"\"), bool([]), bool(None)   # все False\nbool(1), bool(\"a\"), bool([0])             # все True\nlist(\"abc\")     # ['a', 'b', 'c']\nint(\"ff\", 16)   # 255\n```\n\n**Ложные (falsy) значения:** `False`, `None`, `0`, `0.0`, `\"\"`, `[]`, `()`, `{}`, `set()`, `range(0)`. Всё остальное — истинно."
+      },
+      {
+       "title": "Операторы",
+       "num": "2.5",
+       "md": "```python\n# Сравнение\n==  !=  <  >  <=  >=\n1 < x < 10        # цепочка сравнений — работает!\n\n# Логические\nand   or   not\n# and/or возвращают ОПЕРАНД, а не обязательно bool:\n\"\" or \"по умолчанию\"   # 'по умолчанию'\n0 and 5                # 0\n\n# Тождественность — один ли это объект в памяти\na is b\na is None        # правильная проверка на None (а не ==)\n\n# Принадлежность\n\"a\" in \"abc\"     # True\n3 not in [1, 2]  # True\n\n# Составное присваивание\nx += 1;  x -= 1;  x *= 2;  x /= 2;  x //= 2;  x %= 3;  x **= 2\n\n# Побитовые\n&  |  ^  ~  <<  >>\n\n# Моржовый оператор (3.8+) — присваивание внутри выражения\nif (n := len(data)) > 10:\n    print(f\"Слишком много: {n}\")\n```\n\nПриоритет (от высшего): `**` → унарные `-x`, `~x` → `* / // %` → `+ -` → сдвиги → `&` → `^` → `|` → сравнения, `in`, `is` → `not` → `and` → `or` → `if-else` → `lambda` → `:=`. Если сомневаетесь — ставьте скобки."
+      },
+      {
+       "title": "Изменяемые и неизменяемые объекты",
+       "num": "2.6",
+       "md": "Это одна из важнейших концепций Python.\n```python\na = [1, 2, 3]\nb = a            # b ссылается на ТОТ ЖЕ список\nb.append(4)\nprint(a)         # [1, 2, 3, 4] — изменился и a!\n\ns = \"abc\"\nt = s\nt += \"d\"         # создаётся НОВАЯ строка, s не меняется\nprint(s)         # abc\n\nid(a) == id(b)   # True — одинаковый адрес объекта\n```"
+      },
+      {
+       "title": "Константы и None",
+       "num": "2.7",
+       "md": "Констант в языке нет — по соглашению пишут `MAX_SIZE = 100` и не меняют.\n`None` — специальный объект «нет значения». Функция без `return` возвращает `None`.\n\n### Упражнения к главе 2\n1. Даны два числа a и b. Выведите их сумму, разность, произведение, частное, целую часть и остаток.\n2. Поменяйте местами значения двух переменных без третьей.\n3. Объясните, почему `[] is []` даёт `False`, а `None is None` — `True`.\n4. Переведите 1 000 000 секунд в дни, часы, минуты и секунды с помощью `divmod`."
+      }
+     ]
+    },
+    {
+     "id": "3",
+     "title": "Строки",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Создание строк",
+       "num": "3.1",
+       "md": "```python\ns1 = 'одинарные'\ns2 = \"двойные\"\ns3 = \"\"\"многострочная\nстрока\"\"\"\ns4 = r\"C:\\new\\folder\"     # raw-строка: \\ не экранирует\ns5 = \"Он сказал: \\\"Привет\\\"\"\n\n# Escape-последовательности\n\"\\n\"  # перевод строки\n\"\\t\"  # табуляция\n\"\\\\\"  # обратный слэш\n\"\\u0416\"  # символ Unicode (Ж)\n```\n\nСтроки в Python 3 — это последовательности символов **Unicode**. Строки **неизменяемы**."
+      },
+      {
+       "title": "Индексация и срезы",
+       "num": "3.2",
+       "md": "```python\ns = \"Python\"\ns[0]      # 'P'\ns[-1]     # 'n' — с конца\ns[1:4]    # 'yth' — с 1 до 4 (не включая)\ns[:3]     # 'Pyt'\ns[3:]     # 'hon'\ns[::2]    # 'Pto' — каждый второй\ns[::-1]   # 'nohtyP' — разворот\nlen(s)    # 6\n# s[0] = \"J\"  -> TypeError: строки неизменяемы\ns = \"J\" + s[1:]   # 'Jython' — создаём новую\n```\nСрез `[start:stop:step]` никогда не вызывает IndexError, даже если выходит за границы."
+      },
+      {
+       "title": "Операции",
+       "num": "3.3",
+       "md": "```python\n\"ab\" + \"cd\"     # 'abcd'\n\"ab\" * 3        # 'ababab'\n\"th\" in \"Python\"  # True\nfor ch in \"abc\":\n    print(ch)\n```"
+      },
+      {
+       "title": "Основные методы строк",
+       "num": "3.4",
+       "md": "```python\ns = \"  Hello, World!  \"\ns.lower()           # '  hello, world!  '\ns.upper()\ns.title()           # каждое слово с заглавной\ns.capitalize()\ns.swapcase()\ns.strip()           # убрать пробелы по краям; lstrip(), rstrip()\ns.strip(\" !\")       # убрать указанные символы\n\n\"a,b,c\".split(\",\")          # ['a', 'b', 'c']\n\"a b  c\".split()            # ['a', 'b', 'c'] — по любым пробелам\n\"строка1\\nстрока2\".splitlines()\n\"-\".join([\"a\", \"b\", \"c\"])   # 'a-b-c'\n\n\"hello\".replace(\"l\", \"L\")   # 'heLLo'\n\"hello\".find(\"l\")           # 2 (или -1 если нет)\n\"hello\".index(\"l\")          # 2 (или ValueError)\n\"hello\".count(\"l\")          # 2\n\"hello\".startswith(\"he\")    # True\n\"file.py\".endswith((\".py\", \".txt\"))  # можно кортеж\n\n\"123\".isdigit()   # True\n\"abc\".isalpha()   # True\n\"abc1\".isalnum()  # True\n\"   \".isspace()   # True\n\n\"42\".zfill(5)        # '00042'\n\"hi\".center(10, \"*\") # '****hi****'\n\"hi\".ljust(5), \"hi\".rjust(5)\n\n\"prefix_name\".removeprefix(\"prefix_\")   # 'name' (3.9+)\n\"file.txt\".removesuffix(\".txt\")          # 'file'\n```"
+      },
+      {
+       "title": "Форматирование строк",
+       "num": "3.5",
+       "md": "**f-строки** (рекомендуется, 3.6+):\n```python\nname, age = \"Анна\", 25\nf\"Меня зовут {name}, мне {age} лет\"\nf\"{age + 5}\"              # выражения внутри\nf\"{3.14159:.2f}\"          # '3.14' — 2 знака после запятой\nf\"{1234567:,}\"            # '1,234,567'\nf\"{42:05d}\"               # '00042'\nf\"{'текст':>10}\"          # выравнивание вправо на 10\nf\"{'текст':<10}|\"         # влево\nf\"{'текст':^10}\"          # по центру\nf\"{0.25:.0%}\"             # '25%'\nf\"{255:x}\", f\"{255:b}\"    # 'ff', '11111111'\nf\"{name=}\"                # \"name='Анна'\" — удобно для отладки (3.8+)\nf\"{name!r}\"               # repr()\n```\nСтарые способы (встречаются в чужом коде):\n```python\n\"Привет, {}! Тебе {} лет\".format(name, age)\n\"Привет, %s! Тебе %d лет\" % (name, age)\n```"
+      },
+      {
+       "title": "Кодировки, bytes",
+       "num": "3.6",
+       "md": "```python\ns = \"Привет\"\nb = s.encode(\"utf-8\")      # b'\\xd0\\x9f\\xd1\\x80...'\nb.decode(\"utf-8\")          # 'Привет'\nord(\"A\")   # 65 — код символа\nchr(65)    # 'A'\n```\nВсегда указывайте `encoding=\"utf-8\"` при работе с файлами."
+      },
+      {
+       "title": "Производительность",
+       "num": "3.7",
+       "md": "Не склеивайте строки в цикле через `+=` при большом объёме — используйте список и `\"\".join(list)`.\n\n### Упражнения к главе 3\n1. Проверьте, является ли строка палиндромом (игнорируя регистр и пробелы).\n2. Посчитайте количество гласных в строке.\n3. Из строки «Иванов Иван Иванович» получите «Иванов И. И.».\n4. Выведите таблицу умножения 9×9 с выравниванием через f-строки."
+      }
+     ]
+    },
+    {
+     "id": "4",
+     "title": "Ввод, вывод и управление потоком",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Ввод и вывод",
+       "num": "4.1",
+       "md": "```python\nname = input(\"Как вас зовут? \")    # всегда возвращает str\nage = int(input(\"Возраст: \"))       # преобразуем в число\n\nprint(\"a\", \"b\", \"c\")                # a b c\nprint(\"a\", \"b\", sep=\"-\")            # a-b\nprint(\"без перевода строки\", end=\"\")\nprint(*[1, 2, 3])                   # 1 2 3 — распаковка\n```"
+      },
+      {
+       "title": "Условный оператор if",
+       "num": "4.2",
+       "md": "```python\nage = 18\nif age < 14:\n    print(\"Ребёнок\")\nelif age < 18:\n    print(\"Подросток\")\nelse:\n    print(\"Взрослый\")\n\n# Тернарный оператор\nstatus = \"совершеннолетний\" if age >= 18 else \"несовершеннолетний\"\n\n# Проверка «пустоты» — питонический стиль\nif items:          # вместо if len(items) > 0\n    ...\nif not name:       # вместо if name == \"\"\n    ...\n```"
+      },
+      {
+       "title": "match / case (структурное сопоставление, 3.10+)",
+       "num": "4.3",
+       "md": "```python\ncommand = \"move north\"\nmatch command.split():\n    case [\"quit\"]:\n        print(\"Выход\")\n    case [\"move\", direction]:\n        print(f\"Идём на {direction}\")\n    case [\"take\", *items]:\n        print(f\"Берём {items}\")\n    case _:\n        print(\"Неизвестная команда\")\n\n# Сопоставление с типами и словарями\nmatch event:\n    case {\"type\": \"click\", \"x\": x, \"y\": y}:\n        print(f\"Клик в ({x}, {y})\")\n    case int(n) if n > 0:          # с условием (guard)\n        print(\"Положительное число\")\n    case 1 | 2 | 3:                # несколько вариантов\n        print(\"Маленькое\")\n```"
+      },
+      {
+       "title": "Цикл while",
+       "num": "4.4",
+       "md": "```python\nn = 5\nwhile n > 0:\n    print(n)\n    n -= 1\n\n# Бесконечный цикл с выходом\nwhile True:\n    cmd = input(\"> \")\n    if cmd == \"exit\":\n        break\n```"
+      },
+      {
+       "title": "Цикл for и range",
+       "num": "4.5",
+       "md": "`for` в Python перебирает элементы **любого итерируемого объекта**.\n```python\nfor i in range(5):          # 0 1 2 3 4\nfor i in range(2, 10):      # 2..9\nfor i in range(10, 0, -2):  # 10 8 6 4 2\n\nfor ch in \"abc\": ...\nfor item in [1, 2, 3]: ...\n\n# Индекс и значение одновременно\nfor i, fruit in enumerate([\"яблоко\", \"груша\"], start=1):\n    print(i, fruit)\n\n# Параллельный обход\nfor name, age in zip([\"Анна\", \"Борис\"], [25, 30]):\n    print(name, age)\n\n# В обратном порядке и отсортированно\nfor x in reversed([1, 2, 3]): ...\nfor x in sorted([3, 1, 2]): ...\n```"
+      },
+      {
+       "title": "break, continue, else, pass",
+       "num": "4.6",
+       "md": "```python\nfor n in range(10):\n    if n == 3:\n        continue      # пропустить итерацию\n    if n == 7:\n        break         # выйти из цикла\n    print(n)\n\n# else у цикла выполняется, если цикл НЕ был прерван break\nfor n in range(2, 10):\n    if 17 % n == 0:\n        print(\"Составное\")\n        break\nelse:\n    print(\"Простое\")\n\ndef todo():\n    pass              # заглушка «ничего не делать»\n```\n\n### Упражнения к главе 4\n1. «Угадай число»: компьютер загадывает число 1–100 (`random.randint`), пользователь угадывает с подсказками «больше/меньше».\n2. FizzBuzz: числа 1–100, кратные 3 → Fizz, 5 → Buzz, 15 → FizzBuzz.\n3. Выведите все простые числа до 100.\n4. Простой калькулятор на `match`."
+      }
+     ]
+    },
+    {
+     "id": "5",
+     "title": "Коллекции",
+     "minutes": 5,
+     "sections": [
+      {
+       "title": "Список (list) — изменяемая упорядоченная последовательность",
+       "num": "5.1",
+       "md": "```python\nnums = [3, 1, 4, 1, 5]\nmixed = [1, \"a\", 3.14, [1, 2]]\nempty = []\n\nnums[0], nums[-1], nums[1:3]      # индексы и срезы как у строк\nnums[0] = 10                       # изменение\n\nnums.append(9)          # добавить в конец\nnums.extend([2, 6])     # добавить несколько\nnums.insert(0, 100)     # вставить по индексу\nnums.remove(1)          # удалить первое вхождение значения\nnums.pop()              # удалить и вернуть последний\nnums.pop(0)             # удалить по индексу\ndel nums[0]             # удалить по индексу / срезу\nnums.clear()            # очистить\n\nnums = [3, 1, 2]\nnums.sort()                  # сортировка НА МЕСТЕ, возвращает None!\nnums.sort(reverse=True)\nsorted(nums)                 # НОВЫЙ отсортированный список\nwords = [\"bb\", \"a\", \"ccc\"]\nwords.sort(key=len)          # сортировка по ключу\nnums.reverse()\nnums.index(2), nums.count(2)\nlen(nums), sum(nums), min(nums), max(nums)\n\n[1, 2] + [3]     # [1, 2, 3]\n[0] * 5          # [0, 0, 0, 0, 0]\n```\n\n**Ловушка вложенных списков:**\n```python\ngrid = [[0] * 3] * 3     # НЕПРАВИЛЬНО: три ссылки на один список\ngrid = [[0] * 3 for _ in range(3)]   # правильно\n```"
+      },
+      {
+       "title": "Копирование",
+       "num": "5.2",
+       "md": "```python\na = [1, [2, 3]]\nb = a              # не копия, а та же ссылка\nc = a.copy()       # поверхностная копия (также a[:] или list(a))\nimport copy\nd = copy.deepcopy(a)   # глубокая копия, включая вложенные объекты\n```"
+      },
+      {
+       "title": "Кортеж (tuple) — неизменяемая последовательность",
+       "num": "5.3",
+       "md": "```python\npoint = (10, 20)\nsingle = (5,)          # кортеж из одного элемента — нужна запятая!\nx, y = point           # распаковка\nfirst, *rest = (1, 2, 3, 4)    # first=1, rest=[2, 3, 4]\n*_, last = (1, 2, 3)           # last=3\n\nfrom collections import namedtuple\nPoint = namedtuple(\"Point\", [\"x\", \"y\"])\np = Point(1, 2)\np.x, p.y\n```\nКортежи быстрее списков, могут быть ключами словаря, используются для возврата нескольких значений из функции."
+      },
+      {
+       "title": "Словарь (dict) — пары ключ → значение",
+       "num": "5.4",
+       "md": "Ключи должны быть **хэшируемыми** (неизменяемыми): str, int, tuple… С Python 3.7 словари **сохраняют порядок вставки**.\n```python\nuser = {\"name\": \"Анна\", \"age\": 25}\nuser[\"name\"]                # 'Анна'\nuser[\"city\"]                # KeyError!\nuser.get(\"city\")            # None\nuser.get(\"city\", \"Москва\")  # значение по умолчанию\nuser[\"city\"] = \"Казань\"     # добавить / изменить\ndel user[\"city\"]\nuser.pop(\"age\")             # удалить и вернуть\nuser.setdefault(\"tags\", []).append(\"vip\")\n\n\"name\" in user              # проверка КЛЮЧА\n\nfor key in user: ...\nfor key, value in user.items(): ...\nuser.keys(), user.values(), user.items()\n\nuser.update({\"age\": 26, \"email\": \"a@b.ru\"})\nmerged = d1 | d2            # слияние (3.9+)\nd1 |= d2\n\ndict(a=1, b=2)\ndict(zip([\"a\", \"b\"], [1, 2]))\ndict.fromkeys([\"a\", \"b\"], 0)\n```"
+      },
+      {
+       "title": "Множество (set) — уникальные элементы без порядка",
+       "num": "5.5",
+       "md": "```python\ns = {1, 2, 3}\nempty = set()          # {} — это пустой СЛОВАРЬ!\nunique = set([1, 1, 2, 2])   # {1, 2}\n\ns.add(4); s.remove(4); s.discard(10)  # discard не падает если нет\na, b = {1, 2, 3}, {2, 3, 4}\na | b    # объединение {1, 2, 3, 4}\na & b    # пересечение {2, 3}\na - b    # разность {1}\na ^ b    # симметричная разность {1, 4}\na <= b   # подмножество?\n```\nПроверка `x in set` — за O(1), в отличие от списка O(n)."
+      },
+      {
+       "title": "Генераторы коллекций (comprehensions)",
+       "num": "5.6",
+       "md": "```python\nsquares = [x ** 2 for x in range(10)]\nevens = [x for x in range(20) if x % 2 == 0]\nlabels = [\"чёт\" if x % 2 == 0 else \"нечёт\" for x in range(5)]\nmatrix = [[i * j for j in range(3)] for i in range(3)]\nflat = [x for row in matrix for x in row]\n\nsq_dict = {x: x ** 2 for x in range(5)}\ninverted = {v: k for k, v in d.items()}\nunique_lens = {len(w) for w in words}\ngen = (x ** 2 for x in range(10**9))   # генераторное выражение — ленивое\n```"
+      },
+      {
+       "title": "Полезные встроенные функции для коллекций",
+       "num": "5.7",
+       "md": "```python\nany([False, True])     # True — хотя бы один истинный\nall([True, True])      # True — все истинные\nsum(x for x in range(10))\nlist(map(str, [1, 2])) # ['1', '2']\nlist(filter(None, [0, 1, \"\", \"a\"]))   # [1, 'a']\nsorted(users, key=lambda u: u[\"age\"], reverse=True)\nmax(words, key=len)\n```"
+      },
+      {
+       "title": "Сложность операций (Big-O)",
+       "num": "5.8",
+       "md": "| Операция | list | dict / set |\n|---|---|---|\n| Доступ по индексу/ключу | O(1) | O(1) |\n| Поиск `in` | O(n) | O(1) |\n| append / add | O(1) | O(1) |\n| insert(0) / pop(0) | O(n) | — |\n| Удаление по значению | O(n) | O(1) |\n\nДля очереди используйте `collections.deque` — `appendleft/popleft` за O(1).\n\n### Упражнения к главе 5\n1. Удалите дубликаты из списка, сохранив порядок.\n2. Посчитайте частоту каждого слова в тексте (словарём, затем `Counter`).\n3. Транспонируйте матрицу через list comprehension.\n4. Найдите общие элементы двух списков.\n5. Сгруппируйте слова по первой букве: `{\"а\": [\"арбуз\", \"ананас\"], ...}`."
+      }
+     ]
+    },
+    {
+     "id": "6",
+     "title": "Функции",
+     "minutes": 4,
+     "sections": [
+      {
+       "title": "Определение и вызов",
+       "num": "6.1",
+       "md": "```python\ndef greet(name):\n    \"\"\"Возвращает приветствие. (Это docstring — документация функции.)\"\"\"\n    return f\"Привет, {name}!\"\n\nmsg = greet(\"Анна\")\nhelp(greet)     # покажет docstring\n```\n\nФункция без `return` возвращает `None`. Можно вернуть несколько значений (на самом деле — кортеж):\n```python\ndef min_max(nums):\n    return min(nums), max(nums)\nlo, hi = min_max([3, 1, 4])\n```"
+      },
+      {
+       "title": "Виды аргументов",
+       "num": "6.2",
+       "md": "```python\ndef f(a, b=2, *args, c, d=4, **kwargs):\n    print(a, b, args, c, d, kwargs)\n\nf(1, 3, 5, 6, c=7, e=8)\n# 1 3 (5, 6) 7 4 {'e': 8}\n```\n- `a` — позиционный обязательный;\n- `b=2` — со значением по умолчанию;\n- `*args` — все лишние позиционные → кортеж;\n- `c` (после `*`) — **только именованный** (keyword-only);\n- `**kwargs` — все лишние именованные → словарь.\n\n```python\ndef pos_only(a, b, /, c, *, d):  # a,b — только позиционные; d — только именованный\n    ...\n\n# Распаковка при вызове\nargs = [1, 2]\nkwargs = {\"c\": 3, \"d\": 4}\npos_only(*args, **kwargs)\n```"
+      },
+      {
+       "title": "Главная ловушка: изменяемое значение по умолчанию",
+       "num": "6.3",
+       "md": "```python\ndef add_item(item, items=[]):     # ПЛОХО: список создаётся ОДИН раз\n    items.append(item)\n    return items\nadd_item(1)   # [1]\nadd_item(2)   # [1, 2] — сюрприз!\n\ndef add_item(item, items=None):   # ПРАВИЛЬНО\n    if items is None:\n        items = []\n    items.append(item)\n    return items\n```"
+      },
+      {
+       "title": "Область видимости: правило LEGB",
+       "num": "6.4",
+       "md": "Python ищет имя в порядке: **L**ocal → **E**nclosing (внешняя функция) → **G**lobal (модуль) → **B**uilt-in.\n```python\nx = \"глобальная\"\n\ndef outer():\n    x = \"внешняя\"\n    def inner():\n        nonlocal x       # изменить переменную внешней функции\n        x = \"изменена\"\n    inner()\n    print(x)             # изменена\n\ndef change_global():\n    global x             # изменить глобальную (используйте редко!)\n    x = \"новая\"\n```"
+      },
+      {
+       "title": "Передача аргументов",
+       "num": "6.5",
+       "md": "Python передаёт **ссылки на объекты** («call by object reference»). Изменяемый объект можно изменить внутри функции, и изменения будут видны снаружи. Переприсваивание имени внутри функции на внешний мир не влияет."
+      },
+      {
+       "title": "Lambda-функции",
+       "num": "6.6",
+       "md": "Анонимные однострочные функции:\n```python\nsquare = lambda x: x ** 2\nsorted(pairs, key=lambda p: p[1])\n```\nИспользуйте lambda только для коротких функций-аргументов; иначе — `def`."
+      },
+      {
+       "title": "Функции — объекты первого класса",
+       "num": "6.7",
+       "md": "Функцию можно присвоить переменной, передать как аргумент, вернуть из функции, положить в список:\n```python\ndef apply(func, value):\n    return func(value)\napply(str.upper, \"abc\")    # 'ABC'\n\noperations = {\"+\": lambda a, b: a + b, \"-\": lambda a, b: a - b}\noperations[\"+\"](2, 3)      # 5\n```"
+      },
+      {
+       "title": "Рекурсия",
+       "num": "6.8",
+       "md": "```python\ndef factorial(n):\n    if n <= 1:          # базовый случай — обязателен!\n        return 1\n    return n * factorial(n - 1)\n```\nЛимит глубины рекурсии по умолчанию ≈1000 (`sys.getrecursionlimit()`). Python не оптимизирует хвостовую рекурсию — для глубоких задач используйте циклы."
+      },
+      {
+       "title": "Аннотации типов (первое знакомство)",
+       "num": "6.9",
+       "md": "```python\ndef area(width: float, height: float = 1.0) -> float:\n    return width * height\n```\nАннотации не проверяются при выполнении — это подсказки для людей, IDE и проверяльщиков вроде mypy (подробно — глава 15)."
+      },
+      {
+       "title": "Хорошая функция",
+       "num": "6.10",
+       "md": "- делает **одну** вещь;\n- имеет понятное имя-глагол (`calculate_total`, `send_email`);\n- короткая (обычно до 20–30 строк);\n- не меняет глобальное состояние без необходимости;\n- имеет docstring.\n\n### Упражнения к главе 6\n1. Функция `is_prime(n)`.\n2. Функция, принимающая любое количество чисел и возвращающая их среднее.\n3. Рекурсивная функция чисел Фибоначчи; затем — итеративная. Сравните скорость для n=35.\n4. Функция `flatten(nested)` для списка произвольной вложенности."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "II",
+   "title": "Средний уровень",
+   "subtitle": "Исключения, файлы, ООП, генераторы, декораторы",
+   "chapters": [
+    {
+     "id": "7",
+     "title": "Исключения и обработка ошибок",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Что такое исключение",
+       "num": "7.1",
+       "md": "Исключение — это объект, сигнализирующий об ошибке. Если его не перехватить, программа завершится с трассировкой (traceback).\n\nЧитайте traceback **снизу вверх**: последняя строка — тип и текст ошибки, выше — где она произошла.\n\nЧастые встроенные исключения:\n| Исключение | Когда возникает |\n|---|---|\n| `SyntaxError` | Ошибка синтаксиса |\n| `NameError` | Имя не определено |\n| `TypeError` | Неверный тип: `\"1\" + 1` |\n| `ValueError` | Верный тип, неверное значение: `int(\"abc\")` |\n| `IndexError` | Индекс вне диапазона |\n| `KeyError` | Нет ключа в словаре |\n| `AttributeError` | Нет атрибута у объекта |\n| `ZeroDivisionError` | Деление на ноль |\n| `FileNotFoundError` | Файл не найден |\n| `ImportError` / `ModuleNotFoundError` | Ошибка импорта |\n| `StopIteration` | Итератор исчерпан |\n| `RecursionError` | Слишком глубокая рекурсия |\n| `KeyboardInterrupt` | Пользователь нажал Ctrl+C |"
+      },
+      {
+       "title": "try / except / else / finally",
+       "num": "7.2",
+       "md": "```python\ntry:\n    number = int(input(\"Число: \"))\n    result = 100 / number\nexcept ValueError:\n    print(\"Это не число\")\nexcept ZeroDivisionError as e:\n    print(f\"Ошибка: {e}\")\nexcept (TypeError, OverflowError):\n    print(\"Другая ошибка\")\nelse:\n    print(f\"Результат: {result}\")   # если исключений не было\nfinally:\n    print(\"Выполнится всегда\")      # закрытие ресурсов\n```\n\n**Правила:**\n- Перехватывайте **конкретные** исключения. Никогда не пишите голый `except:` — он перехватит даже Ctrl+C.\n- `except Exception:` — только на самом верхнем уровне программы, с логированием.\n- В `try` держите минимум кода."
+      },
+      {
+       "title": "Иерархия исключений",
+       "num": "7.3",
+       "md": "```\nBaseException\n ├── SystemExit, KeyboardInterrupt, GeneratorExit\n └── Exception\n      ├── ArithmeticError → ZeroDivisionError, OverflowError\n      ├── LookupError → IndexError, KeyError\n      ├── OSError → FileNotFoundError, PermissionError, ...\n      ├── ValueError, TypeError, AttributeError, ...\n      └── ...\n```\n`except LookupError` перехватит и `IndexError`, и `KeyError`."
+      },
+      {
+       "title": "Возбуждение исключений",
+       "num": "7.4",
+       "md": "```python\ndef set_age(age):\n    if age < 0:\n        raise ValueError(f\"Возраст не может быть отрицательным: {age}\")\n\ntry:\n    ...\nexcept KeyError as e:\n    raise ConfigError(\"Нет настройки\") from e   # цепочка исключений\n\ntry:\n    ...\nexcept Exception:\n    log(\"ошибка\")\n    raise          # пробросить то же исключение дальше\n```"
+      },
+      {
+       "title": "Свои исключения",
+       "num": "7.5",
+       "md": "```python\nclass AppError(Exception):\n    \"\"\"Базовое исключение приложения.\"\"\"\n\nclass InsufficientFundsError(AppError):\n    def __init__(self, balance, amount):\n        super().__init__(f\"Недостаточно средств: {balance} < {amount}\")\n        self.balance = balance\n        self.amount = amount\n```"
+      },
+      {
+       "title": "EAFP vs LBYL",
+       "num": "7.6",
+       "md": "Python поощряет стиль **EAFP** («проще попросить прощения, чем разрешения»):\n```python\n# LBYL — посмотри, прежде чем прыгнуть\nif key in d:\n    value = d[key]\n\n# EAFP — питонический стиль\ntry:\n    value = d[key]\nexcept KeyError:\n    value = default\n```"
+      },
+      {
+       "title": "Группы исключений (3.11+)",
+       "num": "7.7",
+       "md": "```python\ntry:\n    raise ExceptionGroup(\"несколько ошибок\", [ValueError(\"a\"), TypeError(\"b\")])\nexcept* ValueError as eg:\n    print(\"Значения:\", eg.exceptions)\nexcept* TypeError as eg:\n    print(\"Типы:\", eg.exceptions)\n```\nИспользуются в асинхронном коде (`asyncio.TaskGroup`)."
+      },
+      {
+       "title": "assert",
+       "num": "7.8",
+       "md": "```python\nassert x > 0, \"x должен быть положительным\"\n```\n`assert` — для проверки внутренних инвариантов при разработке, **не** для валидации пользовательского ввода: при запуске с `python -O` они отключаются.\n\n### Упражнения к главе 7\n1. Функция `safe_divide(a, b)`, возвращающая `None` при делении на ноль.\n2. Цикл ввода, который просит число, пока пользователь не введёт корректное.\n3. Иерархия исключений для банковского приложения."
+      }
+     ]
+    },
+    {
+     "id": "8",
+     "title": "Работа с файлами",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Открытие файлов и with",
+       "num": "8.1",
+       "md": "```python\nwith open(\"data.txt\", \"r\", encoding=\"utf-8\") as f:\n    content = f.read()\n# файл автоматически закрыт, даже если была ошибка\n```\n\nРежимы:\n| Режим | Значение |\n|---|---|\n| `\"r\"` | чтение (по умолчанию) |\n| `\"w\"` | запись (файл перезаписывается!) |\n| `\"a\"` | дописывание в конец |\n| `\"x\"` | создать, ошибка если существует |\n| `\"b\"` | бинарный режим (`\"rb\"`, `\"wb\"`) |\n| `\"+\"` | чтение и запись (`\"r+\"`) |"
+      },
+      {
+       "title": "Чтение",
+       "num": "8.2",
+       "md": "```python\nf.read()           # весь файл одной строкой\nf.readline()       # одна строка\nf.readlines()      # список строк\n\n# Лучший способ — построчно (экономит память для больших файлов)\nwith open(\"big.log\", encoding=\"utf-8\") as f:\n    for line in f:\n        print(line.rstrip(\"\\n\"))\n```"
+      },
+      {
+       "title": "Запись",
+       "num": "8.3",
+       "md": "```python\nwith open(\"out.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Первая строка\\n\")\n    f.writelines([\"a\\n\", \"b\\n\"])\n    print(\"через print\", file=f)\n```"
+      },
+      {
+       "title": "pathlib — современная работа с путями",
+       "num": "8.4",
+       "md": "```python\nfrom pathlib import Path\n\np = Path(\"data\") / \"users\" / \"list.txt\"   # кроссплатформенная склейка\np.name        # 'list.txt'\np.stem        # 'list'\np.suffix      # '.txt'\np.parent      # Path('data/users')\np.exists(), p.is_file(), p.is_dir()\np.parent.mkdir(parents=True, exist_ok=True)\n\np.write_text(\"привет\", encoding=\"utf-8\")\np.read_text(encoding=\"utf-8\")\np.read_bytes()\n\nPath.cwd()    # текущая папка\nPath.home()   # домашняя папка\nfor f in Path(\".\").glob(\"*.py\"): ...     # поиск\nfor f in Path(\".\").rglob(\"*.py\"): ...    # рекурсивный поиск\np.rename(\"new.txt\"); p.unlink()          # переименовать / удалить\n```\nДля копирования и удаления папок — модуль `shutil`: `shutil.copy`, `shutil.copytree`, `shutil.rmtree`, `shutil.move`."
+      },
+      {
+       "title": "JSON",
+       "num": "8.5",
+       "md": "```python\nimport json\n\ndata = {\"name\": \"Анна\", \"skills\": [\"Python\", \"SQL\"], \"active\": True}\n\ntext = json.dumps(data, ensure_ascii=False, indent=2)   # объект → строка\nobj = json.loads(text)                                  # строка → объект\n\nwith open(\"data.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump(data, f, ensure_ascii=False, indent=2)\nwith open(\"data.json\", encoding=\"utf-8\") as f:\n    data = json.load(f)\n```\nСоответствие: dict↔object, list↔array, str↔string, int/float↔number, True/False↔true/false, None↔null."
+      },
+      {
+       "title": "CSV",
+       "num": "8.6",
+       "md": "```python\nimport csv\n\nwith open(\"users.csv\", \"w\", newline=\"\", encoding=\"utf-8\") as f:\n    writer = csv.DictWriter(f, fieldnames=[\"name\", \"age\"])\n    writer.writeheader()\n    writer.writerow({\"name\": \"Анна\", \"age\": 25})\n\nwith open(\"users.csv\", newline=\"\", encoding=\"utf-8\") as f:\n    for row in csv.DictReader(f):\n        print(row[\"name\"], int(row[\"age\"]))\n```"
+      },
+      {
+       "title": "Другие форматы",
+       "num": "8.7",
+       "md": "- `pickle` — сериализация любых Python-объектов (**никогда** не открывайте pickle из недоверенных источников — это выполнение произвольного кода);\n- `tomllib` — чтение TOML (3.11+);\n- `configparser` — INI-файлы;\n- `xml.etree.ElementTree` — XML;\n- сторонние: `PyYAML` (YAML), `openpyxl` (Excel).\n\n### Упражнения к главе 8\n1. Программа подсчёта строк, слов и символов в файле (аналог `wc`).\n2. Записная книжка: контакты хранятся в JSON, можно добавлять, искать, удалять.\n3. Найдите все `.txt` файлы в папке рекурсивно и выведите их размер."
+      }
+     ]
+    },
+    {
+     "id": "9",
+     "title": "Модули, пакеты, pip и виртуальные окружения",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Модули",
+       "num": "9.1",
+       "md": "Модуль — это любой `.py` файл.\n```python\n# файл utils.py\ndef add(a, b):\n    return a + b\nPI = 3.14\n```\n```python\nimport utils\nutils.add(1, 2)\n\nfrom utils import add, PI\nfrom utils import add as plus\nimport numpy as np            # общепринятые псевдонимы\nfrom utils import *           # плохая практика — засоряет пространство имён\n```"
+      },
+      {
+       "title": "`if __name__ == \"__main__\"`",
+       "num": "9.2",
+       "md": "```python\ndef main():\n    print(\"Запуск программы\")\n\nif __name__ == \"__main__\":   # True, только если файл запущен напрямую,\n    main()                   # а не импортирован\n```"
+      },
+      {
+       "title": "Пакеты",
+       "num": "9.3",
+       "md": "Пакет — папка с модулями (и обычно файлом `__init__.py`):\n```\nmyapp/\n├── __init__.py\n├── models/\n│   ├── __init__.py\n│   └── user.py\n└── services/\n    ├── __init__.py\n    └── auth.py\n```\n```python\nfrom myapp.models.user import User\nfrom .user import User          # относительный импорт внутри пакета\nfrom ..services import auth\n```\nЗапуск модуля пакета: `python -m myapp.services.auth`."
+      },
+      {
+       "title": "Как Python ищет модули",
+       "num": "9.4",
+       "md": "`sys.path` — список папок поиска: папка скрипта, `PYTHONPATH`, стандартная библиотека, `site-packages`. Модуль импортируется **один раз** и кешируется в `sys.modules`.\n\n**Не называйте свои файлы как стандартные модули** (`random.py`, `json.py`, `email.py`) — это частая причина странных ошибок."
+      },
+      {
+       "title": "pip — менеджер пакетов",
+       "num": "9.5",
+       "md": "Пакеты берутся с PyPI (pypi.org):\n```bash\npip install requests\npip install requests==2.32.0\npip install --upgrade requests\npip uninstall requests\npip list\npip freeze > requirements.txt\npip install -r requirements.txt\n```"
+      },
+      {
+       "title": "Виртуальные окружения",
+       "num": "9.6",
+       "md": "Каждый проект должен иметь своё изолированное окружение, чтобы версии библиотек не конфликтовали.\n```bash\npython -m venv .venv\n# активация:\n.venv\\Scripts\\activate          # Windows\nsource .venv/bin/activate       # macOS / Linux\ndeactivate\n```\nПапку `.venv` не добавляют в git.\n\nСовременные инструменты: **uv** (очень быстрый, заменяет pip+venv+pyenv), **Poetry**, **pipenv**, **conda** (для data science). Подробно — глава 23.\n\n### Упражнения к главе 9\n1. Разбейте программу «записная книжка» на модули: хранилище, логика, интерфейс.\n2. Создайте виртуальное окружение, установите `requests`, сохраните `requirements.txt`."
+      }
+     ]
+    },
+    {
+     "id": "10",
+     "title": "Объектно-ориентированное программирование",
+     "minutes": 4,
+     "sections": [
+      {
+       "title": "Классы и объекты",
+       "num": "10.1",
+       "md": "Класс — шаблон, объект (экземпляр) — конкретная вещь, созданная по шаблону.\n```python\nclass Dog:\n    species = \"Canis familiaris\"     # атрибут КЛАССА — общий для всех\n\n    def __init__(self, name, age):   # инициализатор\n        self.name = name             # атрибуты ЭКЗЕМПЛЯРА\n        self.age = age\n\n    def bark(self):                  # метод\n        return f\"{self.name}: Гав!\"\n\nrex = Dog(\"Рекс\", 3)\nrex.bark()          # 'Рекс: Гав!'\nrex.name            # 'Рекс'\nDog.species\n```\n`self` — ссылка на текущий объект; передаётся автоматически: `rex.bark()` ≡ `Dog.bark(rex)`."
+      },
+      {
+       "title": "Четыре принципа ООП",
+       "num": "10.2",
+       "md": "1. **Инкапсуляция** — объединение данных и методов; сокрытие деталей.\n2. **Наследование** — новый класс на основе существующего.\n3. **Полиморфизм** — один интерфейс, разные реализации.\n4. **Абстракция** — выделение существенного, сокрытие лишнего."
+      },
+      {
+       "title": "Инкапсуляция",
+       "num": "10.3",
+       "md": "В Python нет настоящих `private` — есть соглашения:\n```python\nclass Account:\n    def __init__(self, balance):\n        self.owner = \"...\"        # публичный\n        self._balance = balance   # «защищённый» — не трогайте снаружи\n        self.__pin = 1234         # name mangling → _Account__pin\n```\n\n**Свойства (property)** — контролируемый доступ:\n```python\nclass Temperature:\n    def __init__(self, celsius):\n        self.celsius = celsius\n\n    @property\n    def celsius(self):\n        return self._celsius\n\n    @celsius.setter\n    def celsius(self, value):\n        if value < -273.15:\n            raise ValueError(\"Ниже абсолютного нуля\")\n        self._celsius = value\n\n    @property\n    def fahrenheit(self):            # вычисляемое свойство\n        return self._celsius * 9 / 5 + 32\n\nt = Temperature(25)\nt.fahrenheit      # 77.0 — вызывается как атрибут, без ()\nt.celsius = -300  # ValueError\n```"
+      },
+      {
+       "title": "Наследование",
+       "num": "10.4",
+       "md": "```python\nclass Animal:\n    def __init__(self, name):\n        self.name = name\n    def speak(self):\n        raise NotImplementedError\n\nclass Cat(Animal):\n    def __init__(self, name, indoor=True):\n        super().__init__(name)       # вызов конструктора родителя\n        self.indoor = indoor\n    def speak(self):                 # переопределение метода\n        return \"Мяу\"\n\nisinstance(Cat(\"Мурка\"), Animal)   # True\nissubclass(Cat, Animal)            # True\n```"
+      },
+      {
+       "title": "Множественное наследование и MRO",
+       "num": "10.5",
+       "md": "```python\nclass A:\n    def hello(self): return \"A\"\nclass B(A):\n    def hello(self): return \"B\" + super().hello()\nclass C(A):\n    def hello(self): return \"C\" + super().hello()\nclass D(B, C):\n    pass\n\nD().hello()   # 'BCA'\nD.__mro__     # (D, B, C, A, object) — порядок разрешения методов (алгоритм C3)\n```\n**Миксины** — маленькие классы, добавляющие одну способность:\n```python\nclass JsonMixin:\n    def to_json(self):\n        import json\n        return json.dumps(self.__dict__)\n\nclass User(JsonMixin):\n    def __init__(self, name):\n        self.name = name\n```"
+      },
+      {
+       "title": "Полиморфизм и утиная типизация",
+       "num": "10.6",
+       "md": "«Если что-то крякает как утка — это утка». Python не проверяет тип, а просто вызывает метод:\n```python\nfor animal in [Cat(\"Мурка\"), Dog(\"Рекс\", 3)]:\n    print(animal.speak() if hasattr(animal, \"speak\") else animal.bark())\n\nlen(\"abc\"); len([1, 2]); len({\"a\": 1})   # одна функция — разные типы\n```"
+      },
+      {
+       "title": "Методы класса и статические методы",
+       "num": "10.7",
+       "md": "```python\nclass Date:\n    def __init__(self, y, m, d):\n        self.y, self.m, self.d = y, m, d\n\n    @classmethod\n    def from_string(cls, s):          # альтернативный конструктор\n        y, m, d = map(int, s.split(\"-\"))\n        return cls(y, m, d)\n\n    @staticmethod\n    def is_valid(s):                   # не нужен ни self, ни cls\n        return len(s.split(\"-\")) == 3\n\nd = Date.from_string(\"2026-10-07\")\n```"
+      },
+      {
+       "title": "Композиция против наследования",
+       "num": "10.8",
+       "md": "«Предпочитайте композицию наследованию». Наследование — отношение «является» (Кот **является** Животным). Композиция — «содержит» (Машина **содержит** Двигатель):\n```python\nclass Engine:\n    def start(self): return \"Двигатель запущен\"\n\nclass Car:\n    def __init__(self):\n        self.engine = Engine()       # композиция\n    def start(self):\n        return self.engine.start()\n```"
+      },
+      {
+       "title": "Всё есть объект",
+       "num": "10.9",
+       "md": "```python\nvars(rex)          # {'name': 'Рекс', 'age': 3} — то же что rex.__dict__\ndir(rex)           # все атрибуты\ngetattr(rex, \"name\"); setattr(rex, \"age\", 4); hasattr(rex, \"x\"); delattr(rex, \"age\")\ntype(rex)          # <class 'Dog'>\ntype(Dog)          # <class 'type'> — классы тоже объекты\n```\n\n### Упражнения к главе 10\n1. Класс `BankAccount` с методами `deposit`, `withdraw` и защитой баланса от отрицательных значений.\n2. Иерархия фигур `Shape → Circle, Rectangle, Triangle` с методами `area()` и `perimeter()`.\n3. Класс `Stack` на основе списка с методами `push`, `pop`, `peek`, `is_empty`.\n4. Библиотечная система: `Book`, `Reader`, `Library` (композиция)."
+      }
+     ]
+    },
+    {
+     "id": "11",
+     "title": "Магические методы, dataclasses, Enum, абстрактные классы",
+     "minutes": 4,
+     "sections": [
+      {
+       "title": "Магические (dunder) методы",
+       "num": "11.1",
+       "md": "Методы вида `__имя__` позволяют объектам работать со встроенными операциями.\n```python\nclass Vector:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n\n    def __repr__(self):                  # для разработчика: repr(v), в REPL\n        return f\"Vector({self.x}, {self.y})\"\n    def __str__(self):                   # для пользователя: print(v), str(v)\n        return f\"({self.x}, {self.y})\"\n\n    def __add__(self, other):            # v1 + v2\n        return Vector(self.x + other.x, self.y + other.y)\n    def __mul__(self, k):                # v * 3\n        return Vector(self.x * k, self.y * k)\n    def __rmul__(self, k):               # 3 * v\n        return self * k\n\n    def __eq__(self, other):             # ==\n        return (self.x, self.y) == (other.x, other.y)\n    def __hash__(self):                  # нужен, если определён __eq__ и объект — ключ dict\n        return hash((self.x, self.y))\n\n    def __abs__(self):                   # abs(v)\n        return (self.x ** 2 + self.y ** 2) ** 0.5\n    def __bool__(self):                  # if v:\n        return bool(self.x or self.y)\n    def __len__(self): return 2\n    def __getitem__(self, i):            # v[0]\n        return (self.x, self.y)[i]\n    def __iter__(self):                  # x, y = v\n        yield self.x\n        yield self.y\n    def __call__(self):                  # v()\n        return \"вектор вызван\"\n```\n\nПолный список групп:\n| Группа | Методы |\n|---|---|\n| Создание | `__new__`, `__init__`, `__del__` |\n| Представление | `__repr__`, `__str__`, `__format__`, `__bytes__` |\n| Сравнение | `__eq__`, `__ne__`, `__lt__`, `__le__`, `__gt__`, `__ge__`, `__hash__` |\n| Арифметика | `__add__`, `__sub__`, `__mul__`, `__truediv__`, `__floordiv__`, `__mod__`, `__pow__`, `__matmul__`, + версии `__r*__` и `__i*__` (`+=`) |\n| Унарные | `__neg__`, `__pos__`, `__abs__`, `__invert__` |\n| Контейнеры | `__len__`, `__getitem__`, `__setitem__`, `__delitem__`, `__contains__`, `__iter__`, `__reversed__`, `__missing__` |\n| Атрибуты | `__getattr__`, `__getattribute__`, `__setattr__`, `__delattr__`, `__dir__` |\n| Вызов | `__call__` |\n| Контекст | `__enter__`, `__exit__` |\n| Асинхронные | `__await__`, `__aiter__`, `__anext__`, `__aenter__`, `__aexit__` |\n\n`functools.total_ordering` — достаточно определить `__eq__` и `__lt__`, остальные сравнения появятся автоматически."
+      },
+      {
+       "title": "dataclasses",
+       "num": "11.2",
+       "md": "Автоматически создают `__init__`, `__repr__`, `__eq__`:\n```python\nfrom dataclasses import dataclass, field\n\n@dataclass\nclass Product:\n    name: str\n    price: float\n    tags: list[str] = field(default_factory=list)   # изменяемое значение по умолчанию\n    quantity: int = 0\n\n    def total(self) -> float:\n        return self.price * self.quantity\n\np = Product(\"Чай\", 150.0, quantity=2)\nprint(p)    # Product(name='Чай', price=150.0, tags=[], quantity=2)\n\n@dataclass(frozen=True, order=True, slots=True)   # неизменяемый, сортируемый, экономный\nclass Point:\n    x: int\n    y: int\n\n@dataclass\nclass Order:\n    items: list\n    total: float = field(init=False)\n    def __post_init__(self):            # код после __init__\n        self.total = sum(i.price for i in self.items)\n```\nДля валидации данных из внешнего мира популярна сторонняя библиотека **Pydantic**."
+      },
+      {
+       "title": "Enum — перечисления",
+       "num": "11.3",
+       "md": "```python\nfrom enum import Enum, IntEnum, StrEnum, Flag, auto\n\nclass Color(Enum):\n    RED = 1\n    GREEN = 2\n    BLUE = auto()\n\nColor.RED, Color.RED.name, Color.RED.value   # Color.RED, 'RED', 1\nColor(2)          # Color.GREEN\nColor[\"BLUE\"]\nfor c in Color: ...\n\nclass Status(StrEnum):         # 3.11+\n    ACTIVE = \"active\"\n    BANNED = \"banned\"\n\nclass Perm(Flag):\n    READ = auto(); WRITE = auto(); EXEC = auto()\nrw = Perm.READ | Perm.WRITE\nPerm.READ in rw   # True\n```"
+      },
+      {
+       "title": "Абстрактные классы (ABC)",
+       "num": "11.4",
+       "md": "```python\nfrom abc import ABC, abstractmethod\n\nclass Shape(ABC):\n    @abstractmethod\n    def area(self) -> float: ...\n\nclass Square(Shape):\n    def __init__(self, a): self.a = a\n    def area(self): return self.a ** 2\n\nShape()      # TypeError: нельзя создать экземпляр абстрактного класса\nSquare(2).area()\n```\nМодуль `collections.abc` содержит абстрактные коллекции (`Iterable`, `Sequence`, `Mapping`, `MutableMapping`…) — наследуйтесь от них, чтобы получить готовые методы.\n\n### Упражнения к главе 11\n1. Класс `Fraction` (дробь) с арифметикой, сравнением и сокращением.\n2. Класс `Matrix` с `+`, `*`, `@`, `__getitem__`, `__repr__`.\n3. Перепишите `Product` и `BankAccount` на dataclass."
+      }
+     ]
+    },
+    {
+     "id": "12",
+     "title": "Итераторы и генераторы",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Протокол итерации",
+       "num": "12.1",
+       "md": "- **Итерируемый объект** (iterable) — имеет `__iter__()`, возвращающий итератор (list, str, dict, file…).\n- **Итератор** — имеет `__next__()`, возвращающий следующий элемент или бросающий `StopIteration`.\n\nКак на самом деле работает `for`:\n```python\nit = iter([1, 2, 3])\nwhile True:\n    try:\n        x = next(it)\n    except StopIteration:\n        break\n    print(x)\n```\n\nСвой итератор:\n```python\nclass Countdown:\n    def __init__(self, start):\n        self.current = start\n    def __iter__(self):\n        return self\n    def __next__(self):\n        if self.current <= 0:\n            raise StopIteration\n        self.current -= 1\n        return self.current + 1\n```"
+      },
+      {
+       "title": "Генераторы",
+       "num": "12.2",
+       "md": "Функция с `yield` — генератор. Она «замораживается» на `yield` и продолжает работу при следующем `next()`.\n```python\ndef countdown(n):\n    while n > 0:\n        yield n\n        n -= 1\n\nfor x in countdown(3):\n    print(x)          # 3 2 1\n\ndef read_large_file(path):\n    with open(path, encoding=\"utf-8\") as f:\n        for line in f:\n            yield line.strip()\n```\nГенераторы **ленивые**: значения вычисляются по требованию, памяти расходуется O(1). Можно генерировать бесконечные последовательности:\n```python\ndef fibonacci():\n    a, b = 0, 1\n    while True:\n        yield a\n        a, b = b, a + b\n```"
+      },
+      {
+       "title": "Генераторные выражения и конвейеры",
+       "num": "12.3",
+       "md": "```python\ntotal = sum(x * x for x in range(10_000_000))     # без создания списка\n\nlines = read_large_file(\"log.txt\")\nerrors = (l for l in lines if \"ERROR\" in l)\ncodes = (l.split()[1] for l in errors)\n# Ничего не вычислено, пока не начнём перебирать codes\n```"
+      },
+      {
+       "title": "yield from, send",
+       "num": "12.4",
+       "md": "```python\ndef chain(*iterables):\n    for it in iterables:\n        yield from it         # делегирование другому итератору\n\ndef accumulator():\n    total = 0\n    while True:\n        value = yield total   # получает значение через send()\n        total += value\nacc = accumulator()\nnext(acc)        # запуск\nacc.send(10)     # 10\nacc.send(5)      # 15\n```"
+      },
+      {
+       "title": "Модуль itertools",
+       "num": "12.5",
+       "md": "```python\nimport itertools as it\n\nit.count(10, 2)                  # 10, 12, 14, ... бесконечно\nit.cycle(\"AB\")                   # A B A B ...\nit.repeat(0, 3)                  # 0 0 0\nit.islice(gen, 5)                # первые 5 элементов любого итератора\nit.chain([1, 2], [3])            # 1 2 3\nit.zip_longest(\"ab\", \"x\", fillvalue=\"-\")\nit.accumulate([1, 2, 3])         # 1 3 6\nit.groupby(sorted_data, key=f)   # группировка подряд идущих\nit.product(\"ab\", repeat=2)       # декартово произведение\nit.permutations(\"abc\", 2)        # перестановки\nit.combinations(\"abc\", 2)        # сочетания\nit.pairwise([1, 2, 3])           # (1,2) (2,3)\nit.batched(range(10), 3)         # (0,1,2) (3,4,5) ... (3.12+)\nit.takewhile(lambda x: x < 5, data)\nit.dropwhile(...); it.filterfalse(...); it.starmap(pow, [(2, 3)]); it.tee(it_, 2)\n```\n\n### Упражнения к главе 12\n1. Генератор простых чисел (бесконечный).\n2. Генератор `chunks(lst, n)`, разбивающий список на части по n.\n3. Конвейер генераторов для анализа лог-файла: самые частые IP-адреса."
+      }
+     ]
+    },
+    {
+     "id": "13",
+     "title": "Замыкания и декораторы",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Замыкания",
+       "num": "13.1",
+       "md": "Замыкание — функция, которая «запоминает» переменные из внешней области даже после её завершения.\n```python\ndef make_multiplier(n):\n    def multiply(x):\n        return x * n        # n «захвачена» из внешней функции\n    return multiply\n\ndouble = make_multiplier(2)\ndouble(5)     # 10\n\ndef make_counter():\n    count = 0\n    def counter():\n        nonlocal count\n        count += 1\n        return count\n    return counter\n```\n\n**Ловушка позднего связывания:**\n```python\nfuncs = [lambda: i for i in range(3)]\n[f() for f in funcs]          # [2, 2, 2] !\nfuncs = [lambda i=i: i for i in range(3)]   # [0, 1, 2]\n```"
+      },
+      {
+       "title": "Декораторы",
+       "num": "13.2",
+       "md": "Декоратор — функция, которая принимает функцию и возвращает новую (обёрнутую) функцию.\n```python\nimport functools\nimport time\n\ndef timer(func):\n    @functools.wraps(func)            # сохраняет имя и docstring оригинала\n    def wrapper(*args, **kwargs):\n        start = time.perf_counter()\n        result = func(*args, **kwargs)\n        print(f\"{func.__name__} выполнилась за {time.perf_counter() - start:.4f} c\")\n        return result\n    return wrapper\n\n@timer                # то же самое, что slow = timer(slow)\ndef slow():\n    time.sleep(1)\n```"
+      },
+      {
+       "title": "Декоратор с параметрами",
+       "num": "13.3",
+       "md": "```python\ndef retry(times=3, exceptions=(Exception,)):\n    def decorator(func):\n        @functools.wraps(func)\n        def wrapper(*args, **kwargs):\n            for attempt in range(1, times + 1):\n                try:\n                    return func(*args, **kwargs)\n                except exceptions:\n                    if attempt == times:\n                        raise\n        return wrapper\n    return decorator\n\n@retry(times=5, exceptions=(ConnectionError,))\ndef fetch(): ...\n```\n\nДекораторы можно складывать (применяются снизу вверх). Бывают декораторы-классы (с `__call__`) и декораторы классов."
+      },
+      {
+       "title": "Полезное из functools",
+       "num": "13.4",
+       "md": "```python\nfrom functools import lru_cache, cache, partial, reduce, wraps, singledispatch, cached_property\n\n@cache                 # мемоизация (запоминание результатов)\ndef fib(n):\n    return n if n < 2 else fib(n - 1) + fib(n - 2)\nfib(300)               # мгновенно\n\n@lru_cache(maxsize=128)\ndef expensive(x): ...\n\nint_from_binary = partial(int, base=2)\nint_from_binary(\"1010\")    # 10\n\nreduce(lambda a, b: a * b, [1, 2, 3, 4])   # 24\n\n@singledispatch          # перегрузка по типу первого аргумента\ndef show(x): print(\"объект\", x)\n@show.register\ndef _(x: int): print(\"целое\", x)\n\nclass Data:\n    @cached_property     # вычисляется один раз\n    def heavy(self): ...\n```\n\n### Упражнения к главе 13\n1. Декоратор `@log_calls`, печатающий аргументы и результат функции.\n2. Декоратор `@require_auth`, проверяющий глобальный флаг авторизации.\n3. Декоратор `@rate_limit(calls=3, period=1)`."
+      }
+     ]
+    },
+    {
+     "id": "14",
+     "title": "Контекстные менеджеры",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Протокол",
+       "num": "14.1",
+       "md": "Оператор `with` гарантирует освобождение ресурса:\n```python\nclass Timer:\n    def __enter__(self):\n        import time\n        self.start = time.perf_counter()\n        return self                         # значение после as\n    def __exit__(self, exc_type, exc, tb):\n        import time\n        self.elapsed = time.perf_counter() - self.start\n        print(f\"Прошло {self.elapsed:.3f} c\")\n        return False                        # True подавило бы исключение\n\nwith Timer() as t:\n    sum(range(10**7))\n```"
+      },
+      {
+       "title": "contextlib",
+       "num": "14.2",
+       "md": "```python\nfrom contextlib import contextmanager, suppress, redirect_stdout, ExitStack, closing\n\n@contextmanager\ndef opened(path):\n    f = open(path, encoding=\"utf-8\")\n    try:\n        yield f            # всё до yield — __enter__, после — __exit__\n    finally:\n        f.close()\n\nwith suppress(FileNotFoundError):     # игнорировать конкретную ошибку\n    Path(\"tmp.txt\").unlink()\n\nwith ExitStack() as stack:            # динамическое число менеджеров\n    files = [stack.enter_context(open(p)) for p in paths]\n\nwith open(\"a.txt\") as a, open(\"b.txt\", \"w\") as b:   # несколько сразу\n    ...\n```\nПрименения: файлы, соединения с БД, блокировки (`threading.Lock`), транзакции, временная смена директории, замер времени.\n\n### Упражнения к главе 14\n1. Контекстный менеджер `cd(path)`, временно меняющий рабочую директорию.\n2. Менеджер транзакции: при исключении откатывает изменения словаря."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "III",
+   "title": "Продвинутый Python",
+   "subtitle": "Типизация, конкурентность, метапрограммирование",
+   "chapters": [
+    {
+     "id": "15",
+     "title": "Аннотации типов и typing",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Зачем нужны типы",
+       "num": "15.1",
+       "md": "Аннотации не меняют поведение программы, но:\n- IDE даёт точные подсказки и автодополнение;\n- статические анализаторы (**mypy**, **pyright**) находят ошибки до запуска;\n- код документирует сам себя;\n- библиотеки (FastAPI, Pydantic, dataclasses) используют их в работе."
+      },
+      {
+       "title": "Основы",
+       "num": "15.2",
+       "md": "```python\nname: str = \"Анна\"\ncount: int = 0\nprices: list[float] = []\nuser: dict[str, int] = {}\npoint: tuple[int, int] = (1, 2)\nvalues: tuple[int, ...] = (1, 2, 3)   # кортеж любой длины\ntags: set[str] = set()\n\ndef greet(name: str, times: int = 1) -> str: ...\ndef log(msg: str) -> None: ...\n\n# Объединение типов и необязательные значения\ndef find(id: int) -> User | None: ...        # 3.10+\nfrom typing import Optional, Union           # старый синтаксис\nOptional[User]       # == User | None\nUnion[int, str]      # == int | str\n```"
+      },
+      {
+       "title": "Модуль typing",
+       "num": "15.3",
+       "md": "```python\nfrom typing import Any, Callable, Literal, Final, TypeAlias, TypedDict, NamedTuple, Protocol, Iterator, Self\nfrom collections.abc import Iterable, Sequence, Mapping, Generator, Awaitable\n\ndef apply(f: Callable[[int, int], int], a: int, b: int) -> int: ...\nMode = Literal[\"r\", \"w\", \"a\"]\nMAX: Final = 100\ntype Vector = list[float]          # псевдоним типа (3.12+)\n\nclass Movie(TypedDict):\n    title: str\n    year: int\n\ndef numbers() -> Iterator[int]:\n    yield 1\n\ndef process(items: Iterable[str]) -> None: ...  # принимайте самые общие типы\n```"
+      },
+      {
+       "title": "Обобщённые типы (generics)",
+       "num": "15.4",
+       "md": "```python\n# Синтаксис 3.12+\ndef first[T](items: list[T]) -> T:\n    return items[0]\n\nclass Box[T]:\n    def __init__(self, item: T) -> None:\n        self.item = item\n    def get(self) -> T:\n        return self.item\n\n# Старый синтаксис\nfrom typing import TypeVar, Generic\nT = TypeVar(\"T\")\nclass Stack(Generic[T]): ...\n```"
+      },
+      {
+       "title": "Протоколы — статическая утиная типизация",
+       "num": "15.5",
+       "md": "```python\nfrom typing import Protocol\n\nclass Drawable(Protocol):\n    def draw(self) -> None: ...\n\nclass Circle:                 # НЕ наследуется от Drawable\n    def draw(self) -> None: print(\"○\")\n\ndef render(obj: Drawable) -> None:\n    obj.draw()\n\nrender(Circle())    # mypy доволен: у Circle есть draw()\n```"
+      },
+      {
+       "title": "Проверка",
+       "num": "15.6",
+       "md": "```bash\npip install mypy\nmypy src/ --strict\n```\nНачинайте с аннотирования публичных функций; `Any` используйте как исключение."
+      }
+     ]
+    },
+    {
+     "id": "16",
+     "title": "Стандартная библиотека",
+     "minutes": 4,
+     "sections": [
+      {
+       "title": "Введение",
+       "num": "",
+       "md": "Знать всю стандартную библиотеку наизусть не нужно — нужно знать, **что в ней есть**."
+      },
+      {
+       "title": "collections",
+       "num": "16.1",
+       "md": "```python\nfrom collections import Counter, defaultdict, deque, OrderedDict, ChainMap, namedtuple\n\nCounter(\"абракадабра\").most_common(2)     # [('а', 5), ('б', 2)]\nc1 + c2; c1 - c2\n\ngraph = defaultdict(list)\ngraph[\"a\"].append(\"b\")                    # без KeyError\n\nq = deque(maxlen=3)                       # двусторонняя очередь\nq.append(1); q.appendleft(0); q.pop(); q.popleft(); q.rotate(1)\n\nChainMap(user_settings, defaults)         # поиск по нескольким словарям\n```"
+      },
+      {
+       "title": "datetime и time",
+       "num": "16.2",
+       "md": "```python\nfrom datetime import datetime, date, time, timedelta, timezone\nfrom zoneinfo import ZoneInfo\n\nnow = datetime.now(ZoneInfo(\"Europe/Moscow\"))\nutc = datetime.now(timezone.utc)\nd = date(2026, 10, 7)\ntomorrow = date.today() + timedelta(days=1)\n(date(2027, 1, 1) - date.today()).days\n\nnow.strftime(\"%d.%m.%Y %H:%M\")            # datetime → строка\ndatetime.strptime(\"07.10.2026\", \"%d.%m.%Y\")   # строка → datetime\ndatetime.fromisoformat(\"2026-10-07T12:00:00\")\nnow.isoformat()\n\nimport time\ntime.time()            # секунды с 1970 (Unix timestamp)\ntime.sleep(0.5)\ntime.perf_counter()    # для замера интервалов\n```\nПравило: храните время в UTC, переводите в локальное только при показе."
+      },
+      {
+       "title": "math, random, statistics, decimal, fractions",
+       "num": "16.3",
+       "md": "```python\nimport math\nmath.sqrt(16), math.pi, math.e, math.floor(2.7), math.ceil(2.1)\nmath.gcd(12, 18), math.lcm(4, 6), math.factorial(5), math.comb(5, 2)\nmath.log(100, 10), math.sin(math.pi / 2), math.inf, math.isnan(x)\n\nimport random\nrandom.randint(1, 6)            # включая 6\nrandom.random()                 # [0, 1)\nrandom.choice([\"a\", \"b\"])\nrandom.choices(pop, weights=[1, 3], k=5)\nrandom.sample(range(100), 5)    # без повторов\nrandom.shuffle(lst)\nrandom.seed(42)                 # воспроизводимость\n\nimport secrets                  # для паролей и токенов — НЕ random!\nsecrets.token_hex(16)\n\nimport statistics\nstatistics.mean(data), statistics.median(data), statistics.stdev(data)\n\nfrom fractions import Fraction\nFraction(1, 3) + Fraction(1, 6)   # Fraction(1, 2)\n```"
+      },
+      {
+       "title": "os, sys, shutil, subprocess",
+       "num": "16.4",
+       "md": "```python\nimport os, sys, shutil, subprocess\n\nos.getenv(\"HOME\"); os.environ[\"MY_VAR\"] = \"1\"\nos.getcwd(); os.listdir(\".\"); os.walk(\".\")\nos.cpu_count()\n\nsys.argv           # аргументы командной строки\nsys.exit(1)        # выход с кодом\nsys.path; sys.version; sys.platform\nsys.stdin, sys.stdout, sys.stderr\n\nshutil.copy(\"a\", \"b\"); shutil.rmtree(\"dir\"); shutil.which(\"git\")\nshutil.make_archive(\"backup\", \"zip\", \"folder\")\n\nresult = subprocess.run([\"git\", \"status\"], capture_output=True, text=True, check=True)\nprint(result.stdout)\n# Никогда не передавайте пользовательский ввод в shell=True!\n```"
+      },
+      {
+       "title": "argparse — интерфейс командной строки",
+       "num": "16.5",
+       "md": "```python\nimport argparse\nparser = argparse.ArgumentParser(description=\"Обработка файлов\")\nparser.add_argument(\"path\", help=\"путь к файлу\")\nparser.add_argument(\"-n\", \"--lines\", type=int, default=10)\nparser.add_argument(\"-v\", \"--verbose\", action=\"store_true\")\nargs = parser.parse_args()\nprint(args.path, args.lines, args.verbose)\n```"
+      },
+      {
+       "title": "Прочее важное",
+       "num": "16.6",
+       "md": "| Модуль | Назначение |\n|---|---|\n| `logging` | логирование (глава 22) |\n| `re` | регулярные выражения (глава 17) |\n| `json`, `csv`, `pickle`, `tomllib`, `sqlite3` | данные и хранение |\n| `pathlib`, `glob`, `tempfile`, `zipfile`, `tarfile`, `gzip` | файлы |\n| `itertools`, `functools`, `operator` | функциональные инструменты |\n| `heapq`, `bisect`, `array` | алгоритмы и структуры |\n| `copy`, `pprint`, `textwrap`, `string`, `difflib` | разное |\n| `hashlib`, `hmac`, `secrets`, `uuid`, `base64` | хэши, идентификаторы |\n| `threading`, `multiprocessing`, `concurrent.futures`, `asyncio`, `queue` | конкурентность |\n| `socket`, `http.server`, `urllib`, `email`, `smtplib` | сеть |\n| `unittest`, `doctest`, `pdb`, `timeit`, `cProfile`, `tracemalloc` | тесты, отладка, профилирование |\n| `dataclasses`, `enum`, `abc`, `typing`, `contextlib` | язык |\n| `inspect`, `ast`, `dis`, `importlib`, `weakref`, `gc` | интроспекция и внутренности |\n| `tkinter` | GUI |\n| `locale`, `gettext`, `unicodedata` | интернационализация |"
+      }
+     ]
+    },
+    {
+     "id": "17",
+     "title": "Регулярные выражения",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Синтаксис шаблонов",
+       "num": "17.1",
+       "md": "| Шаблон | Значение |\n|---|---|\n| `.` | любой символ кроме `\\n` |\n| `\\d` / `\\D` | цифра / не цифра |\n| `\\w` / `\\W` | буква, цифра, `_` / наоборот |\n| `\\s` / `\\S` | пробельный символ / наоборот |\n| `\\b` | граница слова |\n| `^` / `$` | начало / конец строки |\n| `[abc]`, `[a-z]`, `[^0-9]` | набор / диапазон / отрицание |\n| `*` `+` `?` | 0+, 1+, 0 или 1 |\n| `{3}`, `{2,5}`, `{2,}` | точное число повторов |\n| `*?`, `+?` | «ленивые» (минимальные) повторы |\n| `a\\|b` | или |\n| `(...)` | группа |\n| `(?P<name>...)` | именованная группа |\n| `(?:...)` | группа без захвата |\n| `(?=...)`, `(?!...)` | опережающая проверка |\n| `(?<=...)`, `(?<!...)` | ретроспективная проверка |"
+      },
+      {
+       "title": "Модуль re",
+       "num": "17.2",
+       "md": "```python\nimport re\n\nre.search(r\"\\d+\", \"Заказ 42 на 3 шт\")     # первое совпадение (Match или None)\nre.match(r\"\\d+\", \"42abc\")                  # только с начала строки\nre.fullmatch(r\"\\d{4}\", \"2026\")             # вся строка целиком\nre.findall(r\"\\d+\", \"1 и 22 и 333\")         # ['1', '22', '333']\nre.finditer(r\"\\d+\", text)                  # итератор Match-объектов\nre.sub(r\"\\s+\", \" \", \"много   пробелов\")    # замена\nre.split(r\"[,;]\\s*\", \"a, b;c\")             # ['a', 'b', 'c']\n\nm = re.search(r\"(?P<user>\\w+)@(?P<domain>[\\w.]+)\", \"mail: anna@site.ru\")\nm.group(\"user\"), m.group(\"domain\"), m.groups(), m.span()\n\npattern = re.compile(r\"^\\+7\\d{10}$\")       # компиляция для многократного использования\npattern.match(\"+79991234567\")\n\nre.findall(r\"привет\", \"ПРИВЕТ\", flags=re.IGNORECASE)\n# re.MULTILINE, re.DOTALL, re.VERBOSE — флаги\n```\nВсегда используйте raw-строки `r\"...\"` для шаблонов. Не используйте regex для парсинга HTML — для этого есть BeautifulSoup.\n\n### Упражнения к главам 15–17\n1. Добавьте аннотации ко всем функциям вашего проекта «записная книжка» и прогоните `mypy --strict`.\n2. Найдите в тексте все email-адреса, телефоны и даты.\n3. CLI-утилита на argparse, считающая статистику по лог-файлу."
+      }
+     ]
+    },
+    {
+     "id": "18",
+     "title": "Конкурентность: потоки, процессы, asyncio",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Основные понятия",
+       "num": "18.1",
+       "md": "- **Конкурентность** — несколько задач выполняются, чередуясь.\n- **Параллелизм** — несколько задач выполняются одновременно на разных ядрах.\n- **I/O-bound** задачи — ждут сеть, диск, БД (большую часть времени ничего не считают).\n- **CPU-bound** задачи — нагружают процессор (вычисления).\n\n**GIL (Global Interpreter Lock)** — в CPython только один поток одновременно выполняет Python-байт-код. Поэтому:\n| Задача | Решение |\n|---|---|\n| I/O-bound, немного задач | `threading` |\n| I/O-bound, тысячи задач | `asyncio` |\n| CPU-bound | `multiprocessing` / `ProcessPoolExecutor` |\n\nС Python 3.13 есть экспериментальная сборка **без GIL** (free-threaded, `python3.13t`), а с 3.14 она официально поддерживается — в будущем потоки смогут работать по-настоящему параллельно."
+      },
+      {
+       "title": "threading",
+       "num": "18.2",
+       "md": "```python\nimport threading\n\ncounter = 0\nlock = threading.Lock()\n\ndef work():\n    global counter\n    for _ in range(100_000):\n        with lock:              # без блокировки — состояние гонки (race condition)\n            counter += 1\n\nthreads = [threading.Thread(target=work) for _ in range(4)]\nfor t in threads: t.start()\nfor t in threads: t.join()      # дождаться завершения\n```\nПримитивы синхронизации: `Lock`, `RLock`, `Semaphore`, `Event`, `Condition`, `Barrier`; потокобезопасная очередь `queue.Queue` — для схемы «производитель–потребитель»."
+      },
+      {
+       "title": "concurrent.futures — простой интерфейс",
+       "num": "18.3",
+       "md": "```python\nfrom concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, as_completed\n\nurls = [...]\nwith ThreadPoolExecutor(max_workers=10) as pool:\n    results = list(pool.map(download, urls))\n\ndef heavy(n): return sum(i * i for i in range(n))\n\nif __name__ == \"__main__\":           # обязательно для multiprocessing на Windows\n    with ProcessPoolExecutor() as pool:\n        futures = [pool.submit(heavy, 10**7) for _ in range(4)]\n        for f in as_completed(futures):\n            print(f.result())\n```"
+      },
+      {
+       "title": "multiprocessing",
+       "num": "18.4",
+       "md": "```python\nfrom multiprocessing import Process, Pool, Queue\nwith Pool(4) as p:\n    print(p.map(heavy, [10**6] * 8))\n```\nПроцессы не делят память: данные передаются через сериализацию (pickle), `Queue`, `Pipe`, `shared_memory`."
+      },
+      {
+       "title": "asyncio",
+       "num": "18.5",
+       "md": "Асинхронность — один поток, цикл событий (event loop) и корутины, которые добровольно уступают управление на `await`, пока ждут ввода-вывода.\n```python\nimport asyncio\n\nasync def fetch(name, delay):\n    print(f\"{name}: старт\")\n    await asyncio.sleep(delay)          # не блокирует другие задачи\n    print(f\"{name}: готово\")\n    return name\n\nasync def main():\n    # Последовательно — 3 секунды\n    # Параллельно — 2 секунды:\n    results = await asyncio.gather(fetch(\"A\", 1), fetch(\"B\", 2))\n    print(results)\n\n    async with asyncio.TaskGroup() as tg:          # 3.11+, рекомендуется\n        t1 = tg.create_task(fetch(\"C\", 1))\n        t2 = tg.create_task(fetch(\"D\", 1))\n\n    try:\n        async with asyncio.timeout(1.5):           # 3.11+\n            await fetch(\"E\", 5)\n    except TimeoutError:\n        print(\"Таймаут\")\n\nasyncio.run(main())\n```\n\nКлючевые понятия: `async def` (корутина), `await`, `Task`, `gather`, `TaskGroup`, `Semaphore` (ограничение параллелизма), `Queue`, `async for`, `async with`, асинхронные генераторы.\n\n**Главное правило:** внутри `async`-кода нельзя вызывать блокирующие функции (`time.sleep`, `requests.get`). Используйте асинхронные аналоги (`asyncio.sleep`, `httpx`, `aiohttp`, `asyncpg`) или `await asyncio.to_thread(blocking_func)`.\n\n### Упражнения к главе 18\n1. Скачайте 20 страниц последовательно, через `ThreadPoolExecutor` и через `asyncio`+`httpx`. Сравните время.\n2. Посчитайте простые числа до 10 млн в одном процессе и в `ProcessPoolExecutor`.\n3. Асинхронный чат-сервер на `asyncio.start_server`."
+      }
+     ]
+    },
+    {
+     "id": "19",
+     "title": "Метапрограммирование",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Как работает доступ к атрибутам",
+       "num": "19.1",
+       "md": "`obj.attr` → `type(obj).__getattribute__(obj, \"attr\")`, порядок поиска:\n1. дескриптор данных в классе (с `__set__`) — например, `property`;\n2. `obj.__dict__`;\n3. дескриптор без данных / обычный атрибут класса (с учётом MRO);\n4. `__getattr__`, если определён.\n\n```python\nclass Lazy:\n    def __getattr__(self, name):        # вызывается, только если атрибут НЕ найден\n        return f\"динамический {name}\"\n```"
+      },
+      {
+       "title": "Дескрипторы",
+       "num": "19.2",
+       "md": "Объект с `__get__` / `__set__` / `__delete__`, хранимый как атрибут класса. На дескрипторах построены `property`, `classmethod`, `staticmethod`, методы и ORM-поля.\n```python\nclass Positive:\n    def __set_name__(self, owner, name):\n        self.name = \"_\" + name\n    def __get__(self, obj, objtype=None):\n        if obj is None:\n            return self\n        return getattr(obj, self.name)\n    def __set__(self, obj, value):\n        if value <= 0:\n            raise ValueError(f\"{self.name[1:]} должно быть > 0\")\n        setattr(obj, self.name, value)\n\nclass Product:\n    price = Positive()\n    weight = Positive()\n    def __init__(self, price, weight):\n        self.price = price\n        self.weight = weight\n```"
+      },
+      {
+       "title": "__slots__",
+       "num": "19.3",
+       "md": "```python\nclass Point:\n    __slots__ = (\"x\", \"y\")      # нет __dict__: меньше памяти, быстрее доступ\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n```\nПолезно, когда создаются миллионы объектов."
+      },
+      {
+       "title": "__new__ и синглтон",
+       "num": "19.4",
+       "md": "```python\nclass Singleton:\n    _instance = None\n    def __new__(cls, *args, **kwargs):     # создаёт объект (до __init__)\n        if cls._instance is None:\n            cls._instance = super().__new__(cls)\n        return cls._instance\n```"
+      },
+      {
+       "title": "Метаклассы",
+       "num": "19.5",
+       "md": "Класс — это объект, созданный метаклассом (по умолчанию `type`).\n```python\nDog = type(\"Dog\", (object,), {\"bark\": lambda self: \"Гав\"})   # создание класса «вручную»\n\nclass Registry(type):\n    classes = {}\n    def __new__(mcs, name, bases, ns):\n        cls = super().__new__(mcs, name, bases, ns)\n        mcs.classes[name] = cls\n        return cls\n\nclass Plugin(metaclass=Registry): ...\n```\nЧаще проще использовать `__init_subclass__`:\n```python\nclass Plugin:\n    registry = []\n    def __init_subclass__(cls, **kwargs):\n        super().__init_subclass__(**kwargs)\n        Plugin.registry.append(cls)\n```\n«Метаклассы — это магия, о которой 99% пользователей не стоит беспокоиться» (Тим Питерс). Знайте, как они работают, но применяйте редко."
+      },
+      {
+       "title": "Интроспекция",
+       "num": "19.6",
+       "md": "```python\nimport inspect\ninspect.signature(func)\ninspect.getsource(func)\ninspect.getmembers(obj)\nfunc.__name__, func.__doc__, func.__annotations__, func.__defaults__\n\nimport dis\ndis.dis(func)          # байт-код функции\n\nimport ast\ntree = ast.parse(\"x = 1 + 2\")    # синтаксическое дерево\n```\n`eval()` и `exec()` выполняют строку как код — избегайте их с недоверенными данными. Для безопасного разбора литералов есть `ast.literal_eval`."
+      }
+     ]
+    },
+    {
+     "id": "20",
+     "title": "Как устроен Python внутри. Производительность",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Модель памяти",
+       "num": "20.1",
+       "md": "- Все значения — объекты в куче, у каждого есть тип, значение и **счётчик ссылок**.\n- Переменные — лишь имена, привязанные к объектам.\n- Малые целые (−5…256) и некоторые строки кешируются (интернирование) — поэтому `is` для чисел иногда «работает», но полагаться на это нельзя.\n\n```python\nimport sys\nsys.getrefcount(obj)\nsys.getsizeof([1, 2, 3])      # размер объекта в байтах (без вложенных)\n```"
+      },
+      {
+       "title": "Сборка мусора",
+       "num": "20.2",
+       "md": "1. **Подсчёт ссылок** — объект удаляется, как только счётчик падает до 0.\n2. **Циклический сборщик** (`gc`) — находит циклические ссылки (`a.b = b; b.a = a`).\n3. `weakref` — слабые ссылки, не увеличивающие счётчик (кэши, обратные ссылки)."
+      },
+      {
+       "title": "Профилирование — сначала измеряй",
+       "num": "20.3",
+       "md": "«Преждевременная оптимизация — корень всех зол» (Д. Кнут).\n```bash\npython -m timeit \"sum(range(1000))\"\npython -m cProfile -s cumulative app.py\n```\n```python\nimport timeit\ntimeit.timeit(\"sorted(data)\", setup=\"data=list(range(1000))\", number=1000)\n\nimport tracemalloc\ntracemalloc.start()\n...\nprint(tracemalloc.get_traced_memory())\n```\nСторонние: `py-spy`, `scalene`, `line_profiler`, `memray`."
+      },
+      {
+       "title": "Приёмы ускорения",
+       "num": "20.4",
+       "md": "1. Правильная структура данных (`set`/`dict` для поиска вместо `list`).\n2. Правильный алгоритм (O(n log n) вместо O(n²)) — даёт больше, чем любые микрооптимизации.\n3. Встроенные функции и стандартная библиотека написаны на C: `sum`, `sorted`, `map`, `collections`, `itertools`.\n4. Comprehensions быстрее ручных циклов с `append`.\n5. Локальные переменные быстрее глобальных.\n6. `\"\".join()` вместо `+=` для строк.\n7. Генераторы для больших данных.\n8. Кеширование: `functools.cache`.\n9. NumPy для числовых массивов (векторизация).\n10. Конкурентность (глава 18).\n11. Для горячих участков: **Cython**, **Numba**, **PyPy**, расширения на **Rust (PyO3)** или C.\n\nPython 3.11 стал в среднем на 25% быстрее 3.10; в 3.13+ появился экспериментальный JIT-компилятор.\n\n### Упражнения к главам 19–20\n1. Дескриптор `Typed(int)`, проверяющий тип присваиваемого значения.\n2. Замерьте разницу памяти для 1 млн объектов с `__slots__` и без.\n3. Профилируйте свою программу через cProfile и ускорьте самое медленное место."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "IV",
+   "title": "Профессиональная разработка",
+   "subtitle": "Тесты, Git, алгоритмы, архитектура",
+   "chapters": [
+    {
+     "id": "21",
+     "title": "Тестирование",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Зачем тесты",
+       "num": "21.1",
+       "md": "Тесты позволяют менять код без страха сломать существующее, документируют поведение и находят ошибки до пользователей.\n\nВиды тестов (пирамида — снизу вверх, от многочисленных к редким):\n1. **Модульные (unit)** — проверяют одну функцию/класс изолированно. Быстрые, их больше всего.\n2. **Интеграционные** — проверяют взаимодействие компонентов (код + БД).\n3. **End-to-end (E2E)** — проверяют систему целиком глазами пользователя."
+      },
+      {
+       "title": "unittest (встроенный)",
+       "num": "21.2",
+       "md": "```python\nimport unittest\nfrom calc import divide\n\nclass TestDivide(unittest.TestCase):\n    def setUp(self):              # перед каждым тестом\n        self.data = [1, 2]\n\n    def test_normal(self):\n        self.assertEqual(divide(10, 2), 5)\n\n    def test_zero(self):\n        with self.assertRaises(ZeroDivisionError):\n            divide(1, 0)\n\nif __name__ == \"__main__\":\n    unittest.main()\n```"
+      },
+      {
+       "title": "pytest (стандарт индустрии)",
+       "num": "21.3",
+       "md": "```bash\npip install pytest pytest-cov\npytest                      # находит файлы test_*.py и функции test_*\npytest -v -x -k \"divide\"    # подробно, стоп на первой ошибке, фильтр\npytest --cov=myapp          # покрытие кода\n```\n```python\n# test_calc.py\nimport pytest\nfrom calc import divide\n\ndef test_divide():\n    assert divide(10, 2) == 5          # обычный assert\n\ndef test_divide_by_zero():\n    with pytest.raises(ZeroDivisionError, match=\"division\"):\n        divide(1, 0)\n\n@pytest.mark.parametrize(\"a, b, expected\", [\n    (10, 2, 5),\n    (9, 3, 3),\n    (-6, 2, -3),\n])\ndef test_many(a, b, expected):\n    assert divide(a, b) == expected\n\n@pytest.fixture\ndef db():\n    conn = create_test_db()\n    yield conn                 # тест получает conn\n    conn.close()               # очистка после теста\n\ndef test_user_saved(db):\n    save_user(db, \"Анна\")\n    assert get_user(db, \"Анна\") is not None\n```\nВстроенные фикстуры: `tmp_path` (временная папка), `capsys` (перехват вывода), `monkeypatch` (подмена).\nМаркеры: `@pytest.mark.skip`, `@pytest.mark.xfail`, `@pytest.mark.slow`."
+      },
+      {
+       "title": "Моки (mock)",
+       "num": "21.4",
+       "md": "Подменяют внешние зависимости (сеть, БД, время):\n```python\nfrom unittest.mock import Mock, patch, MagicMock\n\n@patch(\"myapp.weather.requests.get\")\ndef test_weather(mock_get):\n    mock_get.return_value.json.return_value = {\"temp\": 20}\n    assert get_temperature(\"Москва\") == 20\n    mock_get.assert_called_once()\n```\nПатчьте имя **там, где оно используется**, а не где определено."
+      },
+      {
+       "title": "Подходы",
+       "num": "21.5",
+       "md": "- **TDD** — сначала тест (красный), потом код (зелёный), потом рефакторинг.\n- **AAA** — структура теста: Arrange (подготовка) → Act (действие) → Assert (проверка).\n- Один тест — одна проверяемая идея.\n- **Hypothesis** — property-based тестирование: генерирует сотни случайных входных данных.\n- **doctest** — тесты прямо в docstring.\n- **tox / nox** — тестирование на разных версиях Python."
+      }
+     ]
+    },
+    {
+     "id": "22",
+     "title": "Отладка и логирование",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Отладка",
+       "num": "22.1",
+       "md": "1. **Прочитайте traceback** полностью.\n2. `print()`/`f\"{x=}\"` — быстро, но временно.\n3. **Отладчик** — `breakpoint()` в коде запускает `pdb`:\n   - `n` — следующая строка, `s` — зайти в функцию, `c` — продолжить,\n   - `p выражение` — вывести, `l` — показать код, `w` — стек, `q` — выход.\n4. Отладчик IDE (VS Code, PyCharm) — точки останова, просмотр переменных мышью. **Освойте его обязательно.**\n5. Метод «резиновой уточки» — объясните код вслух построчно.\n6. Сужайте проблему: минимальный воспроизводимый пример."
+      },
+      {
+       "title": "logging",
+       "num": "22.2",
+       "md": "```python\nimport logging\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    handlers=[logging.FileHandler(\"app.log\", encoding=\"utf-8\"), logging.StreamHandler()],\n)\nlogger = logging.getLogger(__name__)    # логгер на модуль\n\nlogger.debug(\"Подробности для отладки\")\nlogger.info(\"Пользователь %s вошёл\", username)     # ленивое форматирование\nlogger.warning(\"Мало места на диске\")\nlogger.error(\"Не удалось подключиться\")\nlogger.critical(\"Система падает\")\n\ntry:\n    1 / 0\nexcept ZeroDivisionError:\n    logger.exception(\"Ошибка вычисления\")    # с полным traceback\n```\nУровни: DEBUG < INFO < WARNING < ERROR < CRITICAL.\nВ продакшене: `RotatingFileHandler`, структурированные JSON-логи (`structlog`), сбор ошибок (Sentry). Никогда не логируйте пароли и персональные данные."
+      }
+     ]
+    },
+    {
+     "id": "23",
+     "title": "Git, структура проекта и инструменты качества",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Git — обязательный минимум",
+       "num": "23.1",
+       "md": "```bash\ngit init\ngit clone <url>\ngit status\ngit add file.py          # или git add .\ngit commit -m \"Добавить валидацию email\"\ngit log --oneline\ngit diff\ngit branch feature-login\ngit switch feature-login\ngit merge feature-login\ngit pull / git push\ngit stash\ngit revert <commit>\n```\nРабота в команде: ветка на задачу → коммиты → push → Pull Request → код-ревью → merge.\n\n`.gitignore` для Python:\n```\n__pycache__/\n*.pyc\n.venv/\n.env\n.pytest_cache/\n.mypy_cache/\ndist/\n*.egg-info/\n```"
+      },
+      {
+       "title": "Структура проекта",
+       "num": "23.2",
+       "md": "```\nmy_project/\n├── src/\n│   └── my_project/\n│       ├── __init__.py\n│       ├── __main__.py      # python -m my_project\n│       ├── core.py\n│       └── cli.py\n├── tests/\n│   └── test_core.py\n├── docs/\n├── pyproject.toml\n├── README.md\n├── LICENSE\n└── .gitignore\n```"
+      },
+      {
+       "title": "pyproject.toml",
+       "num": "23.3",
+       "md": "Единый файл конфигурации проекта:\n```toml\n[project]\nname = \"my-project\"\nversion = \"0.1.0\"\nrequires-python = \">=3.12\"\ndependencies = [\"requests>=2.32\", \"pydantic>=2\"]\n\n[project.optional-dependencies]\ndev = [\"pytest\", \"ruff\", \"mypy\"]\n\n[project.scripts]\nmy-tool = \"my_project.cli:main\"\n\n[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[tool.ruff]\nline-length = 100\n\n[tool.pytest.ini_options]\ntestpaths = [\"tests\"]\n```"
+      },
+      {
+       "title": "Менеджеры проектов",
+       "num": "23.4",
+       "md": "**uv** — современный и очень быстрый:\n```bash\nuv init my_project\nuv add requests\nuv add --dev pytest\nuv run python main.py\nuv run pytest\nuv python install 3.13\n```\nАльтернативы: Poetry, PDM, Hatch, pip-tools."
+      },
+      {
+       "title": "Качество кода",
+       "num": "23.5",
+       "md": "| Инструмент | Назначение |\n|---|---|\n| **ruff** | сверхбыстрый линтер и форматтер (заменяет flake8, isort, black) |\n| **black** | форматтер «без споров» |\n| **mypy / pyright** | проверка типов |\n| **pre-commit** | запуск проверок перед каждым коммитом |\n| **bandit** | поиск уязвимостей |\n\n```bash\nruff check . --fix\nruff format .\n```"
+      },
+      {
+       "title": "CI/CD",
+       "num": "23.6",
+       "md": "Непрерывная интеграция (GitHub Actions, GitLab CI) запускает линтер и тесты при каждом push:\n```yaml\n# .github/workflows/test.yml\nname: tests\non: [push, pull_request]\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: astral-sh/setup-uv@v5\n      - run: uv sync\n      - run: uv run ruff check .\n      - run: uv run pytest\n```"
+      },
+      {
+       "title": "Публикация и документация",
+       "num": "23.7",
+       "md": "- Сборка пакета: `uv build` → `dist/*.whl`; публикация: `uv publish` (на PyPI).\n- Документация: docstrings (стиль Google или NumPy) + **Sphinx** или **MkDocs**.\n- Хороший README: что делает проект, установка, пример использования, лицензия.\n- Docker для упаковки приложения:\n```dockerfile\nFROM python:3.13-slim\nWORKDIR /app\nCOPY . .\nRUN pip install --no-cache-dir .\nCMD [\"python\", \"-m\", \"my_project\"]\n```"
+      }
+     ]
+    },
+    {
+     "id": "24",
+     "title": "Алгоритмы и структуры данных",
+     "minutes": 5,
+     "sections": [
+      {
+       "title": "Сложность алгоритмов (Big-O)",
+       "num": "24.1",
+       "md": "| Нотация | Название | Пример |\n|---|---|---|\n| O(1) | константная | доступ к элементу dict |\n| O(log n) | логарифмическая | бинарный поиск |\n| O(n) | линейная | проход по списку |\n| O(n log n) | линейно-логарифмическая | `sorted()` (Timsort) |\n| O(n²) | квадратичная | вложенные циклы |\n| O(2ⁿ) | экспоненциальная | наивные Фибоначчи |"
+      },
+      {
+       "title": "Поиск",
+       "num": "24.2",
+       "md": "```python\ndef binary_search(arr, target):          # arr должен быть отсортирован\n    lo, hi = 0, len(arr) - 1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if arr[mid] == target:\n            return mid\n        if arr[mid] < target:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return -1\n\nimport bisect\nbisect.bisect_left(arr, x); bisect.insort(arr, x)\n```"
+      },
+      {
+       "title": "Сортировки",
+       "num": "24.3",
+       "md": "```python\ndef bubble_sort(a):                      # O(n²) — учебная\n    a = a[:]\n    for i in range(len(a)):\n        for j in range(len(a) - 1 - i):\n            if a[j] > a[j + 1]:\n                a[j], a[j + 1] = a[j + 1], a[j]\n    return a\n\ndef merge_sort(a):                       # O(n log n)\n    if len(a) <= 1:\n        return a\n    mid = len(a) // 2\n    left, right = merge_sort(a[:mid]), merge_sort(a[mid:])\n    result, i, j = [], 0, 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i]); i += 1\n        else:\n            result.append(right[j]); j += 1\n    return result + left[i:] + right[j:]\n\ndef quick_sort(a):                       # O(n log n) в среднем\n    if len(a) <= 1:\n        return a\n    pivot = a[len(a) // 2]\n    return (quick_sort([x for x in a if x < pivot])\n            + [x for x in a if x == pivot]\n            + quick_sort([x for x in a if x > pivot]))\n```\nНа практике всегда используйте встроенный `sorted()` — он стабильный и очень быстрый."
+      },
+      {
+       "title": "Структуры данных",
+       "num": "24.4",
+       "md": "```python\n# Стек (LIFO) — список\nstack = []; stack.append(1); stack.pop()\n\n# Очередь (FIFO) — deque\nfrom collections import deque\nq = deque(); q.append(1); q.popleft()\n\n# Куча (приоритетная очередь)\nimport heapq\nh = []\nheapq.heappush(h, (2, \"задача B\")); heapq.heappush(h, (1, \"задача A\"))\nheapq.heappop(h)            # (1, 'задача A')\nheapq.nlargest(3, data)\n\n# Связный список\nclass Node:\n    def __init__(self, value, next=None):\n        self.value, self.next = value, next\n\n# Бинарное дерево поиска\nclass TreeNode:\n    def __init__(self, val):\n        self.val, self.left, self.right = val, None, None\n\ndef insert(root, val):\n    if root is None:\n        return TreeNode(val)\n    if val < root.val:\n        root.left = insert(root.left, val)\n    else:\n        root.right = insert(root.right, val)\n    return root\n\ndef inorder(root):                       # обход по порядку\n    if root:\n        yield from inorder(root.left)\n        yield root.val\n        yield from inorder(root.right)\n```"
+      },
+      {
+       "title": "Графы",
+       "num": "24.5",
+       "md": "```python\ngraph = {\"A\": [\"B\", \"C\"], \"B\": [\"D\"], \"C\": [\"D\"], \"D\": []}\n\ndef bfs(graph, start):                   # обход в ширину — кратчайший путь в невзвешенном графе\n    visited, queue = {start}, deque([start])\n    while queue:\n        node = queue.popleft()\n        yield node\n        for nb in graph[node]:\n            if nb not in visited:\n                visited.add(nb); queue.append(nb)\n\ndef dfs(graph, node, visited=None):      # обход в глубину\n    visited = visited if visited is not None else set()\n    visited.add(node)\n    for nb in graph[node]:\n        if nb not in visited:\n            dfs(graph, nb, visited)\n    return visited\n\ndef dijkstra(graph, start):              # graph: {u: [(v, вес), ...]}\n    dist = {start: 0}\n    pq = [(0, start)]\n    while pq:\n        d, u = heapq.heappop(pq)\n        if d > dist.get(u, float(\"inf\")):\n            continue\n        for v, w in graph[u]:\n            nd = d + w\n            if nd < dist.get(v, float(\"inf\")):\n                dist[v] = nd\n                heapq.heappush(pq, (nd, v))\n    return dist\n```"
+      },
+      {
+       "title": "Техники решения задач",
+       "num": "24.6",
+       "md": "- **Два указателя**, **скользящее окно**, **префиксные суммы**.\n- **Хэш-таблицы** для подсчёта и быстрого поиска.\n- **Рекурсия и backtracking** (перебор с возвратом).\n- **Динамическое программирование** — разбиение на подзадачи с запоминанием:\n```python\ndef min_coins(coins, amount):     # минимальное число монет\n    dp = [0] + [float(\"inf\")] * amount\n    for a in range(1, amount + 1):\n        for c in coins:\n            if c <= a:\n                dp[a] = min(dp[a], dp[a - c] + 1)\n    return dp[amount] if dp[amount] != float(\"inf\") else -1\n```\n- **Жадные алгоритмы**, **разделяй и властвуй**.\n\nТренировка: LeetCode, Codewars, Exercism, Advent of Code. Решайте 1–2 задачи в день."
+      }
+     ]
+    },
+    {
+     "id": "25",
+     "title": "Чистый код, SOLID и паттерны",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Принципы чистого кода",
+       "num": "25.1",
+       "md": "- **Говорящие имена**: `days_until_deadline`, а не `d`.\n- **DRY** — Don't Repeat Yourself: не дублируйте логику.\n- **KISS** — Keep It Simple: простое решение лучше «умного».\n- **YAGNI** — You Aren't Gonna Need It: не пишите код «на будущее».\n- Маленькие функции, одна ответственность.\n- Ранний возврат вместо глубокой вложенности.\n- Комментарии объясняют **почему**, а не **что**.\n- Без «магических чисел» — выносите в константы."
+      },
+      {
+       "title": "SOLID",
+       "num": "25.2",
+       "md": "1. **S — Single Responsibility.** У класса одна причина для изменения. `Report` формирует отчёт, `ReportSaver` его сохраняет.\n2. **O — Open/Closed.** Открыт для расширения, закрыт для изменения: новая функциональность — через новые классы, а не правку старых.\n3. **L — Liskov Substitution.** Подкласс должен быть заменяем родителем без поломок.\n4. **I — Interface Segregation.** Много маленьких интерфейсов (Protocol) лучше одного огромного.\n5. **D — Dependency Inversion.** Зависьте от абстракций, а не от конкретики — передавайте зависимости через конструктор:\n```python\nclass OrderService:\n    def __init__(self, repo: OrderRepository, notifier: Notifier):\n        self.repo = repo\n        self.notifier = notifier\n```"
+      },
+      {
+       "title": "Паттерны проектирования в Python",
+       "num": "25.3",
+       "md": "**Порождающие:**\n- *Singleton* — один экземпляр (в Python проще всего — модуль).\n- *Factory* — функция/метод, создающий объекты нужного класса:\n```python\ndef create_shape(kind: str, **kw) -> Shape:\n    shapes = {\"circle\": Circle, \"square\": Square}\n    return shapes[kind](**kw)\n```\n- *Builder* — пошаговое создание сложного объекта.\n\n**Структурные:**\n- *Adapter* — приводит интерфейс к ожидаемому.\n- *Decorator* — добавляет поведение (в Python — декораторы функций).\n- *Facade* — простой интерфейс к сложной подсистеме.\n- *Proxy* — заместитель (ленивая загрузка, кеш, контроль доступа).\n\n**Поведенческие:**\n- *Strategy* — взаимозаменяемые алгоритмы (в Python часто просто функции):\n```python\ndef pay(amount, strategy):\n    return strategy(amount)\npay(100, card_payment); pay(100, crypto_payment)\n```\n- *Observer* — подписка на события.\n- *Command* — действие как объект (undo/redo).\n- *Iterator* — встроен в язык.\n- *State*, *Template Method*, *Chain of Responsibility*.\n\n**Архитектурные:** MVC/MVT, слоистая архитектура (presentation → service → repository), чистая/гексагональная архитектура, Repository, Unit of Work, Dependency Injection, микросервисы vs монолит."
+      }
+     ]
+    },
+    {
+     "id": "26",
+     "title": "Безопасность",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Введение",
+       "num": "",
+       "md": "1. **Никогда не храните секреты в коде.** Используйте переменные окружения и `.env` (+ `python-dotenv`), добавьте `.env` в `.gitignore`.\n2. **SQL-инъекции** — только параметризованные запросы:\n```python\ncur.execute(\"SELECT * FROM users WHERE name = ?\", (name,))   # правильно\ncur.execute(f\"SELECT * FROM users WHERE name = '{name}'\")    # УЯЗВИМО!\n```\n3. **Пароли** — хранить только хэш с солью: `bcrypt`, `argon2-cffi`, или `hashlib.scrypt`. Никогда не MD5/SHA1 для паролей.\n4. **Случайность** для токенов — модуль `secrets`, не `random`.\n5. **Не выполняйте недоверенные данные:** `eval`, `exec`, `pickle.load`, `yaml.load` (используйте `yaml.safe_load`), `subprocess(shell=True)`.\n6. **Валидируйте весь ввод** (Pydantic), ограничивайте размеры.\n7. **Path traversal** — проверяйте, что путь из пользовательского ввода остаётся внутри разрешённой папки.\n8. **XSS / CSRF** в вебе — используйте экранирование шаблонизатора и защиту фреймворка.\n9. **Зависимости** — обновляйте, проверяйте `pip-audit`.\n10. Используйте HTTPS, проверку сертификатов (`verify=True` по умолчанию в requests — не отключайте).\n11. Изучите **OWASP Top 10**."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "V",
+   "title": "Прикладные направления",
+   "subtitle": "Базы данных, веб, данные, ML, карьера",
+   "chapters": [
+    {
+     "id": "27",
+     "title": "Базы данных",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "SQL — основы, которые нужны каждому",
+       "num": "27.1",
+       "md": "```sql\nCREATE TABLE users (\n    id INTEGER PRIMARY KEY,\n    name TEXT NOT NULL,\n    email TEXT UNIQUE,\n    age INTEGER\n);\nINSERT INTO users (name, email, age) VALUES ('Анна', 'a@a.ru', 25);\nSELECT name, age FROM users WHERE age > 18 ORDER BY age DESC LIMIT 10;\nUPDATE users SET age = 26 WHERE id = 1;\nDELETE FROM users WHERE id = 1;\n\nSELECT u.name, COUNT(o.id) AS orders\nFROM users u\nLEFT JOIN orders o ON o.user_id = u.id\nGROUP BY u.id\nHAVING COUNT(o.id) > 2;\n```\nПонятия: первичный и внешний ключи, индексы, нормализация, транзакции (ACID), JOIN (INNER, LEFT, RIGHT, FULL)."
+      },
+      {
+       "title": "sqlite3 — встроенная БД",
+       "num": "27.2",
+       "md": "```python\nimport sqlite3\n\nwith sqlite3.connect(\"app.db\") as conn:          # коммит при успешном выходе\n    conn.row_factory = sqlite3.Row               # доступ к колонкам по имени\n    cur = conn.cursor()\n    cur.execute(\"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT)\")\n    cur.execute(\"INSERT INTO users (name) VALUES (?)\", (\"Анна\",))\n    cur.executemany(\"INSERT INTO users (name) VALUES (?)\", [(\"Борис\",), (\"Вера\",)])\n    for row in cur.execute(\"SELECT * FROM users\"):\n        print(row[\"id\"], row[\"name\"])\n```"
+      },
+      {
+       "title": "SQLAlchemy — ORM",
+       "num": "27.3",
+       "md": "ORM сопоставляет таблицы с классами Python:\n```python\nfrom sqlalchemy import create_engine, String, ForeignKey, select\nfrom sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, Session\n\nclass Base(DeclarativeBase): pass\n\nclass User(Base):\n    __tablename__ = \"users\"\n    id: Mapped[int] = mapped_column(primary_key=True)\n    name: Mapped[str] = mapped_column(String(50))\n    posts: Mapped[list[\"Post\"]] = relationship(back_populates=\"author\")\n\nclass Post(Base):\n    __tablename__ = \"posts\"\n    id: Mapped[int] = mapped_column(primary_key=True)\n    title: Mapped[str]\n    author_id: Mapped[int] = mapped_column(ForeignKey(\"users.id\"))\n    author: Mapped[User] = relationship(back_populates=\"posts\")\n\nengine = create_engine(\"sqlite:///app.db\")\nBase.metadata.create_all(engine)\n\nwith Session(engine) as session:\n    session.add(User(name=\"Анна\"))\n    session.commit()\n    users = session.scalars(select(User).where(User.name == \"Анна\")).all()\n```\nМиграции схемы — **Alembic**. Проблема «N+1 запросов» решается `selectinload` / `joinedload`."
+      },
+      {
+       "title": "Другие БД",
+       "num": "27.4",
+       "md": "- **PostgreSQL** — основная БД для продакшена (`psycopg`, `asyncpg`).\n- **MySQL** — `mysqlclient`, `PyMySQL`.\n- **Redis** — кеш, очереди (`redis`).\n- **MongoDB** — документная БД (`pymongo`, `motor`)."
+      }
+     ]
+    },
+    {
+     "id": "28",
+     "title": "Сеть и веб-разработка",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Как работает веб",
+       "num": "28.1",
+       "md": "- **HTTP** — протокол запрос/ответ. Методы: `GET` (получить), `POST` (создать), `PUT`/`PATCH` (изменить), `DELETE` (удалить).\n- Коды ответов: `2xx` успех (200 OK, 201 Created), `3xx` перенаправление, `4xx` ошибка клиента (400, 401, 403, 404), `5xx` ошибка сервера (500).\n- **REST API** — ресурсы по URL, обмен JSON.\n- Заголовки, cookies, сессии, токены (JWT), CORS."
+      },
+      {
+       "title": "HTTP-клиенты",
+       "num": "28.2",
+       "md": "```python\nimport requests\n\nr = requests.get(\"https://api.github.com/users/python\", timeout=10)\nr.raise_for_status()                # исключение при 4xx/5xx\ndata = r.json()\n\nr = requests.post(url, json={\"name\": \"Анна\"}, headers={\"Authorization\": f\"Bearer {token}\"}, timeout=10)\n\nwith requests.Session() as s:       # повторное использование соединений\n    s.get(url)\n```\n**httpx** — аналог с поддержкой async:\n```python\nimport httpx\nasync with httpx.AsyncClient() as client:\n    r = await client.get(url)\n```\nВсегда указывайте `timeout`."
+      },
+      {
+       "title": "FastAPI — современные API",
+       "num": "28.3",
+       "md": "```python\nfrom fastapi import FastAPI, HTTPException\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Item(BaseModel):\n    name: str\n    price: float\n    in_stock: bool = True\n\nitems: dict[int, Item] = {}\n\n@app.get(\"/items/{item_id}\")\nasync def read_item(item_id: int) -> Item:\n    if item_id not in items:\n        raise HTTPException(status_code=404, detail=\"Не найдено\")\n    return items[item_id]\n\n@app.post(\"/items/{item_id}\", status_code=201)\nasync def create_item(item_id: int, item: Item) -> Item:\n    items[item_id] = item\n    return item\n```\n```bash\npip install \"fastapi[standard]\"\nfastapi dev main.py        # документация автоматически на /docs\n```"
+      },
+      {
+       "title": "Django — «фреймворк с батарейками»",
+       "num": "28.4",
+       "md": "ORM, админка, авторизация, шаблоны, формы, миграции из коробки. Архитектура MVT (Model–View–Template).\n```bash\npip install django\ndjango-admin startproject mysite\npython manage.py startapp blog\npython manage.py makemigrations && python manage.py migrate\npython manage.py createsuperuser\npython manage.py runserver\n```\n```python\n# blog/models.py\nfrom django.db import models\nclass Post(models.Model):\n    title = models.CharField(max_length=200)\n    text = models.TextField()\n    created = models.DateTimeField(auto_now_add=True)\n\n# blog/views.py\nfrom django.shortcuts import render\ndef post_list(request):\n    return render(request, \"blog/list.html\", {\"posts\": Post.objects.order_by(\"-created\")})\n```\nДля API — **Django REST Framework**."
+      },
+      {
+       "title": "Flask — минимализм",
+       "num": "28.5",
+       "md": "```python\nfrom flask import Flask, jsonify, request\napp = Flask(__name__)\n\n@app.route(\"/hello/<name>\")\ndef hello(name):\n    return jsonify(message=f\"Привет, {name}\")\n```"
+      },
+      {
+       "title": "Что ещё нужно веб-разработчику",
+       "num": "28.6",
+       "md": "HTML/CSS/основы JS, шаблонизатор Jinja2, аутентификация (сессии, JWT, OAuth2), фоновые задачи (**Celery**, RQ, ARQ), WebSocket, кеширование (Redis), Docker и docker-compose, Nginx, деплой (облака, VPS), серверы приложений (Uvicorn, Gunicorn)."
+      },
+      {
+       "title": "Низкоуровневая сеть",
+       "num": "28.7",
+       "md": "```python\nimport socket\nwith socket.create_connection((\"example.com\", 80)) as s:\n    s.sendall(b\"GET / HTTP/1.1\\r\\nHost: example.com\\r\\nConnection: close\\r\\n\\r\\n\")\n    print(s.recv(1024).decode())\n```"
+      }
+     ]
+    },
+    {
+     "id": "29",
+     "title": "Анализ данных",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "NumPy — массивы и векторные вычисления",
+       "num": "29.1",
+       "md": "```python\nimport numpy as np\n\na = np.array([1, 2, 3])\nm = np.zeros((3, 3)); np.ones(5); np.arange(0, 10, 2); np.linspace(0, 1, 5)\nr = np.random.default_rng(42).normal(size=1000)\n\na * 2              # векторно, без циклов — в десятки раз быстрее\na + np.array([10, 20, 30])\na[a > 1]           # булева индексация\nm.shape, m.T, m.reshape(9)\na.mean(), a.std(), a.sum(), np.median(a)\nA @ B              # матричное умножение\n```"
+      },
+      {
+       "title": "pandas — таблицы",
+       "num": "29.2",
+       "md": "```python\nimport pandas as pd\n\ndf = pd.read_csv(\"sales.csv\")      # read_excel, read_json, read_sql, read_parquet\ndf.head(); df.info(); df.describe()\ndf[\"price\"]; df[[\"name\", \"price\"]]\ndf[df[\"price\"] > 100]\ndf.loc[0, \"name\"]; df.iloc[0, 1]\n\ndf[\"total\"] = df[\"price\"] * df[\"qty\"]\ndf.dropna(); df.fillna(0); df.drop_duplicates()\ndf.sort_values(\"total\", ascending=False)\ndf.groupby(\"category\")[\"total\"].agg([\"sum\", \"mean\", \"count\"])\npd.merge(orders, users, on=\"user_id\", how=\"left\")\ndf.pivot_table(values=\"total\", index=\"month\", columns=\"category\", aggfunc=\"sum\")\ndf[\"date\"] = pd.to_datetime(df[\"date\"])\ndf.to_csv(\"out.csv\", index=False)\n```\nБыстрая альтернатива для больших данных — **Polars**."
+      },
+      {
+       "title": "Визуализация",
+       "num": "29.3",
+       "md": "```python\nimport matplotlib.pyplot as plt\n\nx = np.linspace(0, 10, 100)\nplt.plot(x, np.sin(x), label=\"sin\")\nplt.xlabel(\"x\"); plt.ylabel(\"y\"); plt.title(\"Синусоида\"); plt.legend()\nplt.savefig(\"plot.png\", dpi=150)\nplt.show()\n```\nТакже: **seaborn** (статистические графики), **plotly** (интерактивные), **Streamlit** (дашборды на чистом Python)."
+      },
+      {
+       "title": "Jupyter",
+       "num": "29.4",
+       "md": "Интерактивные блокноты: код, результаты, графики и текст в одном документе. `pip install jupyterlab` → `jupyter lab`."
+      }
+     ]
+    },
+    {
+     "id": "30",
+     "title": "Автоматизация, CLI, GUI, парсинг",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Автоматизация",
+       "num": "30.1",
+       "md": "- Файлы и папки: `pathlib`, `shutil`, `zipfile`.\n- Excel: `openpyxl`; Word: `python-docx`; PDF: `pypdf`, `reportlab`.\n- Email: `smtplib`, `email`.\n- Расписание: `schedule`, cron / Планировщик заданий Windows.\n- Управление мышью и клавиатурой: `pyautogui`.\n- Браузер: **Playwright**, Selenium."
+      },
+      {
+       "title": "Парсинг сайтов",
+       "num": "30.2",
+       "md": "```python\nimport requests\nfrom bs4 import BeautifulSoup\n\nhtml = requests.get(\"https://example.com\", timeout=10).text\nsoup = BeautifulSoup(html, \"html.parser\")\nfor link in soup.select(\"a[href]\"):\n    print(link.get_text(strip=True), link[\"href\"])\n```\nДля больших проектов — **Scrapy**. Уважайте `robots.txt`, условия использования сайта и не перегружайте серверы."
+      },
+      {
+       "title": "Приложения командной строки",
+       "num": "30.3",
+       "md": "`argparse` (стандарт), **Typer** и **Click** (удобнее), **Rich** (красивый вывод, таблицы, прогресс-бары), **Textual** (TUI-приложения).\n```python\nimport typer\napp = typer.Typer()\n\n@app.command()\ndef hello(name: str, count: int = 1):\n    for _ in range(count):\n        print(f\"Привет, {name}\")\n\nif __name__ == \"__main__\":\n    app()\n```"
+      },
+      {
+       "title": "Графический интерфейс",
+       "num": "30.4",
+       "md": "- **tkinter** — встроен, прост;\n- **PySide6 / PyQt6** — профессиональные приложения;\n- **Kivy**, **Flet** — кроссплатформенные и мобильные;\n- **pygame** / **arcade** — 2D-игры.\n```python\nimport tkinter as tk\nroot = tk.Tk()\nroot.title(\"Счётчик\")\ncount = tk.IntVar(value=0)\ntk.Label(root, textvariable=count, font=(\"Arial\", 24)).pack()\ntk.Button(root, text=\"+1\", command=lambda: count.set(count.get() + 1)).pack()\nroot.mainloop()\n```"
+      },
+      {
+       "title": "Боты",
+       "num": "30.5",
+       "md": "Telegram: **aiogram**, python-telegram-bot. Discord: **discord.py**."
+      }
+     ]
+    },
+    {
+     "id": "31",
+     "title": "Машинное обучение — введение",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Основные понятия",
+       "num": "31.1",
+       "md": "- **Обучение с учителем**: классификация (спам/не спам), регрессия (цена квартиры).\n- **Без учителя**: кластеризация, снижение размерности.\n- **С подкреплением**: агент учится через награды.\n- Обучающая и тестовая выборки, переобучение, метрики (accuracy, precision, recall, F1, MAE, RMSE), кросс-валидация."
+      },
+      {
+       "title": "scikit-learn",
+       "num": "31.2",
+       "md": "```python\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import accuracy_score\n\nX, y = load_iris(return_X_y=True)\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\nmodel = RandomForestClassifier().fit(X_train, y_train)\nprint(accuracy_score(y_test, model.predict(X_test)))\n```"
+      },
+      {
+       "title": "Глубокое обучение и ИИ",
+       "num": "31.3",
+       "md": "- **PyTorch** — основной фреймворк нейросетей; также TensorFlow/Keras, JAX.\n- **Hugging Face Transformers** — готовые модели для текста, изображений, звука.\n- Работа с LLM через API (например, Anthropic SDK: `pip install anthropic`), RAG, агенты.\n- Нужна математика: линейная алгебра, теория вероятностей, математический анализ."
+      }
+     ]
+    },
+    {
+     "id": "32",
+     "title": "Дорожная карта и подготовка к собеседованию",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Путь развития",
+       "num": "32.1",
+       "md": "1. **Основы (1–2 мес.)** — части I–II этой книги, 50+ мелких задач.\n2. **Первые проекты (1 мес.)** — консольные утилиты, бот, парсер, игра.\n3. **Выбор направления** — веб-бэкенд, данные/ML, автоматизация/QA, DevOps.\n4. **Инструменты** — Git, Linux-терминал, SQL, Docker, тестирование.\n5. **Портфолио** — 3–5 законченных проектов на GitHub с README и тестами.\n6. **Поиск работы** — резюме, LinkedIn/hh, собеседования."
+      },
+      {
+       "title": "Уровни",
+       "num": "32.2",
+       "md": "- **Junior** — уверенный синтаксис, ООП, коллекции, исключения, Git, SQL, один фреймворк, тесты.\n- **Middle** — генераторы, декораторы, контекстные менеджеры, async, типизация, архитектура, оптимизация, CI/CD, Docker.\n- **Senior** — проектирование систем, внутреннее устройство Python, производительность, наставничество, ответственность за решения."
+      },
+      {
+       "title": "Частые вопросы на собеседовании",
+       "num": "32.3",
+       "md": "1. Изменяемые и неизменяемые типы. Почему ключ словаря должен быть хэшируемым?\n2. Разница `list` и `tuple`; `is` и `==`.\n3. Как работает `dict` внутри (хэш-таблица)?\n4. Что такое GIL? Когда потоки, когда процессы, когда asyncio?\n5. Генераторы vs списки. Что делает `yield`?\n6. Как написать декоратор? Зачем `functools.wraps`?\n7. `*args` и `**kwargs`. Изменяемое значение по умолчанию — в чём проблема?\n8. LEGB, `global`, `nonlocal`.\n9. MRO и `super()`. Множественное наследование.\n10. `__new__` vs `__init__`. `__str__` vs `__repr__`.\n11. Поверхностное и глубокое копирование.\n12. Контекстные менеджеры: как сделать свой?\n13. Как работает сборщик мусора?\n14. Что такое дескрипторы? Как устроен `property`?\n15. `@staticmethod` vs `@classmethod`.\n16. Как профилировать и ускорить код?\n17. SOLID, паттерны, тестирование.\n18. SQL: JOIN, индексы, транзакции, N+1.\n19. REST, HTTP-методы и коды.\n20. Задачи на алгоритмы: строки, массивы, хэш-таблицы, два указателя, BFS/DFS."
+      },
+      {
+       "title": "Идеи проектов для портфолио",
+       "num": "32.4",
+       "md": "- Менеджер задач с REST API (FastAPI + PostgreSQL + тесты + Docker).\n- Telegram-бот с базой данных.\n- Парсер цен с уведомлениями и графиками.\n- Дашборд анализа данных на Streamlit.\n- CLI-утилита, опубликованная на PyPI.\n- Игра на pygame.\n- Сервис сокращения ссылок."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "★",
+   "title": "Приложения",
+   "subtitle": "Шпаргалки и справочники",
+   "chapters": [
+    {
+     "id": "A",
+     "title": "Шпаргалка по синтаксису",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Введение",
+       "num": "",
+       "md": "```python\n# Переменные и типы\nx = 10; y = 3.5; s = \"текст\"; b = True; n = None\nlst = [1, 2]; tpl = (1, 2); dct = {\"k\": \"v\"}; st = {1, 2}\n\n# Условия\nif x > 0: ...\nelif x == 0: ...\nelse: ...\nv = a if cond else b\n\n# Циклы\nfor i in range(10): ...\nfor i, item in enumerate(lst): ...\nfor k, v in dct.items(): ...\nwhile cond: ...\n\n# Comprehensions\n[x*2 for x in lst if x > 0]\n{k: v for k, v in pairs}\n{x for x in lst}\n(x for x in lst)\n\n# Функции\ndef f(a, b=1, *args, c, **kwargs) -> int: return a\nlambda x: x * 2\n\n# Классы\nclass A(Base):\n    attr = 0\n    def __init__(self, v): super().__init__(); self.v = v\n    @property\n    def prop(self): return self.v\n    @classmethod\n    def make(cls): return cls(0)\n    @staticmethod\n    def util(): ...\n\n# Исключения\ntry: ...\nexcept ValueError as e: ...\nelse: ...\nfinally: ...\nraise TypeError(\"сообщение\")\n\n# Файлы\nwith open(\"f.txt\", encoding=\"utf-8\") as f: data = f.read()\n\n# Генераторы и декораторы\ndef gen(): yield 1\n@decorator\ndef g(): ...\n\n# Async\nasync def main(): await asyncio.sleep(1)\nasyncio.run(main())\n```"
+      }
+     ]
+    },
+    {
+     "id": "B",
+     "title": "Встроенные функции",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Введение",
+       "num": "",
+       "md": "| Функция | Назначение |\n|---|---|\n| `abs(x)` | модуль числа |\n| `aiter(x)`, `anext(x)` | асинхронные итераторы |\n| `all(it)`, `any(it)` | все / хотя бы один истинный |\n| `ascii(x)` | repr с экранированием не-ASCII |\n| `bin(x)`, `oct(x)`, `hex(x)` | системы счисления |\n| `bool()`, `int()`, `float()`, `complex()`, `str()` | преобразования |\n| `breakpoint()` | запуск отладчика |\n| `bytes()`, `bytearray()`, `memoryview()` | двоичные данные |\n| `callable(x)` | можно ли вызвать |\n| `chr(i)`, `ord(c)` | символ ↔ код |\n| `classmethod`, `staticmethod`, `property` | декораторы методов |\n| `compile()`, `eval()`, `exec()` | выполнение кода (осторожно!) |\n| `delattr`, `getattr`, `hasattr`, `setattr` | работа с атрибутами |\n| `dict()`, `list()`, `tuple()`, `set()`, `frozenset()` | коллекции |\n| `dir(x)`, `vars(x)` | атрибуты объекта |\n| `divmod(a, b)` | (частное, остаток) |\n| `enumerate(it, start)` | пары (индекс, элемент) |\n| `filter(f, it)`, `map(f, it)` | фильтрация, отображение |\n| `format(v, spec)` | форматирование |\n| `globals()`, `locals()` | словари пространств имён |\n| `hash(x)`, `id(x)` | хэш, идентификатор |\n| `help(x)` | справка |\n| `input()`, `print()` | ввод/вывод |\n| `isinstance()`, `issubclass()` | проверки типов |\n| `iter()`, `next()` | итераторы |\n| `len(x)` | длина |\n| `max()`, `min()`, `sum()` | агрегаты |\n| `object()` | базовый объект |\n| `open()` | файлы |\n| `pow(b, e, mod)` | степень (с модулем) |\n| `range()` | диапазон |\n| `repr(x)` | строковое представление для разработчика |\n| `reversed()`, `sorted()` | обратный порядок, сортировка |\n| `round(x, n)` | округление |\n| `slice()` | объект среза |\n| `super()` | доступ к родителю |\n| `type()` | тип объекта / создание класса |\n| `zip(*its, strict=False)` | параллельный обход |\n| `__import__()` | низкоуровневый импорт |"
+      }
+     ]
+    },
+    {
+     "id": "C",
+     "title": "Методы встроенных типов",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Введение",
+       "num": "",
+       "md": "**str:** `capitalize, casefold, center, count, encode, endswith, expandtabs, find, format, format_map, index, isalnum, isalpha, isascii, isdecimal, isdigit, isidentifier, islower, isnumeric, isprintable, isspace, istitle, isupper, join, ljust, lower, lstrip, maketrans, partition, removeprefix, removesuffix, replace, rfind, rindex, rjust, rpartition, rsplit, rstrip, split, splitlines, startswith, strip, swapcase, title, translate, upper, zfill`\n\n**list:** `append, clear, copy, count, extend, index, insert, pop, remove, reverse, sort`\n\n**tuple:** `count, index`\n\n**dict:** `clear, copy, fromkeys, get, items, keys, pop, popitem, setdefault, update, values`\n\n**set:** `add, clear, copy, difference, difference_update, discard, intersection, intersection_update, isdisjoint, issubset, issuperset, pop, remove, symmetric_difference, symmetric_difference_update, union, update`"
+      }
+     ]
+    },
+    {
+     "id": "D",
+     "title": "Ключевые слова Python",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Введение",
+       "num": "",
+       "md": "```\nFalse   None    True    and     as      assert  async   await\nbreak   class   continue def    del     elif    else    except\nfinally for     from    global  if      import  in      is\nlambda  nonlocal not    or      pass    raise   return  try\nwhile   with    yield\n```\n«Мягкие» ключевые слова (зависят от контекста): `match`, `case`, `_`, `type`."
+      }
+     ]
+    },
+    {
+     "id": "E",
+     "title": "Частые ошибки новичков",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Введение",
+       "num": "",
+       "md": "1. Смешение табов и пробелов → `IndentationError`.\n2. `=` вместо `==` в условии.\n3. Изменяемое значение по умолчанию `def f(x=[])`.\n4. Изменение списка во время итерации по нему — итерируйтесь по копии `for x in lst[:]`.\n5. `list.sort()` возвращает `None`: `lst = lst.sort()` — ошибка.\n6. Забытое `int(input())` — сравнение строки с числом.\n7. Проверка `== None` вместо `is None`.\n8. Сравнение float через `==`.\n9. Голый `except:` скрывает ошибки.\n10. Файл без `encoding=\"utf-8\"` — проблемы с кириллицей на Windows.\n11. Свой файл назван `random.py`/`email.py` — конфликт со стандартным модулем.\n12. Создание `[[0]*n]*m` — общие вложенные списки.\n13. Забытый `self` в методе.\n14. Лишний вызов: `print(obj.method)` вместо `obj.method()`.\n15. Установка пакетов глобально вместо виртуального окружения.\n16. Поздний бинд в lambda внутри цикла.\n17. Блокирующие вызовы внутри `async`-функций."
+      }
+     ]
+    },
+    {
+     "id": "F",
+     "title": "Подсказки к упражнениям",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Введение",
+       "num": "",
+       "md": "- **Гл. 2, №4:** `d, rem = divmod(1_000_000, 86400)`; затем `h, rem = divmod(rem, 3600)`; `m, s = divmod(rem, 60)` → 11 дней 13:46:40.\n- **Гл. 3, №1:** `t = s.lower().replace(\" \", \"\")`; `t == t[::-1]`.\n- **Гл. 4, №3:** число n простое, если не делится ни на одно d от 2 до `int(n ** 0.5)`.\n- **Гл. 5, №1:** `list(dict.fromkeys(lst))` — сохраняет порядок.\n- **Гл. 5, №3:** `[list(row) for row in zip(*matrix)]`.\n- **Гл. 6, №4:**\n```python\ndef flatten(nested):\n    for x in nested:\n        if isinstance(x, list):\n            yield from flatten(x)\n        else:\n            yield x\n```\n- **Гл. 11, №1:** сокращайте дробь через `math.gcd` в `__init__`.\n- **Гл. 12, №2:** `def chunks(lst, n): for i in range(0, len(lst), n): yield lst[i:i+n]`.\n- **Гл. 14, №1:**\n```python\n@contextmanager\ndef cd(path):\n    old = os.getcwd()\n    os.chdir(path)\n    try:\n        yield\n    finally:\n        os.chdir(old)\n```"
+      }
+     ]
+    },
+    {
+     "id": "G",
+     "title": "Что читать дальше",
+     "minutes": 3,
+     "sections": [
+      {
+       "title": "Введение",
+       "num": "",
+       "md": "1. Официальная документация и туториал — docs.python.org (есть русский перевод туториала).\n2. Марк Лутц — «Изучаем Python» (фундаментально, очень подробно).\n3. Эрик Мэтиз — «Изучаем Python. Программирование игр, визуализация данных, веб-приложения» (для старта).\n4. Лучано Рамальо — «Python. К вершинам мастерства» (Fluent Python) — must-read для Middle.\n5. Бретт Слаткин — «Секреты Python» (Effective Python).\n6. Дэн Бейдер — «Чистый Python».\n7. Адитья Бхаргава — «Грокаем алгоритмы».\n8. Роберт Мартин — «Чистый код».\n9. Гарри Персиваль — «Паттерны разработки на Python» (Architecture Patterns with Python).\n10. PEP 8, PEP 20, PEP 484 и другие PEP — peps.python.org."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

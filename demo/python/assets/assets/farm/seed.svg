@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="leaf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9ad46a"/><stop offset="1" stop-color="#3f7f2c"/></linearGradient><linearGradient id="leaf2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc25a"/><stop offset="1" stop-color="#2f6a22"/></linearGradient></defs><ellipse cx="50" cy="93" rx="30" ry="5" fill="#000" opacity=".28"/>
+<ellipse cx="50" cy="90" rx="16" ry="5" fill="#5a3f2b"/>
+<path d="M50 90 V66" stroke="#4f8a3a" stroke-width="4" stroke-linecap="round"/>
+<path d="M50 72 C38 72 30 62 31 52 C42 52 50 60 50 72z" fill="url(#leaf)"/>
+<path d="M50 68 C62 68 70 58 69 47 C58 47 50 56 50 68z" fill="url(#leaf2)"/>
+<path d="M50 70 C44 66 38 60 34 55" stroke="#c8f0a8" stroke-width="1.4" fill="none" opacity=".7"/></svg>

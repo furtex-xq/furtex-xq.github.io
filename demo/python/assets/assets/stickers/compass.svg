@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 120 120">
+<circle cx="50" cy="50" r="44" fill="#1e1e1e"/><circle cx="50" cy="50" r="38" fill="none" stroke="#d9a55b" stroke-width="3"/>
+<polygon points="50,14 58,50 50,46 42,50" fill="#d4605a"/><polygon points="50,86 58,50 50,54 42,50" fill="#e8e8e8"/>
+<text x="50" y="30" font-size="11" fill="#d9a55b" font-family="sans-serif" font-weight="900" text-anchor="middle">N</text><text x="79" y="54" font-size="11" fill="#d9a55b" font-family="sans-serif" font-weight="900" text-anchor="middle">E</text>
+<text x="50" y="82" font-size="11" fill="#d9a55b" font-family="sans-serif" font-weight="900" text-anchor="middle">S</text><text x="21" y="54" font-size="11" fill="#d9a55b" font-family="sans-serif" font-weight="900" text-anchor="middle">W</text></svg>

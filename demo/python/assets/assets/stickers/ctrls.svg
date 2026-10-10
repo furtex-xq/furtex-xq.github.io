@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 120 120">
+<rect x="2" y="30" width="56" height="46" rx="8" fill="#8a96b3"/><rect x="2" y="26" width="56" height="42" rx="8" fill="#eef2fb"/>
+<text x="30" y="54" font-size="16" fill="#2b3550" font-family="sans-serif" font-weight="900" text-anchor="middle">Ctrl</text>
+<rect x="62" y="30" width="36" height="46" rx="8" fill="#8a96b3"/><rect x="62" y="26" width="36" height="42" rx="8" fill="#eef2fb"/>
+<text x="80" y="56" font-size="22" fill="#2b3550" font-family="sans-serif" font-weight="900" text-anchor="middle">S</text></svg>

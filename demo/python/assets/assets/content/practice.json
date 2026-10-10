@@ -1,0 +1,3414 @@
+{
+ "1": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Какой тип типизации у Python?",
+    "o": [
+     "Статическая и слабая",
+     "Динамическая и строгая",
+     "Динамическая и слабая",
+     "Статическая и строгая"
+    ],
+    "a": 1,
+    "e": "Тип определяется во время выполнения (динамическая), но неявных преобразований нет: \"5\" + 5 → TypeError (строгая)."
+   },
+   {
+    "t": "choice",
+    "q": "Чем в Python выделяются блоки кода?",
+    "o": [
+     "Фигурными скобками { }",
+     "Ключевыми словами begin/end",
+     "Отступами",
+     "Точкой с запятой"
+    ],
+    "a": 2,
+    "e": "Блоки задаются отступами — стандарт PEP 8: 4 пробела."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "print(\"Привет\", \"мир\", sep=\"-\")",
+    "o": [
+     "Привет мир",
+     "Привет-мир",
+     "Привет - мир",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "Параметр sep задаёт разделитель между аргументами print."
+   },
+   {
+    "t": "choice",
+    "q": "Как по PEP 8 называют переменные и функции?",
+    "o": [
+     "camelCase",
+     "PascalCase",
+     "snake_case",
+     "UPPER_CASE"
+    ],
+    "a": 2,
+    "e": "snake_case — для переменных и функций, PascalCase — для классов, UPPER_CASE — для констант."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "print(2 ** 100 > 10 ** 30)",
+    "o": [
+     "True",
+     "False",
+     "OverflowError",
+     "inf"
+    ],
+    "a": 0,
+    "e": "Целые числа в Python не переполняются: 2**100 ≈ 1.27·10^30, это больше 10^30."
+   },
+   {
+    "t": "choice",
+    "q": "Что делает команда import this?",
+    "o": [
+     "Импортирует текущий файл",
+     "Выводит «Дзен Python»",
+     "Перезапускает интерпретатор",
+     "Ничего"
+    ],
+    "a": 1,
+    "e": "Это пасхалка: печатаются 19 принципов философии Python."
+   }
+  ],
+  "cards": [
+   {
+    "f": "REPL",
+    "b": "Интерактивный режим: Read–Eval–Print Loop. Запускается командой python."
+   },
+   {
+    "f": "PEP 8",
+    "b": "Официальное руководство по стилю кода Python."
+   },
+   {
+    "f": "CPython",
+    "b": "Эталонная реализация Python, написанная на C. Компилирует код в байт-код."
+   },
+   {
+    "f": "Байт-код",
+    "b": "Промежуточное представление программы (.pyc), которое исполняет виртуальная машина."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Первая программа",
+    "text": "Напишите функцию greet(name), которая возвращает строку «Привет, <name>!».",
+    "starter": "def greet(name):\n    # ваш код\n    pass\n",
+    "tests": "assert greet(\"Мир\") == \"Привет, Мир!\"\nassert greet(\"Анна\") == \"Привет, Анна!\"",
+    "hint": "Используйте f-строку: f\"Привет, {name}!\"",
+    "solution": "def greet(name):\n    return f\"Привет, {name}!\"\n"
+   }
+  ]
+ },
+ "2": {
+  "quiz": [
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "print(7 // 2, 7 % 2, -7 // 2)",
+    "o": [
+     "3 1 -3",
+     "3 1 -4",
+     "3.5 1 -3.5",
+     "3 1 4"
+    ],
+    "a": 1,
+    "e": "// округляет ВНИЗ (к минус бесконечности), поэтому -7 // 2 = -4."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "print(0.1 + 0.2 == 0.3)",
+    "o": [
+     "True",
+     "False",
+     "None",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "Двоичное представление float неточно: 0.1 + 0.2 = 0.30000000000000004. Сравнивайте через math.isclose."
+   },
+   {
+    "t": "choice",
+    "q": "Какое из значений истинно (truthy)?",
+    "o": [
+     "0",
+     "\"\"",
+     "[0]",
+     "None"
+    ],
+    "a": 2,
+    "e": "[0] — непустой список, поэтому истинен. Пустые коллекции, 0 и None — ложны."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "a = [1, 2]\nb = a\nb.append(3)\nprint(a)",
+    "o": [
+     "[1, 2]",
+     "[1, 2, 3]",
+     "[3]",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "b = a не копирует список: оба имени ссылаются на один объект."
+   },
+   {
+    "t": "blank",
+    "q": "Заполните пропуск ____",
+    "code": "x, y = 1, 2\nx, y = ____\nprint(x, y)  # 2 1",
+    "o": [
+     "y, x",
+     "x, y",
+     "[y, x]",
+     "swap(x, y)"
+    ],
+    "a": 0,
+    "e": "Обмен значений через распаковку кортежа: x, y = y, x."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "print(round(2.5), round(3.5))",
+    "o": [
+     "3 4",
+     "2 4",
+     "2 3",
+     "3 3"
+    ],
+    "a": 1,
+    "e": "round использует «банковское» округление к ближайшему чётному."
+   },
+   {
+    "t": "choice",
+    "q": "Как правильно проверить переменную на None?",
+    "o": [
+     "x == None",
+     "x is None",
+     "x = None",
+     "None in x"
+    ],
+    "a": 1,
+    "e": "None — синглтон, проверка тождественности is быстрее и надёжнее."
+   }
+  ],
+  "cards": [
+   {
+    "f": "Изменяемые типы",
+    "b": "list, dict, set, bytearray"
+   },
+   {
+    "f": "Неизменяемые типы",
+    "b": "int, float, str, tuple, frozenset, bytes, bool, None"
+   },
+   {
+    "f": "Моржовый оператор :=",
+    "b": "Присваивание внутри выражения: if (n := len(a)) > 10: ..."
+   },
+   {
+    "f": "divmod(a, b)",
+    "b": "Возвращает кортеж (a // b, a % b)."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Секунды → время",
+    "text": "Функция convert(seconds) возвращает кортеж (дни, часы, минуты, секунды).",
+    "starter": "def convert(seconds):\n    pass\n",
+    "tests": "assert convert(1_000_000) == (11, 13, 46, 40)\nassert convert(59) == (0, 0, 0, 59)\nassert convert(86400) == (1, 0, 0, 0)",
+    "hint": "Последовательно примените divmod на 86400, 3600 и 60.",
+    "solution": "def convert(seconds):\n    d, r = divmod(seconds, 86400)\n    h, r = divmod(r, 3600)\n    m, s = divmod(r, 60)\n    return d, h, m, s\n"
+   }
+  ]
+ },
+ "3": {
+  "quiz": [
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "s = \"Python\"\nprint(s[1:4], s[-1], s[::-1])",
+    "o": [
+     "yth n nohtyP",
+     "Pyt n nohtyP",
+     "yth P Python",
+     "ytho n nohtyP"
+    ],
+    "a": 0,
+    "e": "Срез [1:4] — индексы 1, 2, 3; [-1] — последний; [::-1] — разворот."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "print(\"-\".join([\"a\", \"b\", \"c\"]))",
+    "o": [
+     "abc",
+     "a-b-c",
+     "-a-b-c",
+     "['a', 'b', 'c']"
+    ],
+    "a": 1,
+    "e": "join склеивает элементы через строку-разделитель."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "print(f\"{3.14159:.2f}\")",
+    "o": [
+     "3.14",
+     "3.1",
+     "3.14159",
+     "3.142"
+    ],
+    "a": 0,
+    "e": ":.2f — два знака после запятой."
+   },
+   {
+    "t": "choice",
+    "q": "Что произойдёт: s = 'abc'; s[0] = 'X'?",
+    "o": [
+     "s станет 'Xbc'",
+     "TypeError",
+     "IndexError",
+     "Создастся новая строка"
+    ],
+    "a": 1,
+    "e": "Строки неизменяемы. Нужно создать новую: s = 'X' + s[1:]."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "print(\"a b  c\".split())",
+    "o": [
+     "['a', 'b', '', 'c']",
+     "['a', 'b', 'c']",
+     "['a b  c']",
+     "['a', 'b', ' ', 'c']"
+    ],
+    "a": 1,
+    "e": "split() без аргумента делит по любым пробельным символам и выбрасывает пустые строки."
+   },
+   {
+    "t": "blank",
+    "q": "Заполните пропуск ____",
+    "code": "name = \"Анна\"\nprint(____)  # Привет, Анна!",
+    "o": [
+     "f\"Привет, {name}!\"",
+     "\"Привет, {name}!\"",
+     "'Привет, ' - name",
+     "f\"Привет, name!\""
+    ],
+    "a": 0,
+    "e": "В f-строке выражения подставляются в фигурные скобки."
+   },
+   {
+    "t": "order",
+    "q": "Расставьте строки, чтобы проверить строку на палиндром:",
+    "lines": [
+     "def is_pal(s):",
+     "    t = s.lower().replace(\" \", \"\")",
+     "    return t == t[::-1]"
+    ],
+    "e": "Сначала нормализуем строку, затем сравниваем с разворотом."
+   }
+  ],
+  "cards": [
+   {
+    "f": "strip()",
+    "b": "Удаляет пробелы по краям строки."
+   },
+   {
+    "f": "find vs index",
+    "b": "find возвращает -1, если не найдено; index бросает ValueError."
+   },
+   {
+    "f": "Raw-строка r\"...\"",
+    "b": "Обратный слэш не экранирует символы. Используется в путях и регулярках."
+   },
+   {
+    "f": "encode / decode",
+    "b": "str.encode('utf-8') → bytes; bytes.decode('utf-8') → str."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Палиндром",
+    "text": "Функция is_palindrome(s) возвращает True, если строка — палиндром (без учёта регистра и пробелов).",
+    "starter": "def is_palindrome(s):\n    pass\n",
+    "tests": "assert is_palindrome(\"А роза упала на лапу Азора\")\nassert not is_palindrome(\"Python\")\nassert is_palindrome(\"\")",
+    "hint": "Приведите к нижнему регистру, удалите пробелы и сравните с t[::-1].",
+    "solution": "def is_palindrome(s):\n    t = s.lower().replace(\" \", \"\")\n    return t == t[::-1]\n"
+   },
+   {
+    "title": "Считаем гласные",
+    "text": "Функция vowels(s) возвращает количество гласных (а, е, ё, и, о, у, ы, э, ю, я) в строке, регистр не важен.",
+    "starter": "def vowels(s):\n    pass\n",
+    "tests": "assert vowels(\"Привет\") == 2\nassert vowels(\"ЯБЛОКО\") == 3\nassert vowels(\"\") == 0",
+    "hint": "sum(1 for ch in s.lower() if ch in \"аеёиоуыэюя\")",
+    "solution": "def vowels(s):\n    return sum(1 for ch in s.lower() if ch in \"аеёиоуыэюя\")\n"
+   }
+  ]
+ },
+ "4": {
+  "quiz": [
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "for i in range(2, 10, 3):\n    print(i, end=' ')",
+    "o": [
+     "2 5 8 ",
+     "2 5 8 11 ",
+     "3 6 9 ",
+     "2 4 6 8 "
+    ],
+    "a": 0,
+    "e": "range(start, stop, step): 2, 5, 8 (10 не включается)."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "for n in range(3):\n    if n == 5:\n        break\nelse:\n    print('готово')",
+    "o": [
+     "готово",
+     "ничего",
+     "Ошибка",
+     "0 1 2"
+    ],
+    "a": 0,
+    "e": "else у цикла выполняется, если цикл не был прерван break."
+   },
+   {
+    "t": "choice",
+    "q": "Что вернёт input()?",
+    "o": [
+     "int",
+     "Всегда str",
+     "Тип зависит от ввода",
+     "bytes"
+    ],
+    "a": 1,
+    "e": "input() всегда возвращает строку — преобразуйте int(input())."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "x = 7\nprint('чёт' if x % 2 == 0 else 'нечет')",
+    "o": [
+     "чёт",
+     "нечет",
+     "True",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "Тернарный оператор: A if условие else B."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "for i, ch in enumerate('ab', start=1):\n    print(i, ch)",
+    "o": [
+     "0 a\n1 b",
+     "1 a\n2 b",
+     "a 1\nb 2",
+     "1 ab"
+    ],
+    "a": 1,
+    "e": "enumerate отдаёт пары (индекс, элемент), start задаёт начало."
+   },
+   {
+    "t": "blank",
+    "q": "Заполните пропуск ____",
+    "code": "match cmd:\n    case 'quit':\n        print('выход')\n    case ____:\n        print('неизвестно')",
+    "o": [
+     "_",
+     "else",
+     "default",
+     "*"
+    ],
+    "a": 0,
+    "e": "case _ — шаблон «всё остальное»."
+   },
+   {
+    "t": "order",
+    "q": "Соберите обратный отсчёт 3, 2, 1, а затем «Старт!»:",
+    "lines": [
+     "n = 3",
+     "while n > 0:",
+     "    print(n)",
+     "    n -= 1",
+     "print('Старт!')"
+    ],
+    "e": "Сначала инициализация, затем цикл с выводом и уменьшением счётчика, а после цикла — финальная строка."
+   }
+  ],
+  "cards": [
+   {
+    "f": "break",
+    "b": "Немедленно выходит из цикла."
+   },
+   {
+    "f": "continue",
+    "b": "Переходит к следующей итерации."
+   },
+   {
+    "f": "zip(a, b)",
+    "b": "Параллельный обход нескольких последовательностей."
+   },
+   {
+    "f": "pass",
+    "b": "Пустая инструкция-заглушка."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "FizzBuzz",
+    "text": "Функция fizzbuzz(n) возвращает 'FizzBuzz', 'Fizz', 'Buzz' или само число строкой.",
+    "starter": "def fizzbuzz(n):\n    pass\n",
+    "tests": "assert fizzbuzz(15) == 'FizzBuzz'\nassert fizzbuzz(9) == 'Fizz'\nassert fizzbuzz(10) == 'Buzz'\nassert fizzbuzz(7) == '7'",
+    "hint": "Сначала проверьте делимость на 15.",
+    "solution": "def fizzbuzz(n):\n    if n % 15 == 0:\n        return 'FizzBuzz'\n    if n % 3 == 0:\n        return 'Fizz'\n    if n % 5 == 0:\n        return 'Buzz'\n    return str(n)\n"
+   },
+   {
+    "title": "Простые числа",
+    "text": "Функция primes(n) возвращает список простых чисел меньше n.",
+    "starter": "def primes(n):\n    pass\n",
+    "tests": "assert primes(20) == [2, 3, 5, 7, 11, 13, 17, 19]\nassert primes(2) == []",
+    "hint": "Число p простое, если ни одно d от 2 до int(p**0.5) его не делит.",
+    "solution": "def primes(n):\n    return [p for p in range(2, n) if all(p % d for d in range(2, int(p ** 0.5) + 1))]\n"
+   }
+  ]
+ },
+ "5": {
+  "quiz": [
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "a = [3, 1, 2]\nb = a.sort()\nprint(b)",
+    "o": [
+     "[1, 2, 3]",
+     "None",
+     "[3, 1, 2]",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "list.sort() сортирует на месте и возвращает None. Для нового списка — sorted(a)."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "grid = [[0] * 2] * 2\ngrid[0][0] = 1\nprint(grid)",
+    "o": [
+     "[[1, 0], [0, 0]]",
+     "[[1, 0], [1, 0]]",
+     "[[1, 1], [0, 0]]",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "* 2 копирует ССЫЛКУ на один внутренний список. Правильно: [[0] * 2 for _ in range(2)]."
+   },
+   {
+    "t": "choice",
+    "q": "Что создаёт выражение {}?",
+    "o": [
+     "Пустое множество",
+     "Пустой словарь",
+     "Пустой кортеж",
+     "Ошибку"
+    ],
+    "a": 1,
+    "e": "{} — пустой dict. Пустое множество — set()."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "d = {'a': 1}\nprint(d.get('b', 0))",
+    "o": [
+     "None",
+     "0",
+     "KeyError",
+     "'b'"
+    ],
+    "a": 1,
+    "e": "get возвращает значение по умолчанию, если ключа нет."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "print({1, 2, 3} & {2, 3, 4})",
+    "o": [
+     "{1, 2, 3, 4}",
+     "{2, 3}",
+     "{1, 4}",
+     "{1}"
+    ],
+    "a": 1,
+    "e": "& — пересечение множеств."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "print([x * x for x in range(5) if x % 2])",
+    "o": [
+     "[0, 4, 16]",
+     "[1, 9]",
+     "[1, 4, 9, 16]",
+     "[0, 1, 4, 9, 16]"
+    ],
+    "a": 1,
+    "e": "Условие x % 2 истинно для нечётных: 1 и 3 → [1, 9]."
+   },
+   {
+    "t": "choice",
+    "q": "Сложность поиска x in set?",
+    "o": [
+     "O(n)",
+     "O(log n)",
+     "O(1) в среднем",
+     "O(n²)"
+    ],
+    "a": 2,
+    "e": "Множества и словари — хэш-таблицы."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "first, *rest = (1, 2, 3)\nprint(rest)",
+    "o": [
+     "(2, 3)",
+     "[2, 3]",
+     "2",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "Звёздочка при распаковке собирает остаток в СПИСОК."
+   }
+  ],
+  "cards": [
+   {
+    "f": "Поверхностная копия",
+    "b": "list.copy(), lst[:], list(lst) — вложенные объекты общие."
+   },
+   {
+    "f": "Глубокая копия",
+    "b": "copy.deepcopy(obj) — копирует всё дерево объектов."
+   },
+   {
+    "f": "namedtuple",
+    "b": "Кортеж с именованными полями: Point = namedtuple('Point', 'x y')."
+   },
+   {
+    "f": "dict | dict",
+    "b": "Слияние словарей (Python 3.9+)."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Уникальные с порядком",
+    "text": "unique(lst) возвращает список без дубликатов, сохраняя порядок первого появления.",
+    "starter": "def unique(lst):\n    pass\n",
+    "tests": "assert unique([3, 1, 3, 2, 1]) == [3, 1, 2]\nassert unique([]) == []",
+    "hint": "Словари сохраняют порядок: list(dict.fromkeys(lst)).",
+    "solution": "def unique(lst):\n    return list(dict.fromkeys(lst))\n"
+   },
+   {
+    "title": "Частота слов",
+    "text": "word_count(text) возвращает словарь {слово: количество} (регистр не важен).",
+    "starter": "def word_count(text):\n    pass\n",
+    "tests": "assert word_count('Кот кот пёс') == {'кот': 2, 'пёс': 1}",
+    "hint": "Пройдите по text.lower().split() и используйте d.get(w, 0) + 1.",
+    "solution": "def word_count(text):\n    d = {}\n    for w in text.lower().split():\n        d[w] = d.get(w, 0) + 1\n    return d\n"
+   },
+   {
+    "title": "Транспонирование",
+    "text": "transpose(m) транспонирует матрицу (список списков).",
+    "starter": "def transpose(m):\n    pass\n",
+    "tests": "assert transpose([[1, 2, 3], [4, 5, 6]]) == [[1, 4], [2, 5], [3, 6]]",
+    "hint": "zip(*m) группирует столбцы.",
+    "solution": "def transpose(m):\n    return [list(r) for r in zip(*m)]\n"
+   }
+  ]
+ },
+ "6": {
+  "quiz": [
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "def add(x, items=[]):\n    items.append(x)\n    return items\nadd(1)\nprint(add(2))",
+    "o": [
+     "[2]",
+     "[1, 2]",
+     "[1]",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "Значение по умолчанию создаётся ОДИН раз при определении функции. Используйте items=None."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "def f(*args, **kwargs):\n    print(args, kwargs)\nf(1, 2, a=3)",
+    "o": [
+     "(1, 2) {'a': 3}",
+     "[1, 2] {'a': 3}",
+     "(1, 2, 3) {}",
+     "Ошибка"
+    ],
+    "a": 0,
+    "e": "*args собирает позиционные аргументы в кортеж, **kwargs — именованные в словарь."
+   },
+   {
+    "t": "choice",
+    "q": "Порядок поиска имён в Python?",
+    "o": [
+     "GLEB",
+     "LEGB",
+     "BGEL",
+     "LGEB"
+    ],
+    "a": 1,
+    "e": "Local → Enclosing → Global → Built-in."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "x = 1\ndef f():\n    x = 2\nf()\nprint(x)",
+    "o": [
+     "1",
+     "2",
+     "None",
+     "Ошибка"
+    ],
+    "a": 0,
+    "e": "Присваивание внутри функции создаёт локальную переменную."
+   },
+   {
+    "t": "blank",
+    "q": "Заполните пропуск ____",
+    "code": "def counter():\n    n = 0\n    def inc():\n        ____ n\n        n += 1\n        return n\n    return inc",
+    "o": [
+     "nonlocal",
+     "global",
+     "local",
+     "static"
+    ],
+    "a": 0,
+    "e": "nonlocal позволяет изменить переменную внешней функции."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "print((lambda x, y=2: x * y)(5))",
+    "o": [
+     "5",
+     "10",
+     "7",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "y по умолчанию 2 → 5 * 2."
+   },
+   {
+    "t": "choice",
+    "q": "Что вернёт функция без return?",
+    "o": [
+     "0",
+     "None",
+     "Пустую строку",
+     "Ошибку"
+    ],
+    "a": 1,
+    "e": "Функция без return возвращает None."
+   },
+   {
+    "t": "order",
+    "q": "Расставьте рекурсивный факториал:",
+    "lines": [
+     "def fact(n):",
+     "    if n <= 1:",
+     "        return 1",
+     "    return n * fact(n - 1)"
+    ],
+    "e": "Базовый случай должен идти первым, иначе рекурсия бесконечна."
+   }
+  ],
+  "cards": [
+   {
+    "f": "*args",
+    "b": "Кортеж лишних позиционных аргументов."
+   },
+   {
+    "f": "**kwargs",
+    "b": "Словарь лишних именованных аргументов."
+   },
+   {
+    "f": "Keyword-only",
+    "b": "Аргументы после * передаются только по имени: def f(a, *, b)."
+   },
+   {
+    "f": "Docstring",
+    "b": "Строка документации сразу после def. Доступна через help(f)."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Среднее",
+    "text": "mean(*nums) возвращает среднее любого количества чисел, а для пустого вызова — 0.",
+    "starter": "def mean(*nums):\n    pass\n",
+    "tests": "assert mean(1, 2, 3) == 2\nassert mean() == 0\nassert mean(5) == 5",
+    "hint": "sum(nums) / len(nums), но проверьте пустой кортеж.",
+    "solution": "def mean(*nums):\n    return sum(nums) / len(nums) if nums else 0\n"
+   },
+   {
+    "title": "Сплющивание",
+    "text": "flatten(nested) возвращает плоский список из списка любой вложенности.",
+    "starter": "def flatten(nested):\n    pass\n",
+    "tests": "assert flatten([1, [2, [3, [4]]], 5]) == [1, 2, 3, 4, 5]\nassert flatten([]) == []",
+    "hint": "Рекурсия: если элемент — список, расширяйте результат flatten(элемент).",
+    "solution": "def flatten(nested):\n    out = []\n    for x in nested:\n        if isinstance(x, list):\n            out.extend(flatten(x))\n        else:\n            out.append(x)\n    return out\n"
+   }
+  ]
+ },
+ "7": {
+  "quiz": [
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "try:\n    1 / 0\nexcept ZeroDivisionError:\n    print('A')\nelse:\n    print('B')\nfinally:\n    print('C')",
+    "o": [
+     "A C",
+     "A\nC",
+     "B\nC",
+     "A\nB\nC"
+    ],
+    "a": 1,
+    "e": "Сработал except (A), else пропущен, finally выполняется всегда (C)."
+   },
+   {
+    "t": "choice",
+    "q": "Какое исключение вызовет int('abc')?",
+    "o": [
+     "TypeError",
+     "ValueError",
+     "SyntaxError",
+     "KeyError"
+    ],
+    "a": 1,
+    "e": "Тип верный (str), но значение не число → ValueError."
+   },
+   {
+    "t": "choice",
+    "q": "Почему нельзя писать голый except:?",
+    "o": [
+     "Он медленный",
+     "Перехватит даже KeyboardInterrupt и SystemExit",
+     "Это синтаксическая ошибка",
+     "Он не ловит ValueError"
+    ],
+    "a": 1,
+    "e": "Голый except ловит BaseException. Ловите конкретные исключения."
+   },
+   {
+    "t": "choice",
+    "q": "От какого класса наследовать свои исключения?",
+    "o": [
+     "BaseException",
+     "Exception",
+     "object",
+     "Error"
+    ],
+    "a": 1,
+    "e": "Exception — база для всех «обычных» ошибок."
+   },
+   {
+    "t": "blank",
+    "q": "Заполните пропуск ____",
+    "code": "try:\n    load()\nexcept KeyError as e:\n    raise ConfigError('нет ключа') ____ e",
+    "o": [
+     "from",
+     "with",
+     "as",
+     "in"
+    ],
+    "a": 0,
+    "e": "raise ... from e сохраняет цепочку исключений."
+   },
+   {
+    "t": "choice",
+    "q": "Стиль «проще попросить прощения, чем разрешения» называется:",
+    "o": [
+     "LBYL",
+     "EAFP",
+     "DRY",
+     "KISS"
+    ],
+    "a": 1,
+    "e": "EAFP — try/except вместо предварительных проверок."
+   },
+   {
+    "t": "choice",
+    "q": "IndexError и KeyError — потомки:",
+    "o": [
+     "ArithmeticError",
+     "LookupError",
+     "OSError",
+     "ValueError"
+    ],
+    "a": 1,
+    "e": "except LookupError поймает оба."
+   }
+  ],
+  "cards": [
+   {
+    "f": "finally",
+    "b": "Выполняется всегда — для освобождения ресурсов."
+   },
+   {
+    "f": "else в try",
+    "b": "Выполняется, если исключения не было."
+   },
+   {
+    "f": "raise без аргумента",
+    "b": "Перебрасывает текущее исключение дальше."
+   },
+   {
+    "f": "assert",
+    "b": "Проверка инварианта; отключается флагом -O."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Безопасное деление",
+    "text": "safe_div(a, b) возвращает a / b или None при делении на ноль.",
+    "starter": "def safe_div(a, b):\n    pass\n",
+    "tests": "assert safe_div(6, 3) == 2\nassert safe_div(1, 0) is None",
+    "hint": "Оберните деление в try/except ZeroDivisionError.",
+    "solution": "def safe_div(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return None\n"
+   },
+   {
+    "title": "Своё исключение",
+    "text": "Создайте класс NegativeError(ValueError) и функцию sqrt(x), которая бросает его при x < 0, иначе возвращает x ** 0.5.",
+    "starter": "class NegativeError(ValueError):\n    pass\n\ndef sqrt(x):\n    pass\n",
+    "tests": "assert sqrt(9) == 3\ntry:\n    sqrt(-1)\n    assert False, 'нет исключения'\nexcept NegativeError:\n    pass",
+    "hint": "if x < 0: raise NegativeError(...)",
+    "solution": "class NegativeError(ValueError):\n    pass\n\ndef sqrt(x):\n    if x < 0:\n        raise NegativeError('x < 0')\n    return x ** 0.5\n"
+   }
+  ]
+ },
+ "8": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Что делает режим \"w\" при открытии существующего файла?",
+    "o": [
+     "Дописывает в конец",
+     "Перезаписывает файл",
+     "Бросает ошибку",
+     "Открывает только для чтения"
+    ],
+    "a": 1,
+    "e": "\"w\" очищает файл. Для дописывания — \"a\", для «создать, если нет» — \"x\"."
+   },
+   {
+    "t": "choice",
+    "q": "Зачем открывать файл через with?",
+    "o": [
+     "Так быстрее",
+     "Файл гарантированно закроется",
+     "Иначе нельзя писать",
+     "Для кодировки"
+    ],
+    "a": 1,
+    "e": "Контекстный менеджер закроет файл даже при исключении."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "from pathlib import Path\np = Path('data') / 'report.txt'\nprint(p.stem, p.suffix)",
+    "o": [
+     "report .txt",
+     "report.txt txt",
+     "data report",
+     "report txt"
+    ],
+    "a": 0,
+    "e": "stem — имя без расширения, suffix — расширение с точкой."
+   },
+   {
+    "t": "choice",
+    "q": "Какой параметр json.dumps сохранит кириллицу читаемой?",
+    "o": [
+     "indent=2",
+     "ensure_ascii=False",
+     "encoding='utf-8'",
+     "sort_keys=True"
+    ],
+    "a": 1,
+    "e": "По умолчанию не-ASCII символы экранируются как \\uXXXX."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "import json\nprint(json.dumps({'ok': True, 'v': None}))",
+    "o": [
+     "{\"ok\": True, \"v\": None}",
+     "{\"ok\": true, \"v\": null}",
+     "{'ok': True, 'v': None}",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "В JSON: True → true, None → null, кавычки — двойные."
+   },
+   {
+    "t": "choice",
+    "q": "Почему pickle опасен?",
+    "o": [
+     "Он медленный",
+     "Загрузка недоверенного pickle может выполнить произвольный код",
+     "Он теряет данные",
+     "Он не поддерживает списки"
+    ],
+    "a": 1,
+    "e": "Никогда не загружайте pickle из ненадёжных источников."
+   }
+  ],
+  "cards": [
+   {
+    "f": "Path.read_text()",
+    "b": "Читает весь файл одной строкой (укажите encoding)."
+   },
+   {
+    "f": "rglob('*.py')",
+    "b": "Рекурсивный поиск файлов по шаблону."
+   },
+   {
+    "f": "csv.DictReader",
+    "b": "Читает CSV как словари с ключами из заголовка."
+   },
+   {
+    "f": "shutil",
+    "b": "Копирование, перемещение, удаление папок, архивы."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "JSON туда и обратно",
+    "text": "roundtrip(obj) сериализует объект в JSON-строку с ensure_ascii=False и возвращает (строка, восстановленный объект).",
+    "starter": "import json\n\ndef roundtrip(obj):\n    pass\n",
+    "tests": "s, o = roundtrip({'имя': 'Анна', 'n': [1, 2]})\nassert 'Анна' in s\nassert o == {'имя': 'Анна', 'n': [1, 2]}",
+    "hint": "json.dumps(..., ensure_ascii=False) и json.loads(...).",
+    "solution": "import json\n\ndef roundtrip(obj):\n    s = json.dumps(obj, ensure_ascii=False)\n    return s, json.loads(s)\n"
+   },
+   {
+    "title": "Подсчёт строк",
+    "text": "Запишите 3 строки в файл 'test.txt', затем функция count_lines(path) возвращает число строк.",
+    "starter": "def count_lines(path):\n    pass\n\nwith open('test.txt', 'w', encoding='utf-8') as f:\n    f.write('a\\nb\\nc\\n')\n",
+    "tests": "assert count_lines('test.txt') == 3",
+    "hint": "with open(path, encoding='utf-8') as f: return sum(1 for _ in f)",
+    "solution": "def count_lines(path):\n    with open(path, encoding='utf-8') as f:\n        return sum(1 for _ in f)\n\nwith open('test.txt', 'w', encoding='utf-8') as f:\n    f.write('a\\nb\\nc\\n')\n"
+   }
+  ]
+ },
+ "9": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Когда истинно условие if __name__ == '__main__'?",
+    "o": [
+     "Всегда",
+     "Когда файл запущен напрямую",
+     "Когда файл импортирован",
+     "Никогда"
+    ],
+    "a": 1,
+    "e": "При импорте __name__ равно имени модуля."
+   },
+   {
+    "t": "choice",
+    "q": "Зачем нужны виртуальные окружения?",
+    "o": [
+     "Ускоряют Python",
+     "Изолируют зависимости проектов",
+     "Шифруют код",
+     "Нужны только на Linux"
+    ],
+    "a": 1,
+    "e": "У каждого проекта свои версии библиотек без конфликтов."
+   },
+   {
+    "t": "choice",
+    "q": "Команда для фиксации зависимостей в файл:",
+    "o": [
+     "pip list > req.txt",
+     "pip freeze > requirements.txt",
+     "pip save",
+     "pip export"
+    ],
+    "a": 1,
+    "e": "pip freeze выводит пакеты в формате для pip install -r."
+   },
+   {
+    "t": "choice",
+    "q": "Почему нельзя называть свой файл random.py?",
+    "o": [
+     "Это зарезервированное слово",
+     "Он перекроет стандартный модуль random",
+     "Python не запустит его",
+     "Можно, проблем нет"
+    ],
+    "a": 1,
+    "e": "Папка скрипта стоит первой в sys.path."
+   },
+   {
+    "t": "blank",
+    "q": "Заполните пропуск ____",
+    "code": "from ____ import User  # относительный импорт из того же пакета",
+    "o": [
+     ".models",
+     "models.",
+     "..",
+     "~models"
+    ],
+    "a": 0,
+    "e": "Точка означает текущий пакет."
+   },
+   {
+    "t": "choice",
+    "q": "Где Python ищет модули?",
+    "o": [
+     "Только в текущей папке",
+     "В списке sys.path",
+     "В PATH",
+     "В реестре"
+    ],
+    "a": 1,
+    "e": "sys.path: папка скрипта, PYTHONPATH, стандартная библиотека, site-packages."
+   }
+  ],
+  "cards": [
+   {
+    "f": "Модуль",
+    "b": "Любой .py файл."
+   },
+   {
+    "f": "Пакет",
+    "b": "Папка с модулями (обычно с __init__.py)."
+   },
+   {
+    "f": "python -m venv .venv",
+    "b": "Создаёт виртуальное окружение в папке .venv."
+   },
+   {
+    "f": "uv",
+    "b": "Очень быстрый менеджер пакетов и окружений."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Модуль math",
+    "text": "Используя модуль math, напишите hypot(a, b) — длину гипотенузы.",
+    "starter": "import math\n\ndef hypot(a, b):\n    pass\n",
+    "tests": "assert hypot(3, 4) == 5\nassert round(hypot(1, 1), 4) == 1.4142",
+    "hint": "math.sqrt(a*a + b*b) или math.hypot.",
+    "solution": "import math\n\ndef hypot(a, b):\n    return math.sqrt(a * a + b * b)\n"
+   }
+  ]
+ },
+ "10": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Что такое self в методе?",
+    "o": [
+     "Ключевое слово языка",
+     "Ссылка на текущий экземпляр",
+     "Ссылка на класс",
+     "Глобальная переменная"
+    ],
+    "a": 1,
+    "e": "rex.bark() эквивалентно Dog.bark(rex)."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "class A:\n    items = []\na, b = A(), A()\na.items.append(1)\nprint(b.items)",
+    "o": [
+     "[]",
+     "[1]",
+     "Ошибка",
+     "None"
+    ],
+    "a": 1,
+    "e": "items — атрибут КЛАССА, общий для всех экземпляров. Создавайте списки в __init__."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "class A:\n    def hi(self): return 'A'\nclass B(A):\n    def hi(self): return 'B' + super().hi()\nprint(B().hi())",
+    "o": [
+     "B",
+     "A",
+     "BA",
+     "AB"
+    ],
+    "a": 2,
+    "e": "super() вызывает метод родителя."
+   },
+   {
+    "t": "choice",
+    "q": "Что делает @property?",
+    "o": [
+     "Делает атрибут приватным",
+     "Позволяет вызывать метод как атрибут",
+     "Создаёт статический метод",
+     "Кеширует результат"
+    ],
+    "a": 1,
+    "e": "t.fahrenheit — без скобок, но вычисляется методом."
+   },
+   {
+    "t": "choice",
+    "q": "Чем @classmethod отличается от @staticmethod?",
+    "o": [
+     "Ничем",
+     "classmethod получает cls первым аргументом",
+     "staticmethod получает self",
+     "classmethod нельзя вызвать из экземпляра"
+    ],
+    "a": 1,
+    "e": "classmethod удобен для альтернативных конструкторов."
+   },
+   {
+    "t": "choice",
+    "q": "Принцип «предпочитайте композицию наследованию» значит:",
+    "o": [
+     "Не использовать классы",
+     "Включать объекты как поля вместо глубоких иерархий",
+     "Всегда множественное наследование",
+     "Использовать миксины везде"
+    ],
+    "a": 1,
+    "e": "Машина СОДЕРЖИТ двигатель, а не ЯВЛЯЕТСЯ им."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "class D:\n    __slots__ = ()\nclass P:\n    def __init__(self):\n        self.__x = 1\nprint(hasattr(P(), '_P__x'))",
+    "o": [
+     "True",
+     "False",
+     "Ошибка",
+     "None"
+    ],
+    "a": 0,
+    "e": "Двойное подчёркивание включает name mangling: __x → _P__x."
+   }
+  ],
+  "cards": [
+   {
+    "f": "Инкапсуляция",
+    "b": "Объединение данных и методов, сокрытие деталей."
+   },
+   {
+    "f": "Полиморфизм",
+    "b": "Один интерфейс — разные реализации."
+   },
+   {
+    "f": "MRO",
+    "b": "Порядок поиска методов при наследовании (C3). Смотрите Class.__mro__."
+   },
+   {
+    "f": "Утиная типизация",
+    "b": "Важно поведение объекта, а не его тип."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Банковский счёт",
+    "text": "Класс Account(balance=0) с методами deposit(x), withdraw(x) (ValueError при нехватке средств) и свойством balance (только чтение).",
+    "starter": "class Account:\n    def __init__(self, balance=0):\n        pass\n",
+    "tests": "a = Account(100)\na.deposit(50)\na.withdraw(30)\nassert a.balance == 120\ntry:\n    a.withdraw(1000)\n    assert False\nexcept ValueError:\n    pass\nassert a.balance == 120",
+    "hint": "Храните баланс в self._balance и сделайте @property balance.",
+    "solution": "class Account:\n    def __init__(self, balance=0):\n        self._balance = balance\n\n    @property\n    def balance(self):\n        return self._balance\n\n    def deposit(self, x):\n        self._balance += x\n\n    def withdraw(self, x):\n        if x > self._balance:\n            raise ValueError('мало средств')\n        self._balance -= x\n"
+   },
+   {
+    "title": "Стек",
+    "text": "Класс Stack с методами push, pop, peek и is_empty.",
+    "starter": "class Stack:\n    pass\n",
+    "tests": "s = Stack()\nassert s.is_empty()\ns.push(1); s.push(2)\nassert s.peek() == 2\nassert s.pop() == 2\nassert s.pop() == 1\nassert s.is_empty()",
+    "hint": "Внутри храните список self._items.",
+    "solution": "class Stack:\n    def __init__(self):\n        self._items = []\n    def push(self, x):\n        self._items.append(x)\n    def pop(self):\n        return self._items.pop()\n    def peek(self):\n        return self._items[-1]\n    def is_empty(self):\n        return not self._items\n"
+   }
+  ]
+ },
+ "11": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Какой метод вызывает print(obj)?",
+    "o": [
+     "__repr__",
+     "__str__ (если есть)",
+     "__print__",
+     "__format__"
+    ],
+    "a": 1,
+    "e": "print использует __str__, а при его отсутствии — __repr__."
+   },
+   {
+    "t": "choice",
+    "q": "Что нужно определить, чтобы работало obj1 + obj2?",
+    "o": [
+     "__plus__",
+     "__add__",
+     "__sum__",
+     "__radd__ только"
+    ],
+    "a": 1,
+    "e": "Оператор + вызывает __add__."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "from dataclasses import dataclass\n@dataclass\nclass P:\n    x: int\n    y: int = 0\nprint(P(1))",
+    "o": [
+     "P(1)",
+     "P(x=1, y=0)",
+     "<P object>",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "dataclass генерирует __repr__ с именами полей."
+   },
+   {
+    "t": "choice",
+    "q": "Как задать изменяемое значение по умолчанию в dataclass?",
+    "o": [
+     "tags: list = []",
+     "tags: list = field(default_factory=list)",
+     "tags = list()",
+     "Нельзя"
+    ],
+    "a": 1,
+    "e": "Иначе список был бы общим для всех экземпляров (dataclass запретит такой код)."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "from enum import Enum\nclass C(Enum):\n    RED = 1\nprint(C(1).name)",
+    "o": [
+     "1",
+     "RED",
+     "C.RED",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "C(1) находит член по значению, .name — его имя."
+   },
+   {
+    "t": "choice",
+    "q": "Что произойдёт при создании экземпляра абстрактного класса?",
+    "o": [
+     "Ничего",
+     "TypeError",
+     "Вызовется первый абстрактный метод",
+     "Вернётся None"
+    ],
+    "a": 1,
+    "e": "Сначала нужно реализовать все @abstractmethod в подклассе."
+   },
+   {
+    "t": "blank",
+    "q": "Заполните пропуск ____",
+    "code": "class V:\n    def ____(self):\n        return 2\nprint(len(V()))  # 2",
+    "o": [
+     "__len__",
+     "__size__",
+     "len",
+     "__count__"
+    ],
+    "a": 0,
+    "e": "len() вызывает __len__."
+   }
+  ],
+  "cards": [
+   {
+    "f": "__repr__",
+    "b": "Однозначное представление для разработчика (в REPL)."
+   },
+   {
+    "f": "__eq__ + __hash__",
+    "b": "Нужны, чтобы объект был ключом словаря."
+   },
+   {
+    "f": "@total_ordering",
+    "b": "Достаточно __eq__ и __lt__ — остальные сравнения создадутся."
+   },
+   {
+    "f": "frozen=True",
+    "b": "Неизменяемый dataclass."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Вектор",
+    "text": "Класс Vector(x, y) с поддержкой +, * на число, == и repr вида Vector(1, 2).",
+    "starter": "class Vector:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n",
+    "tests": "a = Vector(1, 2) + Vector(3, 4)\nassert a == Vector(4, 6)\nassert Vector(1, 2) * 3 == Vector(3, 6)\nassert repr(Vector(1, 2)) == 'Vector(1, 2)'",
+    "hint": "Определите __add__, __mul__, __eq__ и __repr__.",
+    "solution": "class Vector:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n    def __add__(self, o):\n        return Vector(self.x + o.x, self.y + o.y)\n    def __mul__(self, k):\n        return Vector(self.x * k, self.y * k)\n    def __eq__(self, o):\n        return (self.x, self.y) == (o.x, o.y)\n    def __repr__(self):\n        return f'Vector({self.x}, {self.y})'\n"
+   }
+  ]
+ },
+ "12": {
+  "quiz": [
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "def gen():\n    yield 1\n    yield 2\ng = gen()\nprint(next(g), next(g))",
+    "o": [
+     "1 1",
+     "1 2",
+     "2 2",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "Генератор продолжает работу с места последнего yield."
+   },
+   {
+    "t": "choice",
+    "q": "Что бросает итератор, когда элементы закончились?",
+    "o": [
+     "IndexError",
+     "StopIteration",
+     "EOFError",
+     "None"
+    ],
+    "a": 1,
+    "e": "for перехватывает StopIteration и завершает цикл."
+   },
+   {
+    "t": "choice",
+    "q": "Главное преимущество генераторов:",
+    "o": [
+     "Скорость доступа по индексу",
+     "Ленивость — экономия памяти",
+     "Сортировка",
+     "Многопоточность"
+    ],
+    "a": 1,
+    "e": "Значения вычисляются по требованию."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "g = (x * 2 for x in range(3))\nprint(list(g), list(g))",
+    "o": [
+     "[0, 2, 4] [0, 2, 4]",
+     "[0, 2, 4] []",
+     "[] []",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "Генератор одноразовый: после исчерпания он пуст."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "import itertools as it\nprint(list(it.islice(it.count(10, 5), 3)))",
+    "o": [
+     "[10, 15, 20]",
+     "[10, 11, 12]",
+     "[5, 10, 15]",
+     "Бесконечный цикл"
+    ],
+    "a": 0,
+    "e": "islice берёт первые 3 элемента бесконечного count."
+   },
+   {
+    "t": "blank",
+    "q": "Заполните пропуск ____",
+    "code": "def chain(*its):\n    for it in its:\n        ____ it",
+    "o": [
+     "yield from",
+     "return",
+     "yield",
+     "await"
+    ],
+    "a": 0,
+    "e": "yield from делегирует итерацию вложенному итератору."
+   }
+  ],
+  "cards": [
+   {
+    "f": "Итерируемый объект",
+    "b": "Имеет __iter__ (list, str, dict, файл)."
+   },
+   {
+    "f": "Итератор",
+    "b": "Имеет __next__ и сам является итерируемым."
+   },
+   {
+    "f": "itertools.groupby",
+    "b": "Группирует подряд идущие элементы с одинаковым ключом."
+   },
+   {
+    "f": "send()",
+    "b": "Передаёт значение в генератор на место yield."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Фибоначчи",
+    "text": "Генератор fib() бесконечно выдаёт числа Фибоначчи 0, 1, 1, 2, 3, ...",
+    "starter": "def fib():\n    pass\n",
+    "tests": "from itertools import islice\nassert list(islice(fib(), 8)) == [0, 1, 1, 2, 3, 5, 8, 13]",
+    "hint": "a, b = 0, 1; в цикле while True: yield a; a, b = b, a + b",
+    "solution": "def fib():\n    a, b = 0, 1\n    while True:\n        yield a\n        a, b = b, a + b\n"
+   },
+   {
+    "title": "Чанки",
+    "text": "chunks(lst, n) — генератор частей списка по n элементов.",
+    "starter": "def chunks(lst, n):\n    pass\n",
+    "tests": "assert list(chunks([1, 2, 3, 4, 5], 2)) == [[1, 2], [3, 4], [5]]",
+    "hint": "for i in range(0, len(lst), n): yield lst[i:i + n]",
+    "solution": "def chunks(lst, n):\n    for i in range(0, len(lst), n):\n        yield lst[i:i + n]\n"
+   }
+  ]
+ },
+ "13": {
+  "quiz": [
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "def mul(n):\n    return lambda x: x * n\ndouble = mul(2)\nprint(double(21))",
+    "o": [
+     "21",
+     "42",
+     "2",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "Замыкание запомнило n = 2."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "fs = [lambda: i for i in range(3)]\nprint([f() for f in fs])",
+    "o": [
+     "[0, 1, 2]",
+     "[2, 2, 2]",
+     "[0, 0, 0]",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "Позднее связывание: все lambda видят последнее значение i."
+   },
+   {
+    "t": "choice",
+    "q": "Зачем в декораторе functools.wraps?",
+    "o": [
+     "Ускоряет вызов",
+     "Сохраняет имя и docstring исходной функции",
+     "Обязателен синтаксически",
+     "Кеширует"
+    ],
+    "a": 1,
+    "e": "Без него обёрнутая функция будет называться wrapper."
+   },
+   {
+    "t": "choice",
+    "q": "@timer над функцией slow эквивалентно:",
+    "o": [
+     "timer(slow())",
+     "slow = timer(slow)",
+     "slow = timer",
+     "timer = slow(timer)"
+    ],
+    "a": 1,
+    "e": "Декоратор — синтаксический сахар."
+   },
+   {
+    "t": "choice",
+    "q": "Что делает @functools.cache?",
+    "o": [
+     "Сохраняет результаты вызовов по аргументам",
+     "Ускоряет циклы",
+     "Сохраняет в файл",
+     "Делает функцию асинхронной"
+    ],
+    "a": 0,
+    "e": "Мемоизация: fib(300) считается мгновенно."
+   },
+   {
+    "t": "order",
+    "q": "Соберите декоратор, печатающий имя функции:",
+    "lines": [
+     "def log(func):",
+     "    @functools.wraps(func)",
+     "    def wrapper(*args, **kwargs):",
+     "        print(func.__name__)",
+     "        return func(*args, **kwargs)",
+     "    return wrapper"
+    ],
+    "e": "Внешняя функция возвращает внутреннюю обёртку."
+   }
+  ],
+  "cards": [
+   {
+    "f": "Замыкание",
+    "b": "Функция, запомнившая переменные внешней области."
+   },
+   {
+    "f": "Декоратор с параметрами",
+    "b": "Три уровня: фабрика → декоратор → обёртка."
+   },
+   {
+    "f": "partial",
+    "b": "Фиксирует часть аргументов: partial(int, base=2)."
+   },
+   {
+    "f": "singledispatch",
+    "b": "Перегрузка функции по типу первого аргумента."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Счётчик вызовов",
+    "text": "Декоратор count_calls добавляет функции атрибут calls — число вызовов.",
+    "starter": "import functools\n\ndef count_calls(func):\n    pass\n",
+    "tests": "@count_calls\ndef hi():\n    return 'hi'\nhi(); hi(); hi()\nassert hi.calls == 3\nassert hi() == 'hi'",
+    "hint": "В wrapper увеличивайте wrapper.calls += 1; задайте wrapper.calls = 0 перед return.",
+    "solution": "import functools\n\ndef count_calls(func):\n    @functools.wraps(func)\n    def wrapper(*a, **kw):\n        wrapper.calls += 1\n        return func(*a, **kw)\n    wrapper.calls = 0\n    return wrapper\n"
+   }
+  ]
+ },
+ "14": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Какие методы нужны контекстному менеджеру?",
+    "o": [
+     "__open__ и __close__",
+     "__enter__ и __exit__",
+     "__start__ и __stop__",
+     "__with__"
+    ],
+    "a": 1,
+    "e": "__enter__ при входе в with, __exit__ — при выходе."
+   },
+   {
+    "t": "choice",
+    "q": "Что значит, если __exit__ вернул True?",
+    "o": [
+     "Ошибка",
+     "Исключение будет подавлено",
+     "Ресурс не закроется",
+     "Повторить блок"
+    ],
+    "a": 1,
+    "e": "True подавляет исключение."
+   },
+   {
+    "t": "blank",
+    "q": "Заполните пропуск ____",
+    "code": "from contextlib import contextmanager\n@contextmanager\ndef tag(name):\n    print(f'<{name}>')\n    ____\n    print(f'</{name}>')",
+    "o": [
+     "yield",
+     "return",
+     "await",
+     "pass"
+    ],
+    "a": 0,
+    "e": "Код до yield — вход, после — выход."
+   },
+   {
+    "t": "choice",
+    "q": "Как проигнорировать FileNotFoundError в одну строку?",
+    "o": [
+     "with ignore(FileNotFoundError):",
+     "with suppress(FileNotFoundError):",
+     "try FileNotFoundError:",
+     "with pass:"
+    ],
+    "a": 1,
+    "e": "contextlib.suppress."
+   },
+   {
+    "t": "choice",
+    "q": "ExitStack нужен для:",
+    "o": [
+     "Выхода из программы",
+     "Динамического числа контекстных менеджеров",
+     "Стека вызовов",
+     "Отладки"
+    ],
+    "a": 1,
+    "e": "Например, открыть список файлов."
+   }
+  ],
+  "cards": [
+   {
+    "f": "with",
+    "b": "Гарантирует освобождение ресурса."
+   },
+   {
+    "f": "contextmanager",
+    "b": "Создаёт менеджер из генератора с одним yield."
+   },
+   {
+    "f": "redirect_stdout",
+    "b": "Временно перенаправляет вывод print."
+   },
+   {
+    "f": "Применения",
+    "b": "Файлы, блокировки, транзакции, таймеры, смена папки."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Таймер",
+    "text": "Класс Timer — контекстный менеджер, который после выхода хранит в .elapsed прошедшие секунды (float ≥ 0).",
+    "starter": "import time\n\nclass Timer:\n    pass\n",
+    "tests": "with Timer() as t:\n    sum(range(10000))\nassert isinstance(t.elapsed, float) and t.elapsed >= 0",
+    "hint": "__enter__ запоминает time.perf_counter() и возвращает self; __exit__ считает разницу.",
+    "solution": "import time\n\nclass Timer:\n    def __enter__(self):\n        self.start = time.perf_counter()\n        return self\n    def __exit__(self, *exc):\n        self.elapsed = time.perf_counter() - self.start\n        return False\n"
+   }
+  ]
+ },
+ "15": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Проверяет ли Python аннотации типов во время выполнения?",
+    "o": [
+     "Да, всегда",
+     "Нет, это подсказки для людей и инструментов",
+     "Только в strict-режиме",
+     "Только для int"
+    ],
+    "a": 1,
+    "e": "Проверку делают mypy/pyright до запуска."
+   },
+   {
+    "t": "choice",
+    "q": "Как в 3.10+ записать «User или None»?",
+    "o": [
+     "User?",
+     "User | None",
+     "Optional(User)",
+     "User or None"
+    ],
+    "a": 1,
+    "e": "Также можно Optional[User]."
+   },
+   {
+    "t": "choice",
+    "q": "Что такое Protocol?",
+    "o": [
+     "Сетевой протокол",
+     "Структурная (утиная) типизация для проверяльщиков",
+     "Абстрактный класс с реализацией",
+     "Декоратор"
+    ],
+    "a": 1,
+    "e": "Класс подходит, если у него есть нужные методы — наследоваться не нужно."
+   },
+   {
+    "t": "blank",
+    "q": "Заполните пропуск ____",
+    "code": "def first____(items: list[T]) -> T:\n    return items[0]",
+    "o": [
+     "[T]",
+     "<T>",
+     "(T)",
+     "{T}"
+    ],
+    "a": 0,
+    "e": "Синтаксис обобщённых функций Python 3.12+."
+   },
+   {
+    "t": "choice",
+    "q": "Какой тип принять для «любой последовательности для чтения»?",
+    "o": [
+     "list",
+     "Sequence",
+     "Any",
+     "tuple"
+    ],
+    "a": 1,
+    "e": "Принимайте самые общие типы из collections.abc."
+   }
+  ],
+  "cards": [
+   {
+    "f": "mypy --strict",
+    "b": "Строгая статическая проверка типов."
+   },
+   {
+    "f": "Literal['r', 'w']",
+    "b": "Тип, допускающий только перечисленные значения."
+   },
+   {
+    "f": "TypedDict",
+    "b": "Словарь с фиксированными ключами и типами значений."
+   },
+   {
+    "f": "Final",
+    "b": "Значение, которое нельзя переопределять."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Типизированная функция",
+    "text": "Напишите total(prices: list[float]) -> float, возвращающую сумму, округлённую до 2 знаков.",
+    "starter": "def total(prices: list[float]) -> float:\n    pass\n",
+    "tests": "assert total([0.1, 0.2]) == 0.3\nassert total([]) == 0",
+    "hint": "round(sum(prices), 2)",
+    "solution": "def total(prices: list[float]) -> float:\n    return round(sum(prices), 2)\n"
+   }
+  ]
+ },
+ "16": {
+  "quiz": [
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "from collections import Counter\nprint(Counter('abracadabra').most_common(1))",
+    "o": [
+     "[('a', 5)]",
+     "[('b', 2)]",
+     "{'a': 5}",
+     "('a', 5)"
+    ],
+    "a": 0,
+    "e": "most_common(n) — список пар."
+   },
+   {
+    "t": "choice",
+    "q": "Какую структуру взять для очереди с быстрым удалением слева?",
+    "o": [
+     "list",
+     "deque",
+     "tuple",
+     "set"
+    ],
+    "a": 1,
+    "e": "deque.popleft() — O(1), list.pop(0) — O(n)."
+   },
+   {
+    "t": "choice",
+    "q": "Что использовать для генерации токенов и паролей?",
+    "o": [
+     "random",
+     "secrets",
+     "uuid1",
+     "time"
+    ],
+    "a": 1,
+    "e": "random предсказуем; secrets — криптостойкий."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "from datetime import date, timedelta\nprint(date(2026, 12, 31) + timedelta(days=1))",
+    "o": [
+     "2026-12-32",
+     "2027-01-01",
+     "2026-01-01",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "timedelta корректно переходит через год."
+   },
+   {
+    "t": "choice",
+    "q": "Как безопасно запустить внешнюю команду?",
+    "o": [
+     "os.system(user_input)",
+     "subprocess.run([...], check=True) без shell=True",
+     "eval(cmd)",
+     "exec(cmd)"
+    ],
+    "a": 1,
+    "e": "shell=True с пользовательским вводом — дыра в безопасности."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "from collections import defaultdict\nd = defaultdict(list)\nd['a'].append(1)\nprint(dict(d))",
+    "o": [
+     "{'a': [1]}",
+     "KeyError",
+     "{}",
+     "{'a': 1}"
+    ],
+    "a": 0,
+    "e": "defaultdict создаёт значение по умолчанию при первом обращении."
+   }
+  ],
+  "cards": [
+   {
+    "f": "Counter",
+    "b": "Словарь-счётчик элементов."
+   },
+   {
+    "f": "defaultdict",
+    "b": "Словарь со значением по умолчанию."
+   },
+   {
+    "f": "argparse",
+    "b": "Разбор аргументов командной строки."
+   },
+   {
+    "f": "zoneinfo",
+    "b": "Часовые пояса: ZoneInfo('Europe/Moscow')."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Топ слов",
+    "text": "top_words(text, n) возвращает n самых частых слов (в нижнем регистре) списком.",
+    "starter": "from collections import Counter\n\ndef top_words(text, n):\n    pass\n",
+    "tests": "assert top_words('a b a c a b', 2) == ['a', 'b']",
+    "hint": "Counter(text.lower().split()).most_common(n)",
+    "solution": "from collections import Counter\n\ndef top_words(text, n):\n    return [w for w, _ in Counter(text.lower().split()).most_common(n)]\n"
+   }
+  ]
+ },
+ "17": {
+  "quiz": [
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "import re\nprint(re.findall(r'\\d+', 'a1b22c333'))",
+    "o": [
+     "['1', '22', '333']",
+     "[1, 22, 333]",
+     "['1', '2', '2', '3', '3', '3']",
+     "'122333'"
+    ],
+    "a": 0,
+    "e": "\\d+ — одна или более цифр подряд."
+   },
+   {
+    "t": "choice",
+    "q": "Чем re.match отличается от re.search?",
+    "o": [
+     "Ничем",
+     "match ищет только с начала строки",
+     "search только с начала",
+     "match возвращает список"
+    ],
+    "a": 1,
+    "e": "search ищет в любом месте."
+   },
+   {
+    "t": "choice",
+    "q": "Зачем писать шаблоны как r'...'?",
+    "o": [
+     "Так быстрее",
+     "Чтобы \\ не обрабатывался как escape Python",
+     "Это обязательно",
+     "Для Unicode"
+    ],
+    "a": 1,
+    "e": "Raw-строка передаёт \\d в regex без изменений."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "import re\nprint(re.sub(r'\\s+', ' ', 'a   b    c'))",
+    "o": [
+     "a b c",
+     "abc",
+     "a   b    c",
+     "a_b_c"
+    ],
+    "a": 0,
+    "e": "Все группы пробелов заменены одним."
+   },
+   {
+    "t": "blank",
+    "q": "Заполните пропуск ____",
+    "code": "m = re.search(r'(?P<user>\\w+)@', 'anna@mail.ru')\nprint(m.group(____))  # anna",
+    "o": [
+     "'user'",
+     "user",
+     "0",
+     "'@'"
+    ],
+    "a": 0,
+    "e": "Именованная группа доступна по имени-строке."
+   },
+   {
+    "t": "choice",
+    "q": "Что означает квантификатор *? ?",
+    "o": [
+     "Ноль или один",
+     "Ленивое повторение (минимальное)",
+     "Ровно один",
+     "Жадное повторение"
+    ],
+    "a": 1,
+    "e": "Ленивые квантификаторы захватывают как можно меньше."
+   }
+  ],
+  "cards": [
+   {
+    "f": "\\b",
+    "b": "Граница слова."
+   },
+   {
+    "f": "(?:...)",
+    "b": "Группа без захвата."
+   },
+   {
+    "f": "re.compile",
+    "b": "Компиляция шаблона для многократного использования."
+   },
+   {
+    "f": "re.IGNORECASE",
+    "b": "Флаг: без учёта регистра."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Найти email",
+    "text": "emails(text) возвращает список email-адресов из текста.",
+    "starter": "import re\n\ndef emails(text):\n    pass\n",
+    "tests": "assert emails('пишите a@b.ru или x.y@site.com!') == ['a@b.ru', 'x.y@site.com']",
+    "hint": "Шаблон вроде r'[\\w.]+@[\\w.]+\\.\\w+'",
+    "solution": "import re\n\ndef emails(text):\n    return re.findall(r'[\\w.]+@[\\w-]+\\.\\w+', text)\n"
+   }
+  ]
+ },
+ "18": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Что такое GIL?",
+    "o": [
+     "Сборщик мусора",
+     "Блокировка: один поток исполняет байт-код в момент времени",
+     "Библиотека для GUI",
+     "Компилятор"
+    ],
+    "a": 1,
+    "e": "Поэтому потоки не ускоряют вычисления в CPython (кроме free-threaded сборок)."
+   },
+   {
+    "t": "choice",
+    "q": "Что выбрать для 10 000 одновременных HTTP-запросов?",
+    "o": [
+     "multiprocessing",
+     "asyncio",
+     "Один поток",
+     "threading с 10 000 потоков"
+    ],
+    "a": 1,
+    "e": "asyncio идеален для массового I/O."
+   },
+   {
+    "t": "choice",
+    "q": "Что выбрать для тяжёлых вычислений на всех ядрах?",
+    "o": [
+     "threading",
+     "asyncio",
+     "ProcessPoolExecutor",
+     "time.sleep"
+    ],
+    "a": 2,
+    "e": "Процессы обходят GIL."
+   },
+   {
+    "t": "choice",
+    "q": "Что нельзя делать внутри async-функции?",
+    "o": [
+     "await asyncio.sleep(1)",
+     "Вызывать блокирующий time.sleep / requests.get",
+     "Создавать задачи",
+     "Использовать async with"
+    ],
+    "a": 1,
+    "e": "Блокирующий вызов останавливает весь цикл событий."
+   },
+   {
+    "t": "blank",
+    "q": "Заполните пропуск ____",
+    "code": "async def main():\n    results = await asyncio.____(fetch(1), fetch(2))",
+    "o": [
+     "gather",
+     "run",
+     "wait_all",
+     "join"
+    ],
+    "a": 0,
+    "e": "gather запускает корутины конкурентно."
+   },
+   {
+    "t": "choice",
+    "q": "Как защитить общий счётчик между потоками?",
+    "o": [
+     "global",
+     "threading.Lock",
+     "time.sleep",
+     "try/except"
+    ],
+    "a": 1,
+    "e": "with lock: counter += 1."
+   }
+  ],
+  "cards": [
+   {
+    "f": "I/O-bound",
+    "b": "Задача ждёт сеть/диск — threading или asyncio."
+   },
+   {
+    "f": "CPU-bound",
+    "b": "Задача считает — multiprocessing."
+   },
+   {
+    "f": "TaskGroup",
+    "b": "Структурная конкурентность в asyncio (3.11+)."
+   },
+   {
+    "f": "asyncio.to_thread",
+    "b": "Выполнить блокирующую функцию в потоке, не блокируя цикл."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Асинхронный сбор",
+    "text": "Напишите async def double_all(nums), которая конкурентно вызывает async def double(x) для каждого числа и возвращает список результатов.",
+    "starter": "import asyncio\n\nasync def double(x):\n    await asyncio.sleep(0)\n    return x * 2\n\nasync def double_all(nums):\n    pass\n",
+    "tests": "assert asyncio.run(double_all([1, 2, 3])) == [2, 4, 6]",
+    "hint": "return await asyncio.gather(*(double(x) for x in nums)) — и оберните в list.",
+    "solution": "import asyncio\n\nasync def double(x):\n    await asyncio.sleep(0)\n    return x * 2\n\nasync def double_all(nums):\n    return list(await asyncio.gather(*(double(x) for x in nums)))\n"
+   }
+  ]
+ },
+ "19": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "На чём построены property, classmethod и методы?",
+    "o": [
+     "Метаклассах",
+     "Дескрипторах",
+     "Декораторах классов",
+     "Генераторах"
+    ],
+    "a": 1,
+    "e": "Дескриптор — объект с __get__/__set__."
+   },
+   {
+    "t": "choice",
+    "q": "Что даёт __slots__?",
+    "o": [
+     "Ускоряет импорт",
+     "Экономит память — нет __dict__",
+     "Делает класс абстрактным",
+     "Запрещает наследование"
+    ],
+    "a": 1,
+    "e": "Полезно при миллионах объектов."
+   },
+   {
+    "t": "choice",
+    "q": "Когда вызывается __getattr__?",
+    "o": [
+     "При любом обращении к атрибуту",
+     "Только если атрибут не найден обычным путём",
+     "При присваивании",
+     "Никогда"
+    ],
+    "a": 1,
+    "e": "Для любого обращения — __getattribute__."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "print(type(type))",
+    "o": [
+     "<class 'object'>",
+     "<class 'type'>",
+     "<class 'class'>",
+     "Ошибка"
+    ],
+    "a": 1,
+    "e": "type — метакласс, экземпляр самого себя."
+   },
+   {
+    "t": "choice",
+    "q": "Чем проще всего заменить метакласс для регистрации подклассов?",
+    "o": [
+     "__init_subclass__",
+     "__new__",
+     "global",
+     "@staticmethod"
+    ],
+    "a": 0,
+    "e": "Хук вызывается при создании каждого подкласса."
+   }
+  ],
+  "cards": [
+   {
+    "f": "Дескриптор данных",
+    "b": "Имеет __set__; приоритетнее __dict__ экземпляра."
+   },
+   {
+    "f": "__set_name__",
+    "b": "Дескриптор узнаёт имя атрибута."
+   },
+   {
+    "f": "__new__",
+    "b": "Создаёт объект (до __init__)."
+   },
+   {
+    "f": "ast.literal_eval",
+    "b": "Безопасный разбор литералов вместо eval."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Положительное поле",
+    "text": "Дескриптор Positive запрещает присваивать значения ≤ 0 (ValueError). Используйте в классе Item.price.",
+    "starter": "class Positive:\n    def __set_name__(self, owner, name):\n        self.name = '_' + name\n    # допишите __get__ и __set__\n\nclass Item:\n    price = Positive()\n    def __init__(self, price):\n        self.price = price\n",
+    "tests": "assert Item(10).price == 10\ntry:\n    Item(-1)\n    assert False\nexcept ValueError:\n    pass",
+    "hint": "__get__ возвращает getattr(obj, self.name); __set__ проверяет value <= 0.",
+    "solution": "class Positive:\n    def __set_name__(self, owner, name):\n        self.name = '_' + name\n    def __get__(self, obj, objtype=None):\n        return getattr(obj, self.name)\n    def __set__(self, obj, value):\n        if value <= 0:\n            raise ValueError('<= 0')\n        setattr(obj, self.name, value)\n\nclass Item:\n    price = Positive()\n    def __init__(self, price):\n        self.price = price\n"
+   }
+  ]
+ },
+ "20": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Как удаляются объекты в CPython в первую очередь?",
+    "o": [
+     "Только сборщиком циклов",
+     "Подсчётом ссылок",
+     "Вручную через del",
+     "При выходе из программы"
+    ],
+    "a": 1,
+    "e": "Сборщик gc дополнительно находит циклические ссылки."
+   },
+   {
+    "t": "choice",
+    "q": "С чего начинать оптимизацию?",
+    "o": [
+     "С переписывания на C",
+     "С измерения профилировщиком",
+     "С многопоточности",
+     "С __slots__ везде"
+    ],
+    "a": 1,
+    "e": "«Преждевременная оптимизация — корень всех зол»."
+   },
+   {
+    "t": "choice",
+    "q": "Что ускорит поиск элемента среди 1 млн значений?",
+    "o": [
+     "list",
+     "set",
+     "tuple",
+     "str"
+    ],
+    "a": 1,
+    "e": "x in set — O(1)."
+   },
+   {
+    "t": "choice",
+    "q": "Какой модуль измеряет время маленьких фрагментов кода?",
+    "o": [
+     "time",
+     "timeit",
+     "cProfile",
+     "sys"
+    ],
+    "a": 1,
+    "e": "timeit многократно повторяет код."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "a = 256\nb = 256\nprint(a is b)",
+    "o": [
+     "True",
+     "False",
+     "Ошибка",
+     "Зависит от ОС"
+    ],
+    "a": 0,
+    "e": "Малые числа −5…256 кешируются — но полагаться на is для чисел нельзя."
+   }
+  ],
+  "cards": [
+   {
+    "f": "cProfile",
+    "b": "Профилировщик: где тратится время."
+   },
+   {
+    "f": "tracemalloc",
+    "b": "Отслеживание выделения памяти."
+   },
+   {
+    "f": "weakref",
+    "b": "Слабая ссылка, не мешающая удалению объекта."
+   },
+   {
+    "f": "PyPy",
+    "b": "Реализация Python с JIT-компилятором."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Быстрый поиск дубликатов",
+    "text": "has_dup(lst) — есть ли повторы. Решение должно работать за O(n).",
+    "starter": "def has_dup(lst):\n    pass\n",
+    "tests": "assert has_dup([1, 2, 3, 1])\nassert not has_dup(list(range(100000)))",
+    "hint": "Сравните len(lst) и len(set(lst)).",
+    "solution": "def has_dup(lst):\n    return len(set(lst)) != len(lst)\n"
+   }
+  ]
+ },
+ "21": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Какие тесты должны составлять основу пирамиды?",
+    "o": [
+     "E2E",
+     "Модульные (unit)",
+     "Ручные",
+     "Нагрузочные"
+    ],
+    "a": 1,
+    "e": "Их больше всего: они быстрые и точные."
+   },
+   {
+    "t": "choice",
+    "q": "Как pytest находит тесты?",
+    "o": [
+     "По файлам test_*.py и функциям test_*",
+     "По декоратору @test",
+     "Только в папке tests",
+     "По docstring"
+    ],
+    "a": 0,
+    "e": "Соглашение об именах."
+   },
+   {
+    "t": "blank",
+    "q": "Заполните пропуск ____",
+    "code": "@pytest.mark.____('a, b', [(1, 2), (3, 4)])\ndef test_x(a, b): ...",
+    "o": [
+     "parametrize",
+     "params",
+     "cases",
+     "data"
+    ],
+    "a": 0,
+    "e": "Один тест — много наборов данных."
+   },
+   {
+    "t": "choice",
+    "q": "Что такое фикстура pytest?",
+    "o": [
+     "Тип ошибки",
+     "Подготовка данных/ресурсов для теста",
+     "Плагин покрытия",
+     "Маркер пропуска"
+    ],
+    "a": 1,
+    "e": "Код до yield — подготовка, после — очистка."
+   },
+   {
+    "t": "choice",
+    "q": "Где патчить requests.get, если он используется в myapp/weather.py?",
+    "o": [
+     "requests.get",
+     "myapp.weather.requests.get",
+     "unittest.mock.get",
+     "builtins.get"
+    ],
+    "a": 1,
+    "e": "Патчим имя там, где оно используется."
+   },
+   {
+    "t": "order",
+    "q": "Расставьте шаги TDD:",
+    "lines": [
+     "Написать падающий тест (красный)",
+     "Написать минимальный код (зелёный)",
+     "Отрефакторить"
+    ],
+    "e": "Red → Green → Refactor."
+   }
+  ],
+  "cards": [
+   {
+    "f": "AAA",
+    "b": "Arrange → Act → Assert."
+   },
+   {
+    "f": "pytest.raises",
+    "b": "Проверка, что код бросает исключение."
+   },
+   {
+    "f": "Mock",
+    "b": "Подмена зависимости объектом-заглушкой."
+   },
+   {
+    "f": "Покрытие",
+    "b": "pytest --cov — какая доля кода выполнена тестами."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Напишите тест",
+    "text": "Есть функция add. Допишите функцию test_add с тремя assert, проверяющими её (включая отрицательные числа).",
+    "starter": "def add(a, b):\n    return a + b\n\ndef test_add():\n    pass\n\ntest_add()\n",
+    "tests": "def add(a, b):\n    return a - b  # сломанная версия\ntry:\n    test_add()\n    caught = False\nexcept AssertionError:\n    caught = True\nassert caught, 'ваш тест не заметил ошибку в add'",
+    "hint": "assert add(1, 2) == 3 и т. д.",
+    "solution": "def add(a, b):\n    return a + b\n\ndef test_add():\n    assert add(1, 2) == 3\n    assert add(-1, 1) == 0\n    assert add(-2, -3) == -5\n\ntest_add()\n"
+   }
+  ]
+ },
+ "22": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Как читать traceback?",
+    "o": [
+     "Сверху вниз",
+     "Снизу вверх: последняя строка — тип и текст ошибки",
+     "Только первую строку",
+     "Не читать"
+    ],
+    "a": 1,
+    "e": "Выше — цепочка вызовов к месту ошибки."
+   },
+   {
+    "t": "choice",
+    "q": "Какая встроенная функция запускает отладчик?",
+    "o": [
+     "debug()",
+     "breakpoint()",
+     "pdb()",
+     "stop()"
+    ],
+    "a": 1,
+    "e": "Открывает pdb в этой точке."
+   },
+   {
+    "t": "choice",
+    "q": "Какой уровень логирования выше: WARNING или INFO?",
+    "o": [
+     "INFO",
+     "WARNING",
+     "Равны",
+     "Зависит от настроек"
+    ],
+    "a": 1,
+    "e": "DEBUG < INFO < WARNING < ERROR < CRITICAL."
+   },
+   {
+    "t": "choice",
+    "q": "Как залогировать исключение вместе с traceback?",
+    "o": [
+     "logger.error(e)",
+     "logger.exception('...') в блоке except",
+     "print(e)",
+     "logger.debug(e)"
+    ],
+    "a": 1,
+    "e": "exception добавляет traceback."
+   },
+   {
+    "t": "choice",
+    "q": "Чего нельзя писать в логи?",
+    "o": [
+     "Время",
+     "Пароли и персональные данные",
+     "Уровень",
+     "Имя модуля"
+    ],
+    "a": 1,
+    "e": "Логи часто читают многие люди и системы."
+   }
+  ],
+  "cards": [
+   {
+    "f": "pdb: n / s / c",
+    "b": "Следующая строка / зайти в функцию / продолжить."
+   },
+   {
+    "f": "getLogger(__name__)",
+    "b": "Отдельный логгер на модуль."
+   },
+   {
+    "f": "RotatingFileHandler",
+    "b": "Лог-файлы с ротацией по размеру."
+   },
+   {
+    "f": "Резиновая уточка",
+    "b": "Объясните код вслух — найдёте ошибку."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Найдите баг",
+    "text": "Функция average должна возвращать среднее, но падает на пустом списке и считает неверно. Исправьте её (для [] → 0).",
+    "starter": "def average(nums):\n    total = 0\n    for n in nums:\n        total = n\n    return total / len(nums)\n",
+    "tests": "assert average([2, 4, 6]) == 4\nassert average([]) == 0",
+    "hint": "total += n, и проверьте пустой список.",
+    "solution": "def average(nums):\n    if not nums:\n        return 0\n    total = 0\n    for n in nums:\n        total += n\n    return total / len(nums)\n"
+   }
+  ]
+ },
+ "23": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Какую папку НЕ коммитят в git?",
+    "o": [
+     "src",
+     "tests",
+     ".venv",
+     "docs"
+    ],
+    "a": 2,
+    "e": ".venv, __pycache__, .env — в .gitignore."
+   },
+   {
+    "t": "choice",
+    "q": "Единый файл конфигурации современного Python-проекта:",
+    "o": [
+     "setup.cfg",
+     "pyproject.toml",
+     "requirements.ini",
+     "package.json"
+    ],
+    "a": 1,
+    "e": "Описывает зависимости, сборку и настройки инструментов."
+   },
+   {
+    "t": "choice",
+    "q": "Что делает ruff?",
+    "o": [
+     "Запускает тесты",
+     "Линтит и форматирует код",
+     "Собирает Docker",
+     "Публикует на PyPI"
+    ],
+    "a": 1,
+    "e": "Очень быстрый линтер и форматтер."
+   },
+   {
+    "t": "order",
+    "q": "Порядок работы над задачей в команде:",
+    "lines": [
+     "git switch -c feature",
+     "git add и git commit",
+     "git push",
+     "Открыть Pull Request и пройти ревью"
+    ],
+    "e": "Ветка → коммиты → push → PR."
+   },
+   {
+    "t": "choice",
+    "q": "Для чего CI?",
+    "o": [
+     "Для дизайна",
+     "Автоматически запускать проверки при каждом push",
+     "Хранить пароли",
+     "Для документации"
+    ],
+    "a": 1,
+    "e": "Линтер и тесты в GitHub Actions и т. п."
+   }
+  ],
+  "cards": [
+   {
+    "f": "git stash",
+    "b": "Временно спрятать незакоммиченные изменения."
+   },
+   {
+    "f": "pre-commit",
+    "b": "Проверки перед каждым коммитом."
+   },
+   {
+    "f": "uv add pkg",
+    "b": "Добавить зависимость в проект."
+   },
+   {
+    "f": "src-layout",
+    "b": "Код пакета лежит в папке src/имя_пакета."
+   }
+  ],
+  "tasks": []
+ },
+ "24": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Сложность бинарного поиска:",
+    "o": [
+     "O(n)",
+     "O(log n)",
+     "O(1)",
+     "O(n log n)"
+    ],
+    "a": 1,
+    "e": "Каждый шаг делит диапазон пополам."
+   },
+   {
+    "t": "choice",
+    "q": "Какая сортировка встроена в Python?",
+    "o": [
+     "Quicksort",
+     "Timsort",
+     "Пузырёк",
+     "Heapsort"
+    ],
+    "a": 1,
+    "e": "Стабильная, O(n log n)."
+   },
+   {
+    "t": "choice",
+    "q": "Какая структура даёт извлечение минимума за O(log n)?",
+    "o": [
+     "list",
+     "Куча heapq",
+     "dict",
+     "set"
+    ],
+    "a": 1,
+    "e": "Приоритетная очередь."
+   },
+   {
+    "t": "choice",
+    "q": "Какой обход находит кратчайший путь в невзвешенном графе?",
+    "o": [
+     "DFS",
+     "BFS",
+     "Дейкстра обязательна",
+     "Случайный"
+    ],
+    "a": 1,
+    "e": "BFS идёт по слоям."
+   },
+   {
+    "t": "output",
+    "q": "Что выведет этот код?",
+    "code": "import heapq\nh = [5, 1, 3]\nheapq.heapify(h)\nprint(heapq.heappop(h))",
+    "o": [
+     "5",
+     "1",
+     "3",
+     "[1, 3, 5]"
+    ],
+    "a": 1,
+    "e": "heappop извлекает минимум."
+   },
+   {
+    "t": "choice",
+    "q": "Что такое динамическое программирование?",
+    "o": [
+     "Код без типов",
+     "Решение через подзадачи с запоминанием результатов",
+     "Генерация кода",
+     "Многопоточность"
+    ],
+    "a": 1,
+    "e": "Например, задача о размене монет."
+   }
+  ],
+  "cards": [
+   {
+    "f": "Два указателя",
+    "b": "Два индекса движутся навстречу или в одну сторону."
+   },
+   {
+    "f": "Скользящее окно",
+    "b": "Подмассив фиксированной/переменной длины сдвигается по данным."
+   },
+   {
+    "f": "bisect",
+    "b": "Бинарный поиск в отсортированном списке."
+   },
+   {
+    "f": "Дейкстра",
+    "b": "Кратчайшие пути во взвешенном графе с неотрицательными весами."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Бинарный поиск",
+    "text": "binary_search(arr, x) возвращает индекс x в отсортированном arr или -1.",
+    "starter": "def binary_search(arr, x):\n    pass\n",
+    "tests": "a = [1, 3, 5, 7, 9, 11]\nassert binary_search(a, 7) == 3\nassert binary_search(a, 4) == -1\nassert binary_search([], 1) == -1",
+    "hint": "lo, hi = 0, len(arr) - 1; пока lo <= hi сравнивайте arr[mid].",
+    "solution": "def binary_search(arr, x):\n    lo, hi = 0, len(arr) - 1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if arr[mid] == x:\n            return mid\n        if arr[mid] < x:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return -1\n"
+   },
+   {
+    "title": "Сортировка слиянием",
+    "text": "merge_sort(a) возвращает отсортированный список (не используйте sorted).",
+    "starter": "def merge_sort(a):\n    pass\n",
+    "tests": "import random\nd = random.sample(range(1000), 50)\nassert merge_sort(d) == sorted(d)\nassert merge_sort([]) == []",
+    "hint": "Разделите пополам, отсортируйте половины рекурсивно и слейте.",
+    "solution": "def merge_sort(a):\n    if len(a) <= 1:\n        return a\n    m = len(a) // 2\n    l, r = merge_sort(a[:m]), merge_sort(a[m:])\n    out, i, j = [], 0, 0\n    while i < len(l) and j < len(r):\n        if l[i] <= r[j]:\n            out.append(l[i]); i += 1\n        else:\n            out.append(r[j]); j += 1\n    return out + l[i:] + r[j:]\n"
+   },
+   {
+    "title": "Скобки",
+    "text": "balanced(s) проверяет правильность скобок ()[]{}.",
+    "starter": "def balanced(s):\n    pass\n",
+    "tests": "assert balanced('([]{})')\nassert not balanced('(]')\nassert not balanced('((')\nassert balanced('')",
+    "hint": "Используйте стек: открывающие кладём, закрывающие сверяем с вершиной.",
+    "solution": "def balanced(s):\n    pairs = {')': '(', ']': '[', '}': '{'}\n    st = []\n    for ch in s:\n        if ch in '([{':\n            st.append(ch)\n        elif ch in pairs:\n            if not st or st.pop() != pairs[ch]:\n                return False\n    return not st\n"
+   }
+  ]
+ },
+ "25": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Принцип S в SOLID:",
+    "o": [
+     "Simple",
+     "Single Responsibility — одна причина для изменения",
+     "Static",
+     "Secure"
+    ],
+    "a": 1,
+    "e": "Один класс — одна ответственность."
+   },
+   {
+    "t": "choice",
+    "q": "Принцип DRY означает:",
+    "o": [
+     "Пишите тесты",
+     "Не повторяйтесь",
+     "Используйте классы",
+     "Сушите код"
+    ],
+    "a": 1,
+    "e": "Don't Repeat Yourself."
+   },
+   {
+    "t": "choice",
+    "q": "Какой паттерн — взаимозаменяемые алгоритмы?",
+    "o": [
+     "Singleton",
+     "Strategy",
+     "Facade",
+     "Builder"
+    ],
+    "a": 1,
+    "e": "В Python часто — просто передача функции."
+   },
+   {
+    "t": "choice",
+    "q": "Dependency Inversion на практике:",
+    "o": [
+     "Импортировать всё глобально",
+     "Передавать зависимости через конструктор и зависеть от абстракций",
+     "Наследоваться от всего",
+     "Использовать синглтоны"
+    ],
+    "a": 1,
+    "e": "Так код легко тестировать и расширять."
+   },
+   {
+    "t": "choice",
+    "q": "YAGNI — это:",
+    "o": [
+     "Пишите код «на будущее»",
+     "Не пишите то, что пока не нужно",
+     "Всегда используйте паттерны",
+     "Оптимизируйте заранее"
+    ],
+    "a": 1,
+    "e": "You Aren't Gonna Need It."
+   }
+  ],
+  "cards": [
+   {
+    "f": "Factory",
+    "b": "Создание объектов нужного класса по параметру."
+   },
+   {
+    "f": "Observer",
+    "b": "Подписчики получают уведомления о событиях."
+   },
+   {
+    "f": "Facade",
+    "b": "Простой интерфейс к сложной подсистеме."
+   },
+   {
+    "f": "Repository",
+    "b": "Слой доступа к данным, скрывающий БД."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Стратегия",
+    "text": "pay(amount, strategy) вызывает переданную функцию-стратегию. Реализуйте card(x) → x * 1.02 и cash(x) → x.",
+    "starter": "def card(x):\n    pass\n\ndef cash(x):\n    pass\n\ndef pay(amount, strategy):\n    pass\n",
+    "tests": "assert pay(100, cash) == 100\nassert round(pay(100, card), 2) == 102",
+    "hint": "pay просто возвращает strategy(amount).",
+    "solution": "def card(x):\n    return x * 1.02\n\ndef cash(x):\n    return x\n\ndef pay(amount, strategy):\n    return strategy(amount)\n"
+   }
+  ]
+ },
+ "26": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Как защититься от SQL-инъекции?",
+    "o": [
+     "Экранировать кавычки вручную",
+     "Использовать параметризованные запросы",
+     "f-строки",
+     "Проверять длину строки"
+    ],
+    "a": 1,
+    "e": "cur.execute('... WHERE name = ?', (name,))"
+   },
+   {
+    "t": "choice",
+    "q": "Как хранить пароли пользователей?",
+    "o": [
+     "Открытым текстом",
+     "MD5",
+     "Хэш с солью: bcrypt/argon2",
+     "base64"
+    ],
+    "a": 2,
+    "e": "MD5/SHA1 для паролей непригодны."
+   },
+   {
+    "t": "choice",
+    "q": "Где хранить секретные ключи?",
+    "o": [
+     "В коде",
+     "В переменных окружения / .env вне git",
+     "В README",
+     "В комментариях"
+    ],
+    "a": 1,
+    "e": "Добавьте .env в .gitignore."
+   },
+   {
+    "t": "choice",
+    "q": "Какой вызов опасен с недоверенными данными?",
+    "o": [
+     "json.loads",
+     "yaml.safe_load",
+     "eval",
+     "int"
+    ],
+    "a": 2,
+    "e": "eval выполняет произвольный код."
+   },
+   {
+    "t": "choice",
+    "q": "Что проверяет pip-audit?",
+    "o": [
+     "Стиль кода",
+     "Уязвимости в зависимостях",
+     "Покрытие тестами",
+     "Типы"
+    ],
+    "a": 1,
+    "e": "Регулярно обновляйте пакеты."
+   }
+  ],
+  "cards": [
+   {
+    "f": "OWASP Top 10",
+    "b": "Список самых опасных уязвимостей веб-приложений."
+   },
+   {
+    "f": "Path traversal",
+    "b": "Выход за разрешённую папку через ../ во вводе."
+   },
+   {
+    "f": "XSS",
+    "b": "Внедрение скриптов в страницу — экранируйте вывод."
+   },
+   {
+    "f": "secrets.token_hex",
+    "b": "Криптостойкий случайный токен."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Безопасный запрос",
+    "text": "Используя sqlite3 в памяти, напишите find_user(conn, name), выполняющую ПАРАМЕТРИЗОВАННЫЙ запрос и возвращающую id или None.",
+    "starter": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT)')\nconn.execute(\"INSERT INTO users (name) VALUES ('anna')\")\n\ndef find_user(conn, name):\n    pass\n",
+    "tests": "assert find_user(conn, 'anna') == 1\nassert find_user(conn, \"x' OR '1'='1\") is None",
+    "hint": "row = conn.execute('SELECT id FROM users WHERE name = ?', (name,)).fetchone()",
+    "solution": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT)')\nconn.execute(\"INSERT INTO users (name) VALUES ('anna')\")\n\ndef find_user(conn, name):\n    row = conn.execute('SELECT id FROM users WHERE name = ?', (name,)).fetchone()\n    return row[0] if row else None\n"
+   }
+  ]
+ },
+ "27": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Какой JOIN вернёт всех пользователей, даже без заказов?",
+    "o": [
+     "INNER JOIN",
+     "LEFT JOIN users → orders",
+     "CROSS JOIN",
+     "Никакой"
+    ],
+    "a": 1,
+    "e": "LEFT JOIN сохраняет все строки левой таблицы."
+   },
+   {
+    "t": "choice",
+    "q": "Что такое ORM?",
+    "o": [
+     "Язык запросов",
+     "Отображение таблиц БД на классы Python",
+     "Тип индекса",
+     "Драйвер PostgreSQL"
+    ],
+    "a": 1,
+    "e": "Например, SQLAlchemy, Django ORM."
+   },
+   {
+    "t": "choice",
+    "q": "Проблема «N+1 запросов» — это:",
+    "o": [
+     "Слишком много таблиц",
+     "Отдельный запрос на каждую связанную запись",
+     "Ошибка синтаксиса",
+     "Утечка памяти"
+    ],
+    "a": 1,
+    "e": "Решение — selectinload / joinedload."
+   },
+   {
+    "t": "choice",
+    "q": "Чем выполняют миграции схемы в SQLAlchemy?",
+    "o": [
+     "pip",
+     "Alembic",
+     "Celery",
+     "pytest"
+    ],
+    "a": 1,
+    "e": "Версионирование изменений схемы."
+   },
+   {
+    "t": "choice",
+    "q": "ACID — свойства:",
+    "o": [
+     "Индексов",
+     "Транзакций",
+     "Таблиц",
+     "Запросов SELECT"
+    ],
+    "a": 1,
+    "e": "Атомарность, согласованность, изолированность, долговечность."
+   }
+  ],
+  "cards": [
+   {
+    "f": "PRIMARY KEY",
+    "b": "Уникальный идентификатор строки."
+   },
+   {
+    "f": "FOREIGN KEY",
+    "b": "Ссылка на строку другой таблицы."
+   },
+   {
+    "f": "Индекс",
+    "b": "Ускоряет поиск, замедляет запись."
+   },
+   {
+    "f": "GROUP BY + HAVING",
+    "b": "Группировка и фильтр по агрегатам."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "SQL-агрегация",
+    "text": "Создайте в sqlite3 (в памяти) таблицу orders(user TEXT, total REAL), функция totals(conn) возвращает словарь {user: сумма}.",
+    "starter": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE orders (user TEXT, total REAL)')\nconn.executemany('INSERT INTO orders VALUES (?, ?)', [('a', 10), ('b', 5), ('a', 7)])\n\ndef totals(conn):\n    pass\n",
+    "tests": "assert totals(conn) == {'a': 17, 'b': 5}",
+    "hint": "SELECT user, SUM(total) FROM orders GROUP BY user",
+    "solution": "import sqlite3\nconn = sqlite3.connect(':memory:')\nconn.execute('CREATE TABLE orders (user TEXT, total REAL)')\nconn.executemany('INSERT INTO orders VALUES (?, ?)', [('a', 10), ('b', 5), ('a', 7)])\n\ndef totals(conn):\n    return dict(conn.execute('SELECT user, SUM(total) FROM orders GROUP BY user'))\n"
+   }
+  ]
+ },
+ "28": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Какой HTTP-метод создаёт ресурс?",
+    "o": [
+     "GET",
+     "POST",
+     "DELETE",
+     "HEAD"
+    ],
+    "a": 1,
+    "e": "GET — получить, PUT/PATCH — изменить, DELETE — удалить."
+   },
+   {
+    "t": "choice",
+    "q": "Код 404 означает:",
+    "o": [
+     "Успех",
+     "Ресурс не найден",
+     "Ошибка сервера",
+     "Перенаправление"
+    ],
+    "a": 1,
+    "e": "4xx — ошибки клиента, 5xx — сервера."
+   },
+   {
+    "t": "choice",
+    "q": "Что обязательно указывать в requests.get?",
+    "o": [
+     "headers",
+     "timeout",
+     "cookies",
+     "verify=False"
+    ],
+    "a": 1,
+    "e": "Без timeout запрос может зависнуть навсегда."
+   },
+   {
+    "t": "choice",
+    "q": "Какой фреймворк автоматически строит документацию API на /docs?",
+    "o": [
+     "Flask",
+     "FastAPI",
+     "Django",
+     "Tornado"
+    ],
+    "a": 1,
+    "e": "На основе аннотаций типов и Pydantic."
+   },
+   {
+    "t": "choice",
+    "q": "Django — это:",
+    "o": [
+     "Микрофреймворк",
+     "Фреймворк «с батарейками»: ORM, админка, авторизация",
+     "HTTP-клиент",
+     "База данных"
+    ],
+    "a": 1,
+    "e": "Архитектура MVT."
+   }
+  ],
+  "cards": [
+   {
+    "f": "REST",
+    "b": "Ресурсы по URL + HTTP-методы + JSON."
+   },
+   {
+    "f": "JWT",
+    "b": "Подписанный токен авторизации."
+   },
+   {
+    "f": "Uvicorn",
+    "b": "ASGI-сервер для FastAPI."
+   },
+   {
+    "f": "Celery",
+    "b": "Фоновые задачи и очереди."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Разбор JSON-ответа",
+    "text": "API вернул JSON-строку. Функция names(resp) возвращает список имён активных пользователей.",
+    "starter": "import json\nresp = '{\"users\": [{\"name\": \"Анна\", \"active\": true}, {\"name\": \"Борис\", \"active\": false}]}'\n\ndef names(resp):\n    pass\n",
+    "tests": "assert names(resp) == ['Анна']",
+    "hint": "json.loads, затем фильтр по u['active'].",
+    "solution": "import json\nresp = '{\"users\": [{\"name\": \"Анна\", \"active\": true}, {\"name\": \"Борис\", \"active\": false}]}'\n\ndef names(resp):\n    return [u['name'] for u in json.loads(resp)['users'] if u['active']]\n"
+   }
+  ]
+ },
+ "29": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Главное преимущество NumPy:",
+    "o": [
+     "Красивый вывод",
+     "Векторные операции без циклов — в разы быстрее",
+     "Работа с сетью",
+     "GUI"
+    ],
+    "a": 1,
+    "e": "Операции над массивами выполняются в C."
+   },
+   {
+    "t": "choice",
+    "q": "Какой метод pandas группирует данные?",
+    "o": [
+     "group()",
+     "groupby()",
+     "split()",
+     "bucket()"
+    ],
+    "a": 1,
+    "e": "df.groupby('col')['x'].sum()"
+   },
+   {
+    "t": "choice",
+    "q": "Как прочитать CSV в pandas?",
+    "o": [
+     "pd.open_csv",
+     "pd.read_csv",
+     "pd.load",
+     "pd.csv()"
+    ],
+    "a": 1,
+    "e": "Также read_excel, read_json, read_sql."
+   },
+   {
+    "t": "choice",
+    "q": "Чем строят графики?",
+    "o": [
+     "requests",
+     "matplotlib",
+     "sqlite3",
+     "re"
+    ],
+    "a": 1,
+    "e": "Также seaborn и plotly."
+   },
+   {
+    "t": "choice",
+    "q": "Быстрая альтернатива pandas для больших данных:",
+    "o": [
+     "Polars",
+     "Flask",
+     "Tkinter",
+     "Jinja2"
+    ],
+    "a": 0,
+    "e": "Написана на Rust."
+   }
+  ],
+  "cards": [
+   {
+    "f": "ndarray",
+    "b": "Многомерный массив NumPy."
+   },
+   {
+    "f": "DataFrame",
+    "b": "Таблица pandas."
+   },
+   {
+    "f": "df.loc / df.iloc",
+    "b": "Доступ по меткам / по позициям."
+   },
+   {
+    "f": "Jupyter",
+    "b": "Интерактивные блокноты: код + графики + текст."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Статистика без библиотек",
+    "text": "stats(data) возвращает (среднее, медиана) списка чисел.",
+    "starter": "def stats(data):\n    pass\n",
+    "tests": "assert stats([1, 2, 3, 4]) == (2.5, 2.5)\nassert stats([5, 1, 3]) == (3, 3)",
+    "hint": "Медиана — средний элемент отсортированного списка (или среднее двух).",
+    "solution": "def stats(data):\n    s = sorted(data)\n    n = len(s)\n    med = s[n // 2] if n % 2 else (s[n // 2 - 1] + s[n // 2]) / 2\n    return sum(s) / n, med\n"
+   }
+  ]
+ },
+ "30": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Библиотека для парсинга HTML:",
+    "o": [
+     "BeautifulSoup",
+     "NumPy",
+     "Celery",
+     "pytest"
+    ],
+    "a": 0,
+    "e": "Для больших проектов — Scrapy."
+   },
+   {
+    "t": "choice",
+    "q": "Что нужно уважать при парсинге сайтов?",
+    "o": [
+     "Ничего",
+     "robots.txt, условия сайта и нагрузку на сервер",
+     "Только скорость",
+     "Только кодировку"
+    ],
+    "a": 1,
+    "e": "Не перегружайте чужие серверы."
+   },
+   {
+    "t": "choice",
+    "q": "Встроенная библиотека GUI в Python:",
+    "o": [
+     "PyQt",
+     "tkinter",
+     "Kivy",
+     "Flet"
+    ],
+    "a": 1,
+    "e": "Идёт вместе с Python."
+   },
+   {
+    "t": "choice",
+    "q": "Удобные библиотеки для CLI:",
+    "o": [
+     "Typer и Click",
+     "pandas",
+     "Django",
+     "SQLAlchemy"
+    ],
+    "a": 0,
+    "e": "Плюс Rich для красивого вывода."
+   },
+   {
+    "t": "choice",
+    "q": "Чем автоматизировать браузер?",
+    "o": [
+     "Playwright / Selenium",
+     "requests",
+     "json",
+     "csv"
+    ],
+    "a": 0,
+    "e": "Управление настоящим браузером."
+   }
+  ],
+  "cards": [
+   {
+    "f": "openpyxl",
+    "b": "Работа с Excel-файлами."
+   },
+   {
+    "f": "Rich",
+    "b": "Цветной вывод, таблицы, прогресс-бары в терминале."
+   },
+   {
+    "f": "aiogram",
+    "b": "Асинхронные Telegram-боты."
+   },
+   {
+    "f": "pyautogui",
+    "b": "Управление мышью и клавиатурой."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Мини-CLI",
+    "text": "parse(args) разбирает список аргументов вида ['--name', 'Анна', '--count', '2'] в словарь {'name': 'Анна', 'count': '2'}.",
+    "starter": "def parse(args):\n    pass\n",
+    "tests": "assert parse(['--name', 'Анна', '--count', '2']) == {'name': 'Анна', 'count': '2'}\nassert parse([]) == {}",
+    "hint": "Идите по парам: args[0::2] и args[1::2].",
+    "solution": "def parse(args):\n    return {k.lstrip('-'): v for k, v in zip(args[0::2], args[1::2])}\n"
+   }
+  ]
+ },
+ "31": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Классификация спама — это:",
+    "o": [
+     "Обучение без учителя",
+     "Обучение с учителем",
+     "Обучение с подкреплением",
+     "Не ML"
+    ],
+    "a": 1,
+    "e": "Есть размеченные примеры «спам / не спам»."
+   },
+   {
+    "t": "choice",
+    "q": "Переобучение — это когда модель:",
+    "o": [
+     "Плохо учится",
+     "Запоминает обучающие данные и плохо работает на новых",
+     "Учится слишком быстро",
+     "Не сходится"
+    ],
+    "a": 1,
+    "e": "Проверяйте на отложенной выборке."
+   },
+   {
+    "t": "choice",
+    "q": "Зачем train_test_split?",
+    "o": [
+     "Ускорить обучение",
+     "Честно оценить качество на данных, которых модель не видела",
+     "Сжать данные",
+     "Нормализовать"
+    ],
+    "a": 1,
+    "e": ""
+   },
+   {
+    "t": "choice",
+    "q": "Основной фреймворк нейросетей в исследованиях:",
+    "o": [
+     "Flask",
+     "PyTorch",
+     "pandas",
+     "requests"
+    ],
+    "a": 1,
+    "e": "Также TensorFlow/Keras и JAX."
+   },
+   {
+    "t": "choice",
+    "q": "Кластеризация — пример:",
+    "o": [
+     "Обучения с учителем",
+     "Обучения без учителя",
+     "Регрессии",
+     "Классификации"
+    ],
+    "a": 1,
+    "e": "Группы ищутся без разметки."
+   }
+  ],
+  "cards": [
+   {
+    "f": "Регрессия",
+    "b": "Предсказание числа (цена, температура)."
+   },
+   {
+    "f": "Accuracy",
+    "b": "Доля верных ответов."
+   },
+   {
+    "f": "Кросс-валидация",
+    "b": "Многократное разбиение данных для надёжной оценки."
+   },
+   {
+    "f": "scikit-learn",
+    "b": "Классическое ML: fit / predict."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Точность модели",
+    "text": "accuracy(y_true, y_pred) — доля совпадений.",
+    "starter": "def accuracy(y_true, y_pred):\n    pass\n",
+    "tests": "assert accuracy([1, 0, 1, 1], [1, 0, 0, 1]) == 0.75",
+    "hint": "sum(a == b for a, b in zip(...)) / len(y_true)",
+    "solution": "def accuracy(y_true, y_pred):\n    return sum(a == b for a, b in zip(y_true, y_pred)) / len(y_true)\n"
+   }
+  ]
+ },
+ "32": {
+  "quiz": [
+   {
+    "t": "choice",
+    "q": "Сколько проектов стоит иметь в портфолио Junior?",
+    "o": [
+     "0",
+     "3–5 законченных с README и тестами",
+     "50 мелких скриптов",
+     "Только дипломную работу"
+    ],
+    "a": 1,
+    "e": "Качество важнее количества."
+   },
+   {
+    "t": "choice",
+    "q": "Что важнее всего для старта?",
+    "o": [
+     "Выучить все библиотеки",
+     "Регулярная практика и законченные проекты",
+     "Читать без кода",
+     "Сертификаты"
+    ],
+    "a": 1,
+    "e": ""
+   },
+   {
+    "t": "choice",
+    "q": "Чем list отличается от tuple?",
+    "o": [
+     "Ничем",
+     "list изменяемый, tuple нет",
+     "tuple изменяемый",
+     "tuple быстрее растёт"
+    ],
+    "a": 1,
+    "e": "Классический вопрос на собеседовании."
+   },
+   {
+    "t": "choice",
+    "q": "Разница is и ==:",
+    "o": [
+     "Нет разницы",
+     "is — один ли объект, == — равны ли значения",
+     "== быстрее",
+     "is для строк"
+    ],
+    "a": 1,
+    "e": ""
+   },
+   {
+    "t": "choice",
+    "q": "Чем отличается __new__ от __init__?",
+    "o": [
+     "Ничем",
+     "__new__ создаёт объект, __init__ инициализирует",
+     "__init__ создаёт объект",
+     "__new__ удаляет объект"
+    ],
+    "a": 1,
+    "e": ""
+   }
+  ],
+  "cards": [
+   {
+    "f": "Junior",
+    "b": "Синтаксис, ООП, Git, SQL, один фреймворк, тесты."
+   },
+   {
+    "f": "Middle",
+    "b": "Async, типизация, архитектура, Docker, CI/CD."
+   },
+   {
+    "f": "Senior",
+    "b": "Проектирование систем, производительность, наставничество."
+   },
+   {
+    "f": "LeetCode",
+    "b": "Тренировка алгоритмических задач."
+   }
+  ],
+  "tasks": [
+   {
+    "title": "Классика собеседований",
+    "text": "two_sum(nums, target) возвращает индексы двух чисел с суммой target (за O(n)).",
+    "starter": "def two_sum(nums, target):\n    pass\n",
+    "tests": "assert sorted(two_sum([2, 7, 11, 15], 9)) == [0, 1]\nassert sorted(two_sum([3, 2, 4], 6)) == [1, 2]",
+    "hint": "Храните в словаре уже виденные числа: {число: индекс}.",
+    "solution": "def two_sum(nums, target):\n    seen = {}\n    for i, x in enumerate(nums):\n        if target - x in seen:\n            return [seen[target - x], i]\n        seen[x] = i\n"
+   }
+  ]
+ }
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="leaf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9ad46a"/><stop offset="1" stop-color="#3f7f2c"/></linearGradient><linearGradient id="leaf2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc25a"/><stop offset="1" stop-color="#2f6a22"/></linearGradient><radialGradient id="pump" cx="0.4" cy="0.35" r="0.8"><stop offset="0" stop-color="#ffb35c"/><stop offset="1" stop-color="#c4561b"/></radialGradient></defs><ellipse cx="50" cy="93" rx="30" ry="5" fill="#000" opacity=".28"/>
+<path d="M18 66 C8 56 12 42 24 40 C30 50 30 60 18 66z" fill="url(#leaf)"/>
+<path d="M82 62 C92 52 88 40 78 38 C72 48 72 58 82 62z" fill="url(#leaf2)"/>
+<ellipse cx="34" cy="68" rx="18" ry="22" fill="url(#pump)"/><ellipse cx="66" cy="68" rx="18" ry="22" fill="url(#pump)"/>
+<ellipse cx="50" cy="68" rx="20" ry="25" fill="url(#pump)"/>
+<path d="M50 44 v48 M38 47 q-6 21 0 42 M62 47 q6 21 0 42" stroke="#b44e18" stroke-width="2" fill="none" opacity=".6"/>
+<path d="M50 46 q2 -12 12 -16" stroke="#5f7d2c" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M36 54 q4 -6 10 -7" stroke="#ffe0b0" stroke-width="3" stroke-linecap="round" opacity=".7"/></svg>

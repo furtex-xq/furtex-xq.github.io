@@ -9,6 +9,7 @@ ru: {
 },
 
 uk: {
+  "demo.hint.tm":"Це вебверсія справжнього застосунку з живими цінами. Відкривай монети, дивись графіки та індикатори. Новини й графіки деяких рідкісних монет у браузері можуть не завантажитися, а сповіщення працюють лише в застосунку на телефоні.","demo.hint.py":"Це вебверсія справжнього застосунку. Читай розділи, проходь тести й запускай код на Python просто тут. Інтерфейс застосунку російською. Прогрес зберігається лише в цьому браузері.",
   "demo.hint.monko":"Це вебверсія справжнього застосунку з демо-даними. Додавай витрати, дивись статистику та бюджети. Сканер чеків, сповіщення й резервні копії працюють лише в застосунку на телефоні.",
   "try":"Спробувати онлайн","try.hint":"Без встановлення, просто в браузері","demo.hint.mfs":"Це справжній застосунок, а не відео. Натискай кнопки, розв’язуй приклади. Прогрес зберігається лише в цьому браузері.","demo.full":"Відкрити на весь екран","demo.close":"Закрити",
   'nav.updates':'Оновлення','nav.contacts':'Контакти','u.apps':'Застосунки',
@@ -84,6 +85,7 @@ uk: {
 },
 
 en: {
+  "demo.hint.tm":"This is the web version of the real app with live prices. Open coins, explore charts and indicators. News and charts for some rare coins may not load in a browser, and alerts only work in the phone app.","demo.hint.py":"This is the web version of the real app. Read chapters, take quizzes and run Python code right here. The app interface is in Russian. Progress is saved only in this browser.",
   "demo.hint.monko":"This is the web version of the real app with demo data. Add expenses, explore stats and budgets. Receipt scanning, notifications and backups only work in the phone app.",
   "try":"Try it online","try.hint":"No install, right in your browser","demo.hint.mfs":"This is the real app, not a video. Tap the buttons and solve problems. Progress is saved only in this browser.","demo.full":"Open full screen","demo.close":"Close",
   'nav.updates':'Updates','nav.contacts':'Contacts','u.apps':'Apps',
@@ -159,6 +161,7 @@ en: {
 },
 
 cs: {
+  "demo.hint.tm":"Tohle je webová verze skutečné aplikace s živými cenami. Otevírej mince, prohlížej grafy a indikátory. Zprávy a grafy některých vzácných mincí se v prohlížeči nemusí načíst a upozornění fungují jen v aplikaci v telefonu.","demo.hint.py":"Tohle je webová verze skutečné aplikace. Čti kapitoly, dělej kvízy a spouštěj kód v Pythonu přímo tady. Rozhraní aplikace je v ruštině. Pokrok se ukládá jen v tomto prohlížeči.",
   "demo.hint.monko":"Tohle je webová verze skutečné aplikace s ukázkovými daty. Přidávej výdaje, prohlížej statistiky a rozpočty. Skenování účtenek, upozornění a zálohy fungují jen v aplikaci v telefonu.",
   "try":"Vyzkoušet online","try.hint":"Bez instalace, přímo v prohlížeči","demo.hint.mfs":"Tohle je skutečná aplikace, ne video. Klikej na tlačítka a počítej příklady. Pokrok se ukládá jen v tomto prohlížeči.","demo.full":"Otevřít na celou obrazovku","demo.close":"Zavřít",
   'nav.updates':'Novinky','nav.contacts':'Kontakty','u.apps':'Aplikace',

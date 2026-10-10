@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="leaf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9ad46a"/><stop offset="1" stop-color="#3f7f2c"/></linearGradient><linearGradient id="leaf2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc25a"/><stop offset="1" stop-color="#2f6a22"/></linearGradient><radialGradient id="crown" cx="0.35" cy="0.3" r="0.75"><stop offset="0" stop-color="#9ad46a"/><stop offset="1" stop-color="#2f6a22"/></radialGradient></defs><ellipse cx="50" cy="93" rx="30" ry="5" fill="#000" opacity=".28"/>
+<path d="M50 94 V58" stroke="#7a5233" stroke-width="5" stroke-linecap="round"/>
+<path d="M50 70 L40 62" stroke="#7a5233" stroke-width="3" stroke-linecap="round"/>
+<circle cx="50" cy="46" r="18" fill="url(#crown)"/><circle cx="38" cy="58" r="9" fill="url(#crown)"/></svg>

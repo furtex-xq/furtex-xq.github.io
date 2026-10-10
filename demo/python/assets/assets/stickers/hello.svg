@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 120 120">
+<path d="M10 14 h80 a8 8 0 0 1 8 8 v44 a8 8 0 0 1 -8 8 h-48 l-16 16 v-16 h-16 a8 8 0 0 1 -8 -8 v-44 a8 8 0 0 1 8 -8z" fill="#4dabf7"/>
+<text x="50" y="40" font-size="17" fill="#fff" font-family="sans-serif" font-weight="900" text-anchor="middle">Hello,</text>
+<text x="50" y="62" font-size="17" fill="#ffd43b" font-family="sans-serif" font-weight="900" text-anchor="middle">World!</text></svg>

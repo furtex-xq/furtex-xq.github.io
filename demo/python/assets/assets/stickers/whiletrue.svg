@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 120 120">
+<rect x="0" y="32" width="100" height="36" rx="10" fill="#7c5cff"/>
+<text x="50" y="56" font-size="14" fill="#fff" font-family="monospace" font-weight="700" text-anchor="middle">while True:</text></svg>

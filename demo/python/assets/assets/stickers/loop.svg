@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 120 120">
+<rect x="4" y="22" width="92" height="56" rx="14" fill="#1e1e1e"/>
+<text x="50" y="47" font-size="14" fill="#fff" font-family="monospace" font-weight="700" text-anchor="middle">for i in</text><text x="50" y="66" font-size="14" fill="#d9a55b" font-family="monospace" font-weight="700" text-anchor="middle">range(n)</text></svg>
