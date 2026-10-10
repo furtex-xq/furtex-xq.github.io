@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<base href="/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tidemark — крипто-трекер для Android · Ansaro Technologies</title>
+<meta name="description" content="Tidemark: живые цены криптовалют, графики с индикаторами, портфель, уведомления и обучение. Онлайн-демо и скачивание APK.">
+<meta name="theme-color" content="#0a0718">
+<link rel="canonical" href="https://furtex-xq.github.io/tidemark/">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ansaro Technologies">
+<meta property="og:title" content="Tidemark — крипто-трекер для Android">
+<meta property="og:description" content="Tidemark: живые цены криптовалют, графики с индикаторами, портфель, уведомления и обучение. Онлайн-демо и скачивание APK.">
+<meta property="og:url" content="https://furtex-xq.github.io/tidemark/">
+<meta property="og:image" content="https://furtex-xq.github.io/img/og-tidemark.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tidemark — крипто-трекер для Android">
+<meta name="twitter:description" content="Tidemark: живые цены криптовалют, графики с индикаторами, портфель, уведомления и обучение. Онлайн-демо и скачивание APK.">
+<meta name="twitter:image" content="https://furtex-xq.github.io/img/og-tidemark.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Tidemark", "description": "Tidemark: живые цены криптовалют, графики с индикаторами, портфель, уведомления и обучение. Онлайн-демо и скачивание APK.", "operatingSystem": "Android", "applicationCategory": "FinanceApplication", "url": "https://furtex-xq.github.io/tidemark/", "image": "https://furtex-xq.github.io/img/og-tidemark.png", "author": {"@type": "Organization", "name": "Ansaro Technologies", "url": "https://furtex-xq.github.io/"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "downloadUrl": "https://github.com/furtex-xq/furtex-xq.github.io/releases/latest/download/Tidemark.apk", "softwareVersion": "1.0.0"}</script>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=6">
+</head>
+<body>
+<div class="aurora"></div><div class="noise"></div><div class="spot"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="py" viewBox="0 0 64 64"><defs><linearGradient id="pyb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1e2a4a"/><stop offset="1" stop-color="#0b1124"/></linearGradient></defs><rect width="64" height="64" rx="18" fill="url(#pyb)"/><g transform="translate(9 9) scale(1.1)"><path d="M20.6 0c-6.4 0-6 2.8-6 2.8v2.9h6.1v.9h-8.5S8 6.1 8 12.6s3.6 6.2 3.6 6.2h2.2v-3s-.1-3.6 3.5-3.6h6s3.4.1 3.4-3.3V3.3S27.2 0 20.6 0zm-3.4 2a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z" fill="#4f9cf9"/><path d="M21.4 26c6.4 0 6-2.8 6-2.8v-2.9h-6.1v-.9h8.5s4.2.5 4.2-6-3.6-6.2-3.6-6.2h-2.2v3s.1 3.6-3.5 3.6h-6s-3.4-.1-3.4 3.3v5.6S14.8 26 21.4 26zm3.4-2a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2z" fill="#ffd43b"/></g></symbol>
+  <symbol id="dl" viewBox="0 0 24 24"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="tg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1.1-1 .2-1.5L20.5 2.7c.9-.3 1.6.2 1.4 1.6z"/></symbol>
+  <symbol id="ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></symbol>
+  <symbol id="bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15zM10 20.5a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="prev" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="next" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<nav><div class="wrap"><div class="bar">
+  <a class="logo" href="index.html"><span class="mk">A</span><span class="tx">Ansaro Technologies</span></a>
+  <ul>
+    <li><a href="#tidemark">Tidemark</a></li>
+    <li><a href="#mfs">Math for Speed</a></li>
+    <li><a href="#python">Python</a></li>
+    <li><a href="#monko">Monko</a></li>
+    <li><a href="#dealio">Dealio</a></li>
+    <li><a href="updates.html" data-i="nav.updates">Обновления</a></li>
+  </ul>
+  <div class="tools">
+    <div class="lang">
+      <button class="ibtn" id="langBtn" aria-label="Язык"><span id="langCur">RU</span></button>
+      <div class="lang-menu" id="langMenu">
+        <button data-lang="ru"><b>RU</b>Русский</button>
+        <button data-lang="uk"><b>UA</b>Українська</button>
+        <button data-lang="en"><b>EN</b>English</button>
+        <button data-lang="cs"><b>CZ</b>Čeština</button>
+      </div>
+    </div>
+    <button class="ibtn theme-ico" id="themeBtn" aria-label="Тема">
+      <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a class="nav-cta" href="#about" data-i="nav.contacts">Контакты</a>
+  </div>
+</div></div></nav>
+
+<main class="wrap">
+<a class="crumb" href="./" data-i="back">← Все приложения</a>
+
+<section class="proj reveal" id="tidemark" style="--c1:#22d3ee;--c2:#6366f1">
+ <div class="in"><div class="grid">
+  <div>
+    <div class="head"><img src="img/tidemark-icon.webp" alt="Tidemark"><div><span class="cat" data-i="tm.cat">Крипто-трекер</span><h1>Tidemark</h1><span class="maker">by Ansaro Technologies</span></div></div>
+    <p class="lead" data-i="tm.lead">Весь криптовалютный рынок в кармане: живые цены, графики как у трейдеров, портфель и обучение для новичков.</p>
+    <ul class="feats">
+      <li><span data-i="tm.f1"><b>Цены в реальном времени</b>: все монеты CoinGecko, обновление через Binance WebSocket</span></li>
+      <li><span data-i="tm.f2"><b>Профессиональные графики</b>: свечи, таймфреймы от 1m до 1M, MA, EMA, Bollinger, RSI, MACD, рисование линий</span></li>
+      <li><span data-i="tm.f3"><b>Портфель</b>: сделки, прибыль и убыток, распределение активов</span></li>
+      <li><span data-i="tm.f4"><b>Уведомления о цене</b>, стакан заявок, сравнение цен на 5 биржах</span></li>
+      <li><span data-i="tm.f5"><b>Обучение</b>: словарь из 64 терминов, тест и интерактивный урок «Как читать график»</span></li>
+    </ul>
+    <div class="chips"><span>USD · EUR · UAH · USDT</span><span>RU · UK · EN</span><span data-i="tm.c1">Сленг-режим 🚀</span><span data-i="tm.c2">Новости и индекс страха</span><span data-i="tm.c3">Тепловая карта и скринер</span><span data-i="tm.c4">Виртуальная торговля</span></div>
+    <div class="try-row"><button class="btn-try" type="button" data-demo="demo/tidemark/" data-demo-name="Tidemark" data-demo-hint="demo.hint.tm"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg><span data-i="try">Попробовать онлайн</span></button><small data-i="try.hint">Без установки, прямо в браузере</small></div>
+    <div class="dl">
+      <a class="btn" href="https://github.com/furtex-xq/furtex-xq.github.io/releases/latest/download/Tidemark.apk" download><svg><use href="#dl"/></svg><span data-i="dl">Скачать APK</span></a>
+      <div class="meta"><b><span data-i="ver">Версия</span> 1.0.0</b><br>71 <span data-i="mb">МБ</span> · Android<span class="cnt" data-cnt="Tidemark.apk"></span></div>
+      <div class="qr" data-qr="Tidemark.apk"><div class="code"></div><small data-i="qr">Наведи камеру телефона, чтобы скачать</small></div>
+    </div>
+    <details class="news">
+      <summary><span class="dot"></span><span data-i="news">Что нового</span><svg class="chev" viewBox="0 0 24 24" width="16" height="16"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+      <ol>
+        <li><b>1.0.0</b><time data-i="d.oct8">8 октября 2026</time><br><span data-i="tm.n1">Первый релиз: живые цены, графики с индикаторами, портфель, уведомления о цене, обучение и сленг-режим.</span></li>
+      </ol>
+      <a class="all" href="updates.html" data-i="allUpdates">Все обновления →</a>
+    </details>
+  </div>
+  <div class="visual">
+    <div class="frame tilt"><div class="track">
+      <div class="slide" data-cap="tm.s1"><img src="img/tm-app-1.webp?v=2" alt="Tidemark" decoding="async"></div>
+      <div class="slide" data-cap="tm.s2"><img src="img/tm-app-2.webp?v=2" alt="Tidemark" loading="lazy" decoding="async"></div>
+      <div class="slide" data-cap="tm.s3"><img src="img/tm-app-3.webp?v=2" alt="Tidemark" loading="lazy" decoding="async"></div>
+      <div class="slide" data-cap="tm.s4"><img src="img/tm-app-4.webp?v=2" alt="Tidemark" loading="lazy" decoding="async"></div>
+      <div class="slide" data-cap="tm.s5"><img src="img/tm-app-5.webp?v=2" alt="Tidemark" loading="lazy" decoding="async"></div>
+      <div class="slide" data-cap="tm.s6"><img src="img/tm-app-6.webp?v=2" alt="Tidemark" loading="lazy" decoding="async"></div>
+    </div></div>
+    <div class="car-nav"><button class="prev" aria-label="←"><svg><use href="#prev"/></svg></button><div class="dots"></div><button class="next" aria-label="→"><svg><use href="#next"/></svg></button></div>
+    <div class="cap"></div>
+  </div>
+ </div></div>
+</section>
+
+<section class="how reveal" id="install">
+  <div class="sec-head">
+    <span class="kicker grad" data-i="in.kicker">Установка</span>
+    <h2 data-i="in.title">Три шага до запуска</h2>
+    <p data-i="in.sub">Приложения ставятся не из Google Play, поэтому Android один раз попросит разрешение. Это нормально.</p>
+  </div>
+  <div class="steps">
+    <div class="step tilt" style="--g:linear-gradient(135deg,#22d3ee,#8b5cf6)"><div class="no">01</div><h3 data-i="in.h1">Скачай APK</h3><p data-i="in.p1">Открой сайт с телефона и нажми «Скачать APK». На компьютере — просто отсканируй QR-код.</p></div>
+    <div class="step tilt" style="--g:linear-gradient(135deg,#8b5cf6,#ec4899)"><div class="no">02</div><h3 data-i="in.h2">Разреши установку</h3><p data-i="in.p2">Когда телефон спросит, разреши браузеру устанавливать неизвестные приложения.</p></div>
+    <div class="step tilt" style="--g:linear-gradient(135deg,#ec4899,#fbbf24)"><div class="no">03</div><h3 data-i="in.h3">Открывай и пользуйся</h3><p data-i="in.p3">Нажми на скачанный файл, затем «Установить». Иконка появится на рабочем столе.</p></div>
+  </div>
+</section>
+
+<h2 class="subhead reveal" data-i="other">Другие приложения</h2>
+<div class="apps reveal">
+  <a class="app tilt" href="tidemark/" aria-current="page" style="--c:#3b82f6;--g:linear-gradient(135deg,#22d3ee,#6366f1)"><span class="st"></span><img src="img/tidemark-icon.webp" alt=""><b>Tidemark</b><small data-i="cat.crypto">Криптовалюты</small></a>
+  <a class="app tilt" href="mfs/" style="--c:#fb923c;--g:linear-gradient(135deg,#fbbf24,#f472b6)"><span class="st"></span><img src="img/mfs-icon.webp" alt=""><b>Math for Speed</b><small data-i="cat.math">Устный счёт</small></a>
+  <a class="app tilt" href="python/" style="--c:#3b82f6;--g:linear-gradient(135deg,#3b82f6,#facc15)"><span class="st"></span><svg class="pi"><use href="#py"/></svg><b>Python</b><small data-i="cat.prog">Программирование</small></a>
+  <a class="app tilt" href="monko/" style="--c:#f5c451;--g:linear-gradient(135deg,#f5c451,#f97316)"><span class="st"></span><img src="img/monko-icon.webp" alt=""><b>Monko</b><small data-i="cat.fin">Финансы</small></a>
+  <a class="app tilt" href="dealio/" style="--c:#a3e635;--g:linear-gradient(135deg,#a3e635,#10b981)"><span class="st soon"></span><img src="img/dealio-icon.webp" alt=""><b>Dealio</b><small data-i="cat.soon">Скоро</small></a>
+</div>
+
+<section class="about reveal" id="about">
+  <div class="about-card"><div class="in">
+    <div>
+      <span class="kicker grad" data-i="ab.kicker">Создатель</span>
+      <h2>Ansaro Technologies</h2>
+      <p data-i="ab.p">Студия, которая делает Android-приложения: финансы, крипта, обучение и полезные инструменты. Каждое приложение — с вниманием к деталям и красивым дизайном.</p>
+      <a class="dev" href="https://instagram.com/nochevvsky" target="_blank" rel="noopener">
+        <span class="ava">D</span>
+        <span><b>nochevvsky</b><small data-i="ab.dev">Davyd (Давид) · основатель и разработчик</small></span>
+      </a>
+    </div>
+    <div class="links">
+      <a class="link tg" href="https://t.me/AnsaroTechnologies" target="_blank" rel="noopener"><span class="li"><svg><use href="#tg"/></svg></span><span><b>@AnsaroTechnologies</b><small data-i="ab.tg1">Telegram студии</small></span><span class="arr">→</span></a>
+      <a class="link tg" href="https://t.me/VoxyG" target="_blank" rel="noopener"><span class="li"><svg><use href="#tg"/></svg></span><span><b>@VoxyG</b><small>Telegram</small></span><span class="arr">→</span></a>
+      <a class="link ig" href="https://instagram.com/nochevvsky" target="_blank" rel="noopener"><span class="li"><svg><use href="#ig"/></svg></span><span><b>@nochevvsky</b><small>Instagram · Davyd (Давид)</small></span><span class="arr">→</span></a>
+      <a class="link idea" href="https://t.me/AnsaroTechnologies" target="_blank" rel="noopener"><span class="li"><svg><use href="#bulb"/></svg></span><span><b data-i="idea.t">Предложить идею или сообщить об ошибке</b><small data-i="idea.s">Пиши в Telegram — читаем всё</small></span><span class="arr">→</span></a>
+    </div>
+  </div></div>
+</section>
+
+</main>
+
+<footer><div class="wrap">
+  <span>© 2026 Ansaro Technologies · <span data-i="f.by">создатель</span> <a href="https://instagram.com/nochevvsky" target="_blank" rel="noopener">nochevvsky</a> (Davyd, Давид)</span>
+  <span class="fl"><a href="updates.html" data-i="nav.updates">Обновления</a><a href="https://t.me/AnsaroTechnologies" target="_blank" rel="noopener">tg @AnsaroTechnologies</a><a href="https://t.me/VoxyG" target="_blank" rel="noopener">tg @VoxyG</a><a href="https://instagram.com/nochevvsky" target="_blank" rel="noopener">ig @nochevvsky</a></span>
+</div></footer>
+
+<script src="i18n.js?v=11" defer></script>
+<script src="app.js?v=9" defer></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+# Раз в час скачивает RSS-ленты криптоновостей и кладёт их в ветку news-cache.
+# Веб-демо Tidemark читает ленты оттуда: напрямую с сайтов новостей браузер их получить не может (CORS).
+# Ветка каждый раз перезаписывается одним коммитом, поэтому история репозитория не растёт.
+name: news-cache
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: news-cache
+  cancel-in-progress: true
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Fetch feeds
+        run: |
+          mkdir out && cd out
+          UA='Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Mobile Safari/537.36'
+          get() { curl -sL --max-time 30 -A "$UA" "$2" -o "$1.xml" || true; }
+          get ct https://cointelegraph.com/rss
+          get dc https://decrypt.co/feed
+          get fl https://forklog.com/feed
+          get bm https://bits.media/rss2/
+          get inc_ru https://incrypted.com/feed/
+          get inc_uk https://incrypted.com/ua/feed/
+          # оставляем только настоящие ленты (а не страницы ошибок и пустые файлы)
+          for f in *.xml; do grep -q '<item' "$f" || rm -f "$f"; done
+          ls -la
+      - name: Keep previous copy of feeds that failed this time
+        run: |
+          cd out
+          for id in ct dc fl bm inc_ru inc_uk; do
+            [ -f "$id.xml" ] || curl -sfL --max-time 20 "https://raw.githubusercontent.com/${{ github.repository }}/news-cache/$id.xml" -o "$id.xml" || rm -f "$id.xml"
+          done
+          date -u +%Y-%m-%dT%H:%M:%SZ > updated.txt
+          ls -la
+      - name: Publish to news-cache branch
+        run: |
+          cd out
+          [ -n "$(ls *.xml 2>/dev/null)" ] || { echo "no feeds fetched"; exit 0; }
+          git init -q -b news-cache
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A && git commit -qm "news cache $(cat updated.txt)"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" news-cache

@@ -23,15 +23,16 @@
         flex: 1;
       }
     </style>
-  <link rel="icon" href="/demo/monko/favicon.ico" /><style>svg{position:relative}html{scrollbar-width:none;background:#000}::-webkit-scrollbar{display:none}</style></head>
+  <link rel="icon" href="/demo/monko/favicon.ico" /><style>svg{position:relative}html{scrollbar-width:none;background:#000}::-webkit-scrollbar{display:none}</style><style id="ansaro-splash-css">#ansaro-splash{position:fixed;inset:0;z-index:99999;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;font-family:system-ui,sans-serif;color:#f5f3ff;transition:opacity .35s}#ansaro-splash.gone{opacity:0;pointer-events:none}#ansaro-splash i{width:54px;height:54px;border-radius:50%;border:4px solid rgba(255,255,255,.12);border-top-color:#f5c451;border-right-color:#f97316;animation:ansp .9s linear infinite}#ansaro-splash b{font-size:20px;font-weight:800}@keyframes ansp{to{transform:rotate(360deg)}}</style></head>
 
   <body>
+<div id="ansaro-splash"><i></i><b>Monko</b></div><script>(function(){var s=document.getElementById('ansaro-splash');var t=setInterval(function(){var r=document.getElementById('root');if(r&&r.innerText.trim().length>20){clearInterval(t);s.classList.add('gone');setTimeout(function(){s.remove()},400)}},200);setTimeout(function(){clearInterval(t);s&&s.remove()},25000)})()</script>
     <!-- Use static rendering with Expo Router to support running without JavaScript. -->
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
     <!-- The root element for your Expo app. -->
     <div id="root"></div>
-  <script src="/demo/monko/_expo/static/js/web/index-a735afb0a144e11e0f97282d12b06090.js" defer></script>
+  <script src="/demo/monko/_expo/static/js/web/index-776e0e7c50ac0cfca32c39aebc07fe88.js" defer></script>
 </body>
 </html>

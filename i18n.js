@@ -9,7 +9,9 @@ ru: {
 },
 
 uk: {
-  "demo.hint.tm":"Це вебверсія справжнього застосунку з живими цінами. Відкривай монети, дивись графіки та індикатори. Новини й графіки деяких рідкісних монет у браузері можуть не завантажитися, а сповіщення працюють лише в застосунку на телефоні.","demo.hint.py":"Це вебверсія справжнього застосунку. Читай розділи, проходь тести й запускай код на Python просто тут. Інтерфейс застосунку російською. Прогрес зберігається лише в цьому браузері.",
+  "d.oct10":"10 жовтня 2026","mk.n2":"Нова збірка: APK зменшено зі 193 до 60 МБ, виправлено рідкісну помилку шифрування даних під час першого запуску.",
+  "page":"Сторінка застосунку →","back":"← Усі застосунки","other":"Інші застосунки","demo.reset":"Скинути демо","demo.resetAsk":"Повернути демо до початкового стану? Усе, що ти в ньому змінив, буде видалено.","demo.loading":"Завантажується…",
+  "demo.hint.tm":"Це вебверсія справжнього застосунку з живими цінами. Відкривай монети, дивись графіки та індикатори. Новини оновлюються раз на годину. Графіки деяких рідкісних монет у браузері можуть не завантажитися, а сповіщення працюють лише в застосунку на телефоні.","demo.hint.py":"Це вебверсія справжнього застосунку. Читай розділи, проходь тести й запускай код на Python просто тут. Інтерфейс застосунку російською. Прогрес зберігається лише в цьому браузері.",
   "demo.hint.monko":"Це вебверсія справжнього застосунку з демо-даними. Додавай витрати, дивись статистику та бюджети. Сканер чеків, сповіщення й резервні копії працюють лише в застосунку на телефоні.",
   "try":"Спробувати онлайн","try.hint":"Без встановлення, просто в браузері","demo.hint.mfs":"Це справжній застосунок, а не відео. Натискай кнопки, розв’язуй приклади. Прогрес зберігається лише в цьому браузері.","demo.full":"Відкрити на весь екран","demo.close":"Закрити",
   'nav.updates':'Оновлення','nav.contacts':'Контакти','u.apps':'Застосунки',
@@ -85,7 +87,9 @@ uk: {
 },
 
 en: {
-  "demo.hint.tm":"This is the web version of the real app with live prices. Open coins, explore charts and indicators. News and charts for some rare coins may not load in a browser, and alerts only work in the phone app.","demo.hint.py":"This is the web version of the real app. Read chapters, take quizzes and run Python code right here. The app interface is in Russian. Progress is saved only in this browser.",
+  "d.oct10":"October 10, 2026","mk.n2":"New build: the APK shrank from 193 to 60 MB, and a rare data-encryption bug on first launch is fixed.",
+  "page":"App page →","back":"← All apps","other":"More apps","demo.reset":"Reset demo","demo.resetAsk":"Reset the demo to its initial state? Everything you changed in it will be removed.","demo.loading":"Loading…",
+  "demo.hint.tm":"This is the web version of the real app with live prices. Open coins, explore charts and indicators. News refreshes hourly. Charts for some rare coins may not load in a browser, and alerts only work in the phone app.","demo.hint.py":"This is the web version of the real app. Read chapters, take quizzes and run Python code right here. The app interface is in Russian. Progress is saved only in this browser.",
   "demo.hint.monko":"This is the web version of the real app with demo data. Add expenses, explore stats and budgets. Receipt scanning, notifications and backups only work in the phone app.",
   "try":"Try it online","try.hint":"No install, right in your browser","demo.hint.mfs":"This is the real app, not a video. Tap the buttons and solve problems. Progress is saved only in this browser.","demo.full":"Open full screen","demo.close":"Close",
   'nav.updates':'Updates','nav.contacts':'Contacts','u.apps':'Apps',
@@ -161,7 +165,9 @@ en: {
 },
 
 cs: {
-  "demo.hint.tm":"Tohle je webová verze skutečné aplikace s živými cenami. Otevírej mince, prohlížej grafy a indikátory. Zprávy a grafy některých vzácných mincí se v prohlížeči nemusí načíst a upozornění fungují jen v aplikaci v telefonu.","demo.hint.py":"Tohle je webová verze skutečné aplikace. Čti kapitoly, dělej kvízy a spouštěj kód v Pythonu přímo tady. Rozhraní aplikace je v ruštině. Pokrok se ukládá jen v tomto prohlížeči.",
+  "d.oct10":"10. října 2026","mk.n2":"Nové sestavení: APK se zmenšilo ze 193 na 60 MB a je opravena vzácná chyba šifrování dat při prvním spuštění.",
+  "page":"Stránka aplikace →","back":"← Všechny aplikace","other":"Další aplikace","demo.reset":"Resetovat demo","demo.resetAsk":"Vrátit demo do výchozího stavu? Vše, co jsi v něm změnil, bude smazáno.","demo.loading":"Načítá se…",
+  "demo.hint.tm":"Tohle je webová verze skutečné aplikace s živými cenami. Otevírej mince, prohlížej grafy a indikátory. Zprávy se obnovují každou hodinu. Grafy některých vzácných mincí se v prohlížeči nemusí načíst a upozornění fungují jen v aplikaci v telefonu.","demo.hint.py":"Tohle je webová verze skutečné aplikace. Čti kapitoly, dělej kvízy a spouštěj kód v Pythonu přímo tady. Rozhraní aplikace je v ruštině. Pokrok se ukládá jen v tomto prohlížeči.",
   "demo.hint.monko":"Tohle je webová verze skutečné aplikace s ukázkovými daty. Přidávej výdaje, prohlížej statistiky a rozpočty. Skenování účtenek, upozornění a zálohy fungují jen v aplikaci v telefonu.",
   "try":"Vyzkoušet online","try.hint":"Bez instalace, přímo v prohlížeči","demo.hint.mfs":"Tohle je skutečná aplikace, ne video. Klikej na tlačítka a počítej příklady. Pokrok se ukládá jen v tomto prohlížeči.","demo.full":"Otevřít na celou obrazovku","demo.close":"Zavřít",
   'nav.updates':'Novinky','nav.contacts':'Kontakty','u.apps':'Aplikace',

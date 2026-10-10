@@ -15,7 +15,7 @@
   dict.ru = dict.ru || {};
   $$('[data-i]').forEach(el => { if (!(el.dataset.i in dict.ru)) dict.ru[el.dataset.i] = el.innerHTML; });
   if (!('u.title' in dict.ru)) dict.ru['u.title'] = 'Обновления';
-  Object.assign(dict.ru, { 'demo.hint.mfs': 'Это настоящее приложение, а не видео. Нажимай кнопки, решай примеры. Прогресс сохраняется только в этом браузере.', 'demo.hint.tm': 'Это веб-версия настоящего приложения с живыми ценами. Открывай монеты, смотри графики и индикаторы. Новости и графики некоторых редких монет в браузере могут не загрузиться, а уведомления работают только в приложении на телефоне.', 'demo.hint.py': 'Это веб-версия настоящего приложения. Читай главы, проходи тесты и запускай код на Python прямо здесь. Интерфейс приложения на русском. Прогресс сохраняется только в этом браузере.', 'demo.hint.monko': 'Это веб-версия настоящего приложения с демо-данными. Добавляй расходы, смотри статистику и бюджеты. Сканер чеков, уведомления и резервные копии работают только в приложении на телефоне.', 'demo.full': 'Открыть на весь экран', 'demo.close': 'Закрыть' });
+  Object.assign(dict.ru, { 'demo.hint.mfs': 'Это настоящее приложение, а не видео. Нажимай кнопки, решай примеры. Прогресс сохраняется только в этом браузере.', 'demo.hint.tm': 'Это веб-версия настоящего приложения с живыми ценами. Открывай монеты, смотри графики и индикаторы. Новости обновляются раз в час. Графики некоторых редких монет в браузере могут не загрузиться, а уведомления работают только в приложении на телефоне.', 'demo.hint.py': 'Это веб-версия настоящего приложения. Читай главы, проходи тесты и запускай код на Python прямо здесь. Интерфейс приложения на русском. Прогресс сохраняется только в этом браузере.', 'demo.hint.monko': 'Это веб-версия настоящего приложения с демо-данными. Добавляй расходы, смотри статистику и бюджеты. Сканер чеков, уведомления и резервные копии работают только в приложении на телефоне.', 'demo.full': 'Открыть на весь экран', 'demo.close': 'Закрыть', 'demo.reset': 'Сбросить демо', 'demo.resetAsk': 'Вернуть демо в исходное состояние? Всё, что ты в нём изменил, будет удалено.', 'demo.loading': 'Загружается…' });
 
   function detectLang() {
     const saved = store.get('lang');
@@ -210,25 +210,62 @@
   $$('.hero, .marquee, .proj').forEach(el => pauser.observe(el));
 
   /* ===== онлайн-демо: приложение открывается в окне на сайте ===== */
-  let demoEl = null;
+  // какие ключи хранилища браузера принадлежат какому демо (для кнопки «Сбросить демо»)
+  const DEMO_KEYS = {
+    'demo/mfs/': k => k.startsWith('mfs-'),
+    'demo/monko/': k => k.startsWith('moneyollways:') || k.startsWith('monko-'),
+    'demo/python/': k => k === 'flutter.farm' || k === 'flutter.progress',
+    'demo/tidemark/': k => k.startsWith('flutter.') && k !== 'flutter.farm' && k !== 'flutter.progress',
+  };
+  let demoEl = null, demoUrl = '', demoBase = '', demoPoll = 0;
   function demoTexts() {
     if (!demoEl) return;
     demoEl.querySelector('.d-hint').textContent = t(demoEl.dataset.hint || 'demo.hint.mfs');
     demoEl.querySelector('.d-full').textContent = t('demo.full');
+    demoEl.querySelector('.d-wait').textContent = t('demo.loading');
     demoEl.querySelectorAll('.d-close').forEach(b => { b.textContent = t('demo.close'); });
+    demoEl.querySelectorAll('.d-reset').forEach(b => { b.textContent = t('demo.reset'); });
   }
-  function openDemo(url, name, hint) {
+  // заставка висит, пока приложение внутри окна не нарисует первый экран
+  function watchDemo() {
+    const frame = demoEl.querySelector('iframe'), load = demoEl.querySelector('.demo-load');
+    load.classList.remove('done');
+    clearInterval(demoPoll);
+    const started = Date.now();
+    let flutterReady = false, hooked = false;
+    demoPoll = setInterval(() => {
+      let ok = false;
+      try {
+        const d = frame.contentDocument, w = frame.contentWindow;
+        if (d && d.readyState === 'complete' && w.location.href !== 'about:blank') {
+          if (d.querySelector('script[src*="flutter_bootstrap"]')) {
+            if (!hooked) { hooked = true; w.addEventListener('flutter-first-frame', () => { flutterReady = true; }); }
+            ok = flutterReady || !!d.querySelector('flt-glass-pane, flutter-view');
+          } else if (d.querySelector('script[src*="_expo"]')) {
+            const r = d.getElementById('root'); ok = !!r && r.innerText.trim().length > 20;
+          } else ok = true;
+        }
+      } catch (e) { ok = true; }
+      if (ok || Date.now() - started > 25000) { clearInterval(demoPoll); setTimeout(() => load.classList.add('done'), ok ? 350 : 0); }
+    }, 200);
+  }
+  function openDemo(url, name, hint, base) {
     if (!demoEl) {
       demoEl = document.createElement('div');
       demoEl.className = 'demo';
-      demoEl.innerHTML = '<div class="demo-bar"><span class="d-name"></span><button class="d-close" type="button"></button></div>' +
-        '<div class="demo-phone"><iframe title="demo" allow="autoplay; fullscreen"></iframe></div>' +
+      demoEl.innerHTML = '<div class="demo-bar"><span class="d-name"></span><span class="grp"><button class="d-reset" type="button"></button><button class="d-close" type="button"></button></span></div>' +
+        '<div class="demo-phone"><iframe title="demo" allow="autoplay; fullscreen"></iframe>' +
+        '<div class="demo-load"><div class="ring2"></div><b class="d-name"></b><small class="d-wait"></small></div></div>' +
         '<div class="demo-side"><h3 class="d-name"></h3><p class="d-hint"></p><div class="acts">' +
-        '<a class="d-full" target="_blank" rel="noopener"></a><button class="d-close x" type="button"></button></div></div>';
+        '<a class="d-full" target="_blank" rel="noopener"></a><button class="d-reset" type="button"></button><button class="d-close x" type="button"></button></div></div>';
       document.body.appendChild(demoEl);
-      demoEl.addEventListener('click', e => { if (e.target === demoEl || e.target.classList.contains('d-close')) closeDemo(); });
+      demoEl.addEventListener('click', e => {
+        if (e.target === demoEl || e.target.classList.contains('d-close')) closeDemo();
+        else if (e.target.classList.contains('d-reset')) resetDemo();
+      });
       document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDemo(); });
     }
+    demoUrl = url; demoBase = base || url;
     demoEl.dataset.hint = hint || 'demo.hint.mfs';
     demoEl.querySelectorAll('.d-name').forEach(n => { n.textContent = name; });
     demoEl.querySelector('.d-full').href = url;
@@ -236,17 +273,31 @@
     demoTexts();
     demoEl.classList.add('open');
     document.documentElement.style.overflow = 'hidden';
+    watchDemo();
   }
   function closeDemo() {
     if (!demoEl || !demoEl.classList.contains('open')) return;
+    clearInterval(demoPoll);
     demoEl.classList.remove('open');
     demoEl.querySelector('iframe').src = 'about:blank';
     document.documentElement.style.overflow = '';
   }
+  // вернуть демо в исходное состояние: стираем только его данные и перезапускаем
+  function resetDemo() {
+    const mine = DEMO_KEYS[demoBase];
+    if (!mine || !window.confirm(t('demo.resetAsk'))) return;
+    const frame = demoEl.querySelector('iframe');
+    frame.src = 'about:blank';
+    setTimeout(() => {
+      try { Object.keys(localStorage).filter(mine).forEach(k => localStorage.removeItem(k)); } catch (e) {}
+      frame.src = demoUrl;
+      watchDemo();
+    }, 150);
+  }
   $$('[data-demo]').forEach(b => b.addEventListener('click', () => {
     // приложению передаём язык сайта (чешского в приложениях нет — тогда английский)
     const q = b.dataset.demoLang ? '?lang=' + (lang === 'cs' ? 'en' : lang) : '';
-    openDemo(b.dataset.demo + q, b.dataset.demoName || '', b.dataset.demoHint);
+    openDemo(b.dataset.demo + q, b.dataset.demoName || '', b.dataset.demoHint, b.dataset.demo);
   }));
 
   /* ===== появление блоков ===== */
