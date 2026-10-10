@@ -9,6 +9,10 @@ ru: {
 },
 
 uk: {
+  "ab.tgOwner":"Telegram власника · написати особисто",
+  "f.by":"творець і власник",
+  "ab.dev":"nochevvsky · Davyd (Давид) · засновник і власник",
+  "ab.tg1":"Telegram-канал студії",
   "upd":"Оновлення",
   "tm.n2":"Велике оновлення: демо-торгівля з щоденником, розбір графіка, гра, рівні й досягнення.",
   "tm.u1":"<b>Стоп, тейк і позиція на графіку</b>: рівні показані лініями, їх можна перетягувати пальцем",
@@ -90,14 +94,18 @@ uk: {
   'in.h2':'Дозволь встановлення','in.p2':'Коли телефон запитає, дозволь браузеру встановлювати невідомі застосунки.',
   'in.h3':'Відкривай і користуйся','in.p3':'Натисни на завантажений файл, потім «Встановити». Іконка з’явиться на робочому столі.',
   'ab.kicker':'Творець','ab.p':'Студія, що створює Android-застосунки: фінанси, крипта, навчання та корисні інструменти. Кожен застосунок — з увагою до деталей і гарним дизайном.',
-  'ab.dev':'Davyd (Давид) · засновник і розробник','ab.tg1':'Telegram студії',
-  'idea.t':'Запропонувати ідею або повідомити про помилку','idea.s':'Пиши в Telegram — читаємо все','f.by':'творець',
+  
+  'idea.t':'Запропонувати ідею або повідомити про помилку','idea.s':'Пиши в Telegram — читаємо все',
   'u.kicker':'Журнал змін','u.title':'Оновлення','u.sub':'Усі релізи та нові версії застосунків Ansaro Technologies в одному місці.',
   'u.site.t':'Новий сайт Ansaro Technologies','u.site.p':'Усі застосунки в одному місці: описи, галереї екранів, QR-коди для завантаження, лічильники завантажень, світла тема і 4 мови.',
   'u.more':'Детальніше та завантажити →','u.before':'Раніше:','u.soon':'Скоро'
 },
 
 en: {
+  "ab.tgOwner":"Owner’s Telegram · message directly",
+  "f.by":"creator and owner",
+  "ab.dev":"nochevvsky · Davyd · founder and owner",
+  "ab.tg1":"Studio Telegram channel",
   "upd":"Update",
   "tm.n2":"Big update: demo trading with a journal, chart breakdown, a game, levels and achievements.",
   "tm.u1":"<b>Stop, target and position on the chart</b>: levels are drawn as lines you can drag with a finger",
@@ -179,14 +187,18 @@ en: {
   'in.h2':'Allow installation','in.p2':'When your phone asks, allow your browser to install unknown apps.',
   'in.h3':'Open and enjoy','in.p3':'Tap the downloaded file, then “Install”. The icon will appear on your home screen.',
   'ab.kicker':'Creator','ab.p':'A studio building Android apps: finance, crypto, learning and handy tools. Every app is made with attention to detail and beautiful design.',
-  'ab.dev':'Davyd · founder and developer','ab.tg1':'Studio Telegram',
-  'idea.t':'Suggest an idea or report a bug','idea.s':'Message us on Telegram — we read everything','f.by':'created by',
+  
+  'idea.t':'Suggest an idea or report a bug','idea.s':'Message us on Telegram — we read everything',
   'u.kicker':'Changelog','u.title':'Updates','u.sub':'Every release and new version of Ansaro Technologies apps in one place.',
   'u.site.t':'New Ansaro Technologies website','u.site.p':'All apps in one place: descriptions, screen galleries, QR codes for downloading, download counters, a light theme and 4 languages.',
   'u.more':'Details & download →','u.before':'Earlier:','u.soon':'Soon'
 },
 
 cs: {
+  "ab.tgOwner":"Telegram majitele · napsat osobně",
+  "f.by":"tvůrce a majitel",
+  "ab.dev":"nochevvsky · Davyd (David) · zakladatel a majitel",
+  "ab.tg1":"Telegramový kanál studia",
   "upd":"Aktualizace",
   "tm.n2":"Velká aktualizace: demo obchodování s deníkem, rozbor grafu, hra, úrovně a úspěchy.",
   "tm.u1":"<b>Stop, cíl a pozice v grafu</b>: úrovně jsou zobrazené čarami a dají se přetahovat prstem",
@@ -268,8 +280,8 @@ cs: {
   'in.h2':'Povol instalaci','in.p2':'Až se telefon zeptá, povol prohlížeči instalovat neznámé aplikace.',
   'in.h3':'Otevři a používej','in.p3':'Klepni na stažený soubor a pak na „Instalovat“. Ikona se objeví na ploše.',
   'ab.kicker':'Tvůrce','ab.p':'Studio, které vytváří aplikace pro Android: finance, kryptoměny, učení a užitečné nástroje. Každá aplikace s péčí o detaily a krásným designem.',
-  'ab.dev':'Davyd (David) · zakladatel a vývojář','ab.tg1':'Telegram studia',
-  'idea.t':'Navrhnout nápad nebo nahlásit chybu','idea.s':'Napiš nám na Telegram — čteme všechno','f.by':'tvůrce',
+  
+  'idea.t':'Navrhnout nápad nebo nahlásit chybu','idea.s':'Napiš nám na Telegram — čteme všechno',
   'u.kicker':'Seznam změn','u.title':'Novinky','u.sub':'Všechna vydání a nové verze aplikací Ansaro Technologies na jednom místě.',
   'u.site.t':'Nový web Ansaro Technologies','u.site.p':'Všechny aplikace na jednom místě: popisy, galerie obrazovek, QR kódy ke stažení, počítadla stažení, světlý motiv a 4 jazyky.',
   'u.more':'Více a stáhnout →','u.before':'Dříve:','u.soon':'Brzy'

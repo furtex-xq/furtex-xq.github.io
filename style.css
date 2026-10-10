@@ -385,3 +385,9 @@ footer .fl{display:flex;gap:18px;flex-wrap:wrap}
   .frame{box-shadow:0 30px 50px -24px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.14)}
   .spot{display:none}
 }
+
+/* ===== аватар Ansaro у создателя и владельца ===== */
+.ava{overflow:hidden;background:#000;box-shadow:0 0 0 2px rgba(255,255,255,.22),0 8px 22px -8px rgba(255,255,255,.35)}
+.ava img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.link.own .li{background:#000;overflow:hidden;box-shadow:0 0 0 1.5px rgba(255,255,255,.25)}
+.link.own .li img{width:100%;height:100%;object-fit:cover}
