@@ -109,7 +109,7 @@
     track.addEventListener('touchstart', hold, { passive: true });
     v.addEventListener('mouseenter', () => (paused = true));
     v.addEventListener('mouseleave', () => (paused = false));
-    const start = () => { if (!timer && !calm) timer = setInterval(() => { if (!paused && !document.hidden) go(idx + 1); }, 3800); };
+    const start = () => { if (!timer && !calm) timer = setInterval(() => { if (!paused && !document.hidden && !document.documentElement.classList.contains('demo-open')) go(idx + 1); }, 3800); };
     const stop = () => { clearInterval(timer); timer = null; };
     new IntersectionObserver(es => es.forEach(e => (e.isIntersecting ? start() : stop())), { threshold: .35 }).observe(v);
     mark();
@@ -319,7 +319,7 @@
       const app = b.closest('.proj').id;
       statHit('demo-' + app).then(v => { if (statData[app] && v) { statData[app].demo = v; renderStats(); } });
     }));
-    setInterval(renderStats, 60000);                       // «5 минут назад» обновляется само
+    setInterval(() => { if (!document.documentElement.classList.contains('demo-open')) renderStats(); }, 60000);                       // «5 минут назад» обновляется само
   }
 
   /* ===== онлайн-демо: приложение открывается в окне на сайте ===== */
@@ -386,6 +386,7 @@
     demoTexts();
     demoEl.classList.add('open');
     document.documentElement.style.overflow = 'hidden';
+    document.documentElement.classList.add('demo-open');   // страница под окном замирает: все кадры достаются приложению
     watchDemo();
   }
   function closeDemo() {
@@ -394,6 +395,7 @@
     demoEl.classList.remove('open');
     demoEl.querySelector('iframe').src = 'about:blank';
     document.documentElement.style.overflow = '';
+    document.documentElement.classList.remove('demo-open');
   }
   // вернуть демо в исходное состояние: стираем только его данные и перезапускаем
   function resetDemo() {

@@ -542,3 +542,66 @@ footer .wrap{position:relative;padding-top:26px;border-top:1px solid var(--hair)
 /* Карточки обрезают декоративное свечение, но не должны прокручиваться внутри
    (overflow:hidden остаётся прокручиваемым программно и давал пустоту снизу). */
 .proj>.in,.about-card>.in,.app,.step,.demo-phone,footer{overflow:clip}
+
+/* =====================================================================
+   РОВНОЕ СВЕЧЕНИЕ: без смещения вниз, одинаковое со всех сторон, крупнее
+   ===================================================================== */
+/* иконки приложений */
+.app img,.app svg.pi{display:block;box-shadow:0 0 0 1px rgba(255,255,255,.16),0 0 42px 6px color-mix(in srgb,var(--c) 62%,transparent)}
+.head img,.head svg.pi{box-shadow:0 0 0 1px rgba(255,255,255,.16),0 0 54px 6px color-mix(in srgb,var(--c1) 58%,transparent)}
+.orbit .ico{box-shadow:0 0 0 1px rgba(255,255,255,.18),0 0 44px 6px color-mix(in srgb,var(--g) 65%,transparent)}
+.orbit .core{box-shadow:0 0 0 2px rgba(255,255,255,.24),0 0 0 12px var(--glass),0 0 90px 12px rgba(139,92,246,.55)}
+.entry .ic{box-shadow:0 0 0 4px var(--bg),0 0 34px 4px color-mix(in srgb,var(--c1) 60%,transparent)}
+.mk{box-shadow:0 0 0 1.5px rgba(255,255,255,.3),0 0 20px 2px rgba(255,255,255,.28)}
+.ava{box-shadow:0 0 0 2px rgba(255,255,255,.24),0 0 24px 3px rgba(255,255,255,.26)}
+.link.own .li{box-shadow:0 0 0 1.5px rgba(255,255,255,.26),0 0 18px 2px rgba(255,255,255,.22)}
+
+/* карточки: рамка одной яркости по всему контуру; подсветка у курсора только при наведении */
+.app,.step,.link,.nums div,.news{--gl:transparent;
+  background:linear-gradient(var(--solid),var(--solid2)) padding-box,
+             radial-gradient(240px circle at var(--mx,50%) var(--my,50%),var(--gl),transparent 70%) border-box,
+             linear-gradient(var(--hair),var(--hair)) border-box;
+  box-shadow:inset 0 1px 0 var(--hi)}
+.app:hover,.step:hover,.link:hover{--gl:var(--glowc,rgba(255,255,255,.6))}
+.app:hover{box-shadow:inset 0 1px 0 var(--hi),0 0 56px -4px color-mix(in srgb,var(--c) 55%,transparent)}
+.step:hover{box-shadow:inset 0 1px 0 var(--hi),0 0 56px -6px rgba(139,92,246,.55)}
+.link:hover{box-shadow:inset 0 1px 0 var(--hi),0 0 40px -6px rgba(167,139,250,.5)}
+
+/* большие блоки приложений: сплошная градиентная рамка и ровный ореол вокруг */
+.proj{--gl:transparent;
+  background:radial-gradient(520px circle at var(--mx,50%) var(--my,50%),var(--gl),transparent 46%),linear-gradient(140deg,var(--c1),var(--c2));
+  box-shadow:0 0 80px -14px color-mix(in srgb,var(--c1) 55%,transparent),0 0 80px -14px color-mix(in srgb,var(--c2) 40%,transparent)}
+.proj:hover{--gl:color-mix(in srgb,var(--c1) 55%,#fff)}
+.about-card{box-shadow:0 0 100px -16px rgba(139,92,246,.6)}
+
+/* кнопки */
+.btn{box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -2px 0 rgba(0,0,0,.16),0 0 0 1px rgba(255,255,255,.14),0 0 44px 0 color-mix(in srgb,var(--c1) 55%,transparent)}
+.btn:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 -2px 0 rgba(0,0,0,.16),0 0 0 1px rgba(255,255,255,.22),0 0 64px 4px color-mix(in srgb,var(--c1) 65%,transparent)}
+.btn.alt{box-shadow:inset 0 1px 0 var(--hi)}
+.b-main{box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -2px 0 rgba(0,0,0,.14),0 0 0 1px rgba(255,255,255,.12),0 0 50px 0 rgba(139,92,246,.6)}
+.b-main:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 -2px 0 rgba(0,0,0,.14),0 0 0 1px rgba(255,255,255,.2),0 0 70px 6px rgba(139,92,246,.7)}
+.btn-try:hover{box-shadow:inset 0 1px 0 var(--hi),0 0 40px -4px color-mix(in srgb,var(--c1) 55%,transparent)}
+.nav-cta{box-shadow:0 0 24px -2px rgba(255,255,255,.4)}
+.pill{box-shadow:inset 0 1px 0 var(--hi),0 0 30px -2px rgba(139,92,246,.55)}
+
+/* телефоны: цветной ореол ровно вокруг корпуса */
+.frame{box-shadow:0 0 110px 0 color-mix(in srgb,var(--c1) 42%,transparent),0 40px 70px -40px rgba(0,0,0,.85),
+  inset 0 0 0 1.5px rgba(255,255,255,.22),inset 0 0 0 4.5px #05040c,inset 0 2px 3px 5px rgba(255,255,255,.05)}
+.visual::before{top:50%;left:50%;translate:-50% -55%;width:125%;opacity:.3;background:radial-gradient(circle,var(--c1),var(--c2) 38%,transparent 68%)}
+.dots i.on{box-shadow:0 0 14px 1px color-mix(in srgb,var(--c1) 70%,transparent)}
+.car-nav button:hover{box-shadow:inset 0 1px 0 var(--hi),0 0 24px -2px color-mix(in srgb,var(--c1) 55%,transparent)}
+.creator:hover{box-shadow:inset 0 1px 0 var(--hi),0 0 36px -6px rgba(255,255,255,.3)}
+
+/* =====================================================================
+   ОНЛАЙН-ДЕМО: пока окно открыто, страница под ним ничего не рисует и не анимирует
+   ===================================================================== */
+.demo{background:#06040f;backdrop-filter:none;-webkit-backdrop-filter:none}
+html.demo-open body>*:not(.demo){visibility:hidden}
+html.demo-open body::after{display:none}
+html.demo-open *,html.demo-open *::before,html.demo-open *::after{animation-play-state:paused!important}
+html.demo-open .demo,html.demo-open .demo *{visibility:visible;animation-play-state:running!important}
+.demo-phone{box-shadow:0 0 0 1px rgba(255,255,255,.16),0 0 90px -10px rgba(139,92,246,.45)}
+.demo-phone iframe{transform:translateZ(0)}
+@media(max-width:760px){.demo-phone{box-shadow:none}}
+/* при открытом демо у скрытой страницы нет и плавных переходов */
+html.demo-open body>*:not(.demo),html.demo-open body>*:not(.demo) *{transition:none!important}
