@@ -203,6 +203,11 @@ nav ul a:hover,nav ul a.cur{color:var(--text);background:var(--glass2)}
 .news li::before{content:"";position:absolute;left:-6px;top:15px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--c1)}
 .news li b{color:var(--text);font-weight:800;margin-right:6px}
 .news li time{font-size:12px;color:var(--dim);font-weight:700}
+.news li ul.upd{margin:8px 0 2px 16px;display:grid;gap:5px;font-size:13.5px}
+.news li ul.upd li{border:0;margin:0;padding:0;list-style:disc;color:var(--muted)}
+.news li ul.upd li::before{display:none}
+.news li ul.upd b{margin:0}
+.entry ul b{color:var(--text)}
 .news .all{display:inline-block;margin:4px 18px 16px;font-size:13.5px;font-weight:800;color:var(--c1)}
 
 /* ===== карусель ===== */
