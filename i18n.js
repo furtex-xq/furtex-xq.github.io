@@ -9,7 +9,8 @@ ru: {
 },
 
 uk: {
-  "try":"Спробувати онлайн","try.hint":"Без встановлення, просто в браузері","demo.hint":"Це справжній застосунок, а не відео. Натискай кнопки, розв’язуй приклади. Прогрес зберігається лише в цьому браузері.","demo.full":"Відкрити на весь екран","demo.close":"Закрити",
+  "demo.hint.monko":"Це вебверсія справжнього застосунку з демо-даними. Додавай витрати, дивись статистику та бюджети. Сканер чеків, сповіщення й резервні копії працюють лише в застосунку на телефоні.",
+  "try":"Спробувати онлайн","try.hint":"Без встановлення, просто в браузері","demo.hint.mfs":"Це справжній застосунок, а не відео. Натискай кнопки, розв’язуй приклади. Прогрес зберігається лише в цьому браузері.","demo.full":"Відкрити на весь екран","demo.close":"Закрити",
   'nav.updates':'Оновлення','nav.contacts':'Контакти','u.apps':'Застосунки',
   'hero.pill':'Monko 1.0 вже можна завантажити',
   'hero.title':'Застосунки, які <span class="grad">хочеться відкривати</span>',
@@ -83,7 +84,8 @@ uk: {
 },
 
 en: {
-  "try":"Try it online","try.hint":"No install, right in your browser","demo.hint":"This is the real app, not a video. Tap the buttons and solve problems. Progress is saved only in this browser.","demo.full":"Open full screen","demo.close":"Close",
+  "demo.hint.monko":"This is the web version of the real app with demo data. Add expenses, explore stats and budgets. Receipt scanning, notifications and backups only work in the phone app.",
+  "try":"Try it online","try.hint":"No install, right in your browser","demo.hint.mfs":"This is the real app, not a video. Tap the buttons and solve problems. Progress is saved only in this browser.","demo.full":"Open full screen","demo.close":"Close",
   'nav.updates':'Updates','nav.contacts':'Contacts','u.apps':'Apps',
   'hero.pill':'Monko 1.0 is out — download now',
   'hero.title':'Apps you’ll <span class="grad">actually want to open</span>',
@@ -157,7 +159,8 @@ en: {
 },
 
 cs: {
-  "try":"Vyzkoušet online","try.hint":"Bez instalace, přímo v prohlížeči","demo.hint":"Tohle je skutečná aplikace, ne video. Klikej na tlačítka a počítej příklady. Pokrok se ukládá jen v tomto prohlížeči.","demo.full":"Otevřít na celou obrazovku","demo.close":"Zavřít",
+  "demo.hint.monko":"Tohle je webová verze skutečné aplikace s ukázkovými daty. Přidávej výdaje, prohlížej statistiky a rozpočty. Skenování účtenek, upozornění a zálohy fungují jen v aplikaci v telefonu.",
+  "try":"Vyzkoušet online","try.hint":"Bez instalace, přímo v prohlížeči","demo.hint.mfs":"Tohle je skutečná aplikace, ne video. Klikej na tlačítka a počítej příklady. Pokrok se ukládá jen v tomto prohlížeči.","demo.full":"Otevřít na celou obrazovku","demo.close":"Zavřít",
   'nav.updates':'Novinky','nav.contacts':'Kontakty','u.apps':'Aplikace',
   'hero.pill':'Monko 1.0 je ke stažení',
   'hero.title':'Aplikace, které <span class="grad">budeš chtít otevírat</span>',

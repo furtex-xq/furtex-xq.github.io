@@ -15,7 +15,7 @@
   dict.ru = dict.ru || {};
   $$('[data-i]').forEach(el => { if (!(el.dataset.i in dict.ru)) dict.ru[el.dataset.i] = el.innerHTML; });
   if (!('u.title' in dict.ru)) dict.ru['u.title'] = 'Обновления';
-  Object.assign(dict.ru, { 'demo.hint': 'Это настоящее приложение, а не видео. Нажимай кнопки, решай примеры. Прогресс сохраняется только в этом браузере.', 'demo.full': 'Открыть на весь экран', 'demo.close': 'Закрыть' });
+  Object.assign(dict.ru, { 'demo.hint.mfs': 'Это настоящее приложение, а не видео. Нажимай кнопки, решай примеры. Прогресс сохраняется только в этом браузере.', 'demo.hint.monko': 'Это веб-версия настоящего приложения с демо-данными. Добавляй расходы, смотри статистику и бюджеты. Сканер чеков, уведомления и резервные копии работают только в приложении на телефоне.', 'demo.full': 'Открыть на весь экран', 'demo.close': 'Закрыть' });
 
   function detectLang() {
     const saved = store.get('lang');
@@ -213,22 +213,23 @@
   let demoEl = null;
   function demoTexts() {
     if (!demoEl) return;
-    demoEl.querySelector('.d-hint').textContent = t('demo.hint');
+    demoEl.querySelector('.d-hint').textContent = t(demoEl.dataset.hint || 'demo.hint.mfs');
     demoEl.querySelector('.d-full').textContent = t('demo.full');
     demoEl.querySelectorAll('.d-close').forEach(b => { b.textContent = t('demo.close'); });
   }
-  function openDemo(url, name) {
+  function openDemo(url, name, hint) {
     if (!demoEl) {
       demoEl = document.createElement('div');
       demoEl.className = 'demo';
       demoEl.innerHTML = '<div class="demo-bar"><span class="d-name"></span><button class="d-close" type="button"></button></div>' +
-        '<div class="demo-phone"><iframe title="demo" allow="autoplay; fullscreen; vibrate"></iframe></div>' +
+        '<div class="demo-phone"><iframe title="demo" allow="autoplay; fullscreen"></iframe></div>' +
         '<div class="demo-side"><h3 class="d-name"></h3><p class="d-hint"></p><div class="acts">' +
         '<a class="d-full" target="_blank" rel="noopener"></a><button class="d-close x" type="button"></button></div></div>';
       document.body.appendChild(demoEl);
       demoEl.addEventListener('click', e => { if (e.target === demoEl || e.target.classList.contains('d-close')) closeDemo(); });
       document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDemo(); });
     }
+    demoEl.dataset.hint = hint || 'demo.hint.mfs';
     demoEl.querySelectorAll('.d-name').forEach(n => { n.textContent = name; });
     demoEl.querySelector('.d-full').href = url;
     demoEl.querySelector('iframe').src = url;
@@ -242,7 +243,11 @@
     demoEl.querySelector('iframe').src = 'about:blank';
     document.documentElement.style.overflow = '';
   }
-  $$('[data-demo]').forEach(b => b.addEventListener('click', () => openDemo(b.dataset.demo, b.dataset.demoName || '')));
+  $$('[data-demo]').forEach(b => b.addEventListener('click', () => {
+    // приложению передаём язык сайта (чешского в приложениях нет — тогда английский)
+    const q = b.dataset.demoLang ? '?lang=' + (lang === 'cs' ? 'en' : lang) : '';
+    openDemo(b.dataset.demo + q, b.dataset.demoName || '', b.dataset.demoHint);
+  }));
 
   /* ===== появление блоков ===== */
   let pending = $$('.reveal');
