@@ -12,7 +12,7 @@ REL = 'https://github.com/furtex-xq/furtex-xq.github.io/releases/latest/download
 APPS = {
     'tidemark': dict(name='Tidemark', title='Tidemark — крипто-трекер для Android',
                      desc='Tidemark: живые цены криптовалют, графики с индикаторами, портфель, уведомления и обучение. Онлайн-демо и скачивание APK.',
-                     cat='FinanceApplication', apk='Tidemark.apk', ver='1.0.0'),
+                     cat='FinanceApplication', apk='Tidemark.apk', ver='1.0.1'),
     'mfs': dict(name='Math for Speed', title='Math for Speed — тренажёр устного счёта',
                 desc='Math for Speed: считай в уме быстрее таймера. Режимы, уровни, учебник и награды. Онлайн-демо и скачивание APK.',
                 cat='EducationalApplication', apk='MathForSpeed.apk', ver='1.25'),
