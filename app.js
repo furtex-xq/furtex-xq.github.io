@@ -15,7 +15,7 @@
   dict.ru = dict.ru || {};
   $$('[data-i]').forEach(el => { if (!(el.dataset.i in dict.ru)) dict.ru[el.dataset.i] = el.innerHTML; });
   if (!('u.title' in dict.ru)) dict.ru['u.title'] = 'Обновления';
-  Object.assign(dict.ru, { 'demo.hint.mfs': 'Это настоящее приложение, а не видео. Нажимай кнопки, решай примеры. Прогресс сохраняется только в этом браузере.', 'demo.hint.tm': 'Это веб-версия настоящего приложения с живыми ценами. Открывай монеты, смотри графики и индикаторы. Новости обновляются раз в час. Графики некоторых редких монет в браузере могут не загрузиться, а уведомления работают только в приложении на телефоне.', 'demo.hint.py': 'Это веб-версия настоящего приложения. Читай главы, проходи тесты и запускай код на Python прямо здесь. Интерфейс приложения на русском. Прогресс сохраняется только в этом браузере.', 'demo.hint.monko': 'Это веб-версия настоящего приложения с демо-данными. Добавляй расходы, смотри статистику и бюджеты. Сканер чеков, уведомления и резервные копии работают только в приложении на телефоне.', 'demo.full': 'Открыть на весь экран', 'demo.close': 'Закрыть', 'demo.reset': 'Сбросить демо', 'demo.resetAsk': 'Вернуть демо в исходное состояние? Всё, что ты в нём изменил, будет удалено.', 'demo.loading': 'Загружается…', 'st.dl': 'Скачивания', 'st.views': 'Просмотры', 'st.demo': 'Запуски демо', 'st.last': 'последнее', 'st.lastv': 'последний', 'st.none': 'пока не было', 'st.now': 'только что' });
+  Object.assign(dict.ru, { 'demo.hint.mfs': 'Это настоящее приложение, а не видео. Нажимай кнопки, решай примеры. Прогресс сохраняется только в этом браузере.', 'demo.hint.tm': 'Это веб-версия настоящего приложения с живыми ценами. Открывай монеты, смотри графики и индикаторы. Новости обновляются раз в час. Графики некоторых редких монет в браузере могут не загрузиться, а уведомления работают только в приложении на телефоне.', 'demo.hint.py': 'Это веб-версия настоящего приложения. Читай главы, проходи тесты и запускай код на Python прямо здесь. Интерфейс приложения на русском. Прогресс сохраняется только в этом браузере.', 'demo.hint.monko': 'Это веб-версия настоящего приложения с демо-данными. Добавляй расходы, смотри статистику и бюджеты. Сканер чеков, уведомления и резервные копии работают только в приложении на телефоне.', 'demo.full': 'Открыть на весь экран', 'demo.close': 'Закрыть', 'demo.reset': 'Сбросить демо', 'demo.resetAsk': 'Вернуть демо в исходное состояние? Всё, что ты в нём изменил, будет удалено.', 'demo.loading': 'Загружается…', 'st.dl': 'Скачивания', 'st.views': 'Просмотры', 'st.demo': 'Запуски демо', 'st.last': 'последнее', 'st.lastv': 'последний', 'st.none': 'пока не было', 'st.now': 'только что', 'vt.clean': 'угроз не найдено', 'vt.flag': 'есть срабатывания, открой отчёт', 'vt.checked': 'Проверено' });
 
   function detectLang() {
     const saved = store.get('lang');
@@ -44,6 +44,7 @@
     cars.forEach(c => c.caption());
     renderCounts();
     renderStats();
+    renderVT();
     demoTexts();
   }
 
@@ -148,20 +149,54 @@
       if (n > 0) { el.textContent = '⬇ ' + fmt(n); el.classList.add('ok'); }
     });
   }
+  /* ===== VirusTotal: плашка появляется, только если отчёт относится к ТЕКУЩЕМУ файлу =====
+     Результаты кладёт в ветку vt-cache автоматическая проверка (.github/workflows/virustotal.yml). */
+  let hashes = {}, vtData = null;
+  function renderVT() {
+    if (!vtData) return;
+    $$('[data-vt]').forEach(el => {
+      const name = el.dataset.vt, r = (vtData.files || {})[name];
+      if (!r || !hashes[name] || r.sha256 !== hashes[name]) { el.hidden = true; return; }   // отчёт от другого файла не показываем
+      const bad = (r.malicious || 0) + (r.suspicious || 0);
+      const loc = lang === 'cs' ? 'cs' : lang === 'uk' ? 'uk' : lang === 'en' ? 'en' : 'ru';
+      const when = r.date ? new Date(r.date * 1000).toLocaleDateString(loc) : '';
+      el.href = r.link;
+      el.classList.toggle('warn', bad > 0);
+      el.innerHTML = `<span class="ok">${bad ? '!' : '✓'}</span><span><b>VirusTotal: ${bad} / ${r.total}</b> · ${t(bad ? 'vt.flag' : 'vt.clean')}` +
+        `<br>${t('vt.checked')} ${when} · <code>SHA-256 ${r.sha256.slice(0, 12)}…</code></span>`;
+      el.hidden = false;
+    });
+  }
+  async function loadVT() {
+    if (!document.querySelector('[data-vt]')) return;
+    if (!vtData) {
+      try {
+        const r = await fetch(`https://raw.githubusercontent.com/${REPO}/vt-cache/vt.json`);
+        if (r.ok) vtData = await r.json();
+      } catch (e) {}
+    }
+    renderVT();
+  }
+
   async function loadCounts() {
     if (!document.querySelector('[data-cnt]')) return;
     try {
       const raw = sessionStorage.getItem('dlc');
-      if (raw) { const c = JSON.parse(raw); if (Date.now() - c.at < 6e5) { counts = c.v; renderCounts(); return; } }
+      if (raw) { const c = JSON.parse(raw); if (Date.now() - c.at < 6e5 && c.h) { counts = c.v; hashes = c.h; renderCounts(); loadVT(); return; } }
     } catch (e) {}
     try {
       const r = await fetch(`https://api.github.com/repos/${REPO}/releases?per_page=100`);
       if (!r.ok) return;
       const v = {};
-      (await r.json()).forEach(rel => rel.assets.forEach(a => { v[a.name] = (v[a.name] || 0) + a.download_count; }));
-      counts = v;
-      try { sessionStorage.setItem('dlc', JSON.stringify({ at: Date.now(), v })); } catch (e) {}
+      const rels = await r.json();
+      rels.forEach(rel => rel.assets.forEach(a => { v[a.name] = (v[a.name] || 0) + a.download_count; }));
+      // контрольные суммы файлов текущего релиза — по ним сверяется отчёт VirusTotal
+      const h = {};
+      ((rels.find(x => !x.draft && !x.prerelease) || rels[0] || {}).assets || []).forEach(a => { if (a.digest) h[a.name] = a.digest.replace('sha256:', ''); });
+      counts = v; hashes = h;
+      try { sessionStorage.setItem('dlc', JSON.stringify({ at: Date.now(), v, h })); } catch (e) {}
       renderCounts();
+      loadVT();
     } catch (e) {}
   }
 

@@ -9,6 +9,9 @@ ru: {
 },
 
 uk: {
+  "vt.clean":"загроз не знайдено",
+  "vt.flag":"є спрацювання, відкрий звіт",
+  "vt.checked":"Перевірено",
   "tm.n3":"Керування позицією, чек-лист перед угодою, кілька демо-рахунків, розбір угод і нові ігри та уроки.",
   "tm.w1":"<b>Керування позицією</b>: закрити частину (25–100%), стоп у беззбиток і трейлінг-стоп на 1%, 2% або 5%",
   "tm.w2":"<b>Чек-лист перед угодою</b>: причина, стоп, ціль і ризик до 2%; попередження, якщо плану немає",
@@ -123,6 +126,9 @@ uk: {
 },
 
 en: {
+  "vt.clean":"no threats found",
+  "vt.flag":"some engines flagged it, open the report",
+  "vt.checked":"Checked",
   "tm.n3":"Position management, a pre-trade checklist, multiple demo accounts, trade reviews, and new games and lessons.",
   "tm.w1":"<b>Position management</b>: close part (25–100%), move the stop to breakeven, trailing stop at 1%, 2% or 5%",
   "tm.w2":"<b>Pre-trade checklist</b>: reason, stop, target and risk up to 2%; a warning if there is no plan",
@@ -237,6 +243,9 @@ en: {
 },
 
 cs: {
+  "vt.clean":"žádné hrozby nenalezeny",
+  "vt.flag":"některé antiviry hlásí nález, otevři zprávu",
+  "vt.checked":"Zkontrolováno",
   "tm.n3":"Správa pozice, kontrolní seznam před obchodem, více demo účtů, rozbor obchodů a nové hry a lekce.",
   "tm.w1":"<b>Správa pozice</b>: zavřít část (25–100 %), stop na bod zvratu a trailing stop 1 %, 2 % nebo 5 %",
   "tm.w2":"<b>Kontrolní seznam před obchodem</b>: důvod, stop, cíl a riziko do 2 %; upozornění, když plán chybí",

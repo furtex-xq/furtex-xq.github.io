@@ -1,0 +1,32 @@
+# Раз в сутки (и вручную) проверяет APK из релиза на VirusTotal и кладёт итог в ветку vt-cache.
+# Сайт читает оттуда vt.json и показывает у каждого приложения плашку «VirusTotal: 0 / 67».
+# Нужен секрет репозитория VT_API_KEY (бесплатный ключ с virustotal.com). Без него проверка просто пропускается.
+name: virustotal
+on:
+  schedule:
+    - cron: '41 4 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: virustotal
+  cancel-in-progress: false
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan release files
+        env:
+          VT_API_KEY: ${{ secrets.VT_API_KEY }}
+        run: python3 tools/vt_scan.py
+      - name: Publish to vt-cache branch
+        run: |
+          [ -f out/vt.json ] || { echo "нет результатов"; exit 0; }
+          cd out
+          git init -q -b vt-cache
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add vt.json && git commit -qm "virustotal results"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" vt-cache
