@@ -137,7 +137,7 @@
 
   /* ===== счётчики скачиваний ===== */
   // Скачивания с прежнего сервера. К ним прибавляется живой счётчик GitHub, поэтому число растёт дальше само.
-  const DL_BASE_COUNT = { 'Monko.apk': 874, 'PythonBook.apk': 463, 'MathForSpeed.apk': 647, 'Tidemark.apk': 536 };
+  const DL_BASE_COUNT = { 'Monko.apk': 874, 'PythonBook.apk': 463, 'MathForSpeed.apk': 647, 'Tidemark.apk': 537 };
   const dlTotal = name => (DL_BASE_COUNT[name] || 0) + ((counts && counts[name]) || 0);
   let counts = null;
   function renderCounts() {
