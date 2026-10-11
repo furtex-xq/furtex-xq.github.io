@@ -593,6 +593,7 @@ const FX = (() => {
   function countDigit(el, n) { // 54, 55, 56
     if (!on()) { el.textContent = n; return; }
     el.classList.remove('count');
+    el.classList.add('cd-wrap');
     el.innerHTML = `
       <span class="cd">
         <svg class="cd-ring" viewBox="0 0 100 100"><g><circle cx="50" cy="50" r="44" pathLength="1"/></g></svg>
@@ -643,6 +644,7 @@ const FX = (() => {
       ghost.style.height = `${r.height}px`;
       ghost.style.fontSize = getComputedStyle(el).fontSize;
     }
+    el.classList.remove('cd-wrap');
     el.innerHTML = tokenize(html);
     restart(el, `fx-in-${style}`);
     el.classList.remove(style === 'slide' ? 'fx-in-flip' : 'fx-in-slide');

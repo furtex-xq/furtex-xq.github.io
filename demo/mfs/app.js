@@ -1,6 +1,6 @@
 'use strict';
 
-const APP_VERSION = '1.25';
+const APP_VERSION = '1.0.1';
 
 /* Константы, генератор примеров — в gen.js, звук — в sound.js */
 
@@ -729,7 +729,7 @@ function startGame(mode, opts = {}) {
     const feather = L('a_feather');
     game.feathers = mode === 'ladder' && feather ? (feather >= 5 ? 2 : 1) : 0;
     game.penaltyStep = Math.max(2.5, BLITZ_PENALTY - 0.5 * L('a_hammer') - B.blitz);
-    game.xpBoost = 1 + 0.04 * L('a_magnet') + B.xp / 100 + achXpBonus(data);
+    game.xpBoost = 1 + 0.04 * L('a_magnet') + B.xp / 100 + achXpBonus(data) + petXpBonus(data);
     game.goldenChance = GOLDEN_CHANCE * (1 + 0.2 * L('a_coin') + B.gold / 100);
     game.hints += B.hint;
     game.revives = B.revive;   // второе дыхание
@@ -1169,7 +1169,7 @@ function registerAnswer(ok, given) {
     fb.className = 'feedback';
     fb.textContent = tr('Ответ принят');
     $('#gCorrect').textContent = answeredIndex + 1;
-    Hooks.run('afterAnswer', g, ok, ms, p);
+    Hooks.run('afterAnswer', g, ok, ms, p, given);
     nextProblem();
     return;
   }
@@ -1269,7 +1269,7 @@ function registerAnswer(ok, given) {
     }
   }
 
-  Hooks.run('afterAnswer', g, ok, ms, p);
+  Hooks.run('afterAnswer', g, ok, ms, p, given);
   // Вариант режима может закончить игру (цепочка рвётся на первой ошибке)
   if (VARIANTS[g.variant]?.onAnswer?.(g, ok, p) === 'end') {
     g.locked = true;
@@ -1297,11 +1297,17 @@ function registerAnswer(ok, given) {
     setTimeout(() => {
       if (game !== g || g.ended) return;
       g.locked = false;
-      nextProblem();
+      advance(g);
     }, 480);
     return;
   }
 
+  advance(g);
+}
+
+// Следующий пример — если модуль не взял паузу на разбор ошибки
+function advance(g) {
+  if (Hooks.any('holdAfter', g)) return;
   nextProblem();
 }
 

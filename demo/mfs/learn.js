@@ -214,7 +214,25 @@ function renderLearn() {
           <span class="icon-sq sm">${opIco(ch.icon)}</span>
           <span class="row-main"><b>${ch.num} ${escH(ch.name)}</b><small>${ch.ops.map(o => OPS[o].name).join(' · ')}</small></span>
           <span class="chev">›</span>
-        </button>`).join('')}</div>`;
+        </button>`).join('')}</div>
+      <div class="section-title"><h2>${tr('Как в школе')}</h2></div>
+      <div class="learn-list">
+        <button class="row-card learn-row" data-action="col-start">
+          <span class="icon-sq sm">${ico('calc')}</span>
+          <span class="row-main"><b>${tr('Столбиком')}</b><small>${tr('Сложение, вычитание и умножение по разрядам')}</small></span>
+          <span class="chev">›</span>
+        </button>
+        <button class="row-card learn-row" data-action="dict-open">
+          <span class="icon-sq sm">${ico('ear')}</span>
+          <span class="row-main"><b>${tr('Диктант')}</b><small>${tr('10 примеров вслух, ответы — потом')}</small></span>
+          <span class="chev">›</span>
+        </button>
+        <button class="row-card learn-row" data-action="make-sheet">
+          <span class="icon-sq sm">${ico('clipboard')}</span>
+          <span class="row-main"><b>${tr('Лист с примерами')}</b><small>${tr('Картинка для печати: примеры и ответы')}</small></span>
+          <span class="chev">›</span>
+        </button>
+      </div>`;
   } else if (learnTab === 'tricks') {
     body = `<div class="learn-list">${TRICKS.map(t => `
       <button class="row-card learn-row" data-action="trick-open" data-id="${t.id}">
@@ -320,6 +338,7 @@ function openLesson(op) {
 Hooks.on('action', (action, el) => {
   switch (action) {
     case 'learn-tab': learnTab = el.dataset.v; renderLearn(); return true;
+    case 'dict-open': navigate('dictation'); return true;
     case 'school-start': startGame('school', { chapter: el.dataset.id }); return true;
     case 'trick-open': openTrick(el.dataset.id); return true;
     case 'lesson-open': openLesson(el.dataset.op); return true;

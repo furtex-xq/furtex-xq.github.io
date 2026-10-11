@@ -607,3 +607,195 @@ Hooks.on('action', (action, el) => {
       return false;
   }
 });
+
+/* =========================================================
+   Версия 1.0.1: карта тем, сравнение с прошлым месяцем,
+   прогноз по датам и отчёт для родителя.
+   ========================================================= */
+
+/* ---------- Карта всех тем ---------- */
+
+// Насколько освоена тема: 0 — не начинал, 1 — свободно
+function opLevel(op) {
+  const s = data.opStats[op];
+  if (!s || !s.n) return { v: 0, acc: 0, sec: 0, n: 0 };
+  const acc = s.c / s.n;
+  const sec = s.c ? s.t / s.c / 1000 : 0;
+  const speed = Math.max(0, Math.min(1, (9 - sec) / 7));
+  const seen = Math.min(1, s.n / 80);
+  return { v: acc * 0.55 + speed * 0.25 + seen * 0.2, acc, sec, n: s.n };
+}
+
+function opMapCard() {
+  const ops = Object.keys(OPS);
+  const cells = ops.map(op => {
+    const L = opLevel(op);
+    const tier = L.n === 0 ? 0 : L.v > 0.8 ? 4 : L.v > 0.62 ? 3 : L.v > 0.45 ? 2 : 1;
+    return `
+      <button class="om-cell t${tier}" data-action="om-op" data-op="${op}" title="${escH(OPS[op].name)}">
+        <span class="om-sym">${escH(OPS[op].sym)}</span>
+        <small>${L.n ? `${Math.round(L.acc * 100)}%` : '—'}</small>
+      </button>`;
+  }).join('');
+  const weak = ops.map(op => ({ op, L: opLevel(op) })).filter(x => x.L.n >= 10).sort((a, b) => a.L.v - b.L.v)[0];
+  return `
+    <section class="card om-card">
+      <div class="row-head"><span class="icon-sq sm">${ico('grid')}</span><span class="gold">${tr('Карта тем')}</span>
+        <span class="muted">${tr('{0} тем', ops.length)}</span></div>
+      <div class="om-grid">${cells}</div>
+      <div class="om-legend">
+        <span><i class="t0"></i>${tr('не начата')}</span><span><i class="t1"></i>${tr('слабо')}</span>
+        <span><i class="t3"></i>${tr('хорошо')}</span><span><i class="t4"></i>${tr('свободно')}</span>
+      </div>
+      ${weak ? `<p class="hint">${tr('Самая слабая тема: {0}. Нажми на клетку, чтобы потренировать.', OPS[weak.op].name)}</p>` : ''}
+    </section>`;
+}
+
+Hooks.on('statsMid', () => opMapCard());
+
+/* ---------- Сравнение с прошлым месяцем ---------- */
+
+function monthStats(back) {
+  const now = new Date();
+  const from = new Date(now.getFullYear(), now.getMonth() - back, 1).getTime();
+  const to = new Date(now.getFullYear(), now.getMonth() - back + 1, 1).getTime();
+  const list = (data.sessions || []).filter(s => s.at >= from && s.at < to);
+  const n = list.reduce((a, s) => a + s.correct + s.wrong, 0);
+  const c = list.reduce((a, s) => a + s.correct, 0);
+  const ms = list.reduce((a, s) => a + s.avgMs * (s.correct + s.wrong), 0);
+  return {
+    games: list.length,
+    correct: c,
+    acc: n ? c / n : 0,
+    sec: n ? ms / n / 1000 : 0,
+    min: Math.round(list.reduce((a, s) => a + (s.duration || 0), 0) / 60),
+  };
+}
+
+Hooks.on('statsMid', () => {
+  const a = monthStats(0);
+  const b = monthStats(1);
+  if (!a.games && !b.games) return '';
+  const row = (label, x, y, fmt, lower = false) => {
+    const better = lower ? x < y : x > y;
+    const same = Math.abs(x - y) < 1e-9;
+    return `
+      <div class="mm-row">
+        <span>${escH(label)}</span>
+        <b>${fmt(x)}</b>
+        <em class="${same ? '' : better ? 'up' : 'down'}">${same ? '=' : `${better ? '↑' : '↓'} ${fmt(y)}`}</em>
+      </div>`;
+  };
+  return `
+    <section class="card mm-card">
+      <div class="row-head"><span class="icon-sq sm">${ico('calendar')}</span><span class="gold">${tr('Этот месяц и прошлый')}</span></div>
+      ${row(tr('Тренировок'), a.games, b.games, v => String(v))}
+      ${row(tr('Верных ответов'), a.correct, b.correct, v => fmtNum(v))}
+      ${row(tr('Точность'), a.acc, b.acc, v => `${Math.round(v * 100)}%`)}
+      ${row(tr('Ср. время'), a.sec, b.sec, v => tr('{0} с', fmtDec(Math.round(v * 10) / 10)), true)}
+      ${row(tr('Минут занятий'), a.min, b.min, v => String(v))}
+    </section>`;
+});
+
+/* ---------- Прогноз: когда выйдешь на цель ---------- */
+
+const SPEED_GOAL = 2;             // секунды на пример
+
+function speedPoints30() {
+  const out = [];
+  for (let i = 29; i >= 0; i--) {
+    const key = dateKey(new Date(Date.now() - i * 86400000));
+    const list = (data.sessions || []).filter(s => dateKey(new Date(s.at)) === key);
+    const n = list.reduce((a, s) => a + s.correct + s.wrong, 0);
+    out.push(n ? list.reduce((a, s) => a + s.avgMs * (s.correct + s.wrong), 0) / n / 1000 : null);
+  }
+  return out;
+}
+
+Hooks.on('statsTop', () => {
+  const f = forecast(speedPoints30());
+  if (!f) return '';
+  if (f.now <= SPEED_GOAL) {
+    return `<div class="goal-forecast done">${ico('trophy')}<span>${tr('Цель достигнута: меньше {0} с на пример', SPEED_GOAL)}</span></div>`;
+  }
+  if (f.k >= -0.0005) {
+    return `<div class="goal-forecast">${ico('comet')}<span>${tr('Чтобы выйти на {0} с, тренируйся чаще — пока темп стоит на месте', SPEED_GOAL)}</span></div>`;
+  }
+  const days = Math.ceil((f.now - SPEED_GOAL) / -f.k);
+  if (days > 400) return `<div class="goal-forecast">${ico('comet')}<span>${tr('До {0} с на пример ещё далеко, но темп растёт', SPEED_GOAL)}</span></div>`;
+  const when = new Date(Date.now() + days * 86400000);
+  return `
+    <div class="goal-forecast">${ico('comet')}
+      <span>${tr('При таком темпе выйдешь на {0} с к {1}', SPEED_GOAL, when.toLocaleDateString(I18N.locale, { day: 'numeric', month: 'long' }))}</span>
+    </div>`;
+});
+
+/* ---------- Отчёт родителю за месяц ---------- */
+
+async function monthReportImage() {
+  const W = 1080, H = 1350;
+  const c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  const ctx = c.getContext('2d');
+  const gold = await drawCardBase(ctx, W, H, tr('Отчёт за месяц'));
+  const a = monthStats(0);
+  const b = monthStats(1);
+  ctx.textAlign = 'center';
+  ctx.fillStyle = gold;
+  ctx.font = '900 150px Outfit, sans-serif';
+  ctx.fillText(fmtNum(a.correct), W / 2, 440);
+  ctx.fillStyle = '#c9c9c9';
+  ctx.font = '400 38px Inter, sans-serif';
+  ctx.fillText(tr('верных ответов за месяц'), W / 2, 500);
+
+  const rows = [
+    [tr('Тренировок'), String(a.games), String(b.games)],
+    [tr('Точность'), `${Math.round(a.acc * 100)}%`, `${Math.round(b.acc * 100)}%`],
+    [tr('Ср. время'), tr('{0} с', fmtDec(Math.round(a.sec * 10) / 10)), tr('{0} с', fmtDec(Math.round(b.sec * 10) / 10))],
+    [tr('Минут занятий'), String(a.min), String(b.min)],
+  ];
+  rows.forEach(([label, now, prev], i) => {
+    const y = 600 + i * 110;
+    ctx.fillStyle = 'rgba(255,255,255,.05)';
+    roundRect(ctx, 80, y - 50, W - 160, 90, 24);
+    ctx.fill();
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#8a8a8a';
+    ctx.font = '400 34px Inter, sans-serif';
+    ctx.fillText(label, 120, y + 10);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#ffd66e';
+    ctx.font = '800 44px Outfit, sans-serif';
+    ctx.fillText(now, W - 280, y + 12);
+    ctx.fillStyle = '#6f6f6f';
+    ctx.font = '400 30px Inter, sans-serif';
+    ctx.fillText(tr('было {0}', prev), W - 120, y + 12);
+  });
+  const weak = Object.keys(OPS).map(op => ({ op, L: opLevel(op) })).filter(x => x.L.n >= 10).sort((x, y) => x.L.v - y.L.v)[0];
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#c9c9c9';
+  ctx.font = '400 32px Inter, sans-serif';
+  if (weak) ctx.fillText(tr('Стоит подтянуть: {0}', OPS[weak.op].name), W / 2, 1100);
+  drawFooter(ctx, W, H, gold);
+  return c.toDataURL('image/png').split(',')[1];
+}
+
+Hooks.on('statsMid', () => `
+  <button class="row-card" data-action="month-report">
+    <span class="icon-sq sm">${ico('share')}</span>
+    <span class="row-main"><b>${tr('Отчёт за месяц')}</b><small>${tr('Картинка для родителя или учителя')}</small></span>
+    <span class="chev">›</span>
+  </button>`);
+
+Hooks.on('action', (action, el) => {
+  switch (action) {
+    case 'om-op':
+      startGame('practice', { settings: { ops: [el.dataset.op], adaptive: false } });
+      return true;
+    case 'month-report':
+      shareImage(monthReportImage, `math-month-${dateKey()}.png`, tr('Отчёт за месяц'));
+      return true;
+    default:
+      return false;
+  }
+});

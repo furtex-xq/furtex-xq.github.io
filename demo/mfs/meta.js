@@ -1344,6 +1344,7 @@ function renderPath() {
       <span>${tr('Уровень {0}', cur)}</span>
       <span>${tr('Всего звёзд: {0} из {1}', pathTotalStars(d), TRAIN_LEVELS.length * 3)}</span>
     </div>
+    ${Hooks.html('pathTop', d)}
     <div class="path-list">
       ${TRAIN_LEVELS.map(l => {
         const s = pathStars(d, l.n);

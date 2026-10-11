@@ -661,6 +661,8 @@ const UI = (() => {
         (async () => {
           const code = await Dialog.prompt({ icon: 'clipboard', title: tr('Код задания'), text: tr('Введи код, который прислал родитель или учитель.'), placeholder: 'Z-…', ok: tr('Добавить'), upper: true, maxLength: 40 });
           if (!code) return;
+          // Код со сроком сдачи обрабатывает care.js
+          if (typeof hwTake === 'function' && hwTake(code)) { navigate('dashboard'); return; }
           const cfg = unpackCode(code);
           if (!cfg || cfg.kind !== 'Z') { toast(tr('Код не подходит')); return; }
           data.assignment = { ...cfg, done: false, code };

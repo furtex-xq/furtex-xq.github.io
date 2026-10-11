@@ -284,9 +284,15 @@ body.in-game .bottom-nav { display: grid; transform: translate(-50%, 160%); opac
 .fx-on #app.fx-enter .week-bar .val { animation: fxPop .4s both; animation-delay: calc(var(--i, 0) * 60ms + 750ms); }
 
 /* ---------- 54–61. Отсчёт и старт ---------- */
-.cd { position: relative; display: inline-grid; place-items: center; width: 1.6em; height: 1.6em; }
+/* Карточка примера — блок высотой 110px с line-height 110px: из-за этого цифра
+   отсчёта уезжала вниз. На время отсчёта делаем из неё сетку и центрируем круг. */
+.problem.cd-wrap { display: grid; place-items: center; line-height: 1; }
+.cd { position: relative; display: grid; place-items: center; width: 2em; height: 2em; line-height: 1; }
 .cd-digit {
   font-family: 'Caveat', 'Segoe Print', 'Comic Sans MS', var(--font-body); color: var(--gold-light);
+  font-size: 1.5em; line-height: 1;
+  /* у рукописного шрифта цифра стоит на базовой линии, её середина ниже середины строки */
+  position: relative; top: -.055em;
   animation: fxDrop .5s var(--spring-strong) both, fxWrite .35s ease both;
 }
 @keyframes fxDrop { from { transform: translateY(-60px); } }

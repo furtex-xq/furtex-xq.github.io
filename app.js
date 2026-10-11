@@ -147,7 +147,7 @@
 
   /* ===== счётчики скачиваний ===== */
   // Скачивания с прежнего сервера. К ним прибавляется живой счётчик GitHub, поэтому число растёт дальше само.
-  const DL_BASE_COUNT = { 'Keyra.apk': 98, 'Monko.apk': 876, 'PythonBook.apk': 463, 'MathForSpeed.apk': 647, 'Tidemark.apk': 537 };
+  const DL_BASE_COUNT = { 'Keyra.apk': 98, 'Monko.apk': 876, 'PythonBook.apk': 466, 'MathForSpeed.apk': 655, 'Tidemark.apk': 537 };
   const dlTotal = name => (DL_BASE_COUNT[name] || 0) + ((counts && counts[name]) || 0);
   let counts = null;
   function renderCounts() {

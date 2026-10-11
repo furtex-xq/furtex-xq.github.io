@@ -1,6 +1,6 @@
 /* Офлайн-кэш Math for Speed: приложение работает без интернета */
 
-const CACHE = 'mfs-v27';
+const CACHE = 'mfs-v28';
 
 const ASSETS = [
   './',
@@ -30,6 +30,9 @@ const ASSETS = [
   './learn.js',
   './meta.js',
   './insights.js',
+  './study.js',
+  './games.js',
+  './care.js',
   './polish.js',
   './app.js',
   './manifest.json',
