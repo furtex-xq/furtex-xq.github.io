@@ -10,6 +10,7 @@ ru: {
 },
 
 uk: {
+  "demo.hint.keyra":"Це вебкопія застосунку з демо-даними: ті самі екрани, генератор паролів, аудит і коди 2FA. Увійти можна з будь-яким PIN-кодом. Автозаповнення, біометрія та резервні копії працюють лише в застосунку на телефоні.",
   "kr.cat":"Менеджер паролів",
   "kr.lead":"Одне захищене місце для всіх паролів, карток і нотаток. Усе зберігається на телефоні й нікуди не надсилається: застосунок навіть не має доступу до інтернету.",
   "kr.f1":"<b>Логіни, картки та нотатки</b>: категорії, обране, пошук і сортування",
@@ -161,6 +162,7 @@ uk: {
 },
 
 en: {
+  "demo.hint.keyra":"This is a web copy of the app with demo data: the same screens, password generator, audit and 2FA codes. Any PIN unlocks it. Autofill, biometrics and backups only work in the phone app.",
   "kr.cat":"Password manager",
   "kr.lead":"One protected place for all your passwords, cards and notes. Everything stays on your phone and is never sent anywhere: the app does not even have internet access.",
   "kr.f1":"<b>Logins, cards and notes</b>: categories, favourites, search and sorting",
@@ -312,6 +314,7 @@ en: {
 },
 
 cs: {
+  "demo.hint.keyra":"Tohle je webová kopie aplikace s demo daty: stejné obrazovky, generátor hesel, audit a kódy 2FA. Odemkne ji jakýkoli PIN. Automatické vyplňování, biometrie a zálohy fungují jen v aplikaci v telefonu.",
   "kr.cat":"Správce hesel",
   "kr.lead":"Jedno chráněné místo pro všechna hesla, karty a poznámky. Vše zůstává v telefonu a nikam se neodesílá: aplikace nemá ani přístup k internetu.",
   "kr.f1":"<b>Přihlášení, karty a poznámky</b>: kategorie, oblíbené, hledání a řazení",
