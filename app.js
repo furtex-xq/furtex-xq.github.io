@@ -146,7 +146,7 @@
 
   /* ===== счётчики скачиваний ===== */
   // Скачивания с прежнего сервера. К ним прибавляется живой счётчик GitHub, поэтому число растёт дальше само.
-  const DL_BASE_COUNT = { 'Monko.apk': 876, 'PythonBook.apk': 463, 'MathForSpeed.apk': 647, 'Tidemark.apk': 537 };
+  const DL_BASE_COUNT = { 'Keyra.apk': 98, 'Monko.apk': 876, 'PythonBook.apk': 463, 'MathForSpeed.apk': 647, 'Tidemark.apk': 537 };
   const dlTotal = name => (DL_BASE_COUNT[name] || 0) + ((counts && counts[name]) || 0);
   let counts = null;
   function renderCounts() {
@@ -283,7 +283,7 @@
      Скачивания считает GitHub (плюс базовые числа выше). Время хранится как обычное число (секунды). */
   const STAT_API = 'https://abacus.jasoncameron.dev';
   const STAT_NS = 'furtex-xq-site';
-  const STAT_KEYS = {"vt-tidemark": "ad5554ff-1874-4465-9aa7-555d658730a0", "vt-mfs": "7cf06a36-e76b-48db-8da8-d9ab38781002", "vt-python": "03c5522b-9a53-40ee-bc2a-c33faa5e50e6", "vt-monko": "fdd2a2f7-0a94-4bd3-9239-3f5102374ab1", "vt-dealio": "f43045dd-3185-41a9-bc65-d4833a458f34", "dt-tidemark": "4d353e70-70f0-403a-badb-d177e801e7a1", "dt-mfs": "c8b43504-43f5-418e-9b6e-a9ec953472a8", "dt-python": "54cd7313-4d1a-4378-a773-63b7abd60883", "dt-monko": "bc1c28c0-902e-4ff0-9643-173e3289ad2b"};
+  const STAT_KEYS = {"vt-keyra": "9b6d344c-2608-4450-866d-0e043bbb8ade", "dt-keyra": "b75c4ab4-12ef-4389-906e-d6dd4d171b77", "vt-tidemark": "ad5554ff-1874-4465-9aa7-555d658730a0", "vt-mfs": "7cf06a36-e76b-48db-8da8-d9ab38781002", "vt-python": "03c5522b-9a53-40ee-bc2a-c33faa5e50e6", "vt-monko": "fdd2a2f7-0a94-4bd3-9239-3f5102374ab1", "vt-dealio": "f43045dd-3185-41a9-bc65-d4833a458f34", "dt-tidemark": "4d353e70-70f0-403a-badb-d177e801e7a1", "dt-mfs": "c8b43504-43f5-418e-9b6e-a9ec953472a8", "dt-python": "54cd7313-4d1a-4378-a773-63b7abd60883", "dt-monko": "bc1c28c0-902e-4ff0-9643-173e3289ad2b"};
   const statData = {};
   let statChain = Promise.resolve();
   // запросы идут по одному с паузой: у сервиса ограничение на частоту
@@ -322,7 +322,7 @@
       if (apk) html += `<div class="stat"><small>${t('st.dl')}</small><b>${num(dlTotal(apk))}</b><i>${d ? t('st.last') + ': ' + ago(d.dt) : ''}</i></div>`;
       if (d) {
         html += `<div class="stat"><small>${t('st.views')}</small><b>${num(d.v)}</b><i>${t('st.lastv')}: ${ago(d.vt)}</i></div>`;
-        if (apk) html += `<div class="stat"><small>${t('st.demo')}</small><b>${num(d.demo)}</b><i></i></div>`;
+        if (apk && box.closest('.proj').querySelector('[data-demo]')) html += `<div class="stat"><small>${t('st.demo')}</small><b>${num(d.demo)}</b><i></i></div>`;
       }
       box.innerHTML = html;
     });

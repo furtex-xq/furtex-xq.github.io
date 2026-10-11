@@ -1,4 +1,4 @@
-"""Собирает отдельные страницы приложений (/tidemark/, /mfs/, /python/, /monko/, /dealio/) и sitemap.xml
+"""Собирает отдельные страницы приложений (/tidemark/, /mfs/, /python/, /monko/, /keyra/, /dealio/) и sitemap.xml
 из главной index.html. Запускать после любого изменения блока приложения на главной:
 
     python tools/build_pages.py
@@ -22,6 +22,9 @@ APPS = {
     'monko': dict(name='Monko', title='Monko — личные финансы для Android',
                   desc='Monko: счета в разных валютах, бюджеты, цели, долги и статистика в премиальном дизайне. Онлайн-демо и скачивание APK.',
                   cat='FinanceApplication', apk='Monko.apk', ver='1.0.1'),
+    'keyra': dict(name='Keyra', title='Keyra — менеджер паролей для Android',
+                  desc='Keyra хранит пароли, карты и заметки под шифрованием AES-256 прямо на телефоне, без интернета. Генератор паролей, коды 2FA, аудит. Скачивание APK.',
+                  cat='SecurityApplication', apk='Keyra.apk', ver='1.0.0'),
     'dealio': dict(name='Dealio', title='Dealio — сравнение цен и скидок',
                    desc='Dealio сравнивает цены в магазинах рядом и подсказывает, где купить дешевле. Приложение в разработке.',
                    cat='ShoppingApplication', apk=None, ver=None),
@@ -51,7 +54,7 @@ def main():
         section = re.sub(r'\s*<a class="page-link"[^>]*>[^<]*</a>', '', section)          # на своей странице ссылка на себя не нужна
         section = section.replace('<h2', '<h1', 1).replace('</h2>', '</h1>', 1)            # главный заголовок страницы
         grid = apps_grid.replace(f'href="#{key}"', f'href="{key}/" aria-current="page"')
-        grid = re.sub(r'href="#(tidemark|mfs|python|monko|dealio)"', r'href="\1/"', grid)
+        grid = re.sub(r'href="#(tidemark|mfs|python|monko|keyra|dealio)"', r'href="\1/"', grid)
 
         h = head
         h = re.sub(r'<title>[^<]*</title>', f'<title>{a["title"]} · Ansaro Technologies</title>', h)
