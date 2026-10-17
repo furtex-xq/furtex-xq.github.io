@@ -168,7 +168,7 @@ kbd{font:700 .85em var(--body);border:1px solid var(--line);border-bottom-width:
 .minis{display:flex;gap:clamp(8px,1.2vw,16px);justify-content:center;flex-wrap:wrap}
 .minis .m{width:clamp(52px,6.5vw,104px);aspect-ratio:3/4;border-radius:999px 999px 10px 10px;overflow:hidden;box-shadow:0 14px 30px -18px rgba(0,0,0,.5);transition:transform .5s cubic-bezier(.3,1.5,.5,1);background:color-mix(in srgb,var(--ac) 25%, white)}
 .minis .m:hover{transform:translateY(-12px) rotate(-4deg)}
-.credits{columns:2 320px;column-gap:40px;margin:0;padding:0;list-style:none;font-size:clamp(.85rem,.75rem + .2vw,1rem);line-height:1.45;color:var(--ink-soft);text-align:left}
+.credits{width:100%;columns:2 320px;column-gap:40px;margin:0;padding:0;list-style:none;font-size:clamp(.85rem,.75rem + .2vw,1rem);line-height:1.45;color:var(--ink-soft);text-align:left}
 .credits li{break-inside:avoid;padding:6px 0;border-bottom:1px solid var(--line)}
 .credits b{color:var(--ink);font-weight:700}
 .credits a{color:var(--ac)}
@@ -252,7 +252,10 @@ kbd{font:700 .85em var(--body);border:1px solid var(--line);border-bottom-width:
   .facts div{padding-right:8px}.facts div+div{padding-left:8px}
 }
 @media (max-width:480px){
-  .grid4{grid-template-columns:1fr}
+  .grid4{gap:12px}
+  .kph{height:120px}
+  .kind h3{font-size:1.45rem}
+  .kind p{font-size:.92rem}
   .grid6{grid-template-columns:1fr}
   .facts{grid-template-columns:1fr}
   .facts div+div{padding-left:0;border-left:0;border-top:1px solid var(--line)}
@@ -467,10 +470,12 @@ const Petals=(()=>{
   const mix=(hex,t)=>{const n=parseInt(hex.slice(1),16);let r=n>>16,g=(n>>8)&255,b=n&255;return `rgb(${Math.round(r+(255-r)*t)},${Math.round(g+(255-g)*t)},${Math.round(b+(255-b)*t)})`};
   const make=(x,y,burst)=>{const a=Math.random()*6.283,sp=burst?2+Math.random()*5:0;
     return {x,y,vx:burst?Math.cos(a)*sp:(Math.random()-.5)*.4,vy:burst?Math.sin(a)*sp-2:.4+Math.random()*.8,r:6+Math.random()*9,rot:Math.random()*6.28,vr:(Math.random()-.5)*.06,sw:Math.random()*6.28,col:mix(base,.25+Math.random()*.55),life:burst?1:2,burst}};
-  const setColor=(c,id)=>{base=c;ambient=(id==='uvod'||id==='dekuji')?24:8};
+  const setColor=(c,id)=>{base=c;ambient=(id==='uvod'||id==='dekuji')?20:6};
   const burst=(x,y,n=22)=>{if(!reduce)for(let i=0;i<n;i++)ps.push(make(x,y,true))};
-  const sweep=dir=>{if(reduce)return;for(let i=0;i<44;i++){const p=make(W*Math.random(),dir>0?H+30+Math.random()*220:-30-Math.random()*220,true);
-    p.vy=-dir*(7+Math.random()*7);p.vx=(Math.random()-.5)*3;p.life=1.4;p.gust=true;ps.push(p)}};
+  let lastSweep=0;
+  const sweep=dir=>{const t=performance.now();if(reduce||t-lastSweep<1100)return;lastSweep=t;
+    for(let i=0;i<30;i++){const p=make(W*Math.random(),dir>0?H+20+Math.random()*160:-20-Math.random()*160,true);
+    p.vy=-dir*(14+Math.random()*10);p.vx=(Math.random()-.5)*4;p.life=1;p.gust=true;ps.push(p)}};
   const trail=(x,y)=>{if(!reduce)ps.push({x,y,vx:(Math.random()-.5)*.6,vy:-.2-Math.random()*.6,r:1.2+Math.random()*2.2,life:1,dot:true,burst:true})};
   function draw(p){
     if(p.dot){const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*4);g.addColorStop(0,`rgba(255,214,120,${.9*p.life})`);g.addColorStop(1,'rgba(255,214,120,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(p.x,p.y,p.r*4,0,6.283);ctx.fill();return}
@@ -481,7 +486,7 @@ const Petals=(()=>{
     let amb=0;for(const p of ps)if(!p.burst)amb++;
     if(amb<ambient&&Math.random()<.08)ps.push(make(Math.random()*W,-20,false));
     for(const p of ps){p.sw=(p.sw||0)+.02;
-      if(p.dot)p.life-=.022;else if(p.gust){p.vy*=.985;p.vx+=Math.sin(p.sw*3)*.1;p.life-=.008}else if(p.burst){p.vy+=.08;p.vx*=.98;p.vy*=.98;p.life-=.012}else p.vx+=Math.sin(p.sw)*.01;
+      if(p.dot)p.life-=.022;else if(p.gust){p.vx+=Math.sin(p.sw*3)*.15;p.life-=.012}else if(p.burst){p.vy+=.08;p.vx*=.98;p.vy*=.98;p.life-=.012}else p.vx+=Math.sin(p.sw)*.01;
       p.x+=p.vx+(p.burst?0:Math.sin(p.sw)*.5);p.y+=p.vy;p.rot+=p.vr||0;draw(p)}
     ps=ps.filter(p=>p.life>0&&p.y<H+300&&p.y>-300&&p.x>-60&&p.x<W+60);
     requestAnimationFrame(tick)}
