@@ -37,7 +37,7 @@ SLOTS = {
 }
 # for rose colours the title/categories must contain BOTH a colour word and a rose word
 PAIRED = {k for k in SLOTS if k.startswith("hue-")}
-BAD = re.compile(r"painting|drawing|illustration|engraving|lithograph|herbarium|stamp|logo|svg|museum|plate|watercolou?r|sketch|icon", re.I)
+BAD = re.compile(r"painting|drawing|illustration|engraving|lithograph|herbarium|stamp|logo|svg|plate|watercolou?r|sketch|icon", re.I)
 FREE = re.compile(r"^(cc0|cc[- ]by|cc[- ]by[- ]sa|public domain|pd)", re.I)
 
 
