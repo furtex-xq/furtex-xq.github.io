@@ -132,9 +132,9 @@
  {
   "slot": "hue-white",
   "label": "Bílá růže",
-  "file": "File:White Licorice roses.jpg",
-  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/White_Licorice_roses.jpg/1920px-White_Licorice_roses.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "page": "https://commons.wikimedia.org/wiki/File:White_Licorice_roses.jpg",
+  "file": "File:White Licorice rose.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/White_Licorice_rose.jpg/1920px-White_Licorice_rose.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:White_Licorice_rose.jpg",
   "artist": "Oleg Yunakov",
   "license": "CC BY-SA 4.0",
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
@@ -152,22 +152,22 @@
  {
   "slot": "hue-pink",
   "label": "Růžová růže",
-  "file": "File:Pink rose404.jpg",
-  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Pink_rose404.jpg/1280px-Pink_rose404.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "page": "https://commons.wikimedia.org/wiki/File:Pink_rose404.jpg",
-  "artist": "Triggnation",
+  "file": "File:Fresh pink and yellow roses at a flower market.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Fresh_pink_and_yellow_roses_at_a_flower_market.jpg/1920px-Fresh_pink_and_yellow_roses_at_a_flower_market.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Fresh_pink_and_yellow_roses_at_a_flower_market.jpg",
+  "artist": "A S M Jobaer",
   "license": "CC BY-SA 4.0",
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
  },
  {
   "slot": "hue-purple",
   "label": "Fialová růže",
-  "file": "File:Pink-purple Rose.jpg",
-  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Pink-purple_Rose.jpg/1920px-Pink-purple_Rose.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "page": "https://commons.wikimedia.org/wiki/File:Pink-purple_Rose.jpg",
-  "artist": "judy dean",
-  "license": "CC BY-SA 2.0",
-  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+  "file": "File:Lavender Dream rose.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Lavender_Dream_rose.jpg/1920px-Lavender_Dream_rose.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Lavender_Dream_rose.jpg",
+  "artist": "পাপৰি বৰা",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
  },
  {
   "slot": "hue-orange",
