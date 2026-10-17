@@ -29,10 +29,10 @@ SLOTS = {
   "k-svatba":    ("Svatební kytice", ["bridal", "wedding"], ["Cascading_bridal_bouquet.JPG", "Bridal_bouquet_white_pink_rose_stephanotis.jpg"], ['incategory:"Bridal bouquets"']),
   "k-interier":  ("Dekorace interiéru", ["vase", "arrangement", "ikebana"], ["Vase_of_roses_arrangment.jpg"], ['incategory:"Flower arrangements" vase', "flower arrangement vase table"]),
   "hue-red":     ("Červená růže", ["red", "rose", "rosa"], ["Red_rose.jpg", "A_red_rose.jpg"], ['incategory:"Red roses"']),
-  "hue-white":   ("Bílá růže", ["white", "rose", "rosa"], ["White_rose_(Rosa).jpg", "Rosa_'Iceberg'_flower.jpg"], ['incategory:"White roses" flower close', 'incategory:"White roses"', "white rose flower close-up"]),
+  "hue-white":   ("Bílá růže", ["white", "rose", "rosa"], ["White_rose_at_Harlow_Museum_&_Walled_Gardens,_Essex_3.jpg"], ['incategory:"White roses" flower close', 'incategory:"White roses"', "white rose flower close-up"]),
   "hue-yellow":  ("Žlutá růže", ["yellow", "rose", "rosa"], [], ['incategory:"Yellow roses"', "yellow rose flower"]),
-  "hue-pink":    ("Růžová růže", ["pink", "rose", "rosa"], [], ['incategory:"Pink roses" flower close', 'incategory:"Pink roses"', "pink rose flower close-up"]),
-  "hue-purple":  ("Fialová růže", ["purple", "violet", "mauve", "lilac", "lavender", "blue", "rose", "rosa"], [], ['incategory:"Lilac roses"', 'incategory:"Mauve roses"', 'incategory:"Purple roses"', "lavender rose flower", "purple rose flower"]),
+  "hue-pink":    ("Růžová růže", ["pink", "rose", "rosa"], ["Close_up_of_a_pink_rose.jpg"], ['incategory:"Pink roses" flower close', 'incategory:"Pink roses"', "pink rose flower close-up"]),
+  "hue-purple":  ("Fialová růže", ["purple", "violet", "mauve", "lilac", "lavender", "blue", "rose", "rosa"], ["Rosa_'Blue_Moon'_at_Ishida_Rose_Garden_in_Odate,_Akita,_Japan.jpg"], ['incategory:"Lilac roses"', 'incategory:"Mauve roses"', 'incategory:"Purple roses"', "lavender rose flower", "purple rose flower"]),
   "hue-orange":  ("Oranžová růže", ["orange", "rose", "rosa"], [], ['incategory:"Orange roses"', "orange rose flower"]),
 }
 # for rose colours the title/categories must contain BOTH a colour word and a rose word
