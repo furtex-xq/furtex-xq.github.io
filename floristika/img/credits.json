@@ -132,12 +132,12 @@
  {
   "slot": "hue-white",
   "label": "Bílá růže",
-  "file": "File:White Licorice rose.jpg",
-  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/White_Licorice_rose.jpg/1920px-White_Licorice_rose.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "page": "https://commons.wikimedia.org/wiki/File:White_Licorice_rose.jpg",
-  "artist": "Oleg Yunakov",
-  "license": "CC BY-SA 4.0",
-  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  "file": "File:Bicolor pink and white rose flower close up, by baby-bear.org.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Bicolor_pink_and_white_rose_flower_close_up%2C_by_baby-bear.org.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "page": "https://commons.wikimedia.org/wiki/File:Bicolor_pink_and_white_rose_flower_close_up,_by_baby-bear.org.jpg",
+  "artist": "Natalka Ukraine",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
  },
  {
   "slot": "hue-yellow",
@@ -152,20 +152,20 @@
  {
   "slot": "hue-pink",
   "label": "Růžová růže",
-  "file": "File:Fresh pink and yellow roses at a flower market.jpg",
-  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Fresh_pink_and_yellow_roses_at_a_flower_market.jpg/1920px-Fresh_pink_and_yellow_roses_at_a_flower_market.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "page": "https://commons.wikimedia.org/wiki/File:Fresh_pink_and_yellow_roses_at_a_flower_market.jpg",
-  "artist": "A S M Jobaer",
+  "file": "File:Close up of a pink rose.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Close_up_of_a_pink_rose.jpg/1920px-Close_up_of_a_pink_rose.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Close_up_of_a_pink_rose.jpg",
+  "artist": "Happyarmageddon",
   "license": "CC BY-SA 4.0",
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
  },
  {
   "slot": "hue-purple",
   "label": "Fialová růže",
-  "file": "File:Lavender Dream rose.jpg",
-  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Lavender_Dream_rose.jpg/1920px-Lavender_Dream_rose.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "page": "https://commons.wikimedia.org/wiki/File:Lavender_Dream_rose.jpg",
-  "artist": "পাপৰি বৰা",
+  "file": "File:Rosa 'Blue Moon' at Ishida Rose Garden in Odate, Akita, Japan.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Rosa_%27Blue_Moon%27_at_Ishida_Rose_Garden_in_Odate%2C_Akita%2C_Japan.jpg/1920px-Rosa_%27Blue_Moon%27_at_Ishida_Rose_Garden_in_Odate%2C_Akita%2C_Japan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Rosa_%27Blue_Moon%27_at_Ishida_Rose_Garden_in_Odate,_Akita,_Japan.jpg",
+  "artist": "掬茶",
   "license": "CC BY-SA 4.0",
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
  },
