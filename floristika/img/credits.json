@@ -1,0 +1,182 @@
+[
+ {
+  "slot": "orchidej",
+  "label": "Orchidej",
+  "file": "File:Phalaenopsis Orchid.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Phalaenopsis_Orchid.jpg/1920px-Phalaenopsis_Orchid.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Phalaenopsis_Orchid.jpg",
+  "artist": "Sanx",
+  "license": "CC BY 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+ },
+ {
+  "slot": "levandule",
+  "label": "Levandule",
+  "file": "File:Lavandula angustifolia 002.JPG",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Lavandula_angustifolia_002.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "page": "https://commons.wikimedia.org/wiki/File:Lavandula_angustifolia_002.JPG",
+  "artist": "H. Zell",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+ },
+ {
+  "slot": "kala",
+  "label": "Kala",
+  "file": "File:Calla lily.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/7/73/Calla_lily.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "page": "https://commons.wikimedia.org/wiki/File:Calla_lily.jpg",
+  "artist": "User:Fir0002",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+ },
+ {
+  "slot": "chryzantema",
+  "label": "Chryzantéma",
+  "file": "File:Chrysanthemum flower.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Chrysanthemum_flower.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "page": "https://commons.wikimedia.org/wiki/File:Chrysanthemum_flower.jpg",
+  "artist": "Jon Sullivan",
+  "license": "Public domain",
+  "licenseUrl": ""
+ },
+ {
+  "slot": "frezie",
+  "label": "Frézie",
+  "file": "File:Freesia flowers.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Freesia_flowers.jpg/1920px-Freesia_flowers.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Freesia_flowers.jpg",
+  "artist": "Zaher.Kadour",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+ },
+ {
+  "slot": "karafiat",
+  "label": "Karafiát",
+  "file": "File:Carnation flower.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/3/38/Carnation_flower.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "page": "https://commons.wikimedia.org/wiki/File:Carnation_flower.jpg",
+  "artist": "Aftabbanoori",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+ },
+ {
+  "slot": "narcis",
+  "label": "Narcis",
+  "file": "File:Narcissus pseudonarcissus flower 300303.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Narcissus_pseudonarcissus_flower_300303.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "page": "https://commons.wikimedia.org/wiki/File:Narcissus_pseudonarcissus_flower_300303.jpg",
+  "artist": "neznámý autor",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+ },
+ {
+  "slot": "hero",
+  "label": "Úvodní kytice",
+  "file": "File:Bridal bouquet white pink rose stephanotis.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/7/75/Bridal_bouquet_white_pink_rose_stephanotis.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "page": "https://commons.wikimedia.org/wiki/File:Bridal_bouquet_white_pink_rose_stephanotis.jpg",
+  "artist": "Photo by and (c)2007 Jina Lee",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+ },
+ {
+  "slot": "k-kytice",
+  "label": "Kytice",
+  "file": "File:Rose and carnation flower bouquet 01.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/44/Rose_and_carnation_flower_bouquet_01.jpg/1920px-Rose_and_carnation_flower_bouquet_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Rose_and_carnation_flower_bouquet_01.jpg",
+  "artist": "Suyash Dwivedi",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+ },
+ {
+  "slot": "k-venec",
+  "label": "Věnec",
+  "file": "File:Advent wreath.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Advent_wreath.jpg/1920px-Advent_wreath.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Advent_wreath.jpg",
+  "artist": "neznámý autor",
+  "license": "CC BY 2.5",
+  "licenseUrl": "https://creativecommons.org/licenses/by/2.5"
+ },
+ {
+  "slot": "k-svatba",
+  "label": "Svatební kytice",
+  "file": "File:Cascading bridal bouquet.JPG",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Cascading_bridal_bouquet.JPG/1920px-Cascading_bridal_bouquet.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Cascading_bridal_bouquet.JPG",
+  "artist": "Photo by and (c)2007 Jina Lee",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+ },
+ {
+  "slot": "k-interier",
+  "label": "Dekorace interiéru",
+  "file": "File:Vase of roses arrangment.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Vase_of_roses_arrangment.jpg/1920px-Vase_of_roses_arrangment.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Vase_of_roses_arrangment.jpg",
+  "artist": "Unknown authorUnknown author",
+  "license": "Public domain",
+  "licenseUrl": ""
+ },
+ {
+  "slot": "hue-red",
+  "label": "Červená růže",
+  "file": "File:Sangerhausen, Rosarium, Rose von Schmadlak.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Sangerhausen%2C_Rosarium%2C_Rose_von_Schmadlak.jpg/1920px-Sangerhausen%2C_Rosarium%2C_Rose_von_Schmadlak.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Sangerhausen,_Rosarium,_Rose_von_Schmadlak.jpg",
+  "artist": "Dguendel",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+ },
+ {
+  "slot": "hue-white",
+  "label": "Bílá růže",
+  "file": "File:White Licorice roses.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/White_Licorice_roses.jpg/1920px-White_Licorice_roses.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:White_Licorice_roses.jpg",
+  "artist": "Oleg Yunakov",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+ },
+ {
+  "slot": "hue-yellow",
+  "label": "Žlutá růže",
+  "file": "File:Yellow rose–IMG 6796 03.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Yellow_rose%E2%80%93IMG_6796_03.jpg/1920px-Yellow_rose%E2%80%93IMG_6796_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Yellow_rose%E2%80%93IMG_6796_03.jpg",
+  "artist": "Kızıl",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+ },
+ {
+  "slot": "hue-pink",
+  "label": "Růžová růže",
+  "file": "File:Pink rose404.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Pink_rose404.jpg/1280px-Pink_rose404.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Pink_rose404.jpg",
+  "artist": "Triggnation",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+ },
+ {
+  "slot": "hue-purple",
+  "label": "Fialová růže",
+  "file": "File:Pink-purple Rose.jpg",
+  "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Pink-purple_Rose.jpg/1920px-Pink-purple_Rose.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "page": "https://commons.wikimedia.org/wiki/File:Pink-purple_Rose.jpg",
+  "artist": "judy dean",
+  "license": "CC BY-SA 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+ },
+ {
+  "slot": "hue-orange",
+  "label": "Oranžová růže",
+  "file": "File:Orange rose extracted.jpg",
+  "thumb": "https://upload.wikimedia.org/wikipedia/commons/a/af/Orange_rose_extracted.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "page": "https://commons.wikimedia.org/wiki/File:Orange_rose_extracted.jpg",
+  "artist": "User:Nino Barbieri",
+  "license": "CC BY-SA 2.5",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
+ }
+]
