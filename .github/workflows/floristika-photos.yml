@@ -22,12 +22,14 @@ jobs:
         with:
           python-version: "3.12"
       - name: Stáhnout fotky
-        run: python floristika/tools/fetch_photos.py
+        run: |
+          python floristika/tools/fetch_photos.py
+          if [ -f floristika/tools/candidates.json ]; then python floristika/tools/fetch_photos.py --candidates; fi
       - name: Uložit do repozitáře
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add floristika/img
+          git add floristika/img floristika/tools
           git diff --cached --quiet && echo "Žádné nové fotky" && exit 0
           git commit -m "Floristika: fotky z Wikimedia Commons"
           git pull --rebase origin "${GITHUB_REF_NAME}"

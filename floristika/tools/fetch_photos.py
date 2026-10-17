@@ -159,5 +159,40 @@ def main():
     json.dump(list(credits.values()), open(credits_path, "w"), ensure_ascii=False, indent=1)
 
 
+
+
+def candidates():
+    """Save small previews of search results so a person can pick by eye."""
+    spec = json.load(open(os.path.join(os.path.dirname(__file__), "candidates.json")))
+    base = os.path.join(os.path.dirname(__file__), "cand")
+    for slot, queries in spec.items():
+        d = os.path.join(base, slot)
+        os.makedirs(d, exist_ok=True)
+        seen, listing = set(), []
+        for q in queries:
+            data = get({"action": "query", "generator": "search", "gsrnamespace": 6, "gsrlimit": 20,
+                        "gsrsearch": q + " filetype:bitmap", "prop": "imageinfo",
+                        "iiprop": "url|size|mime|extmetadata", "iiurlwidth": 320})
+            for p in sorted(data.get("query", {}).get("pages", []), key=lambda p: p.get("index", 0)):
+                ii = (p.get("imageinfo") or [{}])[0]
+                lic = strip(ii.get("extmetadata", {}).get("LicenseShortName", {}).get("value", ""))
+                if p["title"] in seen or ii.get("mime") != "image/jpeg" or ii.get("width", 0) < 1000 or not FREE.match(lic):
+                    continue
+                seen.add(p["title"])
+                n = len(listing)
+                if n >= 16:
+                    break
+                try:
+                    download(ii["thumburl"], os.path.join(d, f"{n:02d}.jpg"))
+                    listing.append(p["title"])
+                except Exception:
+                    pass
+        json.dump(listing, open(os.path.join(d, "list.json"), "w"), ensure_ascii=False, indent=1)
+        print(f"candidates {slot}: {len(listing)}")
+
+
 if __name__ == "__main__":
-    main()
+    if "--candidates" in sys.argv:
+        candidates()
+    else:
+        main()
