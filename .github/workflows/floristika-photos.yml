@@ -1,0 +1,34 @@
+name: Floristika – fotky z Wikimedia Commons
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "floristika/tools/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: floristika-photos
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Stáhnout fotky
+        run: python floristika/tools/fetch_photos.py
+      - name: Uložit do repozitáře
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add floristika/img
+          git diff --cached --quiet && echo "Žádné nové fotky" && exit 0
+          git commit -m "Floristika: fotky z Wikimedia Commons"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
