@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>ForkLog</title>
+	<atom:link href="https://forklog.com/feed" rel="self" type="application/rss+xml" />
+	<link>https://forklog.com</link>
+	<description>Интернет-журнал о биткоине, криптовалютах и децентрализации</description>
+	<lastBuildDate>Sat, 17 Oct 2026 15:06:45 +0000</lastBuildDate>
+	<language>ru-RU</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+
+<image>
+	<url>https://forklog.com/wp-content/uploads/FL_favicon-150x150.png</url>
+	<title>ForkLog</title>
+	<link>https://forklog.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Лагард подтвердила планы запустить пилот цифрового евро в 2027 году</title>
+		<link>https://forklog.com/lagard-podtverdila-plany-zapustit-pilot-tsifrovogo-evro-v-2027-godu</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Sat, 17 Oct 2026 15:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290955</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-3ebde8750da87226-5318247073336134.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="EU_flag" decoding="async" fetchpriority="high" srcset="" data-src="https://forklog.com/wp-content/uploads/img-3ebde8750da87226-5318247073336134.webp" /></p>Европейский центральный банк намерен во второй половине 2027 года начать 12-месячное тестирование цифрового евро, заявила глава регулятора Кристин Лагард на ежегодных заседаниях МВФ. По ее словам, новая форма денег дополнит наличные, усилит конкуренцию на платежном рынке и снизит зависимость Европы от зарубежной инфраструктуры. Д
+
+ля реализации планов необходимо принять соответствующее законодательство до конца 2026 года. Потенциальный выпуск цифрового евро ожидается в 2029 году, но окончательное решение еще не принято. Лагард также отметила устойчивость экономики еврозоны, несмотря на ускорение инфляции до 3,8% в сентябре.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Visa внедрила USDC для финансирования трансграничных переводов</title>
+		<link>https://forklog.com/visa-vnedrila-usdc-dlya-finansirovaniya-transgranichnyh-perevodov</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Sat, 17 Oct 2026 13:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290942</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-54bf0e161604b9a7-9344281133179530.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="visa" decoding="async" srcset="" data-src="https://forklog.com/wp-content/uploads/img-54bf0e161604b9a7-9344281133179530.webp" /></p>Visa Direct перевела сервис предварительного финансирования международных выплат в USDC из пилотной стадии в коммерческую эксплуатацию. Первым партнером стала платежная платформа Inyo Global, обслуживающая банки, финтех-компании и операторов денежных переводов. Ее клиенты смогут использовать стейблкоин для пополнения средств под трансграничные выплаты практически в реальном времени, включая выходные и нерабочие часы банков. Функция доступна через существующие API Inyo с учетом региональных ограничений. При этом USDC используется для финансирования операций, а не обязательно для выплат конечным получателям.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>СМИ: Deutsche Bank запустит криптокастодиальный сервис в Германии</title>
+		<link>https://forklog.com/smi-deutsche-bank-zapustit-kriptokastodialnyj-servis-v-germanii</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Sat, 17 Oct 2026 11:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290940</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Bank-bank-kriptovalyuta.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Bank банк криптовалюта" decoding="async" srcset="" data-src="https://forklog.com/wp-content/uploads/Bank-bank-kriptovalyuta.webp" /></p>По данным Reuters, Deutsche Bank планирует в ближайшие недели запустить сервис хранения криптовалют для корпоративных и институциональных клиентов. На первом этапе он будет поддерживать биткоин и Ethereum, позднее добавят операции со стейблкоинами. В 2027 году банк намерен расширить услугу на финансовые центры Азии. Также в планах — токенизированные депозиты и помощь клиентам в выпуске цифровых облигаций. Инициатива входит в стратегию Deutsche Bank по достижению среднегодового роста корпоративного бизнеса на 8% к 2028 году.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Claude в 17 раз сократил число вентилей в квантовой схеме для эллиптических кривых</title>
+		<link>https://forklog.com/news/ai/claude-v-17-raz-sokratil-chislo-ventilej-v-kvantovoj-sheme-dlya-ellipticheskih-krivyh</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Sat, 17 Oct 2026 10:00:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Anthropic]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[квантовые вычисления]]></category>
+		<category><![CDATA[квантовые компьютеры]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290944</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/ii-startap-Anthropic-AI.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="ии-стартап Anthropic AI" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/ii-startap-Anthropic-AI.webp" /></p>ИИ-модель Claude Mythos 5 от Anthropic разработала квантовую схему сложения точек на эллиптической кривой, которой требуется в 17 раз меньше вентилей, чем самой компактной из ранее опубликованных. При этом кубитов ей нужно на 12% больше.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Взлом до покупки: как у пользователей Ledger похитили криптоактивы почти на $100 млн</title>
+		<link>https://forklog.com/news/vzlom-do-pokupki-kak-u-polzovatelej-ledger-pohitili-kriptoaktivy-pochti-na-100-mln</link>
+		
+		<dc:creator><![CDATA[Роман Петров]]></dc:creator>
+		<pubDate>Sat, 17 Oct 2026 09:15:01 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[подкаст]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290948</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-83b3321fc6e7edad-5342853188067787.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-83b3321fc6e7edad-5342853188067787" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-83b3321fc6e7edad-5342853188067787.webp" /></p>Текстовая версия свежей "Деконструкции".]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Anderon представила инструменты для проектирования квантовых чипов</title>
+		<link>https://forklog.com/anderon-predstavila-instrumenty-dlya-proektirovaniya-kvantovyh-chipov</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Sat, 17 Oct 2026 09:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290938</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-2fbcc06c92bd6c31-5319907652450067.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-2fbcc06c92bd6c31-5319907652450067" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-2fbcc06c92bd6c31-5319907652450067.webp" /></p>Принадлежащая IBM компания Anderon представила первый собственный комплект проектирования (PDK) сверхпроводящих квантовых процессоров. Он включает компоненты для создания кубитов, передачи сигналов, усиления и фильтрации, а также эталонный проект для оценки когерентности и параметры электромагнитного моделирования. Решение призвано стандартизировать разработку квантовых устройств для последующего производства на 300-миллиметровых пластинах. Ранний доступ к PDK предоставляется по лицензии.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Экс-глава Mt. Gox обнаружил имплант в Ledger из немецкого магазина</title>
+		<link>https://forklog.com/news/eks-glava-mt-gox-obnaruzhil-implant-v-ledger-iz-nemetskogo-magazina</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Sat, 17 Oct 2026 07:30:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Ledger]]></category>
+		<category><![CDATA[Аппаратные кошельки]]></category>
+		<category><![CDATA[мошенники]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290932</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/bitkoin-koshelki-uyazvimost-bezopasnost-crypto-wallet-security.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="биткоин-кошельки уязвимость, безопасность crypto wallet security" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/bitkoin-koshelki-uyazvimost-bezopasnost-crypto-wallet-security.webp" /></p>Бывший глава Mt. Gox Марк Карпелес обнаружил шпионский имплант в аппаратном кошельке Ledger Nano X, купленном в немецком магазине MediaMarkt. ]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>СМИ: КНДР испытала новую торпеду с ИИ-наведением</title>
+		<link>https://forklog.com/smi-kndr-ispytala-novuyu-torpedu-s-ii-navedeniem</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Sat, 17 Oct 2026 07:10:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290934</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/severokorei-skie-hakerov-North-Korean-hackers.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="северокорейские хакеров North Korean hackers" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/severokorei-skie-hakerov-North-Korean-hackers.webp" /></p>15 октября Северная Корея испытала под водой новую высокоскоростную торпеду Zam-2.0, пишет Reuters со ссылкой на государственное агентство KCNA. По утверждению Пхеньяна, искусственный интеллект используется для обнаружения целей и наведения. Испытание подтвердило улучшение эффективности двигательной установки, технологии которой за последние пять лет прошли более 180 тестов. Подробности работы ИИ и технические характеристики торпеды не раскрываются. Независимого подтверждения заявленных возможностей нет.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>DarkSword научился охотиться за криптовалютой на iOS, Chrome взломали за шесть дней с помощью GPT-5.6 Sol и другие события кибербезопасности</title>
+		<link>https://forklog.com/news/darksword-nauchilsya-ohotitsya-za-kriptovalyutoj-na-ios-chrome-vzlomali-za-shest-dnej-s-pomoshhyu-gpt-5-6-sol-i-drugie-sobytiya-kiberbezopasnosti</link>
+		
+		<dc:creator><![CDATA[Сергей Голубенко]]></dc:creator>
+		<pubDate>Sat, 17 Oct 2026 04:00:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Дайджест кибербезопасности]]></category>
+		<category><![CDATA[Дайджесты]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290925</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-b5d7b9875a5427f0-4082029324633328.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="security_new3" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-b5d7b9875a5427f0-4082029324633328.webp" /></p>Мы собрали наиболее важные новости из мира кибербезопасности за неделю.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Выручка Circle за первую половину года достигла $1,4 млрд</title>
+		<link>https://forklog.com/vyruchka-circle-za-pervuyu-polovinu-goda-dostigla-1-4-mlrd</link>
+		
+		<dc:creator><![CDATA[ForkLog]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 15:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290923</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/USDC_Circle-1.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="USDC_Circle" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/USDC_Circle-1.webp" /></p>За первую половину 2026 года выручка Circle составила $1,4 млрд, следует из отчета компании. Из них $819 млн (59%) ушли партнерам по дистрибуции USDC и на транзакционные издержки, еще $473 млн (34%) — на лицензирование, банковские отношения, расчетную ликвидность, комплаенс и разработку продуктов. Около 7% остались как чистая прибыль.
+
+По данным Circle, объем транзакций с USDC за шесть месяцев превысил $36 трлн, а в июне на него пришлось около 77% мирового оборота стейблкоинов.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Виталик Бутерин показал «параноидального» ИИ-агента</title>
+		<link>https://forklog.com/news/ai/vitalik-buterin-pokazal-paranoidalnogo-ii-agenta</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 14:30:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Виталик Бутерин]]></category>
+		<category><![CDATA[ИИ-агенты]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290921</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Vitalik_Buterin-Vitalik-Buterin.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Vitalik_Buterin Виталик Бутерин" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Vitalik_Buterin-Vitalik-Buterin.webp" /></p>Сооснователь Ethereum Виталик Бутерин опубликовал на GitHub ветку с «параноидальным режимом» для ИИ-агентов.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Девять криптокомпаний создали альянс для защиты блокчейнов от квантовых атак</title>
+		<link>https://forklog.com/news/devyat-kriptokompanij-sozdali-alyans-dlya-zashhity-blokchejnov-ot-kvantovyh-atak</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 13:30:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[квантовые вычисления]]></category>
+		<category><![CDATA[квантовые компьютеры]]></category>
+		<category><![CDATA[кванты]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290916</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-2fbcc06c92bd6c31-5319907652450067.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-2fbcc06c92bd6c31-5319907652450067" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-2fbcc06c92bd6c31-5319907652450067.webp" /></p>Девять организаций из криптоиндустрии запустили Quantum Alliance — объединение для разработки единых стандартов постквантовой безопасности блокчейнов. Об этом говорится в пресс-релизе одного из участников, компании The Vault.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Palantir поможет американскому банку автоматизировать открытие счетов</title>
+		<link>https://forklog.com/palantir-pomozhet-amerikanskomu-banku-avtomatizirovat-otkrytie-schetov</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 13:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290910</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/AI-agents-II-agenty-2.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="AI-agents ИИ агенты 2" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/AI-agents-II-agenty-2.webp" /></p>Американский Customers Bank заключил соглашение с Palantir Technologies об использовании ИИ для автоматизации открытия депозитных счетов. Платформы Foundry и AIP планируют задействовать для сбора документов, проверки клиентов и оценки рисков. Инженеры Palantir уже работают совместно с командой банка. За год объем депозитов Customers Bank вырос на 15%, а количество депозитных счетов — более чем на 17%. Ранее финансовая организация также объявила о сотрудничестве с OpenAI.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Польша раскрыла детали экспертизы шпионского ПО Pegasus</title>
+		<link>https://forklog.com/news/polsha-raskryla-detali-ekspertizy-shpionskogo-po-pegasus</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 12:41:26 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[контроль]]></category>
+		<category><![CDATA[общество]]></category>
+		<category><![CDATA[Польша]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290915</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-65e7f664ba40cf38-1025312090716208.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="кошелек wallet уязвимость" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-65e7f664ba40cf38-1025312090716208.webp" /></p>Прокуратура Польши опубликовала заключение экспертов Агентства внутренней безопасности по шпионской системе Pegasus, которую использовало Центральное антикоррупционное бюро.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Убыток Capital B за первое полугодие достиг $78 млн из-за переоценки биткоина</title>
+		<link>https://forklog.com/ubytok-capital-b-za-pervoe-polugodie-dostig-78-mln-iz-za-pereotsenki-bitkoina</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 12:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290908</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-4da44013123ef474-55279051919862.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Bitcoin BTC going down fall падение биткоина" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-4da44013123ef474-55279051919862.webp" /></p>Французская компания Capital B отчиталась о чистом убытке в размере €69,5 млн ($78,1 млн) за первое полугодие 2026 года против €1,9 млн годом ранее. Основной причиной стало неденежное списание €67,5 млн ($75,9 млн) из-за переоценки биткоин-резервов. При этом выручка выросла на 3,5%, до €5,8 млн. Фирма продолжила накапливать криптовалюту: к концу сентября ее запасы увеличились до 3538 BTC против 2823 BTC в январе.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Meta превратила два Mac Studio в ИИ-суперкомпьютер</title>
+		<link>https://forklog.com/news/ai/meta-prevratila-dva-mac-studio-v-ii-superkompyuter</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 11:20:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Apple]]></category>
+		<category><![CDATA[meta]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290891</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Meta-Facebook.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Meta Facebook" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Meta-Facebook.webp" /></p>Meta открыла веса ИИ-модели Muse Spark Open на 816 млрд параметров. Ее можно локально запустить на двух компьютерах Apple Mac Studio. По словам разработчиков, в такой связке устройства с общим объемом унифицированной памяти 1 ТБ работают как один суперкомпьютер.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Германия представила план перехода на постквантовую криптографию</title>
+		<link>https://forklog.com/germaniya-predstavila-plan-perehoda-na-postkvantovuyu-kriptografiyu</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 11:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290887</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Germany.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Germany" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Germany.webp" /></p>МВД, Министерство цифровизации и модернизации госуправления и Федеральное ведомство по информационной безопасности Германии опубликовали совместные рекомендации по переходу на постквантовую криптографию. Ведомствам, компаниям и операторам критической инфраструктуры предложили оценить квантовые риски и подготовить планы миграции. Системы с высоким уровнем риска рекомендуется перевести на квантово-устойчивые алгоритмы до конца 2030 года, а основной переход завершить к 2035 году. Документ соответствует дорожной карте ЕС и направлен на защиту информации от будущих квантовых атак.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>CIO Bitwise назвал почти все макросценарии позитивными для биткоина</title>
+		<link>https://forklog.com/news/cio-bitwise-nazval-pochti-vse-makrostsenarii-pozitivnymi-dlya-bitkoina</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 10:19:26 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Bitwise]]></category>
+		<category><![CDATA[Биткоин]]></category>
+		<category><![CDATA[Мнения]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290883</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/bitcoin-Novosti-bitkoina-tsena-bitkoina.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="bitcoin btc новости цена биткоина" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/bitcoin-Novosti-bitkoina-tsena-bitkoina.webp" /></p>Почти любые долгосрочные варианты для экономики, ставок и развития ИИ работают на рост биткоина. Об этом заявил инвестиционный директор Bitwise Мэтт Хоуган.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Сколько можно заработать на майнинге в России в 2026 году</title>
+		<link>https://forklog.com/exclusive/skolko-mozhno-zarabotat-na-majninge-v-rossii-v-2026-godu</link>
+		
+		<dc:creator><![CDATA[Гостевые материалы]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 10:09:52 +0000</pubDate>
+				<category><![CDATA[Лонгриды]]></category>
+		<category><![CDATA[Биткоин]]></category>
+		<category><![CDATA[Майнинг]]></category>
+		<category><![CDATA[Налоги]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290890</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-48737310379daf9e-5260714286068918.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-48737310379daf9e-5260714286068918" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-48737310379daf9e-5260714286068918.webp" /></p>На чем майнеры теряют деньги и какие правила действуют в России.
+]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>СМИ: в России предложили выявлять VPN с помощью ИИ</title>
+		<link>https://forklog.com/smi-v-rossii-predlozhili-vyyavlyat-vpn-s-pomoshhyu-ii</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 10:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290884</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/russia-flag-rossiya-flag-kripta-bitkoin.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="russia flag россия флаг крипта биткоин" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/russia-flag-rossiya-flag-kripta-bitkoin.webp" /></p>Минцифры РФ рассматривало использование искусственного интеллекта для выявления и блокировки VPN-сервисов, сообщил «Коммерсантъ». Согласно проекту нацплана внедрения ИИ до 2030 года, технология должна была анализировать признаки 70% блокируемых VPN и повысить эффективность ограничений до 95%. Однако в ведомстве уточнили, что в актуальной версии документа такой меры нет. Эксперты предупредили о риске ошибочной блокировки легитимного трафика.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Google добилась 40-кратного снижения ошибок квантовых состояний</title>
+		<link>https://forklog.com/news/google-dobilas-40-kratnogo-snizheniya-oshibok-kvantovyh-sostoyanij</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 09:55:10 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Google]]></category>
+		<category><![CDATA[квантовые вычисления]]></category>
+		<category><![CDATA[квантовые компьютеры]]></category>
+		<category><![CDATA[кванты]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290882</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-cc4fcb9877f514e1-5319921444217488.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-cc4fcb9877f514e1-5319921444217488" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-cc4fcb9877f514e1-5319921444217488.webp" /></p>Исследователи Google Quantum AI снизили частоту ошибок при создании специальных квантовых состояний примерно в 40 раз на процессоре Willow. Результаты эксперимента они опубликовали в журнале Science.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Суд отказался отменять соглашение Gemini с CFTC на $5 млн</title>
+		<link>https://forklog.com/news/sud-otkazalsya-otmenyat-soglashenie-gemini-s-cftc-na-5-mln</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 09:30:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[CFTC]]></category>
+		<category><![CDATA[Gemini]]></category>
+		<category><![CDATA[Суды]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290878</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-713871eadea5b4be-7134813405037850.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Gemini" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-713871eadea5b4be-7134813405037850.webp" /></p>Федеральный суд Южного округа Нью-Йорка отклонил совместное ходатайство Комиссии по срочной биржевой торговле США (CFTC) и криптобиржи Gemini об отмене мирового соглашения от января 2025 года. Соответствующее постановление вынес судья Элвин Хеллерштейн.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Solana в последний момент отложила ивент в Шанхае</title>
+		<link>https://forklog.com/news/solana-v-poslednij-moment-otlozhila-ivent-v-shanhae</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 08:53:15 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Solana (SOL)]]></category>
+		<category><![CDATA[Китай]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290879</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/SOLANA-2025.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="SOLANA 2025" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/SOLANA-2025.webp" /></p>Команда Solana отложила мероприятие Solana Accelerate China в Шанхае после того, как на площадке заметили полицейских. Об этом пишет South China Morning Post.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Chainalysis: организатор скама потерял более 60 BTC в инциденте Ledger</title>
+		<link>https://forklog.com/chainalysis-organizator-skama-poteryal-bolee-60-btc-v-intsidente-ledger</link>
+		
+		<dc:creator><![CDATA[ForkLog]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 07:51:16 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290876</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/scam_2025.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="scam_2025" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/scam_2025.webp" /></p>Команда Chainalysis сообщила, что одним из крупнейших пострадавших в недавней краже, связанной с Ledger-кошельками, стал скамер. Он потерял более 60 BTC (около $4,8 млн). 
+
+Эти средства принесла схема, где людям платили за фальшивые продажи и отзывы реальных товаров, а после появления «отрицательного баланса» требовали внести собственные деньги, чтобы получить выплату. 22 сентября выручку перевели на три адреса Ledger, а 9 октября злоумышленники опустошили их.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Tesla показала «летающий» электромобиль с двигателями от SpaceX</title>
+		<link>https://forklog.com/news/tesla-pokazala-letayushhij-elektromobil-s-dvigatelyami-ot-spacex</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 07:49:07 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Tesla]]></category>
+		<category><![CDATA[Илон Маск]]></category>
+		<category><![CDATA[Мнения]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290874</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/letayushhee-taksi-flying-taxi.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="летающее такси flying taxi" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/letayushhee-taksi-flying-taxi.webp" /></p>Tesla представила новое поколение электромобиля Roadster, способного выполнять маневры в воздухе. Презентация прошла 15 октября на испытательном полигоне SpaceX в Техасе.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>ИИ-модель OpenAI без разрешения воспользовалась чужим Ethereum-кошельком</title>
+		<link>https://forklog.com/news/ai/ii-model-openai-bez-razresheniya-vospolzovalas-chuzhim-ethereum-kriptokoshelkom</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 06:03:42 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Ethereum (ETH)]]></category>
+		<category><![CDATA[OpenAI]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290867</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/trejding-s-primeneniem-iskusstvennogo-intellekta-AI-trading.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="трейдинг с применением искусственного интеллекта AI trading" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/trejding-s-primeneniem-iskusstvennogo-intellekta-AI-trading.webp" /></p>Внутренняя исследовательская модель OpenAI семейства GPT-5.6 Sol во время обучения получила доступ к чужому кошельку в тестовой сети Ethereum Sepolia. С его баланса она оплатила развертывание смарт-контрактов, хотя разрешения на это у нее не было. ]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Австралия подготовила законопроект о налоговой отчетности по криптовалютам</title>
+		<link>https://forklog.com/avstraliya-podgotovila-zakonoproekt-o-nalogovoj-otchetnosti-po-kriptovalyutam</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 06:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290861</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Australia_Generic.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Австралия" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Australia_Generic.webp" /></p>Минфин Австралии опубликовал законопроект о внедрении стандарта Crypto-Asset Reporting Framework от Организации экономического сотрудничества и развития. Документ предусматривает создание национальной системы отчетности о криптовалютных операциях резидентов и автоматический обмен налоговыми данными с другими странами. 
+
+Первый международный обмен информацией ожидается в 2028 году. Общественное обсуждение продлится до 28 октября 2026 года.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Network School Баладжи Сринивасана приобрела Farcaster</title>
+		<link>https://forklog.com/news/network-school-baladzhi-srinivasana-priobrela-farcaster</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 05:34:51 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[DeFi]]></category>
+		<category><![CDATA[Баладжи Сринивасан]]></category>
+		<category><![CDATA[Соцсети]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290864</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/DeSoc-Decentralized-Society.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="DeSoc Decentralized Society" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/DeSoc-Decentralized-Society.webp" /></p>Network School бывшего технического директора Coinbase Баладжи Сринивасана приобрела децентрализованную социальную платформу Farcaster у компании Neynar. Об этом сообщил сооснователь последней Риш Мукерджи. ]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>CleanSpark и BitFuFu сократили добычу биткоина в сентябре</title>
+		<link>https://forklog.com/cleanspark-i-bitfufu-sokratili-dobychu-bitkoina-v-sentyabre</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 05:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290859</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-567afcdb3a664957-1372075908728056.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="майнинг mining" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-567afcdb3a664957-1372075908728056.webp" /></p>В сентябре майнинговая компания CleanSpark добыла 529 BTC — на 11% меньше августовского показателя. Производство BitFuFu снизилось на 4%, до 167 BTC, преимущественно из-за сокращения объемов облачного майнинга. Canaan сохранила результат на уровне 44 BTC. CleanSpark также объявила об отказе от ежемесячных отчетов в пользу квартальных на фоне развития бизнеса дата-центров.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Ripple запустила RWA-свопы для институционалов </title>
+		<link>https://forklog.com/news/ripple-zapustila-rwa-svopy-dlya-institutsionalov</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Thu, 15 Oct 2026 16:28:20 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Ripple (XRP)]]></category>
+		<category><![CDATA[RWA]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=290852</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Cryptocurrency-Ripple.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Ripple" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Cryptocurrency-Ripple.webp" /></p>Компания Ripple объявила о запуске бессрочных RWA-свопов через сервис Ripple Prime для институциональных клиентов. ]]></description>
+		
+		
+		
+			</item>
+	</channel>
+</rss>
