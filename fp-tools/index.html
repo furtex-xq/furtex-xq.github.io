@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FP Tools — создание лотов FunPay</title>
+<meta name="description" content="Массовое создание лотов FunPay из JSON прямо в браузере. Работает на iPhone, без сервера.">
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#15171a;--muted:#5b616b;--line:#e4e7eb;--accent:#1f6feb;--accent-ink:#fff;--soft:#eef4ff;--code:#f1f3f5;--ok:#1a7f37;--warn:#9a6700}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1115;--card:#171a20;--text:#e8eaed;--muted:#9aa1ab;--line:#272b33;--accent:#4c8dff;--accent-ink:#fff;--soft:#16223a;--code:#1f232b;--ok:#3fb950;--warn:#d29922}}
+:root[data-theme="dark"]{--bg:#0f1115;--card:#171a20;--text:#e8eaed;--muted:#9aa1ab;--line:#272b33;--accent:#4c8dff;--accent-ink:#fff;--soft:#16223a;--code:#1f232b;--ok:#3fb950;--warn:#d29922}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:28px 16px 64px}
+header{padding:12px 0 20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px}
+.logo{width:34px;height:34px;border-radius:9px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-size:16px;font-weight:800}
+h1{font-size:30px;line-height:1.15;margin:22px 0 10px;letter-spacing:-.4px}
+.lead{color:var(--muted);font-size:17px;margin:0}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pill{font-size:13px;padding:5px 10px;border-radius:999px;background:var(--soft);color:var(--accent);font-weight:600}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 18px;margin-top:16px}
+h2{font-size:19px;margin:0 0 12px}
+ol{margin:0;padding-left:22px}ol li{margin:8px 0}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 16px/1 inherit;padding:14px 18px;border-radius:11px;border:0;background:var(--accent);color:var(--accent-ink);cursor:pointer;text-decoration:none;width:100%}
+.btn.ghost{background:var(--code);color:var(--text)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.row>*{flex:1;min-width:200px}
+textarea{width:100%;height:96px;font:12px/1.4 ui-monospace,Menlo,monospace;background:var(--code);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px;resize:vertical}
+code{font:14px ui-monospace,Menlo,monospace;background:var(--code);padding:1px 6px;border-radius:5px}
+pre{font:13px/1.5 ui-monospace,Menlo,monospace;background:var(--code);border-radius:10px;padding:12px;overflow:auto;margin:10px 0 0}
+.note{border-left:3px solid var(--warn);padding:2px 0 2px 12px;margin-top:12px;color:var(--muted)}
+.tabs{display:flex;gap:6px;background:var(--code);padding:4px;border-radius:10px;margin-bottom:14px}
+.tab{flex:1;border:0;background:transparent;color:var(--muted);font:600 15px inherit;padding:9px;border-radius:8px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--card);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+[hidden]{display:none!important}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}
+.drag{border:2px dashed var(--accent);background:var(--soft);color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><div class="logo">FP</div>FP Tools</div>
+    <h1>Создание лотов FunPay из JSON</h1>
+    <p class="lead">Закладка-кнопка для браузера. Открываете FunPay, нажимаете её, выбираете файл, и лоты создаются по очереди под вашим аккаунтом.</p>
+    <div class="pills"><span class="pill">iPhone и компьютер</span><span class="pill">Без сервера</span><span class="pill">Без golden_key</span><span class="pill">Без дублей</span></div>
+  </header>
+
+  <section>
+    <h2>1. Установить закладку</h2>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-tab="ios">iPhone · Safari</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="pc">Компьютер</button>
+    </div>
+
+    <div data-panel="ios">
+      <ol>
+        <li>Нажмите <b>«Скопировать код»</b> ниже.</li>
+        <li>Добавьте эту страницу в закладки: кнопка <b>«Поделиться»</b> → <b>«Добавить закладку»</b> → назовите <b>FP Tools</b> → <b>«Сохранить»</b>.</li>
+        <li>Откройте закладки (значок книги) → <b>«Изменить»</b> → нажмите на <b>FP Tools</b>.</li>
+        <li>Сотрите адрес и вставьте скопированный код. Нажмите <b>«Готово»</b>.</li>
+      </ol>
+      <div class="row"><button class="btn" data-copy>Скопировать код</button></div>
+    </div>
+
+    <div data-panel="pc" hidden>
+      <ol>
+        <li>Включите панель закладок (Ctrl/Cmd + Shift + B).</li>
+        <li>Перетащите кнопку ниже на панель закладок.</li>
+      </ol>
+      <div class="row"><a class="btn drag" id="bm-link" href="#" onclick="event.preventDefault();toast('Перетащите кнопку на панель закладок')">⇱ FP Tools</a>
+      <button class="btn ghost" data-copy>Скопировать код</button></div>
+    </div>
+
+    <details style="margin-top:14px"><summary class="muted">Показать код закладки</summary>
+      <textarea id="bm-code" readonly>javascript:!function(){"use strict";var e="fpt-root";if(-1!==location.hostname.indexOf("funpay.com")){var t=document.getElementById(e);if(t)t.style.display="flex";else{var r={};try{r=JSON.parse(document.body.getAttribute("data-app-data")||"{}")}catch(e){}var n=r.userId,i=r["csrf-token"]||"",o="fpt-done-"+(n||"x"),a=document.createElement("style");a.textContent="%23fpt-root{position:fixed;inset:0;z-index:2147483647;background:rgba(10,12,16,.55);display:flex;align-items:flex-end;justify-content:center;font:15px/1.4 -apple-system,system-ui,Segoe UI,Roboto,sans-serif;color:%2315171a}%23fpt-root *{box-sizing:border-box}%23fpt-box{background:%23fff;width:100%25;max-width:560px;max-height:92vh;display:flex;flex-direction:column;border-radius:16px 16px 0 0;box-shadow:0 -8px 40px rgba(0,0,0,.25);overflow:hidden}@media(min-width:600px){%23fpt-root{align-items:center}%23fpt-box{border-radius:16px}}%23fpt-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid %23eceef1}%23fpt-head b{font-size:16px}%23fpt-x{border:0;background:%23f1f3f5;border-radius:8px;width:32px;height:32px;font-size:18px;cursor:pointer}%23fpt-body{padding:14px 16px;overflow:auto;display:flex;flex-direction:column;gap:12px}.fpt-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.fpt-row label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:%235b616b;flex:1;min-width:120px}.fpt-row input[type=number]{font-size:16px;padding:8px 10px;border:1px solid %23d5d9de;border-radius:8px;width:100%25}%23fpt-file{font-size:15px;width:100%25}.fpt-btn{flex:1;font-size:16px;font-weight:600;padding:12px;border-radius:10px;border:0;cursor:pointer}%23fpt-go{background:%231f6feb;color:%23fff}%23fpt-go:disabled{background:%239db8e6}%23fpt-stop{background:%23f1f3f5;color:%2315171a}%23fpt-stat{font-size:14px;color:%233a3f46}%23fpt-bar{height:6px;background:%23eceef1;border-radius:3px;overflow:hidden}%23fpt-bar i{display:block;height:100%25;width:0;background:%231f6feb;transition:width .3s}%23fpt-log{font:12px/1.45 ui-monospace,Menlo,monospace;background:%23f7f8fa;border:1px solid %23eceef1;border-radius:8px;padding:8px;height:180px;overflow:auto;white-space:pre-wrap;word-break:break-word}.fpt-ok{color:%231a7f37}.fpt-err{color:%23cf222e}.fpt-dim{color:%237a8089}",document.head.appendChild(a);var d=document.createElement("div");d.id=e,d.innerHTML='&lt;div id="fpt-box"&gt;&lt;div id="fpt-head"&gt;&lt;b&gt;FP Tools · создание лотов&lt;/b&gt;&lt;button id="fpt-x" title="Закрыть"&gt;×&lt;/button&gt;&lt;/div&gt;&lt;div id="fpt-body"&gt;&lt;input id="fpt-file" type="file" accept=".json,application/json"&gt;&lt;div class="fpt-row"&gt;&lt;label&gt;Сколько создать (0 = все)&lt;input id="fpt-limit" type="number" min="0" value="1"&gt;&lt;/label&gt;&lt;label&gt;Пауза между лотами, сек&lt;input id="fpt-delay" type="number" min="1" value="3"&gt;&lt;/label&gt;&lt;/div&gt;&lt;div class="fpt-row"&gt;&lt;button class="fpt-btn" id="fpt-go" disabled&gt;Создать лоты&lt;/button&gt;&lt;button class="fpt-btn" id="fpt-stop"&gt;Стоп&lt;/button&gt;&lt;/div&gt;&lt;div id="fpt-stat"&gt;Аккаунт: '+(n?"id "+n:"&lt;span class=fpt-err&gt;не найден — войдите на FunPay&lt;/span&gt;")+'. Выберите JSON-файл.&lt;/div&gt;&lt;div id="fpt-bar"&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;&lt;div id="fpt-log"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;',document.body.appendChild(d);var f=function(e){return d.querySelector(e)},l=f("%23fpt-log"),s=function(e){return new Promise((function(t){setTimeout(t,e)}))};f("%23fpt-x").onclick=function(){d.style.display="none"};var p=null,c=!1,u=!1,m={summary_ru:"fields[summary][ru]",summary_en:"fields[summary][en]",desc_ru:"fields[desc][ru]",desc_en:"fields[desc][en]",payment_msg_ru:"fields[payment_msg][ru]",payment_msg_en:"fields[payment_msg][en]"};f("%23fpt-file").onchange=function(e){var t=e.target.files[0];if(t){h("Читаю файл…");var r=new FileReader;r.onload=function(){try{e=JSON.parse(r.result),h("В файле "+(p=(Array.isArray(e)?e:e&amp;&amp;e.lots||[]).map((function(e,t){var r=Object.assign({},e.fields||{});Object.keys(m).forEach((function(t){null!=e[t]&amp;&amp;null==r[m[t]]&amp;&amp;(r[m[t]]=e[t])}));var n=e.node_id||r.node_id,i=null!=e.price?e.price:r.price,o=String(r["fields[summary][ru]"]||"").trim();if(!n||!o||null==i||""===i)throw new Error("Лот №"+(t+1)+": нет node_id, названия или цены");return delete r.node_id,delete r.active,delete r.price,Object.assign(r,e.extra_fields||{}),{sku:e.sku||String(t+1),node:String(n),price:String(i),title:o,fields:r}}))).length+" лотов. Для проверки оставьте «1», потом поставьте 0."),b("Файл: "+t.name+" · "+p.length+" лотов","fpt-dim"),f("%23fpt-go").disabled=!n}catch(e){p=null,h("Ошибка в файле: "+e.message)}var e},r.readAsText(t,"utf-8")}},f("%23fpt-stop").onclick=function(){c&amp;&amp;(u=!0,h("Останавливаю после текущего лота…"))},f("%23fpt-go").onclick=async function(){if(p&amp;&amp;!c){c=!0,u=!1,this.disabled=!0;var e,t=parseInt(f("%23fpt-limit").value,10)||0,r=1e3*Math.max(1,parseFloat(f("%23fpt-delay").value)||3),i=function(){try{return new Set(JSON.parse(localStorage.getItem(o)||"[]"))}catch(e){return new Set}}();h("Проверяю, какие лоты уже есть…");try{e=await async function(){var e=await g("/users/"+n+"/"),t=(new DOMParser).parseFromString(e,"text/html"),r=new Set;return t.querySelectorAll(".tc-item .tc-desc-text").forEach((function(e){r.add(e.textContent.trim())})),r}()}catch(t){e=new Set,b("Не удалось получить список лотов: "+t.message,"fpt-err")}var a=p.filter((function(t){return!e.has(t.title)&amp;&amp;!i.has(t.sku+"|"+t.title)})),d=p.length-a.length;t&amp;&amp;(a=a.slice(0,t)),b("Уже есть: "+d+" · к созданию: "+a.length,"fpt-dim");for(var l,m=0,v=0,w=[],k=0;k&lt;a.length;k++){if(u){b("Остановлено.","fpt-dim");break}var S=a[k],A=null;h("Создаю "+(k+1)+" из "+a.length+": "+S.sku);for(var _=0;_&lt;3;_++)try{await x(S),A=null;break}catch(e){if(A=e,e.fieldErr)break;await s(r*(_+2))}A?(v++,w.push(S.sku+" (раздел "+S.node+"): "+A.message),b("✗ "+S.sku+" — "+A.message,"fpt-err")):(m++,i.add(S.sku+"|"+S.title),y(i),b("✓ "+S.sku,"fpt-ok")),l=(k+1)/a.length,f("%23fpt-bar i").style.width=Math.round(100*l)+"%25",k&lt;a.length-1&amp;&amp;await s(r)}h("Готово. Создано: "+m+" · ошибок: "+v+" · пропущено (уже были): "+d),w.length&amp;&amp;b("— Ошибки —\n"+w.join("\n"),"fpt-err"),c=!1,this.disabled=!1}}}}else alert("Откройте funpay.com (войдите в аккаунт) и нажмите закладку там.");function b(e,t){var r=document.createElement("div");t&amp;&amp;(r.className=t),r.textContent=e,l.appendChild(r),l.scrollTop=l.scrollHeight}function h(e){f("%23fpt-stat").textContent=e}async function g(e){var t=await fetch(e,{credentials:"include"});if(!t.ok)throw new Error("HTTP "+t.status+" на "+e);return t.text()}async function x(e){var t=await g("/lots/offerEdit?node="+encodeURIComponent(e.node)),r=(new DOMParser).parseFromString(t,"text/html"),n=r.querySelector("p.lead");if(n)throw new Error(n.textContent.trim());var o=r.querySelector("form.form-offer-editor");if(!o)throw new Error("нет формы создания лота (раздел "+e.node+")");var a=function(e){var t={};return e.querySelectorAll("input").forEach((function(e){var r=e.getAttribute("name"),n=(e.getAttribute("type")||"").toLowerCase();r&amp;&amp;"checkbox"!==n&amp;&amp;"radio"!==n&amp;&amp;"file"!==n&amp;&amp;(t[r]=e.getAttribute("value")||"")})),e.querySelectorAll("input[type=checkbox],input[type=radio]").forEach((function(e){var r=e.getAttribute("name");r&amp;&amp;e.hasAttribute("checked")&amp;&amp;(t[r]="radio"===e.type&amp;&amp;e.getAttribute("value")||"on")})),e.querySelectorAll("textarea").forEach((function(e){e.name&amp;&amp;(t[e.name]=e.textContent||"")})),e.querySelectorAll("select").forEach((function(e){if(e.name){var r=e.closest(".form-group");if(!r||!r.classList.contains("hidden")){var n=e.querySelector("option[selected]")||e.querySelector("option");t[e.name]=n&amp;&amp;n.getAttribute("value")||""}}})),t}(o);delete a.auto_delivery,delete a.deactivate_after_sale,Object.assign(a,e.fields),a.offer_id="0",a.node_id=e.node,a.price=e.price,a.active="on","amount"in a&amp;&amp;(a.amount="999"),a.csrf_token?i=a.csrf_token:a.csrf_token=i;var d=new URLSearchParams;Object.keys(a).forEach((function(e){d.append(e,null==a[e]?"":String(a[e]))}));var f=await fetch("/lots/offerSave",{method:"POST",credentials:"include",headers:{"content-type":"application/x-www-form-urlencoded; charset=UTF-8","x-requested-with":"XMLHttpRequest",accept:"*/*"},body:d.toString()}),l=await f.text(),s=null;try{s=JSON.parse(l)}catch(u){}if(!f.ok)throw new Error("HTTP "+f.status);if(!s)throw new Error("непонятный ответ FunPay");var p=s.errors;if(p&amp;&amp;(Array.isArray(p)?p.length:Object.keys(p).length)){var c=Array.isArray(p)?p.map((function(e){return Array.isArray(e)?e.join(": "):String(e)})):Object.keys(p).map((function(e){return e+": "+p[e]})),u=new Error((s.error||"ошибка полей")+" — "+c.join("; "));throw u.fieldErr=!0,u}if(s.error)throw new Error("string"==typeof s.error?s.error:JSON.stringify(s));return s}function y(e){try{localStorage.setItem(o,JSON.stringify(Array.from(e)))}catch(e){}}}();</textarea>
+    </details>
+  </section>
+
+  <section>
+    <h2>2. Создать лоты</h2>
+    <ol>
+      <li>Зайдите на <b>funpay.com</b> под своим аккаунтом (любая страница).</li>
+      <li>Откройте закладки и нажмите <b>FP Tools</b>. Внизу появится панель.</li>
+      <li>Выберите JSON-файл с лотами, например <code>FunPay_Cardinal_440.json</code> из «Файлов».</li>
+      <li>Сначала создайте <b>1</b> лот для проверки. Если он появился на FunPay, поставьте <b>0</b> (все) и запустите снова.</li>
+    </ol>
+    <p class="note">Лоты, которые уже есть в профиле, пропускаются, поэтому при сбое можно просто запустить ещё раз. Пауза между лотами 3 секунды, чтобы FunPay не ограничил запросы. 440 лотов займут примерно полчаса. Экран при этом не выключайте.</p>
+  </section>
+
+  <section>
+    <h2>Что важно знать</h2>
+    <ol>
+      <li><b>Выдача без бота.</b> В каждом лоте заполнено «Сообщение покупателю после оплаты» со ссылкой на гайд, и FunPay сам отправляет его сразу после оплаты, 24/7.</li>
+      <li><b>Безопасность.</b> Код работает только в вашем браузере, на странице FunPay. Никуда, кроме funpay.com, данные не отправляются, а пароль и golden_key не нужны.</li>
+      <li><b>Ошибки разделов.</b> В некоторых разделах FunPay есть обязательные поля, например тип услуги. Если панель покажет «Заполните поле», добавьте лоту <code>extra_fields</code> с нужным значением.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Формат JSON</h2>
+    <p class="muted" style="margin:0">Подходит FunPay_Cardinal_440.json или такой формат:</p>
+<pre>{ "lots": [ {
+  "sku": "AE-BASICS",
+  "node_id": 3034,
+  "price": 1,
+  "summary_ru": "Название лота",
+  "summary_en": "Lot title",
+  "desc_ru": "Описание…",
+  "desc_en": "Description…",
+  "payment_msg_ru": "Спасибо! Ссылка: …",
+  "payment_msg_en": "Thanks! Link: …",
+  "extra_fields": { }
+} ] }</pre>
+    <p class="muted">Вместо <code>summary_ru</code> и других можно передать <code>fields</code> с полями формы FunPay (<code>fields[summary][ru]</code> и т. д.).</p>
+  </section>
+
+  <footer>FP Tools · AnsaroTechnologies</footer>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+var BM = document.getElementById("bm-code").value;
+document.getElementById("bm-link").setAttribute("href", BM);
+function toast(t){var e=document.getElementById("toast");e.textContent=t;e.classList.add("show");clearTimeout(e._t);e._t=setTimeout(function(){e.classList.remove("show")},1800)}
+function copy(){
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(BM).then(function(){toast("Код скопирован")},fallback)}else fallback();
+  function fallback(){var t=document.getElementById("bm-code");t.closest("details").open=true;t.removeAttribute("readonly");t.focus();t.select();t.setSelectionRange(0,BM.length);var ok=false;try{ok=document.execCommand("copy")}catch(e){}t.setAttribute("readonly","");toast(ok?"Код скопирован":"Выделите код и скопируйте вручную")}
+}
+document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",copy)});
+document.querySelectorAll(".tab").forEach(function(t){t.addEventListener("click",function(){
+  document.querySelectorAll(".tab").forEach(function(x){x.setAttribute("aria-selected",x===t)});
+  document.querySelectorAll("[data-panel]").forEach(function(p){p.hidden=p.getAttribute("data-panel")!==t.dataset.tab});
+})});
+if(!/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)){document.querySelector('[data-tab="pc"]').click()}
+</script>
+</body>
+</html>
