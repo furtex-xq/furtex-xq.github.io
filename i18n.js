@@ -10,6 +10,8 @@ ru: {
 },
 
 uk: {
+  "gp.soon":"Незабаром у Google Play",
+  "privacy":"Політика конфіденційності",
   "mfs.n101":"Велике оновлення: мініігри, нові навчальні режими та інструменти для батьків.",
   "mfs.w1":"<b>Ігри</b>: мініігри «Збери 24», «Ланцюжок до числа» і «Магічний квадрат», бос дня, улюбленець, сезонна перепустка, крафт і серія дуелей за кодом",
   "mfs.w2":"<b>Навчання</b>: розбір помилки одразу після відповіді, план на тиждень, математичний диктант, рахунок у стовпчик і аркуші з прикладами для друку",
@@ -174,6 +176,8 @@ uk: {
 },
 
 en: {
+  "gp.soon":"Coming soon to Google Play",
+  "privacy":"Privacy policy",
   "mfs.n101":"A big update: mini-games, new study modes and tools for parents.",
   "mfs.w1":"<b>Games</b>: the mini-games “Make 24”, “Chain to a number” and “Magic square”, a daily boss, a pet, a season pass, crafting and a duel series by code",
   "mfs.w2":"<b>Study</b>: mistake breakdown right after your answer, a weekly plan, maths dictation, column arithmetic and printable worksheets",
@@ -338,6 +342,8 @@ en: {
 },
 
 cs: {
+  "gp.soon":"Brzy na Google Play",
+  "privacy":"Zásady ochrany soukromí",
   "mfs.n101":"Velká aktualizace: minihry, nové studijní režimy a nástroje pro rodiče.",
   "mfs.w1":"<b>Hry</b>: minihry „Slož 24“, „Řetěz k číslu“ a „Magický čtverec“, boss dne, mazlíček, sezónní propustka, crafting a série duelů podle kódu",
   "mfs.w2":"<b>Učení</b>: rozbor chyby hned po odpovědi, plán na týden, matematický diktát, písemné počítání pod sebou a listy s příklady k tisku",

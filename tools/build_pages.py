@@ -110,6 +110,7 @@ def main():
 
     today = datetime.date.today().isoformat()
     urls = ['', 'updates.html'] + [k + '/' for k in APPS]
+    urls.append('tidemark/privacy.html')
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     sm += ''.join(f'  <url><loc>{URL}{u}</loc><lastmod>{today}</lastmod></url>\n' for u in urls) + '</urlset>\n'
     open(os.path.join(ROOT, 'sitemap.xml'), 'w', encoding='utf-8', newline='\n').write(sm)
