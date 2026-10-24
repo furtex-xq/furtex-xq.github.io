@@ -1,0 +1,45 @@
+{
+ "updated": 1792832877,
+ "files": {
+  "Keyra.apk": {
+   "sha256": "be3f2e77d3b4679229dee2329d043013d2e01673d19475498b11b2aac60b8615",
+   "malicious": 0,
+   "suspicious": 0,
+   "total": 68,
+   "date": 1791706300,
+   "link": "https://www.virustotal.com/gui/file/be3f2e77d3b4679229dee2329d043013d2e01673d19475498b11b2aac60b8615"
+  },
+  "MathForSpeed.apk": {
+   "sha256": "02900692d9fc89b59686a0aba9e7444148fc0e12c27fea4e9d2a0b3a095b5f6d",
+   "malicious": 0,
+   "suspicious": 0,
+   "total": 67,
+   "date": 1791725254,
+   "link": "https://www.virustotal.com/gui/file/02900692d9fc89b59686a0aba9e7444148fc0e12c27fea4e9d2a0b3a095b5f6d"
+  },
+  "Monko.apk": {
+   "sha256": "1c8271d3b89bbfc15184bacb14f35941b24f2e73933903429754a04064572891",
+   "malicious": 0,
+   "suspicious": 0,
+   "total": 67,
+   "date": 1791669120,
+   "link": "https://www.virustotal.com/gui/file/1c8271d3b89bbfc15184bacb14f35941b24f2e73933903429754a04064572891"
+  },
+  "PythonBook.apk": {
+   "sha256": "fb69b101e2409b036e47f12f9c4de125dd6e3aba95d4a6e903eeea37c8ee2520",
+   "malicious": 0,
+   "suspicious": 0,
+   "total": 68,
+   "date": 1791725389,
+   "link": "https://www.virustotal.com/gui/file/fb69b101e2409b036e47f12f9c4de125dd6e3aba95d4a6e903eeea37c8ee2520"
+  },
+  "Tidemark.apk": {
+   "sha256": "b628b131437aff6c3df2d54e63fa0726788761780863fc439dc8d1aba502f5e4",
+   "malicious": 0,
+   "suspicious": 0,
+   "total": 68,
+   "date": 1791664165,
+   "link": "https://www.virustotal.com/gui/file/b628b131437aff6c3df2d54e63fa0726788761780863fc439dc8d1aba502f5e4"
+  }
+ }
+}
