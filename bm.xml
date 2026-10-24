@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss
+	version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:media="http://search.yahoo.com/mrss/"
+	>
+	<channel>
+		<title>Bits.media News</title>
+
+		<link>https://bits.media</link>
+		<description>Bits.media - новостной сайт и форум  о криптовалютах, биткоине, майнинге и блокчейне. Помимо ежедневных финтех новостей на сайте доступны мониторинг крипто-обменников, майнинг калькулятор, курсы криптовалют, обзоры оборудования для майнинга и многое другое.</description>
+		<generator>bits.media</generator>
+		<lastBuildDate>Sat, 24 Oct 2026 21:09:02 +0300</lastBuildDate>
+		<language>ru-RU</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+
+								
+				<image>
+					<title>Bits.media News</title>
+					<url>https://bits.media/upload/iblock/993/bitsmedia600.png</url>
+					<link>https://bits.media</link>
+					<description>Bits.media - новостной сайт и форум  о криптовалютах, биткоине, майнинге и блокчейне. Помимо ежедневных финтех новостей на сайте доступны мониторинг крипто-обменников, майнинг калькулятор, курсы криптовалют, обзоры оборудования для майнинга и многое другое.</description>
+				</image>
+					
+		
+<item>
+				<title>Вычисления для недоверчивых: что такое технология TEE в блокчейне</title>
+				<link>https://bits.media/vychisleniya-dlya-nedoverchivykh-chto-takoe-tekhnologiya-tee-v-blokcheyne/</link>
+				<guid isPermaLink="false">https://bits.media/vychisleniya-dlya-nedoverchivykh-chto-takoe-tekhnologiya-tee-v-blokcheyne/</guid>
+				<description><![CDATA[Блокчейн по своей природе прозрачен, поскольку это нужно для безопасности и доверия к системе. С другой стороны, открытость идет во вред, когда чувствительные данные необходимо скрыть от посторонних глаз. Решением, которое при определенных условиях способно помочь, является Trusted Execution Environments («Доверенная среда исполнения»).]]></description>
+
+									<category><![CDATA[Блокчейн]]></category>
+									<category><![CDATA[Безопасность]]></category>
+									<category><![CDATA[Конфиденциальность]]></category>
+									<category><![CDATA[ZKP]]></category>
+									<category><![CDATA[Intel]]></category>
+									<category><![CDATA[Уязвимость]]></category>
+									<category><![CDATA[Платформа]]></category>
+									<category><![CDATA[Нода]]></category>
+									<category><![CDATA[Криптография]]></category>
+									<category><![CDATA[Искусственный интеллект]]></category>
+									<category><![CDATA[Доказательство с нулевым разглашением]]></category>
+									<category><![CDATA[Блокчейн разработки]]></category>
+									<category><![CDATA[Транзакция]]></category>
+									<category><![CDATA[Android]]></category>
+									<category><![CDATA[DeFi]]></category>
+				
+				<pubDate>Sat, 24 Oct 2026 11:41:00 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/aea/5ilkcnv850dhtwzekikk7h862qrom5q7/vychisleniya_dlya_nedoverchivykh_chto_takoe_tekhnologiya_tee_v_blokcheyne.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/aea/5ilkcnv850dhtwzekikk7h862qrom5q7/vychisleniya_dlya_nedoverchivykh_chto_takoe_tekhnologiya_tee_v_blokcheyne.webp" length="242425" type="image/png"/>
+				
+				
+			</item>
+		
+<item>
+				<title>В Аргентине прекратили дело о токене Libra против президента Милея</title>
+				<link>https://bits.media/v-argentine-prekratili-delo-o-tokene-libra-protiv-prezidenta-mileya/</link>
+				<guid isPermaLink="false">https://bits.media/v-argentine-prekratili-delo-o-tokene-libra-protiv-prezidenta-mileya/</guid>
+				<description><![CDATA[Аргентинский федеральный суд прекратил уголовное преследование президента Хавьера Милея по делу о скандале с мемкоином Libra. Суд не обнаружил в действиях президента страны состава преступления.]]></description>
+
+									<category><![CDATA[Libra]]></category>
+									<category><![CDATA[Аргентина]]></category>
+									<category><![CDATA[Суд]]></category>
+									<category><![CDATA[Токен]]></category>
+									<category><![CDATA[Мошенничество]]></category>
+									<category><![CDATA[Криптовалюта]]></category>
+									<category><![CDATA[Мемкоины]]></category>
+				
+				<pubDate>Sat, 24 Oct 2026 08:23:38 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/9e5/kah83cnw2ycemdl58qwb848d5juff2i4/prezidentu_argentiny_mileyu_grozit_impichment_iz_za_podderzhki_tokena_libra.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/9e5/kah83cnw2ycemdl58qwb848d5juff2i4/prezidentu_argentiny_mileyu_grozit_impichment_iz_za_podderzhki_tokena_libra.webp" length="59872" type="image/jpeg"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Россиянина задержали в США по делу о криптосети с суточным оборотом $50 млн</title>
+				<link>https://bits.media/rossiyanina-zaderzhali-v-ssha-po-delu-o-kriptoseti-s-sutochnym-oborotom-50-mln/</link>
+				<guid isPermaLink="false">https://bits.media/rossiyanina-zaderzhali-v-ssha-po-delu-o-kriptoseti-s-sutochnym-oborotom-50-mln/</guid>
+				<description><![CDATA[В Майами задержали россиянина Павла Кулижникова, которого американские правоохранители подозревают в отмывании денег через криптовалюты в составе международной сети мошенников Just Team.]]></description>
+
+									<category><![CDATA[США]]></category>
+									<category><![CDATA[Криптовалюта]]></category>
+									<category><![CDATA[Отмывание денег]]></category>
+									<category><![CDATA[Майами]]></category>
+									<category><![CDATA[DEA]]></category>
+									<category><![CDATA[Россия]]></category>
+									<category><![CDATA[Комиссия]]></category>
+									<category><![CDATA[ФБР]]></category>
+									<category><![CDATA[Суд]]></category>
+									<category><![CDATA[Стейблкоин]]></category>
+				
+				<pubDate>Fri, 23 Oct 2026 22:02:51 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/535/j9pt3we1vgixoi67os7xk5azz0q5ui10/v_ssha_zaderzhali_rossiyanina_po_delu_o_kriptoseti_s_oborotom_do_50_mln_v_den.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/535/j9pt3we1vgixoi67os7xk5azz0q5ui10/v_ssha_zaderzhali_rossiyanina_po_delu_o_kriptoseti_s_oborotom_do_50_mln_v_den.webp" length="531130" type="image/png"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Дорогая нефть и обновления альткоинов: новый обзор рынка криптовалют</title>
+				<link>https://bits.media/dorogaya-neft-i-obnovleniya-altkoinov-novyy-obzor-rynka-kriptovalyut/</link>
+				<guid isPermaLink="false">https://bits.media/dorogaya-neft-i-obnovleniya-altkoinov-novyy-obzor-rynka-kriptovalyut/</guid>
+				<description><![CDATA[Несмотря на все предвыборные старания Дональда Трампа, победить инфляцию в США ему не удается. Ситуация на Ближнем Востоке заставляет цены расти. Стоимость криптоактивов в таких обстоятельствах подниматься отказывается.]]></description>
+
+									<category><![CDATA[Криптовалюта]]></category>
+									<category><![CDATA[Обновление]]></category>
+									<category><![CDATA[Обзоры блокчейн проектов]]></category>
+									<category><![CDATA[Инфляция]]></category>
+									<category><![CDATA[Дональд Трамп]]></category>
+									<category><![CDATA[Dogecoin]]></category>
+									<category><![CDATA[Solana]]></category>
+									<category><![CDATA[Cardano]]></category>
+									<category><![CDATA[Блокчейн]]></category>
+									<category><![CDATA[ETF]]></category>
+									<category><![CDATA[Технический анализ]]></category>
+									<category><![CDATA[Трейдинг]]></category>
+									<category><![CDATA[Курс биткоина]]></category>
+									<category><![CDATA[Цена биткоина]]></category>
+									<category><![CDATA[Анализ курсов]]></category>
+				
+				<pubDate>Fri, 23 Oct 2026 20:27:40 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/0ca/6d57v6kt3278lohvv5e5z0md09o4184p/dorogaya_neft_i_tekhnicheskie_obnovleniya_altkoinov_obzor_rynka_kriptovalyut.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/0ca/6d57v6kt3278lohvv5e5z0md09o4184p/dorogaya_neft_i_tekhnicheskie_obnovleniya_altkoinov_obzor_rynka_kriptovalyut.webp" length="755481" type="image/png"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Криптобиржа HTX прекратила обслуживать россиян</title>
+				<link>https://bits.media/kriptobirzha-htx-prekratila-obsluzhivat-rossiyan/</link>
+				<guid isPermaLink="false">https://bits.media/kriptobirzha-htx-prekratila-obsluzhivat-rossiyan/</guid>
+				<description><![CDATA[Созданная в Китае и зарегистрированная на Сейшельских островах криптовалютная биржа HTX закрыла доступ жителям России: страна официально включена в список запрещенных юрисдикций — изменения появились в обновленном пользовательском соглашении.&nbsp;&nbsp;]]></description>
+
+									<category><![CDATA[Санкции]]></category>
+									<category><![CDATA[Биржа криптовалют]]></category>
+									<category><![CDATA[Сейшельские острова]]></category>
+									<category><![CDATA[Китай]]></category>
+									<category><![CDATA[Россия]]></category>
+									<category><![CDATA[Евросоюз]]></category>
+									<category><![CDATA[Транзакция]]></category>
+									<category><![CDATA[Риск]]></category>
+									<category><![CDATA[Платформа]]></category>
+									<category><![CDATA[Аналитика]]></category>
+				
+				<pubDate>Fri, 23 Oct 2026 20:10:44 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/91f/x8ywvm24zac1bp3qi38333payh5gkyno/ot_imeni_birzhi_htx_nachali_rassylat_toksichnye_usdt_polzovatelyam.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/91f/x8ywvm24zac1bp3qi38333payh5gkyno/ot_imeni_birzhi_htx_nachali_rassylat_toksichnye_usdt_polzovatelyam.webp" length="23582" type="image/jpeg"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Банк России начал рекламировать подписку на цифровой рубль</title>
+				<link>https://bits.media/bank-rossii-nachal-reklamirovat-podpisku-na-tsifrovoy-rubl/</link>
+				<guid isPermaLink="false">https://bits.media/bank-rossii-nachal-reklamirovat-podpisku-na-tsifrovoy-rubl/</guid>
+				<description><![CDATA[В конце ноября Банк России планирует запустить на своей платформе цифрового рубля сервис подписок, который, «как все считают, будет очень востребован», заявила глава регулятора Эльвира Набиуллина.]]></description>
+
+									<category><![CDATA[Россия]]></category>
+									<category><![CDATA[Банк России]]></category>
+									<category><![CDATA[Банк]]></category>
+									<category><![CDATA[Цифровой рубль]]></category>
+									<category><![CDATA[Платформа]]></category>
+									<category><![CDATA[Платежная система]]></category>
+									<category><![CDATA[Бизнес]]></category>
+				
+				<pubDate>Fri, 23 Oct 2026 19:49:06 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/962/orayj5am3jxyiivzlhyzxktae5ctmyam/elvira_nabiullina_predlozhila_nakazyvat_za_nereguliruemye_operatsii_s_kriptovalyutoy.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/962/orayj5am3jxyiivzlhyzxktae5ctmyam/elvira_nabiullina_predlozhila_nakazyvat_za_nereguliruemye_operatsii_s_kriptovalyutoy.webp" length="51738" type="image/jpeg"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Разработчики Эфириума отложили тестовый запуск обновления Glamsterdam</title>
+				<link>https://bits.media/razrabotchiki-efiriuma-otlozhili-testovyy-zapusk-obnovleniya-glamsterdam/</link>
+				<guid isPermaLink="false">https://bits.media/razrabotchiki-efiriuma-otlozhili-testovyy-zapusk-obnovleniya-glamsterdam/</guid>
+				<description><![CDATA[Разработчики сети Эфириума отложили на неопределенный срок активацию обновления Glamsterdam в тестовой сети Hoodi, которое было запланировано на 26 октября. Решение объяснили желанием изучить, как предложение EIP-8037 способно повлиять на работу смарт-контрактов в основной сети.]]></description>
+
+									<category><![CDATA[Эфириум]]></category>
+									<category><![CDATA[Обновление]]></category>
+									<category><![CDATA[Безопасность]]></category>
+									<category><![CDATA[Цензура]]></category>
+									<category><![CDATA[Хардфорк]]></category>
+									<category><![CDATA[Риск]]></category>
+									<category><![CDATA[Конфиденциальность]]></category>
+									<category><![CDATA[Блокчейн]]></category>
+									<category><![CDATA[Ethereum Foundation]]></category>
+									<category><![CDATA[Блокчейн разработки]]></category>
+									<category><![CDATA[TestNet]]></category>
+									<category><![CDATA[Транзакция]]></category>
+				
+				<pubDate>Fri, 23 Oct 2026 18:37:55 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/6ee/yf9ffwk3ia528pug9e3lwfbcdjm928e7/razrabotchiki_efiriuma_otlozhili_zapusk_obnovleniya_glamsterdam_v_testnete_hoodi.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/6ee/yf9ffwk3ia528pug9e3lwfbcdjm928e7/razrabotchiki_efiriuma_otlozhili_zapusk_obnovleniya_glamsterdam_v_testnete_hoodi.webp" length="43702" type="image/jpeg"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Тысячи инвесторов потеряли более $1 млрд в криптопирамиде</title>
+				<link>https://bits.media/tysyachi-investorov-poteryali-bolee-1-mlrd-v-kriptopiramide/</link>
+				<guid isPermaLink="false">https://bits.media/tysyachi-investorov-poteryali-bolee-1-mlrd-v-kriptopiramide/</guid>
+				<description><![CDATA[Генеральный прокурор Нью‑Йорка требует взыскать $1,37 млрд с основателей компании NovaTech, которых обвиняют в организации криптопирамиды. Жертвами, по версии следствия, стали сотни тысяч инвесторов, большинство — приезжие иностранцы.]]></description>
+
+									<category><![CDATA[США]]></category>
+									<category><![CDATA[Платформа]]></category>
+									<category><![CDATA[Криптовалюта]]></category>
+									<category><![CDATA[Блокчейн в торговле]]></category>
+									<category><![CDATA[AWS]]></category>
+									<category><![CDATA[Ценные бумаги]]></category>
+									<category><![CDATA[Финансовая пирамида]]></category>
+									<category><![CDATA[Майнинг]]></category>
+									<category><![CDATA[Лицензия]]></category>
+									<category><![CDATA[Инвестиции]]></category>
+				
+				<pubDate>Fri, 23 Oct 2026 17:06:31 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/c9c/5r0ogslrfyovqwqc3iuw1n9i9wrk0kom/v_ssha_konfiskovali_bolee_600_000_v_kriptovalyute_po_delu_o_moshennichestve_.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/c9c/5r0ogslrfyovqwqc3iuw1n9i9wrk0kom/v_ssha_konfiskovali_bolee_600_000_v_kriptovalyute_po_delu_o_moshennichestve_.webp" length="49114" type="image/jpeg"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Разработчики Bitcoin Core изменили политику раскрытия уязвимостей</title>
+				<link>https://bits.media/razrabotchiki-bitcoin-core-izmenili-politiku-raskrytiya-uyazvimostey/</link>
+				<guid isPermaLink="false">https://bits.media/razrabotchiki-bitcoin-core-izmenili-politiku-raskrytiya-uyazvimostey/</guid>
+				<description><![CDATA[Разработчики Bitcoin Core пересмотрели подход к раскрытию информации об уязвимостях, поскольку большие языковые модели нейросетей (LLM) упростили поиск программных ошибок. Об этом в рассылке для коллег сообщил разработчик официального программного обеспечения Биткоина Антуан Пуансо (Antoine Poinsot).]]></description>
+
+									<category><![CDATA[Bitcoin Core]]></category>
+									<category><![CDATA[Уязвимость]]></category>
+									<category><![CDATA[Обновление]]></category>
+									<category><![CDATA[Биткоин]]></category>
+									<category><![CDATA[Безопасность]]></category>
+									<category><![CDATA[Отчеты]]></category>
+									<category><![CDATA[Нода]]></category>
+									<category><![CDATA[Искусственный интеллект]]></category>
+									<category><![CDATA[Блокчейн]]></category>
+									<category><![CDATA[Блокчейн разработки]]></category>
+				
+				<pubDate>Fri, 23 Oct 2026 15:20:19 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/5b6/swcxjhohotgfzg4b7hhmewthfm2yes1i/razrabotchiki_bitcoin_core_izmenili_politiku_raskrytiya_uyazvimostey.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/5b6/swcxjhohotgfzg4b7hhmewthfm2yes1i/razrabotchiki_bitcoin_core_izmenili_politiku_raskrytiya_uyazvimostey.webp" length="564690" type="image/png"/>
+				
+				
+			</item>
+		
+<item>
+				<title>ZachXBT обвинил криптобиржу CoinDCX в потере клиентских $16 млн</title>
+				<link>https://bits.media/zachxbt-obvinil-kriptobirzhu-coindcx-v-potere-klientskikh-16-mln/</link>
+				<guid isPermaLink="false">https://bits.media/zachxbt-obvinil-kriptobirzhu-coindcx-v-potere-klientskikh-16-mln/</guid>
+				<description><![CDATA[Анонимный блокчейн‑исследователь ZachXBT обвинил индийскую криптобиржу CoinDCX и ее соучредителей в несвоевременном раскрытии информации и обработке криптовалюты на сумму $16 млн, которая, по версии блокчейн-эксперта, принадлежала клиентам.]]></description>
+
+									<category><![CDATA[CoinDCX]]></category>
+									<category><![CDATA[Криптовалюта]]></category>
+									<category><![CDATA[USDT]]></category>
+									<category><![CDATA[Кошелек для криптовалют]]></category>
+									<category><![CDATA[Хакеры]]></category>
+									<category><![CDATA[Хакер]]></category>
+									<category><![CDATA[Транзакция]]></category>
+									<category><![CDATA[Полиция]]></category>
+									<category><![CDATA[Комиссия]]></category>
+									<category><![CDATA[Депозит]]></category>
+				
+				<pubDate>Fri, 23 Oct 2026 14:19:24 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/600/nvuznletaq6c573adrppucbxzl3uiq55/zachxbt_raskryl_skhemu_otmyvaniya_kriptovalyut_s_oborotom_1_mln_v_mesyats.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/600/nvuznletaq6c573adrppucbxzl3uiq55/zachxbt_raskryl_skhemu_otmyvaniya_kriptovalyut_s_oborotom_1_mln_v_mesyats.webp" length="48940" type="image/jpeg"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Через рублевый стейблкоин А7А5 прошло $14 млрд наличными — расследование</title>
+				<link>https://bits.media/cherez-rublevyy-steyblkoin-a7a5-proshlo-14-mlrd-nalichnymi-rassledovanie/</link>
+				<guid isPermaLink="false">https://bits.media/cherez-rublevyy-steyblkoin-a7a5-proshlo-14-mlrd-nalichnymi-rassledovanie/</guid>
+				<description><![CDATA[За первые девять месяцев этого года через сеть А7, выпускающую рублевый стейблкоин А7А5, прошли наличные рубли на сумму, эквивалентную $14 млрд, заявили авторы расследования International Consortium of Investigative Journalists (ICIJ).]]></description>
+
+									<category><![CDATA[Стейблкоин]]></category>
+									<category><![CDATA[Санкции]]></category>
+									<category><![CDATA[США]]></category>
+									<category><![CDATA[Россия]]></category>
+									<category><![CDATA[Криптовалюта]]></category>
+									<category><![CDATA[Китай]]></category>
+									<category><![CDATA[Исследование]]></category>
+									<category><![CDATA[Иран]]></category>
+									<category><![CDATA[Гонконг]]></category>
+									<category><![CDATA[Великобритания]]></category>
+				
+				<pubDate>Fri, 23 Oct 2026 13:01:34 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/f3f/pe5df7clyq6ny52bc5r3imonktvc0wnr/rublevyy_token_a5a7_zanyal_43_vsego_rynka_nedollarovykh_steyblkoinov.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/f3f/pe5df7clyq6ny52bc5r3imonktvc0wnr/rublevyy_token_a5a7_zanyal_43_vsego_rynka_nedollarovykh_steyblkoinov.webp" length="39145" type="image/jpeg"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Акционер Circle подал в суд на Трампа из-за сделки с 2 млрд стейблкоинов USD1</title>
+				<link>https://bits.media/aktsioner-circle-podal-v-sud-na-trampa-iz-za-sdelki-so-steyblkoinom-usd1-na-2-mlrd/</link>
+				<guid isPermaLink="false">https://bits.media/aktsioner-circle-podal-v-sud-na-trampa-iz-za-sdelki-so-steyblkoinom-usd1-na-2-mlrd/</guid>
+				<description><![CDATA[Акционер компании Circle Джей Бенджамин Гринберг (J. Benjamin Greenberg) подал иск против президента США Дональда Трампа и его криптокомпании World Liberty Financial. Истец утверждает, что сделка на $2 млрд с использованием стейблкоинов USD1 принесла незаконную выгоду структурам Трампа и нанесла финансовый ущерб Circle.]]></description>
+
+									<category><![CDATA[Circle]]></category>
+									<category><![CDATA[USD1]]></category>
+									<category><![CDATA[Суд]]></category>
+									<category><![CDATA[Стейблкоин]]></category>
+									<category><![CDATA[США]]></category>
+									<category><![CDATA[World Liberty Financial]]></category>
+									<category><![CDATA[Дональд Трамп]]></category>
+									<category><![CDATA[Binance]]></category>
+									<category><![CDATA[USDC]]></category>
+									<category><![CDATA[Токен]]></category>
+				
+				<pubDate>Fri, 23 Oct 2026 11:54:58 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/8b2/60lx85jmo6inhcxks1f10oftxvv864cl/aktsioner_circle_podal_v_sud_na_trampa_iz_za_sdelki_so_steyblkoinom_usd1_na_2_mlrd.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/8b2/60lx85jmo6inhcxks1f10oftxvv864cl/aktsioner_circle_podal_v_sud_na_trampa_iz_za_sdelki_so_steyblkoinom_usd1_na_2_mlrd.webp" length="348591" type="image/png"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Бенджамин Коуэн назвал условие падения биткоина до $75 000</title>
+				<link>https://bits.media/bendzhamin-kouen-nazval-uslovie-padeniya-bitkoina-do-75-000/</link>
+				<guid isPermaLink="false">https://bits.media/bendzhamin-kouen-nazval-uslovie-padeniya-bitkoina-do-75-000/</guid>
+				<description><![CDATA[Если биткоин вторую неделю подряд завершит торги ниже $83 000, его курс может снизиться примерно до $75 000, опасается основатель платформы Into the Cryptoverse и криптоаналитик Бенджамин Коуэн (Benjamin Cowen). По его мнению, в таком случае сохранение бычьего тренда окажется под угрозой.]]></description>
+
+									<category><![CDATA[Биткоин]]></category>
+									<category><![CDATA[Криптовалюта]]></category>
+									<category><![CDATA[Фондовый рынок]]></category>
+									<category><![CDATA[США]]></category>
+									<category><![CDATA[Медведи]]></category>
+									<category><![CDATA[Капитализация]]></category>
+									<category><![CDATA[Индексы]]></category>
+									<category><![CDATA[Выборы]]></category>
+									<category><![CDATA[Альткоин]]></category>
+									<category><![CDATA[NASDAQ]]></category>
+				
+				<pubDate>Fri, 23 Oct 2026 10:00:18 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/953/k4ziruwc0b1pfbigjyyem5gs8kdlbsrp/bendzhamin_kouen_raskryl_uslovie_padeniya_bitkoina_do_75_000.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/953/k4ziruwc0b1pfbigjyyem5gs8kdlbsrp/bendzhamin_kouen_raskryl_uslovie_padeniya_bitkoina_do_75_000.webp" length="296500" type="image/png"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Глава CryptoQuant объявил рост хешрейта Биткоина «косвенным бычьим сигналом»</title>
+				<link>https://bits.media/glava-cryptoquant-nazval-rost-kheshreyta-bitkoina-kosvennym-bychim-signalom/</link>
+				<guid isPermaLink="false">https://bits.media/glava-cryptoquant-nazval-rost-kheshreyta-bitkoina-kosvennym-bychim-signalom/</guid>
+				<description><![CDATA[Рост хешрейта сети Биткоина свидетельствует об уверенности крупных финансовых организаций в перспективах первой криптовалюты, заявил основатель и гендиректор аналитической платформы CryptoQuant Ки Янг Джу (Ki Young Ju).]]></description>
+
+									<category><![CDATA[Биткоин]]></category>
+									<category><![CDATA[Хешрейт]]></category>
+									<category><![CDATA[Криптовалюта]]></category>
+									<category><![CDATA[Платформа]]></category>
+									<category><![CDATA[Майнер]]></category>
+									<category><![CDATA[Блокчейн]]></category>
+									<category><![CDATA[Безопасность]]></category>
+									<category><![CDATA[Аналитика]]></category>
+				
+				<pubDate>Fri, 23 Oct 2026 09:04:25 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/a20/yr6ipn1yb8wal9ryy52xnkl5lu32rhes/gendirektor_cryptoquant_nazval_rost_kheshreyta_bitkoina_kosvennym_bychim_signalom.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/a20/yr6ipn1yb8wal9ryy52xnkl5lu32rhes/gendirektor_cryptoquant_nazval_rost_kheshreyta_bitkoina_kosvennym_bychim_signalom.webp" length="291493" type="image/png"/>
+				
+				
+			</item>
+		
+<item>
+				<title>ЦБ Ирландии оштрафовал биржу Coinbase на $3,65 млн</title>
+				<link>https://bits.media/tsb-irlandii-oshtrafoval-birzhu-coinbase-na-3-65-mln/</link>
+				<guid isPermaLink="false">https://bits.media/tsb-irlandii-oshtrafoval-birzhu-coinbase-na-3-65-mln/</guid>
+				<description><![CDATA[Центральный банк Ирландии оштрафовал местное подразделение американской криптобиржи Coinbase на 3,25 млн евро (около $3,65 млн) за нарушение требований к аутсорсингу и защите средств клиентов. Нарушения были допущены с ноября 2020 по август 2025 года и подпадают под действие Регламента об электронных деньгах от 2011 года, сообщило ведомство.]]></description>
+
+									<category><![CDATA[Coinbase]]></category>
+									<category><![CDATA[Ирландия]]></category>
+									<category><![CDATA[Биржа криптовалют]]></category>
+									<category><![CDATA[Транзакция]]></category>
+									<category><![CDATA[США]]></category>
+									<category><![CDATA[Сотрудничество]]></category>
+									<category><![CDATA[Платформа]]></category>
+									<category><![CDATA[Отмывание денег]]></category>
+									<category><![CDATA[Мониторинг]]></category>
+									<category><![CDATA[Центральные Банки]]></category>
+									<category><![CDATA[Регулирование]]></category>
+									<category><![CDATA[Трейдинг]]></category>
+									<category><![CDATA[Кризис]]></category>
+									<category><![CDATA[Банк]]></category>
+				
+				<pubDate>Thu, 22 Oct 2026 17:02:19 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/d0c/0421vwify349hrj7rqu6b6l6nta0zkor/tsb_irlandii_oshtrafoval_birzhu_coinbase_na_3_65_mln.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/d0c/0421vwify349hrj7rqu6b6l6nta0zkor/tsb_irlandii_oshtrafoval_birzhu_coinbase_na_3_65_mln.webp" length="51976" type="image/jpeg"/>
+				
+				
+			</item>
+		
+<item>
+				<title>«Перепачканная россиянами» криптовалюта сделает санкции бессмысленными — Ассоциация банкиров</title>
+				<link>https://bits.media/perepachkannaya-rossiyanami-kriptovalyuta-sdelaet-sanktsii-bessmyslennymi-assotsiatsiya-bankirov/</link>
+				<guid isPermaLink="false">https://bits.media/perepachkannaya-rossiyanami-kriptovalyuta-sdelaet-sanktsii-bessmyslennymi-assotsiatsiya-bankirov/</guid>
+				<description><![CDATA[За счет огромного объема операций россиян на иностранных криптобиржах «перепачканной» окажется настолько большая доля криптовалюты, что международные санкции утратят эффективность, заявила глава экспертного центра по цифровым финансовым активам и цифровым валютам Ассоциации банков России Ольга Гончарова.]]></description>
+
+									<category><![CDATA[Банк]]></category>
+									<category><![CDATA[Санкции]]></category>
+									<category><![CDATA[Криптовалюта]]></category>
+									<category><![CDATA[Россия]]></category>
+									<category><![CDATA[Транзакция]]></category>
+									<category><![CDATA[Риск]]></category>
+									<category><![CDATA[Платформа]]></category>
+									<category><![CDATA[Кошелек для криптовалют]]></category>
+									<category><![CDATA[Евросоюз]]></category>
+									<category><![CDATA[Европа]]></category>
+				
+				<pubDate>Thu, 22 Oct 2026 16:48:13 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/577/2fly59zjqhfzck3uctipcor22q48l969/v_rossii_vvedut_shtrafy_do_1_mln_rubley_za_nelegalnyy_obmen_kriptovalyuty.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/577/2fly59zjqhfzck3uctipcor22q48l969/v_rossii_vvedut_shtrafy_do_1_mln_rubley_za_nelegalnyy_obmen_kriptovalyuty.webp" length="69219" type="image/jpeg"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Открытый интерес к биткоину и главным альткоинам достиг $41,6 млрд — Santiment</title>
+				<link>https://bits.media/otkrytyy-interes-k-bitkoinu-i-glavnym-altkoinam-dostig-41-6-mlrd-santiment/</link>
+				<guid isPermaLink="false">https://bits.media/otkrytyy-interes-k-bitkoinu-i-glavnym-altkoinam-dostig-41-6-mlrd-santiment/</guid>
+				<description><![CDATA[Совокупный открытый интерес к деривативам на биткоин, эфир и Solana вырос до $41,6 млрд на фоне восстановления крипторынка, сообщили аналитики платформы Santiment. На биткоин приходится $23,4 млрд незакрытых позиций, на эфир — $15,5 млрд, на Solana — $2,7 млрд.]]></description>
+
+									<category><![CDATA[Santiment]]></category>
+									<category><![CDATA[Цена биткоина]]></category>
+									<category><![CDATA[Solana]]></category>
+									<category><![CDATA[Эфириум]]></category>
+									<category><![CDATA[Аналитика]]></category>
+									<category><![CDATA[Платформа]]></category>
+									<category><![CDATA[Трейдер]]></category>
+									<category><![CDATA[Биткоин]]></category>
+									<category><![CDATA[Риск]]></category>
+									<category><![CDATA[Криптовалюта]]></category>
+				
+				<pubDate>Thu, 22 Oct 2026 15:56:09 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/921/liw1qb2xlur1zrbuqfosmi1767s5cpqf/otkrytyy_interes_k_bitkoinu_i_dvum_altkoinam_dostig_41_6_mlrd_santiment.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/921/liw1qb2xlur1zrbuqfosmi1767s5cpqf/otkrytyy_interes_k_bitkoinu_i_dvum_altkoinam_dostig_41_6_mlrd_santiment.webp" length="657291" type="image/png"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Браузерное расширение Fearless Wallet сливало приватные ключи — Polkadot Community</title>
+				<link>https://bits.media/brauzernoe-rasshirenie-fearless-wallet-slivalo-privatnye-klyuchi-polkadot-community/</link>
+				<guid isPermaLink="false">https://bits.media/brauzernoe-rasshirenie-fearless-wallet-slivalo-privatnye-klyuchi-polkadot-community/</guid>
+				<description><![CDATA[Организация Polkadot Community Foundation сообщила о вредоносном коде в браузерном расширении Fearless Wallet, которое с февраля прошлого года отправляет закрытые ключи пользователей на контролируемый злоумышленниками сервер.]]></description>
+
+									<category><![CDATA[Polkadot]]></category>
+									<category><![CDATA[Закрытый ключ]]></category>
+									<category><![CDATA[Фонд]]></category>
+									<category><![CDATA[Уязвимость]]></category>
+									<category><![CDATA[Транзакция]]></category>
+									<category><![CDATA[Стейкинг]]></category>
+									<category><![CDATA[Обновление]]></category>
+									<category><![CDATA[Браузер Хром]]></category>
+									<category><![CDATA[Браузер]]></category>
+									<category><![CDATA[Взлом]]></category>
+									<category><![CDATA[Безопасность]]></category>
+				
+				<pubDate>Thu, 22 Oct 2026 15:41:30 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/037/z4wvn90bmvtr0hvdzl1egpwaswssw1qh/rasshirenie_fearless_wallet_slivalo_privatnye_klyuchi_polkadot.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/037/z4wvn90bmvtr0hvdzl1egpwaswssw1qh/rasshirenie_fearless_wallet_slivalo_privatnye_klyuchi_polkadot.webp" length="33234" type="image/jpeg"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Илон Маск анонсировал слияние SpaceX и Tesla — и их биткоин-резервов</title>
+				<link>https://bits.media/ilon-mask-anonsiroval-sliyanie-tesla-i-spacex-i-ikh-bitkoin-rezervov/</link>
+				<guid isPermaLink="false">https://bits.media/ilon-mask-anonsiroval-sliyanie-tesla-i-spacex-i-ikh-bitkoin-rezervov/</guid>
+				<description><![CDATA[Гендиректор и главный владелец SpaceX и Tesla Илон Маск рассказал о вероятном слиянии двух компаний. Каждая владеет запасом биткоинов. В случае слияния совокупные резервы будущей мегакорпорации составят 30 221 BTC, следует из только что опубликованных финансовых отчетах компаний.]]></description>
+
+									<category><![CDATA[Илон Маск]]></category>
+									<category><![CDATA[Биткоин]]></category>
+									<category><![CDATA[Сотрудничество]]></category>
+									<category><![CDATA[Отчеты]]></category>
+									<category><![CDATA[Криптовалюта]]></category>
+									<category><![CDATA[Конференция]]></category>
+									<category><![CDATA[Искусственный интеллект]]></category>
+									<category><![CDATA[Голосование]]></category>
+									<category><![CDATA[Аналитика]]></category>
+									<category><![CDATA[Акции]]></category>
+				
+				<pubDate>Thu, 22 Oct 2026 14:51:55 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/116/hje0rieqpfa19dk467i49irrway6nybe/ilon_mask_dopustil_obedinenie_tesla_i_spacex_s_rezervami_v_30_221_bitkoin.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/116/hje0rieqpfa19dk467i49irrway6nybe/ilon_mask_dopustil_obedinenie_tesla_i_spacex_s_rezervami_v_30_221_bitkoin.webp" length="269984" type="image/png"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Еще три криптобиржи могут перестать работать с Россией — эксперты</title>
+				<link>https://bits.media/eshche-tri-kriptobirzhi-mogut-perestat-rabotat-s-rossiey-eksperty/</link>
+				<guid isPermaLink="false">https://bits.media/eshche-tri-kriptobirzhi-mogut-perestat-rabotat-s-rossiey-eksperty/</guid>
+				<description><![CDATA[Как минимум три международных криптобиржи — OKX, KuCoin и Bybit — в ближайшее время могут ограничить или полностью прекратить обслуживание жителей России, считают опрошенные РБК эксперты. Причиной названы ужесточение российского госрегулирования и риск попасть под санкции.]]></description>
+
+									<category><![CDATA[Биржа криптовалют]]></category>
+									<category><![CDATA[Россия]]></category>
+									<category><![CDATA[Bybit]]></category>
+									<category><![CDATA[OKX]]></category>
+									<category><![CDATA[KuCoin]]></category>
+									<category><![CDATA[Риск]]></category>
+									<category><![CDATA[Регулирование]]></category>
+									<category><![CDATA[Аналитика]]></category>
+									<category><![CDATA[Лицензия]]></category>
+									<category><![CDATA[Евросоюз]]></category>
+				
+				<pubDate>Thu, 22 Oct 2026 14:30:11 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/055/1gto10g29xpptryqfcn53rmr180o7lni/vladimir_putin_podpisal_zakon_o_kontrole_za_kriptovalyutami_v_rossii.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/055/1gto10g29xpptryqfcn53rmr180o7lni/vladimir_putin_podpisal_zakon_o_kontrole_za_kriptovalyutami_v_rossii.webp" length="64080" type="image/jpeg"/>
+				
+				
+			</item>
+		
+<item>
+				<title>В России собираются разрешить токенизировать права собственности и биржевые товары</title>
+				<link>https://bits.media/rossiyskiy-minfin-predlozhil-tokenizirovat-prava-sobstvennosti-i-birzhevye-tovary/</link>
+				<guid isPermaLink="false">https://bits.media/rossiyskiy-minfin-predlozhil-tokenizirovat-prava-sobstvennosti-i-birzhevye-tovary/</guid>
+				<description><![CDATA[Министерство финансов России предложило правительству разрешить три экспериментальных правовых режима токенизации реальных активов, рассказал заместитель директора департамента финансовой политики ведомства Дмитрий Фролов.&nbsp;&nbsp;]]></description>
+
+									<category><![CDATA[Минфин]]></category>
+									<category><![CDATA[Токенизация]]></category>
+									<category><![CDATA[Россия]]></category>
+									<category><![CDATA[Блокчейн]]></category>
+									<category><![CDATA[Токен]]></category>
+									<category><![CDATA[ЦФА]]></category>
+									<category><![CDATA[Смарт-контракт]]></category>
+									<category><![CDATA[Инвестиции]]></category>
+									<category><![CDATA[Бизнес]]></category>
+									<category><![CDATA[Акции]]></category>
+				
+				<pubDate>Thu, 22 Oct 2026 14:25:38 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/91b/byg2w3dg37mcy2vw43ueca4cugzb9kw8/brokery_ne_smogut_otkryt_neprofessionalnym_investoram_dostup_k_kriptovalyute_finam.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/91b/byg2w3dg37mcy2vw43ueca4cugzb9kw8/brokery_ne_smogut_otkryt_neprofessionalnym_investoram_dostup_k_kriptovalyute_finam.webp" length="35642" type="image/jpeg"/>
+				
+				
+			</item>
+		
+<item>
+				<title>В Москве 14 ноября пройдет Investment Leaders Forum 2026</title>
+				<link>https://bits.media/v-moskve-14-noyabrya-proydet-investment-leaders-forum-2026/</link>
+				<guid isPermaLink="false">https://bits.media/v-moskve-14-noyabrya-proydet-investment-leaders-forum-2026/</guid>
+				<description><![CDATA[14 ноября в московском Центре международной торговли состоится шестой по счету форум Investment Leaders. Участники обсудят инвестиционные стратегии в условиях высоких процентных ставок, риски долгового рынка, регулирование криптовалют и перспективы цифровых финансовых активов (ЦФА).]]></description>
+
+									<category><![CDATA[Риск]]></category>
+									<category><![CDATA[Криптовалюта]]></category>
+									<category><![CDATA[Блокчейн в торговле]]></category>
+									<category><![CDATA[Регулирование]]></category>
+									<category><![CDATA[Недвижимость]]></category>
+									<category><![CDATA[Мероприятие]]></category>
+									<category><![CDATA[Инвестиции]]></category>
+									<category><![CDATA[ЦФА]]></category>
+									<category><![CDATA[Фондовый рынок]]></category>
+									<category><![CDATA[Фонд]]></category>
+				
+				<pubDate>Thu, 22 Oct 2026 11:31:04 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/47b/kdi9rigniqh1unq203t0ttmqytvxpua3/v_moskve_14_noyabrya_proydet_investment_leaders_forum_2026.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/47b/kdi9rigniqh1unq203t0ttmqytvxpua3/v_moskve_14_noyabrya_proydet_investment_leaders_forum_2026.webp" length="383246" type="image/png"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Майнер спрятал криптоферму внутри своего гаража в Якутске</title>
+				<link>https://bits.media/mayner-spryatal-kriptofermu-vnutri-svoego-garazha-v-yakutske/</link>
+				<guid isPermaLink="false">https://bits.media/mayner-spryatal-kriptofermu-vnutri-svoego-garazha-v-yakutske/</guid>
+				<description><![CDATA[В городе Якутске 41-летний местный житель оборудовал майнинг-ферму в собственном гараже и подключил к электросети в обход счетчика. Ферму нашли полицейские.]]></description>
+
+									<category><![CDATA[Полиция]]></category>
+									<category><![CDATA[Электроэнергия]]></category>
+									<category><![CDATA[Суд]]></category>
+									<category><![CDATA[Майнинг-ферма]]></category>
+									<category><![CDATA[Майнинг]]></category>
+									<category><![CDATA[Криптовалюта]]></category>
+									<category><![CDATA[Безопасность]]></category>
+									<category><![CDATA[Кража электроэнергии]]></category>
+				
+				<pubDate>Thu, 22 Oct 2026 09:59:59 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/2c9/ig3ob27q54l0ij3pgh1rtsn9yej3j32g/v_yakutske_obnaruzhili_taynuyu_kriptofermu_v_garazhe.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/2c9/ig3ob27q54l0ij3pgh1rtsn9yej3j32g/v_yakutske_obnaruzhili_taynuyu_kriptofermu_v_garazhe.webp" length="585372" type="image/png"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Рауль Пал назвал условия наступления суперцикла на крипторынке</title>
+				<link>https://bits.media/raul-pal-nazval-usloviya-nastupleniya-supertsikla-na-kriptorynke/</link>
+				<guid isPermaLink="false">https://bits.media/raul-pal-nazval-usloviya-nastupleniya-supertsikla-na-kriptorynke/</guid>
+				<description><![CDATA[Основатель и гендиректор Real Vision Рауль Пал (Raoul Pal) назвал увеличение ликвидности, снижение процентных ставок по кредитам в США и ослабление доллара главными условиями наступления на крипторынке суперцикла с ростом котировок.]]></description>
+
+									<category><![CDATA[США]]></category>
+									<category><![CDATA[Капитализация]]></category>
+									<category><![CDATA[Транзакция]]></category>
+									<category><![CDATA[Токен]]></category>
+									<category><![CDATA[Стейблкоин]]></category>
+									<category><![CDATA[Платеж]]></category>
+									<category><![CDATA[Облигация]]></category>
+									<category><![CDATA[Криптовалюта]]></category>
+									<category><![CDATA[Конференция]]></category>
+									<category><![CDATA[Искусственный интеллект]]></category>
+				
+				<pubDate>Thu, 22 Oct 2026 09:56:31 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/21f/50vl6stikxjaornep9a5zi5i399c6pf1/raul_pal_nazval_usloviya_nastupleniya_supertsikla_kriptorynka.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/21f/50vl6stikxjaornep9a5zi5i399c6pf1/raul_pal_nazval_usloviya_nastupleniya_supertsikla_kriptorynka.webp" length="581137" type="image/png"/>
+				
+				
+			</item>
+		
+<item>
+				<title>В США разрешили начислять вознаграждение за хранение стейблкоинов через третьих лиц</title>
+				<link>https://bits.media/v-ssha-razreshili-nachislyat-voznagrazhdenie-za-khranenie-steyblkoinov-cherez-tretikh-lits/</link>
+				<guid isPermaLink="false">https://bits.media/v-ssha-razreshili-nachislyat-voznagrazhdenie-za-khranenie-steyblkoinov-cherez-tretikh-lits/</guid>
+				<description><![CDATA[Управление контролера денежного обращения США (OCC) опубликовало правила регулирования стейблкоинов, которые обязано было выпустить в соответствии с прошлогодним законом GENIUS. Главное в правилах — уточнение норм о доходности токенов, привязанных к курсу национальных валют.]]></description>
+
+									<category><![CDATA[Стейблкоин]]></category>
+									<category><![CDATA[США]]></category>
+									<category><![CDATA[Токен]]></category>
+									<category><![CDATA[OCC]]></category>
+									<category><![CDATA[Фиат]]></category>
+									<category><![CDATA[Регулирование]]></category>
+									<category><![CDATA[Лицензия]]></category>
+									<category><![CDATA[Конгресс]]></category>
+									<category><![CDATA[Банк]]></category>
+									<category><![CDATA[Clarity]]></category>
+				
+				<pubDate>Wed, 21 Oct 2026 20:53:56 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/8e3/bw243uc8yml73ofd6s79uissxpotbx54/pervyy_amerikanskiy_shtat_zapustil_sobstvennyy_steyblkoin.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/8e3/bw243uc8yml73ofd6s79uissxpotbx54/pervyy_amerikanskiy_shtat_zapustil_sobstvennyy_steyblkoin.webp" length="29409" type="image/jpeg"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Аналитики Glassnode назвали главное препятствие для роста биткоина</title>
+				<link>https://bits.media/analitiki-glassnode-nazvali-glavnoe-prepyatstvie-dlya-rosta-bitkoina/</link>
+				<guid isPermaLink="false">https://bits.media/analitiki-glassnode-nazvali-glavnoe-prepyatstvie-dlya-rosta-bitkoina/</guid>
+				<description><![CDATA[Главным препятствием для роста биткоина стали инвесторы, купившие актив в среднем по $87 700 — при достижении этой отметки цены они захотели начать продавать монеты, чтобы выйти из убытков, предположили аналитики платформы Glassnode.]]></description>
+
+									<category><![CDATA[Аналитика]]></category>
+									<category><![CDATA[Glassnode]]></category>
+									<category><![CDATA[Биткоин]]></category>
+									<category><![CDATA[Платформа]]></category>
+									<category><![CDATA[Фонд]]></category>
+									<category><![CDATA[Криптовалюта]]></category>
+				
+				<pubDate>Wed, 21 Oct 2026 19:08:32 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/741/nbtxh4l8hwiie9jkfsssx9bnb6c1s37y/analitiki_glassnode_nazvali_glavnoe_prepyatstvie_dlya_rosta_bitkoina.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/741/nbtxh4l8hwiie9jkfsssx9bnb6c1s37y/analitiki_glassnode_nazvali_glavnoe_prepyatstvie_dlya_rosta_bitkoina.webp" length="397662" type="image/png"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Франция предложила Евросоюзу ужесточить контроль за криптоплатформами</title>
+				<link>https://bits.media/frantsiya-predlagaet-evrosoyuzu-uzhestochit-kontrol-za-kriptoplatformami/</link>
+				<guid isPermaLink="false">https://bits.media/frantsiya-predlagaet-evrosoyuzu-uzhestochit-kontrol-za-kriptoplatformami/</guid>
+				<description><![CDATA[Финансовые власти Франции — Министерство финансов, управление по финансовым рынкам, центральный банк и управление пруденциального надзора и урегулирования — предложили странам-участницам Евросоюза наказывать криптовалютные платформы за взломы и другие инциденты безопасности.]]></description>
+
+									<category><![CDATA[Франция]]></category>
+									<category><![CDATA[Безопасность]]></category>
+									<category><![CDATA[Регулирование]]></category>
+									<category><![CDATA[Взлом]]></category>
+									<category><![CDATA[Банк]]></category>
+									<category><![CDATA[Уязвимость]]></category>
+									<category><![CDATA[Стейкинг]]></category>
+									<category><![CDATA[Сертификация]]></category>
+									<category><![CDATA[Риск]]></category>
+									<category><![CDATA[Платформа]]></category>
+				
+				<pubDate>Wed, 21 Oct 2026 16:48:07 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/9bb/atdxr7q5cfcryrpxm59iinwkd9z57cel/frantsiya_predlagaet_uzhestochit_kontrol_za_kriptoplatformami.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/9bb/atdxr7q5cfcryrpxm59iinwkd9z57cel/frantsiya_predlagaet_uzhestochit_kontrol_za_kriptoplatformami.webp" length="801451" type="image/png"/>
+				
+				
+			</item>
+		
+<item>
+				<title>Взломавший Drift Protocol хакер отправил эфиры на $285 млн в миксер Tornado Cash</title>
+				<link>https://bits.media/vzlomavshiy-drift-protocol-khaker-otpravil-efiry-na-285-mln-v-mikser-tornado-cash/</link>
+				<guid isPermaLink="false">https://bits.media/vzlomavshiy-drift-protocol-khaker-otpravil-efiry-na-285-mln-v-mikser-tornado-cash/</guid>
+				<description><![CDATA[Неизвестный, стоящий за взломом протокола Drift на базе блокчейна Solana, спустя два месяца бездействия переместил украденную криптовалюту в криптомиксер Tornado Cash.]]></description>
+
+									<category><![CDATA[Tornado Cash]]></category>
+									<category><![CDATA[Миксер]]></category>
+									<category><![CDATA[Solana]]></category>
+									<category><![CDATA[Криптовалюта]]></category>
+									<category><![CDATA[Взлом]]></category>
+									<category><![CDATA[Блокчейн]]></category>
+									<category><![CDATA[Onchain]]></category>
+									<category><![CDATA[Эфириум]]></category>
+									<category><![CDATA[Хакеры]]></category>
+									<category><![CDATA[Хакер]]></category>
+									<category><![CDATA[Безопасность]]></category>
+									<category><![CDATA[Мониторинг]]></category>
+									<category><![CDATA[Транзакция]]></category>
+									<category><![CDATA[Альткоин]]></category>
+				
+				<pubDate>Wed, 21 Oct 2026 16:30:30 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/124/35briq3fdf9hgwukk2dd9b4avsd7p91i/ukravshiy_u_drift_protocol_285_mln_peremestil_ukradennye_efiry_v_mikser_tornado_cash.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/124/35briq3fdf9hgwukk2dd9b4avsd7p91i/ukravshiy_u_drift_protocol_285_mln_peremestil_ukradennye_efiry_v_mikser_tornado_cash.webp" length="18702" type="image/jpeg"/>
+				
+				
+			</item>
+		
+<item>
+				<title>BlackRock подала заявку на запуск биткоин-фонда с потолком доходности</title>
+				<link>https://bits.media/blackrock-podala-zayavku-na-zapusk-bitkoin-fonda-s-potolkom-dokhodnosti/</link>
+				<guid isPermaLink="false">https://bits.media/blackrock-podala-zayavku-na-zapusk-bitkoin-fonda-s-potolkom-dokhodnosti/</guid>
+				<description><![CDATA[Инвестиционная компания BlackRock подала в Комиссию по ценным бумагам и биржам США (SEC) заявку на запуск биржевого фонда iShares Bitcoin Managed Protect ETF (PBIT). В отличие от других спотовых биткоин-ETF, новый фонд обещает ограничивать убытки инвесторов при падении курса биткоина.]]></description>
+
+									<category><![CDATA[Биржевые фонды]]></category>
+									<category><![CDATA[ETF]]></category>
+									<category><![CDATA[Ценные бумаги]]></category>
+									<category><![CDATA[США]]></category>
+									<category><![CDATA[Фонд]]></category>
+									<category><![CDATA[Биткоин]]></category>
+									<category><![CDATA[Криптовалюта]]></category>
+									<category><![CDATA[Блумберг]]></category>
+									<category><![CDATA[SEC]]></category>
+									<category><![CDATA[Инвестиции]]></category>
+									<category><![CDATA[Институциональные инвесторы]]></category>
+				
+				<pubDate>Wed, 21 Oct 2026 14:59:47 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/e7d/p0b8dph99jrjnep7rornk81fyzx5zzkn/blackrock_podala_zayavku_na_zapusk_novogo_bitkoin_fonda.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/e7d/p0b8dph99jrjnep7rornk81fyzx5zzkn/blackrock_podala_zayavku_na_zapusk_novogo_bitkoin_fonda.webp" length="19246" type="image/jpeg"/>
+				
+				
+			</item>
+		
+<item>
+				<title>На платформу прогнозов Kalshi поступил иск от прокуратуры</title>
+				<link>https://bits.media/na-platformu-prognozov-kalshi-postupil-isk-ot-prokuratury/</link>
+				<guid isPermaLink="false">https://bits.media/na-platformu-prognozov-kalshi-postupil-isk-ot-prokuratury/</guid>
+				<description><![CDATA[Генеральный прокурор штата Юта Дерек Браун (Derek Brown) подал в суд на платформу прогнозов Kalshi, обвинив в организации незаконных азартных игр. Прокуратура хочет взыскать с платформы $61,2 млн.]]></description>
+
+									<category><![CDATA[Суд]]></category>
+									<category><![CDATA[Платформа]]></category>
+									<category><![CDATA[Юта]]></category>
+									<category><![CDATA[Комиссия]]></category>
+									<category><![CDATA[Фьючерс]]></category>
+									<category><![CDATA[США]]></category>
+									<category><![CDATA[Нью-Йорк]]></category>
+									<category><![CDATA[The Block]]></category>
+									<category><![CDATA[Регулирование]]></category>
+									<category><![CDATA[Прогнозирование]]></category>
+									<category><![CDATA[Трейдинг]]></category>
+									<category><![CDATA[Транзакция]]></category>
+									<category><![CDATA[CFTC]]></category>
+									<category><![CDATA[Спорт]]></category>
+				
+				<pubDate>Wed, 21 Oct 2026 14:03:40 +0300</pubDate>
+													<media:content url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/c17/tuxv14l2or7p09or0hlnhqzypmiez1iu/genprokuratura_podala_v_sud_na_platformu_prognozov_kalshi.webp" medium="image"/>
+					<enclosure url="https://bits.media/upload/dev2fun.imagecompress/webp/iblock/c17/tuxv14l2or7p09or0hlnhqzypmiez1iu/genprokuratura_podala_v_sud_na_platformu_prognozov_kalshi.webp" length="23526" type="image/jpeg"/>
+				
+				
+			</item>
+			</channel>
+</rss>

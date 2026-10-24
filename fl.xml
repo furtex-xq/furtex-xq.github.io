@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>ForkLog</title>
+	<atom:link href="https://forklog.com/feed" rel="self" type="application/rss+xml" />
+	<link>https://forklog.com</link>
+	<description>Интернет-журнал о биткоине, криптовалютах и децентрализации</description>
+	<lastBuildDate>Sat, 24 Oct 2026 13:24:56 +0000</lastBuildDate>
+	<language>ru-RU</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+
+<image>
+	<url>https://forklog.com/wp-content/uploads/FL_favicon-150x150.png</url>
+	<title>ForkLog</title>
+	<link>https://forklog.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Bitmain, Canaan и F2Pool поддержали инструменты Tether для автоматизации майнинга</title>
+		<link>https://forklog.com/news/bitmain-canaan-i-f2pool-podderzhali-instrumenty-tether-dlya-avtomatizatsii-majninga</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 14:00:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Tether (USDT)]]></category>
+		<category><![CDATA[Майнинг]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291428</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/tether-5.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="tether" decoding="async" fetchpriority="high" srcset="" data-src="https://forklog.com/wp-content/uploads/tether-5.webp" /></p>15 компаний и проектов поддержали развитие Mining Development Kit (MDK) — открытого набора инструментов Tether для управления биткоин-майнингом. Участники обязались создавать и поддерживать интеграции своего оборудования и сервисов.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Южная Корея расширит сеть для испытаний квантовой связи</title>
+		<link>https://forklog.com/yuzhnaya-koreya-rasshirit-set-dlya-ispytanij-kvantovoj-svyazi</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 13:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291423</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/south-korea-crypto-yuzhnaya-koreya-kriptovalyuty.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="south korea crypto южная корея криптовалюты" decoding="async" srcset="" data-src="https://forklog.com/wp-content/uploads/south-korea-crypto-yuzhnaya-koreya-kriptovalyuty.webp" /></p>Власти Южной Кореи начали расширение национальной испытательной сети квантовой связи совместно с KT и SK Broadband. До 2028 года инфраструктуру распространят на новые регионы страны и свяжут с экспериментальными площадками Сингапура, Польши и Болгарии. Проект предусматривает проверку квантового распределения ключей и постквантовой криптографии. Финансирование на 2026 год составит 7,4 млрд вон.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Нетаньяху поручил подготовить план использования блокчейна на случай санкций</title>
+		<link>https://forklog.com/news/netanyahu-poruchil-podgotovit-plan-ispolzovaniya-blokchejna-na-sluchaj-sanktsij</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 12:22:36 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[блокчейн]]></category>
+		<category><![CDATA[Израиль]]></category>
+		<category><![CDATA[Регулирование]]></category>
+		<category><![CDATA[санкции]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291426</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/israel-flag-izrail-kriptovalyuty.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="israel flag израиль криптовалюты" decoding="async" srcset="" data-src="https://forklog.com/wp-content/uploads/israel-flag-izrail-kriptovalyuty.webp" /></p>Премьер-министр Израиля Биньямин Нетаньяху поручил подготовить план использования блокчейна для обхода возможных экономических санкций, включая банковские ограничения. ]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Cloudflare представила постквантовую защиту ключей шифрования</title>
+		<link>https://forklog.com/cloudflare-predstavila-postkvantovuyu-zashhitu-klyuchej-shifrovaniya</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 11:30:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291421</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/quantum-computer.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="quantum computer квантовые компьютеры квантовые вычисления биткоин" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/quantum-computer.webp" /></p>Cloudflare запустила закрытое тестирование новой версии GeoKey Manager, которая ограничивает доступ к ключам расшифрования выбранными географическими регионами. Решение использует гибридную схему ML-KEM-768 и X25519 для защиты от потенциальных атак с применением квантовых компьютеров. Общедоступный выпуск запланирован на первый квартал 2027 года.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Суд Аргентины прекратил дело LIBRA против Милея и Дэвиса</title>
+		<link>https://forklog.com/news/sud-argentiny-prekratil-delo-libra-protiv-mileya-i-devisa</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 11:16:49 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Libra]]></category>
+		<category><![CDATA[Аргентина]]></category>
+		<category><![CDATA[Суды]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291419</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/argentina_milei.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="argentina_milei" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/argentina_milei.webp" /></p>Федеральный суд Аргентины прекратил уголовное преследование президента страны Хавьера Милея, его сестры Карины и еще девяти фигурантов дела о мем-коине LIBRA. Судья пришел к выводу, что расследованные обстоятельства не образуют состава преступления, пишет Reuters.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Politico: Пентагон создал секретное подразделение для технологических диверсий</title>
+		<link>https://forklog.com/news/ai/politico-pentagon-sozdal-sekretnoe-podrazdelenie-dlya-tehnologicheskih-diversij</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 10:32:11 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[Пентагон]]></category>
+		<category><![CDATA[США]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291415</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/II-voenshhina-AI-war.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="ИИ-военщина AI war" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/II-voenshhina-AI-war.webp" /></p>Пентагон создал секретное подразделение для противодействия зарубежным технологическим программам, угрожающим военному превосходству США. Об этом пишет Politico со ссылкой на 12 действующих и бывших американских чиновников в сфере национальной безопасности.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Moonshot AI выпустила Kimi K3.1 Pro и ограничила ее кибервозможности</title>
+		<link>https://forklog.com/news/ai/moonshot-ai-vypustila-kimi-k3-1-pro-i-ogranichila-ee-kibervozmozhnosti</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 10:17:31 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[Китай]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291399</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/AI-agents-II-agenty-3.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="AI-agents ИИ агенты 3" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/AI-agents-II-agenty-3.webp" /></p>Китайская компания Moonshot AI представила языковую модель Kimi K3.1 Pro с улучшенными навыками программирования, 3D-моделирования и финансового анализа. При этом разработчики намеренно ограничили ее возможности по поиску и эксплуатации уязвимостей.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Tether заморозила 2,2 млн USDT, связанных с инцидентом CoinDCX</title>
+		<link>https://forklog.com/tether-zamorozila-2-2-mln-usdt-svyazannyh-s-intsidentom-coindcx</link>
+		
+		<dc:creator><![CDATA[ForkLog]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 09:30:11 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291408</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-3dc2541840912878-4645974497546910.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="hack" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-3dc2541840912878-4645974497546910.webp" /></p>Компания Tether заблокировала 2,2 млн USDT. Активы связаны с выводом $16 млн с криптобиржи CoinDCX.
+
+Параллельно ончейн-сыщик ZachXBT оспорил объяснение биржи о скомпрометированных в июле 2025 года кошельках. По его утверждению, эти же адреса для пополнения использовались еще в мае 2026 года. Он призвал пользователей вывести средства с платформы.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Аналитик предупредили о рисках для биткоина из-за дорогой нефти</title>
+		<link>https://forklog.com/news/analitik-predupredili-o-riskah-dlya-bitkoina-iz-za-dorogoj-nefti</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 08:42:31 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Анализ рынка]]></category>
+		<category><![CDATA[Биткоин]]></category>
+		<category><![CDATA[Мнения]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291401</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/bitcoin-Novosti-bitkoina-tsena-bitkoina.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="bitcoin btc новости цена биткоина" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/bitcoin-Novosti-bitkoina-tsena-bitkoina.webp" /></p>Высокие цены на нефть создают неблагоприятные условия для притока капитала в биткоин. Об этом заявил аналитик под псевдонимом Darkfost в публикации на CryptoQuant.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Почему крупные биржи блокируют счета россиян и что делать дальше?</title>
+		<link>https://forklog.com/news/pochemu-krupnye-birzhi-blokiruyut-scheta-rossiyan-i-chto-delat-dalshe</link>
+		
+		<dc:creator><![CDATA[Лена Джесс]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 08:28:10 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[подкаст]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291400</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-6ecfed4c335a597e-159650680302809.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-6ecfed4c335a597e-159650680302809" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-6ecfed4c335a597e-159650680302809.webp" /></p>Текстовая версия свежей "Деконструкции".]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Налоговая служба США допустила снижение штрафов за налоговые нарушения</title>
+		<link>https://forklog.com/nalogovaya-sluzhba-ssha-dopustila-snizhenie-shtrafov-za-nalogovye-narusheniya</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 08:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291397</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/taxes-nalogi.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="taxes налоги" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/taxes-nalogi.webp" /></p>Налоговая служба США рассматривает возможность снижения штрафов за добровольное раскрытие налоговых нарушений, в том числе связанных с криптовалютами, пишет Forbes. Ведомство рассчитывает представить обновленные правила до декабря и сократить сроки рассмотрения заявлений до 120 дней. Конкретные размеры штрафов и окончательные условия программы пока неизвестны.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Хакер вывел $2,7 млн из блокчейна Initia</title>
+		<link>https://forklog.com/news/haker-vyvel-2-7-mln-iz-blokchejna-initia</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 07:34:23 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Ethereum (ETH)]]></category>
+		<category><![CDATA[блокчейн]]></category>
+		<category><![CDATA[Киберпреступления]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291394</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/hakker-vozmestit-3-mln-hacker.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="хаккер возместит $3 млн hacker" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/hakker-vozmestit-3-mln-hacker.webp" /></p>Разработчики L1-блокчейна Initia приостановили работу основной сети и связанных с ней роллапов после атаки. По предварительной оценке сооснователя проекта Эзаана Мангальджи, злоумышленник успел вывести криптоактивы примерно на $2,7 млн.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Пользователь Trust Wallet лишился 68 000 USDT, в Италии раскрыли теневой банк мафии и другие события кибербезопасности</title>
+		<link>https://forklog.com/news/polzovatel-trust-wallet-lishilsya-68-000-usdt-v-italii-raskryli-tenevoj-bank-mafii-i-drugie-sobytiya-kiberbezopasnosti</link>
+		
+		<dc:creator><![CDATA[Сергей Голубенко]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 04:00:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Дайджест кибербезопасности]]></category>
+		<category><![CDATA[Дайджесты]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291382</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-52f243d6e686792d-112229584305073.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-52f243d6e686792d-112229584305073" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-52f243d6e686792d-112229584305073.webp" /></p>Мы собрали наиболее важные новости из мира кибербезопасности за неделю.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Bitcoin Core изменил правила раскрытия уязвимостей из-за ИИ</title>
+		<link>https://forklog.com/news/bitcoin-core-izmenil-pravila-raskrytiya-uyazvimostej-iz-za-ii</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 16:20:14 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Биткоин]]></category>
+		<category><![CDATA[Сбои и уязвимости]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291378</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/BTClogo.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="BTClogo" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/BTClogo.webp" /></p>Разработчики Bitcoin Core ускорят выпуск исправлений и раскрытие уязвимостей, которые легко обнаружить, в том числе простым запросом к ИИ. Соответствующее изменение политики приняли 22 октября.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Китай запланировал создание национального блокчейна к 2030 году</title>
+		<link>https://forklog.com/news/kitaj-zaplaniroval-sozdanie-natsionalnoj-blokchejn-seti-k-2030-godu</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 15:11:28 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[блокчейн]]></category>
+		<category><![CDATA[Китай]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291372</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/china-illegal-crypto-transactions-kitai-nelegalnye-kriptooperatsii.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="china illegal crypto transactions китай нелегальные криптооперации" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/china-illegal-crypto-transactions-kitai-nelegalnye-kriptooperatsii.webp" /></p>К 2030 году Китай намерен завершить основную разработку национального блокчейна. Такой ориентир закрепила в пятилетнем плане Центральная комиссия по кибербезопасности и информатизации.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>В SlowMist предупредили о рисках для Web3 из-за уязвимостей PHP</title>
+		<link>https://forklog.com/news/v-slowmist-predupredili-o-riskah-dlya-web3-iz-za-uyazvimostej-php</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 13:29:05 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[отчеты]]></category>
+		<category><![CDATA[Сбои и уязвимости]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291369</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-3dc2541840912878-4645974497546910.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="hack" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-3dc2541840912878-4645974497546910.webp" /></p>Критические уязвимости PHP могут угрожать Web3-проектам через сайты, серверы и сервисы подписания транзакций. Об этом предупредили специалисты SlowMist.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Во Вьетнаме установят первый квантовый компьютер</title>
+		<link>https://forklog.com/vo-vetname-ustanovyat-pervyj-kvantovyj-kompyuter</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 13:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291350</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Vietnam_generic.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Vietnam_generic" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Vietnam_generic.webp" /></p>Французская Quandela и вьетнамская Quanova договорились установить фотонный квантовый компьютер MosaiQ в Университете Куанг Чунг. По заявлению компаний, он станет первым устройством такого типа в стране. Проект реализуют при поддержке Nam A Bank и дополнят образовательными программами, подготовкой специалистов и исследовательским центром. Сроки установки, технические характеристики системы и стоимость проекта пока не раскрываются.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>О дивный новый ВВП</title>
+		<link>https://forklog.com/exclusive/ai/o-divnyj-novyj-vvp</link>
+		
+		<dc:creator><![CDATA[Алекс Кондратюк]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 12:31:54 +0000</pubDate>
+				<category><![CDATA[Лонгриды]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291357</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-5c4ff29fc036f43a-86079460798443.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-5c4ff29fc036f43a-86079460798443" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-5c4ff29fc036f43a-86079460798443.webp" /></p>Как ИИ изменит экономику. Что будет с рынком труда. И как видят ближайшее будущее с искусственным интеллектом  обыватели, специалисты и разработчики]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Мем-коин KIMCHI обвалился на 98% после удаления рекламного поста</title>
+		<link>https://forklog.com/news/memkoin-kimchi-obvalilsya-na-98-posle-udaleniya-reklamnogo-posta</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 11:42:49 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Pump.fun]]></category>
+		<category><![CDATA[мемы]]></category>
+		<category><![CDATA[мошенники]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291354</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/crypto-downturn-token-collapse-token-crash.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="crypto downturn token collapse token crash" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/crypto-downturn-token-collapse-token-crash.webp" /></p>Вечером 22 октября капитализация мем-коина Project Kimchi в сети Solana достигла около $15 млн, а затем сократилась до $284 000. Обвал произошел после удаления рекламной публикации из аккаунта трейдера Kimchi и ее репоста сооснователем Pump.fun под псевдонимом Alon.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>FT: Anthropic создаст ИИ-консалтинговую компанию в Европе</title>
+		<link>https://forklog.com/ft-anthropic-sozdast-ii-konsaltingovuyu-kompaniyu-v-evrope</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 11:40:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291348</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/ii-startap-Anthropic-AI.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="ии-стартап Anthropic AI" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/ii-startap-Anthropic-AI.webp" /></p>Anthropic совместно с британским фондом Hg планирует запустить компанию по внедрению ИИ в европейский бизнес, сообщает Financial Times. Ее инженеры будут помогать предприятиям интегрировать нейросети в рабочие процессы. Запуск ожидается до конца 2026 года, офисы разместятся в Лондоне и Берлине. Размер инвестиций стороны не раскрыли. ]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Власти Нью-Йорка потребовали взыскать $1,37 млрд с основателей NovaTech</title>
+		<link>https://forklog.com/news/vlasti-nyu-jorka-potrebovali-vzyskat-1-37-mlrd-s-osnovatelej-novatech</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 11:30:12 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[мошенники]]></category>
+		<category><![CDATA[Суды]]></category>
+		<category><![CDATA[США]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291344</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/court_generic-sud-sudebnye-razbiratelstva.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="court_generic, суд, судебные разбирательства" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/court_generic-sud-sudebnye-razbiratelstva.webp" /></p>Генеральный прокурор штата Нью-Йорк Летиция Джеймс попросила суд взыскать $1,37 млрд с основателей криптовалютной платформы NovaTech Синтии и Эдди Петионов, которых ранее признали ответственными за организацию финансовой пирамиды. ]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Heatbit представила нагреватель воды с функцией майнинга биткоина</title>
+		<link>https://forklog.com/news/heatbit-predstavila-nagrevatel-vody-s-funktsiej-majninga-bitkoina</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 10:45:28 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Биткоин]]></category>
+		<category><![CDATA[Майнинг]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291338</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-2c54cda3f1c4ab63-7696641014263308.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="майнинг mining" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-2c54cda3f1c4ab63-7696641014263308.webp" /></p>Американская компания Heatbit показала Bitwater — нагревательный элемент для бытовых водонагревателей со встроенным ASIC-майнером. Тепло, которое оборудование выделяет при добыче биткоина, идет на нагрев воды.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>В JPMorgan предупредили о рисках для криптоиндустрии без CLARITY Act</title>
+		<link>https://forklog.com/news/v-jpmorgan-predupredili-o-riskah-dlya-kriptoindustrii-bez-clarity-act</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 10:30:25 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[JPMorgan]]></category>
+		<category><![CDATA[Мнения]]></category>
+		<category><![CDATA[США]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291339</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/USA_generic.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="США" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/USA_generic.webp" /></p>Меры американских регуляторов частично компенсируют последствия провала голосования по CLARITY Act, но не заменяют закон о структуре крипторынка. К такому выводу пришли аналитики JPMorgan.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Chainlink и LG CNS заключили партнерство в Южной Корее</title>
+		<link>https://forklog.com/chainlink-i-lg-cns-zaklyuchili-partnerstvo-v-yuzhnoj-koree</link>
+		
+		<dc:creator><![CDATA[ForkLog]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 10:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291335</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/south-korea-crypto-yuzhnaya-koreya-kriptovalyuty.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="south korea crypto южная корея криптовалюты" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/south-korea-crypto-yuzhnaya-koreya-kriptovalyuty.webp" /></p>Chainlink и LG CNS (LG Group) объявили о стратегическом партнерстве для развития инфраструктуры рынка цифровых активов Южной Кореи. Компании планируют расширять использование и распространение корейских стейблкоинов.
+
+LG CNS интегрирует платформу Chainlink в решения для институциональных клиентов, включая проект «Ханган» Банка Кореи по тестированию цифровой валюты и токенизированных депозитов.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Количество кошельков с XRP достигло рекордных 8,24 млн</title>
+		<link>https://forklog.com/kolichestvo-koshelkov-s-xrp-dostiglo-rekordnyh-8-24-mln</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 10:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291328</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/XRP-15.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="XRP" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/XRP-15.webp" /></p>По данным Santiment, число адресов XRP Ledger с ненулевым балансом достигло исторического максимума в 8,24 млн. За сутки в сети появилось 4772 новых кошелька — пятый по величине дневной прирост с марта 2026 года. Показатель продолжил увеличиваться, несмотря на волатильность XRP. В Santiment допустили возвращение цены к $1,5 при условии ее закрепления выше $1,4 и сохранения темпов создания новых кошельков на уровне около 4000 в сутки или выше. ]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Стартап из США заявил о первом введении пациенту спроектированных ИИ бактериофагов</title>
+		<link>https://forklog.com/news/ai/startap-iz-ssha-zayavil-o-pervom-vvedenii-patsientu-sproektirovannyh-ii-bakteriofagov</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 09:57:19 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[Медицина]]></category>
+		<category><![CDATA[Наука]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291333</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Science_AI.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Science_AI" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Science_AI.webp" /></p>Американский стартап Radical Numerics заявил, что созданные с помощью искусственного интеллекта бактериофаги впервые ввели человеку — пациенту с устойчивой к антибиотикам инфекцией, вызванной кишечной палочкой (E. coli).]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Пентагон запретил сотрудникам ставить на Polymarket и Kalshi по непубличным данным</title>
+		<link>https://forklog.com/pentagon-zapretil-voennym-ispolzovat-insajderskuyu-informatsiyu-dlya-stavok</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 09:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291324</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-c699a6135b7778c7-4213603715521737.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="prediction" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-c699a6135b7778c7-4213603715521737.webp" /></p>Глава Пентагона Пит Хегсет запретил военнослужащим и гражданским сотрудникам ведомства использовать непубличную информацию для ставок у букмекеров и на рынках предсказаний, включая Polymarket и Kalshi. Запрет касается как секретных, так и несекретных сведений: по словам министра, разведки противника могут по движению этих рынков предугадать передвижения, цели и сроки операций США. Нарушителей могут привлечь к административной и дисциплинарной ответственности, а в отдельных случаях и к уголовной. ]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>ЦБ Малайзии и Таиланда присоединились к сингапурской инициативе по расчетам в цифровых деньгах</title>
+		<link>https://forklog.com/news/tsb-malajzii-i-tailanda-prisoedinilis-k-singapurskoj-initsiative-po-raschetam-v-tsifrovyh-dengah</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 08:33:50 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Малайзия]]></category>
+		<category><![CDATA[Стейблкоины]]></category>
+		<category><![CDATA[Таиланд]]></category>
+		<category><![CDATA[Токенизация активов]]></category>
+		<category><![CDATA[Центробанки]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291321</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Bank-bank-kriptovalyuta.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Bank банк криптовалюта" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Bank-bank-kriptovalyuta.webp" /></p>Центробанк Малайзии (BNM) и Банк Таиланда (BOT) вошли в инициативу BLOOM Денежно-кредитного управления Сингапура (MAS). Ее участники — регуляторы, банки, платежные сети и технологические компании — вырабатывают общие подходы к использованию токенизированных депозитов и регулируемых стейблкоинов в международных операциях.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Банки США обнаружили ИИ-агентов в личных кабинетах клиентов</title>
+		<link>https://forklog.com/news/ai/banki-ssha-obnaruzhili-ii-agentov-v-lichnyh-kabinetah-klientov</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 07:59:14 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Банки и финтех]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[США]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291315</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/AI-agents-II-agenty-2.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="AI-agents ИИ агенты 2" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/AI-agents-II-agenty-2.webp" /></p>Крупнейшие американские банки начали блокировать доступ сторонних ИИ-агентов к клиентским счетам из-за опасений по поводу несанкционированных операций. Некоторые системы предположительно пытались действовать за пределами пользовательских инструкций, пишет Axios со ссылкой на источники в финансовой отрасли.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Хешрейт биткоина впервые с марта превысил 1 ZH/s</title>
+		<link>https://forklog.com/news/heshrejt-bitkoina-vpervye-s-marta-prevysil-1-zh-s</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 06:10:49 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Биткоин]]></category>
+		<category><![CDATA[Майнинг]]></category>
+		<category><![CDATA[Мнения]]></category>
+		<category><![CDATA[хешрейт]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291310</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-567afcdb3a664957-1372075908728056.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="майнинг mining" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-567afcdb3a664957-1372075908728056.webp" /></p>Семидневный средний хешрейт первой криптовалюты превысил 1 ZH/s (1000 EH/s) и достиг максимума с начала марта. На это указали аналитики BlocksBridge Consulting. ]]></description>
+		
+		
+		
+			</item>
+	</channel>
+</rss>
