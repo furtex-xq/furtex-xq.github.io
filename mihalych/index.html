@@ -585,7 +585,7 @@ const pfGet=(i,k)=>PF[i.id]&&PF[i.id][k]!==undefined?PF[i.id][k]:!!(i.platform_d
 function pfToggle(id,k,el){const i=DATA.items.find(x=>x.id===id);PF[id]=PF[id]||{};const v=!pfGet(i,k);PF[id][k]=v;store.set('mh_pf',PF);
   if(v){toast((k==='yt'?'YouTube':'TikTok')+' ✓ '+i.label);if(el)burst(el.getBoundingClientRect())}renderShorts()}
 window.pfToggle=pfToggle;
-function renderShorts(){const S=sorted().filter(i=>i.kind==='short').sort((a,b)=>a.id.localeCompare(b.id));
+function renderShorts(){const S=sorted().filter(i=>i.kind==='short');
   const y=S.filter(i=>pfGet(i,'yt')).length,t=S.filter(i=>pfGet(i,'tt')).length;
   $('#shYT').textContent=`▶ YouTube Shorts: ${y}/${S.length}`;$('#shTT').textContent=`♪ TikTok: ${t}/${S.length}`;
   $('#shortsList').innerHTML=S.map(i=>{const a=pfGet(i,'yt'),b=pfGet(i,'tt');return `<div class="card sc rv ${a&&b?'all':''}" data-id="sc-${i.id}">${thumb(i)}
