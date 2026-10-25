@@ -168,8 +168,13 @@ label{font-size:12px;font-weight:800;color:var(--mut);display:block;margin:10px 
 /* modal */
 .modal{position:fixed;inset:0;z-index:50;display:none;place-items:center;padding:16px;background:rgba(4,8,12,.72);backdrop-filter:blur(6px)}
 .modal.on{display:grid}
-.modal .card{width:min(560px,100%);max-height:calc(100vh - 32px);overflow:auto;position:relative}
-.modal .x{position:absolute;right:14px;top:14px}
+.modal .card{width:min(560px,100%);max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow:auto;-webkit-overflow-scrolling:touch;position:relative;padding-top:0}
+.modal .x{position:sticky;top:0;float:right;margin:12px -8px 0 8px;z-index:3;width:44px;height:44px;padding:0;font-size:18px;background:var(--panel2);border-color:var(--line2)}
+.modal .card>h3{padding-top:22px}
+.mclose{width:100%;margin-top:18px}
+body.noscroll{overflow:hidden}
+.copybox{-webkit-user-select:text;user-select:text}
+.btn.ok{background:var(--grn)!important;color:#08140E!important;border-color:transparent!important}
 .modal h3{font-size:19px;padding-right:44px}
 .steps{margin:14px 0 0;padding-left:20px;color:var(--mut)}
 .steps li{margin:6px 0}
@@ -177,7 +182,7 @@ label{font-size:12px;font-weight:800;color:var(--mut);display:block;margin:10px 
 .warn{margin-top:14px;padding:12px 14px;border-radius:12px;background:rgba(239,93,85,.10);border:1px solid rgba(239,93,85,.3);font-size:13px;color:#FFB3AE}
 .mbtns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
 
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--grn);color:#08140E;font-weight:800;padding:11px 18px;border-radius:12px;opacity:0;transition:.25s;z-index:60;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top));bottom:auto;transform:translateX(-50%) translateY(20px);background:var(--grn);color:#08140E;font-weight:800;padding:11px 18px;border-radius:12px;opacity:0;transition:.25s;z-index:100;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
 .toast.on{opacity:1;transform:translateX(-50%)}
 .toast.err{background:var(--red);color:#fff}
 footer{padding:64px 0 40px;color:var(--mut);font-size:13px;text-align:center}
@@ -411,7 +416,7 @@ nav li a.act:after{content:"";position:absolute;left:30%;right:30%;bottom:2px;he
 <footer>Михалыч · Ansaro Technologies<br>Отметки, статистика и ключ GitHub хранятся только в этом браузере</footer>
 
 <!-- texts modal -->
-<div class="modal" id="mTexts"><div class="card"><button class="btn sm ghost x" data-close>✕</button><h3 id="mtTitle"></h3><div id="mtBody" style="margin-top:16px"></div></div></div>
+<div class="modal" id="mTexts"><div class="card"><button class="btn sm ghost x" data-close aria-label="Закрыть">✕</button><h3 id="mtTitle"></h3><div id="mtBody" style="margin-top:16px"></div><button class="btn mclose" data-close>Закрыть</button></div></div>
 
 <!-- confirm modal -->
 <div class="modal" id="mDone"><div class="card"><button class="btn sm ghost x" data-close>✕</button>
@@ -449,13 +454,32 @@ const fmtD=(d,tz)=>d.toLocaleDateString('ru-RU',{timeZone:tz,weekday:'long',day:
 const num=n=>n==null||isNaN(n)?'—':Number(n).toLocaleString('ru-RU');
 const mb=b=>(b/1048576).toFixed(b>1e8?0:1)+' МБ';
 function toast(t,err){const e=$('#toast');e.textContent=t;e.classList.toggle('err',!!err);e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2400)}
-async function copy(t){try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()}toast('Скопировано ✓')}
+function legacyCopy(t){
+  const a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.contentEditable=true;
+  a.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;font-size:16px';
+  (document.querySelector('.modal.on .card')||document.body).appendChild(a);
+  const r=document.createRange();r.selectNodeContents(a);const sel=getSelection();sel.removeAllRanges();sel.addRange(r);
+  a.select();a.setSelectionRange(0,t.length);let ok=false;try{ok=document.execCommand('copy')}catch(e){}
+  sel.removeAllRanges();a.remove();return ok}
+function selectBox(btn){const box=btn&&btn.closest('.copy')&&btn.closest('.copy').querySelector('.copybox');if(!box)return;
+  const r=document.createRange();r.selectNodeContents(box);const sel=getSelection();sel.removeAllRanges();sel.addRange(r)}
+function okBtn(btn){if(!btn)return;const old=btn.innerHTML;btn.classList.add('ok');btn.textContent='✓ Скопировано';clearTimeout(btn._t);btn._t=setTimeout(()=>{btn.classList.remove('ok');btn.innerHTML=old},1600)}
+async function copy(t,btn){
+  let ok=legacyCopy(t);
+  if(!ok&&navigator.clipboard){try{await navigator.clipboard.writeText(t);ok=true}catch(e){}}
+  if(ok){okBtn(btn);toast('Скопировано ✓')}
+  else{selectBox(btn);toast('Текст выделен — нажми «Скопировать» в меню',true)}
+}
 document.addEventListener('click',e=>{
-  const c=e.target.closest('[data-copy]');if(c){copy(c.dataset.copy);return}
-  if(e.target.closest('[data-close]')||e.target.classList.contains('modal')){document.querySelectorAll('.modal.on').forEach(m=>m.classList.remove('on'))}
+  const c=e.target.closest('[data-copy]');if(c){copy(c.dataset.copy,c);return}
+  if(e.target.closest('[data-close]')||e.target.classList.contains('modal')){closeM()}
 });
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal.on').forEach(m=>m.classList.remove('on'))});
-const openM=id=>$(id).classList.add('on');
+function hideM(){document.querySelectorAll('.modal.on').forEach(m=>m.classList.remove('on'));document.body.classList.remove('noscroll')}
+function closeM(){if(history.state&&history.state.modal){history.back()}else hideM()}
+addEventListener('popstate',hideM);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM()});
+const openM=id=>{const m=$(id);if(!m.classList.contains('on')){try{history.pushState({modal:1},'')}catch(e){}}
+  document.querySelectorAll('.modal.on').forEach(x=>x!==m&&x.classList.remove('on'));m.classList.add('on');m.querySelector('.card').scrollTop=0;document.body.classList.add('noscroll')};
 
 let DATA={items:[],videos:[]}, done=store.get('mh_done',{});
 let ASSETS=null; // null = неизвестно, {} = загружено
@@ -489,7 +513,7 @@ function askDone(id){
   if(isDone(i)){done[id]=false;store.set('mh_done',done);renderAll();toast('Отметка снята');return}
   pending=i;const a=asset(i);
   $('#mdText').innerHTML=a?(token()?`Файл <b>${esc(i.file)}</b> (${mb(a.size)}) будет <b>удалён с GitHub</b>. Убедись, что ролик уже выложен.`:`Ключ GitHub не добавлен — отмечу только в этом браузере, а файл останется на GitHub. <a href="#" id="mdTok">Добавить ключ</a>`):`Отметить «${esc(i.label)}» как выложенное.`;
-  const t=$('#mdTok');if(t)t.onclick=e=>{e.preventDefault();$('#mDone').classList.remove('on');openTok()};
+  const t=$('#mdTok');if(t)t.onclick=e=>{e.preventDefault();openTok()};
   openM("#mDone");
 }
 $('#mdOk').onclick=async()=>{
@@ -503,7 +527,7 @@ $('#mdOk').onclick=async()=>{
     }catch(e){b.disabled=false;b.textContent='✓ Выложил';toast(e===401?'Ключ недействителен — обнови его':e===403?'У ключа нет права Contents: write':'Не удалось удалить ('+e+')',true);return}
     b.disabled=false;b.textContent='✓ Выложил';
   }else toast('Отмечено ✓');
-  done[i.id]=true;store.set('mh_done',done);$('#mDone').classList.remove('on');justDone=i.id;renderAll();
+  done[i.id]=true;store.set('mh_done',done);closeM();justDone=i.id;renderAll();
   const s=document.querySelector(`[data-id="${i.id}"]`);burst(s?s.getBoundingClientRect():b.getBoundingClientRect());
 };
 window.askDone=askDone;
@@ -522,7 +546,7 @@ $('#tokBtn').onclick=openTok;
 $('#tokSave').onclick=async()=>{const v=$('#tokIn').value.trim();if(!v){toast('Вставь ключ',true);return}
   try{const r=await fetch(API,{headers:{Authorization:'Bearer '+v}});if(!r.ok)throw r.status;const j=await r.json();
     if(!(j.permissions&&j.permissions.push))throw 'perm';
-    store.set('mh_tok',v);$('#mTok').classList.remove('on');toast('Ключ сохранён ✓');loadAssets();
+    store.set('mh_tok',v);closeM();toast('Ключ сохранён ✓');loadAssets();
   }catch(e){toast(e==='perm'?'У ключа нет права записи (Contents: Read and write)':'Ключ не подошёл ('+e+')',true)}};
 $('#tokDel').onclick=()=>{store.set('mh_tok','');$('#tokIn').value='';toast('Ключ удалён');renderAll()};
 
