@@ -210,6 +210,23 @@ footer{padding:64px 0 40px;color:var(--mut);font-size:13px;text-align:center}
 .pv b{display:block;font-size:13px;line-height:1.25}.pv span{font-size:12px;color:var(--mut)}
 @media (max-width:900px){.posted{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:520px){.pv{grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center}}
+.shorts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
+.sc{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;padding:16px}
+.sc .thumb.v{width:92px}
+.sc h3{font:800 13px Manrope;color:var(--yel);text-transform:uppercase;letter-spacing:.08em}
+.sc .tt{font-weight:800;line-height:1.3;margin-top:4px}
+.sc .tg{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px;max-height:52px;overflow:hidden}
+.sc .tg span{font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--panel2);color:var(--mut)}
+.pf{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.tog{appearance:none;display:flex;align-items:center;justify-content:center;gap:7px;padding:9px 8px;border-radius:12px;border:1px solid var(--line2);background:transparent;color:var(--mut);font:800 13px Manrope;cursor:pointer;transition:all .25s}
+.tog i{width:18px;height:18px;border-radius:6px;border:2px solid currentColor;display:grid;place-items:center;font-style:normal;font-size:11px;color:transparent;transition:all .25s}
+.tog.on{border-color:rgba(79,208,143,.5);background:rgba(79,208,143,.12);color:var(--grn)}
+.tog.on i{background:var(--grn);border-color:var(--grn);color:#08140E;animation:checkIn .45s cubic-bezier(.3,1.7,.5,1)}
+.tog:hover{border-color:var(--yel)}
+.sc .sl-a{grid-template-columns:repeat(2,minmax(0,1fr))}
+.sc.all{border-color:rgba(79,208,143,.35)}
+@media (max-width:900px){.shorts{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:520px){.sc{grid-template-columns:minmax(0,1fr)}.sc .thumb.v{width:110px;justify-self:center}}
 /* ---------- animations ---------- */
 #snow{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1;opacity:.55}
 .rv{opacity:0;transform:translateY(26px) scale(.985);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
@@ -279,6 +296,7 @@ nav li a.act:after{content:"";position:absolute;left:30%;right:30%;bottom:2px;he
   <ul>
     <li><a href="#next">Следующий</a></li>
     <li><a href="#plan">Расписание</a></li>
+    <li><a href="#shorts">Шортсы</a></li>
     <li><a href="#times">Время</a></li>
     <li><a href="#stats">Статистика</a></li>
     <li><a href="#videos">Видео</a></li>
@@ -313,6 +331,12 @@ nav li a.act:after{content:"";position:absolute;left:30%;right:30%;bottom:2px;he
     </div>
     <div class="days" id="plan-list"></div>
     <div id="postedWrap" style="margin-top:40px"><div class="sh rv" style="margin-bottom:18px"><div class="lbl">Готово</div><h2 style="font-size:clamp(20px,2.6vw,26px)">Уже выложено</h2></div><div class="posted" id="posted"></div></div>
+  </section>
+
+  <section id="shorts">
+    <div class="sh rv"><div class="lbl">Отметки по платформам</div><h2>Все 10 шортсов</h2><p>Название, описание и теги для YouTube Shorts и подпись для TikTok. Отмечай, где уже выложено.</p></div>
+    <div class="planbar"><span class="pill y" id="shYT"></span><span class="pill b" id="shTT"></span></div>
+    <div class="shorts" id="shortsList"></div>
   </section>
 
   <section id="times">
@@ -488,7 +512,7 @@ function showTexts(id){const i=DATA.items.find(x=>x.id===id);if(!i)return;
   $('#mtBody').innerHTML=texts(i);openM("#mTexts")}
 window.showTexts=showTexts;
 const cp=(t,l)=>`<div class="copy"><div class="h"><span class="lbl">${l}</span><button class="btn sm" data-copy="${esc(t)}">Копировать</button></div><div class="copybox">${esc(t)}</div></div>`;
-const texts=i=>cp(i.yt_title,'YouTube — название')+cp(i.yt_desc,'YouTube — описание')+(i.tt?cp(i.tt,'TikTok — подпись'):'');
+const texts=i=>cp(i.yt_title,'YouTube — название')+cp(i.yt_desc,'YouTube — описание')+(i.yt_tags?cp(i.yt_tags,'YouTube — теги (поле «Теги»)'):'')+(i.tt?cp(i.tt,'TikTok — подпись'):'')+(i.yt_tags?`<button class="btn y" style="width:100%;margin-top:18px" data-copy="${esc(i.yt_title+'\n\n'+i.yt_desc+'\n\nТеги: '+i.yt_tags)}">📋 Скопировать всё для YouTube</button>`:'');
 const thumb=(i,cls='')=>`<div class="thumb ${i.kind==='short'?'v':'h'} ${cls}"><img src="${esc(i.thumb||'img/avatar.webp')}" alt="" loading="lazy"></div>`;
 
 /* ---------- token ---------- */
@@ -550,8 +574,25 @@ function renderPlan(){
         </div>
       </div>`}).join('')}</div></div>`}).join('')||'<div class="card" style="text-align:center">Нет запланированных выпусков.</div>';
 }
-function renderAll(){renderPlan();renderNext(true);renderKpis();justDone=null;FX.scan()}
+function renderAll(){renderPlan();renderNext(true);renderKpis();renderShorts();justDone=null;FX.scan()}
 window.openTok=openTok;
+
+
+/* ---------- платформы ---------- */
+let PF=store.get('mh_pf',{});
+const pfGet=(i,k)=>PF[i.id]&&PF[i.id][k]!==undefined?PF[i.id][k]:!!(i.platform_done&&i.platform_done[k]);
+function pfToggle(id,k,el){const i=DATA.items.find(x=>x.id===id);PF[id]=PF[id]||{};const v=!pfGet(i,k);PF[id][k]=v;store.set('mh_pf',PF);
+  if(v){toast((k==='yt'?'YouTube':'TikTok')+' ✓ '+i.label);if(el)burst(el.getBoundingClientRect())}renderShorts()}
+window.pfToggle=pfToggle;
+function renderShorts(){const S=sorted().filter(i=>i.kind==='short').sort((a,b)=>a.id.localeCompare(b.id));
+  const y=S.filter(i=>pfGet(i,'yt')).length,t=S.filter(i=>pfGet(i,'tt')).length;
+  $('#shYT').textContent=`▶ YouTube Shorts: ${y}/${S.length}`;$('#shTT').textContent=`♪ TikTok: ${t}/${S.length}`;
+  $('#shortsList').innerHTML=S.map(i=>{const a=pfGet(i,'yt'),b=pfGet(i,'tt');return `<div class="card sc rv ${a&&b?'all':''}" data-id="sc-${i.id}">${thumb(i)}
+    <div style="min-width:0;display:flex;flex-direction:column"><h3>${esc(i.label)}</h3><div class="tt">${esc(i.yt_title.replace(/\s*#shorts$/,''))}</div>
+      <div class="tg">${(i.yt_tags||'').split(',').slice(9,15).map(x=>`<span>${esc(x.trim())}</span>`).join('')}</div>
+      <div class="pf"><button class="tog ${a?'on':''}" onclick="pfToggle('${i.id}','yt',this)"><i>✓</i>YouTube</button><button class="tog ${b?'on':''}" onclick="pfToggle('${i.id}','tt',this)"><i>✓</i>TikTok</button></div>
+      <div class="sl-a"><button class="btn sm y" onclick="showTexts('${i.id}')">📝 Тексты и теги</button>${dlBtn(i)}</div></div></div>`}).join('');
+  FX.scan()}
 
 /* ---------- stats ---------- */
 function parseCSV(t){const rows=[];let r=[],f='',q=false;t=t.replace(/^﻿/,'');
