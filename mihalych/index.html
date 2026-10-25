@@ -5,292 +5,478 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Михалыч · пульт канала</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#0B141B">
+<meta name="theme-color" content="#0A1219">
 <link rel="icon" type="image/webp" href="img/avatar.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0B141B;--panel:#13212B;--panel2:#1A2B37;--line:#25394A;--txt:#EAF1F4;--mut:#8FA3AD;--yel:#F2B233;--red:#E5534B;--grn:#4CC38A;--teal:#8FD6E2;--r:18px}
+:root{
+  --bg:#0A1219;--bg2:#0E1923;--panel:#121F2A;--panel2:#182936;--line:#223545;--line2:#2D4558;
+  --txt:#EEF4F7;--mut:#8DA1AC;--yel:#F5B53A;--yel2:#FFD27A;--red:#EF5D55;--grn:#4FD08F;--teal:#8FD6E2;
+  --r:22px;--r2:14px;--gap:20px;--shadow:0 10px 30px rgba(0,0,0,.28)
+}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.5 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-body:before{content:"";position:fixed;inset:0;background:radial-gradient(1200px 600px at 80% -10%,rgba(242,178,51,.10),transparent 60%),radial-gradient(900px 500px at -10% 30%,rgba(143,214,226,.08),transparent 60%);pointer-events:none;z-index:-1}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.55 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:radial-gradient(900px 500px at 50% -120px,rgba(245,181,58,.16),transparent 70%),
+             radial-gradient(700px 500px at 0% 40%,rgba(143,214,226,.06),transparent 70%),
+             radial-gradient(700px 500px at 100% 70%,rgba(245,181,58,.05),transparent 70%)}
 a{color:var(--teal)}
+img{display:block;max-width:100%}
 .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
-h1,h2,h3{font-family:Unbounded,Manrope,sans-serif;margin:0;letter-spacing:-.01em}
-h2{font-size:clamp(22px,3vw,30px);margin-bottom:18px}
+h1,h2,h3{font-family:Unbounded,Manrope,sans-serif;margin:0;letter-spacing:-.015em;font-weight:800}
 .mut{color:var(--mut)}
-.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font-weight:800;font-size:13px;background:var(--panel2);color:var(--txt)}
-.pill.y{background:var(--yel);color:#1A1A1A}.pill.r{background:var(--red)}.pill.g{background:var(--grn);color:#0B141B}
-.btn{appearance:none;border:0;border-radius:12px;padding:10px 16px;font:800 14px Manrope,sans-serif;cursor:pointer;background:var(--panel2);color:var(--txt);transition:transform .08s,background .2s}
-.btn:hover{background:#22384A}.btn:active{transform:scale(.97)}
-.btn.y{background:var(--yel);color:#1A1A1A}.btn.y:hover{background:#ffc552}
-.btn.sm{padding:6px 10px;font-size:12px;border-radius:10px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px}
-section{padding:34px 0}
+code{background:var(--panel2);padding:1px 6px;border-radius:6px;font-size:.9em}
+
+/* atoms */
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-weight:800;font-size:12px;background:var(--panel2);color:var(--txt);white-space:nowrap}
+.pill.y{background:var(--yel);color:#1A1406}.pill.r{background:rgba(239,93,85,.16);color:#FF8F88}.pill.g{background:rgba(79,208,143,.15);color:var(--grn)}.pill.b{background:rgba(143,214,226,.13);color:var(--teal)}
+.btn{appearance:none;border:1px solid var(--line2);border-radius:12px;padding:10px 16px;font:800 14px Manrope,sans-serif;cursor:pointer;background:var(--panel2);color:var(--txt);transition:transform .08s,background .2s,border-color .2s;display:inline-flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;white-space:nowrap}
+.btn:hover{background:#21384A;border-color:#3A5870}.btn:active{transform:scale(.97)}
+.btn.y{background:linear-gradient(180deg,var(--yel2),var(--yel));border-color:transparent;color:#1A1406}.btn.y:hover{filter:brightness(1.06)}
+.btn.g{background:rgba(79,208,143,.14);border-color:rgba(79,208,143,.35);color:var(--grn)}
+.btn.ghost{background:transparent}
+.btn.sm{padding:7px 11px;font-size:12px;border-radius:10px}
+.btn[disabled]{opacity:.45;pointer-events:none}
+.card{background:linear-gradient(180deg,var(--panel),#101C26);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow);min-width:0}
+.lbl{font-size:11px;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.09em}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap)}
+
 /* nav */
-nav{position:sticky;top:0;z-index:5;background:rgba(11,20,27,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;gap:14px;height:60px}
-nav img{width:36px;height:36px;border-radius:50%}
-nav b{font-family:Unbounded;font-size:15px}
-nav ul{display:flex;gap:4px;list-style:none;margin:0 0 0 auto;padding:0;overflow-x:auto}
-nav li a{display:block;padding:8px 12px;border-radius:10px;color:var(--mut);text-decoration:none;font-weight:700;font-size:14px;white-space:nowrap}
-nav li a:hover{color:var(--txt);background:var(--panel)}
+nav{position:sticky;top:0;z-index:20;background:rgba(10,18,25,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:62px;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--txt)}
+.brand img{width:34px;height:34px;border-radius:50%;border:2px solid var(--yel)}
+.brand b{font-family:Unbounded;font-size:15px}
+nav ul{display:flex;gap:2px;list-style:none;margin:0;padding:4px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
+nav li a{display:block;padding:7px 13px;border-radius:10px;color:var(--mut);text-decoration:none;font-weight:700;font-size:13px;white-space:nowrap}
+nav li a:hover{color:var(--txt);background:var(--panel2)}
+.navr{justify-self:end;display:flex;gap:8px}
+.icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);color:var(--txt);text-decoration:none;font-size:15px;cursor:pointer}
+.icon:hover{border-color:var(--yel)}
+
 /* hero */
-.hero{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;padding:40px 0 10px}
-.hero img{width:150px;height:150px;border-radius:50%;border:4px solid var(--yel);box-shadow:0 0 0 8px rgba(242,178,51,.12)}
-.hero h1{font-size:clamp(30px,5vw,52px);line-height:1.05}
-.hero h1 span{color:var(--yel)}
-.links{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-.links a{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:var(--panel);border:1px solid var(--line);color:var(--txt);text-decoration:none;font-weight:800}
-.links a:hover{border-color:var(--yel)}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
-.kpi{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
-.kpi b{display:block;font:800 26px Unbounded}.kpi span{color:var(--mut);font-size:13px;font-weight:700}
+.hero{text-align:center;padding:56px 0 8px;display:flex;flex-direction:column;align-items:center}
+.ava{position:relative;width:148px;height:148px}
+.ava img{width:100%;height:100%;border-radius:50%;border:4px solid var(--yel);box-shadow:0 0 0 10px rgba(245,181,58,.10),0 20px 50px rgba(245,181,58,.18)}
+.ava i{position:absolute;right:6px;bottom:6px;width:26px;height:26px;border-radius:50%;background:var(--grn);border:4px solid var(--bg)}
+.hero h1{font-size:clamp(30px,5.4vw,56px);line-height:1.04;margin-top:20px}
+.hero h1 span{background:linear-gradient(90deg,var(--yel),var(--yel2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:600px;margin:14px auto 0;color:var(--mut)}
+.links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.kpis{margin-top:34px}
+.kpi{text-align:center;padding:18px 12px}
+.kpi b{display:block;font:800 clamp(22px,3vw,30px) Unbounded;line-height:1.1}
+.kpi span{color:var(--mut);font-size:13px;font-weight:700}
+
+/* sections */
+section{padding:64px 0 0}
+.sh{text-align:center;margin-bottom:28px}
+.sh .lbl{color:var(--yel)}
+.sh h2{font-size:clamp(24px,3.4vw,34px);margin-top:6px}
+.sh p{margin:8px auto 0;max-width:620px;color:var(--mut)}
+
 /* next */
-.next{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:stretch}
-.count{font:800 clamp(34px,6vw,58px) Unbounded;color:var(--yel);line-height:1}
-.copyrow{display:flex;gap:8px;align-items:flex-start;margin-top:10px}
-.copybox{flex:1;background:#0E1A22;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:14px;white-space:pre-wrap;max-height:130px;overflow:auto}
-.lbl{font-size:12px;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin-top:14px}
-/* schedule */
-.day{margin-bottom:18px}
-.day h3{font-size:15px;color:var(--mut);margin:0 0 10px;font-family:Manrope;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
-.slot{display:grid;grid-template-columns:110px 1fr auto;gap:14px;align-items:center;padding:14px 16px;border-radius:16px;background:var(--panel);border:1px solid var(--line);margin-bottom:8px;transition:opacity .2s}
-.slot.done{opacity:.45}.slot.now{border-color:var(--yel);box-shadow:0 0 0 3px rgba(242,178,51,.15)}
-.slot .t{font:800 22px Unbounded}.slot .t small{display:block;font:700 12px Manrope;color:var(--mut)}
-.slot .ti{font-weight:800}.slot .pl{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
-.chk{width:28px;height:28px;border-radius:9px;border:2px solid var(--line);background:transparent;cursor:pointer;display:grid;place-items:center;color:transparent;font-weight:900}
-.chk.on{background:var(--grn);border-color:var(--grn);color:#0B141B}
-details summary{cursor:pointer;color:var(--teal);font-weight:800;font-size:13px;margin-top:6px}
-.times{width:100%;border-collapse:collapse;font-size:15px}
-.times th,.times td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}
-.times th{color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.next{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
+.nx-top{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:center}
+.thumb{border-radius:14px;overflow:hidden;background:var(--panel2);border:1px solid var(--line2);flex:none}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb.v{width:96px;aspect-ratio:9/16}
+.thumb.h{width:170px;aspect-ratio:16/9}
+.count{font:800 clamp(38px,6vw,60px) Unbounded;color:var(--yel);line-height:1}
+.cnt{font-size:18px;font-weight:800;margin-top:8px}
+.acts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:20px}
+.copy{margin-top:16px}
+.copy:first-child{margin-top:0}
+.copy .h{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
+.copybox{background:#0B151D;border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:14px;white-space:pre-wrap;word-break:break-word;max-height:150px;overflow:auto}
+
+/* plan */
+.planbar{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:-8px 0 24px}
+.progress{width:min(420px,100%);height:10px;border-radius:99px;background:var(--panel2);overflow:hidden;margin:0 auto 22px}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--grn),#8FF0BE);border-radius:99px;transition:width .4s}
+.days{display:grid;gap:var(--gap)}
+.day{padding:18px}
+.day-h{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:2px 4px 14px}
+.day-h h3{font-size:16px;font-weight:700;text-transform:capitalize}
+.slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.slot{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;padding:14px;border-radius:18px;background:var(--bg2);border:1px solid var(--line);transition:opacity .25s,border-color .2s}
+.slot.wide{grid-column:1/-1}
+.slot.now{border-color:var(--yel);box-shadow:0 0 0 3px rgba(245,181,58,.14)}
+.slot.done{opacity:.55}
+.slot.done .thumb{filter:grayscale(.8)}
+.slot .thumb.v{width:84px}
+.slot .thumb.h{width:150px}
+.sl-b{display:flex;flex-direction:column;min-width:0}
+.sl-t{display:flex;align-items:baseline;gap:8px}
+.sl-t b{font:800 22px Unbounded}
+.sl-t small{color:var(--mut);font-weight:700;font-size:12px}
+.sl-n{font-weight:800;margin-top:4px;line-height:1.3}
+.sl-d{color:var(--mut);font-size:13px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.sl-p{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.sl-a{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:auto;padding-top:12px}
+.sl-a .btn{padding:8px 6px;font-size:12px}
+
+/* times */
+.tlist{display:grid;gap:10px}
+.trow{display:grid;grid-template-columns:minmax(0,1fr) 90px 90px;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:var(--bg2);border:1px solid var(--line)}
+.trow.h{background:transparent;border-color:transparent;padding-top:0;padding-bottom:0}
+.trow b{font:700 17px Unbounded;text-align:center}
+.trow .c{text-align:center;color:var(--mut);font-weight:700}
+.trow.star{border-color:rgba(245,181,58,.5)}
+.rules{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.rules li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start;color:var(--mut)}
+.rules li i{width:28px;height:28px;border-radius:9px;background:var(--panel2);display:grid;place-items:center;font-style:normal;color:var(--yel);font-weight:800;font-size:13px}
+.clocks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
+.clock{text-align:center;padding:12px;border-radius:14px;background:var(--bg2);border:1px solid var(--line)}
+.clock b{display:block;font:800 26px Unbounded}
+
 /* stats */
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.grid2>*,.next>*{min-width:0}
-.copybox{word-break:break-word}
-.times{table-layout:auto}.times td,.times th{word-break:break-word}
-.drop{border:2px dashed var(--line);border-radius:var(--r);padding:26px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s}
-.drop.over,.drop:hover{border-color:var(--yel);background:rgba(242,178,51,.05)}
-form .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-input,select,textarea{width:100%;background:#0E1A22;border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:10px 12px;font:600 14px Manrope}
-label{font-size:12px;font-weight:800;color:var(--mut);display:block;margin:8px 0 4px}
-.tbl{width:100%;border-collapse:collapse;font-size:14px}
-.tbl th,.tbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-.tbl th{color:var(--mut);font-size:12px}
+.drop{border:2px dashed var(--line2);border-radius:16px;padding:28px 16px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s}
+.drop.over,.drop:hover{border-color:var(--yel);background:rgba(245,181,58,.05)}
+.drop b{display:block;font-size:28px}
+.fr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+input,select,textarea{width:100%;background:#0B151D;border:1px solid var(--line2);color:var(--txt);border-radius:10px;padding:10px 12px;font:600 14px Manrope}
+input:focus,select:focus{outline:2px solid rgba(245,181,58,.5);border-color:transparent}
+label{font-size:12px;font-weight:800;color:var(--mut);display:block;margin:10px 0 4px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
+.tbl th,.tbl td{padding:8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;word-break:break-word}
+.tbl th{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
 .tbl td.n{text-align:right;font-variant-numeric:tabular-nums}
-.chart{margin-top:14px}
-.bar{display:grid;grid-template-columns:minmax(0,1fr) 140px;gap:10px;align-items:center;margin:6px 0;font-size:13px}
+.bar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:center;margin:6px 0;font-size:13px}
 .bar .bt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.bar .bb{height:14px;border-radius:7px;background:var(--panel2);position:relative;overflow:hidden}
-.bar .bb i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--yel),#ffd27a);border-radius:7px}
-.bar .bv{position:absolute;right:6px;top:-2px;font-size:11px;font-weight:800}
-.vids{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.vid{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.vid img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
-.vid div{padding:12px}.vid b{display:block;font-size:14px;line-height:1.3}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--grn);color:#0B141B;font-weight:800;padding:10px 18px;border-radius:12px;opacity:0;transition:.25s;z-index:10}
+.bar .bb{height:16px;border-radius:8px;background:var(--panel2);position:relative;overflow:hidden}
+.bar .bb i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--yel),var(--yel2));border-radius:8px}
+.bar .bv{position:absolute;right:6px;top:0;font-size:11px;font-weight:800;line-height:16px}
+.claude{margin-top:var(--gap);background:linear-gradient(135deg,#2A1E0E,#121F2A 60%);border-color:#5A4420;text-align:center}
+.claude .grid2{margin-top:18px;text-align:left}
+.claude .grid2>div{background:rgba(10,18,25,.45);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.claude .grid2>div .btn{margin-top:auto}
+.files{margin-top:18px;text-align:left}
+.frow{display:flex;gap:8px;align-items:center;margin:6px 0;min-width:0}
+.frow a{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* videos */
+.vid{padding:0;overflow:hidden}
+.vid img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.vid div{padding:14px}
+.vid b{display:block;font-size:14px;line-height:1.3;min-height:2.6em}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:50;display:none;place-items:center;padding:16px;background:rgba(4,8,12,.72);backdrop-filter:blur(6px)}
+.modal.on{display:grid}
+.modal .card{width:min(560px,100%);max-height:calc(100vh - 32px);overflow:auto;position:relative}
+.modal .x{position:absolute;right:14px;top:14px}
+.modal h3{font-size:19px;padding-right:44px}
+.steps{margin:14px 0 0;padding-left:20px;color:var(--mut)}
+.steps li{margin:6px 0}
+.steps b{color:var(--txt)}
+.warn{margin-top:14px;padding:12px 14px;border-radius:12px;background:rgba(239,93,85,.10);border:1px solid rgba(239,93,85,.3);font-size:13px;color:#FFB3AE}
+.mbtns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--grn);color:#08140E;font-weight:800;padding:11px 18px;border-radius:12px;opacity:0;transition:.25s;z-index:60;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
 .toast.on{opacity:1;transform:translateX(-50%)}
-.claude{background:linear-gradient(135deg,#2A1E10,#13212B);border-color:#5A4420}
-footer{padding:40px 0;color:var(--mut);font-size:13px;text-align:center}
-@media (max-width:860px){
-  .hero{grid-template-columns:1fr;text-align:center;justify-items:center}.links{justify-content:center}
-  .kpis{grid-template-columns:repeat(2,1fr)}.next,.grid2{grid-template-columns:1fr}.vids{grid-template-columns:repeat(2,1fr)}
-  .slot{grid-template-columns:78px 1fr auto;gap:10px;padding:12px}.slot .t{font-size:18px}
+.toast.err{background:var(--red);color:#fff}
+footer{padding:64px 0 40px;color:var(--mut);font-size:13px;text-align:center}
+
+@media (max-width:900px){
+  nav .wrap{grid-template-columns:1fr auto}
   nav ul{display:none}
+  .grid4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .next,.grid2,.slots{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:520px){
+  :root{--gap:14px}
+  .card{padding:18px}
+  .day{padding:12px}
+  .slot{gap:12px;padding:12px}
+  .slot .thumb.v{width:66px}.slot .thumb.h{width:100px}
+  .nx-top{grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center}
+  .thumb.h{width:100%}
+  .sl-a .btn span{display:none}
+  .trow{grid-template-columns:minmax(0,1fr) 64px 64px;padding:10px}
+  .trow b{font-size:14px}
+  .fr{grid-template-columns:minmax(0,1fr)}
 }
 </style>
 </head>
 <body>
 <nav><div class="wrap">
-  <img src="img/avatar.webp" alt=""><b>Михалыч</b>
+  <a class="brand" href="#top"><img src="img/avatar.webp" alt=""><b>Михалыч</b></a>
   <ul>
-    <li><a href="#next">Следующий выпуск</a></li>
+    <li><a href="#next">Следующий</a></li>
     <li><a href="#plan">Расписание</a></li>
     <li><a href="#times">Время</a></li>
     <li><a href="#stats">Статистика</a></li>
     <li><a href="#videos">Видео</a></li>
   </ul>
+  <div class="navr"><span class="icon" id="tokBtn" title="Доступ к GitHub">🔑</span></div>
 </div></nav>
 
-<div class="wrap">
+<div class="wrap" id="top">
   <header class="hero">
-    <img src="img/avatar.webp" alt="Михалыч">
-    <div>
-      <span class="pill y">ЧТО ДЕЛАТЬ, ЕСЛИ…</span>
-      <h1 style="margin-top:10px">Канал <span>Михалыча</span><br>пульт управления</h1>
-      <p class="mut" style="margin:10px 0 0;max-width:620px">Расписание выпусков, готовые названия и описания в один клик, статистика и сводка для Claude.</p>
-      <div class="links">
-        <a href="https://www.youtube.com/@mihalych_ansarovskiy" target="_blank" rel="noopener">▶ YouTube</a>
-        <a href="https://www.tiktok.com/@mihalych_ansarovskiy" target="_blank" rel="noopener">♪ TikTok</a>
-        <a href="#stats">📊 Загрузить статистику</a>
-      </div>
+    <div class="ava"><img src="img/avatar.webp" alt="Михалыч"><i title="канал активен"></i></div>
+    <h1>Пульт канала<br><span>Михалыча</span></h1>
+    <p>Расписание выпусков, видео для скачивания, тексты в один клик и статистика — всё в одном месте.</p>
+    <div class="links">
+      <a class="btn" href="https://www.youtube.com/@mihalych_ansarovskiy" target="_blank" rel="noopener">▶ YouTube</a>
+      <a class="btn" href="https://www.tiktok.com/@mihalych_ansarovskiy" target="_blank" rel="noopener">♪ TikTok</a>
+      <a class="btn y" href="#next">⚡ Что выкладывать</a>
     </div>
   </header>
-  <div class="kpis" id="kpis"></div>
+  <div class="grid4 kpis" id="kpis"></div>
 
   <section id="next">
-    <h2>Следующий выпуск</h2>
+    <div class="sh"><div class="lbl">Ближайший</div><h2>Следующий выпуск</h2></div>
     <div class="next" id="nextbox"></div>
   </section>
 
   <section id="plan">
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px">
-      <h2 style="margin:0">Расписание</h2>
-      <span class="pill" id="planinfo"></span>
-      <label style="margin:0 0 0 auto;display:flex;gap:8px;align-items:center;cursor:pointer"><input type="checkbox" id="hideDone" style="width:auto"> скрыть выложенные</label>
+    <div class="sh"><div class="lbl">Неделя</div><h2>Расписание</h2><p>Скачай ролик → выложи → нажми «Выложил». Файл сразу удалится с GitHub, чтобы не занимать место.</p></div>
+    <div class="progress"><i id="prog" style="width:0"></i></div>
+    <div class="planbar">
+      <span class="pill g" id="pDone"></span><span class="pill b" id="pCloud"></span><span class="pill" id="pTok"></span>
+      <label style="margin:0;display:flex;gap:8px;align-items:center;cursor:pointer;font-size:13px"><input type="checkbox" id="hideDone" style="width:auto"> скрыть выложенные</label>
     </div>
-    <div id="plan-list"></div>
+    <div class="days" id="plan-list"></div>
   </section>
 
   <section id="times">
-    <h2>Лучшее время для русской аудитории</h2>
+    <div class="sh"><div class="lbl">Аудитория из России</div><h2>Лучшее время выхода</h2></div>
     <div class="grid2">
       <div class="card">
-        <table class="times">
-          <tr><th>Слот</th><th>Прага</th><th>Москва</th><th>Зачем</th></tr>
-          <tr><td>Утро</td><td><b>6:30</b></td><td class="mut">8:30</td><td class="mut">дорога на работу/учёбу</td></tr>
-          <tr><td>Обед</td><td><b>11:00</b></td><td class="mut">13:00</td><td class="mut">перерыв</td></tr>
-          <tr><td>Вечер ⭐</td><td><b>17:00</b></td><td class="mut">19:00</td><td class="mut">главный пик</td></tr>
-          <tr><td>Выходные</td><td><b>10:00 · 14:00 · 18:00</b></td><td class="mut">12 · 16 · 20</td><td class="mut">все встают позже</td></tr>
-        </table>
+        <div class="tlist">
+          <div class="trow h"><span class="lbl">Слот</span><span class="lbl" style="text-align:center">Прага</span><span class="lbl" style="text-align:center">Москва</span></div>
+          <div class="trow"><span>🌅 Утро <span class="mut">· дорога</span></span><b>6:30</b><span class="c">8:30</span></div>
+          <div class="trow"><span>🍽 Обед <span class="mut">· перерыв</span></span><b>11:00</b><span class="c">13:00</span></div>
+          <div class="trow star"><span>⭐ Вечер <span class="mut">· пик</span></span><b>17:00</b><span class="c">19:00</span></div>
+          <div class="trow"><span>🛋 Выходные</span><b>10·14·18</b><span class="c">12·16·20</span></div>
+        </div>
       </div>
       <div class="card">
-        <p style="margin-top:0"><b>Правила:</b></p>
-        <ul class="mut" style="margin:0;padding-left:18px">
-          <li>2 шортса в день — 11:00 и 17:00, 3 — плюс 6:30 (по Праге).</li>
-          <li>Между роликами минимум 4–5 часов.</li>
-          <li>Самые сильные ролики — на вечер.</li>
-          <li>Планируй заранее: YouTube Studio → «Запланировать», TikTok Studio на компьютере.</li>
-          <li>Москва зимой на <b>2 часа</b> впереди Праги, летом — на 1.</li>
+        <ul class="rules">
+          <li><i>1</i><span>2 шортса в день — <b style="color:var(--txt)">11:00 и 17:00</b>, третий — в 6:30 (по Праге).</span></li>
+          <li><i>2</i><span>Между роликами минимум 4–5 часов.</span></li>
+          <li><i>3</i><span>Самые сильные ролики — на вечер.</span></li>
+          <li><i>4</i><span>Москва зимой на <b style="color:var(--txt)">2 часа</b> впереди Праги, летом — на 1.</span></li>
         </ul>
-        <p class="mut" style="margin-bottom:0;font-size:13px">Сейчас: <b id="clockPr"></b> в Праге · <b id="clockMs"></b> в Москве</p>
+        <div class="clocks"><div class="clock"><span class="lbl">Прага</span><b id="clockPr">--:--</b></div><div class="clock"><span class="lbl">Москва</span><b id="clockMs">--:--</b></div></div>
       </div>
     </div>
   </section>
 
   <section id="stats">
-    <h2>Статистика</h2>
+    <div class="sh"><div class="lbl">Цифры</div><h2>Статистика</h2></div>
     <div class="grid2">
       <div class="card">
-        <h3 style="font-size:17px">1. YouTube — выгрузка CSV</h3>
-        <p class="mut" style="font-size:14px">YouTube Studio → Аналитика → «Расширенный режим» → «Экспорт» → .csv. Из архива перетащи сюда файл <b>Таблица данных.csv</b>.</p>
-        <div class="drop" id="drop">Перетащи CSV сюда или <u>выбери файл</u><input type="file" id="file" accept=".csv,text/csv" hidden></div>
+        <h3 style="font-size:17px">YouTube — выгрузка CSV</h3>
+        <p class="mut" style="font-size:14px;margin:8px 0 14px">Studio → Аналитика → Расширенный режим → Экспорт → .csv. Перетащи <b>Таблица данных.csv</b>.</p>
+        <div class="drop" id="drop"><b>📥</b>Перетащи CSV сюда или <u>выбери файл</u><input type="file" id="file" accept=".csv,text/csv" hidden></div>
         <div id="ytout"></div>
       </div>
       <div class="card">
-        <h3 style="font-size:17px">2. Быстрая запись (TikTok / Shorts)</h3>
+        <h3 style="font-size:17px">Быстрая запись (TikTok / Shorts)</h3>
         <form id="mform">
-          <div class="row">
+          <div class="fr">
             <div><label>Дата</label><input type="date" name="date" required></div>
             <div><label>Платформа</label><select name="platform"><option>TikTok</option><option>YouTube Shorts</option><option>YouTube</option></select></div>
           </div>
           <label>Ролик</label><select name="video" id="mvideo"></select>
-          <div class="row">
+          <div class="fr">
             <div><label>Просмотры</label><input type="number" name="views" min="0" required></div>
             <div><label>Лайки</label><input type="number" name="likes" min="0"></div>
             <div><label>Комментарии</label><input type="number" name="comments" min="0"></div>
             <div><label>Новые подписчики</label><input type="number" name="subs" min="0"></div>
           </div>
-          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button class="btn y" type="submit">Сохранить</button><button class="btn" type="button" id="dlcsv">Скачать CSV</button><button class="btn" type="button" id="clearm">Очистить</button></div>
+          <div class="acts" style="grid-template-columns:repeat(3,minmax(0,1fr))"><button class="btn y" type="submit">Сохранить</button><button class="btn" type="button" id="dlcsv">CSV</button><button class="btn" type="button" id="clearm">Очистить</button></div>
         </form>
         <div id="mout"></div>
       </div>
     </div>
 
-    <div class="card claude" style="margin-top:20px">
-      <h3 style="font-size:18px">🤖 Отправить статистику Claude</h3>
-      <div class="grid2" style="margin-top:12px">
-        <div>
-          <p style="margin-top:0"><b>Быстро:</b> нажми кнопку — сводка всех данных скопируется. Вставь её в чат с Claude и спроси, что улучшить.</p>
-          <button class="btn y" id="copyClaude">📋 Скопировать сводку для Claude</button>
-        </div>
-        <div>
-          <p style="margin-top:0"><b>Надёжно:</b> загрузи CSV в папку <code>mihalych/stats</code> репозитория — Claude прочитает её сам, когда попросишь.</p>
-          <a class="btn" href="https://github.com/furtex-xq/furtex-xq.github.io/upload/main/mihalych/stats" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">⬆ Загрузить файл на GitHub</a>
-        </div>
+    <div class="card claude">
+      <h3 style="font-size:19px">🤖 Отправить статистику Claude</h3>
+      <div class="grid2">
+        <div><b>Быстро</b><span class="mut" style="font-size:14px">Сводка всех данных скопируется — вставь её в чат с Claude и спроси, что улучшить.</span><button class="btn y" id="copyClaude">📋 Скопировать сводку</button></div>
+        <div><b>Надёжно</b><span class="mut" style="font-size:14px">Загрузи CSV в папку <code>mihalych/stats</code> — Claude прочитает её сам.</span><a class="btn" href="https://github.com/furtex-xq/furtex-xq.github.io/upload/main/mihalych/stats" target="_blank" rel="noopener">⬆ Загрузить на GitHub</a></div>
       </div>
-      <div class="lbl">Файлы в репозитории</div>
-      <div id="repoFiles" class="mut" style="font-size:14px;margin-top:6px">загружаю…</div>
-      <p class="mut" style="font-size:12px;margin-bottom:0">Репозиторий публичный — загруженные файлы видны всем, у кого есть ссылка.</p>
+      <div class="files"><div class="lbl">Файлы в репозитории</div><div id="repoFiles" class="mut" style="font-size:14px;margin-top:6px">загружаю…</div></div>
     </div>
   </section>
 
   <section id="videos">
-    <h2>Видео канала</h2>
-    <div class="vids" id="vids"></div>
+    <div class="sh"><div class="lbl">Архив</div><h2>Видео канала</h2></div>
+    <div class="grid4" id="vids"></div>
   </section>
 </div>
-<footer>Михалыч · Ansaro Technologies · данные статистики хранятся только в твоём браузере, пока ты не загрузишь их на GitHub</footer>
+<footer>Михалыч · Ansaro Technologies<br>Отметки, статистика и ключ GitHub хранятся только в этом браузере</footer>
+
+<!-- texts modal -->
+<div class="modal" id="mTexts"><div class="card"><button class="btn sm ghost x" data-close>✕</button><h3 id="mtTitle"></h3><div id="mtBody" style="margin-top:16px"></div></div></div>
+
+<!-- confirm modal -->
+<div class="modal" id="mDone"><div class="card"><button class="btn sm ghost x" data-close>✕</button>
+  <h3>Отметить как выложенное?</h3>
+  <p class="mut" id="mdText" style="margin:10px 0 0"></p>
+  <div class="mbtns"><button class="btn" data-close>Отмена</button><button class="btn y" id="mdOk">✓ Выложил</button></div>
+</div></div>
+
+<!-- token modal -->
+<div class="modal" id="mTok"><div class="card"><button class="btn sm ghost x" data-close>✕</button>
+  <h3>🔑 Ключ GitHub для удаления видео</h3>
+  <p class="mut" style="margin:10px 0 0">Скачать видео можно без ключа. Чтобы кнопка «Выложил» удаляла файл с GitHub, нужен личный ключ — один раз на каждом устройстве.</p>
+  <ol class="steps">
+    <li>Открой <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com → Fine-grained token</a>.</li>
+    <li>Name: <b>mihalych</b>, Expiration: <b>90 дней</b> (или больше).</li>
+    <li>Repository access → <b>Only select repositories</b> → <b>furtex-xq.github.io</b>.</li>
+    <li>Permissions → Repository → <b>Contents: Read and write</b>. Больше ничего не нужно.</li>
+    <li>Generate token → скопируй и вставь сюда.</li>
+  </ol>
+  <label>Ключ</label><input type="password" id="tokIn" placeholder="github_pat_…" autocomplete="off">
+  <div class="warn">Ключ хранится только в этом браузере. Никому его не отправляй и не вставляй в чаты — с ним можно менять твой сайт.</div>
+  <div class="mbtns"><button class="btn" id="tokDel">Удалить ключ</button><button class="btn y" id="tokSave">Проверить и сохранить</button></div>
+</div></div>
+
 <div class="toast" id="toast"></div>
 
 <script>
 const TZP='Europe/Prague', TZM='Europe/Moscow';
-const REPO='furtex-xq/furtex-xq.github.io', STATS_DIR='mihalych/stats';
+const REPO='furtex-xq/furtex-xq.github.io', STATS_DIR='mihalych/stats', API='https://api.github.com/repos/'+REPO;
 const $=s=>document.querySelector(s);
-const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const fmtT=(d,tz)=>d.toLocaleTimeString('ru-RU',{timeZone:tz,hour:'2-digit',minute:'2-digit'});
 const fmtD=(d,tz)=>d.toLocaleDateString('ru-RU',{timeZone:tz,weekday:'long',day:'numeric',month:'long'});
 const num=n=>n==null||isNaN(n)?'—':Number(n).toLocaleString('ru-RU');
-function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1800)}
+const mb=b=>(b/1048576).toFixed(b>1e8?0:1)+' МБ';
+function toast(t,err){const e=$('#toast');e.textContent=t;e.classList.toggle('err',!!err);e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2400)}
 async function copy(t){try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()}toast('Скопировано ✓')}
-document.addEventListener('click',e=>{const b=e.target.closest('[data-copy]');if(b)copy(b.dataset.copy)});
+document.addEventListener('click',e=>{
+  const c=e.target.closest('[data-copy]');if(c){copy(c.dataset.copy);return}
+  if(e.target.closest('[data-close]')||e.target.classList.contains('modal')){document.querySelectorAll('.modal.on').forEach(m=>m.classList.remove('on'))}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal.on').forEach(m=>m.classList.remove('on'))});
+const openM=id=>$(id).classList.add('on');
 
 let DATA={items:[],videos:[]}, done=store.get('mh_done',{});
-function tick(){const n=new Date();$('#clockPr').textContent=fmtT(n,TZP);$('#clockMs').textContent=fmtT(n,TZM);renderNext()}
+let ASSETS=null; // null = неизвестно, {} = загружено
+const token=()=>store.get('mh_tok','');
+const hdr=()=>token()?{Authorization:'Bearer '+token(),Accept:'application/vnd.github+json'}:{Accept:'application/vnd.github+json'};
 
-function renderNext(){
-  const now=Date.now();
-  const nxt=DATA.items.filter(i=>!done[i.id]).sort((a,b)=>new Date(a.when)-new Date(b.when))[0];
-  const box=$('#nextbox'); if(!box)return;
-  if(!nxt){box.innerHTML='<div class="card">Всё выложено 🎉 Пора делать следующее видео с Михалычем.</div>';return}
-  const d=new Date(nxt.when), diff=d-now, late=diff<0;
-  const a=Math.abs(diff), h=Math.floor(a/36e5), m=Math.floor(a%36e5/6e4);
-  const cnt=late?`опоздание ${h} ч ${m} мин`:(h>=24?`через ${Math.floor(h/24)} д ${h%24} ч`:`через ${h} ч ${m} мин`);
-  const key=nxt.id+'|'+Math.floor(now/6e4);
-  if(box.dataset.k===key)return; box.dataset.k=key;
-  box.innerHTML=`<div class="card">
-      <span class="pill ${late?'r':'y'}">${esc(nxt.label)}</span> <span class="pill">${esc(nxt.platforms.join(' + '))}</span>
-      <div class="count" style="margin-top:14px">${fmtT(d,TZP)}</div>
-      <div class="mut" style="font-weight:700">${fmtD(d,TZP)} · по Праге (Москва ${fmtT(d,TZM)})</div>
-      <div style="font-size:20px;font-weight:800;margin-top:10px;color:${late?'var(--red)':'var(--txt)'}">${cnt}</div>
-      <div class="lbl">Файл</div><div style="font-weight:700">${esc(nxt.file)}</div>
-      <button class="btn y" style="margin-top:14px" onclick="markDone('${nxt.id}')">✓ Выложил</button>
-    </div>
-    <div class="card">
-      <div class="lbl" style="margin-top:0">YouTube — название</div>
-      <div class="copyrow"><div class="copybox">${esc(nxt.yt_title)}</div><button class="btn sm" data-copy="${esc(nxt.yt_title)}">Копировать</button></div>
-      <div class="lbl">YouTube — описание</div>
-      <div class="copyrow"><div class="copybox">${esc(nxt.yt_desc)}</div><button class="btn sm" data-copy="${esc(nxt.yt_desc)}">Копировать</button></div>
-      ${nxt.tt?`<div class="lbl">TikTok — подпись</div><div class="copyrow"><div class="copybox">${esc(nxt.tt)}</div><button class="btn sm" data-copy="${esc(nxt.tt)}">Копировать</button></div>`:''}
-    </div>`;
+/* ---------- release assets ---------- */
+async function loadAssets(){
+  try{
+    const r=await fetch(`${API}/releases/tags/${DATA.release||'mihalych-videos'}`,{headers:hdr(),cache:'no-store'});
+    if(r.status===404){ASSETS={}}else{if(!r.ok)throw r.status;const j=await r.json();ASSETS={};j.assets.forEach(a=>ASSETS[a.name]=a)}
+    // файл был загружен, а теперь его нет → значит выложен (отметили с другого устройства)
+    let ch=false;DATA.items.forEach(i=>{if(i.uploaded&&!ASSETS[i.file]&&!done[i.id]){done[i.id]=true;ch=true}});
+    if(ch)store.set('mh_done',done);
+  }catch(e){ASSETS=null}
+  renderAll();
 }
-function markDone(id){done[id]=!done[id];store.set('mh_done',done);$('#nextbox').dataset.k='';renderPlan();renderNext();renderKpis()}
-window.markDone=markDone;
+const isDone=i=>!!done[i.id];
+const asset=i=>ASSETS&&ASSETS[i.file];
+function status(i){
+  if(isDone(i))return `<span class="pill g">✓ выложено</span>`;
+  if(ASSETS===null)return `<span class="pill">…</span>`;
+  return asset(i)?`<span class="pill b">☁ на GitHub · ${mb(asset(i).size)}</span>`:`<span class="pill r">нет файла</span>`;
+}
+function dlBtn(i,cls='btn sm'){const a=asset(i);return a?`<a class="${cls}" href="${a.browser_download_url}" download="${esc(i.file)}">⬇<span> Скачать</span></a>`:`<button class="${cls}" disabled>⬇<span> Скачать</span></button>`}
+
+let pending=null;
+function askDone(id){
+  const i=DATA.items.find(x=>x.id===id);if(!i)return;
+  if(isDone(i)){done[id]=false;store.set('mh_done',done);renderAll();toast('Отметка снята');return}
+  pending=i;const a=asset(i);
+  $('#mdText').innerHTML=a?(token()?`Файл <b>${esc(i.file)}</b> (${mb(a.size)}) будет <b>удалён с GitHub</b>. Убедись, что ролик уже выложен.`:`Ключ GitHub не добавлен — отмечу только в этом браузере, а файл останется на GitHub. <a href="#" id="mdTok">Добавить ключ</a>`):`Отметить «${esc(i.label)}» как выложенное.`;
+  const t=$('#mdTok');if(t)t.onclick=e=>{e.preventDefault();$('#mDone').classList.remove('on');openTok()};
+  openM("#mDone");
+}
+$('#mdOk').onclick=async()=>{
+  const i=pending;if(!i)return;const a=asset(i),b=$('#mdOk');
+  if(a&&token()){
+    b.disabled=true;b.textContent='Удаляю…';
+    try{
+      const r=await fetch(`${API}/releases/assets/${a.id}`,{method:'DELETE',headers:hdr()});
+      if(r.status!==204&&r.status!==404)throw r.status;
+      delete ASSETS[i.file];toast('Выложено ✓ Файл удалён с GitHub');
+    }catch(e){b.disabled=false;b.textContent='✓ Выложил';toast(e===401?'Ключ недействителен — обнови его':e===403?'У ключа нет права Contents: write':'Не удалось удалить ('+e+')',true);return}
+    b.disabled=false;b.textContent='✓ Выложил';
+  }else toast('Отмечено ✓');
+  done[i.id]=true;store.set('mh_done',done);$('#mDone').classList.remove('on');renderAll();
+};
+window.askDone=askDone;
+
+function showTexts(id){const i=DATA.items.find(x=>x.id===id);if(!i)return;
+  $('#mtTitle').textContent=i.label+' · '+fmtT(new Date(i.when),TZP);
+  $('#mtBody').innerHTML=texts(i);openM("#mTexts")}
+window.showTexts=showTexts;
+const cp=(t,l)=>`<div class="copy"><div class="h"><span class="lbl">${l}</span><button class="btn sm" data-copy="${esc(t)}">Копировать</button></div><div class="copybox">${esc(t)}</div></div>`;
+const texts=i=>cp(i.yt_title,'YouTube — название')+cp(i.yt_desc,'YouTube — описание')+(i.tt?cp(i.tt,'TikTok — подпись'):'');
+const thumb=(i,cls='')=>`<div class="thumb ${i.kind==='short'?'v':'h'} ${cls}"><img src="${esc(i.thumb||'img/avatar.webp')}" alt="" loading="lazy"></div>`;
+
+/* ---------- token ---------- */
+function openTok(){$('#tokIn').value=token();openM("#mTok")}
+$('#tokBtn').onclick=openTok;
+$('#tokSave').onclick=async()=>{const v=$('#tokIn').value.trim();if(!v){toast('Вставь ключ',true);return}
+  try{const r=await fetch(API,{headers:{Authorization:'Bearer '+v}});if(!r.ok)throw r.status;const j=await r.json();
+    if(!(j.permissions&&j.permissions.push))throw 'perm';
+    store.set('mh_tok',v);$('#mTok').classList.remove('on');toast('Ключ сохранён ✓');loadAssets();
+  }catch(e){toast(e==='perm'?'У ключа нет права записи (Contents: Read and write)':'Ключ не подошёл ('+e+')',true)}};
+$('#tokDel').onclick=()=>{store.set('mh_tok','');$('#tokIn').value='';toast('Ключ удалён');renderAll()};
+
+/* ---------- render ---------- */
+function tick(){const n=new Date();$('#clockPr').textContent=fmtT(n,TZP);$('#clockMs').textContent=fmtT(n,TZM);renderNext()}
+const sorted=()=>[...DATA.items].sort((a,b)=>new Date(a.when)-new Date(b.when));
+
+function renderNext(force){
+  const now=Date.now(), nxt=sorted().find(i=>!isDone(i)), box=$('#nextbox');
+  if(!nxt){box.innerHTML='<div class="card" style="grid-column:1/-1;text-align:center;padding:40px"><h3>Всё выложено 🎉</h3><p class="mut">Пора делать следующее видео с Михалычем.</p></div>';box.dataset.k='';return}
+  const d=new Date(nxt.when), diff=d-now, late=diff<0, a=Math.abs(diff), h=Math.floor(a/36e5), m=Math.floor(a%36e5/6e4);
+  const cnt=late?`опоздание ${h} ч ${m} мин`:(h>=24?`через ${Math.floor(h/24)} д ${h%24} ч`:`через ${h} ч ${m} мин`);
+  const key=nxt.id+'|'+Math.floor(now/6e4)+'|'+(ASSETS?Object.keys(ASSETS).length:'n')+token().length;
+  if(!force&&box.dataset.k===key)return; box.dataset.k=key;
+  box.innerHTML=`<div class="card">
+      <div class="nx-top">${thumb(nxt)}
+        <div style="min-width:0"><div style="display:flex;gap:6px;flex-wrap:wrap" class="nx-p"><span class="pill ${late?'r':'y'}">${esc(nxt.label)}</span>${status(nxt)}</div>
+          <div class="count" style="margin-top:14px">${fmtT(d,TZP)}</div>
+          <div class="mut" style="font-weight:700;font-size:14px">${fmtD(d,TZP)} · МСК ${fmtT(d,TZM)}</div>
+          <div class="cnt" style="color:${late?'var(--red)':'var(--txt)'}">${cnt}</div></div>
+      </div>
+      <div class="sl-p" style="margin-top:16px">${nxt.platforms.map(p=>`<span class="pill">${esc(p)}</span>`).join('')}</div>
+      <div class="acts">${dlBtn(nxt,'btn')}<button class="btn y" onclick="askDone('${nxt.id}')">✓ Выложил</button></div>
+    </div>
+    <div class="card">${texts(nxt)}</div>`;
+}
 
 function renderPlan(){
-  const hide=$('#hideDone').checked, byDay={};
-  const items=[...DATA.items].sort((a,b)=>new Date(a.when)-new Date(b.when));
-  const nextId=(items.find(i=>!done[i.id])||{}).id;
-  items.forEach(i=>{if(hide&&done[i.id])return;const k=fmtD(new Date(i.when),TZP);(byDay[k]=byDay[k]||[]).push(i)});
-  const n=items.filter(i=>done[i.id]).length;
-  $('#planinfo').textContent=`выложено ${n} из ${items.length}`;
-  $('#plan-list').innerHTML=Object.entries(byDay).map(([day,list])=>`<div class="day"><h3>${day}</h3>${list.map(i=>{const d=new Date(i.when);return `
-    <div class="slot ${done[i.id]?'done':''} ${i.id===nextId?'now':''}">
-      <div class="t">${fmtT(d,TZP)}<small>МСК ${fmtT(d,TZM)}</small></div>
-      <div><div class="ti">${esc(i.label)} · ${esc(i.series)}</div><div class="mut" style="font-size:14px">${esc(i.yt_title)}</div>
-        <div class="pl">${i.platforms.map(p=>`<span class="pill">${esc(p)}</span>`).join('')}</div>
-        <details><summary>Тексты для копирования</summary>
-          <div class="copyrow"><div class="copybox">${esc(i.yt_title)}</div><button class="btn sm" data-copy="${esc(i.yt_title)}">YT название</button></div>
-          <div class="copyrow"><div class="copybox">${esc(i.yt_desc)}</div><button class="btn sm" data-copy="${esc(i.yt_desc)}">YT описание</button></div>
-          ${i.tt?`<div class="copyrow"><div class="copybox">${esc(i.tt)}</div><button class="btn sm" data-copy="${esc(i.tt)}">TikTok</button></div>`:''}
-        </details></div>
-      <button class="chk ${done[i.id]?'on':''}" title="Отметить как выложенное" onclick="markDone('${i.id}')">✓</button>
-    </div>`}).join('')}</div>`).join('')||'<p class="mut">Нет запланированных выпусков.</p>';
+  const hide=$('#hideDone').checked, items=sorted(), nextId=(items.find(i=>!isDone(i))||{}).id, byDay={};
+  items.forEach(i=>{if(hide&&isDone(i))return;const k=fmtD(new Date(i.when),TZP);(byDay[k]=byDay[k]||[]).push(i)});
+  const n=items.filter(isDone).length, cloud=ASSETS?items.filter(i=>!isDone(i)&&asset(i)).length:null;
+  $('#prog').style.width=(items.length?100*n/items.length:0)+'%';
+  $('#pDone').textContent=`✓ выложено ${n} из ${items.length}`;
+  $('#pCloud').textContent=cloud==null?'☁ GitHub: нет связи':`☁ на GitHub: ${cloud}`;
+  $('#pTok').innerHTML=token()?'🔑 ключ есть':'<a href="#" onclick="openTok();return false" style="color:inherit">🔑 добавить ключ</a>';
+  $('#plan-list').innerHTML=Object.entries(byDay).map(([day,list])=>{
+    const dn=list.filter(isDone).length;
+    return `<div class="card day"><div class="day-h"><h3>${day}</h3><span class="pill ${dn===list.length?'g':''}">${dn}/${list.length}</span></div>
+    <div class="slots">${list.map(i=>{const d=new Date(i.when);return `
+      <div class="slot ${isDone(i)?'done':''} ${i.id===nextId?'now':''} ${list.length===1?'wide':''}">
+        ${thumb(i)}
+        <div class="sl-b">
+          <div class="sl-t"><b>${fmtT(d,TZP)}</b><small>МСК ${fmtT(d,TZM)}</small></div>
+          <div class="sl-n">${esc(i.label)}</div>
+          <div class="sl-d">${esc(i.yt_title)}</div>
+          <div class="sl-p">${status(i)}</div>
+          <div class="sl-a">${dlBtn(i)}<button class="btn sm" onclick="showTexts('${i.id}')">📝<span> Тексты</span></button><button class="btn sm ${isDone(i)?'g':'y'}" onclick="askDone('${i.id}')">✓<span> ${isDone(i)?'Готово':'Выложил'}</span></button></div>
+        </div>
+      </div>`}).join('')}</div></div>`}).join('')||'<div class="card" style="text-align:center">Нет запланированных выпусков.</div>';
 }
+function renderAll(){renderPlan();renderNext(true);renderKpis()}
+window.openTok=openTok;
 
 /* ---------- stats ---------- */
 function parseCSV(t){const rows=[];let r=[],f='',q=false;t=t.replace(/^﻿/,'');
@@ -311,17 +497,17 @@ function ytParse(text,name){
   return{name,date:new Date().toISOString().slice(0,10),rows:out,total};
 }
 function bars(list,key,label){const max=Math.max(1,...list.map(x=>x[key]||0));
-  return `<div class="chart"><div class="lbl">${label}</div>${list.slice(0,12).map(x=>`<div class="bar"><div class="bt" title="${esc(x.title)}">${esc(x.title||'—')}</div><div class="bb"><i style="width:${(100*(x[key]||0)/max).toFixed(1)}%"></i><span class="bv">${num(x[key])}</span></div></div>`).join('')}</div>`}
+  return `<div style="margin-top:16px"><div class="lbl">${label}</div>${list.slice(0,12).map(x=>`<div class="bar"><div class="bt" title="${esc(x.title)}">${esc(x.title||'—')}</div><div class="bb"><i style="width:${(100*(x[key]||0)/max).toFixed(1)}%"></i><span class="bv">${num(x[key])}</span></div></div>`).join('')}</div>`}
 function renderYT(){const ups=store.get('mh_yt',[]);const u=ups[ups.length-1];
   if(!u){$('#ytout').innerHTML='';return}
   const rows=[...u.rows].sort((a,b)=>(b.views||0)-(a.views||0));
-  $('#ytout').innerHTML=`<div class="lbl">Последняя выгрузка: ${esc(u.name)} · ${esc(u.date)}</div>
-   ${u.total?`<div class="kpis" style="grid-template-columns:repeat(3,1fr);margin-top:8px"><div class="kpi"><b>${num(u.total.views)}</b><span>просмотры</span></div><div class="kpi"><b>${num(u.total.subs)}</b><span>подписчики</span></div><div class="kpi"><b>${u.total.ctr!=null?u.total.ctr+'%':'—'}</b><span>CTR значков</span></div></div>`:''}
+  $('#ytout').innerHTML=`<div class="lbl" style="margin-top:16px">Последняя выгрузка: ${esc(u.name)} · ${esc(u.date)}</div>
+   ${u.total?`<div class="grid2" style="grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px">${[[num(u.total.views),'просмотры'],[num(u.total.subs),'подписчики'],[u.total.ctr!=null?u.total.ctr+'%':'—','CTR']].map(([b,s])=>`<div class="clock"><b style="font-size:18px">${b}</b><span class="lbl">${s}</span></div>`).join('')}</div>`:''}
    ${bars(rows,'views','Просмотры по видео')}
-   <table class="tbl" style="margin-top:12px"><tr><th>Видео</th><th>Просм.</th><th>CTR</th><th>Ср. время</th><th>Подп.</th></tr>
-   ${rows.slice(0,15).map(r=>`<tr><td>${esc(r.title)}</td><td class="n">${num(r.views)}</td><td class="n">${r.ctr!=null?r.ctr+'%':'—'}</td><td class="n">${esc(r.avd||'—')}</td><td class="n">${num(r.subs)}</td></tr>`).join('')}</table>`;
+   <table class="tbl"><tr><th>Видео</th><th>Просм.</th><th>CTR</th><th>Подп.</th></tr>
+   ${rows.slice(0,15).map(r=>`<tr><td>${esc(r.title)}</td><td class="n">${num(r.views)}</td><td class="n">${r.ctr!=null?r.ctr+'%':'—'}</td><td class="n">${num(r.subs)}</td></tr>`).join('')}</table>`;
 }
-function handleFile(f){const rd=new FileReader();rd.onload=()=>{try{const p=ytParse(rd.result,f.name);const ups=store.get('mh_yt',[]);ups.push(p);store.set('mh_yt',ups.slice(-10));renderYT();renderKpis();toast('Выгрузка загружена ✓')}catch(e){toast('Ошибка: '+e.message)}};rd.readAsText(f)}
+function handleFile(f){const rd=new FileReader();rd.onload=()=>{try{const p=ytParse(rd.result,f.name);const ups=store.get('mh_yt',[]);ups.push(p);store.set('mh_yt',ups.slice(-10));renderYT();renderKpis();toast('Выгрузка загружена ✓')}catch(e){toast('Ошибка: '+e.message,true)}};rd.readAsText(f)}
 const drop=$('#drop');drop.onclick=()=>$('#file').click();$('#file').onchange=e=>e.target.files[0]&&handleFile(e.target.files[0]);
 ['dragover','dragenter'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
 ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
@@ -331,41 +517,41 @@ function renderManual(){const m=store.get('mh_manual',[]);
   if(!m.length){$('#mout').innerHTML='';return}
   const agg={};m.forEach(x=>{const k=x.platform+' · '+x.video;agg[k]=Math.max(agg[k]||0,+x.views||0)});
   const list=Object.entries(agg).map(([title,views])=>({title,views})).sort((a,b)=>b.views-a.views);
-  $('#mout').innerHTML=bars(list,'views','Просмотры (последние значения)')+`<table class="tbl" style="margin-top:12px"><tr><th>Дата</th><th>Ролик</th><th>Просм.</th><th>❤</th><th>💬</th><th>+подп.</th></tr>${m.slice(-12).reverse().map(x=>`<tr><td>${esc(x.date)}</td><td>${esc(x.platform)} · ${esc(x.video)}</td><td class="n">${num(x.views)}</td><td class="n">${num(x.likes)}</td><td class="n">${num(x.comments)}</td><td class="n">${num(x.subs)}</td></tr>`).join('')}</table>`}
+  $('#mout').innerHTML=bars(list,'views','Просмотры (последние значения)')+`<table class="tbl"><tr><th>Дата</th><th>Ролик</th><th>Просм.</th><th>❤</th><th>+подп.</th></tr>${m.slice(-12).reverse().map(x=>`<tr><td>${esc(x.date)}</td><td>${esc(x.platform)} · ${esc(x.video)}</td><td class="n">${num(x.views)}</td><td class="n">${num(x.likes)}</td><td class="n">${num(x.subs)}</td></tr>`).join('')}</table>`}
 $('#mform').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target),o=Object.fromEntries(f.entries());['views','likes','comments','subs'].forEach(k=>o[k]=o[k]===''?null:+o[k]);
-  const m=store.get('mh_manual',[]);m.push(o);store.set('mh_manual',m);e.target.views.value='';e.target.likes.value='';e.target.comments.value='';e.target.subs.value='';renderManual();renderKpis();toast('Сохранено ✓')};
+  const m=store.get('mh_manual',[]);m.push(o);store.set('mh_manual',m);['views','likes','comments','subs'].forEach(k=>e.target[k].value='');renderManual();renderKpis();toast('Сохранено ✓')};
 $('#clearm').onclick=()=>{if(confirm('Удалить все ручные записи из этого браузера?')){store.set('mh_manual',[]);renderManual();renderKpis()}};
 function manualCSV(){const m=store.get('mh_manual',[]);return 'date,platform,video,views,likes,comments,subs\n'+m.map(x=>[x.date,x.platform,'"'+String(x.video).replace(/"/g,'""')+'"',x.views??'',x.likes??'',x.comments??'',x.subs??''].join(',')).join('\n')}
 $('#dlcsv').onclick=()=>{const b=new Blob(['﻿'+manualCSV()],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=new Date().toISOString().slice(0,10)+'_manual.csv';a.click()};
 
 function summary(){const m=store.get('mh_manual',[]),ups=store.get('mh_yt',[]),u=ups[ups.length-1];
   let s=`Статистика канала «Михалыч» на ${new Date().toLocaleDateString('ru-RU')}\n`;
-  s+=`Выложено по плану: ${DATA.items.filter(i=>done[i.id]).length} из ${DATA.items.length}\n`;
+  s+=`Выложено по плану: ${DATA.items.filter(isDone).length} из ${DATA.items.length}\n`;
   if(u){s+=`\nYouTube (${u.name}, ${u.date}):\n`;if(u.total)s+=`ИТОГО: просмотры ${u.total.views??'—'}, подписчики ${u.total.subs??'—'}, показы ${u.total.impr??'—'}, CTR ${u.total.ctr??'—'}%\n`;
     [...u.rows].sort((a,b)=>(b.views||0)-(a.views||0)).slice(0,25).forEach(r=>s+=`- ${r.title} | просм ${r.views??'—'} | CTR ${r.ctr??'—'}% | ср.время ${r.avd||'—'} | подп ${r.subs??'—'} | часы ${r.hours??'—'}\n`)}
   if(m.length){s+=`\nРучные записи:\n`;m.forEach(x=>s+=`- ${x.date} | ${x.platform} | ${x.video} | просм ${x.views??'—'} | лайки ${x.likes??'—'} | комм ${x.comments??'—'} | +подп ${x.subs??'—'}\n`)}
   if(!u&&!m.length)s+='\n(данных пока нет)\n';
-  s+=`\nЧто улучшить: время выхода, названия, обложки, темы следующих видео?`;return s}
+  return s+`\nЧто улучшить: время выхода, названия, обложки, темы следующих видео?`}
 $('#copyClaude').onclick=()=>copy(summary());
 
-async function repoFiles(){try{const r=await fetch(`https://api.github.com/repos/${REPO}/contents/${STATS_DIR}`);if(!r.ok)throw 0;const j=await r.json();
+async function repoFiles(){try{const r=await fetch(`${API}/contents/${STATS_DIR}`);if(!r.ok)throw 0;const j=await r.json();
   const f=j.filter(x=>/\.(csv|json|txt)$/i.test(x.name));
-  $('#repoFiles').innerHTML=f.length?f.map(x=>`<div style="display:flex;gap:8px;align-items:center;margin:4px 0">📄 <a href="${x.html_url}" target="_blank" rel="noopener">${esc(x.name)}</a> <button class="btn sm" data-url="${x.download_url}" data-name="${esc(x.name)}">Показать</button></div>`).join(''):'пока пусто — загрузи первый CSV';
-  $('#repoFiles').querySelectorAll('[data-url]').forEach(b=>b.onclick=async()=>{try{const t=await (await fetch(b.dataset.url)).text();const p=ytParse(t,b.dataset.name);const ups=store.get('mh_yt',[]);ups.push(p);store.set('mh_yt',ups.slice(-10));renderYT();renderKpis();location.hash='#stats';toast('Загружено из репозитория ✓')}catch(e){toast('Не удалось разобрать файл')}})
+  $('#repoFiles').innerHTML=f.length?f.map(x=>`<div class="frow">📄 <a href="${x.html_url}" target="_blank" rel="noopener">${esc(x.name)}</a><button class="btn sm" data-url="${x.download_url}" data-name="${esc(x.name)}">Показать</button></div>`).join(''):'пока пусто — загрузи первый CSV';
+  $('#repoFiles').querySelectorAll('[data-url]').forEach(b=>b.onclick=async()=>{try{const t=await (await fetch(b.dataset.url)).text();const p=ytParse(t,b.dataset.name);const ups=store.get('mh_yt',[]);ups.push(p);store.set('mh_yt',ups.slice(-10));renderYT();renderKpis();location.hash='#stats';toast('Загружено из репозитория ✓')}catch(e){toast('Не удалось разобрать файл',true)}})
 }catch(e){$('#repoFiles').textContent='не удалось получить список (лимит GitHub API) — попробуй позже'}}
 
 function renderKpis(){const ups=store.get('mh_yt',[]),u=ups[ups.length-1],m=store.get('mh_manual',[]);
-  const ytViews=u&&u.total?u.total.views:null, ytSubs=u&&u.total?u.total.subs:null;
-  const lastByVid={};m.forEach(x=>{const k=x.platform+x.video;lastByVid[k]=x});const ttViews=Object.values(lastByVid).filter(x=>x.platform==='TikTok').reduce((s,x)=>s+(+x.views||0),0);
-  const doneN=DATA.items.filter(i=>done[i.id]).length;
-  $('#kpis').innerHTML=[[num(DATA.videos.length),'видео на канале'],[`${doneN}/${DATA.items.length}`,'выложено по плану'],[num(ytViews),'просмотры YouTube'],[ttViews?num(ttViews):(ytSubs!=null?num(ytSubs):'—'),ttViews?'просмотры TikTok':'подписчики YouTube']].map(([b,s])=>`<div class="kpi"><b>${b}</b><span>${s}</span></div>`).join('')}
+  const ytViews=u&&u.total?u.total.views:null;
+  const last={};m.forEach(x=>last[x.platform+x.video]=x);const tt=Object.values(last).filter(x=>x.platform==='TikTok').reduce((s,x)=>s+(+x.views||0),0);
+  const doneN=DATA.items.filter(isDone).length, cloud=ASSETS?DATA.items.filter(i=>!isDone(i)&&asset(i)).length:'—';
+  $('#kpis').innerHTML=[[num(DATA.videos.length),'видео на канале'],[`${doneN}/${DATA.items.length}`,'выложено по плану'],[cloud,'ждут на GitHub'],[tt?num(tt):num(ytViews),tt?'просмотры TikTok':'просмотры YouTube']].map(([b,s])=>`<div class="card kpi"><b>${b}</b><span>${s}</span></div>`).join('')}
 
-function renderVideos(){$('#vids').innerHTML=DATA.videos.map(v=>`<div class="vid"><img src="${v.thumb}" alt="" loading="lazy"><div><b>${esc(v.title)}</b><span class="mut" style="font-size:12px">${esc(v.kind)} · ${esc(v.len)} · ${new Date(v.date).toLocaleDateString('ru-RU')}</span></div></div>`).join('');
+function renderVideos(){$('#vids').innerHTML=DATA.videos.map(v=>`<div class="card vid"><img src="${v.thumb}" alt="" loading="lazy"><div><b>${esc(v.title)}</b><span class="mut" style="font-size:12px">${esc(v.kind)} · ${esc(v.len)} · ${new Date(v.date).toLocaleDateString('ru-RU')}</span></div></div>`).join('');
   const opts=[...DATA.videos.map(v=>v.title),...DATA.items.filter(i=>i.kind==='short').map(i=>i.label+' · '+i.series)];$('#mvideo').innerHTML=opts.map(o=>`<option>${esc(o)}</option>`).join('')}
 
 $('#hideDone').onchange=renderPlan;
 document.querySelector('#mform [name=date]').value=new Date().toISOString().slice(0,10);
-fetch('schedule.json?v='+Date.now()).then(r=>r.json()).then(j=>{DATA=j;renderPlan();renderVideos();renderKpis();tick();setInterval(tick,30000)}).catch(()=>{$('#plan-list').innerHTML='<p class="mut">Не удалось загрузить schedule.json</p>'});
+fetch('schedule.json?v='+Date.now()).then(r=>r.json()).then(j=>{DATA=j;renderVideos();renderAll();tick();setInterval(tick,30000);loadAssets();setInterval(loadAssets,120000)}).catch(()=>{$('#plan-list').innerHTML='<div class="card">Не удалось загрузить schedule.json</div>'});
 renderYT();renderManual();repoFiles();
 </script>
 </body>
