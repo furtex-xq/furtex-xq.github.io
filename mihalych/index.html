@@ -64,7 +64,7 @@ nav li a:hover{color:var(--txt);background:var(--panel2)}
 .ava img{width:100%;height:100%;border-radius:50%;border:4px solid var(--yel);box-shadow:0 0 0 10px rgba(245,181,58,.10),0 20px 50px rgba(245,181,58,.18)}
 .ava i{position:absolute;right:6px;bottom:6px;width:26px;height:26px;border-radius:50%;background:var(--grn);border:4px solid var(--bg)}
 .hero h1{font-size:clamp(30px,5.4vw,56px);line-height:1.04;margin-top:20px}
-.hero h1 span{background:linear-gradient(90deg,var(--yel),var(--yel2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 .g{background:linear-gradient(90deg,var(--yel),var(--yel2));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p{max-width:600px;margin:14px auto 0;color:var(--mut)}
 .links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
 .kpis{margin-top:34px}
@@ -201,9 +201,79 @@ footer{padding:64px 0 40px;color:var(--mut);font-size:13px;text-align:center}
   .trow b{font-size:14px}
   .fr{grid-template-columns:minmax(0,1fr)}
 }
+
+.posted{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.pv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center;padding:10px;border-radius:16px;background:var(--bg2);border:1px solid var(--line);cursor:pointer;transition:transform .3s,border-color .3s}
+.pv:hover{transform:translateY(-3px);border-color:rgba(79,208,143,.45)}
+.pv .thumb{position:relative}.pv .thumb.v{width:46px}.pv .thumb.h{width:82px}
+.pv .thumb:after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;background:rgba(10,18,25,.55);color:var(--grn);font-weight:900;font-size:20px}
+.pv b{display:block;font-size:13px;line-height:1.25}.pv span{font-size:12px;color:var(--mut)}
+@media (max-width:900px){.posted{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.pv{grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center}}
+/* ---------- animations ---------- */
+#snow{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1;opacity:.55}
+.rv{opacity:0;transform:translateY(26px) scale(.985);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.slot.rv.in.done{opacity:.55}
+.ttl .w{display:inline-block;opacity:0;transform:translateY(40px) rotate(4deg);animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards}
+.ttl .w:nth-child(2){animation-delay:.12s}.ttl .w:nth-child(4){animation-delay:.26s}
+@keyframes rise{to{opacity:1;transform:none}}
+.hero p,.links{opacity:0;animation:fadeUp .8s .45s cubic-bezier(.2,.8,.2,1) forwards}
+.links{animation-delay:.6s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.ava{animation:pop .9s cubic-bezier(.3,1.6,.5,1) both,bob 5s 1s ease-in-out infinite}
+.ava:before{content:"";position:absolute;inset:-12px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 60%,var(--yel) 75%,transparent 90%);animation:spin 4s linear infinite;-webkit-mask:radial-gradient(circle,transparent 62%,#000 63%);mask:radial-gradient(circle,transparent 62%,#000 63%)}
+.ava i{animation:ping 2s ease-out infinite}
+@keyframes pop{from{opacity:0;transform:scale(.4) rotate(-12deg)}to{opacity:1;transform:none}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(79,208,143,.7)}100%{box-shadow:0 0 0 14px rgba(79,208,143,0)}}
+.btn{position:relative;overflow:hidden}
+.btn.y:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:shine 3.2s ease-in-out infinite}
+@keyframes shine{0%,60%{left:-60%}100%{left:130%}}
+.btn:hover{transform:translateY(-2px)}
+.card{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+.kpi:hover,.vid:hover,.day:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.4);border-color:var(--line2)}
+.slot{transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .3s,opacity .5s,box-shadow .3s}
+.slot:hover{transform:translateY(-3px);border-color:var(--line2)}
+.slot .thumb img{transition:transform .5s}
+.slot:hover .thumb img,.vid:hover img{transform:scale(1.07)}
+.vid img{transition:transform .6s}
+.slot.now{animation:glowb 2.4s ease-in-out infinite}
+@keyframes glowb{0%,100%{box-shadow:0 0 0 3px rgba(245,181,58,.12)}50%{box-shadow:0 0 0 6px rgba(245,181,58,.28),0 0 30px rgba(245,181,58,.15)}}
+.slot.pop{animation:stamp .7s cubic-bezier(.3,1.7,.5,1)}
+@keyframes stamp{0%{transform:scale(1)}30%{transform:scale(.94)}100%{transform:scale(1)}}
+.slot.done .sl-p .pill.g{animation:checkIn .6s cubic-bezier(.3,1.7,.5,1)}
+@keyframes checkIn{from{transform:scale(0)}to{transform:scale(1)}}
+.count span{display:inline-block;animation:digit .6s cubic-bezier(.3,1.5,.5,1) both;animation-delay:calc(var(--k)*.07s)}
+@keyframes digit{from{opacity:0;transform:translateY(-24px) rotateX(80deg)}to{opacity:1;transform:none}}
+.glow{position:relative;isolation:isolate}
+.glow:before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:conic-gradient(from var(--a),transparent 0 70%,var(--yel) 85%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:rot 5s linear infinite;z-index:-1}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes rot{to{--a:360deg}}
+.progress i{position:relative;overflow:hidden;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.progress i:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);animation:bar 1.8s linear infinite}
+@keyframes bar{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+.modal.on{animation:fadeIn .25s ease}
+.modal.on .card{animation:modalIn .4s cubic-bezier(.3,1.4,.5,1)}
+@keyframes fadeIn{from{opacity:0}}
+@keyframes modalIn{from{opacity:0;transform:translateY(30px) scale(.94)}}
+.toast.on{animation:toastIn .45s cubic-bezier(.3,1.6,.5,1)}
+@keyframes toastIn{from{transform:translateX(-50%) translateY(30px) scale(.8)}}
+nav li a{position:relative;transition:color .2s,background .2s}
+nav li a.act{color:var(--txt);background:var(--panel2)}
+nav li a.act:after{content:"";position:absolute;left:30%;right:30%;bottom:2px;height:2px;border-radius:2px;background:var(--yel)}
+.icon{transition:transform .3s}.icon:hover{transform:rotate(-15deg) scale(1.1)}
+.sh h2{background:linear-gradient(90deg,var(--txt) 40%,var(--yel2) 50%,var(--txt) 60%);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sweep 6s linear infinite}
+@keyframes sweep{from{background-position:100% 0}to{background-position:-200% 0}}
+.drop{transition:border-color .2s,background .2s,transform .2s}.drop.over{transform:scale(1.02)}
+.drop b{animation:bob 2.4s ease-in-out infinite}
+.cf{position:fixed;width:9px;height:14px;border-radius:2px;pointer-events:none;z-index:70;will-change:transform,opacity}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv,.ttl .w,.hero p,.links{opacity:1!important;transform:none!important}#snow{display:none}}
 </style>
 </head>
 <body>
+<canvas id="snow" aria-hidden="true"></canvas>
 <nav><div class="wrap">
   <a class="brand" href="#top"><img src="img/avatar.webp" alt=""><b>Михалыч</b></a>
   <ul>
@@ -219,7 +289,7 @@ footer{padding:64px 0 40px;color:var(--mut);font-size:13px;text-align:center}
 <div class="wrap" id="top">
   <header class="hero">
     <div class="ava"><img src="img/avatar.webp" alt="Михалыч"><i title="канал активен"></i></div>
-    <h1>Пульт канала<br><span>Михалыча</span></h1>
+    <h1 class="ttl"><span class="w">Пульт</span> <span class="w">канала</span><br><span class="w g">Михалыча</span></h1>
     <p>Расписание выпусков, видео для скачивания, тексты в один клик и статистика — всё в одном месте.</p>
     <div class="links">
       <a class="btn" href="https://www.youtube.com/@mihalych_ansarovskiy" target="_blank" rel="noopener">▶ YouTube</a>
@@ -230,24 +300,25 @@ footer{padding:64px 0 40px;color:var(--mut);font-size:13px;text-align:center}
   <div class="grid4 kpis" id="kpis"></div>
 
   <section id="next">
-    <div class="sh"><div class="lbl">Ближайший</div><h2>Следующий выпуск</h2></div>
+    <div class="sh rv"><div class="lbl">Ближайший</div><h2>Следующий выпуск</h2></div>
     <div class="next" id="nextbox"></div>
   </section>
 
   <section id="plan">
-    <div class="sh"><div class="lbl">Неделя</div><h2>Расписание</h2><p>Скачай ролик → выложи → нажми «Выложил». Файл сразу удалится с GitHub, чтобы не занимать место.</p></div>
+    <div class="sh rv"><div class="lbl">Неделя</div><h2>Расписание</h2><p>Скачай ролик → выложи → нажми «Выложил». Файл сразу удалится с GitHub, чтобы не занимать место.</p></div>
     <div class="progress"><i id="prog" style="width:0"></i></div>
     <div class="planbar">
       <span class="pill g" id="pDone"></span><span class="pill b" id="pCloud"></span><span class="pill" id="pTok"></span>
-      <label style="margin:0;display:flex;gap:8px;align-items:center;cursor:pointer;font-size:13px"><input type="checkbox" id="hideDone" style="width:auto"> скрыть выложенные</label>
+      <label style="margin:0;display:flex;gap:8px;align-items:center;cursor:pointer;font-size:13px"><input type="checkbox" id="hideDone" style="width:auto" checked> скрыть выложенные</label>
     </div>
     <div class="days" id="plan-list"></div>
+    <div id="postedWrap" style="margin-top:40px"><div class="sh rv" style="margin-bottom:18px"><div class="lbl">Готово</div><h2 style="font-size:clamp(20px,2.6vw,26px)">Уже выложено</h2></div><div class="posted" id="posted"></div></div>
   </section>
 
   <section id="times">
-    <div class="sh"><div class="lbl">Аудитория из России</div><h2>Лучшее время выхода</h2></div>
+    <div class="sh rv"><div class="lbl">Аудитория из России</div><h2>Лучшее время выхода</h2></div>
     <div class="grid2">
-      <div class="card">
+      <div class="card rv">
         <div class="tlist">
           <div class="trow h"><span class="lbl">Слот</span><span class="lbl" style="text-align:center">Прага</span><span class="lbl" style="text-align:center">Москва</span></div>
           <div class="trow"><span>🌅 Утро <span class="mut">· дорога</span></span><b>6:30</b><span class="c">8:30</span></div>
@@ -269,9 +340,9 @@ footer{padding:64px 0 40px;color:var(--mut);font-size:13px;text-align:center}
   </section>
 
   <section id="stats">
-    <div class="sh"><div class="lbl">Цифры</div><h2>Статистика</h2></div>
+    <div class="sh rv"><div class="lbl">Цифры</div><h2>Статистика</h2></div>
     <div class="grid2">
-      <div class="card">
+      <div class="card rv">
         <h3 style="font-size:17px">YouTube — выгрузка CSV</h3>
         <p class="mut" style="font-size:14px;margin:8px 0 14px">Studio → Аналитика → Расширенный режим → Экспорт → .csv. Перетащи <b>Таблица данных.csv</b>.</p>
         <div class="drop" id="drop"><b>📥</b>Перетащи CSV сюда или <u>выбери файл</u><input type="file" id="file" accept=".csv,text/csv" hidden></div>
@@ -297,7 +368,7 @@ footer{padding:64px 0 40px;color:var(--mut);font-size:13px;text-align:center}
       </div>
     </div>
 
-    <div class="card claude">
+    <div class="card claude rv">
       <h3 style="font-size:19px">🤖 Отправить статистику Claude</h3>
       <div class="grid2">
         <div><b>Быстро</b><span class="mut" style="font-size:14px">Сводка всех данных скопируется — вставь её в чат с Claude и спроси, что улучшить.</span><button class="btn y" id="copyClaude">📋 Скопировать сводку</button></div>
@@ -308,7 +379,7 @@ footer{padding:64px 0 40px;color:var(--mut);font-size:13px;text-align:center}
   </section>
 
   <section id="videos">
-    <div class="sh"><div class="lbl">Архив</div><h2>Видео канала</h2></div>
+    <div class="sh rv"><div class="lbl">Архив</div><h2>Видео канала</h2></div>
     <div class="grid4" id="vids"></div>
   </section>
 </div>
@@ -377,7 +448,8 @@ async function loadAssets(){
   }catch(e){ASSETS=null}
   renderAll();
 }
-const isDone=i=>!!done[i.id];
+const isDone=i=>done[i.id]===undefined?!!i.posted:!!done[i.id];
+let justDone=null;
 const asset=i=>ASSETS&&ASSETS[i.file];
 function status(i){
   if(isDone(i))return `<span class="pill g">✓ выложено</span>`;
@@ -406,7 +478,8 @@ $('#mdOk').onclick=async()=>{
     }catch(e){b.disabled=false;b.textContent='✓ Выложил';toast(e===401?'Ключ недействителен — обнови его':e===403?'У ключа нет права Contents: write':'Не удалось удалить ('+e+')',true);return}
     b.disabled=false;b.textContent='✓ Выложил';
   }else toast('Отмечено ✓');
-  done[i.id]=true;store.set('mh_done',done);$('#mDone').classList.remove('on');renderAll();
+  done[i.id]=true;store.set('mh_done',done);$('#mDone').classList.remove('on');justDone=i.id;renderAll();
+  const s=document.querySelector(`[data-id="${i.id}"]`);burst(s?s.getBoundingClientRect():b.getBoundingClientRect());
 };
 window.askDone=askDone;
 
@@ -439,10 +512,10 @@ function renderNext(force){
   const cnt=late?`опоздание ${h} ч ${m} мин`:(h>=24?`через ${Math.floor(h/24)} д ${h%24} ч`:`через ${h} ч ${m} мин`);
   const key=nxt.id+'|'+Math.floor(now/6e4)+'|'+(ASSETS?Object.keys(ASSETS).length:'n')+token().length;
   if(!force&&box.dataset.k===key)return; box.dataset.k=key;
-  box.innerHTML=`<div class="card">
+  box.innerHTML=`<div class="card glow">
       <div class="nx-top">${thumb(nxt)}
         <div style="min-width:0"><div style="display:flex;gap:6px;flex-wrap:wrap" class="nx-p"><span class="pill ${late?'r':'y'}">${esc(nxt.label)}</span>${status(nxt)}</div>
-          <div class="count" style="margin-top:14px">${fmtT(d,TZP)}</div>
+          <div class="count" style="margin-top:14px">${fmtT(d,TZP).split('').map((c,k)=>`<span style="--k:${k}">${c}</span>`).join('')}</div>
           <div class="mut" style="font-weight:700;font-size:14px">${fmtD(d,TZP)} · МСК ${fmtT(d,TZM)}</div>
           <div class="cnt" style="color:${late?'var(--red)':'var(--txt)'}">${cnt}</div></div>
       </div>
@@ -460,11 +533,13 @@ function renderPlan(){
   $('#pDone').textContent=`✓ выложено ${n} из ${items.length}`;
   $('#pCloud').textContent=cloud==null?'☁ GitHub: нет связи':`☁ на GitHub: ${cloud}`;
   $('#pTok').innerHTML=token()?'🔑 ключ есть':'<a href="#" onclick="openTok();return false" style="color:inherit">🔑 добавить ключ</a>';
+  const P=items.filter(isDone);$('#postedWrap').style.display=hide&&P.length?'':'none';
+  $('#posted').innerHTML=P.map(i=>`<div class="pv rv" data-id="p-${i.id}" onclick="showTexts('${i.id}')" title="Тексты">${thumb(i)}<div><b>${esc(i.label)}</b><span>${fmtD(new Date(i.when),TZP).split(',')[1]||''}</span></div></div>`).join('');
   $('#plan-list').innerHTML=Object.entries(byDay).map(([day,list])=>{
     const dn=list.filter(isDone).length;
-    return `<div class="card day"><div class="day-h"><h3>${day}</h3><span class="pill ${dn===list.length?'g':''}">${dn}/${list.length}</span></div>
+    return `<div class="card day rv"><div class="day-h"><h3>${day}</h3><span class="pill ${dn===list.length?'g':''}">${dn}/${list.length}</span></div>
     <div class="slots">${list.map(i=>{const d=new Date(i.when);return `
-      <div class="slot ${isDone(i)?'done':''} ${i.id===nextId?'now':''} ${list.length===1?'wide':''}">
+      <div class="slot rv ${isDone(i)?'done':''} ${i.id===nextId?'now':''} ${list.length===1?'wide':''} ${i.id===justDone?'pop':''}" data-id="${i.id}">
         ${thumb(i)}
         <div class="sl-b">
           <div class="sl-t"><b>${fmtT(d,TZP)}</b><small>МСК ${fmtT(d,TZM)}</small></div>
@@ -475,7 +550,7 @@ function renderPlan(){
         </div>
       </div>`}).join('')}</div></div>`}).join('')||'<div class="card" style="text-align:center">Нет запланированных выпусков.</div>';
 }
-function renderAll(){renderPlan();renderNext(true);renderKpis()}
+function renderAll(){renderPlan();renderNext(true);renderKpis();justDone=null;FX.scan()}
 window.openTok=openTok;
 
 /* ---------- stats ---------- */
@@ -544,12 +619,45 @@ function renderKpis(){const ups=store.get('mh_yt',[]),u=ups[ups.length-1],m=stor
   const ytViews=u&&u.total?u.total.views:null;
   const last={};m.forEach(x=>last[x.platform+x.video]=x);const tt=Object.values(last).filter(x=>x.platform==='TikTok').reduce((s,x)=>s+(+x.views||0),0);
   const doneN=DATA.items.filter(isDone).length, cloud=ASSETS?DATA.items.filter(i=>!isDone(i)&&asset(i)).length:'—';
-  $('#kpis').innerHTML=[[num(DATA.videos.length),'видео на канале'],[`${doneN}/${DATA.items.length}`,'выложено по плану'],[cloud,'ждут на GitHub'],[tt?num(tt):num(ytViews),tt?'просмотры TikTok':'просмотры YouTube']].map(([b,s])=>`<div class="card kpi"><b>${b}</b><span>${s}</span></div>`).join('')}
+  $('#kpis').innerHTML=[[num(DATA.videos.length),'видео на канале'],[`${doneN}/${DATA.items.length}`,'выложено по плану'],[cloud,'ждут на GitHub'],[tt?num(tt):num(ytViews),tt?'просмотры TikTok':'просмотры YouTube']].map(([b,s])=>`<div class="card kpi rv"><b data-n="${b}">${b}</b><span>${s}</span></div>`).join('')}
 
-function renderVideos(){$('#vids').innerHTML=DATA.videos.map(v=>`<div class="card vid"><img src="${v.thumb}" alt="" loading="lazy"><div><b>${esc(v.title)}</b><span class="mut" style="font-size:12px">${esc(v.kind)} · ${esc(v.len)} · ${new Date(v.date).toLocaleDateString('ru-RU')}</span></div></div>`).join('');
+function renderVideos(){$('#vids').innerHTML=DATA.videos.map(v=>`<div class="card vid rv tilt"><img src="${v.thumb}" alt="" loading="lazy"><div><b>${esc(v.title)}</b><span class="mut" style="font-size:12px">${esc(v.kind)} · ${esc(v.len)} · ${new Date(v.date).toLocaleDateString('ru-RU')}</span></div></div>`).join('');
   const opts=[...DATA.videos.map(v=>v.title),...DATA.items.filter(i=>i.kind==='short').map(i=>i.label+' · '+i.series)];$('#mvideo').innerHTML=opts.map(o=>`<option>${esc(o)}</option>`).join('')}
 
-$('#hideDone').onchange=renderPlan;
+/* ---------- FX ---------- */
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const SEEN=new Set();
+const FX={io:null,scan(){
+  if(!this.io)this.io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');SEEN.add(e.target._k);this.io.unobserve(e.target);if(e.target.matches('.kpi'))countUp(e.target.querySelector('b'))}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv:not(.in)').forEach(el=>{if(el._o)return;el._o=1;
+    const pr=el.parentElement,key=el.dataset.id||((pr.id||pr.className)+':'+[...pr.children].indexOf(el));el._k=key;
+    if(SEEN.has(key)){el.classList.add('in');return}
+    const sib=[...el.parentElement.children].filter(x=>x.classList.contains('rv'));el.style.setProperty('--d',(Math.min(sib.indexOf(el),6)*.08)+'s');
+    if(RM)el.classList.add('in');else this.io.observe(el)});
+}};
+function countUp(b){if(!b||RM)return;const t=b.dataset.n||'',m=t.match(/^(\d+)(.*)$/);if(!m)return;const to=+m[1],rest=m[2],t0=performance.now();
+  (function f(n){const k=Math.min(1,(n-t0)/900),e=1-Math.pow(1-k,3);b.textContent=Math.round(to*e)+rest;if(k<1)requestAnimationFrame(f)})(t0)}
+function burst(r){if(RM)return;const cx=r&&r.width?r.left+r.width/2:innerWidth/2,cy=r&&r.height?r.top+r.height/2:innerHeight/2;
+  const cols=['#F5B53A','#FFD27A','#4FD08F','#8FD6E2','#EF5D55','#fff'];
+  for(let k=0;k<70;k++){const p=document.createElement('i');p.className='cf';p.style.background=cols[k%cols.length];p.style.left=cx+'px';p.style.top=cy+'px';document.body.appendChild(p);
+    const a=Math.random()*Math.PI*2,v=6+Math.random()*9;let x=0,y=0,vx=Math.cos(a)*v,vy=Math.sin(a)*v-7,rot=Math.random()*360,vr=(Math.random()-.5)*30,life=0;
+    (function f(){life++;vy+=.45;vx*=.98;x+=vx;y+=vy;rot+=vr;p.style.transform=`translate(${x}px,${y}px) rotate(${rot}deg)`;p.style.opacity=1-life/80;if(life<80)requestAnimationFrame(f);else p.remove()})()}}
+window.burst=burst;
+// снег
+(function(){const c=$('#snow');if(!c||RM)return;const x=c.getContext('2d');let W,H,F=[];
+  function rs(){W=c.width=innerWidth*devicePixelRatio;H=c.height=innerHeight*devicePixelRatio;const n=Math.min(110,Math.round(innerWidth/12));F=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,r:(.6+Math.random()*1.8)*devicePixelRatio,s:.3+Math.random()*.9,w:Math.random()*6}))}
+  rs();addEventListener('resize',rs);
+  (function f(t){x.clearRect(0,0,W,H);x.fillStyle='#dfeef5';F.forEach(p=>{p.y+=p.s*devicePixelRatio;p.x+=Math.sin(t/1500+p.w)*.4*devicePixelRatio;if(p.y>H){p.y=-5;p.x=Math.random()*W}x.globalAlpha=.25+p.r/(4*devicePixelRatio);x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill()});requestAnimationFrame(f)})(0)})();
+// активный пункт меню
+(function(){const L=[...document.querySelectorAll('nav li a')];const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)L.forEach(a=>a.classList.toggle('act',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>io.observe(s))})();
+// 3D-наклон карточек видео и аватара
+document.addEventListener('pointermove',e=>{if(RM||e.pointerType!=='mouse')return;const t=e.target.closest('.tilt');document.querySelectorAll('.tilt').forEach(el=>{if(el!==t)el.style.transform=''});
+  if(!t)return;const r=t.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;t.style.transform=`perspective(700px) rotateY(${px*10}deg) rotateX(${-py*10}deg) translateY(-4px)`});
+FX.scan();
+
+try{const h=localStorage.getItem('mh_hide');if(h!==null)$('#hideDone').checked=h==='1'}catch(e){}
+$('#hideDone').onchange=()=>{try{localStorage.setItem('mh_hide',$('#hideDone').checked?'1':'0')}catch(e){}renderPlan();FX.scan()};
 document.querySelector('#mform [name=date]').value=new Date().toISOString().slice(0,10);
 fetch('schedule.json?v='+Date.now()).then(r=>r.json()).then(j=>{DATA=j;renderVideos();renderAll();tick();setInterval(tick,30000);loadAssets();setInterval(loadAssets,120000)}).catch(()=>{$('#plan-list').innerHTML='<div class="card">Не удалось загрузить schedule.json</div>'});
 renderYT();renderManual();repoFiles();
