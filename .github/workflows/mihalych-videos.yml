@@ -24,6 +24,7 @@ jobs:
             --title "Михалыч — видео к публикации" \
             --notes "Видео канала «Михалыч», ожидающие публикации. После отметки «Выложил» на странице furtex-xq.github.io/mihalych/ файл удаляется отсюда."
           shopt -s nullglob
+          for p in uploads/*.mp4.part00; do b="${p%.part00}"; echo "⧉ собираю $b"; cat "$b".part* > "$b"; rm "$b".part*; done
           for f in uploads/*.mp4; do echo "→ $f"; gh release upload mihalych-videos "$f" --clobber; done
           if [ -f uploads/DELETE ]; then while read -r n; do [ -n "$n" ] && { echo "✕ $n"; gh release delete-asset mihalych-videos "$n" -y || true; }; done < uploads/DELETE; fi
       - name: Удалить временную ветку
