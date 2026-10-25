@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Михалыч · пульт канала</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B141B">
+<link rel="icon" type="image/webp" href="img/avatar.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B141B;--panel:#13212B;--panel2:#1A2B37;--line:#25394A;--txt:#EAF1F4;--mut:#8FA3AD;--yel:#F2B233;--red:#E5534B;--grn:#4CC38A;--teal:#8FD6E2;--r:18px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.5 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(1200px 600px at 80% -10%,rgba(242,178,51,.10),transparent 60%),radial-gradient(900px 500px at -10% 30%,rgba(143,214,226,.08),transparent 60%);pointer-events:none;z-index:-1}
+a{color:var(--teal)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:Unbounded,Manrope,sans-serif;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(22px,3vw,30px);margin-bottom:18px}
+.mut{color:var(--mut)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font-weight:800;font-size:13px;background:var(--panel2);color:var(--txt)}
+.pill.y{background:var(--yel);color:#1A1A1A}.pill.r{background:var(--red)}.pill.g{background:var(--grn);color:#0B141B}
+.btn{appearance:none;border:0;border-radius:12px;padding:10px 16px;font:800 14px Manrope,sans-serif;cursor:pointer;background:var(--panel2);color:var(--txt);transition:transform .08s,background .2s}
+.btn:hover{background:#22384A}.btn:active{transform:scale(.97)}
+.btn.y{background:var(--yel);color:#1A1A1A}.btn.y:hover{background:#ffc552}
+.btn.sm{padding:6px 10px;font-size:12px;border-radius:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+section{padding:34px 0}
+/* nav */
+nav{position:sticky;top:0;z-index:5;background:rgba(11,20,27,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:14px;height:60px}
+nav img{width:36px;height:36px;border-radius:50%}
+nav b{font-family:Unbounded;font-size:15px}
+nav ul{display:flex;gap:4px;list-style:none;margin:0 0 0 auto;padding:0;overflow-x:auto}
+nav li a{display:block;padding:8px 12px;border-radius:10px;color:var(--mut);text-decoration:none;font-weight:700;font-size:14px;white-space:nowrap}
+nav li a:hover{color:var(--txt);background:var(--panel)}
+/* hero */
+.hero{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;padding:40px 0 10px}
+.hero img{width:150px;height:150px;border-radius:50%;border:4px solid var(--yel);box-shadow:0 0 0 8px rgba(242,178,51,.12)}
+.hero h1{font-size:clamp(30px,5vw,52px);line-height:1.05}
+.hero h1 span{color:var(--yel)}
+.links{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.links a{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:var(--panel);border:1px solid var(--line);color:var(--txt);text-decoration:none;font-weight:800}
+.links a:hover{border-color:var(--yel)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.kpi b{display:block;font:800 26px Unbounded}.kpi span{color:var(--mut);font-size:13px;font-weight:700}
+/* next */
+.next{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:stretch}
+.count{font:800 clamp(34px,6vw,58px) Unbounded;color:var(--yel);line-height:1}
+.copyrow{display:flex;gap:8px;align-items:flex-start;margin-top:10px}
+.copybox{flex:1;background:#0E1A22;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:14px;white-space:pre-wrap;max-height:130px;overflow:auto}
+.lbl{font-size:12px;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin-top:14px}
+/* schedule */
+.day{margin-bottom:18px}
+.day h3{font-size:15px;color:var(--mut);margin:0 0 10px;font-family:Manrope;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+.slot{display:grid;grid-template-columns:110px 1fr auto;gap:14px;align-items:center;padding:14px 16px;border-radius:16px;background:var(--panel);border:1px solid var(--line);margin-bottom:8px;transition:opacity .2s}
+.slot.done{opacity:.45}.slot.now{border-color:var(--yel);box-shadow:0 0 0 3px rgba(242,178,51,.15)}
+.slot .t{font:800 22px Unbounded}.slot .t small{display:block;font:700 12px Manrope;color:var(--mut)}
+.slot .ti{font-weight:800}.slot .pl{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.chk{width:28px;height:28px;border-radius:9px;border:2px solid var(--line);background:transparent;cursor:pointer;display:grid;place-items:center;color:transparent;font-weight:900}
+.chk.on{background:var(--grn);border-color:var(--grn);color:#0B141B}
+details summary{cursor:pointer;color:var(--teal);font-weight:800;font-size:13px;margin-top:6px}
+.times{width:100%;border-collapse:collapse;font-size:15px}
+.times th,.times td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}
+.times th{color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+/* stats */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid2>*,.next>*{min-width:0}
+.copybox{word-break:break-word}
+.times{table-layout:auto}.times td,.times th{word-break:break-word}
+.drop{border:2px dashed var(--line);border-radius:var(--r);padding:26px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s}
+.drop.over,.drop:hover{border-color:var(--yel);background:rgba(242,178,51,.05)}
+form .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input,select,textarea{width:100%;background:#0E1A22;border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:10px 12px;font:600 14px Manrope}
+label{font-size:12px;font-weight:800;color:var(--mut);display:block;margin:8px 0 4px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.tbl th{color:var(--mut);font-size:12px}
+.tbl td.n{text-align:right;font-variant-numeric:tabular-nums}
+.chart{margin-top:14px}
+.bar{display:grid;grid-template-columns:minmax(0,1fr) 140px;gap:10px;align-items:center;margin:6px 0;font-size:13px}
+.bar .bt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .bb{height:14px;border-radius:7px;background:var(--panel2);position:relative;overflow:hidden}
+.bar .bb i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--yel),#ffd27a);border-radius:7px}
+.bar .bv{position:absolute;right:6px;top:-2px;font-size:11px;font-weight:800}
+.vids{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.vid{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.vid img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.vid div{padding:12px}.vid b{display:block;font-size:14px;line-height:1.3}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--grn);color:#0B141B;font-weight:800;padding:10px 18px;border-radius:12px;opacity:0;transition:.25s;z-index:10}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.claude{background:linear-gradient(135deg,#2A1E10,#13212B);border-color:#5A4420}
+footer{padding:40px 0;color:var(--mut);font-size:13px;text-align:center}
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;text-align:center;justify-items:center}.links{justify-content:center}
+  .kpis{grid-template-columns:repeat(2,1fr)}.next,.grid2{grid-template-columns:1fr}.vids{grid-template-columns:repeat(2,1fr)}
+  .slot{grid-template-columns:78px 1fr auto;gap:10px;padding:12px}.slot .t{font-size:18px}
+  nav ul{display:none}
+}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <img src="img/avatar.webp" alt=""><b>Михалыч</b>
+  <ul>
+    <li><a href="#next">Следующий выпуск</a></li>
+    <li><a href="#plan">Расписание</a></li>
+    <li><a href="#times">Время</a></li>
+    <li><a href="#stats">Статистика</a></li>
+    <li><a href="#videos">Видео</a></li>
+  </ul>
+</div></nav>
+
+<div class="wrap">
+  <header class="hero">
+    <img src="img/avatar.webp" alt="Михалыч">
+    <div>
+      <span class="pill y">ЧТО ДЕЛАТЬ, ЕСЛИ…</span>
+      <h1 style="margin-top:10px">Канал <span>Михалыча</span><br>пульт управления</h1>
+      <p class="mut" style="margin:10px 0 0;max-width:620px">Расписание выпусков, готовые названия и описания в один клик, статистика и сводка для Claude.</p>
+      <div class="links">
+        <a href="https://www.youtube.com/@mihalych_ansarovskiy" target="_blank" rel="noopener">▶ YouTube</a>
+        <a href="https://www.tiktok.com/@mihalych_ansarovskiy" target="_blank" rel="noopener">♪ TikTok</a>
+        <a href="#stats">📊 Загрузить статистику</a>
+      </div>
+    </div>
+  </header>
+  <div class="kpis" id="kpis"></div>
+
+  <section id="next">
+    <h2>Следующий выпуск</h2>
+    <div class="next" id="nextbox"></div>
+  </section>
+
+  <section id="plan">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px">
+      <h2 style="margin:0">Расписание</h2>
+      <span class="pill" id="planinfo"></span>
+      <label style="margin:0 0 0 auto;display:flex;gap:8px;align-items:center;cursor:pointer"><input type="checkbox" id="hideDone" style="width:auto"> скрыть выложенные</label>
+    </div>
+    <div id="plan-list"></div>
+  </section>
+
+  <section id="times">
+    <h2>Лучшее время для русской аудитории</h2>
+    <div class="grid2">
+      <div class="card">
+        <table class="times">
+          <tr><th>Слот</th><th>Прага</th><th>Москва</th><th>Зачем</th></tr>
+          <tr><td>Утро</td><td><b>6:30</b></td><td class="mut">8:30</td><td class="mut">дорога на работу/учёбу</td></tr>
+          <tr><td>Обед</td><td><b>11:00</b></td><td class="mut">13:00</td><td class="mut">перерыв</td></tr>
+          <tr><td>Вечер ⭐</td><td><b>17:00</b></td><td class="mut">19:00</td><td class="mut">главный пик</td></tr>
+          <tr><td>Выходные</td><td><b>10:00 · 14:00 · 18:00</b></td><td class="mut">12 · 16 · 20</td><td class="mut">все встают позже</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <p style="margin-top:0"><b>Правила:</b></p>
+        <ul class="mut" style="margin:0;padding-left:18px">
+          <li>2 шортса в день — 11:00 и 17:00, 3 — плюс 6:30 (по Праге).</li>
+          <li>Между роликами минимум 4–5 часов.</li>
+          <li>Самые сильные ролики — на вечер.</li>
+          <li>Планируй заранее: YouTube Studio → «Запланировать», TikTok Studio на компьютере.</li>
+          <li>Москва зимой на <b>2 часа</b> впереди Праги, летом — на 1.</li>
+        </ul>
+        <p class="mut" style="margin-bottom:0;font-size:13px">Сейчас: <b id="clockPr"></b> в Праге · <b id="clockMs"></b> в Москве</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="stats">
+    <h2>Статистика</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3 style="font-size:17px">1. YouTube — выгрузка CSV</h3>
+        <p class="mut" style="font-size:14px">YouTube Studio → Аналитика → «Расширенный режим» → «Экспорт» → .csv. Из архива перетащи сюда файл <b>Таблица данных.csv</b>.</p>
+        <div class="drop" id="drop">Перетащи CSV сюда или <u>выбери файл</u><input type="file" id="file" accept=".csv,text/csv" hidden></div>
+        <div id="ytout"></div>
+      </div>
+      <div class="card">
+        <h3 style="font-size:17px">2. Быстрая запись (TikTok / Shorts)</h3>
+        <form id="mform">
+          <div class="row">
+            <div><label>Дата</label><input type="date" name="date" required></div>
+            <div><label>Платформа</label><select name="platform"><option>TikTok</option><option>YouTube Shorts</option><option>YouTube</option></select></div>
+          </div>
+          <label>Ролик</label><select name="video" id="mvideo"></select>
+          <div class="row">
+            <div><label>Просмотры</label><input type="number" name="views" min="0" required></div>
+            <div><label>Лайки</label><input type="number" name="likes" min="0"></div>
+            <div><label>Комментарии</label><input type="number" name="comments" min="0"></div>
+            <div><label>Новые подписчики</label><input type="number" name="subs" min="0"></div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button class="btn y" type="submit">Сохранить</button><button class="btn" type="button" id="dlcsv">Скачать CSV</button><button class="btn" type="button" id="clearm">Очистить</button></div>
+        </form>
+        <div id="mout"></div>
+      </div>
+    </div>
+
+    <div class="card claude" style="margin-top:20px">
+      <h3 style="font-size:18px">🤖 Отправить статистику Claude</h3>
+      <div class="grid2" style="margin-top:12px">
+        <div>
+          <p style="margin-top:0"><b>Быстро:</b> нажми кнопку — сводка всех данных скопируется. Вставь её в чат с Claude и спроси, что улучшить.</p>
+          <button class="btn y" id="copyClaude">📋 Скопировать сводку для Claude</button>
+        </div>
+        <div>
+          <p style="margin-top:0"><b>Надёжно:</b> загрузи CSV в папку <code>mihalych/stats</code> репозитория — Claude прочитает её сам, когда попросишь.</p>
+          <a class="btn" href="https://github.com/furtex-xq/furtex-xq.github.io/upload/main/mihalych/stats" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">⬆ Загрузить файл на GitHub</a>
+        </div>
+      </div>
+      <div class="lbl">Файлы в репозитории</div>
+      <div id="repoFiles" class="mut" style="font-size:14px;margin-top:6px">загружаю…</div>
+      <p class="mut" style="font-size:12px;margin-bottom:0">Репозиторий публичный — загруженные файлы видны всем, у кого есть ссылка.</p>
+    </div>
+  </section>
+
+  <section id="videos">
+    <h2>Видео канала</h2>
+    <div class="vids" id="vids"></div>
+  </section>
+</div>
+<footer>Михалыч · Ansaro Technologies · данные статистики хранятся только в твоём браузере, пока ты не загрузишь их на GitHub</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const TZP='Europe/Prague', TZM='Europe/Moscow';
+const REPO='furtex-xq/furtex-xq.github.io', STATS_DIR='mihalych/stats';
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const fmtT=(d,tz)=>d.toLocaleTimeString('ru-RU',{timeZone:tz,hour:'2-digit',minute:'2-digit'});
+const fmtD=(d,tz)=>d.toLocaleDateString('ru-RU',{timeZone:tz,weekday:'long',day:'numeric',month:'long'});
+const num=n=>n==null||isNaN(n)?'—':Number(n).toLocaleString('ru-RU');
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1800)}
+async function copy(t){try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()}toast('Скопировано ✓')}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-copy]');if(b)copy(b.dataset.copy)});
+
+let DATA={items:[],videos:[]}, done=store.get('mh_done',{});
+function tick(){const n=new Date();$('#clockPr').textContent=fmtT(n,TZP);$('#clockMs').textContent=fmtT(n,TZM);renderNext()}
+
+function renderNext(){
+  const now=Date.now();
+  const nxt=DATA.items.filter(i=>!done[i.id]).sort((a,b)=>new Date(a.when)-new Date(b.when))[0];
+  const box=$('#nextbox'); if(!box)return;
+  if(!nxt){box.innerHTML='<div class="card">Всё выложено 🎉 Пора делать следующее видео с Михалычем.</div>';return}
+  const d=new Date(nxt.when), diff=d-now, late=diff<0;
+  const a=Math.abs(diff), h=Math.floor(a/36e5), m=Math.floor(a%36e5/6e4);
+  const cnt=late?`опоздание ${h} ч ${m} мин`:(h>=24?`через ${Math.floor(h/24)} д ${h%24} ч`:`через ${h} ч ${m} мин`);
+  const key=nxt.id+'|'+Math.floor(now/6e4);
+  if(box.dataset.k===key)return; box.dataset.k=key;
+  box.innerHTML=`<div class="card">
+      <span class="pill ${late?'r':'y'}">${esc(nxt.label)}</span> <span class="pill">${esc(nxt.platforms.join(' + '))}</span>
+      <div class="count" style="margin-top:14px">${fmtT(d,TZP)}</div>
+      <div class="mut" style="font-weight:700">${fmtD(d,TZP)} · по Праге (Москва ${fmtT(d,TZM)})</div>
+      <div style="font-size:20px;font-weight:800;margin-top:10px;color:${late?'var(--red)':'var(--txt)'}">${cnt}</div>
+      <div class="lbl">Файл</div><div style="font-weight:700">${esc(nxt.file)}</div>
+      <button class="btn y" style="margin-top:14px" onclick="markDone('${nxt.id}')">✓ Выложил</button>
+    </div>
+    <div class="card">
+      <div class="lbl" style="margin-top:0">YouTube — название</div>
+      <div class="copyrow"><div class="copybox">${esc(nxt.yt_title)}</div><button class="btn sm" data-copy="${esc(nxt.yt_title)}">Копировать</button></div>
+      <div class="lbl">YouTube — описание</div>
+      <div class="copyrow"><div class="copybox">${esc(nxt.yt_desc)}</div><button class="btn sm" data-copy="${esc(nxt.yt_desc)}">Копировать</button></div>
+      ${nxt.tt?`<div class="lbl">TikTok — подпись</div><div class="copyrow"><div class="copybox">${esc(nxt.tt)}</div><button class="btn sm" data-copy="${esc(nxt.tt)}">Копировать</button></div>`:''}
+    </div>`;
+}
+function markDone(id){done[id]=!done[id];store.set('mh_done',done);$('#nextbox').dataset.k='';renderPlan();renderNext();renderKpis()}
+window.markDone=markDone;
+
+function renderPlan(){
+  const hide=$('#hideDone').checked, byDay={};
+  const items=[...DATA.items].sort((a,b)=>new Date(a.when)-new Date(b.when));
+  const nextId=(items.find(i=>!done[i.id])||{}).id;
+  items.forEach(i=>{if(hide&&done[i.id])return;const k=fmtD(new Date(i.when),TZP);(byDay[k]=byDay[k]||[]).push(i)});
+  const n=items.filter(i=>done[i.id]).length;
+  $('#planinfo').textContent=`выложено ${n} из ${items.length}`;
+  $('#plan-list').innerHTML=Object.entries(byDay).map(([day,list])=>`<div class="day"><h3>${day}</h3>${list.map(i=>{const d=new Date(i.when);return `
+    <div class="slot ${done[i.id]?'done':''} ${i.id===nextId?'now':''}">
+      <div class="t">${fmtT(d,TZP)}<small>МСК ${fmtT(d,TZM)}</small></div>
+      <div><div class="ti">${esc(i.label)} · ${esc(i.series)}</div><div class="mut" style="font-size:14px">${esc(i.yt_title)}</div>
+        <div class="pl">${i.platforms.map(p=>`<span class="pill">${esc(p)}</span>`).join('')}</div>
+        <details><summary>Тексты для копирования</summary>
+          <div class="copyrow"><div class="copybox">${esc(i.yt_title)}</div><button class="btn sm" data-copy="${esc(i.yt_title)}">YT название</button></div>
+          <div class="copyrow"><div class="copybox">${esc(i.yt_desc)}</div><button class="btn sm" data-copy="${esc(i.yt_desc)}">YT описание</button></div>
+          ${i.tt?`<div class="copyrow"><div class="copybox">${esc(i.tt)}</div><button class="btn sm" data-copy="${esc(i.tt)}">TikTok</button></div>`:''}
+        </details></div>
+      <button class="chk ${done[i.id]?'on':''}" title="Отметить как выложенное" onclick="markDone('${i.id}')">✓</button>
+    </div>`}).join('')}</div>`).join('')||'<p class="mut">Нет запланированных выпусков.</p>';
+}
+
+/* ---------- stats ---------- */
+function parseCSV(t){const rows=[];let r=[],f='',q=false;t=t.replace(/^﻿/,'');
+  for(let i=0;i<t.length;i++){const c=t[i];
+    if(q){if(c=='"'){if(t[i+1]=='"'){f+='"';i++}else q=false}else f+=c}
+    else if(c=='"')q=true;else if(c==','||c==';'){r.push(f);f=''}else if(c=='\n'){r.push(f);rows.push(r);r=[];f=''}else if(c!='\r')f+=c}
+  if(f||r.length){r.push(f);rows.push(r)}return rows.filter(x=>x.some(v=>v.trim()))}
+const COLS={title:/video title|название видео|^название$|^content$/i,views:/^views$|^просмотры$/i,hours:/watch time|время просмотра/i,subs:/^subscribers$|^подписчики$/i,impr:/^impressions$|^показы$/i,ctr:/click-through|ctr/i,avd:/average view duration|средняя продолжительность/i};
+function ytParse(text,name){
+  const rows=parseCSV(text); if(rows.length<2)throw new Error('пустой файл');
+  const h=rows[0].map(s=>s.trim()), idx={};
+  for(const[k,re]of Object.entries(COLS)){const i=h.findIndex(x=>re.test(x));if(i>=0)idx[k]=i}
+  if(idx.title==null&&idx.views==null)throw new Error('не похоже на выгрузку YouTube Studio');
+  const toN=v=>{const n=parseFloat(String(v??'').replace(/\s/g,'').replace(',','.'));return isNaN(n)?null:n};
+  const out=[];let total=null;
+  rows.slice(1).forEach(r=>{const o={title:idx.title!=null?r[idx.title]:'',views:toN(r[idx.views]),hours:toN(r[idx.hours]),subs:toN(r[idx.subs]),impr:toN(r[idx.impr]),ctr:toN(r[idx.ctr]),avd:idx.avd!=null?r[idx.avd]:''};
+    if(/^(total|итого|всего)$/i.test(String(r[0]).trim()))total=o;else if(o.title||o.views!=null)out.push(o)});
+  return{name,date:new Date().toISOString().slice(0,10),rows:out,total};
+}
+function bars(list,key,label){const max=Math.max(1,...list.map(x=>x[key]||0));
+  return `<div class="chart"><div class="lbl">${label}</div>${list.slice(0,12).map(x=>`<div class="bar"><div class="bt" title="${esc(x.title)}">${esc(x.title||'—')}</div><div class="bb"><i style="width:${(100*(x[key]||0)/max).toFixed(1)}%"></i><span class="bv">${num(x[key])}</span></div></div>`).join('')}</div>`}
+function renderYT(){const ups=store.get('mh_yt',[]);const u=ups[ups.length-1];
+  if(!u){$('#ytout').innerHTML='';return}
+  const rows=[...u.rows].sort((a,b)=>(b.views||0)-(a.views||0));
+  $('#ytout').innerHTML=`<div class="lbl">Последняя выгрузка: ${esc(u.name)} · ${esc(u.date)}</div>
+   ${u.total?`<div class="kpis" style="grid-template-columns:repeat(3,1fr);margin-top:8px"><div class="kpi"><b>${num(u.total.views)}</b><span>просмотры</span></div><div class="kpi"><b>${num(u.total.subs)}</b><span>подписчики</span></div><div class="kpi"><b>${u.total.ctr!=null?u.total.ctr+'%':'—'}</b><span>CTR значков</span></div></div>`:''}
+   ${bars(rows,'views','Просмотры по видео')}
+   <table class="tbl" style="margin-top:12px"><tr><th>Видео</th><th>Просм.</th><th>CTR</th><th>Ср. время</th><th>Подп.</th></tr>
+   ${rows.slice(0,15).map(r=>`<tr><td>${esc(r.title)}</td><td class="n">${num(r.views)}</td><td class="n">${r.ctr!=null?r.ctr+'%':'—'}</td><td class="n">${esc(r.avd||'—')}</td><td class="n">${num(r.subs)}</td></tr>`).join('')}</table>`;
+}
+function handleFile(f){const rd=new FileReader();rd.onload=()=>{try{const p=ytParse(rd.result,f.name);const ups=store.get('mh_yt',[]);ups.push(p);store.set('mh_yt',ups.slice(-10));renderYT();renderKpis();toast('Выгрузка загружена ✓')}catch(e){toast('Ошибка: '+e.message)}};rd.readAsText(f)}
+const drop=$('#drop');drop.onclick=()=>$('#file').click();$('#file').onchange=e=>e.target.files[0]&&handleFile(e.target.files[0]);
+['dragover','dragenter'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>e.dataTransfer.files[0]&&handleFile(e.dataTransfer.files[0]));
+
+function renderManual(){const m=store.get('mh_manual',[]);
+  if(!m.length){$('#mout').innerHTML='';return}
+  const agg={};m.forEach(x=>{const k=x.platform+' · '+x.video;agg[k]=Math.max(agg[k]||0,+x.views||0)});
+  const list=Object.entries(agg).map(([title,views])=>({title,views})).sort((a,b)=>b.views-a.views);
+  $('#mout').innerHTML=bars(list,'views','Просмотры (последние значения)')+`<table class="tbl" style="margin-top:12px"><tr><th>Дата</th><th>Ролик</th><th>Просм.</th><th>❤</th><th>💬</th><th>+подп.</th></tr>${m.slice(-12).reverse().map(x=>`<tr><td>${esc(x.date)}</td><td>${esc(x.platform)} · ${esc(x.video)}</td><td class="n">${num(x.views)}</td><td class="n">${num(x.likes)}</td><td class="n">${num(x.comments)}</td><td class="n">${num(x.subs)}</td></tr>`).join('')}</table>`}
+$('#mform').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target),o=Object.fromEntries(f.entries());['views','likes','comments','subs'].forEach(k=>o[k]=o[k]===''?null:+o[k]);
+  const m=store.get('mh_manual',[]);m.push(o);store.set('mh_manual',m);e.target.views.value='';e.target.likes.value='';e.target.comments.value='';e.target.subs.value='';renderManual();renderKpis();toast('Сохранено ✓')};
+$('#clearm').onclick=()=>{if(confirm('Удалить все ручные записи из этого браузера?')){store.set('mh_manual',[]);renderManual();renderKpis()}};
+function manualCSV(){const m=store.get('mh_manual',[]);return 'date,platform,video,views,likes,comments,subs\n'+m.map(x=>[x.date,x.platform,'"'+String(x.video).replace(/"/g,'""')+'"',x.views??'',x.likes??'',x.comments??'',x.subs??''].join(',')).join('\n')}
+$('#dlcsv').onclick=()=>{const b=new Blob(['﻿'+manualCSV()],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=new Date().toISOString().slice(0,10)+'_manual.csv';a.click()};
+
+function summary(){const m=store.get('mh_manual',[]),ups=store.get('mh_yt',[]),u=ups[ups.length-1];
+  let s=`Статистика канала «Михалыч» на ${new Date().toLocaleDateString('ru-RU')}\n`;
+  s+=`Выложено по плану: ${DATA.items.filter(i=>done[i.id]).length} из ${DATA.items.length}\n`;
+  if(u){s+=`\nYouTube (${u.name}, ${u.date}):\n`;if(u.total)s+=`ИТОГО: просмотры ${u.total.views??'—'}, подписчики ${u.total.subs??'—'}, показы ${u.total.impr??'—'}, CTR ${u.total.ctr??'—'}%\n`;
+    [...u.rows].sort((a,b)=>(b.views||0)-(a.views||0)).slice(0,25).forEach(r=>s+=`- ${r.title} | просм ${r.views??'—'} | CTR ${r.ctr??'—'}% | ср.время ${r.avd||'—'} | подп ${r.subs??'—'} | часы ${r.hours??'—'}\n`)}
+  if(m.length){s+=`\nРучные записи:\n`;m.forEach(x=>s+=`- ${x.date} | ${x.platform} | ${x.video} | просм ${x.views??'—'} | лайки ${x.likes??'—'} | комм ${x.comments??'—'} | +подп ${x.subs??'—'}\n`)}
+  if(!u&&!m.length)s+='\n(данных пока нет)\n';
+  s+=`\nЧто улучшить: время выхода, названия, обложки, темы следующих видео?`;return s}
+$('#copyClaude').onclick=()=>copy(summary());
+
+async function repoFiles(){try{const r=await fetch(`https://api.github.com/repos/${REPO}/contents/${STATS_DIR}`);if(!r.ok)throw 0;const j=await r.json();
+  const f=j.filter(x=>/\.(csv|json|txt)$/i.test(x.name));
+  $('#repoFiles').innerHTML=f.length?f.map(x=>`<div style="display:flex;gap:8px;align-items:center;margin:4px 0">📄 <a href="${x.html_url}" target="_blank" rel="noopener">${esc(x.name)}</a> <button class="btn sm" data-url="${x.download_url}" data-name="${esc(x.name)}">Показать</button></div>`).join(''):'пока пусто — загрузи первый CSV';
+  $('#repoFiles').querySelectorAll('[data-url]').forEach(b=>b.onclick=async()=>{try{const t=await (await fetch(b.dataset.url)).text();const p=ytParse(t,b.dataset.name);const ups=store.get('mh_yt',[]);ups.push(p);store.set('mh_yt',ups.slice(-10));renderYT();renderKpis();location.hash='#stats';toast('Загружено из репозитория ✓')}catch(e){toast('Не удалось разобрать файл')}})
+}catch(e){$('#repoFiles').textContent='не удалось получить список (лимит GitHub API) — попробуй позже'}}
+
+function renderKpis(){const ups=store.get('mh_yt',[]),u=ups[ups.length-1],m=store.get('mh_manual',[]);
+  const ytViews=u&&u.total?u.total.views:null, ytSubs=u&&u.total?u.total.subs:null;
+  const lastByVid={};m.forEach(x=>{const k=x.platform+x.video;lastByVid[k]=x});const ttViews=Object.values(lastByVid).filter(x=>x.platform==='TikTok').reduce((s,x)=>s+(+x.views||0),0);
+  const doneN=DATA.items.filter(i=>done[i.id]).length;
+  $('#kpis').innerHTML=[[num(DATA.videos.length),'видео на канале'],[`${doneN}/${DATA.items.length}`,'выложено по плану'],[num(ytViews),'просмотры YouTube'],[ttViews?num(ttViews):(ytSubs!=null?num(ytSubs):'—'),ttViews?'просмотры TikTok':'подписчики YouTube']].map(([b,s])=>`<div class="kpi"><b>${b}</b><span>${s}</span></div>`).join('')}
+
+function renderVideos(){$('#vids').innerHTML=DATA.videos.map(v=>`<div class="vid"><img src="${v.thumb}" alt="" loading="lazy"><div><b>${esc(v.title)}</b><span class="mut" style="font-size:12px">${esc(v.kind)} · ${esc(v.len)} · ${new Date(v.date).toLocaleDateString('ru-RU')}</span></div></div>`).join('');
+  const opts=[...DATA.videos.map(v=>v.title),...DATA.items.filter(i=>i.kind==='short').map(i=>i.label+' · '+i.series)];$('#mvideo').innerHTML=opts.map(o=>`<option>${esc(o)}</option>`).join('')}
+
+$('#hideDone').onchange=renderPlan;
+document.querySelector('#mform [name=date]').value=new Date().toISOString().slice(0,10);
+fetch('schedule.json?v='+Date.now()).then(r=>r.json()).then(j=>{DATA=j;renderPlan();renderVideos();renderKpis();tick();setInterval(tick,30000)}).catch(()=>{$('#plan-list').innerHTML='<p class="mut">Не удалось загрузить schedule.json</p>'});
+renderYT();renderManual();repoFiles();
+</script>
+</body>
+</html>
