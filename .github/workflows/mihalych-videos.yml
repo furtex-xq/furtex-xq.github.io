@@ -1,0 +1,30 @@
+# Загрузка видео канала «Михалыч» в пред-релиз mihalych-videos (не трогает релиз v1 с APK).
+# Claude пушит mp4 во временную ветку mihalych-upload (каждый пуш — отдельный коммит-сирота с партией файлов).
+# Этот workflow переносит файлы из uploads/ в релиз, а когда в коммите есть uploads/DONE — удаляет ветку,
+# чтобы видео не оставались в истории репозитория. Страница /mihalych/ удаляет файл из релиза после отметки «Выложил».
+name: mihalych-videos
+on:
+  push:
+    branches: [mihalych-upload]
+permissions:
+  contents: write
+concurrency:
+  group: mihalych-videos
+  cancel-in-progress: false
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Загрузить в релиз
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view mihalych-videos >/dev/null 2>&1 || gh release create mihalych-videos --target main --prerelease --latest=false \
+            --title "Михалыч — видео к публикации" \
+            --notes "Видео канала «Михалыч», ожидающие публикации. После отметки «Выложил» на странице furtex-xq.github.io/mihalych/ файл удаляется отсюда."
+          shopt -s nullglob
+          for f in uploads/*.mp4; do echo "→ $f"; gh release upload mihalych-videos "$f" --clobber; done
+      - name: Удалить временную ветку
+        if: hashFiles('uploads/DONE') != ''
+        run: git push origin --delete mihalych-upload
