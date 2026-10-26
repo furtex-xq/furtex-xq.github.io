@@ -292,9 +292,36 @@ nav li a.act:after{content:"";position:absolute;left:30%;right:30%;bottom:2px;he
 .drop b{animation:bob 2.4s ease-in-out infinite}
 .cf{position:fixed;width:9px;height:14px;border-radius:2px;pointer-events:none;z-index:70;will-change:transform,opacity}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv,.ttl .w,.hero p,.links{opacity:1!important;transform:none!important}#snow{display:none}}
+
+#lock{position:fixed;inset:0;z-index:200;display:none;place-items:center;padding:16px;background:radial-gradient(800px 500px at 50% 0%,rgba(245,181,58,.18),transparent 70%),var(--bg)}
+body.locked #lock{display:grid}
+body.locked>*:not(#lock):not(#snow){display:none!important}
+.lk{width:min(380px,100%);text-align:center;background:linear-gradient(180deg,var(--panel),#101C26);border:1px solid var(--line);border-radius:24px;padding:32px 24px;box-shadow:var(--shadow)}
+.lk-ava{width:96px;height:96px;border-radius:50%;border:3px solid var(--yel);margin:0 auto 14px}
+.lk h1{font-size:24px}.lk p{margin:6px 0 20px}
+.lk input[type=password]{font-size:17px;padding:14px;text-align:center}
+.lk-rem{display:flex;gap:8px;align-items:center;justify-content:center;margin:12px 0;font-size:13px;cursor:pointer}
+.lk-rem input{width:auto}
+.lk .btn{width:100%;padding:14px;font-size:16px}
+.lk-err{color:#FF8F88;font-weight:700;font-size:14px;min-height:20px;margin-top:10px}
+.lk.shake{animation:shk .4s}
+@keyframes shk{20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+.lockout{position:fixed;right:16px;bottom:16px;z-index:30}
 </style>
 </head>
-<body>
+<body class="locked">
+<div id="lock"><div class="lk">
+  <img src="img/avatar.webp" alt="" class="lk-ava">
+  <h1>Пульт Михалыча</h1>
+  <p class="mut">Только для владельца канала</p>
+  <form id="lkForm" autocomplete="on">
+    <input type="text" name="username" value="mihalych" autocomplete="username" hidden>
+    <input type="password" id="lkPw" placeholder="Пароль" autocomplete="current-password" required>
+    <label class="lk-rem"><input type="checkbox" id="lkRem" checked> Запомнить на этом устройстве</label>
+    <button class="btn y" type="submit" id="lkBtn">Войти</button>
+    <div class="lk-err" id="lkErr"></div>
+  </form>
+</div></div>
 <canvas id="snow" aria-hidden="true"></canvas>
 <nav><div class="wrap">
   <a class="brand" href="#top"><img src="img/avatar.webp" alt=""><b>Михалыч</b></a>
@@ -306,7 +333,7 @@ nav li a.act:after{content:"";position:absolute;left:30%;right:30%;bottom:2px;he
     <li><a href="#stats">Статистика</a></li>
     <li><a href="#videos">Видео</a></li>
   </ul>
-  <div class="navr"><span class="icon" id="tokBtn" title="Доступ к GitHub">🔑</span></div>
+  <div class="navr"><span class="icon" id="tokBtn" title="Доступ к GitHub">🔑</span><span class="icon" onclick="lockNow()" title="Выйти">⏻</span></div>
 </div></nav>
 
 <div class="wrap" id="top">
@@ -725,7 +752,30 @@ FX.scan();
 try{const h=localStorage.getItem('mh_hide');if(h!==null)$('#hideDone').checked=h==='1'}catch(e){}
 $('#hideDone').onchange=()=>{try{localStorage.setItem('mh_hide',$('#hideDone').checked?'1':'0')}catch(e){}renderPlan();FX.scan()};
 document.querySelector('#mform [name=date]').value=new Date().toISOString().slice(0,10);
-fetch('schedule.json?v='+Date.now()).then(r=>r.json()).then(j=>{DATA=j;renderVideos();renderAll();tick();setInterval(tick,30000);loadAssets();setInterval(loadAssets,120000)}).catch(()=>{$('#plan-list').innerHTML='<div class="card">Не удалось загрузить schedule.json</div>'});
+/* ---------- вход по паролю (данные зашифрованы AES-GCM) ---------- */
+const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+let ENC=null;
+async function decrypt(pw){
+  if(!ENC)ENC=await (await fetch('schedule.enc?v='+Date.now(),{cache:'no-store'})).json();
+  const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
+  const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(ENC.salt),iterations:ENC.it,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
+  const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(ENC.iv)},key,b64(ENC.ct));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+let started=false;
+function start(j){
+  DATA=j;document.body.classList.remove('locked');
+  if(started){renderVideos();renderAll();return}started=true;
+  renderVideos();renderAll();tick();setInterval(tick,30000);loadAssets();setInterval(loadAssets,120000);FX.scan();
+}
+async function unlock(pw,remember,silent){
+  try{const j=await decrypt(pw);if(remember)store.set('mh_pw',pw);start(j);return true}
+  catch(e){if(!silent){$('#lkErr').textContent='Неверный пароль';const l=$('.lk');l.classList.remove('shake');void l.offsetWidth;l.classList.add('shake')}return false}
+}
+$('#lkForm').onsubmit=async e=>{e.preventDefault();$('#lkBtn').textContent='Проверяю…';await unlock($('#lkPw').value,$('#lkRem').checked);$('#lkBtn').textContent='Войти'};
+function lockNow(){store.set('mh_pw','');location.reload()}
+window.lockNow=lockNow;
+(async()=>{const pw=store.get('mh_pw','');if(!(pw&&await unlock(pw,true,true))){document.body.classList.add('locked');setTimeout(()=>$('#lkPw').focus(),100)}})();
 renderYT();renderManual();repoFiles();
 </script>
 </body>
