@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>ForkLog</title>
+	<atom:link href="https://forklog.com/feed" rel="self" type="application/rss+xml" />
+	<link>https://forklog.com</link>
+	<description>Интернет-журнал о биткоине, криптовалютах и децентрализации</description>
+	<lastBuildDate>Sat, 31 Oct 2026 14:04:14 +0000</lastBuildDate>
+	<language>ru-RU</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+
+<image>
+	<url>https://forklog.com/wp-content/uploads/FL_favicon-150x150.png</url>
+	<title>ForkLog</title>
+	<link>https://forklog.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>CertiK оценила потери криптоиндустрии в 2026 году уже в рекордные $9,2 млрд</title>
+		<link>https://forklog.com/certik-otsenila-poteri-kriptoindustrii-v-2026-godu-uzhe-v-rekordnye-9-2-mlrd</link>
+		
+		<dc:creator><![CDATA[ForkLog]]></dc:creator>
+		<pubDate>Sat, 31 Oct 2026 14:05:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291886</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/hakker-vozmestit-3-mln-hacker.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="хаккер возместит $3 млн hacker" decoding="async" fetchpriority="high" srcset="" data-src="https://forklog.com/wp-content/uploads/hakker-vozmestit-3-mln-hacker.webp" /></p>Согласно данным CertiK, совокупные потери криптоиндустрии в результате взломов и мошенничества с начала года достигли $9,2 млрд — это рекордный показатель.
+
+Особенно заметным стал октябрь: на него пришлось $6,5 млрд ущерба в рамках 89 инцидентов безопасности. При этом около $3,03 млрд удалось заморозить или вернуть, поэтому скорректированная оценка потерь за месяц составляет $3,47 млрд.
+
+Крупнейшим инцидентом года стал взлом Binance с ущербом около $6,3 млрд.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Chainalysis заявила о взломе</title>
+		<link>https://forklog.com/news/chainalysis-zayavila-o-vzlome</link>
+		
+		<dc:creator><![CDATA[Роман Петров]]></dc:creator>
+		<pubDate>Sat, 31 Oct 2026 12:15:11 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Chainalysis]]></category>
+		<category><![CDATA[Киберпреступления]]></category>
+		<category><![CDATA[утечка данных]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291884</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-3dc2541840912878-4645974497546910.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="hack" decoding="async" srcset="" data-src="https://forklog.com/wp-content/uploads/img-3dc2541840912878-4645974497546910.webp" /></p>Компания Chainalysis сообщила о киберинциденте, в ходе которого злоумышленник получил несанкционированный доступ к ее системам и внутренним инструментам. Для проникновения атакующий использовал методы, которые компания назвала «наступательными агентными техниками».]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>SEC усилила контроль за ИИ-компаниями на фоне дискуссий о пузыре</title>
+		<link>https://forklog.com/news/ai/sec-usilila-kontrol-za-ii-kompaniyami-na-fone-diskussij-o-puzyre</link>
+		
+		<dc:creator><![CDATA[Роман Петров]]></dc:creator>
+		<pubDate>Sat, 31 Oct 2026 11:55:59 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[SEC]]></category>
+		<category><![CDATA[бизнес]]></category>
+		<category><![CDATA[ИИ]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[Фондовый рынок]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291881</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-4791c128d98ea45f-4895431530149452.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="SEC" decoding="async" srcset="" data-src="https://forklog.com/wp-content/uploads/img-4791c128d98ea45f-4895431530149452.webp" /></p>Комиссия по ценным бумагам и биржам США (SEC) следит за тем, насколько полно ИИ-компании раскрывают информацию о своих рисках и финансовых показателях. Об этом Reuters сообщил директор подразделения по правоприменению Дэвид Вудкок. Особое внимание регулятор уделяет масштабным расходам и возможным циклическим сделкам, которые могут подпитывать потенциальный пузырь в сфере искусственного интеллекта. По его словам, задача [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Iluvatar CoreX заявила о паритете Tiangai 300 с Nvidia H200</title>
+		<link>https://forklog.com/news/ai/iluvatar-corex-zayavila-o-paritete-tiangai-300-s-nvidia-h200</link>
+		
+		<dc:creator><![CDATA[Роман Петров]]></dc:creator>
+		<pubDate>Sat, 31 Oct 2026 10:43:02 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[NVIDIA]]></category>
+		<category><![CDATA[ИИ]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[Китай]]></category>
+		<category><![CDATA[чипы]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291879</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Stavka-na-effektivnost_-kak-majnery-adaptiruyutsya-k-novym-realiyam-ASIC-mining-crypto-bitcoin.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Ставка на эффективность_ как майнеры адаптируются к новым реалиям ASIC mining crypto bitcoin" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Stavka-na-effektivnost_-kak-majnery-adaptiruyutsya-k-novym-realiyam-ASIC-mining-crypto-bitcoin.webp" /></p>Китайская компания Iluvatar CoreX заявила о сопоставимой с Nvidia H200 производительности GPU Tiangai 300 в ряде реальных ИИ-нагрузок. Об этом сообщает SCMP со ссылкой на презентацию для СМИ.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Zcash-майнер Fortitude подключил ферму на 15 МВт к рынку электроэнергии в США</title>
+		<link>https://forklog.com/zcash-majner-fortitude-podklyuchil-fermu-na-15-mvt-k-rynku-elektroenergii-v-ssha</link>
+		
+		<dc:creator><![CDATA[ForkLog]]></dc:creator>
+		<pubDate>Sat, 31 Oct 2026 10:30:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291876</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-567afcdb3a664957-1372075908728056.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="майнинг mining" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-567afcdb3a664957-1372075908728056.webp" /></p>Компания Fortitude Mining начала участвовать в оптовом рынке электроэнергии с площадкой для майнинга Zcash мощностью 15 МВт в штате Небраска. Объект подключили к программе реагирования на спрос, которая позволяет крупным потребителям сокращать энергопотребление по сигналам оператора сети и в зависимости от рыночных условий.
+
+Механизм помогает балансировать нагрузку в энергосистеме в периоды пикового спроса, а майнерам — гибче управлять затратами на электричество. Fortitude не раскрыла какую экономию или выплаты рассчитывает получить.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Хак за 20 минут: почему клиенты Binance ничего не потеряли</title>
+		<link>https://forklog.com/news/hak-za-20-minut-pochemu-klienty-binance-nichego-ne-poteryali</link>
+		
+		<dc:creator><![CDATA[Лена Джесс]]></dc:creator>
+		<pubDate>Sat, 31 Oct 2026 09:18:21 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[подкаст]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291873</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-4ef7f104832c267e-767442627980736.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-4ef7f104832c267e-767442627980736" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-4ef7f104832c267e-767442627980736.webp" /></p>Текстовая версия свежей "Деконструкции".]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Взлом Binance поднял вопрос о двойных стандартах при заморозке украденной криптовалюты</title>
+		<link>https://forklog.com/news/vzlom-binance-podnyal-vopros-o-dvojnyh-standartah-pri-zamorozke-ukradennoj-kriptovalyuty</link>
+		
+		<dc:creator><![CDATA[Роман Петров]]></dc:creator>
+		<pubDate>Sat, 31 Oct 2026 08:40:51 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Binance]]></category>
+		<category><![CDATA[Circle]]></category>
+		<category><![CDATA[Tether (USDT)]]></category>
+		<category><![CDATA[Киберпреступления]]></category>
+		<category><![CDATA[Мнения]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291871</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Binance-4-1.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Binance 4" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Binance-4-1.webp" /></p>Взлом Binance на $6,3 млрд вновь обострил дискуссию о том, по каким правилам эмитенты стейблкоинов блокируют украденные активы, пишет CoinDesk.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Скрытый майнинг XMR фейковым ChatGPT, арест хакера-самоучки в Южной Корее и другие события кибербезопасности</title>
+		<link>https://forklog.com/news/skrytyj-majning-xmr-fejkovym-chatgpt-arest-hakera-samouchki-v-yuzhnoj-koree-i-drugie-sobytiya-kiberbezopasnosti</link>
+		
+		<dc:creator><![CDATA[Сергей Голубенко]]></dc:creator>
+		<pubDate>Sat, 31 Oct 2026 04:00:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Дайджест кибербезопасности]]></category>
+		<category><![CDATA[Дайджесты]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291858</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-b92d684f91b380b4-112202657609480.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="security_2026_1" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-b92d684f91b380b4-112202657609480.webp" /></p>Мы собрали наиболее важные новости из мира кибербезопасности за неделю.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>СМИ назвали главу Nvidia возможной целью китайской разведывательной операции</title>
+		<link>https://forklog.com/news/smi-nazvali-glavu-nvidia-vozmozhnoj-tselyu-kitajskoj-razvedyvatelnoj-operatsii</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 15:10:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[NVIDIA]]></category>
+		<category><![CDATA[Китай]]></category>
+		<category><![CDATA[Расследования]]></category>
+		<category><![CDATA[США]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291843</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Nvidia-1.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Nvidia" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Nvidia-1.webp" /></p>Американские спецслужбы заподозрили Элис Хуан (Хуан Лэ), ранее занимавшую руководящую должность в сингапурской Megaspeed, в передаче информации китайской разведке. По данным The New York Times, она поддерживала тесные контакты с генеральным директором Nvidia Дженсеном Хуангом, которого власти США рассматривали как возможную цель операции.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Лучшие некастодиальные криптокошельки: где безопасно хранить крупный капитал</title>
+		<link>https://forklog.com/exclusive/luchshie-nekastodialnye-kriptokoshelki-2026</link>
+		
+		<dc:creator><![CDATA[Гостевые материалы]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 15:01:20 +0000</pubDate>
+				<category><![CDATA[Лонгриды]]></category>
+		<category><![CDATA[Аппаратные кошельки]]></category>
+		<category><![CDATA[Кошельки]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291855</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-ba003477b764629b-701582588706329.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-ba003477b764629b-701582588706329" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-ba003477b764629b-701582588706329.webp" /></p>Рейтинг 10 лучших некастодиальных криптокошельков 2026 года для состоятельных инвесторов по 12 критериям: безопасность, наследование, совместный доступ, свопы и трейдинг.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Wolfspeed представил материал для квантовых компьютеров и AR-очков</title>
+		<link>https://forklog.com/news/wolfspeed-predstavil-material-dlya-kvantovyh-kompyuterov-i-ar-ochkov</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 14:10:02 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[VR / AR]]></category>
+		<category><![CDATA[квантовые компьютеры]]></category>
+		<category><![CDATA[технологии]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291847</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-2fbcc06c92bd6c31-5319907652450067.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-2fbcc06c92bd6c31-5319907652450067" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-2fbcc06c92bd6c31-5319907652450067.webp" /></p>Wolfspeed вывел на коммерческий рынок прозрачный карбид кремния для AR-очков, оптических систем и квантовых компьютеров.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Mistral выложила в открытый доступ веса Large 4 с 1 трлн параметров</title>
+		<link>https://forklog.com/news/ai/mistral-vylozhila-v-otkrytyj-dostup-vesa-large-4-s-1-trln-parametrov</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 13:30:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Mistral]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291835</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Mistral-AI.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Mistral AI" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Mistral-AI.webp" /></p>Французская компания Mistral AI опубликовала веса флагманской модели искусственного интеллекта Large 4 (Le Chonk) с 1,05 трлн параметров. ]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Ant Group запустила проактивного ИИ-агента LingGuang 2.0</title>
+		<link>https://forklog.com/ant-group-zapustila-proaktivnogo-ii-agenta-lingguang-2-0</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 12:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291819</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/AI-agents-II-agenty-2.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="AI-agents ИИ агенты 2" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/AI-agents-II-agenty-2.webp" /></p>Крупнейшая китайская технологическая и финансовая компания Ant Group запустила в КНР LingGuang 2.0 с памятью между сессиями и длительными задачами. ИИ-агент может продолжать работу после завершения чата, отслеживать изменения и взаимодействовать с Alipay, электронной почтой, DingTalk и другими сервисами с разрешения пользователя.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Binance направит $6,34 млрд собственных средств на покрытие ущерба от взлома</title>
+		<link>https://forklog.com/news/binance-napravit-6-34-mlrd-sobstvennyh-sredstv-na-pokrytie-ushherba-ot-vzloma</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 11:50:40 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Binance]]></category>
+		<category><![CDATA[Киберпреступления]]></category>
+		<category><![CDATA[США]]></category>
+		<category><![CDATA[Централизованные биржи (CEX)]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291830</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/binance20.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="binance20" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/binance20.webp" /></p>Криптовалютная биржа Binance приступила к возврату средств пользователей, затронутых взломом, и зарезервировала для покрытия потерь более $6,34 млрд из собственного капитала.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Wikimedia призвала суд разграничить обучение ИИ и копирование материалов в ответах чат-ботов</title>
+		<link>https://forklog.com/news/ai/wikimedia-prizvala-sud-razgranichit-obuchenie-ii-i-kopirovanie-materialov-v-otvetah-chat-botov</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 11:12:50 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Википедия]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[чат-боты]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291827</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Chat-boty-s-ii-2.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Чат-боты с искусственным интеллектом" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Chat-boty-s-ii-2.webp" /></p>Управляющий «Википедией» фонд Wikimedia обратился в федеральный суд Нью-Йорка с предложением разграничить использование защищенных авторским правом материалов для обучения искусственного интеллекта и их воспроизведение в ответах чат-ботов.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>E.ON и Qoro протестировали квантовое планирование энергосделок</title>
+		<link>https://forklog.com/e-on-i-qoro-protestirovali-kvantovoe-planirovanie-energosdelok</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 11:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291820</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-beb3de1cf803c936-42787498816523.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="quantum-computers-kvantovye-kompyutery-2" decoding="async" loading="lazy" srcset="https://forklog.com/wp-content/uploads/img-beb3de1cf803c936-42787498816523.webp 1200w, https://forklog.com/wp-content/uploads/img-beb3de1cf803c936-42787498816523-300x240.webp 300w, https://forklog.com/wp-content/uploads/img-beb3de1cf803c936-42787498816523-1024x819.webp 1024w, https://forklog.com/wp-content/uploads/img-beb3de1cf803c936-42787498816523-768x614.webp 768w" sizes="auto, (max-width: 1200px) 100vw, 1200px" data-src="https://forklog.com/wp-content/uploads/img-beb3de1cf803c936-42787498816523.webp" /></p>Энергокомпания E.ON и разработчик квантового ПО Qoro создали прототип гибридной системы для планирования P2P-сделок с электроэнергией. Задачу, требующую около 1710 кубитов, разбили на фрагменты до 50 кубитов и запустили на оборудовании IBM. Это примерно втрое сократило время выполнения на квантовом оборудовании.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Reddit обвинила ИИ-поиск Google в падении трафика</title>
+		<link>https://forklog.com/news/ai/reddit-obvinila-ii-poisk-google-v-padenii-trafika</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 10:51:41 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Google]]></category>
+		<category><![CDATA[Reddit]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291813</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/reddit-token.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="reddit token" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/reddit-token.webp" /></p>Генеральный директор Reddit Стив Хаффман обвинил ИИ-функции поиска Google — AI Overviews и AI Mode — в оттоке посетителей платформы. Об этом он заявил во время конференц-звонка с инвесторами, пишет Reuters. ]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Чистая прибыль Coinbase выросла на 66% на фоне развития рынков предсказаний</title>
+		<link>https://forklog.com/chistaya-pribyl-coinbase-vyrosla-na-66-na-fone-razvitiya-rynkov-predskazaniy</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 10:20:59 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291814</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/coinbase-10.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="coinbase" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/coinbase-10.webp" /></p>Криптобиржа Coinbase отчиталась о росте чистой прибыли за третий квартал на 66% в годовом выражении — до $719 млн. Основным фактором стал нереализованный доход от переоценки цифровых активов в размере $715 млн, тогда как общая выручка сократилась на 35% — до $1,22 млрд. При этом расчетная годовая выручка от рынков предсказаний превысила $200 млн, а число ежедневно торгующих пользователей увеличилось более чем на 60% за квартал. В компании назвали это направление одним из самых быстрорастущих за всю историю площадки.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Применение блокчейна вне криптоиндустрии стало приносить больше денег</title>
+		<link>https://forklog.com/news/primenenie-blokchejna-vne-kriptoindustrii-stalo-prinosit-bolshe-deneg</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 09:41:49 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[блокчейн]]></category>
+		<category><![CDATA[Институционалы и киты]]></category>
+		<category><![CDATA[Исследования]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291792</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-774cde194dc2e73d-42780045279683.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="network-abstraction-single-interface-for-all-blockchains-cryptocurrency-network-abstraktsiya-seti-edinyi-interfei-s-dlya-vseh-blokchei-nov-kriptovalyuty-set" decoding="async" loading="lazy" srcset="https://forklog.com/wp-content/uploads/img-774cde194dc2e73d-42780045279683.webp 1200w, https://forklog.com/wp-content/uploads/img-774cde194dc2e73d-42780045279683-300x240.webp 300w, https://forklog.com/wp-content/uploads/img-774cde194dc2e73d-42780045279683-1024x819.webp 1024w, https://forklog.com/wp-content/uploads/img-774cde194dc2e73d-42780045279683-768x614.webp 768w" sizes="auto, (max-width: 1200px) 100vw, 1200px" data-src="https://forklog.com/wp-content/uploads/img-774cde194dc2e73d-42780045279683.webp" /></p>В третьем квартале доходы от применения блокчейна за пределами криптоотрасли впервые превысили выручку базовой инфраструктуры: $5,3 млрд против $5,1 млрд. Об этом говорится в исследовании фонда 1kx, которое охватило более 2600 протоколов и финансовую отчетность свыше 100 публичных компаний.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Trezor предупредила о возможном шпионском импланте в Safe 5</title>
+		<link>https://forklog.com/news/trezor-predupredila-o-vozmozhnom-shpionskom-implante-v-safe-5</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 08:04:27 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Ledger]]></category>
+		<category><![CDATA[Trezor]]></category>
+		<category><![CDATA[Аппаратные кошельки]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291789</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Trezor.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Trezor" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Trezor.webp" /></p>Команда Trezor сообщила о возможном вредоносном модуле внутри устройства Safe 5, которое купили у реселлера CryptoBilis. Ранее через того же продавца распространялись модифицированные кошельки Ledger.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Опрос выявил высокое доверие американцев к ИИ в вопросах здоровья</title>
+		<link>https://forklog.com/news/ai/opros-vyyavil-vysokoe-doverie-amerikantsev-k-ii-v-voprosah-zdorovya</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 07:21:45 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[Медицина]]></category>
+		<category><![CDATA[США]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291787</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Medicine_AI.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Medicine_AI" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Medicine_AI.webp" /></p>60% американцев, которые обращаются к искусственному интеллекту с вопросами о здоровье, допустили, что поверят нейросети, даже если ее совет противоречит мнению врача. Об этом свидетельствуют результаты опроса Talker Research, проведенного по заказу телемедицинского сервиса MDLIVE by Evernorth.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Strategy отчиталась о чистой прибыли в $19,5 млрд</title>
+		<link>https://forklog.com/strategy-otchitalas-o-chistoj-pribyli-v-19-5-mlrd</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 07:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291782</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Strategy-2025.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Strategy 2025" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Strategy-2025.webp" /></p>Компания Strategy сообщила о чистой прибыли в $19,53 млрд за третий квартал против $2,79 млрд годом ранее. Основным фактором стал нереализованный доход от переоценки криптовалютных резервов в размере $20,91 млрд. По состоянию на 25 октября — последней даты учета — фирма владела 848 517 BTC, увеличив запасы с начала года на 26%. Акционеры также одобрили ежедневное начисление дивидендов по четырем сериям привилегированных акций.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Kalshi привлекла $1 млрд при оценке в $40 млрд</title>
+		<link>https://forklog.com/kalshi-privlekla-1-mlrd-pri-otsenke-v-40-mlrd</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 06:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291780</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/rynki-predskazanij-prediction-markets.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="рынки предсказаний prediction markets" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/rynki-predskazanij-prediction-markets.webp" /></p>Платформа рынков предсказаний Kalshi закрыла раунд финансирования серии G на $1 млрд под руководством Wellington Management и Sequoia Capital. В мае компанию оценивали в $22 млрд — за пять месяцев показатель вырос на 82%. По данным Kalshi, расчетная годовая выручка от не связанных со спортом рынков превысила $1 млрд, а годовой объем торгов в пересчете на текущие темпы — $1 трлн. ]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Binance оценила последствия взлома в $6,3 млрд</title>
+		<link>https://forklog.com/news/binance-otsenila-posledstviya-vzloma-v-6-3-mlrd</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 05:36:02 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Binance]]></category>
+		<category><![CDATA[Киберпреступления]]></category>
+		<category><![CDATA[Цена биткоина]]></category>
+		<category><![CDATA[Централизованные биржи (CEX)]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291775</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Binance-05.06.2025.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Binance-05.06.2025" decoding="async" loading="lazy" srcset="https://forklog.com/wp-content/uploads/Binance-05.06.2025.webp 1200w, https://forklog.com/wp-content/uploads/Binance-05.06.2025-300x240.webp 300w, https://forklog.com/wp-content/uploads/Binance-05.06.2025-1024x819.webp 1024w, https://forklog.com/wp-content/uploads/Binance-05.06.2025-768x614.webp 768w" sizes="auto, (max-width: 1200px) 100vw, 1200px" data-src="https://forklog.com/wp-content/uploads/Binance-05.06.2025.webp" /></p>Криптовалютная биржа Binance оценила ущерб от хакерской атаки примерно в $6,3 млрд. К утру 30 октября площадка вместе с партнерами заморозила около $3 млрд из выведенных средств.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Хакеры похитили у пользователей Polymarket $2,7 млн</title>
+		<link>https://forklog.com/news/hakery-pohitili-u-polzovatelej-polymarket-2-7-mln</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2026 05:05:27 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Polymarket]]></category>
+		<category><![CDATA[Киберпреступления]]></category>
+		<category><![CDATA[рынки предсказаний]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291772</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/CHto-takoe-Polymarket.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Что такое Polymarket" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/CHto-takoe-Polymarket.webp" /></p>Злоумышленники вывели не менее $2,73 млн с 737 счетов пользователей Polymarket, подсчитали аналитики Bitquery. Атака произошла 29 октября через взломанного стороннего поставщика программного обеспечения, подтвердили представители площадки.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Власти Юты предъявили уголовные обвинения Kalshi и ее основателям</title>
+		<link>https://forklog.com/news/vlasti-yuty-predyavili-ugolovnye-obvineniya-kalshi-i-ee-osnovatelyam</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2026 17:18:15 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Kalshi]]></category>
+		<category><![CDATA[рынки предсказаний]]></category>
+		<category><![CDATA[Суды]]></category>
+		<category><![CDATA[США]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291769</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-c699a6135b7778c7-4213603715521737.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="prediction" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-c699a6135b7778c7-4213603715521737.webp" /></p>Генпрокуратура американского штата Юта предъявила платформе рынков предсказаний Kalshi и ее сооснователям Тареку Мансуру и Луане Лопес Ларе 14 обвинений в продвижении незаконных азартных игр. Из них 13 относятся к категории тяжких преступлений.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Исследование: для взлома ключа биткоина может хватить 29 588 кубитов и 62 минут</title>
+		<link>https://forklog.com/news/issledovanie-dlya-vzloma-klyucha-bitkoina-mozhet-hvatit-29-588-kubitov-i-62-minut</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2026 16:52:13 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Биткоин]]></category>
+		<category><![CDATA[квантовая угроза]]></category>
+		<category><![CDATA[квантовые вычисления]]></category>
+		<category><![CDATA[квантовые компьютеры]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291765</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-2fbcc06c92bd6c31-5319907652450067.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-2fbcc06c92bd6c31-5319907652450067" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-2fbcc06c92bd6c31-5319907652450067.webp" /></p>Специалисты французского стартапа Alice &#038; Bob рассчитали, что гипотетическому квантовому компьютеру может хватить 29 588 физических кубитов и около 62 минут, чтобы восстановить приватный ключ биткоина по публичному. ]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Владелец NYSE объявил об инвестициях в TradeXYZ</title>
+		<link>https://forklog.com/vladelets-nyse-obyavil-ob-investitsiyah-v-tradexyz</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2026 16:30:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291759</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/hyperliquid-bitcoin-blockchain-bitkoin-blokchejn.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="hyperliquid bitcoin blockchain биткоин блокчейн" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/hyperliquid-bitcoin-blockchain-bitkoin-blokchejn.webp" /></p>Intercontinental Exchange, оператор Нью-Йоркской фондовой биржи, объявила о стратегической инвестиции в TradeXYZ — платформу бессрочных фьючерсов на Hyperliquid. Сумма сделки не раскрывается. Партнеры планируют создать в США регулируемую площадку для круглосуточной торговли деривативами на акции, криптовалюты, сырье и валюты. Запуск потребует одобрения регуляторов.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Curve Finance вышел за пределы EVM-экосистемы, запустившись в Stellar</title>
+		<link>https://forklog.com/curve-finance-vyshel-za-predely-evm-ekosistemy-zapustivshis-v-stellar</link>
+		
+		<dc:creator><![CDATA[ForkLog]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2026 15:30:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291750</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Vypusk_Curve_zajmov_na_osnove_myagkih_likvidatsij.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Выпуск_Curve_займов_на_основе_мягких_ликвидаций" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Vypusk_Curve_zajmov_na_osnove_myagkih_likvidatsij.webp" /></p>DeFi-протокол Curve Finance развернул децентрализованную биржу StableSwap в основной сети Stellar. Это первая нативная интеграция проекта в блокчейн за пределами экосистемы Ethereum Virtual Machine (EVM). 
+
+Следующим этапом станет запуск AMM-платформы FXSwap для торговли коррелированными активами, активами, включая стейблкоины, привязанные к разным валютам. Его развернут на Stellar после завершения аудита, сроки пока не названы.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Tether заблокировала адреса TRON с $27 млн в USDT</title>
+		<link>https://forklog.com/tether-zablokirovala-adresa-tron-s-27-mln-v-usdt</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2026 14:30:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=291741</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-6b48bd917993f846-4741812794553819.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="tether" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-6b48bd917993f846-4741812794553819.webp" /></p>28 октября компания Tether внесла в черный список не менее 33 адресов в сети TRON, следует из данных TrustSniffer. На момент обнаружения блокировок на кошельках находилось около $27 млн, крупнейший из них содержал примерно $7,8 млн. Операции с USDT для этих адресов теперь ограничены. Причины заморозки и владельцы кошельков неизвестны.]]></description>
+		
+		
+		
+			</item>
+	</channel>
+</rss>
