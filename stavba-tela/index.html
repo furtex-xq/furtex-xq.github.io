@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stavba lidského těla</title>
+<meta name="description" content="Rychlé opakování na test: 13 soustav lidského těla, kartičky a test s kontrolou odpovědí.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: anatomický atlas — úzký čtecí sloupec, každá soustava jako list atlasu s okrajovou poznámkou "Zapamatuj!" */
+:root{
+  --bg:#f3f5f8; --paper:#ffffff; --ink:#172238; --muted:#5a6680; --line:#d9dfea;
+  --blood:#c8323c; --blood-soft:#fbe7e8; --bone:#e9b949; --bone-soft:#fbf1d6;
+  --ok:#1f8a55; --ok-soft:#e1f4ea; --bad:#c8323c; --bad-soft:#fbe7e8;
+  --vein:#2f5fb3; --vein-soft:#e4ecfa;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0f1522; --paper:#172034; --ink:#e8ecf4; --muted:#9aa6bf; --line:#2a3550;
+    --blood:#ff6b74; --blood-soft:#3a1d24; --bone:#f2c75c; --bone-soft:#352c16;
+    --ok:#4fd18c; --ok-soft:#14321f; --bad:#ff6b74; --bad-soft:#3a1d24;
+    --vein:#7aa6ff; --vein-soft:#1b2848;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--f-body);
+  padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-bottom:env(safe-area-inset-bottom,0px)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+.wrap{max-width:820px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-display);line-height:1.1;text-wrap:balance;margin:0}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--vein);outline-offset:2px;border-radius:6px}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin:0 calc(-1*max(16px, env(safe-area-inset-left,0px)))}
+.bar-in{max-width:820px;margin:0 auto;padding:10px 16px;display:flex;gap:12px;align-items:center}
+.brand{font:800 15px var(--f-display);white-space:nowrap}
+.prog{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--vein),var(--blood));transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.prog-txt{font:500 12px var(--f-mono);color:var(--muted);white-space:nowrap}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:0 16px 10px;max-width:820px;margin:0 auto;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:none;text-decoration:none;font:600 13px var(--f-body);padding:5px 11px;border-radius:99px;border:1px solid var(--line);background:var(--paper);color:var(--muted)}
+.chips a.done{border-color:var(--ok);color:var(--ok)}
+
+/* hero */
+.hero{padding:40px 0 24px}
+.eyebrow{font:500 12px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blood)}
+.hero h1{font-size:clamp(38px,9vw,68px);font-weight:800;letter-spacing:-.02em;margin:10px 0 12px}
+.hero p{color:var(--muted);max-width:56ch;margin:0}
+.ladder{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:26px 0 8px}
+.rung{font:700 15px var(--f-display);padding:10px 14px;border-radius:12px;background:var(--paper);border:1px solid var(--line);
+  animation:pop .5s cubic-bezier(.2,1.4,.4,1) both}
+.rung:nth-child(odd){animation-delay:calc(var(--i)*.18s)}
+.arrow{color:var(--blood);font-weight:800;animation:pop .4s both;animation-delay:calc(var(--i)*.18s + .09s)}
+@keyframes pop{from{transform:translateY(8px) scale(.9)}to{transform:none}}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.btn{border:0;border-radius:12px;padding:12px 18px;font-weight:700;background:var(--ink);color:var(--bg);text-decoration:none;display:inline-flex;gap:8px;align-items:center}
+.btn.ghost{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+.btn:hover{transform:translateY(-1px)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:20px;font-size:14px;color:var(--muted)}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+
+/* topic sheets */
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 20px;margin:18px 0;scroll-margin-top:110px;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.sheet.in{animation:rise .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes rise{from{transform:translateY(18px)}to{transform:none}}
+.sheet-head{display:flex;gap:14px;align-items:flex-start}
+.num{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font:500 14px var(--f-mono);background:var(--vein-soft);color:var(--vein)}
+.sheet h2{font-size:clamp(24px,5vw,32px);font-weight:800}
+.fn{margin:4px 0 0;color:var(--muted)}
+.fn b{color:var(--ink)}
+.facts{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:8px}
+.facts li{padding-left:22px;position:relative}
+.facts li::before{content:"";position:absolute;left:4px;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--blood)}
+.facts b{font-weight:700}
+.key{display:inline;background:linear-gradient(transparent 58%,var(--bone-soft) 58%);font-weight:700}
+.remember{margin-top:16px;border-radius:14px;background:var(--bone-soft);padding:14px 16px;border:1px dashed var(--bone)}
+.remember h3{font:800 13px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:6px}
+.ru{display:block;margin-top:8px;font-size:15px;color:var(--muted)}
+.ru::before{content:"RU";font:500 10px var(--f-mono);background:var(--vein);color:var(--paper);padding:2px 5px;border-radius:4px;margin-right:7px;vertical-align:2px}
+.chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:14px}
+.chain span{font:600 14px var(--f-body);padding:6px 10px;border-radius:9px;background:var(--vein-soft);color:var(--ink)}
+.chain .to{background:none;padding:0;color:var(--blood);font-weight:800}
+.chain.anim span:not(.to){animation:glow 4s infinite;animation-delay:calc(var(--i)*.35s)}
+@keyframes glow{0%,12%,100%{background:var(--vein-soft)}6%{background:var(--blood-soft);color:var(--blood)}}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:14px}
+.tile{border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:0}
+.tile b{display:block;font-family:var(--f-display)}
+.tile small{color:var(--muted);font-size:14px}
+.big{font:800 34px var(--f-display);color:var(--blood);font-variant-numeric:tabular-nums}
+
+/* mini check */
+.mini{margin-top:18px;border-top:1px solid var(--line);padding-top:14px}
+.mini p{margin:0 0 8px;font-weight:600}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row input{flex:1;min-width:0;padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
+.row button{border:0;border-radius:10px;padding:10px 16px;font-weight:700;background:var(--vein);color:#fff}
+.fb{margin-top:8px;font-weight:600;min-height:1.4em}
+.fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+input.ok{border-color:var(--ok);background:var(--ok-soft)} input.bad{border-color:var(--bad);background:var(--bad-soft);animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.learned{margin-top:14px;display:flex;align-items:center;gap:8px;font-weight:600;color:var(--muted);cursor:pointer}
+.learned input{width:20px;height:20px;accent-color:var(--ok)}
+
+/* heart */
+.heartbox{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.heart{width:70px;height:70px;animation:beat .83s infinite;transform-origin:center}
+.heart path{fill:var(--blood)}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.14)}30%{transform:scale(.97)}}
+.ecg{flex:1;min-width:200px;height:60px}
+.ecg path{fill:none;stroke:var(--blood);stroke-width:2.5;stroke-dasharray:600;stroke-dashoffset:600;animation:draw 2.4s linear infinite}
+@keyframes draw{to{stroke-dashoffset:0}}
+.circuits{display:grid;gap:10px;margin-top:14px}
+.circ{border-radius:12px;padding:12px 14px;min-width:0}
+.circ.small{background:var(--vein-soft)} .circ.big2{background:var(--blood-soft)}
+.circ h4{margin:0 0 6px;font:800 15px var(--f-display)}
+
+/* section titles */
+.part{margin:48px 0 6px}
+.part h2{font-size:clamp(28px,6vw,40px);font-weight:800}
+.part p{color:var(--muted);margin:6px 0 0}
+
+/* flashcards */
+.deck{display:grid;place-items:center;margin-top:16px}
+.card{width:100%;max-width:520px;aspect-ratio:16/10;perspective:1200px;cursor:pointer}
+.card-in{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.card.flip .card-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:18px;padding:22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:1px solid var(--line)}
+.front{background:var(--paper)}
+.back{background:var(--ink);color:var(--bg);transform:rotateY(180deg)}
+.face small{font:500 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;opacity:.65;margin-bottom:10px}
+.face strong{font:700 clamp(19px,4.5vw,26px)/1.25 var(--f-display)}
+.deck-ctl{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap;justify-content:center}
+.deck-ctl .btn{padding:10px 14px}
+.counter{font:500 13px var(--f-mono);color:var(--muted)}
+
+/* test */
+.q{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+.q .qn{font:500 12px var(--f-mono);color:var(--muted)}
+.q h3{font:700 18px/1.35 var(--f-body);margin:4px 0 10px}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:10px 12px;font-weight:600;transition:transform .15s}
+.opt:hover{transform:translateX(3px)}
+.opt.ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.bad{border-color:var(--bad);background:var(--bad-soft);animation:shake .35s}
+.opt:disabled{cursor:default;transform:none}
+.score{position:sticky;bottom:calc(10px + env(safe-area-inset-bottom,0px));margin:20px 0;background:var(--ink);color:var(--bg);border-radius:14px;padding:12px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;z-index:10}
+.score b{font:800 22px var(--f-display);font-variant-numeric:tabular-nums}
+.score button{border:0;border-radius:10px;padding:8px 14px;font-weight:700;background:var(--bg);color:var(--ink)}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.filters button{border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:99px;padding:5px 12px;font-weight:600;font-size:14px}
+.filters button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+footer{color:var(--muted);font-size:14px;padding:30px 0 50px;text-align:center}
+.confetti{position:fixed;top:-10px;width:9px;height:14px;z-index:50;pointer-events:none;animation:fall 1.6s ease-in forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(540deg)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="bar-in">
+    <span class="brand">Stavba těla</span>
+    <div class="prog" aria-label="Pokrok"><i id="progBar"></i></div>
+    <span class="prog-txt" id="progTxt">0/13</span>
+  </div>
+  <nav class="chips" id="chips"></nav>
+</div>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Biologie · příprava na test</div>
+    <h1>Stavba lidského těla</h1>
+    <p>13 témat z prezentace. Projdi každou soustavu, zaškrtni „Umím“, pak kartičky a nakonec test. Žluté = nejdůležitější, šedé <b>RU</b> = nápověda v ruštině.</p>
+    <div class="ladder" aria-label="Úrovně organizace">
+      <span class="rung" style="--i:0">buňka</span><span class="arrow" style="--i:0">→</span>
+      <span class="rung" style="--i:1">tkáň</span><span class="arrow" style="--i:1">→</span>
+      <span class="rung" style="--i:2">orgán</span><span class="arrow" style="--i:2">→</span>
+      <span class="rung" style="--i:3">orgánová soustava</span><span class="arrow" style="--i:3">→</span>
+      <span class="rung" style="--i:4">organismus</span>
+    </div>
+    <div class="cta">
+      <a class="btn" href="#t1">Začít učení</a>
+      <a class="btn ghost" href="#karticky">Kartičky</a>
+      <a class="btn ghost" href="#test">Test</a>
+    </div>
+  </section>
+
+  <div id="topics"></div>
+
+  <section class="part" id="karticky">
+    <div class="eyebrow">Krok 2</div>
+    <h2>Kartičky</h2>
+    <p>Klikni na kartičku a otoč ji. Řekni odpověď nahlas dřív, než ji otočíš.</p>
+  </section>
+  <div class="deck">
+    <div class="card" id="card" tabindex="0" role="button" aria-label="Otočit kartičku">
+      <div class="card-in">
+        <div class="face front"><small id="cardTag">otázka</small><strong id="cardQ"></strong></div>
+        <div class="face back"><small>odpověď</small><strong id="cardA"></strong></div>
+      </div>
+    </div>
+    <div class="deck-ctl">
+      <button class="btn ghost" id="prevC">← Zpět</button>
+      <span class="counter" id="cardN"></span>
+      <button class="btn ghost" id="shufC">Zamíchat</button>
+      <button class="btn" id="nextC">Další →</button>
+    </div>
+  </div>
+
+  <section class="part" id="test">
+    <div class="eyebrow">Krok 3</div>
+    <h2>Test</h2>
+    <p>Piš odpovědi do okének nebo vyber možnost. Háčky a čárky psát nemusíš.</p>
+    <div class="filters" id="filters"></div>
+  </section>
+  <div id="quiz"></div>
+  <div class="score">
+    <span>Správně: <b id="scoreTxt">0 / 0</b></span>
+    <button id="resetQ">Znovu a zamíchat</button>
+  </div>
+  <footer>Zdroj: prezentace „Stavba lidského těla“. Hodně štěstí na testu!</footer>
+</main>
+
+<script>
+const T = [
+{id:"t1",name:"Stavba těla",title:"Stavba lidského těla",fn:"Buňky se podle funkce <b>sdružují</b> do vyšších celků.",
+ facts:["Lidské buňky se sdružují do <span class='key'>tkání</span>.","Tkáně jsou základem <span class='key'>orgánů</span>.","Orgány se sdružují do <span class='key'>orgánových soustav</span>.","Soustavy dohromady tvoří <b>organismus</b>."],
+ chain:["buňka","tkáň","orgán","orgánová soustava","organismus"],
+ rem:"Od nejmenšího: <b>B–T–O–S–O</b> (Buňka, Tkáň, Orgán, Soustava, Organismus).",
+ ru:"клетка → ткань → орган → система органов → организм",
+ mini:{q:"Co je mezi buňkou a orgánem?",a:["tkan"]}},
+{id:"t2",name:"Opěrná",title:"Opěrná soustava",fn:"<b>Opora těla</b>, <b>ochrana orgánů</b> a <b>krvetvorba</b>.",
+ facts:["V těle je asi <span class='key'>200 kostí</span>, u dětí <b>více</b> než u dospělých.","Kosti tvoří hlavně <b>vápník</b>, <b>fosfor</b> a organické látky.","Na povrchu kosti je blána s cévami a nervy: <span class='key'>okostice</span>.","Spojení kostí: <span class='key'>kloub, srůst, šev</span>."],
+ tiles:[["Páteř","krční obratle 7 (C I–VII) · hrudní 12 (T I–XII) · bederní 5 (L I–V) · kost křížová · kostrční"],["Hlava","kost čelní, horní čelist, dolní čelist"],["Hrudník","hrudní kost, žebra, kost klíční, lopatka"],["Ruka","kost pažní → kost vřetenní + loketní → zápěstní → záprstní → články prstů"],["Noha","kost pánevní → stehenní → čéška → holenní + lýtková"],["Chodidlo","kost hlezenní, patní, zánártní, nártní, články prstů"]],
+ rem:"Obratle <b>7 – 12 – 5</b>: krk 7, hrudník 12, bedra 5. Kosti = <b>Ca + P</b>.",
+ ru:"опорная система: ~200 костей, надкостница = okostice; соединения: сустав, сращение, шов",
+ mini:{q:"Jak se jmenuje blána na povrchu kosti?",a:["okostice"]}},
+{id:"t3",name:"Svalová",title:"Svalová soustava",fn:"Má funkci <b>pohybu těla</b>.",
+ facts:["V těle je asi <span class='key'>600 svalů</span>.","Tréninkem se počet svalů <b>nemění</b>, sílí jen svalová vlákna.","Svaly jsou vázány na kosti pomocí <b>vazů a šlach</b>.","Bílkovina <span class='key'>myoglobin</span> přenáší kyslík díky <b>Fe</b> (železo)."],
+ tiles:[["Hladké","neovládané vůlí (např. střevo)"],["Příčně pruhované","ovládané vůlí (kosterní svaly)"],["Srdeční","sval srdce"]],
+ rem:"Kosti 200, svaly <b>600</b> (3× víc). Typy: <b>H–P–S</b> = hladké, příčně pruhované, srdeční.",
+ ru:"мышцы: ~600; гладкие (не по воле), поперечнополосатые (по воле), сердечная; сухожилия = šlachy",
+ mini:{q:"Které svaly NEJSOU ovládané vůlí?",a:["hladke","hladke svaly"]}},
+{id:"t4",name:"Trávicí",title:"Trávicí soustava",fn:"Má funkci <b>vstřebávání živin</b> z potravy.",
+ facts:["<b>Jazyk</b> zpracovává sousto, vnímá chuť a umožňuje řeč.","<b>Žaludek</b> mechanicky zpracovává a částečně natráví.","Samotné trávení (vstřebání živin) probíhá v <span class='key'>tenkém střevě</span>.","<b>Játra</b> produkují <span class='key'>žluč</span> a odbourávají toxické látky.","<b>Slinivka</b> produkuje trávicí enzymy.","<b>Tlusté střevo</b> zpětně vstřebává <span class='key'>vodu</span> a zahustí zbytky."],
+ chain:["ústa (slinné žlázy, jazyk)","jícen","žaludek","dvanáctník","tenké střevo","tlusté střevo","konečník","řitní otvor"],
+ rem:"Živiny = <b>tenké</b>, voda = <b>tlusté</b>. Žluč dělají <b>játra</b>, uloží se ve <b>žlučníku</b>. Slepé střevo má <b>červovitý výběžek (apendix)</b>.",
+ ru:"пищеварение: печень = játra (желчь), поджелудочная = slinivka, тонкая кишка всасывает питательные вещества",
+ mini:{q:"Kde probíhá vstřebávání živin?",a:["tenke strevo","v tenkem strevu","tenkem strevu"]}},
+{id:"t5",name:"Vylučovací",title:"Vylučovací soustava",fn:"Hlavní orgán: <b>ledviny</b> – filtrují krev od odpadních látek.",
+ facts:["Filtrací vzniká <span class='key'>primární moč</span> – asi <b>180 l/den</b>.","Zpětně se vstřebá voda a některé látky → vzniká <span class='key'>moč definitivní</span> (skutečně asi 1,5 l/den; v prezentaci je překlep).","Definitivní moč se shromažďuje v <b>močovém měchýři</b> a vylučuje se z těla."],
+ chain:["ledvina","močovod","močový měchýř","močová trubice"],
+ rem:"Primární moč <b>180 l</b> → definitivní moč. Na ledvině sedí <b>nadledvinka</b>.",
+ ru:"почки = ledviny, мочеточник = močovod, мочевой пузырь = močový měchýř",
+ mini:{q:"Kolik litrů primární moči vznikne za den?",a:["180","180 l","180l","180 litru"]}},
+{id:"t6",name:"Krycí",title:"Krycí soustava",fn:"<b>Ochrana těla</b> a <b>vylučování potu</b>.",
+ facts:["Kůže má plochu <span class='key'>1,1 – 1,85 m²</span>.","V kůži: nervová zakončení, potní žlázy, chladové a tepelné receptory.","Barvu kůže dává barvivo <span class='key'>melanin</span>, které tvoří <b>melanocyty</b> (pigmentové buňky).","Dále: mazová žláza, vlasový váček (folikul), tepny a žíly."],
+ chain:["pokožka (epidermis)","škára (dermis)","podkožní vazivo"],
+ rem:"3 vrstvy shora: <b>P–Š–P</b> = pokožka, škára, podkožní vazivo.",
+ ru:"кожа: эпидермис, дерма, подкожная клетчатка; меланин даёт цвет",
+ mini:{q:"Jaké barvivo dává kůži barvu?",a:["melanin"]}},
+{id:"t7",name:"Dýchací",title:"Dýchací soustava",fn:"<b>Výměna plynů O₂ a CO₂</b> v krvi.",
+ facts:["V <b>nosní dutině</b> se vzduch ohřeje, zvlhčí a vyhodnotí se zápach.","<span class='key'>Hrtanová příklopka</span> zabraňuje vdechnutí sousta.","Pod příklopkou je <b>hlasový orgán</b> (hlasivky).","Výměna plynů probíhá v <span class='key'>plicních sklípcích</span>.","Objem výdechu po maximálním nádechu = <span class='key'>vitální kapacita plic</span>."],
+ chain:["nosní dutina","hltan","hrtan","průdušnice","průdušky","plicní sklípky"],
+ rem:"Pod plícemi je sval <b>bránice</b>. Průdušnice má <b>chrupavčité prstence</b>.",
+ ru:"дыхание: надгортанник = hrtanová příklopka, альвеолы = plicní sklípky, жизненная ёмкость лёгких",
+ mini:{q:"Kde dochází k výměně plynů?",a:["plicni sklipky","v plicnich sklipcich","sklipky","plicnich sklipcich"]}},
+{id:"t8",name:"Oběhová",title:"Oběhová soustava",fn:"Přenos <b>plynů, látek a tepla</b> v těle.",
+ facts:["Skládá se ze <b>srdce, cév a krve</b>.","Srdce je ze srdečního svalu a má <span class='key'>4 části</span>: levá a pravá předsíň, levá a pravá komora.","<span class='key'>Tepny</span> vedou krev <b>od srdce</b>, <span class='key'>žíly</span> vedou krev <b>k srdci</b>.","Krev = <b>plazma</b> + krvinky: červené, bílé, krevní destičky."],
+ rem:"<b>T</b>epna = <b>T</b>ahá krev pryč (od srdce). <b>Ž</b>íla = <b>Ž</b>ene krev zpátky k srdci.",
+ ru:"артерии (tepny) — от сердца, вены (žíly) — к сердцу; кровь: плазма, эритроциты, лейкоциты, тромбоциты",
+ mini:{q:"Které cévy vedou krev OD srdce?",a:["tepny","tepna"]}},
+{id:"t9",name:"Srdce",title:"Srdce",fn:"Rytmické střídavé <b>smršťování</b> a <b>ochabování</b> srdečního svalu.",heart:true,
+ facts:["<span class='key'>Systola</span> = smrštění, <span class='key'>diastola</span> = ochabnutí.","Systola jde jako vlna z obou předsíní do komor, pak diastola celého srdce.","Klidový tep asi <span class='key'>72/min</span>, krevní tlak <span class='key'>120/80</span>.","Chlopně: aortální, plicní, mitrální (vlevo), trojcípá (vpravo)."],
+ circ:true,
+ rem:"<b>S</b>ystola = <b>S</b>mrštění. <b>D</b>iastola = o<b>D</b>počinek (ochabnutí).",
+ ru:"систола — сокращение, диастола — расслабление; пульс ~72, давление 120/80",
+ mini:{q:"Jak se jmenuje smrštění srdce?",a:["systola"]}},
+{id:"t10",name:"Nervová",title:"Nervová soustava",fn:"<b>Řídící</b> soustava – ovlivňuje stavbu a funkci organismu pomocí <b>neuronů</b>.",
+ facts:["Neurony umí signály <b>přijímat, vést a zpracovávat</b>.","<span class='key'>CNS</span> = mozek a mícha; k tomu obvodové (periferní) nervy.","Neurony jsou propojeny <span class='key'>synapsemi</span> – tam se přenáší vzruch.","Soubor funkcí CNS, kterými reagujeme na prostředí = <b>nervová činnost</b>."],
+ chain:["dendrit","neurocyt (jádro)","axon s myelinovou pochvou","telodendrie"],
+ rem:"Dendrit = <b>dovnitř</b> (příjem), axon = <b>ven</b>. Na axonu: Schwannova buňka a Ranvierův zářez.",
+ ru:"нейрон; ЦНС = головной и спинной мозг (mozek, mícha); синапс — передача импульса",
+ mini:{q:"Co tvoří CNS? (dvě slova)",a:["mozek a micha","mozek, micha","micha a mozek","mozek micha"]}},
+{id:"t11",name:"Endokrinní",title:"Endokrinní soustava",fn:"Také <b>řídící</b> – řídí procesy pomocí <b>hormonů</b> ze žláz s vnitřní sekrecí.",
+ tiles:[["Šišinka (epifýza)","melatonin – spánek"],["Podvěsek mozkový (hypofýza)","růstový hormon"],["Štítná žláza","thyroxin – metabolismus"],["Slinivka (pankreas)","inzulin a glukagon"],["Nadledvinky","adrenalin a noradrenalin"],["Pohlavní žlázy","pohlavní hormony"]],
+ facts:["Další části: podhrbolí (hypotalamus), příštítná tělíska."],
+ rem:"Spánek = šišinka, Růst = hypofýza, Metabolismus = štítná, Cukr = slinivka, Stres = nadledvinky.",
+ ru:"эпифиз — мелатонин, гипофиз — гормон роста, щитовидка — тироксин, поджелудочная — инсулин, надпочечники — адреналин",
+ mini:{q:"Který hormon tvoří slinivka? (jeden)",a:["inzulin","glukagon","inzulin a glukagon"]}},
+{id:"t12",name:"Smyslová",title:"Smyslová soustava",fn:"<b>Příjem signálů</b> z prostředí pomocí <b>receptorů</b> a jejich předání nervové soustavě.",
+ tiles:[["Zrak","tyčinky a čípky sítnice oka"],["Chuť","chuťové pohárky jazyka"],["Čich","receptorové buňky čichové sliznice"],["Sluch","Cortiho orgán v hlemýždi"],["Hmat","hmatová tělíska v kůži"]],
+ facts:["Oko: rohovka, duhovka, zornice, čočka, sklivec, sítnice, žlutá skvrna, slepá skvrna, zrakový nerv.","Ucho: zvukovod → bubínek → kladívko, kovadlinka, třmínek → hlemýžď; polokruhové kanálky, Eustachova trubice."],
+ rem:"Kůstky ucha <b>K–K–T</b>: kladívko, kovadlinka, třmínek. Sluch = <b>Cortiho orgán</b>.",
+ ru:"палочки и колбочки сетчатки (зрение), вкусовые почки, орган Корти в улитке (слух)",
+ mini:{q:"Jak se jmenuje receptor sluchu?",a:["cortiho organ","cortiho organ v hlemyzdi","corti"]}},
+{id:"t13",name:"Rozmnožovací",title:"Rozmnožovací soustava",fn:"<b>Rozmnožování</b> a produkce <b>pohlavních hormonů</b>.",
+ facts:["<b>Varlata</b>: spermie a hormon <span class='key'>testosteron</span>.","<b>Vaječníky</b>: vajíčka a hormony <span class='key'>estrogeny a progesteron</span>.","Pohlavní buňky vznikají <span class='key'>meiózou</span> (ne mitózou) – mají jen 1 sadu chromozomů.","Vajíčko má chromozom X, spermie X nebo Y.","<b>XX = žena</b>, <b>XY = muž</b>."],
+ rem:"Pohlavní buňky = <b>meióza</b> = poloviční sada. Pohlaví určuje <b>spermie</b> (X nebo Y).",
+ ru:"половые клетки — мейоз, один набор хромосом; XX — женский пол, XY — мужской",
+ mini:{q:"Jakým dělením vznikají pohlavní buňky?",a:["meioza","meiozou"]}}
+];
+
+const QUIZ = [
+// [topic, question, answers(array) or {opts,correct}]
+["t1","Seřaď: buňka → ? → orgán",["tkan"]],
+["t1","Soubor orgánů se jmenuje…",{o:["tkáň","orgánová soustava","buňka","organismus"],c:1}],
+["t2","Kolik kostí má dospělý člověk přibližně?",["200"]],
+["t2","Kdo má víc kostí?",{o:["dospělý","dítě","stejně"],c:1}],
+["t2","Kosti tvoří hlavně vápník a…",["fosfor"]],
+["t2","Kolik je krčních obratlů?",["7","sedm"]],
+["t2","Kolik je hrudních obratlů?",["12","dvanact"]],
+["t2","Kolik je bederních obratlů?",["5","pet"]],
+["t2","Která funkce NEPATŘÍ opěrné soustavě?",{o:["opora těla","ochrana orgánů","krvetvorba","tvorba žluči"],c:3}],
+["t2","Tři způsoby spojení kostí: kloub, srůst a…",["sev"]],
+["t2","Kost v koleni se jmenuje…",["ceska"]],
+["t2","Kosti předloktí jsou kost vřetenní a kost…",["loketni"]],
+["t2","Kosti bérce jsou kost holenní a kost…",["lytkova"]],
+["t3","Kolik svalů má člověk přibližně?",["600"]],
+["t3","Co se děje tréninkem?",{o:["přibývá svalů","sílí svalová vlákna","ubývá svalů"],c:1}],
+["t3","Svaly ovládané vůlí jsou…",{o:["hladké","příčně pruhované","srdeční"],c:1}],
+["t3","Bílkovina ve svalech, která přenáší kyslík:",["myoglobin"]],
+["t3","Myoglobin obsahuje prvek (značka):",["fe","zelezo"]],
+["t3","Svaly jsou na kosti vázány pomocí vazů a…",["slach","slachy"]],
+["t4","Které střevo zpětně vstřebává vodu?",["tluste","tluste strevo"]],
+["t4","Co produkují játra?",["zluc"]],
+["t4","Slinivka produkuje trávicí…",["enzymy"]],
+["t4","Kam vede jícen?",{o:["do průdušnice","do žaludku","do tlustého střeva"],c:1}],
+["t4","První část tenkého střeva za žaludkem:",["dvanactnik"]],
+["t4","Červovitý výběžek se také nazývá…",["apendix"]],
+["t5","Hlavní orgán vylučovací soustavy:",["ledviny","ledvina"]],
+["t5","Moč z ledviny vede do měchýře…",["mocovod","mocovodem"]],
+["t5","Jak se jmenuje moč vzniklá první filtrací?",["primarni","primarni moc"]],
+["t5","Moč, která odchází z těla, je…",{o:["primární","definitivní","sekundární krev"],c:1}],
+["t6","Kolik vrstev má kůže?",["3","tri"]],
+["t6","Nejvrchnější vrstva kůže (česky):",["pokozka"]],
+["t6","Prostřední vrstva kůže:",["skara"]],
+["t6","Buňky, které tvoří melanin:",["melanocyty"]],
+["t6","Plocha kůže je asi…",{o:["0,5 m²","1,1–1,85 m²","5 m²"],c:1}],
+["t7","Co brání vdechnutí sousta?",["hrtanova priklopka","priklopka"]],
+["t7","Objem výdechu po maximálním nádechu je vitální…",["kapacita","kapacita plic"]],
+["t7","Sval pod plícemi:",["branice"]],
+["t7","Co se děje v nosní dutině?",{o:["trávení","ohřev a zvlhčení vzduchu","výměna plynů"],c:1}],
+["t8","Kolik částí má srdce?",["4","ctyri"]],
+["t8","Cévy, které vedou krev K srdci:",["zily","zila"]],
+["t8","Krev se skládá z krvinek a…",["plazmy","plazma"]],
+["t8","Který z nich NENÍ krevní buňka?",{o:["červená krvinka","bílá krvinka","krevní destička","neuron"],c:3}],
+["t9","Ochabnutí srdce se jmenuje…",["diastola"]],
+["t9","Klidový tep je asi … /min",["72"]],
+["t9","Normální krevní tlak:",["120/80","120 80"]],
+["t9","Velký oběh začíná v…",{o:["pravé předsíni","levé komoře","plicích"],c:1}],
+["t9","Malý (plicní) oběh začíná v…",{o:["pravé komoře","levé komoře","aortě"],c:0}],
+["t9","Největší tepna těla:",["aorta"]],
+["t10","Nervová buňka se jmenuje…",["neuron"]],
+["t10","Místo, kde se přenáší vzruch mezi neurony:",["synapse"]],
+["t10","Dlouhý výběžek neuronu, který vede signál dál:",["axon"]],
+["t10","Krátké výběžky neuronu přijímající signál:",["dendrit","dendrity"]],
+["t10","Obal axonu se jmenuje myelinová…",["pochva"]],
+["t11","Látky, kterými řídí endokrinní soustava:",["hormony","hormon"]],
+["t11","Šišinka tvoří hormon…",["melatonin"]],
+["t11","Hypofýza tvoří … hormon",["rustovy"]],
+["t11","Štítná žláza tvoří…",["thyroxin","tyroxin"]],
+["t11","Adrenalin tvoří…",{o:["štítná žláza","nadledvinky","šišinka"],c:1}],
+["t12","Receptory zraku jsou tyčinky a…",["cipky"]],
+["t12","Receptory chuti jsou chuťové…",["poharky"]],
+["t12","Ve které části ucha je Cortiho orgán?",["hlemyzd","v hlemyzdi","hlemyzdi"]],
+["t12","Sluchové kůstky: kladívko, kovadlinka a…",["trminek"]],
+["t12","Hmat zajišťují hmatová … v kůži",["teliska"]],
+["t13","Mužský pohlavní hormon:",["testosteron"]],
+["t13","Varlata produkují…",["spermie"]],
+["t13","Kombinace XY určuje pohlaví…",["muzske","muz"]],
+["t13","Vajíčko nese chromozom…",{o:["X","Y","X nebo Y"],c:0}],
+["t13","Ženské hormony z vaječníků: estrogeny a…",["progesteron"]]
+];
+
+const norm = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/\s+/g," ").replace(/[.]/g,"").trim();
+const okAns = (val, arr) => { const v = norm(val); return v && arr.some(a => norm(a) === v); };
+const store = { get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}, set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}} };
+let learned = store.get("st-learned",{});
+
+/* render topics */
+const topicsEl = document.getElementById("topics"), chips = document.getElementById("chips");
+T.forEach((t,i)=>{
+  chips.insertAdjacentHTML("beforeend",`<a href="#${t.id}" data-id="${t.id}">${t.name}</a>`);
+  let h = `<article class="sheet" id="${t.id}"><div class="sheet-head"><span class="num">${String(i+1).padStart(2,"0")}</span><div><h2>${t.title}</h2><p class="fn">${t.fn}</p></div></div>`;
+  if(t.heart) h += `<div class="heartbox"><svg class="heart" viewBox="0 0 32 29" aria-hidden="true"><path d="M16 29 2.6 15.4C-1 11.7-.8 5.8 3 2.4 6.6-.8 12 .1 16 4c4-3.9 9.4-4.8 13-1.6 3.8 3.4 4 9.3.4 13z"/></svg><svg class="ecg" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 35h40l8-6 8 6h20l6 12 10-44 8 38 6-6h30l10-8 12 8h40l8-6 8 6h20l6 12 10-44 8 38 6-6h30"/></svg><div><div class="big">72/min</div><small style="color:var(--muted)">tlak 120/80</small></div></div>`;
+  if(t.facts) h += `<ul class="facts">${t.facts.map(f=>`<li>${f}</li>`).join("")}</ul>`;
+  if(t.tiles) h += `<div class="grid2">${t.tiles.map(x=>`<div class="tile"><b>${x[0]}</b><small>${x[1]}</small></div>`).join("")}</div>`;
+  if(t.chain) h += `<div class="chain anim">${t.chain.map((c,k)=>(k?`<span class="to">→</span>`:"")+`<span style="--i:${k}">${c}</span>`).join("")}</div>`;
+  if(t.circ) h += `<div class="circuits"><div class="circ small"><h4>Malý (plicní) oběh</h4><div class="chain anim" style="margin:0">${["pravá komora","plicní tepny","plicní sklípky","plicní žíly","levá předsíň"].map((c,k)=>(k?`<span class="to">→</span>`:"")+`<span style="--i:${k}">${c}</span>`).join("")}</div></div><div class="circ big2"><h4>Velký (tělní) oběh</h4><div class="chain anim" style="margin:0">${["levá komora","aorta","tepny","vlásečnice","žíly","dutá žíla","pravá předsíň"].map((c,k)=>(k?`<span class="to">→</span>`:"")+`<span style="--i:${k}">${c}</span>`).join("")}</div></div></div>`;
+  h += `<div class="remember"><h3>Zapamatuj!</h3>${t.rem}<span class="ru">${t.ru}</span></div>`;
+  h += `<div class="mini"><p>Rychlá kontrola: ${t.mini.q}</p><form class="row" data-i="${i}"><input id="mini-${t.id}" autocomplete="off" placeholder="Napiš odpověď…"><button>Ověřit</button></form><div class="fb" id="fb-${t.id}"></div></div>`;
+  h += `<label class="learned"><input type="checkbox" data-id="${t.id}" ${learned[t.id]?"checked":""}> Umím to</label></article>`;
+  topicsEl.insertAdjacentHTML("beforeend",h);
+});
+topicsEl.addEventListener("submit",e=>{
+  e.preventDefault(); const t=T[e.target.dataset.i], inp=e.target.querySelector("input"), fb=document.getElementById("fb-"+t.id);
+  const good = okAns(inp.value,t.mini.a);
+  inp.classList.remove("ok","bad"); void inp.offsetWidth; inp.classList.add(good?"ok":"bad");
+  fb.className="fb "+(good?"ok":"bad");
+  fb.textContent = good ? "Správně! ✓" : `Ne. Správně: ${prettify([0,0,t.mini.a])}`;
+});
+topicsEl.addEventListener("change",e=>{ if(e.target.dataset.id){ learned[e.target.dataset.id]=e.target.checked; store.set("st-learned",learned); updProg(); if(e.target.checked) burst(e.target);} });
+function updProg(){
+  const n = T.filter(t=>learned[t.id]).length;
+  document.getElementById("progBar").style.width = (n/T.length*100)+"%";
+  document.getElementById("progTxt").textContent = n+"/"+T.length;
+  chips.querySelectorAll("a").forEach(a=>a.classList.toggle("done",!!learned[a.dataset.id]));
+}
+updProg();
+if("IntersectionObserver" in window){
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}}),{threshold:.08});
+  document.querySelectorAll(".sheet").forEach(s=>io.observe(s));
+}
+
+/* flashcards */
+let cards = QUIZ.map(q=>({tag:T.find(t=>t.id===q[0]).name,q:q[1],a:Array.isArray(q[2])?prettify(q):q[2].o[q[2].c]}));
+function prettify(q){ const map={"tkan":"tkáň","sev":"šev","ceska":"čéška","loketni":"kost loketní","lytkova":"kost lýtková","slach":"šlach","tluste":"tlusté střevo","zluc":"žluč","dvanactnik":"dvanáctník","mocovod":"močovod","primarni":"primární","tri":"3","pokozka":"pokožka (epidermis)","skara":"škára (dermis)","hrtanova priklopka":"hrtanová příklopka","branice":"bránice","ctyri":"4","zily":"žíly","plazmy":"plazmy","cipky":"čípky","poharky":"pohárky","hlemyzd":"v hlemýždi","trminek":"třmínek","teliska":"tělíska","muzske":"mužské (XY)","rustovy":"růstový","fe":"Fe (železo)","hormony":"hormony","dendrit":"dendrity","hladke":"hladké","tenke strevo":"tenké střevo","plicni sklipky":"plicní sklípky","mozek a micha":"mozek a mícha","cortiho organ":"Cortiho orgán","meioza":"meióza","180":"180 l"}; return map[q[2][0]]||q[2][0]; }
+let ci=0; const card=document.getElementById("card");
+function showCard(){ const c=cards[ci]; const was=card.classList.contains("flip"); card.classList.remove("flip"); setTimeout(()=>{document.getElementById("cardQ").textContent=c.q;document.getElementById("cardA").textContent=c.a;document.getElementById("cardTag").textContent=c.tag;},was?300:0); document.getElementById("cardN").textContent=(ci+1)+" / "+cards.length; }
+card.addEventListener("click",()=>card.classList.toggle("flip"));
+card.addEventListener("keydown",e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();card.classList.toggle("flip")}});
+document.getElementById("nextC").onclick=()=>{ci=(ci+1)%cards.length;showCard()};
+document.getElementById("prevC").onclick=()=>{ci=(ci-1+cards.length)%cards.length;showCard()};
+document.getElementById("shufC").onclick=()=>{cards.sort(()=>Math.random()-.5);ci=0;showCard()};
+showCard();
+
+/* quiz */
+const quizEl=document.getElementById("quiz"), filtersEl=document.getElementById("filters");
+let filter="all", order=QUIZ.map((_,i)=>i), answered={};
+filtersEl.innerHTML=`<button data-f="all" class="on">Vše</button>`+T.map(t=>`<button data-f="${t.id}">${t.name}</button>`).join("");
+filtersEl.onclick=e=>{const b=e.target.closest("button");if(!b)return;filter=b.dataset.f;filtersEl.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));renderQuiz()};
+function renderQuiz(){
+  const list=order.filter(i=>filter==="all"||QUIZ[i][0]===filter);
+  quizEl.innerHTML=list.map((i,k)=>{const q=QUIZ[i];let body;
+    if(Array.isArray(q[2])) body=`<form class="row" data-q="${i}"><input id="q-${i}" autocomplete="off" placeholder="Tvoje odpověď…"><button>Ověřit</button></form>`;
+    else body=`<div class="opts" data-q="${i}">${q[2].o.map((o,j)=>`<button class="opt" data-j="${j}">${o}</button>`).join("")}</div>`;
+    return `<div class="q"><div class="qn">${k+1} · ${T.find(t=>t.id===q[0]).name}</div><h3>${q[1]}</h3>${body}<div class="fb" id="qf-${i}"></div></div>`}).join("");
+  answered={}; updScore(list.length);
+}
+function updScore(total){ total = total ?? quizEl.querySelectorAll(".q").length; const ok=Object.values(answered).filter(Boolean).length; const done=Object.keys(answered).length;
+  document.getElementById("scoreTxt").textContent=`${ok} / ${total}`;
+  if(done===total && total>0 && ok/total>=.5) burst(document.querySelector(".score"),40);
+}
+quizEl.addEventListener("submit",e=>{e.preventDefault();const i=+e.target.dataset.q, inp=e.target.querySelector("input"), q=QUIZ[i];
+  const good=okAns(inp.value,q[2]); inp.classList.remove("ok","bad");void inp.offsetWidth;inp.classList.add(good?"ok":"bad");
+  const fb=document.getElementById("qf-"+i); fb.className="fb "+(good?"ok":"bad"); fb.textContent=good?"Správně! ✓":"Správně je: "+prettify(q);
+  if(!(i in answered)){answered[i]=good;updScore()} });
+quizEl.addEventListener("click",e=>{const b=e.target.closest(".opt");if(!b)return;const box=b.parentElement,i=+box.dataset.q,q=QUIZ[i],j=+b.dataset.j;
+  const good=j===q[2].c; b.classList.add(good?"ok":"bad"); if(!good) box.children[q[2].c].classList.add("ok");
+  box.querySelectorAll(".opt").forEach(x=>x.disabled=true);
+  const fb=document.getElementById("qf-"+i); fb.className="fb "+(good?"ok":"bad"); fb.textContent=good?"Správně! ✓":"Správně je: "+q[2].o[q[2].c];
+  if(!(i in answered)){answered[i]=good;updScore()} });
+document.getElementById("resetQ").onclick=()=>{order.sort(()=>Math.random()-.5);renderQuiz();document.getElementById("test").scrollIntoView()};
+renderQuiz();
+
+function burst(el,n=18){ if(matchMedia("(prefers-reduced-motion: reduce)").matches)return; const r=el.getBoundingClientRect(); const cols=["#c8323c","#e9b949","#2f5fb3","#1f8a55"];
+  for(let k=0;k<n;k++){const s=document.createElement("i");s.className="confetti";s.style.left=(r.left+Math.random()*Math.max(r.width,200))+"px";s.style.background=cols[k%4];s.style.animationDelay=(Math.random()*.3)+"s";document.body.appendChild(s);setTimeout(()=>s.remove(),2000)} }
+</script>
+</body>
+</html>
