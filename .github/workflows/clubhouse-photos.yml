@@ -1,0 +1,28 @@
+name: Clubhouse – photos
+
+on:
+  push:
+    branches: ["beta/clubhouse"]
+    paths:
+      - "tools/urls.txt"
+      - "tools/fetch_photos.py"
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch photos
+        run: python3 tools/fetch_photos.py
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add img
+          git diff --cached --quiet && echo "nothing new" && exit 0
+          git commit -m "Clubhouse: photos fetched by workflow"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
