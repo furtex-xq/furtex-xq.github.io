@@ -1,0 +1,11 @@
+{
+ "hero": ["car interior night dashboard", "sports car dark garage", "car headlights dark"],
+ "audio": ["car subwoofer", "car audio amplifier", "car speaker door"],
+ "detail": ["car polishing", "car detailing", "ceramic coating car"],
+ "tint": ["car window tint", "black car side windows"],
+ "film": ["paint protection film car", "car wrap installation"],
+ "clean": ["car interior cleaning", "car leather seats interior"],
+ "light": ["car headlight led", "car tail lights night"],
+ "garage": ["car workshop garage", "mechanic car diagnostics", "car under hood engine"],
+ "wash": ["car wash foam", "black car reflection"]
+}
