@@ -5,6 +5,7 @@ on:
     branches: ["beta/spl-if"]
     paths:
       - "tools/queries.json"
+      - "tools/urls.json"
       - "tools/chosen.json"
       - "tools/fetch_photos.py"
 
@@ -25,12 +26,12 @@ jobs:
           python-version: "3.12"
       - name: Fetch photos
         run: |
-          if [ -f tools/chosen.json ]; then python tools/fetch_photos.py --chosen; else python tools/fetch_photos.py --unsplash; fi
+          if [ -f tools/chosen.json ]; then python tools/fetch_photos.py --chosen; elif [ -f tools/urls.json ]; then python tools/fetch_photos.py --urls; else python tools/fetch_photos.py --unsplash; fi
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tools img
+          mkdir -p img; git add tools img
           git diff --cached --quiet && echo "nothing new" && exit 0
           git commit -m "SPL: photos fetched by workflow"
           git pull --rebase origin "${GITHUB_REF_NAME}"
