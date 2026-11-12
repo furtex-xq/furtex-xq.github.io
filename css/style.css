@@ -555,3 +555,17 @@ mark.todo--dot{display:inline-block;width:7px;height:7px;border-radius:50%;paddi
   .calc__sum{position:relative;bottom:auto;outline-offset:5px}
   .calc__list{max-height:none}
 }
+
+/* ---------- справжні відгуки ---------- */
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:start}
+.rev-src{grid-column:1/-1;display:inline-flex;align-items:center;gap:10px;justify-self:start;margin:0 0 6px;border:1px solid var(--line2);padding:9px 14px;font:500 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.rev-src .ic{width:16px;height:16px;color:var(--sig)}
+.quote{margin:0;padding:24px 24px 22px;display:flex;flex-direction:column}
+.quote:nth-of-type(2){margin-left:0}
+.quote::before{font-size:4rem;top:2px;right:18px}
+.quote__top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.quote__top time{font:500 .7rem/1 var(--mono);letter-spacing:.06em;color:var(--mute);text-transform:uppercase}
+.quote p{font-size:.98rem;margin-bottom:18px}
+.quote footer{margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
+.quote__tag{border:1px solid var(--line2);padding:5px 7px}
+@media (max-width:1080px){.quotes{grid-template-columns:1fr}}
