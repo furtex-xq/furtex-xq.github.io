@@ -264,6 +264,7 @@
     if (hasGsap && !reduce) window.gsap.to(shownSum, { v: sum, duration: .6, ease: 'power2.out', overwrite: true, onUpdate: function () { calcTotal.textContent = fmt(shownSum.v); } });
     else calcTotal.textContent = fmt(sum);
   }
+  $('#calc').addEventListener('submit', function (e) { e.preventDefault(); });
   $('#calc').addEventListener('change', calcUpdate);
   calcUpdate();
   $('#calc-book').addEventListener('click', function () {

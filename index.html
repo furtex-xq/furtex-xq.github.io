@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob: https://images.unsplash.com; frame-src https://www.google.com https://maps.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>SPL — автозвук, тонування й антигравійна плівка в Івано-Франківську</title>
 <meta name="description" content="Інсталяційний центр і магазин автозвуку SPL в Івано-Франківську: автозвук, сигналізації, парктроніки, антигравійна плівка, тонування, шумоізоляція, полірування, хімчистка. Рейтинг 4,7 у Google.">
 <meta name="theme-color" content="#0c0d0f">
@@ -203,7 +205,7 @@
       <p class="sec__lead">Оберіть тип авто й потрібні роботи. Точну ціну назвемо після огляду, але порядок суми побачите вже зараз.</p>
     </div>
     <div class="calc__in">
-      <form class="calc__form" id="calc" onsubmit="return false">
+      <form class="calc__form" id="calc">
         <fieldset class="calc__step">
           <legend><span>1</span>Тип авто</legend>
           <div class="cars" role="radiogroup">
@@ -455,7 +457,7 @@
         <a href="viber://chat?number=%2B380505045878" title="Уточнити, чи є Viber на цьому номері"><svg class="ic"><use href="#i-chat"/></svg>Viber<mark class="todo todo--dot" aria-label="не підтверджено"></mark></a>
       </div>
       <div class="map">
-        <iframe title="SPL на карті Івано-Франківська" src="https://www.google.com/maps?q=48.9150155,24.6764632&z=17&hl=uk&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe title="SPL на карті Івано-Франківська" src="https://www.google.com/maps?q=48.9150155,24.6764632&z=17&hl=uk&output=embed" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
         <a class="btn btn--sig map__btn" href="https://maps.app.goo.gl/LjmgqabgsxRP96eh6" target="_blank" rel="noopener"><svg class="ic"><use href="#i-route"/></svg>Прокласти маршрут</a>
       </div>
     </div>
