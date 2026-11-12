@@ -139,4 +139,55 @@
   ScrollTrigger.batch('[data-r]', { start: 'top 88%', once: true, onEnter: b => gsap.to(b, { opacity: 1, y: 0, duration: .9, stagger: .1, ease: 'power2.out' }) });
   gsap.from('.svc__item', { scrollTrigger: { trigger: '.svc', start: 'top 85%' }, y: 30, opacity: 0, duration: .7, stagger: .06, ease: 'power2.out' });
   gsap.to('.press', { scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }, y: 50 });
+
+  /* ---- друкарські анімації ---- */
+  document.documentElement.classList.add('anim');
+  const io = (els, fn) => {
+    const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { fn(e.target); o.unobserve(e.target); } }), { threshold: .3 });
+    els.forEach(el => o.observe(el));
+  };
+  // 1. заголовки: фарби C/M зсунуті й сходяться «в реєстр», потім жовтий маркер під словом
+  io($$('h2'), el => el.classList.add('is-in'));
+  // 2. кружок CMYK у підписах розділів робить оберт
+  io($$('.kicker'), el => el.classList.add('is-in'));
+  // 3. рядки послуг відкриваються кольоровою смугою фарби
+  gsap.to('.svc__item', { '--wipe': 1, duration: .9, stagger: .08, ease: 'power3.inOut', scrollTrigger: { trigger: '.svc', start: 'top 80%' } });
+  // 4. галерея: фото «виїжджають з принтера»
+  gsap.from('.gallery figure', { clipPath: 'inset(0% 0% 100% 0%)', y: -24, duration: 1.1, stagger: .18, ease: 'power2.out', scrollTrigger: { trigger: '.gallery', start: 'top 80%' } });
+  // 5. кольорові «зсунуті» тіні виростають
+  gsap.utils.toArray('.rev blockquote, .about__img, .frame, .ba, .form').forEach(el => {
+    const sh = getComputedStyle(el).boxShadow;
+    if (!sh || sh === 'none') return;
+    gsap.from(el, { boxShadow: sh.replace(/(-?\d+(\.\d+)?)px (-?\d+(\.\d+)?)px/, '0px 0px'), duration: .9, delay: .3, ease: 'back.out(2)', scrollTrigger: { trigger: el, start: 'top 85%' } });
+  });
+  // 6. реставрація: повзунок сам показує «до / після», поки користувач не торкнувся
+  const ba2 = $('[data-ba]');
+  if (ba2) {
+    const st = { p: 50 }, rng = $('.ba__range', ba2);
+    const tl = gsap.timeline({ paused: true, onUpdate: () => { ba2.style.setProperty('--pos', st.p + '%'); rng.value = st.p; } })
+      .to(st, { p: 88, duration: 1, ease: 'power2.inOut' }).to(st, { p: 12, duration: 1.4, ease: 'power2.inOut' }).to(st, { p: 50, duration: .9, ease: 'power2.inOut' });
+    ScrollTrigger.create({ trigger: ba2, start: 'top 65%', once: true, onEnter: () => tl.play() });
+    rng.addEventListener('pointerdown', () => tl.kill(), { once: true });
+  }
+  // 7. фото на документ: при зміні формату — «відбиток» з кольоровим зсувом
+  $$('[data-chips] button').forEach(b => b.addEventListener('click', () => {
+    gsap.fromTo('[data-photo]', { boxShadow: '-10px -6px 0 #00A0DC, 10px 6px 0 #E5007D' }, { boxShadow: '0px 0px 0 #00A0DC, 0px 0px 0 #E5007D', duration: .6, ease: 'power2.out' });
+    gsap.fromTo('[data-size]', { scale: .8, opacity: 0 }, { scale: 1, opacity: 1, duration: .45, ease: 'back.out(2.5)' });
+  }));
+  // 8. hero на ПК: аркуш злегка нахиляється за мишею
+  if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    const pr = $('.press'), hero = $('.hero');
+    gsap.set(pr, { transformPerspective: 900 });
+    const rotY = gsap.quickTo(pr, 'rotationY', { duration: .6 }), rotX = gsap.quickTo(pr, 'rotationX', { duration: .6 });
+    hero.addEventListener('mousemove', e => { const b = hero.getBoundingClientRect(); rotY((e.clientX - b.left) / b.width * 10 - 5); rotX(-((e.clientY - b.top) / b.height * 8 - 4)); });
+    hero.addEventListener('mouseleave', () => { rotY(0); rotX(0); });
+  }
+  // 9. біжучий рядок нахиляється від швидкості скролу
+  const track = $('.strip__track');
+  if (track) {
+    const skew = gsap.quickTo(track, 'skewX', { duration: .4, ease: 'power3' });
+    ScrollTrigger.create({ onUpdate: s => skew(gsap.utils.clamp(-12, 12, s.getVelocity() / -250)) });
+  }
+  // 10. шкала кольорів під фото наливається
+  gsap.from('.press__bar .sw', { scaleY: 0, transformOrigin: 'bottom', duration: .5, stagger: .1, delay: .4, ease: 'back.out(3)' });
 })();

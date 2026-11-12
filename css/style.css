@@ -288,6 +288,20 @@ p{margin:0 0 1em}
 
 /* reveal */
 .js [data-r]{opacity:0;transform:translateY(26px)}
+
+/* print animations — only when JS + GSAP actually run (.anim) */
+.anim h2{text-shadow:-.09em -.05em 0 rgba(0,160,220,.85),.09em .05em 0 rgba(229,0,125,.8);transition:text-shadow 1s cubic-bezier(.2,.8,.2,1) .15s}
+.anim h2.is-in{text-shadow:0 0 0 rgba(0,160,220,0),0 0 0 rgba(229,0,125,0)}
+.anim h2 em{background-size:0% 100%;background-repeat:no-repeat;transition:background-size .8s cubic-bezier(.6,0,.2,1) .55s,color .3s .9s}
+.anim h2.is-in em{background-size:100% 100%}
+.anim .gifts h2 em,.anim .contacts h2 em{background:linear-gradient(var(--y),var(--y)) no-repeat 0 0/0% 100%;color:#fff}
+.anim .gifts h2.is-in em,.anim .contacts h2.is-in em{background-size:100% 100%;color:var(--k)}
+.kicker::before{transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.kicker.is-in::before{transform:rotate(360deg)}
+.svc__item{position:relative}
+.anim .svc__item{--wipe:0}
+.anim .svc__item::after{content:"";position:absolute;inset:0;background:var(--acc);transform-origin:right;transform:scaleX(calc(1 - var(--wipe)));pointer-events:none;z-index:1}
+.strip__track{will-change:transform}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   .press__ghost{display:none}.press__img{filter:none}
