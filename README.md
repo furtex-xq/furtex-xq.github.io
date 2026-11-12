@@ -4,7 +4,7 @@
 
 - `index.html`, `css/style.css`, `js/main.js`
 - `js/vendor/` — GSAP 3.12.5 + ScrollTrigger, Lenis (локально, без CDN)
-- `fonts/` — Oswald, Playfair Display Italic, Onest (кирилиця + латиниця)
+- `fonts/` — Oswald, Playfair Display Italic, Rubik (кирилиця + латиниця)
 - `img/photos/` — тимчасові фото з Unsplash (Unsplash License), список у `credits.json`
 - `tools/` + `.github/workflows/ifyoudance-photos.yml` — завантаження фото через GitHub Actions
 
