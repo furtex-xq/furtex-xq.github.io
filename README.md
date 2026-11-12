@@ -4,7 +4,7 @@
 
 - `index.html`, `css/style.css`, `js/main.js`
 - `js/vendor/` — GSAP 3.12.5 + ScrollTrigger, Lenis (локально, без CDN)
-- `fonts/` — Oswald, Manrope (кирилиця + латиниця)
+- `fonts/` — Roboto Slab, IBM Plex Sans (кирилиця + латиниця)
 - `img/photos/` — фото самого готелю з публічного лістингу (hotelmix/Booking), до запуску замінити на оригінали від власника
 - `tools/` + `.github/workflows/clubhouse-photos.yml` — завантаження фото через GitHub Actions
 
