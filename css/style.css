@@ -1,9 +1,9 @@
 /* The Hustle Gym Zone — demo by Ansaro Technologies
    Style: "poster on concrete" — safety yellow, graphite, raw concrete, competition plate colours */
-@font-face{font-family:"Dela Gothic One";src:url(../fonts/dela-gothic-one-cyrillic-400-normal.woff2) format("woff2");font-weight:400;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
-@font-face{font-family:"Dela Gothic One";src:url(../fonts/dela-gothic-one-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F,U+20B4,U+2191,U+2193,U+25A0}
-@font-face{font-family:"Rubik";src:url(../fonts/rubik-cyrillic-wght-normal.woff2) format("woff2");font-weight:300 900;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
-@font-face{font-family:"Rubik";src:url(../fonts/rubik-latin-wght-normal.woff2) format("woff2");font-weight:300 900;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD,U+20B4,U+25A0}
+@font-face{font-family:"Russo One";src:url(../fonts/russo-one-cyrillic-400-normal.woff2) format("woff2");font-weight:400;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Russo One";src:url(../fonts/russo-one-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F,U+20B4,U+2191,U+2193,U+25A0}
+@font-face{font-family:"Exo 2";src:url(../fonts/exo-2-cyrillic-wght-normal.woff2) format("woff2");font-weight:300 900;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Exo 2";src:url(../fonts/exo-2-latin-wght-normal.woff2) format("woff2");font-weight:300 900;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD,U+20B4,U+25A0}
 @font-face{font-family:"PT Mono";src:url(../fonts/pt-mono-cyrillic-400-normal.woff2) format("woff2");font-weight:400;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
 @font-face{font-family:"PT Mono";src:url(../fonts/pt-mono-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F,U+20B4,U+2191,U+2193,U+2605}
 
@@ -16,8 +16,8 @@
   --todo:#ff8a00;
   --bd:2px solid var(--g);
   --line-g:rgba(255,255,255,.12);
-  --display:"Dela Gothic One","Arial Black",Impact,sans-serif;
-  --body:"Rubik",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --display:"Russo One","Arial Black",Impact,sans-serif;
+  --body:"Exo 2",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"PT Mono",ui-monospace,Menlo,monospace;
   --gut:clamp(16px,4vw,48px); --max:1280px;
 }
@@ -91,7 +91,7 @@ p{margin:0 0 1em}
 .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--g) 1px,transparent 1px),linear-gradient(90deg,var(--g) 1px,transparent 1px);background-size:48px 48px;opacity:.06;pointer-events:none}
 .hero__inner{position:relative;max-width:var(--max);margin:0 auto;padding:0 var(--gut);display:grid;gap:28px}
 .hero .eyebrow{color:var(--g)}
-.hero__word{display:block;font:400 clamp(5.4rem,30vw,15rem)/.82 var(--display);letter-spacing:-.04em;margin:0 0 .1em -.04em}
+.hero__word{display:block;font:400 clamp(6rem,34vw,17rem)/.84 var(--display);letter-spacing:-.03em;margin:0 0 .1em -.04em}
 .hero__sub{display:block;font:400 clamp(1.15rem,3.6vw,1.9rem)/1.1 var(--display);margin-top:.6rem;max-width:22ch}
 .hero__title{display:block;margin-bottom:1.1rem}
 .hero__lead{max-width:50ch;font-size:clamp(1rem,1.6vw,1.1rem)}

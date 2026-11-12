@@ -4,7 +4,7 @@
 
 - `index.html`, `css/style.css`, `js/main.js`
 - `js/vendor/` — GSAP 3.12.5 + ScrollTrigger, Lenis (локально, без CDN)
-- `fonts/` — Dela Gothic One, Rubik, PT Mono (кирилиця + латиниця)
+- `fonts/` — Russo One, Exo 2, PT Mono (кирилиця + латиниця)
 - `img/photos/` — тимчасові фото з Unsplash, список у `credits.json`
 - `tools/` + `.github/workflows/hustle-photos.yml` — завантаження фото через GitHub Actions
 

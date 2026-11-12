@@ -158,7 +158,6 @@
     gsap.from('[data-photo]', { rotate: -9, x: 60, opacity: 0, duration: 1, delay: .15, ease: 'back.out(1.4)' });
     gsap.from('.sticker', { scale: 0, rotate: -120, duration: .7, delay: .7, ease: 'back.out(2)' });
     gsap.to('[data-photo]', { rotate: 0, yPercent: -6, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-    gsap.to('.sticker', { rotate: 40, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
     ScrollTrigger.batch('.reveal', { start: 'top 88%', once: true, onEnter: b => gsap.to(b, { opacity: 1, y: 0, duration: .8, stagger: .09, ease: 'power3.out' }) });
     // barbell lifts when the rack enters
     ScrollTrigger.create({ trigger: '.rack', start: 'top 75%', once: true, onEnter: () => gsap.fromTo('.bar', { y: 30, rotate: -2 }, { y: 0, rotate: 0, duration: 1, ease: 'elastic.out(1,.6)' }) });
