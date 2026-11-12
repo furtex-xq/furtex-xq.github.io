@@ -116,7 +116,7 @@ def chosen():
     credits = []
     for slot, src in ch.items():
         if src.startswith("https://images.unsplash.com/"):
-            download(src + "?auto=format&fm=jpg&fit=crop&w=1400&q=78", os.path.join(outdir, slot + ".jpg"))
+            download(src + ("?auto=format&fm=jpg&fit=max&w=1600&q=72" if slot=="hero" else "?auto=format&fm=jpg&fit=max&w=1000&q=70"), os.path.join(outdir, slot + ".jpg"))
             credits.append({"slot": slot, "source": "Unsplash", "url": src, "license": "Unsplash License"})
         else:
             c = info([src], 1400)
