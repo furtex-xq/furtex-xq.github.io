@@ -427,3 +427,10 @@ body{background:var(--paper);font-size:16.5px}
 .btn{will-change:transform}
 @media (max-width:900px){.steps__rail{left:-10px}}
 @media (prefers-reduced-motion:reduce){.scan__bar,.steps__rail,.progress{display:none}}
+
+/* symmetry fix: hero facts on phones as an even 2-column grid (third item no longer wraps with a stray divider) */
+@media (max-width:520px){
+  .hero__facts{display:grid;grid-template-columns:1fr 1fr}
+  .hero__facts li{margin-right:0;padding-right:14px}
+  .hero__facts li:nth-child(3){grid-column:1/-1;border-left:0;padding-left:0;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+}
