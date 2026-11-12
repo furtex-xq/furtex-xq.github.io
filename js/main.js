@@ -57,7 +57,8 @@
     6: { total: 8000, plates: [25, 20, 15] },
     12: { total: 12000, plates: [25, 20, 15, 10] }
   };
-  const PLATE = { 25: { h: 196, w: 26, c: '#ff4f1f' }, 20: { h: 176, w: 24, c: '#eeebe3' }, 15: { h: 150, w: 20, c: '#ffd23f' }, 10: { h: 122, w: 18, c: '#5e5b55' } };
+  // competition (IWF) plate colours: 25 red, 20 blue, 15 yellow, 10 green
+  const PLATE = { 25: { h: 196, w: 26, c: '#d7262e' }, 20: { h: 196, w: 22, c: '#1f5fd1' }, 15: { h: 168, w: 20, c: '#ffd400' }, 10: { h: 140, w: 18, c: '#1d9a52' } };
   const NS = 'http://www.w3.org/2000/svg';
   const gL = $('.plates--l'), gR = $('.plates--r');
   const drawPlates = (list, animate) => {
@@ -151,12 +152,13 @@
         const t = $(id); if (!t) return; e.preventDefault(); lenis.scrollTo(t, { offset: -70 });
       }));
     }
-    // hero: word slides in, then fills with heat as you scroll (signature)
-    const word = $('[data-word]');
-    gsap.from(word, { yPercent: 40, opacity: 0, duration: 1.1, ease: 'power4.out' });
-    gsap.from('.hero__sub, .hero__lead, .hero__cta, .hero__facts', { y: 24, opacity: 0, duration: .8, stagger: .08, delay: .25, ease: 'power3.out' });
-    gsap.to(word, { '--fill': '100%', ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 30%', scrub: true } });
-    gsap.to('.hero__media img', { yPercent: 12, scale: 1.06, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    // hero: poster slams in, photo straightens and the sticker spins as you scroll (signature with the barbell)
+    gsap.from('[data-word]', { y: 60, opacity: 0, duration: .9, ease: 'power4.out' });
+    gsap.from('.hero__sub, .hero__lead, .hero__cta', { y: 24, opacity: 0, duration: .7, stagger: .08, delay: .2, ease: 'power3.out' });
+    gsap.from('[data-photo]', { rotate: -9, x: 60, opacity: 0, duration: 1, delay: .15, ease: 'back.out(1.4)' });
+    gsap.from('.sticker', { scale: 0, rotate: -120, duration: .7, delay: .7, ease: 'back.out(2)' });
+    gsap.to('[data-photo]', { rotate: 0, yPercent: -6, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to('.sticker', { rotate: 40, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
     ScrollTrigger.batch('.reveal', { start: 'top 88%', once: true, onEnter: b => gsap.to(b, { opacity: 1, y: 0, duration: .8, stagger: .09, ease: 'power3.out' }) });
     // barbell lifts when the rack enters
     ScrollTrigger.create({ trigger: '.rack', start: 'top 75%', once: true, onEnter: () => gsap.fromTo('.bar', { y: 30, rotate: -2 }, { y: 0, rotate: 0, duration: 1, ease: 'elastic.out(1,.6)' }) });
