@@ -1,0 +1,56 @@
+[
+ {
+  "slot": "hero",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1768818928341-3b31b8965c6d",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "doc",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1666852327656-5e9fd213209b",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "print",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1494621622354-777dad9c18e4",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "restore",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1593968007877-b351c54bef61",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "session",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1763013259097-ed4d8f95504f",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "wedding",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1676883344224-2fa5de6025db",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "book",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1677658288115-28905b06b520",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "gift",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1616241673111-508b4662c707",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "scan",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1775163035702-06e47ba88857",
+  "license": "Unsplash License"
+ }
+]
