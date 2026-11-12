@@ -1,0 +1,9 @@
+{
+ "hero": ["dark gym barbell", "gym deadlift dark", "weightlifting chalk hands"],
+ "weights": ["dumbbells rack gym", "barbell plates gym floor", "kettlebell gym"],
+ "cardio": ["treadmill gym", "exercise bike gym", "spin bike class"],
+ "machines": ["gym machines interior", "cable machine gym", "empty gym interior"],
+ "stretch": ["stretching studio", "yoga mat studio", "stretching woman gym"],
+ "coach": ["personal trainer gym", "trainer coaching squat", "gym training partner"],
+ "locker": ["gym locker room", "gym shower", "gym towel water bottle"]
+}
