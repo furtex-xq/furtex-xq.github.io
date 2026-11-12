@@ -8,6 +8,16 @@
   var motion = hasGsap && !reduce;
   var lenis = null;
   var top = document.querySelector('.top');
+
+  /* Some embedded viewers scroll <body> instead of the window; support both */
+  var bodyScroller = (function () {
+    var b = document.body, cs = getComputedStyle(b);
+    return ((cs.overflowY === 'auto' || cs.overflowY === 'scroll') && b.scrollHeight > b.clientHeight + 2 &&
+      document.documentElement.scrollHeight <= window.innerHeight + 2) ? b : null;
+  })();
+  var scrollTarget = bodyScroller || window;
+  function getY() { return bodyScroller ? bodyScroller.scrollTop : window.scrollY; }
+  function maxY() { return bodyScroller ? bodyScroller.scrollHeight - bodyScroller.clientHeight : document.documentElement.scrollHeight - window.innerHeight; }
   var HEADER = 68;
 
   /* ---------- fallback for broken stock photos: keep the stone texture ---------- */
@@ -16,7 +26,7 @@
   });
 
   /* ---------- smooth scroll (Lenis) ---------- */
-  if (motion && window.Lenis) {
+  if (motion && window.Lenis && !bodyScroller) {
     lenis = new window.Lenis({ lerp: 0.1, smoothWheel: true });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
@@ -42,16 +52,25 @@
 
   /* ---------- header: solid after the top, hides while scrolling down ---------- */
   var lastY = 0;
+  var heroIn = true;
   function onScroll() {
-    var y = window.scrollY;
-    top.classList.toggle('is-solid', y > 40);
+    var y = getY();
+    top.classList.toggle('is-solid', y > 40 || !heroIn);
     var menuOpen = top.classList.contains('menu-open');
     top.classList.toggle('is-hidden', !menuOpen && y > 400 && y > lastY + 2);
     if (y < lastY - 2 || y <= 400) top.classList.remove('is-hidden');
     lastY = y;
   }
   onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+  scrollTarget.addEventListener('scroll', onScroll, { passive: true });
+  // Independent of the scroll container: the header turns solid once the hero is out of view
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) {
+      heroIn = en[0].isIntersecting;
+      top.classList.toggle('is-solid', !heroIn || getY() > 40);
+      document.querySelector('.dock').classList.toggle('is-on', !heroIn);
+    }, { rootMargin: '-70% 0px 0px 0px' }).observe(document.querySelector('.hero'));
+  }
 
   /* ---------- mobile menu ---------- */
   var burger = document.querySelector('.burger');
@@ -127,12 +146,12 @@
   var prog = document.querySelector('.progress span');
   var dock = document.querySelector('.dock');
   function onProgress() {
-    var max = document.documentElement.scrollHeight - window.innerHeight;
-    prog.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
-    dock.classList.toggle('is-on', window.scrollY > window.innerHeight * 0.6);
+    var max = maxY();
+    prog.style.transform = 'scaleX(' + (max > 0 ? getY() / max : 0) + ')';
+    if (getY() > window.innerHeight * 0.6) dock.classList.add('is-on');
   }
   onProgress();
-  window.addEventListener('scroll', onProgress, { passive: true });
+  scrollTarget.addEventListener('scroll', onProgress, { passive: true });
 
   /* ---------- mobile catalogue progress (native swipe) ---------- */
   var hsView = document.querySelector('.hs__view');
@@ -192,6 +211,7 @@
 
   /* ======================= GSAP animations ======================= */
   gsap.registerPlugin(ScrollTrigger);
+  if (bodyScroller) ScrollTrigger.defaults({ scroller: bodyScroller });
   if (window.Flip) gsap.registerPlugin(Flip);
 
   /* 1. Hero: the headline is carved letter by letter, then the slab gets polished */
@@ -222,6 +242,7 @@
   intro
     .from(chars, { yPercent: 115, rotate: 6, duration: 1.1, stagger: 0.035 }, 0.15)
     .from('.hero [data-hero]', { y: 24, opacity: 0, duration: 0.9, stagger: 0.08 }, 0.7)
+    .from('.hero__photo', { opacity: 0, scale: 1.08, duration: 2.2, ease: 'power2.out' }, 0)
     .fromTo('.hero__sheen', { xPercent: -45 }, { xPercent: 45, duration: 2.6, ease: 'power2.inOut' }, 0.9);
 
   // Intro loader: a counter runs to 100, then the slab lifts away and the headline is carved
@@ -248,6 +269,7 @@
 
   // Hero parallax on the way out
   gsap.to('.hero__bg', { yPercent: 10, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.hero__photo img', { yPercent: 8, scale: 1.14, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
   gsap.to('.hero__in', { y: -80, opacity: 0.15, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
 
   /* 2. Generic reveals */
