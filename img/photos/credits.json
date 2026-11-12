@@ -1,0 +1,44 @@
+[
+ {
+  "slot": "hero",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "weights",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1544033527-b192daee1f5b",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "machines",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1689877020200-403d8542d95d",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "cardio",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1721394749382-223a18ce8bb9",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "stretch",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1661307987465-1db8d7a8796f",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "coach",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "locker",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1766755418405-11af5786d328",
+  "license": "Unsplash License"
+ }
+]
