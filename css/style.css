@@ -238,6 +238,25 @@ section{padding:clamp(72px,10vw,140px) 0}
 
 .mbar{display:none}
 
+/* animations */
+.h1row--out{background:linear-gradient(90deg,var(--ice),var(--ice)) no-repeat 0 0/var(--fill,0%) 100%;-webkit-background-clip:text;background-clip:text}
+.scan{position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--signal) 30%,var(--signal) 70%,transparent);opacity:0;pointer-events:none}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:.1em .02em .04em;margin:-.1em -.02em -.04em}
+.w>span{display:inline-block;will-change:transform}
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::after{content:"";position:absolute;inset:0 auto 0 -60%;width:40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-20deg);z-index:-1;transition:left .6s ease}
+.btn:hover::after{left:130%}
+.tc::before,.tc__t,.tc h3{transition:background .4s,border-color .4s,color .4s,box-shadow .4s}
+.tc.is-lit::before{background:var(--signal);border-color:var(--signal);box-shadow:0 0 0 6px rgba(255,90,31,.18)}
+.tc.is-lit .tc__t{color:var(--signal)}
+.tc.is-lit h3{color:#fff}
+.acc details>ul,.acc details>p{overflow:hidden}
+.photo__ini{transition:-webkit-text-stroke-color .4s}
+.photo:hover .photo__ini{-webkit-text-stroke-color:var(--signal)}
+.hdr__call,.mbar .mbar__call{position:relative}
+.hdr__call::before,.mbar .mbar__call::before{content:"";position:absolute;inset:0;border:2px solid var(--signal);animation:ring 2.8s ease-out infinite;pointer-events:none}
+@keyframes ring{0%{opacity:.7;transform:scale(1)}70%,100%{opacity:0;transform:scale(1.12,1.5)}}
+
 /* responsive */
 @media (max-width:1060px){
   .nav{gap:18px;font-size:.9rem}
