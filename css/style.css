@@ -288,3 +288,8 @@ address .ic{color:var(--rust);margin-top:4px}
 .key__tag{transform-origin:50% -6px;animation:keysway 2.8s ease-in-out infinite alternate}
 .key:nth-child(odd) .key__tag{animation-duration:3.3s;animation-direction:alternate-reverse}
 @keyframes keysway{from{rotate:-2deg}to{rotate:2deg}}
+
+/* symmetry fixes: collage photos must stay absolutely positioned (.shutter set them relative); quick-book bar must fit narrow phones */
+.about__collage .ph{position:absolute}
+.qbook input,.qbook select{width:100%;min-width:0}
+@media (max-width:760px){.qbook{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.qbook label{min-width:0}}
