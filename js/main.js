@@ -39,14 +39,18 @@
 
   /* risk check */
   var qs = Array.prototype.slice.call(document.querySelectorAll("#qs li"));
-  var val = document.getElementById("gaugeVal"), score = document.getElementById("score"), verdict = document.getElementById("verdict");
+  var score = document.getElementById("score"), verdict = document.getElementById("verdict"), level = document.getElementById("level");
+  var tiles = document.querySelectorAll("#riskGrid li");
   var answers = new Array(qs.length).fill(null);
   var update = function () {
     var done = answers.filter(function (a) { return a !== null; }).length;
     var yes = answers.filter(function (a) { return a === 1; }).length;
-    score.textContent = yes;
-    val.style.strokeDashoffset = String(267 - 267 * (yes / qs.length));
-    val.style.stroke = done < qs.length ? "" : yes >= 5 ? "#16a34a" : yes >= 3 ? "#f59e0b" : "#e5484d";
+    score.textContent = yes + " з " + qs.length + " захищено";
+    answers.forEach(function (a, i) { tiles[i].classList.toggle("is-ok", a === 1); tiles[i].classList.toggle("is-bad", a === 0); });
+    if (done < qs.length) { level.textContent = done ? "…" : "—"; level.style.color = ""; }
+    else if (yes >= 5) { level.textContent = "Низький ризик"; level.style.color = "var(--blue)"; }
+    else if (yes >= 3) { level.textContent = "Середній ризик"; level.style.color = "#d97706"; }
+    else { level.textContent = "Високий ризик"; level.style.color = "#e5484d"; }
     var gaps = qs.length - yes;
     if (!done) verdict.textContent = "Почніть відповідати, і тут з'явиться оцінка.";
     else if (done < qs.length) verdict.textContent = "Відповіли на " + done + " з " + qs.length + ". Ще кілька питань.";
@@ -60,6 +64,7 @@
       b.addEventListener("click", function () {
         li.querySelectorAll("button").forEach(function (o) { o.setAttribute("aria-pressed", String(o === b)); });
         answers[i] = Number(b.getAttribute("data-v")); update();
+        tiles[i].classList.add("pop"); setTimeout(function () { tiles[i].classList.remove("pop"); }, 300);
       });
     });
   });
@@ -75,7 +80,7 @@
     });
     if (!f.ok.checked) bad.push(f.ok);
     if (bad.length) { state.textContent = "Перевірте ім'я, телефон і згоду на обробку даних."; bad[0].focus(); return; }
-    var extra = answers.some(function (a) { return a !== null; }) ? "\nЕкспрес-перевірка: " + score.textContent + " з " + qs.length : "";
+    var extra = answers.some(function (a) { return a !== null; }) ? "\nЕкспрес-перевірка: " + score.textContent + " (" + level.textContent + ")" : "";
     var body = "Ім'я: " + f.name.value.trim() + "\nТелефон: " + f.phone.value.trim() + "\nТема: " + f.topic.value + extra + "\n\n" + f.msg.value.trim();
     state.textContent = "Дякуємо. Відкриваємо пошту, щоб надіслати заявку.";
     window.location.href = "mailto:ostwinpro@gmail.com?subject=" + encodeURIComponent("Заявка з сайту: " + f.topic.value) + "&body=" + encodeURIComponent(body);

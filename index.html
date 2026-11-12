@@ -16,7 +16,7 @@
 <meta property="og:image" content="img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="fonts/commissioner-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 <script type="application/ld+json">
 {
@@ -168,9 +168,9 @@
       <p class="kicker">Експрес-перевірка · 1 хвилина</p>
       <h2>Наскільки ваш бізнес захищений юридично?</h2>
       <p>Шість питань, які адвокат ставить першими. Відповідайте чесно: результат бачите тільки ви.</p>
-      <div class="gauge" aria-hidden="true">
-        <svg viewBox="0 0 200 110"><path class="gauge__bg" d="M15 100a85 85 0 0 1 170 0"/><path class="gauge__val" id="gaugeVal" d="M15 100a85 85 0 0 1 170 0"/></svg>
-        <div class="gauge__num"><b id="score">0</b><span>з 6</span></div>
+      <div class="risk" aria-hidden="true">
+        <div class="risk__level"><b id="level">—</b><span id="score">0 з 6 захищено</span></div>
+        <ul class="risk__grid" id="riskGrid"><li>Договори</li><li>Перевірка юристом</li><li>Реєстр</li><li>Обшук</li><li>Борги</li><li>Бренд і база</li></ul>
       </div>
       <div class="check__result" id="result" role="status" aria-live="polite">
         <p class="check__verdict" id="verdict">Почніть відповідати, і тут з'явиться оцінка.</p>
