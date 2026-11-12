@@ -125,7 +125,12 @@
     });
     ans("tag").textContent = s.tag; ans("title").textContent = s.title; ans("text").textContent = s.text;
     const c = ans("cta"); c.textContent = s.cta; c.dataset.service = s.service;
-    if (animate && window.gsap && !reduce) gsap.fromTo(".care__answer > *", { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: .45, stagger: .05, ease: "power2.out" });
+    if (animate && window.gsap && !reduce) {
+      gsap.fromTo(".care__answer > *", { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: .45, stagger: .05, ease: "power2.out" });
+      const stage = $(".care__stage");
+      gsap.fromTo(".scan--arch", { x: -150, opacity: 1 }, { x: stage.offsetWidth + 10, duration: .9, ease: "power2.inOut", onComplete: () => gsap.set(".scan--arch", { opacity: 0 }) });
+      if (s.on !== "all") gsap.fromTo("#arch .tooth.on rect", { scale: .55 }, { scale: 1, transformOrigin: "50% 50%", duration: .6, ease: "back.out(3)", stagger: .06, delay: .25 });
+    }
   }
   const chips = $$(".care__chips button");
   chips.forEach(b => b.addEventListener("click", () => {
@@ -190,13 +195,61 @@
   gsap.from(".hero__card", { y: -14, opacity: 0, duration: .7, delay: 1, ease: "power3.out" });
   gsap.to(".hero__media img", { yPercent: 8, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
 
+  // scroll progress ("scan line" under header)
+  gsap.to(".progress", { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: .3 } });
+  // hero photo: intra-oral scanner sweep + floating hours card
+  const hm = $(".hero__media");
+  gsap.fromTo(".hero__media .scan", { y: -90, opacity: 1 }, { y: () => hm.offsetHeight, duration: 1.7, delay: 1, ease: "power2.inOut", onComplete: () => gsap.to(".hero__media .scan", { opacity: 0, duration: .3 }) });
+  gsap.to(".hero__card", { y: -7, duration: 2.6, ease: "sine.inOut", yoyo: true, repeat: -1, delay: 1.8 });
+  // ticker speeds up with scroll and follows its direction
+  const tk = $(".ticker__track");
+  const tAnim = tk && tk.getAnimations ? tk.getAnimations()[0] : null;
+  if (tAnim) {
+    let reset;
+    ScrollTrigger.create({ onUpdate: self => {
+      const v = Math.min(4, 1 + Math.abs(self.getVelocity()) / 600);
+      tAnim.playbackRate = self.direction < 0 ? -v : v;
+      if (reset) reset.kill();
+      reset = gsap.delayedCall(.3, () => { tAnim.playbackRate = tAnim.playbackRate < 0 ? -1 : 1; });
+    } });
+  }
+
+  // headings: word-by-word mask reveal
+  $$(".sec-head h2, .about__text h2, .ct__info h2").forEach(h => {
+    const words = h.textContent.trim().split(/\s+/);
+    h.textContent = "";
+    words.forEach((w, i) => {
+      const o = document.createElement("span"); o.className = "word";
+      const inn = document.createElement("span"); inn.textContent = w; o.appendChild(inn); h.appendChild(o);
+      if (i < words.length - 1) h.appendChild(document.createTextNode(" "));
+    });
+    gsap.from($$(".word > span", h), { yPercent: 110, rotate: 4, duration: .9, stagger: .06, ease: "expo.out", scrollTrigger: { trigger: h, start: "top 88%" } });
+  });
+
   // teeth grow in when arch enters
   gsap.from("#arch .tooth > g", { scale: 0, transformOrigin: "50% 50%", duration: .5, ease: "back.out(2)", stagger: { each: .04, from: "center" }, scrollTrigger: { trigger: "#arch", start: "top 80%" } });
 
   // generic reveals
-  const groups = [".sec-head", ".care__chips", ".care__answer", ".srv__item", ".about__media", ".about__text > *", ".steps li", ".visit__media", ".rev__item", ".faq__list details", ".ct__info > *", ".book", ".map"];
+  const groups = [".sec-head .eyebrow", ".sec-lead", ".demo-flag", ".care__chips", ".care__stage", ".care__answer", ".srv__item", ".about__text > :not(h2)", ".steps li", ".rev__item", ".faq__list details", ".ct__info > :not(h2)", ".book", ".map"];
   groups.forEach(sel => $$(sel).forEach(el => el.classList.add("rv")));
   ScrollTrigger.batch(".rv", { start: "top 88%", once: true, onEnter: b => gsap.to(b, { opacity: 1, y: 0, duration: .8, stagger: .08, ease: "power3.out", overwrite: true }) });
   gsap.fromTo(".about__media img", { scale: 1.12 }, { scale: 1, ease: "none", scrollTrigger: { trigger: ".about", start: "top bottom", end: "bottom top", scrub: true } });
+  // photos: wipe-in reveal
+  $$(".about__media, .visit__media").forEach(m => gsap.fromTo(m, { clipPath: "inset(0% 0% 100% 0% round 22px)" }, { clipPath: "inset(0% 0% 0% 0% round 22px)", duration: 1.3, ease: "expo.inOut", scrollTrigger: { trigger: m, start: "top 85%" } }));
+  gsap.fromTo(".visit__media img", { scale: 1.15 }, { scale: 1, ease: "none", scrollTrigger: { trigger: ".visit__media", start: "top bottom", end: "bottom top", scrub: true } });
+  // service numbers + step numbers pop
+  gsap.from(".srv__n", { x: -16, opacity: 0, duration: .6, stagger: .1, ease: "power3.out", scrollTrigger: { trigger: ".srv", start: "top 80%" } });
+  gsap.from(".steps__n", { scale: 0, rotate: -90, duration: .7, stagger: .12, ease: "back.out(2.2)", scrollTrigger: { trigger: ".steps", start: "top 80%" } });
+  // FAQ answer slides open
+  $$(".faq__list details").forEach(d => d.addEventListener("toggle", () => { if (d.open) gsap.from($("p", d), { y: -8, opacity: 0, duration: .45, ease: "power2.out" }); }));
+  // footer wordmark rises letter by letter
+  gsap.from(".wordmark span", { yPercent: 100, duration: 1.1, stagger: .12, ease: "expo.out", scrollTrigger: { trigger: ".wordmark", start: "top 95%" } });
+  // magnetic primary buttons (mouse only)
+  if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    $$(".hero__cta .btn, .care__answer .btn, .top__cta, .book button").forEach(b => {
+      b.addEventListener("mousemove", e => { const r = b.getBoundingClientRect(); gsap.to(b, { x: (e.clientX - r.left - r.width / 2) * .2, y: (e.clientY - r.top - r.height / 2) * .3, duration: .4, ease: "power3.out" }); });
+      b.addEventListener("mouseleave", () => gsap.to(b, { x: 0, y: 0, duration: .6, ease: "elastic.out(1, .4)" }));
+    });
+  }
   addEventListener("load", () => ScrollTrigger.refresh());
 })();
