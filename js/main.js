@@ -159,6 +159,7 @@
   /* ---------- motion ---------- */
   if (reduce || !window.gsap || !window.ScrollTrigger) {
     $$('.reveal').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+    document.documentElement.classList.remove('js');
     return;
   }
   gsap.registerPlugin(ScrollTrigger);
@@ -197,5 +198,90 @@
     gsap.to(track, { x: () => -dist(), ease: 'none',
       scrollTrigger: { trigger: '.strip', start: 'top top', end: () => '+=' + dist(), pin: true, scrub: .6, invalidateOnRefresh: true } });
   });
+
+  /* ---------- extra motion ---------- */
+  const fine = matchMedia('(pointer: fine)').matches;
+
+  // headlight beam sweeps across the facade on load
+  gsap.timeline({ delay: .3 })
+    .fromTo('.hero__beam', { xPercent: -60, opacity: 0 }, { xPercent: 10, opacity: 1, duration: 1.6, ease: 'power2.inOut' })
+    .to('.hero__beam', { xPercent: 25, opacity: .55, duration: 1.2, ease: 'power1.out' });
+  if (fine) {
+    const hero = $('.hero');
+    const bx = gsap.quickTo('.hero__beam', 'x', { duration: .9, ease: 'power3' });
+    const by = gsap.quickTo('.hero__beam', 'y', { duration: .9, ease: 'power3' });
+    hero.addEventListener('pointermove', e => { const r = hero.getBoundingClientRect(); bx((e.clientX - r.width / 2) * .35); by((e.clientY - r.height / 2) * .35); });
+  }
+
+  // headings: words rise from a mask
+  $$('.h2').forEach(h => {
+    if (h.closest('.strip')) return;
+    h.classList.remove('reveal'); h.style.opacity = 1; h.style.transform = 'none';
+    const walk = node => [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(t => {
+          if (!t) return;
+          if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(t)); return; }
+          const w = document.createElement('span'); w.className = 'split-w';
+          const i = document.createElement('span'); i.textContent = t; w.appendChild(i); frag.appendChild(w);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1 && n.tagName !== 'BR') walk(n);
+    });
+    walk(h);
+    gsap.from($$('.split-w>span', h), { yPercent: 110, rotate: 4, duration: 1, stagger: .06, ease: 'power4.out', scrollTrigger: { trigger: h, start: 'top 88%', once: true } });
+  });
+
+  // garage shutters roll up over photos
+  $$('.shutter').forEach(el => gsap.to(el, { '--sh': 0, duration: 1.3, ease: 'power3.inOut', scrollTrigger: { trigger: el, start: 'top 85%', once: true } }));
+  $$('.shutter img').forEach(img => gsap.fromTo(img, { scale: 1.18 }, { scale: 1, duration: 1.8, ease: 'power3.out', scrollTrigger: { trigger: img, start: 'top 85%', once: true } }));
+
+  // odometer counters
+  $$('[data-count]').forEach(el => {
+    const to = parseFloat(el.dataset.count), dec = +el.dataset.dec || 0, suf = el.dataset.suf || '';
+    const o = { v: el.dataset.from ? parseFloat(el.dataset.from) : 0 };
+    const paint = () => { el.textContent = o.v.toFixed(dec).replace('.', ',') + suf; };
+    paint();
+    gsap.to(o, { v: to, duration: 1.8, ease: 'power2.out', onUpdate: paint, scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
+  });
+
+  // amenity icons draw themselves
+  $$('.amen__list li').forEach((li, i) => gsap.to($('.ic', li), { '--draw': 0, duration: 1.4, delay: (i % 2) * .12, ease: 'power2.out', scrollTrigger: { trigger: li, start: 'top 88%', once: true } }));
+
+  // distance rows: road markings run out
+  gsap.to('.dist li', { '--ln': 1, duration: .9, stagger: .15, ease: 'power2.inOut', scrollTrigger: { trigger: '.dist', start: 'top 85%', once: true } });
+  gsap.from('.rules > div', { y: 30, opacity: 0, rotate: i => (i - 1) * 3, duration: .9, stagger: .1, ease: 'back.out(1.6)', scrollTrigger: { trigger: '.rules', start: 'top 88%', once: true } });
+
+  // review cards land like postcards
+  gsap.from('.quote', { y: 60, rotate: i => (i % 2 ? 2.5 : -2.5), opacity: 0, duration: 1, stagger: .1, ease: 'power3.out', scrollTrigger: { trigger: '.rev__grid', start: 'top 82%', once: true } });
+
+
+  // room panel: new room slides in
+  const roomInfo = $('.room__info');
+  keys.forEach(k => k.addEventListener('click', () => gsap.fromTo(roomInfo.children, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: .5, stagger: .04, ease: 'power2.out', overwrite: true })));
+
+  // inner parallax inside the horizontal strip
+  if (matchMedia('(min-width: 901px)').matches) {
+    $$('.strip figure img').forEach(img => gsap.fromTo(img, { scale: 1.15 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.strip', start: 'top top', end: () => '+=' + ($('.strip__track').scrollWidth - innerWidth), scrub: true } }));
+  }
+
+  // booking contacts slide in
+  gsap.from('.book__contacts li', { x: -30, opacity: 0, duration: .7, stagger: .1, ease: 'power2.out', scrollTrigger: { trigger: '.book__contacts', start: 'top 88%', once: true } });
+
+  // magnetic buttons on desktop
+  if (fine) $$('.btn').forEach(b => {
+    const mx = gsap.quickTo(b, 'x', { duration: .4, ease: 'power3' }), my = gsap.quickTo(b, 'y', { duration: .4, ease: 'power3' });
+    b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); mx((e.clientX - r.left - r.width / 2) * .25); my((e.clientY - r.top - r.height / 2) * .3); });
+    b.addEventListener('pointerleave', () => { mx(0); my(0); });
+  });
+
+  // header hides on scroll down, returns on scroll up
+  let lastY = 0;
+  ScrollTrigger.create({ start: 0, end: 'max', onUpdate: self => {
+    const y = self.scroll(); if (!mnav.hidden) return;
+    gsap.to(hdr, { yPercent: y > 300 && y > lastY ? -100 : 0, duration: .35, ease: 'power2.out', overwrite: true }); lastY = y;
+  } });
+
   addEventListener('load', () => ScrollTrigger.refresh());
 })();

@@ -269,3 +269,22 @@ address .ic{color:var(--rust);margin-top:4px}
   .js .reveal{opacity:1;transform:none}
   *{animation:none!important;transition:none!important}
 }
+
+/* ---------- extra motion ---------- */
+.hero__beam{position:absolute;inset:-20% -40%;z-index:-1;pointer-events:none;mix-blend-mode:screen;opacity:0;
+  background:radial-gradient(ellipse 22% 38% at 50% 50%,rgba(255,232,180,.38),rgba(255,220,150,.12) 45%,transparent 70%)}
+.shutter{position:relative;overflow:hidden}
+.shutter::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;transform-origin:top;
+  background:repeating-linear-gradient(180deg,#2c3a31 0 13px,#1d2a22 13px 15px,#36463b 15px 16px);transform:scaleY(var(--sh,0))}
+.js .shutter{--sh:1}
+.split-w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.split-w>span{display:inline-block;will-change:transform}
+.amen__list .ic path,.amen__list .ic circle,.amen__list .ic rect{stroke-dasharray:80;stroke-dashoffset:var(--draw,0)}
+.js .amen__list .ic{--draw:80}
+.dist li{position:relative}
+.dist li::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--tan);transform:scaleX(var(--ln,0));transform-origin:left;opacity:.7}
+.btn{will-change:transform}
+@media (prefers-reduced-motion:reduce){.js .shutter{--sh:0}.js .amen__list .ic{--draw:0}.hero__beam{display:none}}
+.key__tag{transform-origin:50% -6px;animation:keysway 2.8s ease-in-out infinite alternate}
+.key:nth-child(odd) .key__tag{animation-duration:3.3s;animation-direction:alternate-reverse}
+@keyframes keysway{from{rotate:-2deg}to{rotate:2deg}}

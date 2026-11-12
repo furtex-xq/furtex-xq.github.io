@@ -76,6 +76,7 @@
 <section class="hero">
   <div class="hero__media"><img src="img/photos/hero.jpg" alt="Фасад готелю Clubhouse на вулиці Тисменицькій в Івано-Франківську" width="1280" height="854" fetchpriority="high"></div>
   <div class="hero__shade"></div>
+  <div class="hero__beam" aria-hidden="true"></div>
   <div class="hero__inner">
     <p class="kicker"><span class="dot"></span>Мотоготель · Івано-Франківськ · рецепція 24/7</p>
     <h1 class="hero__title"><span class="ln">Готель з</span> <span class="ln"><em>мотодушею</em></span> <span class="ln">у Франківську</span></h1>
@@ -85,8 +86,8 @@
       <a class="btn btn--ghost" href="tel:+380987538642"><svg class="ic"><use href="#i-phone"/></svg>Подзвонити</a>
     </div>
     <ul class="hero__scores">
-      <li><b>9,2</b><span>оцінка гостей<br>на Booking.com</span></li>
-      <li><b>4,8</b><span>рейтинг<br>у Google</span></li>
+      <li><b data-count="9.2" data-dec="1">9,2</b><span>оцінка гостей<br>на Booking.com</span></li>
+      <li><b data-count="4.8" data-dec="1">4,8</b><span>рейтинг<br>у Google</span></li>
       <li><b>24/7</b><span>рецепція<br>та охорона</span></li>
     </ul>
   </div>
@@ -110,15 +111,15 @@
       <p class="reveal">Clubhouse зібрали люди, які люблять дорогу. У лобі стоїть справжній мотоцикл, на стінах — фото гонок і легенд, а ключ від номера ви отримаєте на шкіряному брелоку з логотипом мотомарки, якій присвячена ваша кімната.</p>
       <p class="reveal">Але характер — це лише половина. Друга половина — те, за що гості ставлять 9,2: чисті номери, зручні ліжка, кава й чай у номері і персонал, який підкаже, куди піти ввечері у Франківську.</p>
       <ul class="facts reveal">
-        <li><b>13</b><span>тематичних номерів</span></li>
-        <li><b>3,4 км</b><span>до Ратуші</span></li>
-        <li><b>0 грн</b><span>за парковку у дворі</span></li>
+        <li><b data-count="13">13</b><span>тематичних номерів</span></li>
+        <li><b data-count="3.4" data-dec="1" data-suf=" км">3,4 км</b><span>до Ратуші</span></li>
+        <li><b data-count="0" data-from="250" data-suf=" грн">0 грн</b><span>за парковку у дворі</span></li>
       </ul>
     </div>
     <div class="about__collage">
-      <figure class="ph ph--a"><img src="img/photos/lobby.jpg" alt="Лобі готелю Clubhouse з мотоциклом і червоним диваном" loading="lazy" width="1280" height="854"></figure>
-      <figure class="ph ph--b"><img src="img/photos/sign-s.jpg" alt="Вивіска Club House і мотоцикл біля входу" loading="lazy" width="640" height="427"></figure>
-      <figure class="ph ph--c"><img src="img/photos/d-helmet-s.jpg" alt="Мотошолом і рукавички в номері — деталь інтер'єру" loading="lazy" width="640" height="427"></figure>
+      <figure class="ph shutter ph--a"><img src="img/photos/lobby.jpg" alt="Лобі готелю Clubhouse з мотоциклом і червоним диваном" loading="lazy" width="1280" height="854"></figure>
+      <figure class="ph shutter ph--b"><img src="img/photos/sign-s.jpg" alt="Вивіска Club House і мотоцикл біля входу" loading="lazy" width="640" height="427"></figure>
+      <figure class="ph shutter ph--c"><img src="img/photos/d-helmet-s.jpg" alt="Мотошолом і рукавички в номері — деталь інтер'єру" loading="lazy" width="640" height="427"></figure>
     </div>
   </div>
 </section>
@@ -180,7 +181,7 @@
     <p class="eyebrow">04 — Зручності</p>
     <h2 class="h2 reveal">Усе, що потрібно після дороги</h2>
     <div class="amen__grid">
-      <article class="amen__big reveal">
+      <article class="amen__big reveal shutter">
         <img src="img/photos/parking.jpg" alt="Закрита парковка у дворі готелю — вид згори" loading="lazy" width="1280" height="854">
         <div><svg class="ic"><use href="#i-park"/></svg><h3>Безкоштовна парковка у дворі</h3><p>Закрита територія з відеонаглядом. Мотоцикл чи авто ночують поруч із вами, а не на вулиці.</p></div>
       </article>
@@ -205,17 +206,17 @@
     <div class="rev__head">
       <h2 class="h2 reveal">Гості повертаються</h2>
       <div class="rev__scores reveal">
-        <div class="gauge" data-score="9.2" data-max="10"><svg viewBox="0 0 120 70" aria-hidden="true"><path class="gauge__bg" d="M10 62a50 50 0 0 1 100 0"/><path class="gauge__val" d="M10 62a50 50 0 0 1 100 0"/></svg><b>9,2</b><span>Booking.com<br>понад 700 відгуків</span></div>
-        <div class="gauge" data-score="4.8" data-max="5"><svg viewBox="0 0 120 70" aria-hidden="true"><path class="gauge__bg" d="M10 62a50 50 0 0 1 100 0"/><path class="gauge__val" d="M10 62a50 50 0 0 1 100 0"/></svg><b>4,8</b><span>Google<br>понад 300 відгуків</span></div>
+        <div class="gauge" data-score="9.2" data-max="10"><svg viewBox="0 0 120 70" aria-hidden="true"><path class="gauge__bg" d="M10 62a50 50 0 0 1 100 0"/><path class="gauge__val" d="M10 62a50 50 0 0 1 100 0"/></svg><b data-count="9.2" data-dec="1">9,2</b><span>Booking.com<br>понад 700 відгуків</span></div>
+        <div class="gauge" data-score="4.8" data-max="5"><svg viewBox="0 0 120 70" aria-hidden="true"><path class="gauge__bg" d="M10 62a50 50 0 0 1 100 0"/><path class="gauge__val" d="M10 62a50 50 0 0 1 100 0"/></svg><b data-count="4.8" data-dec="1">4,8</b><span>Google<br>понад 300 відгуків</span></div>
       </div>
     </div>
     <div class="rev__grid">
-      <blockquote class="quote reveal"><p>«Пробули лише одну ніч, але їхати не хотілося. Номер і ванна — ідеально чисті, персонал привітний.»</p><footer>Олексій · Booking.com</footer></blockquote>
-      <blockquote class="quote reveal"><p>«Номер дуже чистий і затишний, а ціна приємно здивувала.»</p><footer>Юрій · Booking.com</footer></blockquote>
-      <blockquote class="quote reveal"><p>«Персонал дуже привітний. Обов'язково повернемося.»</p><footer>Михайло · Booking.com</footer></blockquote>
-      <blockquote class="quote reveal"><p>«Гостинний персонал підказав, як дістатися містом. Чистий номер, кава й чай.»</p><footer>Адріан · Booking.com</footer></blockquote>
-      <blockquote class="quote reveal"><p>«Дуже чисто і зручно: тепло, гарне ліжко й робочий стіл.»</p><footer>Микола · Booking.com</footer></blockquote>
-      <blockquote class="quote reveal"><p>«Безкоштовний Wi‑Fi, зручне ліжко, чудовий персонал і хороша ціна.»</p><footer>Ігор · Booking.com</footer></blockquote>
+      <blockquote class="quote"><p>«Пробули лише одну ніч, але їхати не хотілося. Номер і ванна — ідеально чисті, персонал привітний.»</p><footer>Олексій · Booking.com</footer></blockquote>
+      <blockquote class="quote"><p>«Номер дуже чистий і затишний, а ціна приємно здивувала.»</p><footer>Юрій · Booking.com</footer></blockquote>
+      <blockquote class="quote"><p>«Персонал дуже привітний. Обов'язково повернемося.»</p><footer>Михайло · Booking.com</footer></blockquote>
+      <blockquote class="quote"><p>«Гостинний персонал підказав, як дістатися містом. Чистий номер, кава й чай.»</p><footer>Адріан · Booking.com</footer></blockquote>
+      <blockquote class="quote"><p>«Дуже чисто і зручно: тепло, гарне ліжко й робочий стіл.»</p><footer>Микола · Booking.com</footer></blockquote>
+      <blockquote class="quote"><p>«Безкоштовний Wi‑Fi, зручне ліжко, чудовий персонал і хороша ціна.»</p><footer>Ігор · Booking.com</footer></blockquote>
     </div>
     <p class="rev__note">Відгуки гостей з Booking.com, перекладено українською. <span class="demo" title="Демо: після запуску покажемо живі відгуки з Google">замінимо на відгуки з Google</span></p>
   </div>
@@ -241,7 +242,7 @@
       </div>
       <a class="btn btn--ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=48.912676,24.754287" target="_blank" rel="noopener"><svg class="ic"><use href="#i-route"/></svg>Прокласти маршрут</a>
     </div>
-    <div class="loc__map reveal">
+    <div class="loc__map reveal shutter">
       <iframe title="Готель Clubhouse на карті" src="https://maps.google.com/maps?q=48.912676,24.754287&amp;z=15&amp;hl=uk&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
