@@ -95,9 +95,16 @@
   /* ---------- mobile catalogue progress (native swipe) ---------- */
   var hsView = document.querySelector('.hs__view');
   var hsBar = document.querySelector('.hs__bar span');
+  var hsN = document.querySelector('.hs__n');
+  var hsTotal = document.querySelectorAll('.hs__track .card').length;
+  function setHs(p) {
+    hsBar.style.transform = 'scaleX(' + p + ')';
+    var n = Math.min(hsTotal, Math.round(p * (hsTotal - 1)) + 1);
+    hsN.textContent = (n < 10 ? '0' : '') + n;
+  }
   function nativeBar() {
     var max = hsView.scrollWidth - hsView.clientWidth;
-    hsBar.style.transform = 'scaleX(' + (max > 0 ? hsView.scrollLeft / max : 1) + ')';
+    setHs(max > 0 ? hsView.scrollLeft / max : 0);
   }
   hsView.addEventListener('scroll', nativeBar, { passive: true });
   nativeBar();
@@ -129,10 +136,14 @@
     form.reset();
   });
 
+  var years = new Date().getFullYear() - 2008;
+  document.querySelectorAll('[data-count="since2008"]').forEach(function (el) { el.setAttribute('data-count', years); el.textContent = years; });
+
   var y = document.getElementById('y');
   if (y) y.textContent = new Date().getFullYear();
 
   if (!motion) {
+    doc.classList.remove('has-loader');
     document.querySelector('.hs').classList.add('is-static');
     return;
   }
@@ -165,11 +176,33 @@
   var h1 = document.getElementById('hero-title');
   h1.setAttribute('aria-label', 'Ми вміємо творити красу з натурального каменю');
 
-  var intro = gsap.timeline({ defaults: { ease: 'power4.out' } });
+  var intro = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } });
   intro
     .from(chars, { yPercent: 115, rotate: 6, duration: 1.1, stagger: 0.035 }, 0.15)
     .from('.hero [data-hero]', { y: 24, opacity: 0, duration: 0.9, stagger: 0.08 }, 0.7)
     .fromTo('.hero__sheen', { xPercent: -45 }, { xPercent: 45, duration: 2.6, ease: 'power2.inOut' }, 0.9);
+
+  // Intro loader: a counter runs to 100, then the slab lifts away and the headline is carved
+  if (doc.classList.contains('has-loader')) {
+    if (lenis) lenis.stop();
+    var counter = { v: 0 };
+    var nEl = document.querySelector('.loader__n');
+    gsap.timeline({
+      onComplete: function () {
+        doc.classList.remove('has-loader');
+        try { sessionStorage.setItem('gg-intro', '1'); } catch (e) {}
+        if (lenis) lenis.start();
+        ScrollTrigger.refresh();
+      }
+    })
+      .to(counter, { v: 100, duration: 1.5, ease: 'power2.inOut', onUpdate: function () { nEl.textContent = Math.round(counter.v); } }, 0)
+      .fromTo('.loader__bar span', { scaleX: 0 }, { scaleX: 1, duration: 1.5, ease: 'power2.inOut' }, 0)
+      .to('.loader__in', { y: -30, opacity: 0, duration: 0.5, ease: 'power2.in' }, 1.6)
+      .to('.loader', { yPercent: -100, duration: 1, ease: 'power4.inOut' }, 1.9)
+      .add(function () { intro.play(); }, 2.2);
+  } else {
+    intro.play();
+  }
 
   // Hero parallax on the way out
   gsap.to('.hero__bg', { yPercent: 10, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
@@ -205,7 +238,7 @@
       scrollTrigger: {
         trigger: section, start: 'top top', end: function () { return '+=' + dist(); },
         pin: true, scrub: 1, invalidateOnRefresh: true,
-        onUpdate: function (self) { hsBar.style.transform = 'scaleX(' + self.progress + ')'; }
+        onUpdate: function (self) { setHs(self.progress); }
       }
     });
     gsap.utils.toArray('.card__img img').forEach(function (img) {
@@ -251,6 +284,16 @@
       gsap.to(drift, { timeScale: 1, duration: 1.2, delay: 0.2, ease: 'power2.out' });
     }
   });
+
+  /* 9. Figures count up when they come into view */
+  gsap.utils.toArray('[data-count]').forEach(function (el) {
+    var end = parseInt(el.getAttribute('data-count'), 10) || 0;
+    if (!end) return;
+    var o = { v: 0 };
+    gsap.to(o, { v: end, duration: 1.6, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+      onUpdate: function () { el.textContent = Math.round(o.v); } });
+  });
+  gsap.from('.stats__in li', { y: 30, opacity: 0, stagger: 0.1, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: '.stats', start: 'top 85%', once: true } });
 
   /* keep measurements right once fonts and photos are in */
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });

@@ -23,6 +23,10 @@
 <link rel="preconnect" href="https://images.unsplash.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Manrope:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="css/style.css">
+<script>
+  /* show the intro once per visit, never for reduced motion */
+  (function(){try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&!sessionStorage.getItem('gg-intro')){document.documentElement.classList.add('has-loader');setTimeout(function(){document.documentElement.classList.remove('has-loader')},4000)}}catch(e){}})();
+</script>
 
 <script type="application/ld+json">
 {
@@ -63,6 +67,15 @@
 </svg>
 
 <a class="skip" href="#main">Перейти до змісту</a>
+
+<div class="loader slab slab--black" aria-hidden="true">
+  <div class="loader__in">
+    <p class="loader__meta"><span>Grand-Granit</span><span>Калуш · 49.01°N 24.37°E</span></p>
+    <p class="loader__count"><span class="loader__n">0</span><small>%</small></p>
+    <div class="loader__bar"><span></span></div>
+    <p class="loader__meta"><span>Граніт · мармур</span><span>з 2008 року</span></p>
+  </div>
+</div>
 
 <header class="top" id="top">
   <div class="top__in">
@@ -108,6 +121,9 @@
     </ul>
   </section>
 
+  <!-- SERVICES BAND -->
+  <div class="band" aria-hidden="true"><div class="band__track"><span>Пам'ятники</span><span>Саркофаги</span><span>Стільниці</span><span>Сходи</span><span>Підвіконня</span><span>Каміни</span><span>Фасади</span><span>Бруківка</span><span>Пам'ятники</span><span>Саркофаги</span><span>Стільниці</span><span>Сходи</span><span>Підвіконня</span><span>Каміни</span><span>Фасади</span><span>Бруківка</span></div></div>
+
   <!-- TWO DIRECTIONS -->
   <section class="ways" aria-label="Два напрями роботи">
     <a class="way slab slab--black" href="#pamyatnyky" data-wipe>
@@ -126,6 +142,16 @@
         <span class="way__more">Детальніше <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
       </span>
     </a>
+  </section>
+
+  <!-- FIGURES (all from the client's own site) -->
+  <section class="stats" aria-label="GRAND-GRANIT у цифрах">
+    <ul class="wrap stats__in">
+      <li><span class="stats__n"><span data-count="since2008">18</span></span><span class="stats__l">років працюємо з гранітом</span></li>
+      <li><span class="stats__n"><span data-count="2">2</span></span><span class="stats__l">види каменю: граніт і мармур</span></li>
+      <li><span class="stats__n"><span data-count="6">6</span>+</span><span class="stats__l">міст регулярної доставки й монтажу</span></li>
+      <li><span class="stats__n"><span data-count="0">0</span>%</span><span class="stats__l">переплати в розстрочці на пам'ятники</span></li>
+    </ul>
   </section>
 
   <!-- MONUMENTS -->
@@ -202,7 +228,11 @@
         </ul>
       </div>
       <div class="wrap hs__foot">
-        <div class="hs__bar" aria-hidden="true"><span></span></div>
+        <div class="hs__meta">
+          <p class="hs__count" aria-hidden="true"><b class="hs__n">01</b> / 10</p>
+          <div class="hs__bar" aria-hidden="true"><span></span></div>
+          <p class="hs__hint" aria-hidden="true">Гортайте</p>
+        </div>
         <p class="note">Фото ілюстративні, у фінальній версії будуть роботи GRAND-GRANIT.</p>
       </div>
     </div>
