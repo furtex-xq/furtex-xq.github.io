@@ -88,31 +88,39 @@
   const svg = $('#hairSvg');
   if (svg) {
     const NS = 'http://www.w3.org/2000/svg', defs = $('defs', svg), g = $('#hairStrands');
-    const W = 360, H = 560, N = 26;
+    const W = 360, H = 560, N = 64, TOP = 70;
     let shade = 'honey', tech = 'balayage';
-    const mkGrad = id => { const lg = document.createElementNS(NS, 'linearGradient'); lg.id = id; lg.setAttribute('gradientUnits', 'userSpaceOnUse'); lg.setAttribute('x1', 0); lg.setAttribute('y1', 30); lg.setAttribute('x2', 0); lg.setAttribute('y2', H - 10); defs.appendChild(lg); return lg; };
+    const mkGrad = id => { const lg = document.createElementNS(NS, 'linearGradient'); lg.id = id; lg.setAttribute('gradientUnits', 'userSpaceOnUse'); lg.setAttribute('x1', 0); lg.setAttribute('y1', TOP); lg.setAttribute('x2', 0); lg.setAttribute('y2', H - 20); defs.appendChild(lg); return lg; };
     const gA = mkGrad('gA'), gB = mkGrad('gB');
+    /* Пасмо волосся: зібране «затискачем» угорі, розходиться хвилею й звужується до кінчика */
     const strands = [];
     for (let i = 0; i < N; i++) {
       const p = document.createElementNS(NS, 'path');
-      const t = i / (N - 1);
-      const s = { p, x0: 120 + t * 120 + (Math.random() - .5) * 8, spread: (t - .5) * 220, amp: 14 + Math.random() * 16, ph: Math.random() * 6.28, len: H - 40 - Math.random() * 70, w: 3.2 + Math.random() * 3.4, alt: i % 3 === 1 };
+      const t = i / (N - 1) - .5;
+      const s = { p, t, jit: (Math.random() - .5) * .25, len: .82 + Math.random() * .18, ph: Math.random() * 6.28, w: 1.3 + Math.random() * 1.6, alt: Math.random() < .38 };
       p.setAttribute('stroke-width', s.w.toFixed(2));
       p.setAttribute('stroke', s.alt ? 'url(#gB)' : 'url(#gA)');
-      p.style.opacity = (.78 + Math.random() * .22).toFixed(2);
+      p.style.opacity = (.7 + Math.random() * .3).toFixed(2);
       g.appendChild(p); strands.push(s);
     }
+    const clasp = document.createElementNS(NS, 'ellipse');
+    clasp.setAttribute('class', 'clasp'); clasp.setAttribute('cx', W / 2); clasp.setAttribute('cy', TOP + 4); clasp.setAttribute('rx', 20); clasp.setAttribute('ry', 6);
+    svg.appendChild(clasp);
     const draw = time => {
-      const k = time * .0006;
+      const k = time * .0007;
       strands.forEach(s => {
-        const pts = [];
-        for (let j = 0; j <= 12; j++) {
-          const v = j / 12, y = 30 + v * s.len;
-          const x = s.x0 + s.spread * Math.pow(v, 1.6) + Math.sin(v * 5 + s.ph + k) * s.amp * v + Math.sin(v * 11 + s.ph) * 3 * v;
-          pts.push([x, y]);
+        const L = (H - 30 - TOP) * s.len;
+        let d = '';
+        let px, py;
+        for (let j = 0; j <= 16; j++) {
+          const v = j / 16, y = TOP + v * L;
+          const width = 14 + 120 * Math.sin(Math.min(1, v * 1.15) * Math.PI) * (1 - v * .35);
+          const wave = Math.sin(v * 5.2 - 1 + k) * 46 * v + Math.sin(v * 9 + s.ph + k * 1.3) * 4 * v;
+          const x = W / 2 + wave + (s.t + s.jit * v) * width;
+          if (!j) d = `M${x.toFixed(1)} ${y.toFixed(1)}`;
+          else d += ` Q${px.toFixed(1)} ${py.toFixed(1)} ${((px + x) / 2).toFixed(1)} ${((py + y) / 2).toFixed(1)}`;
+          px = x; py = y;
         }
-        let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
-        for (let j = 1; j < pts.length; j++) { const [x0, y0] = pts[j - 1], [x1, y1] = pts[j]; d += ` Q${x0.toFixed(1)} ${y0.toFixed(1)} ${((x0 + x1) / 2).toFixed(1)} ${((y0 + y1) / 2).toFixed(1)}`; }
         s.p.setAttribute('d', d);
       });
     };
