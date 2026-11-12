@@ -7,6 +7,8 @@ ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36"}
 
 def base_url(pid):
+    if pid.startswith("https://images.unsplash.com/"):
+        return pid.split("?")[0]
     try:
         req = urllib.request.Request(f"https://unsplash.com/photos/{pid}/download?force=true", headers=UA)
         with urllib.request.urlopen(req, timeout=60) as r:
@@ -34,7 +36,7 @@ def candidates():
         for pid in lst:
             try:
                 b = base_url(pid); found[pid] = b
-                dl(b + "?auto=format&fm=jpg&fit=crop&w=360&h=360&q=55", os.path.join(out, f"{slot}__{pid}.jpg"))
+                dl(b + "?auto=format&fm=jpg&fit=crop&w=360&h=360&q=55", os.path.join(out, f"{slot}__{pid.rsplit('/',1)[-1]}.jpg"))
             except Exception as e:
                 print("fail", slot, pid, e)
             time.sleep(0.5)
@@ -48,7 +50,7 @@ def chosen():
         b = base_url(pid)
         w = 1800 if slot.startswith("hero") else 1100
         dl(b + f"?auto=format&fm=jpg&fit=max&w={w}&q=72", os.path.join(out, slot + ".jpg"))
-        credits.append({"slot": slot, "source": "Unsplash", "page": f"https://unsplash.com/photos/{pid}", "url": b, "license": "Unsplash License"})
+        credits.append({"slot": slot, "source": "Unsplash", "url": b, "license": "Unsplash License"})
         time.sleep(0.5)
     json.dump(credits, open(os.path.join(out, "credits.json"), "w"), indent=1)
 
