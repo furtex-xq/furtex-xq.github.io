@@ -4,7 +4,7 @@
 
 - `index.html`, `css/style.css`, `js/main.js`
 - `js/vendor/lenis.min.js` — плавний скрол (локально, без CDN)
-- `fonts/` — Literata (заголовки) + Manrope (текст), кирилиця + латиниця
+- `fonts/` — Prata (заголовки) + Nunito Sans (текст), кирилиця + латиниця
 - `img/photos/` — тимчасові фото з Unsplash (Unsplash License), список у `credits.json`
 - `tools/` + `.github/workflows/whitestory-photos.yml` — завантаження фото через GitHub Actions
 
