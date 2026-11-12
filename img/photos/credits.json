@@ -1,0 +1,14 @@
+[
+ {
+  "slot": "hero",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1603796846097-bee99e4a601f",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "meet",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1681505531034-8d67054e07f6",
+  "license": "Unsplash License"
+ }
+]
