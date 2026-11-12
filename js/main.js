@@ -205,12 +205,14 @@
 
   if (!motion) {
     doc.classList.remove('has-loader');
+    document.querySelectorAll('.hl').forEach(function (m) { m.classList.add('is-on'); });
     document.querySelector('.hs').classList.add('is-static');
     return;
   }
 
   /* ======================= GSAP animations ======================= */
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
   if (bodyScroller) ScrollTrigger.defaults({ scroller: bodyScroller });
   if (window.Flip) gsap.registerPlugin(Flip);
 
@@ -319,7 +321,7 @@
 
   /* 5. Materials: the stone slides slowly behind its frame */
   gsap.utils.toArray('[data-parallax]').forEach(function (slab) {
-    gsap.fromTo(slab, { backgroundPosition: '50% 0px' }, { backgroundPosition: '50% -160px', ease: 'none', scrollTrigger: { trigger: slab, start: 'top bottom', end: 'bottom top', scrub: true } });
+    gsap.fromTo(slab, { yPercent: -10 }, { yPercent: 10, ease: 'none', force3D: true, scrollTrigger: { trigger: slab.parentNode, start: 'top bottom', end: 'bottom top', scrub: true } });
   });
 
   /* 6. Process: a bronze line is drawn through the steps */
@@ -350,10 +352,23 @@
   });
 
   /* 10. Section headings rise word by word out of a mask */
+  // split into masked words but keep <em> accents (italic bronze words)
+  function wrapWords(h) {
+    var out = [];
+    h.childNodes.forEach(function (n) {
+      var isEm = n.nodeType === 1 && n.tagName === 'EM';
+      var txt = n.textContent;
+      txt.split(/(\s+)/).forEach(function (w) {
+        if (!w) return;
+        if (/^\s+$/.test(w)) { out.push(' '); return; }
+        out.push('<span class="word" aria-hidden="true"><span class="w">' + (isEm ? '<em>' + w + '</em>' : w) + '</span></span>');
+      });
+    });
+    return out.join('').replace(/\s+/g, ' ');
+  }
   gsap.utils.toArray('main .h2, .foot__title').forEach(function (h) {
-    var words = h.textContent.trim().split(/\s+/);
-    h.setAttribute('aria-label', h.textContent.trim());
-    h.innerHTML = words.map(function (w) { return '<span class="word" aria-hidden="true"><span class="w">' + w + '</span></span>'; }).join(' ');
+    h.setAttribute('aria-label', h.textContent.trim().replace(/\s+/g, ' '));
+    h.innerHTML = wrapWords(h);
     gsap.from(h.querySelectorAll('.w'), { yPercent: 110, duration: 1, ease: 'power4.out', stagger: 0.06, scrollTrigger: { trigger: h, start: 'top 88%', once: true } });
   });
   gsap.utils.toArray('.eyebrow').forEach(function (e) {
@@ -368,17 +383,37 @@
       gsap.fromTo(batch, { opacity: 0, y: 60, rotateX: -14, transformOrigin: '50% 100%' }, { opacity: 1, y: 0, rotateX: 0, duration: 1, ease: 'power3.out', stagger: 0.08, clearProps: 'transform' });
     }
   });
-  gsap.utils.toArray('.prod .shape').forEach(function (sh) {
-    gsap.fromTo(sh, { y: 26 }, { y: -6, ease: 'none', scrollTrigger: { trigger: sh, start: 'top bottom', end: 'bottom top', scrub: true } });
-  });
 
   /* 12. Footer: contact tiles stagger in, big outlined wordmark rises */
   gsap.from('.links li', { y: 30, opacity: 0, stagger: 0.08, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: '.links', start: 'top 88%', once: true } });
   gsap.fromTo('.foot__mark', { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, ease: 'none', scrollTrigger: { trigger: '.foot__mark', start: 'top bottom', end: 'bottom bottom', scrub: true } });
 
-  /* 13. Pale stone sections: the marble veil drifts slowly */
-  gsap.utils.toArray('.sec--stone').forEach(function (sec) {
-    gsap.fromTo(sec, { '--veil': '0px' }, { '--veil': '-140px', ease: 'none', scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true } });
+  /* 13. Typography: highlighted phrases get their bronze underline, ornaments draw open */
+  gsap.utils.toArray('.hl').forEach(function (m) {
+    ScrollTrigger.create({ trigger: m, start: 'top 82%', once: true, onEnter: function () { m.classList.add('is-on'); } });
+  });
+  gsap.utils.toArray('.orn').forEach(function (o) {
+    var tl = gsap.timeline({ scrollTrigger: { trigger: o, start: 'top 90%', once: true } });
+    tl.from(o.querySelectorAll('span'), { scaleX: 0, duration: 1.1, ease: 'power3.inOut' }, 0)
+      .from(o.querySelector('i'), { scale: 0, rotate: -135, duration: 0.8, ease: 'back.out(2)' }, 0.35);
+  });
+
+  /* 14. Quote: words light up one by one as you scroll through it */
+  gsap.utils.toArray('[data-words]').forEach(function (q) {
+    q.setAttribute('aria-label', q.textContent.trim());
+    var html = [];
+    q.childNodes.forEach(function (n) {
+      var isEm = n.nodeType === 1 && n.tagName === 'EM';
+      n.textContent.split(/(\s+)/).forEach(function (w) {
+        if (!w) return;
+        if (/^\s+$/.test(w)) { html.push(' '); return; }
+        html.push('<span class="qw" aria-hidden="true">' + (isEm ? '<em>' + w + '</em>' : w) + '</span>');
+      });
+    });
+    q.innerHTML = html.join('');
+    var ws = q.querySelectorAll('.qw');
+    q.querySelectorAll('.qw').forEach(function (w) { w.style.transition = 'none'; });
+    gsap.to(ws, { opacity: 1, ease: 'none', stagger: 0.1, scrollTrigger: { trigger: q, start: 'top 80%', end: 'bottom 45%', scrub: 0.6 } });
   });
 
   /* 9. Figures count up when they come into view */
