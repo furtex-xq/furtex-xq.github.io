@@ -112,6 +112,7 @@
     if (!el) return;
     e.preventDefault();
     if (a.dataset.pick) preselect(a.dataset.pick);
+    if (a.dataset.msg && msg) msg.value = a.dataset.msg;
     nav.classList.remove('is-open'); burger.setAttribute('aria-expanded', 'false');
     if (modal.open) closeModal();
     goTo(el);
@@ -220,10 +221,80 @@
     if (hasGsap) window.ScrollTrigger.refresh();
   });
 
+  /* ---------- калькулятор (демо-ціни) ---------- */
+  // [назва, ціна від, множиться на клас авто?, послуга у формі]
+  var CALC = [
+    ['Звук і електроніка', [
+      ['Заміна штатних динаміків', 1200, 0, 'Автозвук'],
+      ['Підсилювач + сабвуфер під ключ', 3500, 0, 'Автозвук'],
+      ['Аудіопроцесор з налаштуванням', 2500, 0, 'Автозвук'],
+      ['Сигналізація з автозапуском', 2500, 0, 'Охоронні системи'],
+      ['Парктронік задній', 900, 0, 'Паркувальні системи'],
+      ['Камера заднього виду', 800, 0, 'Паркувальні системи'],
+      ['Bi-LED лінзи', 2000, 0, 'Автосвітло']]],
+    ['Захист і вигляд', [
+      ['Плівка на фари', 800, 0, 'Антигравійна плівка'],
+      ['Плівка: зони ризику', 9000, 1, 'Антигравійна плівка'],
+      ['Тонування задньої напівсфери', 1500, 1, 'Тонування'],
+      ['Захисне полірування', 2500, 1, 'Полірування'],
+      ['Хімчистка салону', 3000, 1, 'Хімчистка']]],
+    ['Комфорт', [
+      ['Шумоізоляція дверей', 3000, 0, 'Шумоізоляція'],
+      ['Шумоізоляція арок', 3000, 1, 'Шумоізоляція'],
+      ['Заправка кондиціонера', 800, 0, 'Заправка кондиціонерів']]]
+  ];
+  var fmt = function (n) { return Math.round(n).toLocaleString('uk-UA').replace(/,/g, ' '); };
+  var calcItems = $('#calc-items');
+  calcItems.innerHTML = CALC.map(function (g, gi) {
+    return '<div class="calc__group"><h3>' + esc(g[0]) + '</h3><div class="calc__items">' + g[1].map(function (it, ii) {
+      return '<label class="it"><input type="checkbox" value="' + gi + '-' + ii + '"><span><b>' + esc(it[0]) + '</b><i>' + fmt(it[1]) + '</i></span></label>';
+    }).join('') + '</div></div>';
+  }).join('');
+  var calcTotal = $('#calc-total'), calcList = $('#calc-list'), calcState = { sum: 0, lines: [], svc: [] }, shownSum = { v: 0 };
+  function calcUpdate() {
+    var carIn = $('#calc input[name=car]:checked'), k = +carIn.value;
+    var sum = 0, lines = [], svc = [];
+    $$('#calc-items input:checked').forEach(function (c) {
+      var p = c.value.split('-'), it = CALC[+p[0]][1][+p[1]];
+      var price = it[2] ? Math.round(it[1] * k / 50) * 50 : it[1];
+      sum += price; lines.push([it[0], price]); if (svc.indexOf(it[3]) < 0) svc.push(it[3]);
+    });
+    calcState = { sum: sum, lines: lines, svc: svc, car: carIn.dataset.name };
+    calcList.innerHTML = lines.length ? lines.map(function (l) { return '<li><span>' + esc(l[0]) + '</span><span>від ' + fmt(l[1]) + '</span></li>'; }).join('') : '<li class="calc__empty">Оберіть хоча б одну роботу</li>';
+    if (hasGsap && !reduce) window.gsap.to(shownSum, { v: sum, duration: .6, ease: 'power2.out', overwrite: true, onUpdate: function () { calcTotal.textContent = fmt(shownSum.v); } });
+    else calcTotal.textContent = fmt(sum);
+  }
+  $('#calc').addEventListener('change', calcUpdate);
+  calcUpdate();
+  $('#calc-book').addEventListener('click', function () {
+    if (!calcState.lines.length) return;
+    if (calcState.svc.length === 1) preselect(calcState.svc[0]);
+    if (msg) msg.value = 'Розрахунок з калькулятора (' + calcState.car + '): ' + calcState.lines.map(function (l) { return l[0]; }).join(', ') + '. Орієнтовно від ' + fmt(calcState.sum) + ' грн.';
+  });
+
+  /* ---------- акція місяця: таймер до кінця місяця (київський час) ---------- */
+  var timer = $('#timer');
+  if (timer) {
+    var cells = {}; $$('[data-t]', timer).forEach(function (b) { cells[b.dataset.t] = b; });
+    var kyivNow = function () { // поточний київський час як «локальна» дата
+      try { return new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Kyiv' })); } catch (x) { return new Date(); }
+    };
+    var tickTimer = function () {
+      var now = kyivNow(), end = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0);
+      var s = Math.max(0, Math.floor((end - now) / 1000));
+      var v = { d: Math.floor(s / 86400), h: Math.floor(s % 86400 / 3600), m: Math.floor(s % 3600 / 60), s: s % 60 };
+      Object.keys(v).forEach(function (key) {
+        var t = (v[key] < 10 ? '0' : '') + v[key];
+        if (cells[key].textContent !== t) { cells[key].textContent = t; if (!reduce) { cells[key].classList.remove('tick'); void cells[key].offsetWidth; cells[key].classList.add('tick'); } }
+      });
+    };
+    tickTimer(); setInterval(tickTimer, 1000);
+  }
+
   /* ---------- corner frames ---------- */
-  var FR = ['.dir__media', '.dir__list', '.lab__viz', '.stages', '.tint__view', '.tint__info', '.prods', '.about__media', '.stats', '.bigrate', '.quote', '.mosaic figure', '.form', '.sent', '.clist', '.socials', '.map', '.modal__box', '.step', '.ftr__grid > *', '.rating'];
+  var FR = ['.promo__box', '.timer > div', '.calc__step', '.calc__sum','.dir__media', '.dir__list', '.lab__viz', '.stages', '.tint__view', '.tint__info', '.prods', '.about__media', '.stats', '.bigrate', '.quote', '.mosaic figure', '.form', '.sent', '.clist', '.socials', '.map', '.modal__box', '.step', '.ftr__grid > *', '.rating'];
   FR.forEach(function (sel) {
-    var small = /step|ftr|rating|mosaic|bigrate|tint__info/.test(sel);
+    var small = /step|ftr|rating|mosaic|bigrate|tint__info|timer/.test(sel);
     $$(sel).forEach(function (el) { var i = document.createElement('i'); i.className = small ? 'fr fr--sm' : 'fr'; i.setAttribute('aria-hidden', 'true'); el.appendChild(i); });
   });
 
@@ -290,7 +361,7 @@
   ST.create({ onUpdate: function (s) { var v = Math.min(4, 1 + Math.abs(s.getVelocity()) / 600); gsap.to(tick, { timeScale: v, duration: .3, overwrite: true }); gsap.to(tick, { timeScale: 1, duration: 1.2, delay: .3 }); } });
 
   // generic reveals
-  var reveal = $$('.sec__head, .row, .dir__note, .prod, .step, .quote, .stats div, .clist li, .socials, .map, .mosaic figure, .tint__copy > *, .about__copy > *, .reviews__side > *, .contact__form > *, .demo-note');
+  var reveal = $$('.promo__box, .calc__step, .calc__sum, .sec__head,.row, .dir__note, .prod, .step, .quote, .stats div, .clist li, .socials, .map, .mosaic figure, .tint__copy > *, .about__copy > *, .reviews__side > *, .contact__form > *, .demo-note');
   reveal.forEach(function (el) { el.setAttribute('data-r', ''); });
   ST.batch('[data-r]', { start: 'top 90%', once: true, onEnter: function (els) { gsap.to(els, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', stagger: .07, overwrite: true }); } });
 

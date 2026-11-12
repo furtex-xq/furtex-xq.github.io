@@ -483,3 +483,75 @@ mark.todo--dot{display:inline-block;width:7px;height:7px;border-radius:50%;paddi
   .prods{outline-offset:5px}
   .step{margin-top:14px}
 }
+
+/* ---------- акція місяця ---------- */
+.promo{padding:clamp(60px,8vw,100px) 0 0}
+.promo__box{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) minmax(260px,340px);gap:clamp(24px,4vw,56px);align-items:center;border:1px solid rgba(255,79,31,.55);outline:1px solid var(--line2);outline-offset:8px;padding:clamp(24px,4vw,44px);background:repeating-linear-gradient(-45deg,rgba(255,79,31,.05) 0 2px,transparent 2px 14px),var(--bg2)}
+.promo__badge{width:150px;aspect-ratio:1;display:grid;place-content:center;text-align:center;border:1px solid var(--sig);outline:1px solid rgba(255,79,31,.4);outline-offset:6px;background:var(--sig);color:#0c0d0f}
+.promo__badge span{font:800 2.8rem/1 var(--disp);letter-spacing:-.04em}
+.promo__badge i{font-style:normal;font-size:.55em;vertical-align:top}
+.promo__badge small{font:500 .62rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;margin-top:8px}
+.promo .eyebrow{margin-bottom:16px;color:var(--amber)}
+.promo__title{font:600 clamp(1.4rem,2.6vw,2.1rem)/1.1 var(--disp);letter-spacing:-.02em;margin-bottom:12px}
+.promo__title em{font-style:normal;color:var(--sig)}
+.promo__copy>p:not(.eyebrow):not(.promo__price){color:var(--mute);max-width:520px;margin-bottom:12px}
+.promo__price{margin:0;font:500 1rem/1 var(--mono)}
+.promo__price s{color:var(--mute)}
+.promo__price b{font:700 1.6rem/1 var(--disp);color:var(--ink);margin-left:8px}
+.promo__price sup{font-size:.6rem;color:#ffd75e;margin-left:4px;text-transform:uppercase;letter-spacing:.08em}
+.promo__label{font:500 .7rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:12px}
+.timer{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:22px}
+.timer div{border:1px solid var(--line2);padding:12px 4px 10px;text-align:center;position:relative;background:var(--bg)}
+.timer b{display:block;font:700 1.7rem/1 var(--disp);font-variant-numeric:tabular-nums}
+.timer span{display:block;font:500 .6rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-top:6px}
+.timer b.tick{animation:tk .45s var(--ease)}
+@keyframes tk{from{opacity:.2;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+/* ---------- калькулятор ---------- */
+.calc{background:var(--bg2);border-block:1px solid var(--line)}
+.calc__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,380px);gap:clamp(24px,4vw,56px);align-items:start}
+.calc__step{border:1px solid var(--line2);margin:0 0 24px;padding:22px clamp(16px,2.5vw,28px) 26px;position:relative;min-width:0}
+.calc__step legend{display:flex;align-items:center;gap:12px;padding:0 10px;font:600 1rem/1 var(--disp)}
+.calc__step legend span{display:grid;place-items:center;width:30px;height:30px;border:1px solid var(--sig);color:var(--sig);font:500 .8rem/1 var(--mono)}
+.cars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.car,.it{position:relative;cursor:pointer}
+.car input,.it input{position:absolute;opacity:0;pointer-events:none}
+.car>span{display:block;border:1px solid var(--line2);padding:16px;height:100%;transition:border-color .25s,background-color .25s}
+.car b{display:block;font:600 .98rem/1.2 var(--disp)}
+.car small{display:block;color:var(--mute);font-size:.82rem;margin-top:4px}
+.car:hover>span,.it:hover>span{border-color:var(--ink)}
+.car input:checked+span{border-color:var(--sig);background:rgba(255,79,31,.1);outline:1px solid rgba(255,79,31,.45);outline-offset:3px}
+.car input:focus-visible+span,.it input:focus-visible+span{outline:2px solid var(--amber);outline-offset:3px}
+.calc__group+.calc__group{margin-top:20px}
+.calc__group h3{font:500 .7rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.calc__items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.it>span{display:grid;grid-template-columns:22px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line2);padding:13px 14px;transition:border-color .25s,background-color .25s;height:100%}
+.it>span::before{content:"";width:18px;height:18px;border:1px solid var(--line2);background:var(--bg);transition:background-color .2s,border-color .2s}
+.it input:checked+span{border-color:var(--sig);background:rgba(255,79,31,.08)}
+.it input:checked+span::before{background:var(--sig) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230c0d0f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/14px no-repeat;border-color:var(--sig)}
+.it b{font-weight:500;font-size:.93rem;line-height:1.3}
+.it i{font:500 .78rem/1 var(--mono);font-style:normal;color:var(--mute);white-space:nowrap}
+.calc__sum{position:sticky;top:100px;border:1px solid var(--line2);outline:1px solid var(--line);outline-offset:8px;padding:26px;background:var(--bg)}
+.calc__label{font:500 .7rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.calc__total{display:flex;align-items:baseline;gap:8px;margin:0 0 18px;font:500 .9rem/1 var(--mono);color:var(--mute)}
+.calc__total b{font:700 clamp(2.4rem,4vw,3.2rem)/1 var(--disp);color:var(--sig);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.calc__list{list-style:none;margin:0 0 22px;padding:0;border-top:1px solid var(--line);max-height:260px;overflow:auto}
+.calc__list li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.calc__list li span:last-child{font:500 .82rem/1.4 var(--mono);color:var(--mute);white-space:nowrap}
+.calc__empty{color:var(--mute)}
+
+@media (max-width:900px){
+  .promo__box{grid-template-columns:auto 1fr}
+  .promo__timer{grid-column:1/-1}
+  .calc__in{grid-template-columns:1fr}
+  .calc__sum{position:sticky;top:auto;bottom:0;z-index:5}
+}
+@media (max-width:640px){
+  .promo__box{grid-template-columns:1fr;outline-offset:5px}
+  .promo__badge{width:100%;aspect-ratio:auto;padding:16px;grid-auto-flow:column;align-items:center;gap:14px;justify-content:start}
+  .promo__badge small{margin:0}
+  .cars{grid-template-columns:1fr}
+  .calc__items{grid-template-columns:1fr}
+  .calc__sum{position:relative;bottom:auto;outline-offset:5px}
+  .calc__list{max-height:none}
+}

@@ -62,6 +62,7 @@
     </a>
     <nav class="nav" id="nav" aria-label="Головне меню">
       <a href="#posluhy">Послуги</a>
+      <a href="#kalkulyator">Калькулятор</a>
       <a href="#zvuk">Звук</a>
       <a href="#tonuvannya">Тонування</a>
       <a href="#mahazyn">Магазин</a>
@@ -110,6 +111,32 @@
     <span>Автозвук</span><i class="dia"></i><span>Охоронні системи</span><i class="dia"></i><span>Паркувальні системи</span><i class="dia"></i><span>Автодіагностика</span><i class="dia"></i><span>Антигравійна плівка</span><i class="dia"></i><span>Тонування</span><i class="dia"></i><span>Шумоізоляція</span><i class="dia"></i><span>Полірування</span><i class="dia"></i><span>Хімчистка</span><i class="dia"></i><span>Автосвітло</span><i class="dia"></i><span>Вм'ятини</span><i class="dia"></i><span>Кондиціонери</span><i class="dia"></i>
   </div>
 </div>
+
+<!-- PROMO -->
+<section class="promo" id="akciya" aria-labelledby="promo-h">
+  <div class="wrap">
+    <div class="promo__box">
+      <div class="promo__badge"><span>−15<i>%</i></span><small>акція місяця</small></div>
+      <div class="promo__copy">
+        <p class="eyebrow"><span class="dia"></span>Тільки до кінця місяця</p>
+        <h2 id="promo-h" class="promo__title">Бронювання фар плівкою <em>+ полірування фар</em></h2>
+        <p>Повертаємо фарам прозорість і одразу захищаємо їх від сколів. Разом на 15% дешевше, ніж окремо.</p>
+        <p class="promo__price"><s>1 400 грн</s> <b>1 190 грн</b><sup>демо</sup></p>
+      </div>
+      <div class="promo__timer">
+        <p class="promo__label">До кінця акції</p>
+        <div class="timer" id="timer" aria-live="off">
+          <div><b data-t="d">00</b><span>днів</span></div>
+          <div><b data-t="h">00</b><span>год</span></div>
+          <div><b data-t="m">00</b><span>хв</span></div>
+          <div><b data-t="s">00</b><span>сек</span></div>
+        </div>
+        <a class="btn btn--sig btn--full" href="#zapys" data-pick="Автосвітло" data-msg="Акція місяця: бронювання фар плівкою + полірування фар">Забронювати акцію</a>
+      </div>
+    </div>
+    <p class="demo-note demo-note--small">Демо-акція: умови й ціну замінимо на вашу актуальну пропозицію. Таймер сам рахує до кінця поточного місяця.</p>
+  </div>
+</section>
 
 <!-- SERVICES -->
 <section class="sec services" id="posluhy" aria-labelledby="srv-h">
@@ -165,12 +192,48 @@
   </div>
 </section>
 
+<!-- CALCULATOR -->
+<section class="sec calc" id="kalkulyator" aria-labelledby="calc-h">
+  <div class="wrap">
+    <div class="sec__head sec__head--row">
+      <div>
+        <p class="eyebrow"><span class="num">02</span>Калькулятор</p>
+        <h2 id="calc-h" class="h2">Порахуйте <em>орієнтовну вартість</em></h2>
+      </div>
+      <p class="sec__lead">Оберіть тип авто й потрібні роботи. Точну ціну назвемо після огляду, але порядок суми побачите вже зараз.</p>
+    </div>
+    <div class="calc__in">
+      <form class="calc__form" id="calc" onsubmit="return false">
+        <fieldset class="calc__step">
+          <legend><span>1</span>Тип авто</legend>
+          <div class="cars" role="radiogroup">
+            <label class="car"><input type="radio" name="car" value="1" data-name="Легкове (хетчбек, седан)" checked><span><b>Легкове</b><small>хетчбек, седан</small></span></label>
+            <label class="car"><input type="radio" name="car" value="1.2" data-name="Кросовер, універсал"><span><b>Кросовер</b><small>універсал, купе</small></span></label>
+            <label class="car"><input type="radio" name="car" value="1.4" data-name="Позашляховик, мінівен"><span><b>Позашляховик</b><small>мінівен, пікап</small></span></label>
+          </div>
+        </fieldset>
+        <fieldset class="calc__step">
+          <legend><span>2</span>Роботи</legend>
+          <div class="calc__groups" id="calc-items"></div>
+        </fieldset>
+      </form>
+      <aside class="calc__sum" aria-live="polite">
+        <p class="calc__label">Орієнтовно</p>
+        <p class="calc__total"><span>від</span> <b id="calc-total">0</b> <span>грн</span></p>
+        <ul class="calc__list" id="calc-list"><li class="calc__empty">Оберіть хоча б одну роботу</li></ul>
+        <a class="btn btn--sig btn--full" href="#zapys" id="calc-book">Записатися з розрахунком</a>
+        <p class="demo-note demo-note--small">Ціни в калькуляторі демонстраційні — після запуску підставимо ваші.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
 <!-- SOUND LAB (signature) -->
 <section class="lab" id="zvuk" aria-labelledby="lab-h">
   <div class="lab__pin">
     <div class="wrap lab__in">
       <div class="lab__copy">
-        <p class="eyebrow"><span class="num">02</span>Лабораторія звуку</p>
+        <p class="eyebrow"><span class="num">03</span>Лабораторія звуку</p>
         <h2 id="lab-h" class="h2">Звук збирається <em>по рівнях</em></h2>
         <p class="lab__intro">Хороша система — це не найгучніший сабвуфер, а правильна послідовність. Ось як ми будуємо звук в авто.</p>
         <ol class="stages" id="stages">
@@ -200,7 +263,7 @@
 <section class="sec tint" id="tonuvannya" aria-labelledby="tint-h">
   <div class="wrap tint__in">
     <div class="tint__copy">
-      <p class="eyebrow"><span class="num">03</span>Тонування</p>
+      <p class="eyebrow"><span class="num">04</span>Тонування</p>
       <h2 id="tint-h" class="h2">Оберіть, <em>наскільки темно</em></h2>
       <p>Відсоток на плівці — це скільки світла вона пропускає. Чим менше число, тим темніше скло. Перемикайте й дивіться, як змінюється вид із салону.</p>
       <div class="tint__opts" role="radiogroup" aria-label="Світлопропускання плівки">
@@ -230,7 +293,7 @@
   <div class="wrap">
     <div class="sec__head sec__head--row">
       <div>
-        <p class="eyebrow"><span class="num">04</span>Магазин автозвуку</p>
+        <p class="eyebrow"><span class="num">05</span>Магазин автозвуку</p>
         <h2 id="shop-h" class="h2">Купуєте тут — <em>ставимо тут</em></h2>
       </div>
       <p class="sec__lead">Обладнання з магазину одразу йде в бокс на встановлення. Підберемо комплект під ваше авто й бюджет.</p>
@@ -259,7 +322,7 @@
 <section class="sec process" aria-labelledby="proc-h">
   <div class="wrap">
     <div class="sec__head">
-      <p class="eyebrow"><span class="num">05</span>Як ми працюємо</p>
+      <p class="eyebrow"><span class="num">06</span>Як ми працюємо</p>
       <h2 id="proc-h" class="h2">Від дзвінка <em>до видачі ключів</em></h2>
     </div>
     <ol class="steps">
@@ -280,7 +343,7 @@
       <span class="about__stamp">SPL</span>
     </figure>
     <div class="about__copy">
-      <p class="eyebrow"><span class="num">06</span>Про нас</p>
+      <p class="eyebrow"><span class="num">07</span>Про нас</p>
       <h2 id="about-h" class="h2">Інсталяційний центр <em>і магазин</em> в одному місці</h2>
       <p class="about__big">SPL — це <mark class="hl">Sound Pressure Level</mark>, рівень звукового тиску. З автозвуку ми починали, а сьогодні беремося за все, що робить авто тихішим, безпечнішим і доглянутішим.</p>
       <p>Вам не потрібно купувати динаміки в одному місці, ставити в іншому, а плівку клеїти в третьому. Підбираємо, продаємо, встановлюємо й відповідаємо за результат самі. Роботи щодня показуємо в Instagram — без фотошопу й «до/після» з різних машин.</p>
@@ -298,7 +361,7 @@
 <section class="sec reviews" id="vidguky" aria-labelledby="rev-h">
   <div class="wrap reviews__in">
     <div class="reviews__side">
-      <p class="eyebrow"><span class="num">07</span>Відгуки</p>
+      <p class="eyebrow"><span class="num">08</span>Відгуки</p>
       <h2 id="rev-h" class="h2">Що кажуть <em>клієнти</em></h2>
       <div class="bigrate">
         <span class="bigrate__n">4,7</span>
@@ -320,7 +383,7 @@
   <div class="wrap">
     <div class="sec__head sec__head--row">
       <div>
-        <p class="eyebrow"><span class="num">08</span>Роботи</p>
+        <p class="eyebrow"><span class="num">09</span>Роботи</p>
         <h2 id="works-h" class="h2">431 публікація <em>з нашого боксу</em></h2>
       </div>
       <a class="btn btn--line" href="https://www.instagram.com/spl_if/" target="_blank" rel="noopener"><svg class="ic"><use href="#i-insta"/></svg>@spl_if в Instagram</a>
@@ -340,7 +403,7 @@
 <section class="sec contact" id="kontakty" aria-labelledby="cont-h">
   <div class="wrap contact__in">
     <div class="contact__form" id="zapys">
-      <p class="eyebrow"><span class="num">09</span>Запис</p>
+      <p class="eyebrow"><span class="num">10</span>Запис</p>
       <h2 id="cont-h" class="h2">Записатися <em>в бокс</em></h2>
       <p>Залиште номер і задачу — передзвонимо, уточнимо деталі й запропонуємо день.</p>
       <form class="form" id="form" novalidate>
