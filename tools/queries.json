@@ -1,0 +1,10 @@
+{
+ "hero": ["photographer studio lights", "photo studio softbox portrait", "vintage camera film"],
+ "doc": ["passport photo", "portrait white background"],
+ "print": ["photo prints table", "printed photographs hands", "photo lab prints"],
+ "restore": ["old family photograph", "vintage black and white portrait photo"],
+ "session": ["family photoshoot studio", "child portrait studio", "studio portrait woman"],
+ "wedding": ["wedding album", "wedding rings photo"],
+ "gift": ["photo mug", "polaroid photos wall", "photo book"],
+ "scan": ["scanner documents", "film negatives"]
+}
