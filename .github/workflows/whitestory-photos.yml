@@ -1,0 +1,38 @@
+name: White Story – photos (Unsplash)
+
+on:
+  push:
+    branches: ["beta/white-story"]
+    paths:
+      - "tools/queries.json"
+      - "tools/urls.json"
+      - "tools/chosen.json"
+      - "tools/fetch_photos.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: whitestory-photos
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch photos
+        run: |
+          if [ -f tools/chosen.json ]; then python tools/fetch_photos.py --chosen; elif [ -f tools/urls.json ]; then python tools/fetch_photos.py --urls; else python tools/fetch_photos.py --unsplash; fi
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p img; git add tools img
+          git diff --cached --quiet && echo "nothing new" && exit 0
+          git commit -m "White Story: photos fetched by workflow"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
