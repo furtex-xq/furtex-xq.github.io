@@ -64,6 +64,39 @@ def candidates():
         print(slot, len(allc[slot]))
     json.dump(allc, open(os.path.join(outdir, "candidates.json"), "w"), ensure_ascii=False, indent=1)
 
+def unsplash_candidates():
+    q = json.load(open(os.path.join(ROOT, "tools/queries.json")))
+    outdir = os.path.join(ROOT, "tools/candidates"); os.makedirs(outdir, exist_ok=True)
+    allc = {}
+    for slot, queries in q.items():
+        seen, picked = set(), []
+        for qu in queries:
+            url = "https://unsplash.com/napi/search/photos?" + urllib.parse.urlencode({"query": qu, "per_page": 20})
+            try:
+                req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0", "Accept": "application/json"})
+                with urllib.request.urlopen(req, timeout=60) as r:
+                    res = json.load(r)["results"]
+            except Exception as e:
+                print("unsplash fail", qu, e); continue
+            for ph in res:
+                if ph.get("premium") or ph.get("plus") or ph["id"] in seen: continue
+                raw = ph["urls"]["raw"].split("?")[0]
+                if not raw.startswith("https://images.unsplash.com/"): continue
+                seen.add(ph["id"])
+                picked.append({"id": ph["id"], "raw": raw, "alt": ph.get("alt_description") or "", "author": ph["user"]["name"], "page": ph["links"]["html"]})
+                if len(picked) >= 12: break
+            if len(picked) >= 12: break
+            time.sleep(1)
+        for i, c in enumerate(picked):
+            fn = f"u-{slot}-{i}.jpg"
+            try:
+                download(c["raw"] + "?auto=format&fm=jpg&fit=crop&w=420&q=60", os.path.join(outdir, fn)); c["file"] = fn
+            except Exception as e:
+                print("dl fail", c["id"], e)
+        allc[slot] = [c for c in picked if c.get("file")]
+        print("unsplash", slot, len(allc[slot]))
+    json.dump(allc, open(os.path.join(outdir, "unsplash.json"), "w"), ensure_ascii=False, indent=1)
+
 def chosen():
     path = os.path.join(ROOT, "tools/chosen.json")
     if not os.path.exists(path): return
@@ -84,4 +117,5 @@ def chosen():
 
 if __name__ == "__main__":
     if "--chosen" in sys.argv: chosen()
+    elif "--unsplash" in sys.argv: unsplash_candidates()
     else: candidates()
