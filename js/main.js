@@ -93,6 +93,7 @@
 
   /* quiz */
   const quiz = $('#quiz');
+  if (quiz) quiz.addEventListener('submit', e => e.preventDefault());
   const steps = $$('.q', quiz), result = $('.q-result', quiz);
   const R = {
     latina: ['<span class="serif">Латина:</span> бачата і сальса', 'Соціальні танці в парі: вже через місяць зможете танцювати на вечірці. Партнер не обов\'язковий.', 'Латина (сальса, бачата, меренге)'],
