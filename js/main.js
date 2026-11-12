@@ -47,12 +47,12 @@
   addEventListener('keydown', e => { if (e.key === 'Escape' && !drawer.hidden) setMenu(false); });
 
   /* ---- hero: фото «проявляється» ---- */
-  const heroImg = $('.print__img'), dev = $('[data-dev]');
+  const heroImg = $('.press__img'), press = $('[data-press]'), dev = $('[data-dev]');
   const startDev = () => {
-    heroImg.classList.add('is-dev');
+    setTimeout(() => press.classList.add('is-reg'), 300);
     if (reduce) { dev.textContent = 100; return; }
     const t0 = performance.now();
-    const tick = now => { const k = Math.min(1, (now - t0 - 300) / 2600); dev.textContent = Math.max(0, Math.round(k * 100)); if (k < 1) requestAnimationFrame(tick); else dev.parentNode.textContent = 'готово · 100%'; };
+    const tick = now => { const k = Math.min(1, (now - t0 - 300) / 1800); dev.textContent = Math.max(0, Math.round(k * 100)); if (k < 1) requestAnimationFrame(tick); else dev.parentNode.textContent = 'в реєстрі · 100%'; };
     requestAnimationFrame(tick);
   };
   heroImg.complete ? startDev() : heroImg.addEventListener('load', startDev, { once: true });
@@ -138,5 +138,5 @@
   $$('.sec-head, .docs__intro, .frame, .restore__text, .ba, .about__img, .about__text, .rev blockquote, .contacts__info, .form').forEach(el => el.setAttribute('data-r', ''));
   ScrollTrigger.batch('[data-r]', { start: 'top 88%', once: true, onEnter: b => gsap.to(b, { opacity: 1, y: 0, duration: .9, stagger: .1, ease: 'power2.out' }) });
   gsap.from('.svc__item', { scrollTrigger: { trigger: '.svc', start: 'top 85%' }, y: 30, opacity: 0, duration: .7, stagger: .06, ease: 'power2.out' });
-  gsap.to('.print', { scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }, rotate: -2, y: 60 });
+  gsap.to('.press', { scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }, y: 50 });
 })();

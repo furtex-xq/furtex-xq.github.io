@@ -7,7 +7,7 @@
 <meta name="description" content="Фото на документи терміново, друк фото будь-якого формату, сканування, реставрація старих фото, фотосесії та друк на чашках. Івано-Франківськ, вул. Грушевського, 42. Пн–Пт 9–18, Сб 10–15.">
 <meta name="keywords" content="фото на документи Івано-Франківськ, друк фото Івано-Франківськ, фотосалон Івано-Франківськ, реставрація фото, фотостудія Івано-Франківськ, друк на чашках, сканування документів">
 <link rel="canonical" href="https://raw.githack.com/furtex-xq/furtex-xq.github.io/beta/ekspresiia/index.html">
-<meta name="theme-color" content="#171412">
+<meta name="theme-color" content="#111111">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="uk_UA">
 <meta property="og:title" content="Фотосалон «Експресія» — Івано-Франківськ, Грушевського, 42">
@@ -15,8 +15,8 @@
 <meta property="og:image" content="img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="fonts/cormorant-cyrillic-wght-italic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/onest-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/dela-gothic-one-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/jost-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 <script type="application/ld+json">
 {
@@ -40,7 +40,7 @@
 
 <header class="top" id="top">
   <a class="logo" href="#top" aria-label="Експресія — на початок">
-    <span class="logo__mark" aria-hidden="true"></span>
+    <span class="logo__mark" aria-hidden="true"><i></i><i></i><i></i></span>
     <span class="logo__word">Експресія</span>
   </a>
   <nav class="nav" aria-label="Головне меню">
@@ -90,12 +90,15 @@
     </dl>
   </div>
 
-  <figure class="hero__print" aria-label="Фото проявляється, як у фотолабораторії">
-    <div class="print">
-      <img class="print__img" src="img/photos/hero.jpg" alt="Фотограф налаштовує студійне світло перед зйомкою" width="1000" height="1250" fetchpriority="high">
-      <span class="print__label">EXP · 42 · IF</span>
+  <figure class="hero__print" aria-label="Фото друкується шарами CMYK і сходиться в одне зображення">
+    <div class="press" data-press>
+      <img class="press__img" src="img/photos/hero.jpg" alt="Фотостудія зі студійним світлом і стільцем для зйомки" width="1000" height="1250" fetchpriority="high">
+      <span class="press__ghost press__ghost--c" aria-hidden="true"></span>
+      <span class="press__ghost press__ghost--m" aria-hidden="true"></span>
+      <span class="press__ghost press__ghost--y" aria-hidden="true"></span>
+      <i class="reg reg--tl" aria-hidden="true"></i><i class="reg reg--tr" aria-hidden="true"></i><i class="reg reg--bl" aria-hidden="true"></i><i class="reg reg--br" aria-hidden="true"></i>
     </div>
-    <figcaption class="mono">проявка… <span data-dev>0</span>%</figcaption>
+    <figcaption class="press__bar"><span class="sw sw--c"></span><span class="sw sw--m"></span><span class="sw sw--y"></span><span class="sw sw--k"></span><span class="mono">друк… <span data-dev>0</span>%</span></figcaption>
   </figure>
 </section>
 
