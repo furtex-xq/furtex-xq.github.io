@@ -1,0 +1,80 @@
+[
+ {
+  "slot": "hero",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1529229504105-4ea795dcbf59",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "portrait",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1547153760-18fc86324498",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "hiphop",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1551186839-9e4a19b27812",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "hiphop2",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1761882619891-6529ff92df0a",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "latina",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1555489401-79c274997434",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "heels",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1686668572519-1793f1f5f37f",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "contemp",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1550026593-cb89847b168d",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "kids",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1611596534346-94839c5622ab",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "kidsball",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1580724430485-ed43daa4b4f3",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "stretch",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1590803296627-e9ed27c410a0",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "studio",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1556394890-c874aac332b1",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "group",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1524594152303-9fd13543fe6e",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "wedding",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1597333935203-9915d87fe06e",
+  "license": "Unsplash License"
+ }
+]
