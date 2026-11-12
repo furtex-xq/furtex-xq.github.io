@@ -144,6 +144,127 @@
     form.reset();
   });
 
+  /* ---------- service windows ---------- */
+  var IMG = function (id) { return 'https://images.unsplash.com/photo-' + id + '?auto=format&fit=crop&w=900&h=1100&q=70'; };
+  var services = {
+    test: {
+      kicker: 'Послуга 01', title: 'Перевірка зору', img: IMG('1576210117723-cd06449a467d'), alt: 'Перевірка зору на обладнанні',
+      lead: 'Оптометрист перевірить гостроту зору кожного ока й підбере точну корекцію для окулярів або контактних лінз.',
+      kind: 'Перевірка зору',
+      opts: [
+        ['Для окулярів', 'Перевіряємо гостроту зору й підбираємо корекцію, з якою вам буде комфортно і вдалину, і зблизька.'],
+        ['Для контактних лінз', 'Окрім гостроти зору, підбираємо параметри лінзи, щоб вона сиділа зручно й не пересушувала око.'],
+        ['Для дитини', 'Спокійна перевірка в ігровому темпі. Пояснимо батькам результат і підкажемо, чи потрібні окуляри.']
+      ],
+      list: ['Перевірка кожного ока окремо', 'Підбір корекції на пробних лінзах', 'Пояснення результату простими словами', 'Рекомендації щодо окулярів або лінз'],
+      price: 'Безкоштовно'
+    },
+    glasses: {
+      kicker: 'Послуга 02', title: 'Окуляри за рецептом', img: IMG('1486250944723-86bca2b15b06'), alt: 'Оправи для окулярів на стенді',
+      lead: 'Від вибору оправи до готових окулярів: підбираємо форму, лінзи й покриття, а потім підганяємо посадку.',
+      kind: 'Окуляри',
+      opts: [
+        ['Для читання', 'Лінзи для близької відстані: книжки, телефон, рукоділля. Широка зона чіткості без напруження.'],
+        ['Для комп\'ютера', 'Лінзи з фільтром синього світла й антивідблиском. Менше втоми очей після робочого дня за екраном.'],
+        ['Для водіння', 'Антивідблиск проти світла фар і чітке зображення вдалину. Можна з поляризацією для дня.'],
+        ['Прогресивні', 'Одні окуляри на всі відстані: зверху вдалину, посередині для екрана, внизу для читання.']
+      ],
+      list: ['Оправи для жінок, чоловіків і дітей', 'Лінзи з покриттями на вибір', 'Підгонка дужок і носових упорів', 'Можна за вашим рецептом від лікаря'],
+      price: 'від 1 500 грн <small>демо-ціна комплекту</small>'
+    },
+    contacts: {
+      kicker: 'Послуга 03', title: 'Контактні лінзи', img: IMG('1589835815854-8668885ba8a6'), alt: 'Крупний план очей',
+      lead: 'Підберемо лінзи під ваш ритм, навчимо одягати й знімати їх і розповімо про правильний догляд.',
+      kind: 'Контактні лінзи',
+      opts: [
+        ['Одноденні', 'Нова пара щодня, без розчинів і контейнерів. Ідеально для спорту, подорожей і тих, хто носить лінзи час від часу.'],
+        ['Двотижневі', 'Баланс ціни й комфорту. Знімаються на ніч, зберігаються в розчині.'],
+        ['Місячні', 'Найвигідніший варіант для щоденного носіння за умови правильного догляду.']
+      ],
+      list: ['Підбір параметрів лінзи', 'Перше одягання разом з консультантом', 'Розчини, краплі та контейнери в наявності', 'Нагадаємо, коли час замінити лінзи'],
+      price: 'від 520 грн <small>демо-ціна упаковки</small>'
+    },
+    sun: {
+      kicker: 'Послуга 04', title: 'Сонцезахисні окуляри', img: IMG('1608539733292-190446b22b83'), alt: 'Сонцезахисні окуляри',
+      lead: 'Окуляри, які справді захищають очі від ультрафіолету, а не лише гарно виглядають.',
+      kind: 'Окуляри',
+      opts: [
+        ['UV400', 'Повний захист від ультрафіолетових променів UVA і UVB. Базова вимога до будь-яких сонцезахисних окулярів.'],
+        ['Поляризаційні', 'Прибирають відблиски від води, снігу й мокрої дороги. Найкращий вибір для водіїв і рибалок.'],
+        ['З діоптріями', 'Сонцезахисні лінзи з вашою корекцією: бачите чітко й без мруження навіть улітку.']
+      ],
+      list: ['Моделі для жінок, чоловіків і дітей', 'Перевіримо UV-захист у салоні', 'Підгонка посадки', 'Футляр у комплекті'],
+      price: 'від 690 грн <small>демо-ціна</small>'
+    },
+    care: {
+      kicker: 'Послуга 05', title: 'Догляд і аксесуари', img: IMG('1591076482161-42ce6da69f67'), alt: 'Окуляри на дерев\'яному столі',
+      lead: 'Усе, щоб окуляри й лінзи служили довше: від розчинів до футлярів і спреїв проти запотівання.',
+      kind: 'Інше',
+      opts: [
+        ['Для контактних лінз', 'Багатофункціональні розчини, зволожувальні краплі та контейнери для зберігання.'],
+        ['Для окулярів', 'Серветки з мікрофібри, спреї для чищення та засоби проти запотівання лінз.'],
+        ['Аксесуари', 'Жорсткі й м\'які футляри, ланцюжки та шнурки, щоб окуляри завжди були під рукою.']
+      ],
+      list: ['Усе в наявності в салоні', 'Порадимо, що підійде саме вам', 'Можна відкласти товар за телефоном'],
+      price: 'від 150 грн <small>демо-ціна</small>'
+    }
+  };
+  var win = $('#win'), winCur = null, winOpt = null, winFrom = null;
+  function fillWin(key) {
+    var s = services[key]; winCur = key;
+    $('[data-win-img]', win).src = s.img; $('[data-win-img]', win).alt = s.alt;
+    $('[data-win-kicker]', win).textContent = s.kicker;
+    $('[data-win-title]', win).textContent = s.title;
+    $('[data-win-lead]', win).textContent = s.lead;
+    $('[data-win-price]', win).innerHTML = s.price;
+    $('[data-win-list]', win).innerHTML = s.list.map(function (t) { return '<li>' + t + '</li>'; }).join('');
+    var box = $('[data-win-opts]', win);
+    box.innerHTML = s.opts.map(function (o, i) { return '<button type="button" class="win__opt" role="radio" aria-checked="' + (i === 0) + '" data-i="' + i + '">' + o[0] + '</button>'; }).join('');
+    selectOpt(0, false);
+  }
+  function selectOpt(i, animate) {
+    var s = services[winCur]; winOpt = s.opts[i][0];
+    $$('.win__opt', win).forEach(function (b) { b.setAttribute('aria-checked', String(+b.dataset.i === i)); });
+    var d = $('[data-win-detail]', win);
+    d.textContent = s.opts[i][1];
+    if (animate && anim) gsap.fromTo(d, { opacity: 0, y: 8, filter: 'blur(5px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .45, ease: 'power2.out' });
+  }
+  $('[data-win-opts]', win).addEventListener('click', function (e) {
+    var b = e.target.closest('.win__opt'); if (b) selectOpt(+b.dataset.i, true);
+  });
+  function openWin(key, fromEl) {
+    fillWin(key); winFrom = fromEl;
+    document.documentElement.classList.add('win-open');
+    if (lenis) lenis.stop();
+    win.showModal();
+    var panel = $('.win__panel', win);
+    if (anim) {
+      var r = fromEl.getBoundingClientRect(), pr = panel.getBoundingClientRect();
+      gsap.fromTo(panel,
+        { x: (r.left + r.width / 2) - (pr.left + pr.width / 2), y: (r.top + r.height / 2) - (pr.top + pr.height / 2), scale: .2, opacity: 0, borderRadius: 200 },
+        { x: 0, y: 0, scale: 1, opacity: 1, borderRadius: window.innerWidth > 900 ? 32 : 26, duration: .7, ease: 'expo.out', clearProps: 'borderRadius' });
+      gsap.fromTo($('[data-win-img]', win), { scale: 1.3 }, { scale: 1, duration: 1.2, ease: 'expo.out' });
+      gsap.fromTo($$('.win__body > *', win), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .6, stagger: .045, delay: .15, ease: 'power3.out' });
+    }
+  }
+  function closeWin(after) {
+    var done = function () { win.close(); document.documentElement.classList.remove('win-open'); if (lenis) lenis.start(); if (winFrom) winFrom.focus({ preventScroll: true }); if (after) after(); };
+    if (anim) gsap.to($('.win__panel', win), { scale: .9, opacity: 0, y: 30, duration: .3, ease: 'power2.in', onComplete: function () { gsap.set($('.win__panel', win), { clearProps: 'all' }); done(); } });
+    else done();
+  }
+  $$('.svc-card').forEach(function (card) {
+    var btn = $('.svc-open', card);
+    btn.addEventListener('click', function () { openWin(card.dataset.svc, btn); });
+    $('.svc-card__img', card).addEventListener('click', function () { openWin(card.dataset.svc, btn); });
+  });
+  $('.win__close', win).addEventListener('click', function () { closeWin(); });
+  win.addEventListener('cancel', function (e) { e.preventDefault(); closeWin(); });
+  win.addEventListener('click', function (e) { if (e.target === win) closeWin(); });
+  $('[data-win-book]', win).addEventListener('click', function () {
+    var s = services[winCur];
+    closeWin(function () { prefill(s.title + ' — ' + winOpt, s.kind); });
+  });
+
   /* ================= animations ================= */
   if (!anim) {
     $$('.chart__row').forEach(function (r) { r.style.setProperty('--b', 0); });
@@ -199,7 +320,7 @@
   gsap.from('.chart__board', { y: 60, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: '.chart', start: 'top 75%' } });
 
   /* generic reveals */
-  var revealSel = ['.sec-head > *', '.chart__intro > *', '.step', '.tile', '.shelf-head > *', '.prod', '.coat', '.coat__txt', '.about__txt > *', '.stats li', '.promo__in > *', '.rev', '.faq details', '.cinfo li', '.socials', '.map', '.form', '.foot__in > *'];
+  var revealSel = ['.sec-head > :not(h2)', '.chart__intro > *', '.step', '.shelf-head > *', '.coat', '.coat__txt', '.about__txt > :not(h2)', '.stats li', '.promo__in > *', '.faq details', '.cinfo li', '.socials', '.map', '.form', '.foot__in > *'];
   var revealEls = $$(revealSel.join(','));
   revealEls.forEach(function (el) { el.setAttribute('data-reveal', ''); });
   ScrollTrigger.batch(revealEls, {
@@ -253,6 +374,97 @@
         clearTimeout(settle);
         settle = setTimeout(function () { gsap.to(loop, { timeScale: 1, duration: 1.2, overwrite: true }); }, 200);
       }
+    });
+  }
+
+  /* ---------- v2: more scroll motion ---------- */
+
+  /* reading progress */
+  gsap.to('.progress span', { scaleX: 1, ease: 'none', scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: .3 } });
+
+  /* headings: words rise from a mask, italic words come into focus */
+  function splitWords(h) {
+    var out = [];
+    Array.prototype.slice.call(h.childNodes).forEach(function (n) {
+      if (n.nodeType === 3) {
+        n.textContent.split(/(\s+)/).forEach(function (t) {
+          if (!t) return;
+          if (/^\s+$/.test(t)) { out.push(document.createTextNode(' ')); return; }
+          var w = document.createElement('span'); w.className = 'w';
+          var i = document.createElement('span'); i.textContent = t; w.appendChild(i); out.push(w);
+        });
+      } else if (n.nodeName === 'BR') {
+        out.push(n.cloneNode());
+      } else {
+        var w2 = document.createElement('span'); w2.className = 'w';
+        var i2 = document.createElement('span'); i2.appendChild(n.cloneNode(true)); w2.appendChild(i2); out.push(w2);
+      }
+    });
+    h.textContent = '';
+    out.forEach(function (n) { h.appendChild(n); });
+  }
+  $$('.sec-head h2, .about__txt h2, .contact h2, .promo h2').forEach(function (h) {
+    splitWords(h);
+    var words = $$('.w > span', h);
+    var tl = gsap.timeline({ scrollTrigger: { trigger: h, start: 'top 86%', once: true } });
+    tl.from(words, { yPercent: 115, rotate: 4, duration: 1, ease: 'power4.out', stagger: .06 });
+    var ems = $$('em', h);
+    if (ems.length) tl.fromTo(ems, { filter: 'blur(10px)' }, { filter: 'blur(0px)', duration: 1.1, ease: 'power2.out' }, .25);
+  });
+
+  /* hero: lens grows and drifts as you leave the first screen */
+  gsap.to('.lens', { scale: 1.12, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.hero__text', { yPercent: -10, opacity: .2, ease: 'none', scrollTrigger: { trigger: '.hero', start: '30% top', end: 'bottom top', scrub: true } });
+
+  /* steps: top rule draws, numbers count up */
+  $$('.step').forEach(function (s, i) {
+    gsap.fromTo(s, { '--rule': 0 }, { '--rule': 1, duration: 1.2, delay: i * .12, ease: 'power3.inOut', scrollTrigger: { trigger: '.steps', start: 'top 85%', once: true } });
+  });
+
+  /* services: stacked cards shrink and dim as the next one covers them */
+  var cards = $$('.svc-card');
+  cards.forEach(function (c, i) {
+    var img = $('.svc-card__img img', c);
+    gsap.fromTo(img, { scale: 1.25 }, { scale: 1.02, ease: 'none', scrollTrigger: { trigger: c, start: 'top bottom', end: 'top 20%', scrub: true } });
+    gsap.from($$('.svc-card__txt > *', c), { y: 40, opacity: 0, duration: .9, stagger: .07, ease: 'power3.out', scrollTrigger: { trigger: c, start: 'top 75%', once: true } });
+    if (i === cards.length - 1) return;
+    gsap.fromTo(c, { scale: 1, filter: 'brightness(1)' }, {
+      scale: 1 - (cards.length - i) * 0.03, filter: 'brightness(.86)', ease: 'none',
+      scrollTrigger: { trigger: cards[i + 1], start: 'top bottom', end: 'top ' + (96 + (i + 1) * 16) + 'px', scrub: true }
+    });
+  });
+
+  /* catalogue tiles: shutter (clip-path) reveal */
+  ScrollTrigger.batch('.tile', {
+    start: 'top 88%', once: true,
+    onEnter: function (b) {
+      gsap.fromTo(b, { clipPath: 'inset(100% 0% 0% 0% round 22px)' }, { clipPath: 'inset(0% 0% 0% 0% round 22px)', duration: 1.2, ease: 'expo.out', stagger: .1, clearProps: 'clipPath' });
+      gsap.fromTo(b.map(function (t) { return $('.tile__cap', t); }), { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .9, delay: .35, stagger: .1, ease: 'power3.out' });
+    }
+  });
+
+  /* product shelf: cards fly in from the right; on desktop the shelf drifts with scroll */
+  gsap.from('.prod', { x: 120, opacity: 0, rotate: 3, duration: 1, stagger: .07, ease: 'power3.out', scrollTrigger: { trigger: '.shelf', start: 'top 85%', once: true } });
+
+  /* about: iris-opening photo reveal */
+  gsap.fromTo('.about__img', { clipPath: 'circle(8% at 50% 45%)' }, { clipPath: 'circle(75% at 50% 45%)', ease: 'none', scrollTrigger: { trigger: '.about', start: 'top 85%', end: 'top 25%', scrub: .6 } });
+
+  /* reviews: cards tilt into place */
+  gsap.from('.rev', { y: 80, rotate: function (i) { return [-4, 3, -2][i % 3]; }, opacity: 0, duration: 1.1, stagger: .12, ease: 'power3.out', scrollTrigger: { trigger: '.rev-grid', start: 'top 80%', once: true } });
+
+  /* lenses section: corners round in as it enters */
+  gsap.fromTo('.lenses', { borderRadius: 0, scale: .96 }, { borderRadius: 48, scale: 1, ease: 'none', scrollTrigger: { trigger: '.lenses', start: 'top bottom', end: 'top 30%', scrub: true } });
+
+  /* custom cursor (desktop with mouse only) */
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.documentElement.classList.add('has-cursor');
+    var cur = $('.cursor'), curLbl = $('span', cur);
+    var qx = gsap.quickTo(cur, 'x', { duration: .35, ease: 'power3' }), qy = gsap.quickTo(cur, 'y', { duration: .35, ease: 'power3' });
+    window.addEventListener('pointermove', function (e) { qx(e.clientX); qy(e.clientY); });
+    document.addEventListener('pointerover', function (e) {
+      var t = e.target.closest('.svc-card__img, .tile, .compare, .prod img');
+      cur.classList.toggle('is-big', !!t);
+      if (t) curLbl.textContent = t.classList.contains('compare') ? 'Тягніть' : t.classList.contains('tile') ? 'Обрати' : 'Відкрити';
     });
   }
 

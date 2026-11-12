@@ -64,6 +64,8 @@
 </svg>
 
 <a class="skip" href="#main">Перейти до змісту</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+<div class="cursor" aria-hidden="true"><span>Відкрити</span></div>
 
 <header class="top" id="top">
   <div class="top__in">
@@ -73,10 +75,10 @@
     </a>
     <nav class="nav" id="nav" aria-label="Головне меню">
       <a href="#perevirka">Перевірка зору</a>
+      <a href="#poslugy">Послуги</a>
       <a href="#katalog">Каталог</a>
       <a href="#linzy">Лінзи</a>
       <a href="#pro-nas">Про нас</a>
-      <a href="#vidguky">Відгуки</a>
       <a href="#kontakty">Контакти</a>
       <a class="nav__cta" href="#zapys">Записатися</a>
     </nav>
@@ -172,10 +174,92 @@
     </ol>
   </section>
 
+  <!-- ============ SERVICES (stacked cards + windows) ============ -->
+  <section class="svc" id="poslugy" aria-labelledby="svc-title">
+    <div class="sec-head">
+      <p class="kicker">02 · Послуги</p>
+      <h2 id="svc-title">Що ми робимо <em>для ваших очей</em></h2>
+      <p>Оберіть послугу, щоб відкрити деталі, варіанти та одразу записатися.</p>
+    </div>
+    <div class="stack">
+      <article class="svc-card" data-svc="test" style="--i:0">
+        <div class="svc-card__txt">
+          <span class="svc-card__n">01</span>
+          <h3>Перевірка зору</h3>
+          <p>Точна діагностика гостроти зору від оптометриста. Без черг і безкоштовно.</p>
+          <ul class="svc-card__tags"><li>Безкоштовно</li><li>Для дорослих і дітей</li></ul>
+          <button class="btn btn--primary svc-open" type="button">Детальніше <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        </div>
+        <div class="svc-card__img"><img loading="lazy" src="https://images.unsplash.com/photo-1576210117723-cd06449a467d?auto=format&fit=crop&w=1000&h=800&q=70" alt="Перевірка зору на офтальмологічному обладнанні" width="1000" height="800"></div>
+      </article>
+      <article class="svc-card svc-card--teal" data-svc="glasses" style="--i:1">
+        <div class="svc-card__txt">
+          <span class="svc-card__n">02</span>
+          <h3>Окуляри за рецептом</h3>
+          <p>Оправа під форму обличчя, лінзи під ваш ритм життя і підгонка, щоб окуляри сиділи ідеально.</p>
+          <ul class="svc-card__tags"><li>Для читання</li><li>Для комп'ютера</li><li>Для водіння</li></ul>
+          <button class="btn btn--primary svc-open" type="button">Детальніше <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        </div>
+        <div class="svc-card__img"><img loading="lazy" src="https://images.unsplash.com/photo-1486250944723-86bca2b15b06?auto=format&fit=crop&w=1000&h=800&q=70" alt="Оправи для окулярів на стенді салону" width="1000" height="800"></div>
+      </article>
+      <article class="svc-card svc-card--ink" data-svc="contacts" style="--i:2">
+        <div class="svc-card__txt">
+          <span class="svc-card__n">03</span>
+          <h3>Контактні лінзи</h3>
+          <p>Підберемо лінзи, навчимо одягати й знімати та розповімо, як за ними доглядати.</p>
+          <ul class="svc-card__tags"><li>Одноденні</li><li>Двотижневі</li><li>Місячні</li></ul>
+          <button class="btn btn--light svc-open" type="button">Детальніше <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        </div>
+        <div class="svc-card__img"><img loading="lazy" src="https://images.unsplash.com/photo-1589835815854-8668885ba8a6?auto=format&fit=crop&w=1000&h=800&q=70" alt="Крупний план очей" width="1000" height="800"></div>
+      </article>
+      <article class="svc-card" data-svc="sun" style="--i:3">
+        <div class="svc-card__txt">
+          <span class="svc-card__n">04</span>
+          <h3>Сонцезахисні окуляри</h3>
+          <p>Справжній захист від ультрафіолету, поляризація проти відблисків і варіанти з діоптріями.</p>
+          <ul class="svc-card__tags"><li>UV400</li><li>Поляризація</li><li>З діоптріями</li></ul>
+          <button class="btn btn--primary svc-open" type="button">Детальніше <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        </div>
+        <div class="svc-card__img"><img loading="lazy" src="https://images.unsplash.com/photo-1608539733292-190446b22b83?auto=format&fit=crop&w=1000&h=800&q=70" alt="Сонцезахисні окуляри в чорній оправі" width="1000" height="800"></div>
+      </article>
+      <article class="svc-card svc-card--teal" data-svc="care" style="--i:4">
+        <div class="svc-card__txt">
+          <span class="svc-card__n">05</span>
+          <h3>Догляд і аксесуари</h3>
+          <p>Розчини й краплі для лінз, футляри, серветки, ланцюжки та спреї проти запотівання.</p>
+          <ul class="svc-card__tags"><li>Догляд за МКЛ</li><li>Футляри</li><li>Антизапотівання</li></ul>
+          <button class="btn btn--primary svc-open" type="button">Детальніше <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        </div>
+        <div class="svc-card__img"><img loading="lazy" src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&w=1000&h=800&q=70" alt="Окуляри на дерев'яному столі" width="1000" height="800"></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- service window -->
+  <dialog class="win" id="win" aria-labelledby="win-title">
+    <div class="win__panel">
+      <button class="win__close" type="button" aria-label="Закрити вікно"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+      <div class="win__img"><img src="" alt="" data-win-img></div>
+      <div class="win__body">
+        <p class="kicker" data-win-kicker></p>
+        <h3 id="win-title" data-win-title></h3>
+        <p class="win__lead" data-win-lead></p>
+        <p class="win__label">Оберіть варіант</p>
+        <div class="win__opts" role="radiogroup" aria-label="Варіанти послуги" data-win-opts></div>
+        <div class="win__detail" data-win-detail aria-live="polite"></div>
+        <ul class="win__list" data-win-list></ul>
+        <div class="win__foot">
+          <p class="win__price" data-win-price></p>
+          <button class="btn btn--primary" type="button" data-win-book>Записатися <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
   <!-- ============ CATALOGUE ============ -->
   <section class="cat" id="katalog" aria-labelledby="cat-title">
     <div class="sec-head">
-      <p class="kicker">02 · Каталог</p>
+      <p class="kicker">03 · Каталог</p>
       <h2 id="cat-title">Усе для зору <em>в одному салоні</em></h2>
       <p>Оправи, сонцезахисні окуляри, лінзи, контактні лінзи, засоби догляду та аксесуари. Приміряйте наживо, а консультант підкаже.</p>
     </div>
@@ -226,7 +310,7 @@
   <!-- ============ LENSES: before / after ============ -->
   <section class="lenses" id="linzy" aria-labelledby="lenses-title">
     <div class="sec-head sec-head--light">
-      <p class="kicker">03 · Лінзи</p>
+      <p class="kicker">04 · Лінзи</p>
       <h2 id="lenses-title">Різниця, яку <em>видно одразу</em></h2>
       <p>Потягніть повзунок: так виглядає світ без корекції і з правильно підібраними лінзами. Оберіть покриття, щоб побачити, що воно змінює.</p>
     </div>
@@ -257,7 +341,7 @@
       <img loading="lazy" src="https://images.unsplash.com/photo-1604781099561-c70393a38a6d?auto=format&fit=crop&w=900&h=1100&q=70" alt="Усміхнена жінка в окулярах" width="900" height="1100">
     </div>
     <div class="about__txt">
-      <p class="kicker">04 · Про нас</p>
+      <p class="kicker">05 · Про нас</p>
       <h2 id="about-title">Оптика, куди <em>хочеться повертатися</em></h2>
       <p class="about__big">Ми — мережа оптик, де перевірити зір, обрати оправу й замовити лінзи можна за один візит.</p>
       <p>Без черг і зайвої метушні: оптометрист спокійно пояснить результат перевірки, консультант допоможе з оправою, а ви підете з упевненістю, що окуляри підібрані саме під вас. Тут же можна купити контактні лінзи, засоби догляду, футляри й аксесуари.</p>
@@ -290,7 +374,7 @@
   <!-- ============ REVIEWS ============ -->
   <section class="reviews" id="vidguky" aria-labelledby="rev-title">
     <div class="sec-head">
-      <p class="kicker">05 · Відгуки</p>
+      <p class="kicker">06 · Відгуки</p>
       <h2 id="rev-title">Що кажуть <em>наші клієнти</em></h2>
       <p class="demo-note">Демо: приклади відгуків, замінимо на реальні з Instagram і Google</p>
     </div>
@@ -316,7 +400,7 @@
   <!-- ============ FAQ ============ -->
   <section class="faq" aria-labelledby="faq-title">
     <div class="sec-head">
-      <p class="kicker">06 · Питання</p>
+      <p class="kicker">07 · Питання</p>
       <h2 id="faq-title">Часті <em>запитання</em></h2>
     </div>
     <div class="faq__list">
@@ -347,7 +431,7 @@
   <section class="contact" id="kontakty" aria-labelledby="contact-title">
     <div class="contact__grid">
       <div class="contact__info">
-        <p class="kicker">07 · Контакти</p>
+        <p class="kicker">08 · Контакти</p>
         <h2 id="contact-title">Чекаємо <em>в салоні</em></h2>
         <ul class="cinfo">
           <li><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><div><span>Адреса</span><b>вул. Богдана Хмельницького, <mark class="todo">№ · місто</mark></b></div></li>
