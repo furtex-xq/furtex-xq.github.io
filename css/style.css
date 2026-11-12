@@ -32,7 +32,7 @@ a{color:inherit}
 h1,h2,h3{margin:0;font-family:var(--display);font-weight:400;line-height:1.14;letter-spacing:-.01em;text-transform:uppercase}
 h2{font-size:clamp(2rem,5.4vw,4rem)}
 h3{font-size:1.15rem;letter-spacing:0}
-h2 em,.why__quote em{font-style:normal;background:var(--y);color:var(--g);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+h2 em,.why__quote em{font-style:normal;background:linear-gradient(var(--y),var(--y)) no-repeat 0 0/100% 100%;color:var(--g);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 p{margin:0 0 1em}
 .mono{font-family:var(--mono);font-weight:400}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -327,4 +327,7 @@ section{position:relative}
   *{animation:none!important;transition:none!important}
   .js .reveal{opacity:1;transform:none}
 }
-.prices h2 em{background:var(--g);color:var(--y)}
+.prices h2 em{background-image:linear-gradient(var(--g),var(--g));color:var(--y)}
+
+.progress{position:fixed;top:0;left:0;right:0;height:4px;background:var(--red);transform:scaleX(0);transform-origin:0 50%;z-index:60;pointer-events:none}
+h2 .w{display:inline-block}
