@@ -328,3 +328,43 @@ em{font-style:normal}
   .rv{opacity:1;transform:none}
   .smile{clip-path:none}
 }
+
+/* ===== motion (js/motion.js) ===== */
+.mo .hero__h .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.mo .hero__h .w__i{display:inline-block;transform:translateY(105%);transition:transform 1s cubic-bezier(.2,.75,.15,1)}
+.mo .hero__h.is-split .w__i{transform:none}
+.mo .hero__h em{position:relative;display:inline-block;overflow:hidden;vertical-align:top;background-size:0% 100%;background-repeat:no-repeat;background-image:linear-gradient(transparent 74%,var(--shade) 74%);transition:background-size 1s .9s cubic-bezier(.2,.7,.2,1)}
+.mo .hero__h.is-split em{background-size:100% 100%}
+.mo .hero__h em::after{content:"";position:absolute;top:-6%;left:-10%;width:22%;height:112%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.85),transparent);transform:skewX(-18deg) translateX(-120%);animation:glint 5.5s 2s ease-in-out infinite;pointer-events:none;mix-blend-mode:soft-light}
+@keyframes glint{0%,70%{transform:skewX(-18deg) translateX(-120%)}85%,100%{transform:skewX(-18deg) translateX(620%)}}
+.mo .h2:not(.hero__h) em{background-size:0% 100%;background-repeat:no-repeat;transition:background-size 1s .25s cubic-bezier(.2,.7,.2,1)}
+.mo .h2.in em{background-size:100% 100%}
+.mo .h2--light em{background:none}
+.mo .st{opacity:0;transform:translateY(16px);transition:opacity .7s var(--d,0s) cubic-bezier(.2,.7,.2,1),transform .7s var(--d,0s) cubic-bezier(.2,.7,.2,1)}
+.mo .in>.st{opacity:1;transform:none}
+.mo .rev__row.in>.rev__c:nth-child(2),.mo .rev__row.in>.rev__c:nth-child(4){transform:translateY(24px)}
+.mo .guide>.st{transform:translateY(16px)}
+.mo .guide.in>.st{transform:none}
+.mo .wipe{clip-path:inset(0 0 100% 0);transition:clip-path 1.2s cubic-bezier(.65,0,.2,1)}
+.mo .wipe.in{clip-path:inset(0 0 0 0)}
+.mo .why__b.wipe{clip-path:inset(100% 0 0 0 round 999px 999px var(--r) var(--r))}
+.mo .why__b.wipe.in{clip-path:inset(0 0 0 0 round 999px 999px var(--r) var(--r))}
+.mo .smile img{transform:scale(1.12);will-change:transform}
+.mo .btn{transition:transform .25s,background .25s,color .25s,border-color .25s,translate .3s cubic-bezier(.2,.7,.2,1)}
+.mo .btn .i{transition:transform .3s}
+.mo .btn:hover .i{transform:translateX(4px)}
+.mo .tooth__svg{animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px) rotate(-1.5deg)}}
+.tooth::after{content:"";position:absolute;left:50%;top:22%;width:140px;height:140px;margin-left:-70px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.9),rgba(255,255,255,0) 60%);opacity:0;transform:scale(.3);pointer-events:none}
+.tooth.shine::after{animation:burst 1.1s ease-out}
+@keyframes burst{30%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.6)}}
+.js-shade.tick{display:inline-block;animation:tick .4s ease}
+@keyframes tick{from{opacity:.2;transform:translateY(6px)}}
+.svc__body img.svc-in{animation:svcin .8s cubic-bezier(.65,0,.2,1)}
+@keyframes svcin{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.mo .marquee:hover .marquee__row{animation-play-state:paused}
+.mo .finder__chips button{transition:background .25s,color .25s,border-color .25s,transform .25s}
+.mo .finder__chips button:active{transform:scale(.96)}
+.mo .doc:hover .doc__ph{transform:rotate(-8deg) scale(1.06)}
+.doc__ph{transition:transform .35s}
+@media (max-width:860px){.tooth::after{width:70px;height:70px;margin-left:-35px;left:27px;top:0}}
