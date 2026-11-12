@@ -67,7 +67,7 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
 
   /* ---------- gallery filter (animated with Flip when available) ---------- */
-  var chips = document.querySelectorAll('.chip');
+  var chips = document.querySelectorAll('#roboty .chip');
   var cells = document.querySelectorAll('.gallery .ph');
   chips.forEach(function (chip) {
     chip.addEventListener('click', function () {
@@ -91,6 +91,48 @@
       }
     });
   });
+
+  /* ---------- product catalogue: filter + "order" buttons fill in the form ---------- */
+  var cchips = document.querySelectorAll('[data-cf]');
+  var prods = document.querySelectorAll('.prod');
+  cchips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var f = chip.getAttribute('data-cf');
+      cchips.forEach(function (c) { var on = c === chip; c.classList.toggle('is-on', on); c.setAttribute('aria-pressed', String(on)); });
+      var state = motion && window.Flip ? Flip.getState(prods) : null;
+      prods.forEach(function (pr) { pr.classList.toggle('is-hidden', f !== 'all' && pr.getAttribute('data-cat') !== f); });
+      if (state) {
+        Flip.from(state, {
+          duration: 0.7, ease: 'power3.inOut', absolute: true,
+          onEnter: function (els) { return gsap.fromTo(els, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }); },
+          onLeave: function (els) { return gsap.to(els, { opacity: 0, duration: 0.3 }); },
+          onComplete: function () { ScrollTrigger.refresh(); }
+        });
+      }
+    });
+  });
+  document.querySelectorAll('.prod__buy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var f = document.getElementById('zayavka');
+      var kind = btn.getAttribute('data-kind');
+      Array.prototype.forEach.call(f.elements.kind.options, function (o) { if (o.text === kind) o.selected = true; });
+      var price = btn.parentNode.querySelector('.prod__price').textContent.replace(/\s+/g, ' ').trim();
+      f.elements.msg.value = 'Цікавить: ' + btn.getAttribute('data-product') + ' (' + price + ')';
+      scrollToTarget(f);
+      setTimeout(function () { f.elements.name.focus({ preventScroll: true }); }, lenis ? 1400 : 600);
+    });
+  });
+
+  /* ---------- scroll progress + mobile contact dock ---------- */
+  var prog = document.querySelector('.progress span');
+  var dock = document.querySelector('.dock');
+  function onProgress() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
+    dock.classList.toggle('is-on', window.scrollY > window.innerHeight * 0.6);
+  }
+  onProgress();
+  window.addEventListener('scroll', onProgress, { passive: true });
 
   /* ---------- mobile catalogue progress (native swipe) ---------- */
   var hsView = document.querySelector('.hs__view');
@@ -283,6 +325,38 @@
       gsap.to(drift, { timeScale: 1 + v, duration: 0.2, overwrite: true });
       gsap.to(drift, { timeScale: 1, duration: 1.2, delay: 0.2, ease: 'power2.out' });
     }
+  });
+
+  /* 10. Section headings rise word by word out of a mask */
+  gsap.utils.toArray('main .h2, .foot__title').forEach(function (h) {
+    var words = h.textContent.trim().split(/\s+/);
+    h.setAttribute('aria-label', h.textContent.trim());
+    h.innerHTML = words.map(function (w) { return '<span class="word" aria-hidden="true"><span class="w">' + w + '</span></span>'; }).join(' ');
+    gsap.from(h.querySelectorAll('.w'), { yPercent: 110, duration: 1, ease: 'power4.out', stagger: 0.06, scrollTrigger: { trigger: h, start: 'top 88%', once: true } });
+  });
+  gsap.utils.toArray('.eyebrow').forEach(function (e) {
+    gsap.from(e, { opacity: 0, x: -16, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: e, start: 'top 90%', once: true } });
+  });
+
+  /* 11. Catalogue cards lift in like slabs being set upright */
+  gsap.set('.prods', { perspective: 900 });
+  ScrollTrigger.batch('.prod', {
+    start: 'top 90%', once: true,
+    onEnter: function (batch) {
+      gsap.fromTo(batch, { opacity: 0, y: 60, rotateX: -14, transformOrigin: '50% 100%' }, { opacity: 1, y: 0, rotateX: 0, duration: 1, ease: 'power3.out', stagger: 0.08, clearProps: 'transform' });
+    }
+  });
+  gsap.utils.toArray('.prod .shape').forEach(function (sh) {
+    gsap.fromTo(sh, { y: 26 }, { y: -6, ease: 'none', scrollTrigger: { trigger: sh, start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+
+  /* 12. Footer: contact tiles stagger in, big outlined wordmark rises */
+  gsap.from('.links li', { y: 30, opacity: 0, stagger: 0.08, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: '.links', start: 'top 88%', once: true } });
+  gsap.fromTo('.foot__mark', { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, ease: 'none', scrollTrigger: { trigger: '.foot__mark', start: 'top bottom', end: 'bottom bottom', scrub: true } });
+
+  /* 13. Pale stone sections: the marble veil drifts slowly */
+  gsap.utils.toArray('.sec--stone').forEach(function (sec) {
+    gsap.fromTo(sec, { '--veil': '0px' }, { '--veil': '-140px', ease: 'none', scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: true } });
   });
 
   /* 9. Figures count up when they come into view */

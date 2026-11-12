@@ -62,6 +62,8 @@
     <symbol id="i-truck" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
     <symbol id="i-percent" viewBox="0 0 24 24"><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></symbol>
     <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
   </defs>
 </svg>
@@ -85,6 +87,7 @@
     </a>
     <nav class="nav" id="nav" aria-label="Головне меню">
       <a href="#pamyatnyky">Пам'ятники</a>
+      <a href="#katalog">Каталог і ціни</a>
       <a href="#interier">Камінь в інтер'єрі</a>
       <a href="#materialy">Матеріали</a>
       <a href="#pro-nas">Про нас</a>
@@ -168,6 +171,118 @@
         <li><h3>Художнє оформлення</h3><p>Якісне художнє виконання написів та зображень на камені.</p></li>
         <li><h3>Доставка та встановлення</h3><p>Привеземо й встановимо пам'ятник на місці, без додаткових клопотів для родини.</p></li>
         <li><h3>Розстрочка без відсотків</h3><p>Оплату за пам'ятник можна розділити на частини без переплат.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CATALOGUE WITH PRICES (demo data, replaced with the client's own after purchase) -->
+  <section class="sec sec--stone" id="katalog" aria-labelledby="cat-title">
+    <div class="wrap">
+      <div class="sec__head sec__head--row">
+        <div>
+          <p class="eyebrow">Каталог і ціни</p>
+          <h2 id="cat-title" class="h2">Популярні вироби</h2>
+        </div>
+        <p class="lead">Ціна залежить від каменю, розміру та оформлення. Точний розрахунок зробимо безкоштовно за вашими побажаннями.</p>
+      </div>
+      <p class="demo-note" role="note"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg><span><b>Демо-каталог.</b> Товари, розміри й ціни орієнтовні. Після купівлі сайту замінимо їх на ваші реальні вироби та ціни.</span></p>
+      <div class="filters filters--cat" role="group" aria-label="Категорії каталогу">
+        <button class="chip is-on" type="button" data-cf="all" aria-pressed="true">Усі</button>
+        <button class="chip" type="button" data-cf="pam" aria-pressed="false">Пам'ятники</button>
+        <button class="chip" type="button" data-cf="int" aria-pressed="false">Для інтер'єру</button>
+        <button class="chip" type="button" data-cf="out" aria-pressed="false">Для вулиці</button>
+      </div>
+      <ul class="prods">
+        <li class="prod" data-cat="pam">
+          <div class="prod__vis"><span class="shape shape--stele slab slab--black" aria-hidden="true"></span><span class="prod__tag">демо</span></div>
+          <h3 class="prod__name">Стела класична</h3>
+          <p class="prod__spec">Чорний граніт · 100×50×8 см</p>
+          <div class="prod__row"><p class="prod__price"><small>від</small> 9 800 <small>грн</small></p><button class="prod__buy" type="button" data-product="Стела класична" data-kind="Пам'ятник або саркофаг">Замовити</button></div>
+        </li>
+        <li class="prod" data-cat="pam">
+          <div class="prod__vis"><span class="shape shape--arch slab slab--black" aria-hidden="true"></span><span class="prod__tag">демо</span></div>
+          <h3 class="prod__name">Стела «Арка»</h3>
+          <p class="prod__spec">Чорний граніт · 100×50×8 см</p>
+          <div class="prod__row"><p class="prod__price"><small>від</small> 11 500 <small>грн</small></p><button class="prod__buy" type="button" data-product="Стела «Арка»" data-kind="Пам'ятник або саркофаг">Замовити</button></div>
+        </li>
+        <li class="prod" data-cat="pam">
+          <div class="prod__vis"><span class="shape shape--wave slab slab--black" aria-hidden="true"></span><span class="prod__tag">демо</span></div>
+          <h3 class="prod__name">Стела «Хвиля»</h3>
+          <p class="prod__spec">Чорний граніт · 110×55×8 см</p>
+          <div class="prod__row"><p class="prod__price"><small>від</small> 12 900 <small>грн</small></p><button class="prod__buy" type="button" data-product="Стела «Хвиля»" data-kind="Пам'ятник або саркофаг">Замовити</button></div>
+        </li>
+        <li class="prod" data-cat="pam">
+          <div class="prod__vis"><span class="shape shape--cross slab slab--black" aria-hidden="true"></span><span class="prod__tag">демо</span></div>
+          <h3 class="prod__name">Пам'ятник з хрестом</h3>
+          <p class="prod__spec">Чорний граніт · 120×60×8 см</p>
+          <div class="prod__row"><p class="prod__price"><small>від</small> 14 500 <small>грн</small></p><button class="prod__buy" type="button" data-product="Пам'ятник з хрестом" data-kind="Пам'ятник або саркофаг">Замовити</button></div>
+        </li>
+        <li class="prod" data-cat="pam">
+          <div class="prod__vis"><span class="shape shape--double slab slab--black" aria-hidden="true"></span><span class="prod__tag">демо</span></div>
+          <h3 class="prod__name">Подвійний пам'ятник</h3>
+          <p class="prod__spec">Чорний граніт · 100×100×8 см</p>
+          <div class="prod__row"><p class="prod__price"><small>від</small> 21 000 <small>грн</small></p><button class="prod__buy" type="button" data-product="Подвійний пам'ятник" data-kind="Пам'ятник або саркофаг">Замовити</button></div>
+        </li>
+        <li class="prod" data-cat="pam">
+          <div class="prod__vis"><span class="shape shape--sarc slab slab--grey" aria-hidden="true"></span><span class="prod__tag">демо</span></div>
+          <h3 class="prod__name">Саркофаг</h3>
+          <p class="prod__spec">Граніт · 180×80 см</p>
+          <div class="prod__row"><p class="prod__price"><small>від</small> 18 500 <small>грн</small></p><button class="prod__buy" type="button" data-product="Саркофаг" data-kind="Пам'ятник або саркофаг">Замовити</button></div>
+        </li>
+        <li class="prod" data-cat="int">
+          <div class="prod__vis"><span class="shape shape--counter slab slab--black" aria-hidden="true"></span><span class="prod__tag">демо</span></div>
+          <h3 class="prod__name">Кухонна стільниця</h3>
+          <p class="prod__spec">Граніт · за погонний метр</p>
+          <div class="prod__row"><p class="prod__price"><small>від</small> 6 500 <small>грн</small></p><button class="prod__buy" type="button" data-product="Кухонна стільниця" data-kind="Стільниця або барна стійка">Замовити</button></div>
+        </li>
+        <li class="prod" data-cat="int">
+          <div class="prod__vis"><span class="shape shape--sill slab slab--grey" aria-hidden="true"></span><span class="prod__tag">демо</span></div>
+          <h3 class="prod__name">Підвіконня з граніту</h3>
+          <p class="prod__spec">Граніт · за погонний метр</p>
+          <div class="prod__row"><p class="prod__price"><small>від</small> 2 400 <small>грн</small></p><button class="prod__buy" type="button" data-product="Підвіконня з граніту" data-kind="Підвіконня">Замовити</button></div>
+        </li>
+        <li class="prod" data-cat="int">
+          <div class="prod__vis"><span class="shape shape--sill slab slab--marble" aria-hidden="true"></span><span class="prod__tag">демо</span></div>
+          <h3 class="prod__name">Підвіконня з мармуру</h3>
+          <p class="prod__spec">Мармур · за погонний метр</p>
+          <div class="prod__row"><p class="prod__price"><small>від</small> 3 200 <small>грн</small></p><button class="prod__buy" type="button" data-product="Підвіконня з мармуру" data-kind="Підвіконня">Замовити</button></div>
+        </li>
+        <li class="prod" data-cat="int">
+          <div class="prod__vis"><span class="shape shape--step slab slab--red" aria-hidden="true"></span><span class="prod__tag">демо</span></div>
+          <h3 class="prod__name">Сходинка</h3>
+          <p class="prod__spec">Граніт · 1200×300×30 мм</p>
+          <div class="prod__row"><p class="prod__price"><small>від</small> 3 200 <small>грн</small></p><button class="prod__buy" type="button" data-product="Сходинка" data-kind="Сходи">Замовити</button></div>
+        </li>
+        <li class="prod" data-cat="int">
+          <div class="prod__vis"><span class="shape shape--sink slab slab--marble" aria-hidden="true"></span><span class="prod__tag">демо</span></div>
+          <h3 class="prod__name">Мийка з мармуру</h3>
+          <p class="prod__spec">Мармур · 500×400 мм</p>
+          <div class="prod__row"><p class="prod__price"><small>від</small> 8 500 <small>грн</small></p><button class="prod__buy" type="button" data-product="Мийка з мармуру" data-kind="Інше">Замовити</button></div>
+        </li>
+        <li class="prod" data-cat="int">
+          <div class="prod__vis"><span class="shape shape--portal slab slab--marble" aria-hidden="true"></span><span class="prod__tag">демо</span></div>
+          <h3 class="prod__name">Камінний портал</h3>
+          <p class="prod__spec">Мармур · під розмір топки</p>
+          <div class="prod__row"><p class="prod__price"><small>від</small> 32 000 <small>грн</small></p><button class="prod__buy" type="button" data-product="Камінний портал" data-kind="Камін">Замовити</button></div>
+        </li>
+        <li class="prod" data-cat="out">
+          <div class="prod__vis"><span class="shape shape--paver slab slab--grey" aria-hidden="true"></span><span class="prod__tag">демо</span></div>
+          <h3 class="prod__name">Гранітна бруківка</h3>
+          <p class="prod__spec">Граніт · за м²</p>
+          <div class="prod__row"><p class="prod__price"><small>від</small> 1 350 <small>грн</small></p><button class="prod__buy" type="button" data-product="Гранітна бруківка" data-kind="Фасад або бруківка">Замовити</button></div>
+        </li>
+        <li class="prod" data-cat="out">
+          <div class="prod__vis"><span class="shape shape--tile slab slab--red" aria-hidden="true"></span><span class="prod__tag">демо</span></div>
+          <h3 class="prod__name">Фасадна плитка</h3>
+          <p class="prod__spec">Граніт · за м²</p>
+          <div class="prod__row"><p class="prod__price"><small>від</small> 1 700 <small>грн</small></p><button class="prod__buy" type="button" data-product="Фасадна плитка" data-kind="Фасад або бруківка">Замовити</button></div>
+        </li>
+        <li class="prod" data-cat="out">
+          <div class="prod__vis"><span class="shape shape--step slab slab--grey" aria-hidden="true"></span><span class="prod__tag">демо</span></div>
+          <h3 class="prod__name">Ступені ґанку</h3>
+          <p class="prod__spec">Граніт · за штуку</p>
+          <div class="prod__row"><p class="prod__price"><small>від</small> 3 800 <small>грн</small></p><button class="prod__buy" type="button" data-product="Ступені ґанку" data-kind="Сходи">Замовити</button></div>
+        </li>
       </ul>
     </div>
   </section>
@@ -471,25 +586,55 @@
 
 </main>
 
-<footer class="foot slab slab--black">
-  <div class="wrap foot__in">
-    <div>
-      <p class="brand brand--foot"><span class="brand__mark" aria-hidden="true"></span><span class="brand__name">Grand&#8209;Granit</span></p>
-      <p class="foot__txt">Пам'ятники та вироби з граніту й мармуру в Калуші з 2008 року.</p>
+<footer class="foot slab slab--black" id="zvyazok">
+  <div class="wrap">
+    <div class="foot__cta">
+      <p class="eyebrow eyebrow--light">Зв'язок</p>
+      <h2 class="h2 h2--light foot__title">Зв'яжіться з нами зручним способом</h2>
+      <a class="foot__phone" href="tel:+380962086415">+38 096 208 64 15</a>
     </div>
-    <div class="foot__col">
-      <p><a href="tel:+380962086415">+38 096 208 64 15</a></p>
-      <p><a href="mailto:grand-granit@ukr.net">grand-granit@ukr.net</a></p>
-      <p>вул. Олени Пчілки, 68, 77300 Калуш</p>
+    <ul class="links">
+      <li><a class="link" href="tel:+380962086415"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-phone"/></svg><span><b>Зателефонувати</b><small>096 208 64 15</small></span></a></li>
+      <li><a class="link" href="viber://chat?number=%2B380962086415"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-chat"/></svg><span><b>Viber</b><small>написати в месенджер</small></span></a></li>
+      <li><a class="link" href="https://wa.me/380962086415" target="_blank" rel="noopener"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-chat"/></svg><span><b>WhatsApp</b><small>написати в месенджер</small></span></a></li>
+      <li><a class="link" href="mailto:grand-granit@ukr.net"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-mail"/></svg><span><b>Email</b><small>grand-granit@ukr.net</small></span></a></li>
+      <li><a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=%D0%9A%D0%B0%D0%BB%D1%83%D1%88+%D0%9E%D0%BB%D0%B5%D0%BD%D0%B8+%D0%9F%D1%87%D1%96%D0%BB%D0%BA%D0%B8+68" target="_blank" rel="noopener"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-route"/></svg><span><b>Прокласти маршрут</b><small>вул. Олени Пчілки, 68, Калуш</small></span></a></li>
+    </ul>
+    <div class="foot__in">
+      <div>
+        <p class="brand brand--foot"><span class="brand__mark" aria-hidden="true"></span><span class="brand__name">Grand&#8209;Granit</span></p>
+        <p class="foot__txt">Пам'ятники та вироби з граніту й мармуру в Калуші з 2008 року.</p>
+      </div>
+      <div class="foot__col">
+        <p class="foot__h">Адреса</p>
+        <p>вул. Олени Пчілки, 68 (2-й поверх)<br>77300 Калуш, Івано-Франківська обл.</p>
+        <p class="foot__h">Години роботи</p>
+        <p class="todo">уточнюється</p>
+      </div>
+      <div class="foot__col">
+        <p class="foot__h">Розділи</p>
+        <p><a href="#pamyatnyky">Пам'ятники</a></p>
+        <p><a href="#katalog">Каталог і ціни</a></p>
+        <p><a href="#interier">Камінь в інтер'єрі</a></p>
+        <p><a href="#kontakty">Заявка на розрахунок</a></p>
+      </div>
     </div>
-    <div class="foot__col">
+    <div class="foot__bottom">
       <p class="todo">ФОП / ЄДРПОУ: уточнити</p>
       <p>© <span id="y">2026</span> GRAND-GRANIT</p>
     </div>
   </div>
+  <p class="foot__mark" aria-hidden="true">Grand-Granit</p>
 </footer>
 
-<a class="fab" href="tel:+380962086415" aria-label="Зателефонувати в GRAND-GRANIT"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-phone"/></svg></a>
+<div class="progress" aria-hidden="true"><span></span></div>
+
+<nav class="dock" aria-label="Швидкий зв'язок">
+  <a href="tel:+380962086415"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-phone"/></svg>Дзвінок</a>
+  <a href="viber://chat?number=%2B380962086415"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-chat"/></svg>Viber</a>
+  <a href="https://wa.me/380962086415" target="_blank" rel="noopener"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp</a>
+  <a href="#zayavka"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-mail"/></svg>Заявка</a>
+</nav>
 
 <script src="js/vendor/lenis.min.js" defer></script>
 <script src="js/vendor/gsap.min.js" defer></script>
