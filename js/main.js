@@ -189,5 +189,70 @@
       now.textContent = open ? `Зараз відчинено · до ${close / 60}:00` : 'Зараз зачинено · запишіться на завтра';
     } catch (_) {}
   }
+
+  /* ===== Анімації v2 ===== */
+  // Слово «характером»: по літерах
+  const em = $('.hero__title em');
+  if (em && !reduce) { const t = em.textContent; em.setAttribute('aria-label', t); em.innerHTML = [...t].map((c, i) => `<span class="ch" aria-hidden="true" style="--i:${i}">${c}</span>`).join(''); }
+  // Заголовки секцій: по словах (зберігаємо <em>)
+  $$('.sec h2').forEach(h => {
+    let i = 0;
+    const wrap = node => {
+      [...node.childNodes].forEach(n => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(w => {
+            if (!w) return;
+            if (/^\s+$/.test(w)) { frag.appendChild(document.createTextNode(' ')); return; }
+            const s = document.createElement('span'); s.className = 'sw'; s.innerHTML = `<span style="--i:${i++}">${w}</span>`; frag.appendChild(s);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1) wrap(n);
+      });
+    };
+    wrap(h);
+  });
+  // Пасмо-розділювач над кожним заголовком секції
+  $$('.sec__head, .shades__text, .booking__text, .contacts__info').forEach(head => {
+    const eb = $('.eyebrow', head); if (!eb) return;
+    eb.insertAdjacentHTML('beforebegin', '<svg class="divider" viewBox="0 0 120 18" aria-hidden="true"><path d="M2 9 C 18 -2, 30 20, 46 9 S 74 -2, 90 9 S 110 18, 118 7"/></svg>');
+  });
+  // Фото послуг і мапа: розкриття шторкою
+  $$('.svc__inner img, .map').forEach(el => el.classList.add('mask'));
+  // Футер-логотип: по літерах
+  const fb = $('.ftr__big');
+  if (fb) fb.innerHTML = [...fb.textContent].map((c, i) => `<span class="fl" style="--i:${i}">${c}</span>`).join('');
+  const io2 = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io2.unobserve(e.target); } }), { threshold: .12 });
+  if (reduce) $$('.mask, .gal figure, .ftr__big, .reveal, .step, .master').forEach(el => el.classList.add('in'));
+  else $$('.mask, .gal figure, .ftr__big, .step, .master').forEach(el => io2.observe(el));
+  // Відкриття акордеону: фото знову «розкривається»
+  $$('.svc__row').forEach(r => r.addEventListener('click', () => { const im = $('.svc__inner img', r.parentElement); if (im && !reduce) { im.classList.remove('in'); setTimeout(() => im.classList.add('in'), 150); } }));
+  // Перефарбування пасма: короткий спалах
+  const vis = $('.shades__visual');
+  $$('.swatches button, .techs button').forEach(b => b.addEventListener('click', () => { if (!vis) return; vis.classList.add('repaint'); setTimeout(() => vis.classList.remove('repaint'), 260); }));
+  if (!reduce) {
+    // Паралакс: фото героя й галерея
+    const heroImg = $('.arch img'), gal = $('.gal');
+    let ticking = false;
+    const par = () => {
+      ticking = false;
+      const y = scrollY;
+      if (heroImg && y < innerHeight * 1.3) heroImg.style.transform = `translateY(${(y * .1).toFixed(1)}px) scale(1.08)`;
+      if (gal) {
+        const r = gal.getBoundingClientRect();
+        if (r.top < innerHeight && r.bottom > 0) {
+          const k = (innerHeight - r.top) / (innerHeight + r.height);
+          $$('figure.in img', gal).forEach((im, i) => { im.style.transform = `translateY(${((k - .5) * (i % 2 ? -36 : 36)).toFixed(1)}px) scale(1.1)`; });
+        }
+      }
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(par); } }, { passive: true });
+    setTimeout(par, 1700);
+    // Магнітні кнопки (ПК)
+    if (matchMedia('(hover:hover) and (pointer:fine)').matches) $$('.btn').forEach(b => {
+      b.addEventListener('mousemove', e => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${((e.clientX - r.left - r.width / 2) * .15).toFixed(1)}px, ${((e.clientY - r.top - r.height / 2) * .25).toFixed(1)}px)`; });
+      b.addEventListener('mouseleave', () => { b.style.transform = ''; });
+    });
+  }
   const yr = $('#yr'); if (yr) yr.textContent = new Date().getFullYear();
 })();

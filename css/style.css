@@ -330,3 +330,76 @@ p{margin:0 0 1em}
   .reveal{opacity:1;transform:none}
   .ticker__row{animation:none}
 }
+
+/* ===== Анімації v2 ===== */
+/* Заголовки секцій: слова піднімаються по черзі */
+.sw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.sw>span{display:inline-block;transform:translateY(110%) rotate(4deg);transform-origin:left bottom;transition:transform 1s var(--ease);transition-delay:calc(var(--i)*70ms + 120ms)}
+.in .sw>span{transform:none}
+/* Слово «характером» — літери проявляються з розмиття */
+.hero__title em{white-space:nowrap}
+.ch{display:inline-block;opacity:0;filter:blur(10px);transform:translateY(.25em);animation:chIn .9s var(--ease) forwards;animation-delay:calc(var(--i)*45ms + .45s)}
+@keyframes chIn{to{opacity:1;filter:none;transform:none}}
+/* Арка героя «відчиняється» знизу */
+.arch{clip-path:inset(100% 0 0 0 round 999px 999px var(--r) var(--r));animation:archOpen 1.4s var(--ease) .2s forwards}
+@keyframes archOpen{to{clip-path:inset(0 0 0 0 round 999px 999px var(--r) var(--r))}}
+.arch img{will-change:transform}
+.hero__quote{animation:quoteIn 1s var(--ease) 1.1s both,bob 6s ease-in-out 2.2s infinite}
+@keyframes quoteIn{from{opacity:0;transform:translateY(30px) rotate(-2deg)}}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.hero__lead,.hero__cta,.hero__facts,.hero .eyebrow,.hero__brand{animation:fadeUp .9s var(--ease) both}
+.hero .eyebrow{animation-delay:.05s}.hero__brand{animation-delay:.12s}.hero__lead{animation-delay:.7s}.hero__cta{animation-delay:.82s}.hero__facts{animation-delay:.95s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}}
+/* Пасмо-розділювач над заголовками */
+.divider{display:block;width:120px;height:18px;margin-bottom:14px;overflow:visible}
+.divider path{fill:none;stroke:var(--terra);stroke-width:1.5;stroke-linecap:round;stroke-dasharray:160;stroke-dashoffset:160;transition:stroke-dashoffset 1.6s var(--ease) .1s}
+.shades .divider path,.booking .divider path{stroke:var(--gold)}
+.in .divider path,.in.divider path{stroke-dashoffset:0}
+/* Фото: розкриття шторкою */
+.mask{clip-path:inset(0 0 100% 0);transition:clip-path 1.2s var(--ease)}
+.mask.in{clip-path:inset(0 0 0 0)}
+.gal figure{overflow:hidden;border-radius:var(--r)}
+.gal figure:first-child{border-radius:999px 999px var(--r) var(--r)}
+.gal img{transition:transform 1.2s var(--ease)}
+.gal figure:not(.in) img{transform:scale(1.18)}
+/* Арки майстрів: блік і «пливуча» монограма */
+.master__ph::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%);transition:transform 1.4s var(--ease) .3s}
+.master.in .master__ph::after{transform:translateX(120%)}
+.master:hover .master__ph::after{transform:translateX(-120%);transition-delay:0s}
+.master__ph span{animation:float 7s ease-in-out infinite}
+.master:nth-child(2) .master__ph span{animation-delay:-2.3s}.master:nth-child(3) .master__ph span{animation-delay:-4.6s}
+@keyframes float{50%{transform:translateY(-10px)}}
+/* Відгуки: картки з легким нахилом */
+.rev figure.reveal{transform:translateY(40px) rotate(-1.5deg)}
+.rev figure.reveal:nth-child(even){transform:translateY(40px) rotate(1.5deg)}
+.rev figure.reveal.in{transform:none}
+.rev__card.in:hover{transform:translateY(-6px);box-shadow:0 20px 40px -24px rgba(42,20,25,.5);transition-duration:.4s;transition-delay:0s!important}
+/* Етапи: римські цифри «перегортаються» */
+.step__n{display:inline-block;transform:perspective(400px) rotateX(90deg);transform-origin:bottom;transition:transform 1s var(--ease) .25s}
+.step.in .step__n{transform:none}
+/* Рядки послуг: лінія домальовується */
+.svc__item{position:relative}
+.svc__item::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--terra);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.svc__item:hover::after,.svc__item.open::after{transform:scaleX(1)}
+/* Палітра: пульс обраного кольору, спалах при перефарбуванні */
+.swatches button[aria-checked="true"]::before{animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(226,178,90,.55)}100%{box-shadow:0 0 0 10px rgba(226,178,90,0)}}
+#hairStrands{transition:filter .4s}
+.repaint #hairStrands{filter:brightness(1.35) saturate(1.2)}
+/* Кнопки: блік */
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.28) 50%,transparent 65%);transform:translateX(-120%);transition:transform .8s var(--ease);z-index:-1;pointer-events:none}
+.btn:hover::after{transform:translateX(120%)}
+.mbar__main{animation:glow 3s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 0 0 6px rgba(168,64,90,.3)}}
+/* Великий футер-логотип: літери хвилею */
+.ftr__big .fl{display:inline-block;transform:translateY(60%);opacity:0;transition:transform 1.1s var(--ease),opacity 1.1s;transition-delay:calc(var(--i)*60ms)}
+.ftr__big.in .fl{transform:none;opacity:1}
+@media (prefers-reduced-motion:reduce){
+  .sw>span,.ch,.ftr__big .fl,.step__n{transform:none!important;opacity:1!important;filter:none!important}
+  .arch{clip-path:none;animation:none}
+  .mask{clip-path:none}
+  .divider path{stroke-dashoffset:0}
+  .gal figure:not(.in) img{transform:none}
+  .master__ph span,.mbar__main,.hero__quote,.swatches button::before{animation:none!important}
+}
