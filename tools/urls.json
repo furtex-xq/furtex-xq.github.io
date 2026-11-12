@@ -1,0 +1,52 @@
+{
+ "hero": [
+  "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5",
+  "https://images.unsplash.com/photo-1778828494354-9b717d36dc99",
+  "https://images.unsplash.com/photo-1517838277536-f5f99be501cd",
+  "https://images.unsplash.com/photo-1590487988256-9ed24133863e",
+  "https://images.unsplash.com/photo-1554284126-aa88f22d8b74",
+  "https://images.unsplash.com/photo-1534438327276-14e5300c3a48"
+ ],
+ "weights": [
+  "https://images.unsplash.com/photo-1576678927484-cc907957088c",
+  "https://images.unsplash.com/photo-1603734220970-25a0b335ca01",
+  "https://images.unsplash.com/photo-1734630341082-0fec0e10126c",
+  "https://images.unsplash.com/photo-1544033527-b192daee1f5b",
+  "https://images.unsplash.com/photo-1558611848-73f7eb4001a1"
+ ],
+ "machines": [
+  "https://images.unsplash.com/photo-1637430308606-86576d8fef3c",
+  "https://images.unsplash.com/photo-1689877020200-403d8542d95d",
+  "https://images.unsplash.com/photo-1722925541321-f52d45b29c17",
+  "https://images.unsplash.com/photo-1570829460005-c840387bb1ca",
+  "https://images.unsplash.com/photo-1637666218229-1fe0a9419267",
+  "https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb"
+ ],
+ "cardio": [
+  "https://images.unsplash.com/photo-1578874691223-64558a3ca096",
+  "https://images.unsplash.com/photo-1765728617805-b9f22d64e5b3",
+  "https://images.unsplash.com/photo-1540497077202-7c8a3999166f",
+  "https://images.unsplash.com/photo-1721394749382-223a18ce8bb9",
+  "https://images.unsplash.com/photo-1685633224745-ebb90e6ae2fd"
+ ],
+ "stretch": [
+  "https://images.unsplash.com/photo-1552196527-bffef41ef674",
+  "https://images.unsplash.com/photo-1599901860904-17e6ed7083a0",
+  "https://images.unsplash.com/photo-1661307987465-1db8d7a8796f",
+  "https://images.unsplash.com/photo-1633707236776-1188a396f223",
+  "https://images.unsplash.com/photo-1607914660217-754fdd90041d"
+ ],
+ "coach": [
+  "https://images.unsplash.com/photo-1758875569256-f37c438cac65",
+  "https://images.unsplash.com/photo-1758875569334-27579a49ed0b",
+  "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b",
+  "https://images.unsplash.com/photo-1534258936925-c58bed479fcb",
+  "https://images.unsplash.com/photo-1758875569399-99a7d80ace43"
+ ],
+ "locker": [
+  "https://images.unsplash.com/photo-1766755418405-11af5786d328",
+  "https://images.unsplash.com/photo-1637028251652-cdef2b2b6100",
+  "https://images.unsplash.com/photo-1721099163762-344c8549620f",
+  "https://images.unsplash.com/photo-1754390754632-ee84c133a3f3"
+ ]
+}
