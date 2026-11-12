@@ -1,0 +1,13 @@
+{
+  "hero": ["polished black granite", "black granite slab polished", "granite quarry block"],
+  "monument": ["granite headstone blank", "headstones for sale stonemason", "black granite headstone", "monument showroom granite", "gravestone workshop"],
+  "sarcophagus": ["granite grave slab", "granite tomb cemetery Ukraine"],
+  "countertop": ["granite countertop kitchen", "granite kitchen worktop"],
+  "sill": ["marble window sill", "stone windowsill"],
+  "stairs": ["granite stairs", "marble staircase interior"],
+  "sink": ["marble sink", "stone washbasin"],
+  "fireplace": ["marble fireplace", "fireplace mantel marble"],
+  "paving": ["granite paving stones", "granite cobblestones"],
+  "facade": ["granite facade cladding", "granite wall cladding building"],
+  "workshop": ["stonemason workshop granite", "stone cutting workshop"]
+}
