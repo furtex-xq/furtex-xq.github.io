@@ -4,9 +4,11 @@
 
 - `index.html`, `css/style.css`, `js/main.js`
 - `js/vendor/` — GSAP 3.12.5 + ScrollTrigger, Lenis (локально, без CDN)
-- `fonts/` — Literata, Manrope, IBM Plex Mono (кирилиця + латиниця)
+- `fonts/` — IBM Plex Sans + IBM Plex Mono (кирилиця + латиниця)
 - `img/photos/` — тимчасові фото з Unsplash (Unsplash License), список у `credits.json`
 - `tools/` + `.github/workflows/kulyk-photos.yml` — завантаження фото через GitHub Actions
+
+Стиль: «точний інструмент» — білий з міліметровою сіткою, чорний, сигнальний червоний, IBM Plex Sans + Mono, гострі кути (відрізняється від White Story та ADS).
 
 Фішка: «лінза мікроскопа» — закріплений блок, де під час скролу лінза пливе по зубах і збільшення росте ×1 → ×4 → ×25 (на ПК лінзою можна водити мишкою). Анімації тільки transform/opacity, вимикаються при `prefers-reduced-motion`.
 
