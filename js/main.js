@@ -220,6 +220,13 @@
     if (hasGsap) window.ScrollTrigger.refresh();
   });
 
+  /* ---------- corner frames ---------- */
+  var FR = ['.dir__media', '.dir__list', '.lab__viz', '.stages', '.tint__view', '.tint__info', '.prods', '.about__media', '.stats', '.bigrate', '.quote', '.mosaic figure', '.form', '.sent', '.clist', '.socials', '.map', '.modal__box', '.step', '.ftr__grid > *', '.rating'];
+  FR.forEach(function (sel) {
+    var small = /step|ftr|rating|mosaic|bigrate|tint__info/.test(sel);
+    $$(sel).forEach(function (el) { var i = document.createElement('i'); i.className = small ? 'fr fr--sm' : 'fr'; i.setAttribute('aria-hidden', 'true'); el.appendChild(i); });
+  });
+
   /* ---------- build decorative elements ---------- */
   var eq = $('#eq'), N = window.innerWidth < 640 ? 28 : 64;
   for (var i = 0; i < N; i++) eq.appendChild(document.createElement('i'));

@@ -392,3 +392,94 @@ mark.todo--dot{display:inline-block;width:7px;height:7px;border-radius:50%;paddi
   *,*::before,*::after{animation:none!important;transition:none!important}
   .js-anim [data-r]{opacity:1;transform:none}
 }
+
+/* ---------- обводки й рамки (раунд 2) ---------- */
+.fr{position:absolute;inset:-1px;pointer-events:none;z-index:3;--c:var(--sig);--l:18px;--w:2px;
+  background:
+    linear-gradient(var(--c),var(--c)) 0 0/var(--l) var(--w) no-repeat,
+    linear-gradient(var(--c),var(--c)) 0 0/var(--w) var(--l) no-repeat,
+    linear-gradient(var(--c),var(--c)) 100% 0/var(--l) var(--w) no-repeat,
+    linear-gradient(var(--c),var(--c)) 100% 0/var(--w) var(--l) no-repeat,
+    linear-gradient(var(--c),var(--c)) 0 100%/var(--l) var(--w) no-repeat,
+    linear-gradient(var(--c),var(--c)) 0 100%/var(--w) var(--l) no-repeat,
+    linear-gradient(var(--c),var(--c)) 100% 100%/var(--l) var(--w) no-repeat,
+    linear-gradient(var(--c),var(--c)) 100% 100%/var(--w) var(--l) no-repeat}
+.fr--sm{--l:10px}
+
+/* eyebrow as a framed label */
+.eyebrow{display:inline-flex;border:1px solid var(--line2);padding:9px 14px 9px 12px;position:relative}
+.shop .eyebrow{border-color:rgba(0,0,0,.22)}
+
+/* hero inner frame */
+.hero__frame{position:absolute;inset:86px 14px 14px;border:1px solid rgba(255,255,255,.12);pointer-events:none;z-index:0}
+.hero__frame .fr{--l:26px}
+.hero__frame b{position:absolute;font:500 .64rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);background:var(--bg);padding:4px 8px;border:1px solid var(--line2)}
+.hero__frame b:nth-of-type(1){top:-11px;right:40px}
+.hero__in{position:relative;z-index:1}
+.rating{border:1px solid var(--line2);padding:12px 18px;position:relative;background:rgba(12,13,15,.5)}
+
+/* photos: inner offset frame */
+.dir__media,.tint__view,.about__media,.mosaic figure,.map{outline:1px solid rgba(255,255,255,.22);outline-offset:-12px;border:1px solid var(--line2)}
+.mosaic figure{outline-offset:-8px}
+.tint__view{clip-path:none}
+
+/* service lists as framed cards */
+.dir__list{border:1px solid var(--line2);padding:4px 26px 24px;position:relative;background:linear-gradient(180deg,rgba(255,255,255,.02),transparent)}
+.row__n{border:1px solid rgba(255,79,31,.45);padding:7px 0;text-align:center;width:40px}
+
+/* sound lab */
+.lab__viz{border:1px solid var(--line2);padding:34px;position:relative}
+.stages{border:1px solid var(--line);padding:0 18px;position:relative}
+.stage:first-child{border-top:0}
+.meter__bars{outline:1px solid var(--line2);outline-offset:6px}
+
+/* tint */
+.tint__opts button[aria-checked=true]{outline:1px solid var(--ink);outline-offset:4px}
+.tint__info{border:1px solid var(--line2);border-left:3px solid var(--sig);padding:16px 18px;position:relative}
+.tint__hud{outline:1px solid rgba(255,79,31,.5);outline-offset:3px}
+
+/* shop */
+.prods{position:relative;outline:1px solid rgba(0,0,0,.14);outline-offset:8px}
+.prod{position:relative}
+.prod__cat{align-self:flex-start;border:1px solid rgba(0,0,0,.2);padding:6px 8px}
+.price{border-bottom:1px dashed rgba(0,0,0,.3);padding-bottom:4px}
+.demo-note{border:1px solid rgba(255,215,94,.35);border-left-width:3px;padding:10px 14px}
+.shop .demo-note{border-color:rgba(215,156,26,.5)}
+
+/* process */
+.step{border:1px solid var(--line2);padding:34px 22px 24px;margin-top:22px}
+.step::before{top:0;left:22px}
+
+/* about + stats */
+.about__stamp{outline:1px solid var(--sig);outline-offset:3px}
+.stats{position:relative;outline:1px solid var(--line);outline-offset:8px}
+
+/* reviews */
+.bigrate{border:1px solid var(--line2);padding:18px 22px;position:relative}
+.quote{border-color:var(--line2)}
+
+/* contacts */
+.form{border:1px solid var(--line2);padding:26px;position:relative;background:rgba(255,255,255,.015)}
+.clist{border:1px solid var(--line2);padding:0 22px;position:relative}
+.clist li:last-child{border-bottom:0}
+.socials,.map,.sent{position:relative}
+
+/* footer */
+.ftr__grid{gap:12px}
+.ftr__grid>*{border:1px solid var(--line);padding:20px;position:relative}
+
+@media (max-width:900px){
+  .lab__viz{border-width:0 0 1px;padding:12px var(--gut)}
+  .lab__viz>.fr{display:none}
+  .stages{padding:0 14px}
+}
+@media (max-width:640px){
+  .hero__frame{inset:78px 8px 8px}
+  .hero__frame b{display:none}
+  .dir__list{padding:0 16px 20px}
+  .row__n{width:30px;font-size:.72rem}
+  .form{padding:18px}
+  .clist{padding:0 16px}
+  .prods{outline-offset:5px}
+  .step{margin-top:14px}
+}
