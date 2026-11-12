@@ -292,3 +292,6 @@ h2 .w>span{display:inline-block}
   *{animation:none!important;transition:none!important}
   .js .rv{opacity:1;transform:none}
 }
+
+/* symmetry fix: step numbers sit on the rule instead of being crossed by it */
+.proc__row li::before{z-index:1;line-height:1;top:-7px}
