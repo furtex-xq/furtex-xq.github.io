@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Пам'ятники та вироби з граніту і мармуру в Калуші — GRAND-GRANIT</title>
 <meta name="description" content="GRAND-GRANIT — пам'ятники, саркофаги, стільниці, сходи, підвіконня та каміни з граніту й мармуру в Калуші. Працюємо з 2008 року. Доставка й монтаж по Прикарпаттю та Львівщині, розстрочка без відсотків на пам'ятники.">
-<meta name="keywords" content="пам'ятники Калуш, гранітні пам'ятники, вироби з граніту Калуш, стільниці з граніту, мармур Івано-Франківськ, саркофаги, підвіконня з каменю">
+<meta name="keywords" content="пам'ятники Калуш, гранітні пам'ятники, вироби з граніту Калуш, стільниці з граніту, мармур Івано-Франківськ, саркофаги, підвіконня з каменю, сходи з граніту">
 <link rel="canonical" href="https://grand-granit.com.ua/">
 <meta name="theme-color" content="#151616">
 
@@ -20,6 +20,7 @@
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Manrope:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="css/style.css">
 
@@ -46,137 +47,229 @@
 </head>
 <body>
 
+<!-- Lucide icons (ISC licence), inlined as a sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+    <symbol id="i-ruler" viewBox="0 0 24 24"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+    <symbol id="i-percent" viewBox="0 0 24 24"><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+  </defs>
+</svg>
+
 <a class="skip" href="#main">Перейти до змісту</a>
 
 <header class="top" id="top">
   <div class="top__in">
-    <a class="brand" href="#top" aria-label="GRAND-GRANIT, на початок сторінки">
+    <a class="brand" href="#main" aria-label="GRAND-GRANIT, на початок сторінки">
       <span class="brand__mark" aria-hidden="true"></span>
       <span class="brand__name">Grand&#8209;Granit</span>
     </a>
     <nav class="nav" id="nav" aria-label="Головне меню">
       <a href="#pamyatnyky">Пам'ятники</a>
       <a href="#interier">Камінь в інтер'єрі</a>
-      <a href="#roboty">Роботи</a>
+      <a href="#materialy">Матеріали</a>
       <a href="#pro-nas">Про нас</a>
       <a href="#kontakty">Контакти</a>
     </nav>
-    <a class="top__phone" href="tel:+380962086415">096 208 64 15</a>
+    <a class="top__phone" href="tel:+380962086415"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>096 208 64 15</a>
     <button class="burger" type="button" aria-controls="nav" aria-expanded="false" aria-label="Відкрити меню"><span></span><span></span></button>
   </div>
 </header>
 
 <main id="main">
 
-  <!-- HERO: polished granite slab with gilded, engraved lettering -->
+  <!-- HERO: polished granite slab; the headline is "carved" letter by letter -->
   <section class="hero slab slab--black" aria-labelledby="hero-title">
+    <div class="hero__bg slab slab--black" aria-hidden="true"></div>
     <div class="hero__sheen" aria-hidden="true"></div>
     <div class="hero__in">
-      <p class="eyebrow eyebrow--light">Калуш · граніт з 2008, мармур з 2012</p>
+      <p class="eyebrow eyebrow--light" data-hero>Калуш · граніт з 2008, мармур з 2012</p>
       <h1 id="hero-title" class="engraved">
-        <span class="engraved__line">Ми вміємо</span>
-        <span class="engraved__line">творити красу</span>
-        <span class="engraved__line engraved__line--small">з натурального каменю</span>
+        <span class="engraved__line" data-split>Ми вміємо</span>
+        <span class="engraved__line" data-split>творити красу</span>
+        <span class="engraved__line engraved__line--small" data-hero>з натурального каменю</span>
       </h1>
-      <p class="hero__lead">Пам'ятники, стільниці, сходи, підвіконня й каміни з граніту та мармуру. Виготовляємо на замовлення будь-якої складності, доставляємо й встановлюємо самі.</p>
-      <div class="hero__cta">
-        <a class="btn btn--gold" href="tel:+380962086415">Зателефонувати</a>
+      <p class="hero__lead" data-hero>Пам'ятники, стільниці, сходи, підвіконня й каміни з граніту та мармуру. Виготовляємо на замовлення будь-якої складності, доставляємо й встановлюємо самі.</p>
+      <div class="hero__cta" data-hero>
+        <a class="btn btn--gold" href="tel:+380962086415"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>Зателефонувати</a>
         <a class="btn btn--ghost" href="#zayavka">Розрахувати вартість</a>
       </div>
     </div>
     <ul class="hero__facts" aria-label="Коротко про нас">
-      <li><b>Вироби на замовлення</b> будь-якої форми й товщини</li>
-      <li><b>Доставка й монтаж</b> по Прикарпаттю та Львівщині</li>
-      <li><b>Розстрочка без відсотків</b> на пам'ятники</li>
+      <li data-hero><svg class="ic ic--lg" aria-hidden="true"><use href="#i-ruler"/></svg><span><b>Вироби на замовлення</b> будь-якої форми й товщини</span></li>
+      <li data-hero><svg class="ic ic--lg" aria-hidden="true"><use href="#i-truck"/></svg><span><b>Доставка й монтаж</b> по Прикарпаттю та Львівщині</span></li>
+      <li data-hero><svg class="ic ic--lg" aria-hidden="true"><use href="#i-percent"/></svg><span><b>Розстрочка без відсотків</b> на пам'ятники</span></li>
     </ul>
   </section>
 
   <!-- TWO DIRECTIONS -->
   <section class="ways" aria-label="Два напрями роботи">
-    <a class="way slab slab--black reveal" href="#pamyatnyky">
-      <span class="way__kind">Меморіальні вироби</span>
-      <h2 class="way__title">Пам'ятники та саркофаги</h2>
-      <span class="way__more">Детальніше</span>
+    <a class="way slab slab--black" href="#pamyatnyky" data-wipe>
+      <span class="way__media way__media--carved" aria-hidden="true"><span>GRAND<br>GRANIT</span></span>
+      <span class="way__body">
+        <span class="way__kind">Меморіальні вироби</span>
+        <span class="way__title">Пам'ятники та саркофаги</span>
+        <span class="way__more">Детальніше <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </span>
     </a>
-    <a class="way slab slab--marble reveal" href="#interier">
-      <span class="way__kind">Для дому та бізнесу</span>
-      <h2 class="way__title">Камінь в інтер'єрі</h2>
-      <span class="way__more">Детальніше</span>
+    <a class="way slab slab--marble" href="#interier" data-wipe>
+      <span class="way__media" aria-hidden="true"><img src="https://images.unsplash.com/photo-1560185127-1902ccdc5094?auto=format&amp;fit=crop&amp;w=1400&amp;q=70" alt="" loading="lazy" data-ph></span>
+      <span class="way__body">
+        <span class="way__kind">Для дому та бізнесу</span>
+        <span class="way__title">Камінь в інтер'єрі</span>
+        <span class="way__more">Детальніше <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </span>
     </a>
   </section>
 
   <!-- MONUMENTS -->
   <section class="sec sec--quiet" id="pamyatnyky" aria-labelledby="pam-title">
     <div class="wrap split">
-      <div class="split__head reveal">
+      <div class="split__head" data-reveal>
         <p class="eyebrow">Пам'ятники</p>
         <h2 id="pam-title" class="h2">Пам'ять, викарбувана в граніті</h2>
         <p class="lead">Виготовляємо пам'ятники й саркофаги з житомирського граніту на замовлення. Допоможемо спокійно обрати форму, колір і оформлення, а все інше візьмемо на себе.</p>
         <a class="btn btn--dark" href="#zayavka">Отримати консультацію</a>
       </div>
-      <ul class="points reveal">
-        <li>
-          <h3>Широка гама кольорів</h3>
-          <p>Житомирський граніт у великій гамі кольорів і фактур.</p>
-        </li>
-        <li>
-          <h3>Художнє оформлення</h3>
-          <p>Якісне художнє виконання написів та зображень на камені.</p>
-        </li>
-        <li>
-          <h3>Доставка та встановлення</h3>
-          <p>Привеземо й встановимо пам'ятник на місці, без додаткових клопотів для родини.</p>
-        </li>
-        <li>
-          <h3>Розстрочка без відсотків</h3>
-          <p>Оплату за пам'ятник можна розділити на частини без переплат.</p>
-        </li>
+      <ul class="points" data-stagger>
+        <li><h3>Широка гама кольорів</h3><p>Житомирський граніт у великій гамі кольорів і фактур.</p></li>
+        <li><h3>Художнє оформлення</h3><p>Якісне художнє виконання написів та зображень на камені.</p></li>
+        <li><h3>Доставка та встановлення</h3><p>Привеземо й встановимо пам'ятник на місці, без додаткових клопотів для родини.</p></li>
+        <li><h3>Розстрочка без відсотків</h3><p>Оплату за пам'ятник можна розділити на частини без переплат.</p></li>
       </ul>
     </div>
   </section>
 
-  <!-- INTERIOR STONE -->
-  <section class="sec" id="interier" aria-labelledby="int-title">
-    <div class="wrap">
-      <div class="sec__head reveal">
-        <p class="eyebrow">Камінь в інтер'єрі</p>
-        <h2 id="int-title" class="h2">Поверхні, які служать десятиліттями</h2>
-        <p class="lead">Виробляємо вироби будь-якої форми, розміру й товщини та виконуємо весь супутній монтаж.</p>
+  <!-- INTERIOR: horizontal, pinned catalogue on desktop; swipe row on phones -->
+  <section class="hs" id="interier" aria-labelledby="int-title">
+    <div class="hs__pin">
+      <div class="wrap hs__head">
+        <div>
+          <p class="eyebrow">Камінь в інтер'єрі</p>
+          <h2 id="int-title" class="h2">Поверхні, які служать десятиліттями</h2>
+        </div>
+        <p class="lead hs__lead">Вироби будь-якої форми, розміру й товщини та весь супутній монтаж.</p>
       </div>
-      <ul class="catalog">
-        <li class="item reveal"><span class="swatch swatch--black" aria-hidden="true"></span><h3>Кухонні стільниці</h3><p>Стійкі до вологи, температури й плям.</p></li>
-        <li class="item reveal"><span class="swatch swatch--marble" aria-hidden="true"></span><h3>Барні стійки</h3><p>За розміром вашого простору.</p></li>
-        <li class="item reveal"><span class="swatch swatch--grey" aria-hidden="true"></span><h3>Підвіконня</h3><p>Міцність на довгі роки.</p></li>
-        <li class="item reveal"><span class="swatch swatch--red" aria-hidden="true"></span><h3>Сходи</h3><p>Сходи та ступені з граніту й мармуру.</p></li>
-        <li class="item reveal"><span class="swatch swatch--black" aria-hidden="true"></span><h3>Каміни</h3><p>Облицювання та портали з каменю.</p></li>
-        <li class="item reveal"><span class="swatch swatch--marble" aria-hidden="true"></span><h3>Мийки та ванні кімнати</h3><p>Мийки й оздоблення ванних.</p></li>
-        <li class="item reveal"><span class="swatch swatch--grey" aria-hidden="true"></span><h3>Фасади</h3><p>Облицювання фасадів натуральним каменем.</p></li>
-        <li class="item reveal"><span class="swatch swatch--red" aria-hidden="true"></span><h3>Гранітна бруківка</h3><p>Доріжки та майданчики, що не зношуються.</p></li>
-        <li class="item item--wide reveal"><span class="swatch swatch--grey" aria-hidden="true"></span><h3>Індивідуальні вироби</h3><p>Столи та будь-які поверхні за вашим ескізом. Розкажіть ідею, і ми втілимо її в камені.</p></li>
-      </ul>
+      <div class="hs__view">
+        <ul class="hs__track">
+          <li class="card">
+            <div class="card__img slab slab--marble"><img src="https://images.unsplash.com/photo-1635108195612-1ba1c88aaf0c?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Кухня зі світлими кам'яними стільницями" loading="lazy" data-ph></div>
+            <h3>Кухонні стільниці</h3><p>Стійкі до вологи, перепадів температури й плям.</p>
+          </li>
+          <li class="card">
+            <div class="card__img slab slab--grey"><img src="https://images.unsplash.com/photo-1665507279638-5b48073c637b?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Світла кухня з кам'яною поверхнею" loading="lazy" data-ph></div>
+            <h3>Барні стійки</h3><p>За розміром вашого простору.</p>
+          </li>
+          <li class="card">
+            <div class="card__img slab slab--marble"><img src="https://images.unsplash.com/photo-1631048498692-af6262577031?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Вікно з широким підвіконням" loading="lazy" data-ph></div>
+            <h3>Підвіконня</h3><p>Міцність на довгі роки.</p>
+          </li>
+          <li class="card">
+            <div class="card__img slab slab--marble"><img src="https://images.unsplash.com/photo-1781047884697-53a3dc4d7eee?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Вигнуті мармурові сходи" loading="lazy" data-ph></div>
+            <h3>Сходи</h3><p>Сходи та ступені з граніту й мармуру.</p>
+          </li>
+          <li class="card">
+            <div class="card__img slab slab--black"><img src="https://images.unsplash.com/photo-1603039531759-1a1bbe4f9f94?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Камін з кам'яним облицюванням" loading="lazy" data-ph></div>
+            <h3>Каміни</h3><p>Облицювання та портали з каменю.</p>
+          </li>
+          <li class="card">
+            <div class="card__img slab slab--marble"></div>
+            <h3>Мийки та ванні кімнати</h3><p>Мийки й оздоблення ванних.</p>
+          </li>
+          <li class="card">
+            <div class="card__img slab slab--grey"></div>
+            <h3>Фасади</h3><p>Облицювання фасадів натуральним каменем.</p>
+          </li>
+          <li class="card">
+            <div class="card__img slab slab--red"><img src="https://images.unsplash.com/photo-1521411771005-560244a0c8ce?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Кам'яна бруківка" loading="lazy" data-ph></div>
+            <h3>Гранітна бруківка</h3><p>Доріжки та майданчики, що не зношуються.</p>
+          </li>
+          <li class="card">
+            <div class="card__img slab slab--black"><img src="https://images.unsplash.com/photo-1632198761400-00497310f848?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Полірована гранітна поверхня зблизька" loading="lazy" data-ph></div>
+            <h3>Індивідуальні вироби</h3><p>Столи та будь-які поверхні за вашим ескізом.</p>
+          </li>
+          <li class="card card--cta">
+            <p class="h3">Маєте свою ідею?</p>
+            <p>Розкажіть, що потрібно, і ми втілимо це в камені.</p>
+            <a class="btn btn--gold" href="#zayavka">Залишити заявку</a>
+          </li>
+        </ul>
+      </div>
+      <div class="wrap hs__foot">
+        <div class="hs__bar" aria-hidden="true"><span></span></div>
+        <p class="note">Фото ілюстративні, у фінальній версії будуть роботи GRAND-GRANIT.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATERIALS -->
+  <section class="sec sec--stone" id="materialy" aria-labelledby="mat-title">
+    <div class="wrap">
+      <div class="sec__head" data-reveal>
+        <p class="eyebrow">Матеріали</p>
+        <h2 id="mat-title" class="h2">Граніт чи мармур?</h2>
+        <p class="lead">Підкажемо, який камінь підійде саме для вашого виробу. Коротко про різницю:</p>
+      </div>
+      <div class="mats">
+        <article class="mat" data-reveal>
+          <div class="mat__slab slab slab--black" data-parallax aria-hidden="true"></div>
+          <div class="mat__body">
+            <h3 class="h3">Граніт</h3>
+            <p class="mat__since">працюємо з 2008 року</p>
+            <ul class="mat__list">
+              <li>Дуже твердий і стійкий до подряпин</li>
+              <li>Не боїться вологи, морозу й перепадів температури</li>
+              <li>Підходить для вулиці: пам'ятники, бруківка, фасади, сходи ґанку</li>
+              <li>На кухні: стільниці, що витримують гаряче й щоденне навантаження</li>
+            </ul>
+          </div>
+        </article>
+        <article class="mat" data-reveal>
+          <div class="mat__slab slab slab--marble" data-parallax aria-hidden="true"></div>
+          <div class="mat__body">
+            <h3 class="h3">Мармур</h3>
+            <p class="mat__since">працюємо з 2012 року</p>
+            <ul class="mat__list">
+              <li>Виразний малюнок прожилок, кожна плита неповторна</li>
+              <li>М'якший за граніт, тому найкраще почувається в інтер'єрі</li>
+              <li>Ванні кімнати, підвіконня, каміни, сходи всередині будинку</li>
+              <li>Дає відчуття класики й розкоші</li>
+            </ul>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
   <!-- PROCESS -->
-  <section class="sec sec--stone" aria-labelledby="proc-title">
+  <section class="sec" aria-labelledby="proc-title">
     <div class="wrap">
-      <div class="sec__head reveal">
+      <div class="sec__head" data-reveal>
         <p class="eyebrow">Як ми працюємо</p>
         <h2 id="proc-title" class="h2">Від дзвінка до встановлення</h2>
       </div>
-      <ol class="steps">
-        <li class="reveal"><h3>Дзвінок або заявка</h3><p>Розкажіть, що потрібно, і ми зорієнтуємо щодо матеріалу та вартості.</p></li>
-        <li class="reveal"><h3>Вибір каменю</h3><p>Підбираємо граніт чи мармур, колір, форму та розміри.</p></li>
-        <li class="reveal"><h3>Виготовлення</h3><p>Робимо виріб на замовлення з урахуванням усіх побажань.</p></li>
-        <li class="reveal"><h3>Доставка й монтаж</h3><p>Привозимо та встановлюємо самі, по всьому регіону.</p></li>
-      </ol>
+      <div class="steps-wrap">
+        <div class="steps__line" aria-hidden="true"><span></span></div>
+        <ol class="steps">
+          <li><h3>Дзвінок або заявка</h3><p>Розкажіть, що потрібно, і ми зорієнтуємо щодо матеріалу та вартості.</p></li>
+          <li><h3>Вибір каменю</h3><p>Підбираємо граніт чи мармур, колір, форму та розміри.</p></li>
+          <li><h3>Виготовлення</h3><p>Робимо виріб на замовлення з урахуванням усіх побажань.</p></li>
+          <li><h3>Доставка й монтаж</h3><p>Привозимо та встановлюємо самі, по всьому регіону.</p></li>
+        </ol>
+      </div>
     </div>
   </section>
 
   <!-- GALLERY (placeholders until client sends photos) -->
-  <section class="sec" id="roboty" aria-labelledby="gal-title">
+  <section class="sec sec--quiet" id="roboty" aria-labelledby="gal-title">
     <div class="wrap">
-      <div class="sec__head reveal">
+      <div class="sec__head" data-reveal>
         <p class="eyebrow">Наші роботи</p>
         <h2 id="gal-title" class="h2">Галерея виконаних замовлень</h2>
       </div>
@@ -203,15 +296,16 @@
   <!-- ABOUT -->
   <section class="sec sec--dark slab slab--black" id="pro-nas" aria-labelledby="about-title">
     <div class="wrap split">
-      <div class="split__head reveal">
+      <div class="split__head" data-reveal>
         <p class="eyebrow eyebrow--light">Про нас</p>
         <h2 id="about-title" class="h2 h2--light">Камінь, перевірений часом</h2>
         <p class="lead lead--light">GRAND-GRANIT починався з гранітних пам'ятників у Калуші. Сьогодні ми поєднуємо досвід майстрів із сучасним виробництвом і перетворюємо дизайнерські ідеї на вироби з каменю для дому, бізнесу та пам'яті.</p>
       </div>
-      <ol class="timeline reveal">
-        <li><span class="timeline__y">2008</span><p>Починаємо працювати з гранітом: пам'ятники та саркофаги.</p></li>
-        <li><span class="timeline__y">2012</span><p>Додаємо мармур і розширюємо асортимент виробів для інтер'єру.</p></li>
-        <li><span class="timeline__y">Сьогодні</span><p>Стільниці, сходи, каміни, фасади й бруківка з доставкою та монтажем по регіону.</p></li>
+      <ol class="timeline">
+        <li class="timeline__line" aria-hidden="true"><span></span></li>
+        <li data-tl><span class="timeline__y">2008</span><p>Починаємо працювати з гранітом: пам'ятники та саркофаги.</p></li>
+        <li data-tl><span class="timeline__y">2012</span><p>Додаємо мармур і розширюємо асортимент виробів для інтер'єру.</p></li>
+        <li data-tl><span class="timeline__y">Сьогодні</span><p>Стільниці, сходи, каміни, фасади й бруківка з доставкою та монтажем по регіону.</p></li>
       </ol>
     </div>
   </section>
@@ -219,30 +313,42 @@
   <!-- REVIEWS (placeholders) -->
   <section class="sec" aria-labelledby="rev-title">
     <div class="wrap">
-      <div class="sec__head reveal">
+      <div class="sec__head" data-reveal>
         <p class="eyebrow">Відгуки</p>
         <h2 id="rev-title" class="h2">Що кажуть наші клієнти</h2>
       </div>
-      <ul class="reviews">
-        <li class="review reveal"><blockquote>Тут буде справжній відгук клієнта GRAND-GRANIT.</blockquote><p class="review__who">Ім'я клієнта, місто</p></li>
-        <li class="review reveal"><blockquote>Тут буде справжній відгук клієнта GRAND-GRANIT.</blockquote><p class="review__who">Ім'я клієнта, місто</p></li>
-        <li class="review reveal"><blockquote>Тут буде справжній відгук клієнта GRAND-GRANIT.</blockquote><p class="review__who">Ім'я клієнта, місто</p></li>
+      <ul class="reviews" data-stagger>
+        <li class="review"><blockquote>Тут буде справжній відгук клієнта GRAND-GRANIT.</blockquote><p class="review__who">Ім'я клієнта, місто</p></li>
+        <li class="review"><blockquote>Тут буде справжній відгук клієнта GRAND-GRANIT.</blockquote><p class="review__who">Ім'я клієнта, місто</p></li>
+        <li class="review"><blockquote>Тут буде справжній відгук клієнта GRAND-GRANIT.</blockquote><p class="review__who">Ім'я клієнта, місто</p></li>
       </ul>
     </div>
   </section>
 
-  <!-- DELIVERY + FAQ -->
+  <!-- DELIVERY: cities as a slow ticker -->
+  <section class="ticker slab slab--black" aria-labelledby="del-title">
+    <div class="wrap ticker__head">
+      <p class="eyebrow eyebrow--light">Доставка й монтаж</p>
+      <h2 id="del-title" class="h2 h2--light">Привеземо й встановимо</h2>
+    </div>
+    <div class="ticker__row" aria-hidden="true">
+      <div class="ticker__track">
+        <span>Калуш</span><span>Івано-Франківськ</span><span>Львів</span><span>Коломия</span><span>Долина</span><span>Стрий</span>
+        <span>Калуш</span><span>Івано-Франківськ</span><span>Львів</span><span>Коломия</span><span>Долина</span><span>Стрий</span>
+      </div>
+    </div>
+    <p class="wrap ticker__sr">Калуш, Івано-Франківськ, Львів, Коломия, Долина, Стрий та навколишні населені пункти.</p>
+  </section>
+
+  <!-- FAQ -->
   <section class="sec sec--stone" aria-labelledby="faq-title">
     <div class="wrap split">
-      <div class="split__head reveal">
-        <p class="eyebrow">Доставка</p>
-        <h2 class="h2">Привеземо й встановимо</h2>
-        <ul class="cities">
-          <li>Калуш</li><li>Івано-Франківськ</li><li>Львів</li><li>Коломия</li><li>Долина</li><li>Стрий</li><li>та навколишні населені пункти</li>
-        </ul>
+      <div class="split__head" data-reveal>
+        <p class="eyebrow">Питання</p>
+        <h2 id="faq-title" class="h2">Часті запитання</h2>
+        <p class="lead">Не знайшли відповіді? Зателефонуйте, і ми все підкажемо.</p>
       </div>
-      <div class="faq reveal">
-        <h2 id="faq-title" class="h3">Часті запитання</h2>
+      <div class="faq" data-reveal>
         <details>
           <summary>Чи можна замовити нестандартний виріб?</summary>
           <p>Так. Виготовляємо вироби будь-якої складності, форми та товщини за вашим ескізом або ідеєю.</p>
@@ -256,6 +362,10 @@
           <p>Так, ми виконуємо доставку та весь супутній монтаж.</p>
         </details>
         <details>
+          <summary>Куди ви доставляєте?</summary>
+          <p>Калуш, Івано-Франківськ, Львів, Коломия, Долина, Стрий та навколишні населені пункти.</p>
+        </details>
+        <details>
           <summary>Чим граніт кращий за інші матеріали?</summary>
           <p>Граніт стійкий до вологи, перепадів температури та плям, тому підходить і для кухні, і для вулиці.</p>
         </details>
@@ -266,51 +376,47 @@
   <!-- CONTACT -->
   <section class="sec" id="kontakty" aria-labelledby="ct-title">
     <div class="wrap contact">
-      <div class="contact__info reveal">
+      <div class="contact__info" data-reveal>
         <p class="eyebrow">Контакти</p>
         <h2 id="ct-title" class="h2">Розкажіть, що вам потрібно</h2>
         <p class="lead">Зателефонуйте або залиште заявку, і ми передзвонимо, щоб уточнити деталі й вартість.</p>
-        <dl class="dl">
-          <dt>Телефон</dt><dd><a href="tel:+380962086415">+38 096 208 64 15</a></dd>
-          <dt>Email</dt><dd><a href="mailto:grand-granit@ukr.net">grand-granit@ukr.net</a></dd>
-          <dt>Адреса</dt><dd>вул. Олени Пчілки, 68 (2-й поверх), 77300 Калуш</dd>
-          <dt>Години роботи</dt><dd class="todo">уточнюється</dd>
-        </dl>
+        <ul class="cl">
+          <li><svg class="ic ic--lg" aria-hidden="true"><use href="#i-phone"/></svg><span><small>Телефон</small><a href="tel:+380962086415">+38 096 208 64 15</a></span></li>
+          <li><svg class="ic ic--lg" aria-hidden="true"><use href="#i-mail"/></svg><span><small>Email</small><a href="mailto:grand-granit@ukr.net">grand-granit@ukr.net</a></span></li>
+          <li><svg class="ic ic--lg" aria-hidden="true"><use href="#i-pin"/></svg><span><small>Адреса</small>вул. Олени Пчілки, 68 (2-й поверх), 77300 Калуш</span></li>
+          <li><svg class="ic ic--lg" aria-hidden="true"><use href="#i-clock"/></svg><span><small>Години роботи</small><em class="todo">уточнюється</em></span></li>
+        </ul>
         <div class="msgr">
-          <a class="btn btn--dark" href="tel:+380962086415">Зателефонувати</a>
-          <a class="btn btn--line" href="viber://chat?number=%2B380962086415">Viber</a>
-          <a class="btn btn--line" href="https://wa.me/380962086415" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn--dark" href="tel:+380962086415"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>Зателефонувати</a>
+          <a class="btn btn--line" href="viber://chat?number=%2B380962086415"><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg>Viber</a>
+          <a class="btn btn--line" href="https://wa.me/380962086415" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp</a>
         </div>
       </div>
 
-      <form class="form reveal" id="zayavka" novalidate>
+      <form class="form slab slab--black" id="zayavka" novalidate data-reveal>
         <h3 class="h3">Заявка на розрахунок</h3>
-        <label>Ваше ім'я
-          <input name="name" autocomplete="name" required>
-        </label>
-        <label>Телефон
-          <input name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="+380">
-        </label>
-        <label>Що потрібно виготовити
-          <select name="kind">
-            <option>Пам'ятник або саркофаг</option>
-            <option>Стільниця або барна стійка</option>
-            <option>Підвіконня</option>
-            <option>Сходи</option>
-            <option>Камін</option>
-            <option>Фасад або бруківка</option>
-            <option>Інше</option>
-          </select>
-        </label>
-        <label>Коментар <span class="opt">(необов'язково)</span>
-          <textarea name="msg" rows="3" placeholder="Розміри, колір каменю, місто"></textarea>
-        </label>
+        <label for="f-name">Ваше ім'я</label>
+        <input id="f-name" name="name" autocomplete="name" required>
+        <label for="f-phone">Телефон</label>
+        <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="+380">
+        <label for="f-kind">Що потрібно виготовити</label>
+        <select id="f-kind" name="kind">
+          <option>Пам'ятник або саркофаг</option>
+          <option>Стільниця або барна стійка</option>
+          <option>Підвіконня</option>
+          <option>Сходи</option>
+          <option>Камін</option>
+          <option>Фасад або бруківка</option>
+          <option>Інше</option>
+        </select>
+        <label for="f-msg">Коментар <span class="opt">(необов'язково)</span></label>
+        <textarea id="f-msg" name="msg" rows="3" placeholder="Розміри, колір каменю, місто"></textarea>
         <button class="btn btn--gold btn--full" type="submit">Надіслати заявку</button>
         <p class="form__status" role="status" aria-live="polite"></p>
       </form>
     </div>
 
-    <div class="map reveal">
+    <div class="map" data-reveal>
       <iframe title="GRAND-GRANIT на карті: вул. Олени Пчілки, 68, Калуш" src="https://www.google.com/maps?q=%D0%B2%D1%83%D0%BB.+%D0%9E%D0%BB%D0%B5%D0%BD%D0%B8+%D0%9F%D1%87%D1%96%D0%BB%D0%BA%D0%B8+68,+%D0%9A%D0%B0%D0%BB%D1%83%D1%88&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </section>
@@ -318,11 +424,11 @@
   <!-- ARTICLES (kept for SEO) -->
   <section class="sec sec--quiet" aria-labelledby="art-title">
     <div class="wrap">
-      <div class="sec__head reveal">
+      <div class="sec__head" data-reveal>
         <p class="eyebrow">Корисне</p>
         <h2 id="art-title" class="h2">Статті про камінь</h2>
       </div>
-      <ul class="articles reveal">
+      <ul class="articles" data-stagger>
         <li><a href="https://grand-granit.webnode.com.ua/news/a10-argument%d1%96v-na-korist-prirodnogo-kamenya/" target="_blank" rel="noopener">10 аргументів на користь природного каменя</a></li>
         <li><a href="https://grand-granit.webnode.com.ua/news/gran%d1%96t-yak-bud%d1%96velnij-%d1%96-ozdoblyuvalnij-mater%d1%96al/" target="_blank" rel="noopener">Граніт як будівельний і оздоблювальний матеріал</a></li>
         <li><a href="https://grand-granit.webnode.com.ua/news/p%d1%96dv%d1%96konnya-z-kamenyu-%e2%80%94-m%d1%96tsn%d1%96st-na-dovg%d1%96-roki/" target="_blank" rel="noopener">Підвіконня з каменю: міцність на довгі роки</a></li>
@@ -353,10 +459,12 @@
   </div>
 </footer>
 
-<a class="fab" href="tel:+380962086415" aria-label="Зателефонувати в GRAND-GRANIT">
-  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
-</a>
+<a class="fab" href="tel:+380962086415" aria-label="Зателефонувати в GRAND-GRANIT"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-phone"/></svg></a>
 
+<script src="js/vendor/lenis.min.js" defer></script>
+<script src="js/vendor/gsap.min.js" defer></script>
+<script src="js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="js/vendor/Flip.min.js" defer></script>
 <script src="js/main.js" defer></script>
 </body>
 </html>
