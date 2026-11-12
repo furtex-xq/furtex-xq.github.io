@@ -292,6 +292,23 @@ h2 .serif{text-transform:none;font-size:.92em;color:var(--lime)}
 /* mobile bar */
 .mbar{display:none}
 
+/* motion v3 */
+h2 .wd{display:inline-block;overflow:hidden;vertical-align:top;padding:.12em .02em .04em;margin:-.12em -.02em -.04em}
+h2 .wi{display:inline-block;will-change:transform}
+.quote .wd,.quote .wi{display:inline}
+.tape.beat{animation:beat .45s cubic-bezier(.3,1.6,.5,1)}
+@keyframes beat{40%{scale:1.3}}
+.spot{position:absolute;inset:0;pointer-events:none;--x:60;--y:40;background:radial-gradient(circle at calc(var(--x)*1%) calc(var(--y)*1%),rgba(212,242,74,.13),transparent 28%);mix-blend-mode:screen}
+.q input:checked+span{animation:chip .4s cubic-bezier(.3,1.7,.5,1)}
+@keyframes chip{40%{scale:1.08}}
+.price{transition:transform .35s var(--ease),border-color .3s}
+.price:hover{transform:translateY(-6px) rotate(-.6deg);border-color:var(--lime)}
+.price-hot:hover{transform:translateY(-6px) rotate(.6deg)}
+.wed-steps li{border-top:0;position:relative}
+.wl{position:absolute;left:0;right:0;top:0;height:1.5px;background:var(--lime);transform-origin:left}
+.cnt-link{transition:letter-spacing .3s var(--ease)}
+.cnt-link:hover{letter-spacing:.02em}
+
 /* reveal */
 .rv{opacity:0;transform:translateY(28px)}
 .rv.in{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease)}

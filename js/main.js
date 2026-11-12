@@ -65,7 +65,12 @@
   const beats = $$('.count-in span');
   if (beats.length && !reduce) {
     let i = 0;
-    setInterval(() => { beats.forEach((b, k) => b.classList.toggle('on', k === i % 4)); i++; }, 500);
+    const tapes = $$('.tape');
+    setInterval(() => {
+      beats.forEach((b, k) => b.classList.toggle('on', k === i % 4));
+      if (i % 4 === 3) tapes.forEach(t => { t.classList.remove('beat'); void t.getBoundingClientRect(); t.classList.add('beat'); });
+      i++;
+    }, 500);
   }
 
   /* schedule (demo) */
@@ -202,5 +207,106 @@
       gsap.from(c.querySelector('.cnt-img'), { clipPath: 'inset(0 0 100% 0)', duration: 1, ease: 'power3.inOut', scrollTrigger: { trigger: c, start: 'top 85%' } });
     });
   });
+
+  /* ---- extra motion (v3) ---- */
+  // split section headings into words; serif accents stay whole
+  const splitWords = el => {
+    const out = [];
+    [...el.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+          const w = document.createElement('span'); w.className = 'wd';
+          const i = document.createElement('span'); i.className = 'wi'; i.textContent = part;
+          w.appendChild(i); frag.appendChild(w); out.push(i);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1) {
+        const w = document.createElement('span'); w.className = 'wd';
+        n.replaceWith(w); n.classList.add('wi'); w.appendChild(n); out.push(n);
+      }
+    });
+    return out;
+  };
+  $$('h2:not(.sr-only)').forEach(h => {
+    const words = splitWords(h);
+    gsap.from(words, { yPercent: 115, rotate: 4, duration: .9, ease: 'power4.out', stagger: .07,
+      scrollTrigger: { trigger: h, start: 'top 86%' } });
+  });
+
+  // review: words light up one by one while scrolling
+  const qp = $('.quote blockquote p');
+  if (qp) {
+    const qw = splitWords(qp);
+    gsap.fromTo(qw, { opacity: .12 }, { opacity: 1, stagger: .15, ease: 'none',
+      scrollTrigger: { trigger: '.quote', start: 'top 80%', end: 'top 35%', scrub: true } });
+    gsap.from('.stars', { scale: .4, opacity: 0, duration: .7, ease: 'back.out(3)', scrollTrigger: { trigger: '.quote', start: 'top 85%' } });
+  }
+
+  // marquee reacts to scroll speed and direction
+  const mqEl = $('.marquee-track');
+  const mqAnim = mqEl.getAnimations ? mqEl.getAnimations()[0] : null;
+  const skewTo = gsap.quickTo('.marquee-track', 'skewX', { duration: .4, ease: 'power3' });
+  ScrollTrigger.create({ trigger: '.marquee', start: 'top bottom', end: 'bottom top', onUpdate: self => {
+    const v = self.getVelocity();
+    if (mqAnim) mqAnim.playbackRate = gsap.utils.clamp(-4, 4, 1 + v / 900);
+    skewTo(gsap.utils.clamp(-8, 8, -v / 300));
+  }, onLeave: () => skewTo(0), onLeaveBack: () => skewTo(0) });
+
+  // hero numbers count up
+  $$('.hero-facts b').forEach(b => {
+    const m = b.textContent.match(/^(\d+)(.*)$/); if (!m) return;
+    const o = { v: 0 };
+    gsap.to(o, { v: +m[1], duration: 1.4, delay: .8, ease: 'power2.out', onUpdate: () => { b.textContent = Math.round(o.v) + m[2]; } });
+  });
+
+  // stage spotlight follows the pointer in the hero (desktop) + magnetic buttons
+  const hero = $('.hero');
+  if (matchMedia('(pointer:fine)').matches) {
+    const spot = document.createElement('div'); spot.className = 'spot'; spot.setAttribute('aria-hidden', 'true');
+    hero.insertBefore(spot, $('.hero-inner'));
+    const pos = { x: 60, y: 40 };
+    const upd = () => { spot.style.setProperty('--x', pos.x); spot.style.setProperty('--y', pos.y); };
+    hero.addEventListener('pointermove', e => {
+      const r = hero.getBoundingClientRect();
+      gsap.to(pos, { x: (e.clientX - r.left) / r.width * 100, y: (e.clientY - r.top) / r.height * 100, duration: .6, ease: 'power3', overwrite: true, onUpdate: upd });
+    });
+    $$('.btn-lg, .nav-cta').forEach(btn => {
+      const bx = gsap.quickTo(btn, 'x', { duration: .4, ease: 'power3' }), by = gsap.quickTo(btn, 'y', { duration: .4, ease: 'power3' });
+      btn.addEventListener('pointermove', e => { const r = btn.getBoundingClientRect(); bx((e.clientX - r.left - r.width / 2) * .25); by((e.clientY - r.top - r.height / 2) * .35); });
+      btn.addEventListener('pointerleave', () => { bx(0); by(0); });
+    });
+  }
+
+  // tape crosses spin with scroll
+  gsap.to('.tape-a', { rotate: 188, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.tape-c', { rotate: 172, ease: 'none', scrollTrigger: { trigger: '.match', start: 'top bottom', end: 'bottom top', scrub: true } });
+
+  // about photo: curtain reveal + slow zoom
+  gsap.fromTo('.about-photo img', { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 1.2, ease: 'power3.inOut', scrollTrigger: { trigger: '.about-photo', start: 'top 80%' } });
+  gsap.fromTo('.about-photo img', { scale: 1.2 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.about-photo', start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.from('.about-list li', { x: -24, opacity: 0, duration: .6, stagger: .1, ease: 'power3.out', scrollTrigger: { trigger: '.about-list', start: 'top 85%' } });
+
+  // schedule: classes drop in day by day, like beats
+  ScrollTrigger.batch('.day', { start: 'top 88%', once: true, onEnter: ds => ds.forEach((d, k) =>
+    gsap.from($$('.slot', d), { y: 18, opacity: 0, duration: .5, ease: 'power3.out', stagger: .08, delay: k * .09 })) });
+  gsap.from('.pr-val b', { yPercent: 60, opacity: 0, duration: .8, ease: 'back.out(2)', stagger: .12, scrollTrigger: { trigger: '.prices', start: 'top 85%' } });
+
+  // wedding steps: line draws, then text
+  $$('.wed-steps li').forEach((li, k) => {
+    const line = document.createElement('i'); line.className = 'wl'; li.insertBefore(line, li.firstChild);
+    gsap.fromTo(line, { scaleX: 0 }, { scaleX: 1, duration: .9, delay: k * .15, ease: 'power3.inOut', scrollTrigger: { trigger: '.wed-steps', start: 'top 85%' } });
+    gsap.from(li.querySelectorAll('b, span'), { y: 16, opacity: 0, duration: .6, delay: .3 + k * .15, ease: 'power3.out', scrollTrigger: { trigger: '.wed-steps', start: 'top 85%' } });
+  });
+
+  // certificate flips in
+  gsap.from('.cert-card', { rotateY: -70, rotateX: 12, opacity: 0, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: '.cert', start: 'top 80%' } });
+  gsap.from('.cert-x', { scale: 0, rotate: -180, duration: 1, delay: .4, ease: 'back.out(2)', scrollTrigger: { trigger: '.cert', start: 'top 80%' } });
+
+  // contacts + mobile bar
+  gsap.from('.ct-info address p, .soc', { y: 14, opacity: 0, duration: .5, stagger: .06, ease: 'power2.out', scrollTrigger: { trigger: '.ct-info address', start: 'top 85%' } });
+  gsap.from('.mbar', { yPercent: 160, duration: .8, delay: 1.2, ease: 'power3.out' });
   addEventListener('load', () => ScrollTrigger.refresh());
 })();
