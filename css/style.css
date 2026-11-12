@@ -74,7 +74,7 @@ mark.todo{background:#ffe9a8;color:#5a4300;border-radius:6px;padding:0 .35em;fon
 
 /* ---------- hero ---------- */
 .hero{max-width:var(--max);margin:0 auto;padding:clamp(110px,15vh,150px) var(--pad) clamp(60px,8vw,110px);display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,70px);align-items:center;min-height:100svh}
-.hero__title{font-size:clamp(40px,5.6vw,88px);margin:26px 0 24px;letter-spacing:-.045em;line-height:.98}
+.hero__title{font-size:clamp(40px,4.7vw,80px);margin:26px 0 24px;letter-spacing:-.045em;line-height:.98}
 .hero__title .line{display:block}
 .hero__title em{font-size:1.12em}
 .hero__lead{font-size:clamp(17px,1.35vw,20px);color:var(--ink-2);max-width:34em}
@@ -430,3 +430,90 @@ html.win-open{overflow:hidden}
 .step{border-top:0}
 .step::before{content:"";position:absolute;left:0;right:0;top:0;height:1.5px;background:var(--ink);transform:scaleX(var(--rule,1));transform-origin:0 50%}
 .svc-card__img{cursor:pointer}
+
+/* ===== v3: decoration + performance ===== */
+/* chart rows: two pre-rendered layers (sharp / blurred), only opacity animates */
+.chart__row{filter:none!important;position:relative;display:block}
+.chart__row .rs,.chart__row .rb{display:flex;gap:calc(var(--s)*.5em);justify-content:center}
+.chart__row .rs{opacity:0;will-change:opacity}
+.chart__row .rb{position:absolute;inset:0;filter:blur(var(--bl,8px));will-change:opacity}
+.chart.no-anim .chart__row .rs{opacity:1}.chart.no-anim .chart__row .rb{opacity:0}
+
+/* stacked cards: dim with an overlay instead of a filter */
+.svc-card__shade{position:absolute;inset:0;background:var(--ink);opacity:0;pointer-events:none;z-index:3;will-change:opacity}
+.svc-card{filter:none!important}
+
+/* lighter header on touch devices (backdrop-filter is costly while scrolling) */
+@media (max-width:900px){.top__in{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(242,244,243,.97)}}
+
+.lens,.ring,.hero__visual,.tile img,.svc-card__img img,.about__img img,.marquee__track,.bigword span{will-change:transform}
+
+/* hand-drawn underline */
+.scribble{position:relative;display:inline-block;white-space:nowrap}
+.scribble__svg{position:absolute;left:-2%;bottom:-.24em;width:104%;height:.32em;overflow:visible;pointer-events:none}
+.scribble__svg path{fill:none;stroke:var(--teal);stroke-width:4;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.scribble__svg path + path{stroke-width:2.5;opacity:.7}
+
+/* marker highlight */
+mark.hl{background:none;color:inherit;position:relative;z-index:0;white-space:nowrap;font-weight:600}
+mark.hl::before{content:"";position:absolute;left:-.15em;right:-.15em;bottom:.08em;height:.5em;background:var(--teal);opacity:.38;border-radius:.2em;z-index:-1;transform:scaleX(var(--hl,1)) skewX(-8deg);transform-origin:0 50%;transition:transform .9s var(--ease)}
+.js-anim mark.hl:not(.is-on)::before{transform:scaleX(0) skewX(-8deg)}
+
+/* orbits around the hero lens */
+.hero__orbits{position:absolute;inset:-6%;width:112%;height:112%;overflow:visible;pointer-events:none}
+.hero__orbits circle{fill:none;stroke:var(--ink);stroke-opacity:.18;stroke-width:1.2}
+.hero__orbits .dot-f{fill:var(--teal);stroke:none}
+.hero__orbits .dot-f--ink{fill:var(--ink)}
+.hero{position:relative}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background-image:radial-gradient(rgba(14,34,56,.13) 1px,transparent 1.2px);background-size:22px 22px;-webkit-mask-image:radial-gradient(ellipse 60% 70% at 75% 50%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 60% 70% at 75% 50%,#000 20%,transparent 75%)}
+
+/* giant outlined words */
+.svc,.reviews{position:relative;overflow:hidden}
+.bigword{position:absolute;left:0;top:clamp(30px,5vw,70px);white-space:nowrap;pointer-events:none;z-index:0;line-height:1}
+.bigword span{display:inline-block;font-size:clamp(90px,15vw,240px);font-weight:700;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px rgba(14,34,56,.09)}
+.bigword--rev span{-webkit-text-stroke-color:rgba(15,127,124,.14)}
+.svc > .sec-head,.svc > .stack,.reviews > .sec-head,.reviews > .rev-grid{position:relative;z-index:1}
+
+/* diopter ruler divider */
+.ruler{position:relative;max-width:var(--max);margin:0 auto;padding:0 var(--pad);height:46px}
+.ruler__ticks{position:absolute;left:var(--pad);right:var(--pad);top:0;height:18px;background:
+  repeating-linear-gradient(90deg,var(--ink) 0 1px,transparent 1px 100%) 0 0/60px 18px repeat-x,
+  repeating-linear-gradient(90deg,rgba(14,34,56,.35) 0 1px,transparent 1px 100%) 0 0/12px 9px repeat-x;transform-origin:0 50%}
+.ruler__mark{position:absolute;top:24px;left:var(--pad);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-d);padding-left:12px;will-change:transform}
+.ruler__mark::before{content:"";position:absolute;left:0;top:-26px;width:2px;height:22px;background:var(--teal);border-radius:2px}
+.chart .ruler{margin-bottom:0}
+.faq .ruler{margin-top:clamp(50px,7vw,90px)}
+
+/* statement */
+.state{position:relative;overflow:hidden;max-width:var(--max);margin:0 auto;padding:clamp(70px,10vw,150px) var(--pad)}
+.state__txt{position:relative;z-index:1;font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.035em;line-height:1.12;max-width:17em}
+.state__txt .sw{opacity:.14;transition:none;will-change:opacity}
+.state__accent{color:var(--teal-d)}
+.state__sign{position:relative;z-index:1;margin-top:28px;font-family:var(--f-it);font-style:italic;font-size:clamp(20px,2vw,28px);color:var(--mute)}
+.state__rings{position:absolute;right:-8%;top:50%;width:clamp(260px,40vw,560px);height:auto;transform:translateY(-50%);z-index:0;opacity:.9}
+.state__rings circle,.state__rings path{fill:none;stroke:var(--teal);stroke-opacity:.35;stroke-width:1.2}
+
+/* line-art glasses in About */
+.about{position:relative}
+.glasses-art{position:absolute;right:var(--pad);top:clamp(40px,6vw,90px);width:clamp(140px,16vw,230px);height:auto;overflow:visible}
+.glasses-art path{fill:none;stroke:var(--teal-d);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* reviews: big quote mark */
+.rev--big{position:relative;overflow:hidden}
+.rev--big::before{content:"“";position:absolute;right:14px;top:-34px;font-family:var(--f-it);font-style:italic;font-size:260px;line-height:1;color:var(--teal);opacity:.22;pointer-events:none}
+
+/* section kickers get a short leading rule */
+.kicker{display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:28px;height:1.5px;background:currentColor;flex:none}
+
+/* buttons: light sweep on hover (transform only) */
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s var(--ease)}
+.btn:hover::after{transform:translateX(120%)}
+
+@media (max-width:900px){
+  .glasses-art{position:relative;right:auto;top:auto;display:block;margin:-10px auto 0;width:150px}
+  .state__rings{right:-30%;opacity:.6}
+  .bigword{top:20px}
+}
+@media (prefers-reduced-motion:reduce){.state__txt .sw{opacity:1}}

@@ -95,9 +95,9 @@
       <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Мережа оптик · щодня 9:00–19:00</p>
       <h1 id="hero-title" class="hero__title" data-focus>
         <span class="line">Окуляри, в яких</span>
-        <span class="line">світ <em>знову чіткий</em></span>
+        <span class="line">світ <span class="scribble"><em>знову чіткий</em><svg class="scribble__svg" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true"><path d="M3 15c40-8 92-12 148-9 46 2 90 4 146-3"/><path d="M40 21c60-6 130-7 220-4"/></svg></span></span>
       </h1>
-      <p class="hero__lead">Безкоштовна перевірка зору, великий вибір оправ і лінзи точно під ваш рецепт. Приходьте: підберемо окуляри, які приємно носити щодня.</p>
+      <p class="hero__lead"><mark class="hl">Безкоштовна перевірка зору</mark>, великий вибір оправ і лінзи точно під ваш рецепт. Приходьте: підберемо окуляри, які приємно носити щодня.</p>
       <div class="hero__cta">
         <a class="btn btn--primary" href="#zapys">Записатися на перевірку зору <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a class="btn btn--ghost" href="tel:+380675000829"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg> Зателефонувати</a>
@@ -110,6 +110,7 @@
     </div>
 
     <div class="hero__visual">
+      <svg class="hero__orbits" viewBox="0 0 600 600" aria-hidden="true"><circle cx="300" cy="300" r="296" stroke-dasharray="2 10"/><circle cx="300" cy="300" r="262"/><circle cx="560" cy="160" r="9" class="dot-f"/><circle cx="70" cy="420" r="6" class="dot-f dot-f--ink"/></svg>
       <div class="lens" data-lens>
         <img class="lens__img" src="https://images.unsplash.com/photo-1525786210598-d527194d3e9a?auto=format&fit=crop&w=1100&h=1100&q=70" srcset="https://images.unsplash.com/photo-1525786210598-d527194d3e9a?auto=format&fit=crop&w=640&h=640&q=70 640w, https://images.unsplash.com/photo-1525786210598-d527194d3e9a?auto=format&fit=crop&w=1100&h=1100&q=70 1100w" sizes="(max-width: 900px) 86vw, 46vw" alt="Жінка в окулярах у чорній оправі" width="1100" height="1100" fetchpriority="high">
         <span class="lens__reticle" aria-hidden="true"></span>
@@ -131,7 +132,7 @@
       <div class="chart__intro">
         <p class="kicker">01 · Перевірка зору</p>
         <h2 id="chart-title">Прочитайте таблицю.<br><em>Ми зробимо решту.</em></h2>
-        <p>Оптометрист перевірить гостроту зору на сучасному обладнанні, без поспіху і безкоштовно. Ви отримаєте точні дані для окулярів або контактних лінз.</p>
+        <p>Оптометрист перевірить гостроту зору на сучасному обладнанні, без поспіху і <mark class="hl">безкоштовно</mark>. Ви отримаєте точні дані для окулярів або контактних лінз.</p>
         <div class="diopter" aria-hidden="true">
           <span class="diopter__label">Корекція</span>
           <span class="diopter__val" data-diopter>−2.75</span>
@@ -172,10 +173,12 @@
         <p>Підганяємо посадку, щоб окуляри не тиснули й не сповзали. Подбаємо про них і після покупки.</p>
       </li>
     </ol>
+    <div class="ruler" aria-hidden="true"><span class="ruler__ticks"></span><span class="ruler__mark">0.00 D</span></div>
   </section>
 
   <!-- ============ SERVICES (stacked cards + windows) ============ -->
   <section class="svc" id="poslugy" aria-labelledby="svc-title">
+    <div class="bigword" aria-hidden="true"><span>Перевірка · Оправи · Лінзи · Догляд · Перевірка · Оправи · Лінзи · Догляд ·</span></div>
     <div class="sec-head">
       <p class="kicker">02 · Послуги</p>
       <h2 id="svc-title">Що ми робимо <em>для ваших очей</em></h2>
@@ -307,6 +310,13 @@
     </div>
   </section>
 
+  <!-- ============ STATEMENT ============ -->
+  <section class="state" aria-label="Наша філософія">
+    <svg class="state__rings" viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="196"/><circle cx="200" cy="200" r="150"/><circle cx="200" cy="200" r="104"/><circle cx="200" cy="200" r="58"/><path d="M200 0v40M200 360v40M0 200h40M360 200h40"/></svg>
+    <p class="state__txt" data-state>Добрий зір — це <em>не розкіш.</em> Це ранкова кава без мружіння, дорога додому без утоми і улюблена книжка, яку не треба тримати <span class="state__accent">на витягнутій руці.</span></p>
+    <p class="state__sign">— команда Оптика 1st</p>
+  </section>
+
   <!-- ============ LENSES: before / after ============ -->
   <section class="lenses" id="linzy" aria-labelledby="lenses-title">
     <div class="sec-head sec-head--light">
@@ -340,10 +350,11 @@
     <div class="about__img">
       <img loading="lazy" src="https://images.unsplash.com/photo-1604781099561-c70393a38a6d?auto=format&fit=crop&w=900&h=1100&q=70" alt="Усміхнена жінка в окулярах" width="900" height="1100">
     </div>
+    <svg class="glasses-art" viewBox="0 0 320 120" aria-hidden="true"><path d="M20 52c0-14 10-22 26-22h50c16 0 26 8 26 22v6c0 26-14 40-44 40h-14c-28 0-44-16-44-40z"/><path d="M198 52c0-14 10-22 26-22h50c16 0 26 8 26 22v6c0 26-16 40-44 40h-14c-30 0-44-14-44-40z"/><path d="M122 50c10-10 28-10 38 0s28 10 38 0"/><path d="M20 46 4 34M300 46l16-12"/></svg>
     <div class="about__txt">
       <p class="kicker">05 · Про нас</p>
       <h2 id="about-title">Оптика, куди <em>хочеться повертатися</em></h2>
-      <p class="about__big">Ми — мережа оптик, де перевірити зір, обрати оправу й замовити лінзи можна за один візит.</p>
+      <p class="about__big">Ми — мережа оптик, де перевірити зір, обрати оправу й замовити лінзи можна <mark class="hl">за один візит</mark>.</p>
       <p>Без черг і зайвої метушні: оптометрист спокійно пояснить результат перевірки, консультант допоможе з оправою, а ви підете з упевненістю, що окуляри підібрані саме під вас. Тут же можна купити контактні лінзи, засоби догляду, футляри й аксесуари.</p>
       <ul class="stats">
         <li><b data-count="7">7</b><span>днів на тиждень, з 9:00 до 19:00</span></li>
@@ -373,6 +384,7 @@
 
   <!-- ============ REVIEWS ============ -->
   <section class="reviews" id="vidguky" aria-labelledby="rev-title">
+    <div class="bigword bigword--rev" aria-hidden="true"><span>Дякуємо · Дякуємо · Дякуємо · Дякуємо · Дякуємо · Дякуємо ·</span></div>
     <div class="sec-head">
       <p class="kicker">06 · Відгуки</p>
       <h2 id="rev-title">Що кажуть <em>наші клієнти</em></h2>
@@ -425,6 +437,7 @@
         <p>Загальне правило: оправа має контрастувати з формою обличчя. До круглого пасують прямокутні, до квадратного — круглі й овальні. Але найкраще просто приміряти кілька варіантів разом із консультантом.</p>
       </details>
     </div>
+    <div class="ruler" aria-hidden="true"><span class="ruler__ticks"></span><span class="ruler__mark">Чекаємо вас</span></div>
   </section>
 
   <!-- ============ CONTACTS ============ -->

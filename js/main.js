@@ -265,9 +265,35 @@
     closeWin(function () { prefill(s.title + ' — ' + winOpt, s.kind); });
   });
 
+  /* eye chart rows: build a sharp layer and a pre-blurred layer (blur is painted once, only opacity animates) */
+  $$('.chart__row').forEach(function (r, i) {
+    var html = r.innerHTML;
+    r.innerHTML = '<span class="rs">' + html + '</span><span class="rb" aria-hidden="true">' + html + '</span>';
+    r.style.setProperty('--bl', (5 + i * 1.4) + 'px');
+  });
+
+  /* statement: split into words for the scroll highlight */
+  var stateTxt = $('[data-state]');
+  if (stateTxt) {
+    (function wrap(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function (t) {
+            if (!t) return;
+            if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(' ')); return; }
+            var s = document.createElement('span'); s.className = 'sw'; s.textContent = t; frag.appendChild(s);
+          });
+          node.replaceChild(frag, n);
+        } else if (n.nodeType === 1) { wrap(n); }
+      });
+    })(stateTxt);
+  }
+
   /* ================= animations ================= */
   if (!anim) {
-    $$('.chart__row').forEach(function (r) { r.style.setProperty('--b', 0); });
+    $('.chart').classList.add('no-anim');
+    $$('mark.hl').forEach(function (m) { m.classList.add('is-on'); });
     $('.chart').classList.add('is-sharp');
     var d = $('[data-diopter]'); if (d) d.textContent = '0.00';
     return;
@@ -277,7 +303,8 @@
   gsap.registerPlugin(ScrollTrigger);
 
   if (typeof window.Lenis !== 'undefined') {
-    lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1 });
+    ScrollTrigger.config({ ignoreMobileResize: true });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
     gsap.ticker.lagSmoothing(0);
@@ -299,18 +326,24 @@
   gsap.to('.lens__reticle', { rotate: 90, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
 
   /* signature: eye chart comes into focus while pinned */
-  var rows = $$('.chart__row'), dEl = $('[data-diopter]');
-  var state = { p: 0 };
+  var rows = $$('.chart__row'), dEl = $('[data-diopter]'), chartEl = $('.chart');
+  var layers = rows.map(function (r) { return [$('.rs', r), $('.rb', r), -1]; });
+  var state = { p: 0 }, lastTxt = '';
   function renderChart() {
     var n = rows.length;
-    rows.forEach(function (r, i) {
+    layers.forEach(function (l, i) {
       // each row starts sharpening a bit later; smaller rows stay blurry longer
-      var local = Math.min(1, Math.max(0, (state.p * (n + 2) - i) / 3));
-      r.style.setProperty('--b', ((1 - local) * (6 + i * 1.6)).toFixed(2));
+      var local = Math.round(Math.min(1, Math.max(0, (state.p * (n + 2) - i) / 3)) * 100) / 100;
+      if (local === l[2]) return;
+      l[2] = local;
+      l[0].style.opacity = local;
+      l[1].style.opacity = 1 - local;
     });
     var v = -2.75 * (1 - state.p);
-    dEl.textContent = (v < -0.004 ? '−' : '') + Math.abs(v).toFixed(2);
-    $('.chart').classList.toggle('is-sharp', state.p > .97);
+    var txt = (v < -0.004 ? '−' : '') + Math.abs(v).toFixed(2);
+    if (txt !== lastTxt) { dEl.textContent = txt; lastTxt = txt; }
+    var sharp = state.p > .97;
+    if (sharp !== chartEl.classList.contains('is-sharp')) chartEl.classList.toggle('is-sharp', sharp);
   }
   renderChart();
   gsap.to(state, {
@@ -409,7 +442,7 @@
     var tl = gsap.timeline({ scrollTrigger: { trigger: h, start: 'top 86%', once: true } });
     tl.from(words, { yPercent: 115, rotate: 4, duration: 1, ease: 'power4.out', stagger: .06 });
     var ems = $$('em', h);
-    if (ems.length) tl.fromTo(ems, { filter: 'blur(10px)' }, { filter: 'blur(0px)', duration: 1.1, ease: 'power2.out' }, .25);
+    if (ems.length) tl.fromTo(ems, { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 1, ease: 'power2.out' }, .25);
   });
 
   /* hero: lens grows and drifts as you leave the first screen */
@@ -428,10 +461,10 @@
     gsap.fromTo(img, { scale: 1.25 }, { scale: 1.02, ease: 'none', scrollTrigger: { trigger: c, start: 'top bottom', end: 'top 20%', scrub: true } });
     gsap.from($$('.svc-card__txt > *', c), { y: 40, opacity: 0, duration: .9, stagger: .07, ease: 'power3.out', scrollTrigger: { trigger: c, start: 'top 75%', once: true } });
     if (i === cards.length - 1) return;
-    gsap.fromTo(c, { scale: 1, filter: 'brightness(1)' }, {
-      scale: 1 - (cards.length - i) * 0.03, filter: 'brightness(.86)', ease: 'none',
-      scrollTrigger: { trigger: cards[i + 1], start: 'top bottom', end: 'top ' + (96 + (i + 1) * 16) + 'px', scrub: true }
-    });
+    var shade = document.createElement('div'); shade.className = 'svc-card__shade'; c.appendChild(shade);
+    var st = { trigger: cards[i + 1], start: 'top bottom', end: 'top ' + (96 + (i + 1) * 16) + 'px', scrub: true };
+    gsap.fromTo(c, { scale: 1 }, { scale: 1 - (cards.length - i) * 0.03, ease: 'none', force3D: true, scrollTrigger: st });
+    gsap.fromTo(shade, { opacity: 0 }, { opacity: .14, ease: 'none', scrollTrigger: st });
   });
 
   /* catalogue tiles: shutter (clip-path) reveal */
@@ -447,13 +480,59 @@
   gsap.from('.prod', { x: 120, opacity: 0, rotate: 3, duration: 1, stagger: .07, ease: 'power3.out', scrollTrigger: { trigger: '.shelf', start: 'top 85%', once: true } });
 
   /* about: iris-opening photo reveal */
-  gsap.fromTo('.about__img', { clipPath: 'circle(8% at 50% 45%)' }, { clipPath: 'circle(75% at 50% 45%)', ease: 'none', scrollTrigger: { trigger: '.about', start: 'top 85%', end: 'top 25%', scrub: .6 } });
+  // played once (not scrubbed) so the clip-path is painted only during a short reveal
+  gsap.fromTo('.about__img', { clipPath: 'circle(8% at 50% 45%)' }, { clipPath: 'circle(75% at 50% 45%)', duration: 1.6, ease: 'expo.inOut', clearProps: 'clipPath', scrollTrigger: { trigger: '.about', start: 'top 70%', once: true } });
 
   /* reviews: cards tilt into place */
   gsap.from('.rev', { y: 80, rotate: function (i) { return [-4, 3, -2][i % 3]; }, opacity: 0, duration: 1.1, stagger: .12, ease: 'power3.out', scrollTrigger: { trigger: '.rev-grid', start: 'top 80%', once: true } });
 
   /* lenses section: corners round in as it enters */
-  gsap.fromTo('.lenses', { borderRadius: 0, scale: .96 }, { borderRadius: 48, scale: 1, ease: 'none', scrollTrigger: { trigger: '.lenses', start: 'top bottom', end: 'top 30%', scrub: true } });
+  gsap.fromTo('.lenses', { scale: .95 }, { scale: 1, ease: 'none', force3D: true, scrollTrigger: { trigger: '.lenses', start: 'top bottom', end: 'top 30%', scrub: true } });
+
+  /* ---------- v3: decoration motion (transform / opacity / stroke only) ---------- */
+
+  /* hand-drawn underline under the hero accent */
+  $$('.scribble__svg path').forEach(function (p, i) {
+    var L = p.getTotalLength ? p.getTotalLength() : 400;
+    gsap.fromTo(p, { strokeDasharray: L, strokeDashoffset: L }, { strokeDashoffset: 0, duration: 1.1, delay: 1.1 + i * .25, ease: 'power2.inOut' });
+  });
+
+  /* marker highlights sweep in */
+  $$('mark.hl').forEach(function (m) {
+    ScrollTrigger.create({ trigger: m, start: 'top 85%', once: true, onEnter: function () { setTimeout(function () { m.classList.add('is-on'); }, 250); } });
+  });
+
+  /* hero orbits: slow spin + drift with scroll */
+  gsap.to('.hero__orbits', { rotate: 360, duration: 90, ease: 'none', repeat: -1, transformOrigin: '50% 50%' });
+  gsap.from('.hero__orbits', { scale: .8, opacity: 0, duration: 1.6, ease: 'expo.out', delay: .3 });
+
+  /* giant outlined words slide sideways */
+  $$('.bigword span').forEach(function (w, i) {
+    gsap.fromTo(w, { xPercent: i % 2 ? -30 : 0 }, { xPercent: i % 2 ? 0 : -30, ease: 'none', scrollTrigger: { trigger: w.closest('section'), start: 'top bottom', end: 'bottom top', scrub: .5 } });
+  });
+
+  /* diopter ruler: ticks draw, marker slides to the end */
+  $$('.ruler').forEach(function (r) {
+    var ticks = $('.ruler__ticks', r), mark = $('.ruler__mark', r);
+    gsap.fromTo(ticks, { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: 'power3.inOut', scrollTrigger: { trigger: r, start: 'top 92%', once: true } });
+    gsap.fromTo(mark, { x: 0 }, { x: function () { return Math.max(0, ticks.offsetWidth - mark.offsetWidth - 10); }, ease: 'none', scrollTrigger: { trigger: r, start: 'top 95%', end: 'top 35%', scrub: .5, invalidateOnRefresh: true } });
+  });
+
+  /* statement: words light up while you read */
+  var sws = $$('.state__txt .sw');
+  if (sws.length) {
+    gsap.to(sws, { opacity: 1, ease: 'none', stagger: .1, scrollTrigger: { trigger: '.state', start: 'top 70%', end: 'bottom 60%', scrub: .4 } });
+    gsap.fromTo('.state__rings', { rotate: -40, scale: .85 }, { rotate: 40, scale: 1.05, ease: 'none', transformOrigin: '50% 50%', scrollTrigger: { trigger: '.state', start: 'top bottom', end: 'bottom top', scrub: .5 } });
+    gsap.from('.state__sign', { opacity: 0, x: -20, duration: .9, scrollTrigger: { trigger: '.state__sign', start: 'top 90%', once: true } });
+  }
+
+  /* line-art glasses draw themselves */
+  var gPaths = $$('.glasses-art path');
+  if (gPaths.length) {
+    gPaths.forEach(function (p) { var L = p.getTotalLength(); gsap.set(p, { strokeDasharray: L, strokeDashoffset: L }); });
+    gsap.to(gPaths, { strokeDashoffset: 0, duration: 1.6, stagger: .18, ease: 'power2.inOut', scrollTrigger: { trigger: '.about', start: 'top 70%', once: true } });
+    gsap.to('.glasses-art', { y: -30, rotate: -4, ease: 'none', scrollTrigger: { trigger: '.about', start: 'top bottom', end: 'bottom top', scrub: .6 } });
+  }
 
   /* custom cursor (desktop with mouse only) */
   if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
