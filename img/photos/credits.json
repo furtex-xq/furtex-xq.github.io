@@ -1,0 +1,68 @@
+[
+ {
+  "slot": "hero",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1546933751-ab7b6e888c66",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "audio",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1776176359206-a1d34436ddff",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "detail",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1708805282695-ef186db20192",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "inside",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1602506608630-8c2c5312dc8d",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "tint",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1768853143263-72d7e744bbc2",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "garage",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1781621462379-0c706acb8988",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "w1",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1631980048040-0f123527f1b0",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "w2",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1549207107-2704df6b92ab",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "w3",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1620584898989-d39f7f9ed1b7",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "w4",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1646531840695-62810bcd1171",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "w5",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1786052073421-c2a8d74eb6fe",
+  "license": "Unsplash License"
+ }
+]
