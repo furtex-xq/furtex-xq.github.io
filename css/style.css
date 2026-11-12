@@ -414,3 +414,16 @@ body{background:var(--paper);font-size:16.5px}
 .dock{border-radius:4px;background:rgba(13,14,15,.96)}
 .dock a{border-radius:2px}
 .dock .dock__main{background:var(--pine);color:#fff}
+
+/* ===== анімації ===== */
+.scan{position:relative}
+.scan__bar{position:absolute;left:0;right:0;top:50%;height:3px;margin-top:-1.5px;background:var(--pine);transform:scaleX(0);pointer-events:none}
+.steps{position:relative}
+.steps__rail{position:absolute;left:-18px;top:0;bottom:0;width:2px;background:var(--pine);transform-origin:top;transform:scaleY(0)}
+.step{transition:opacity .4s}
+.step h3{transition:color .4s}
+.step.is-lit h3{color:var(--pine)}
+.progress{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--pine);transform:scaleX(0);transform-origin:left;pointer-events:none}
+.btn{will-change:transform}
+@media (max-width:900px){.steps__rail{left:-10px}}
+@media (prefers-reduced-motion:reduce){.scan__bar,.steps__rail,.progress{display:none}}
