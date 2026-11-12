@@ -20,7 +20,7 @@
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Manrope:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="css/style.css">
 <script>
   /* show the intro once per visit, never for reduced motion */
@@ -150,11 +150,29 @@
   <!-- FIGURES (all from the client's own site) -->
   <section class="stats" aria-label="GRAND-GRANIT у цифрах">
     <ul class="wrap stats__in">
-      <li><span class="stats__n"><span data-count="since2008">18</span></span><span class="stats__l">років працюємо з гранітом</span></li>
-      <li><span class="stats__n"><span data-count="2">2</span></span><span class="stats__l">види каменю: граніт і мармур</span></li>
-      <li><span class="stats__n"><span data-count="6">6</span>+</span><span class="stats__l">міст регулярної доставки й монтажу</span></li>
-      <li><span class="stats__n"><span data-count="0">0</span>%</span><span class="stats__l">переплати в розстрочці на пам'ятники</span></li>
+      <li class="frame"><span class="stats__n"><span data-count="since2008">18</span></span><span class="stats__l">років працюємо з гранітом</span></li>
+      <li class="frame"><span class="stats__n"><span data-count="2">2</span></span><span class="stats__l">види каменю: граніт і мармур</span></li>
+      <li class="frame"><span class="stats__n"><span data-count="6">6</span>+</span><span class="stats__l">міст регулярної доставки й монтажу</span></li>
+      <li class="frame"><span class="stats__n"><span data-count="0">0</span>%</span><span class="stats__l">переплати в розстрочці на пам'ятники</span></li>
     </ul>
+  </section>
+
+  <!-- WHY US (facts from the client's site) -->
+  <section class="sec sec--stone why" aria-labelledby="why-title">
+    <div class="wrap">
+      <div class="sec__head">
+        <p class="eyebrow">Чому GRAND-GRANIT</p>
+        <h2 id="why-title" class="h2">Шість причин довірити нам камінь</h2>
+      </div>
+      <ul class="why__grid">
+        <li class="frame"><span class="why__k">з 2008</span><h3>Досвід</h3><p>Понад 18 років працюємо з гранітом, з 2012 року також з мармуром.</p></li>
+        <li class="frame"><span class="why__k">гама</span><h3>Житомирський граніт</h3><p>Великий вибір кольорів і фактур для пам'ятників та інтер'єру.</p></li>
+        <li class="frame"><span class="why__k">будь-яка</span><h3>Складність і товщина</h3><p>Виготовляємо нестандартні вироби за вашим ескізом.</p></li>
+        <li class="frame"><span class="why__k">мистецтво</span><h3>Художнє оформлення</h3><p>Якісне виконання написів і зображень на камені.</p></li>
+        <li class="frame"><span class="why__k">6+ міст</span><h3>Доставка й монтаж</h3><p>Калуш, Івано-Франківськ, Львів, Коломия, Долина, Стрий.</p></li>
+        <li class="frame"><span class="why__k">0%</span><h3>Розстрочка</h3><p>На пам'ятники без відсотків і переплат.</p></li>
+      </ul>
+    </div>
   </section>
 
   <!-- MONUMENTS -->
@@ -172,6 +190,34 @@
         <li><h3>Доставка та встановлення</h3><p>Привеземо й встановимо пам'ятник на місці, без додаткових клопотів для родини.</p></li>
         <li><h3>Розстрочка без відсотків</h3><p>Оплату за пам'ятник можна розділити на частини без переплат.</p></li>
       </ul>
+    </div>
+  
+
+    <div class="wrap pam-extra">
+      <div class="pricelist frame">
+        <h3 class="h3">Оформлення пам'ятника</h3>
+        <p class="pricelist__note">Демо-ціни, після купівлі сайту замінимо на ваші.</p>
+        <table>
+          <tbody>
+            <tr><th scope="row">Гравіювання портрета</th><td>від 2 500 грн</td></tr>
+            <tr><th scope="row">Напис, епітафія</th><td>від 40 грн / літера</td></tr>
+            <tr><th scope="row">Позолота літер</th><td>від 30 грн / літера</td></tr>
+            <tr><th scope="row">Гравіювання хреста, квітів</th><td>від 600 грн</td></tr>
+            <tr><th scope="row">Квітник із граніту</th><td>від 4 200 грн</td></tr>
+            <tr><th scope="row">Встановлення пам'ятника</th><td>від 3 500 грн</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="colors frame">
+        <h3 class="h3">Кольори граніту</h3>
+        <p class="pricelist__note">Приклади. Точну наявність підкажемо по телефону.</p>
+        <ul class="colors__list">
+          <li><span class="sw slab slab--black"></span><b>Чорний</b><small>класика для пам'ятників</small></li>
+          <li><span class="sw slab slab--grey"></span><b>Сірий</b><small>стільниці, сходи, бруківка</small></li>
+          <li><span class="sw slab slab--red"></span><b>Червоний</b><small>пам'ятники, фасади</small></li>
+          <li><span class="sw slab slab--marble"></span><b>Білий мармур</b><small>інтер'єр, каміни</small></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -193,94 +239,94 @@
         <button class="chip" type="button" data-cf="out" aria-pressed="false">Для вулиці</button>
       </div>
       <ul class="prods">
-        <li class="prod" data-cat="pam">
+        <li class="prod frame" data-cat="pam">
           <div class="prod__vis"><img src="img/photos/p-stele.jpg" alt="Стела класична — приклад виробу" loading="lazy" width="1000" height="750"><span class="prod__tag">фото-приклад</span></div>
           <h3 class="prod__name">Стела класична</h3>
-          <p class="prod__spec">Граніт · 100×50×8 см</p>
+          <dl class="prod__dl"><div><dt>Матеріал</dt><dd>Граніт</dd></div><div><dt>Розмір</dt><dd>100×50×8 см</dd></div><div><dt>Термін</dt><dd>від 14 днів</dd></div><div><dt>Монтаж</dt><dd>так</dd></div></dl>
           <div class="prod__row"><p class="prod__price"><small>від</small> 9 800 <small>грн</small></p><button class="prod__buy" type="button" data-product="Стела класична" data-kind="Пам'ятник або саркофаг">Замовити</button></div>
         </li>
-        <li class="prod" data-cat="pam">
+        <li class="prod frame" data-cat="pam">
           <div class="prod__vis"><img src="img/photos/p-arch.jpg" alt="Стела «Арка» — приклад виробу" loading="lazy" width="1000" height="750"><span class="prod__tag">фото-приклад</span></div>
           <h3 class="prod__name">Стела «Арка»</h3>
-          <p class="prod__spec">Граніт · 100×50×8 см</p>
+          <dl class="prod__dl"><div><dt>Матеріал</dt><dd>Граніт</dd></div><div><dt>Розмір</dt><dd>100×50×8 см</dd></div><div><dt>Термін</dt><dd>від 14 днів</dd></div><div><dt>Монтаж</dt><dd>так</dd></div></dl>
           <div class="prod__row"><p class="prod__price"><small>від</small> 11 500 <small>грн</small></p><button class="prod__buy" type="button" data-product="Стела «Арка»" data-kind="Пам'ятник або саркофаг">Замовити</button></div>
         </li>
-        <li class="prod" data-cat="pam">
+        <li class="prod frame" data-cat="pam">
           <div class="prod__vis"><img src="img/photos/p-wave.jpg" alt="Стела «Хвиля» — приклад виробу" loading="lazy" width="1000" height="750"><span class="prod__tag">фото-приклад</span></div>
           <h3 class="prod__name">Стела «Хвиля»</h3>
-          <p class="prod__spec">Граніт · 110×55×8 см</p>
+          <dl class="prod__dl"><div><dt>Матеріал</dt><dd>Граніт</dd></div><div><dt>Розмір</dt><dd>110×55×8 см</dd></div><div><dt>Термін</dt><dd>від 14 днів</dd></div><div><dt>Монтаж</dt><dd>так</dd></div></dl>
           <div class="prod__row"><p class="prod__price"><small>від</small> 12 900 <small>грн</small></p><button class="prod__buy" type="button" data-product="Стела «Хвиля»" data-kind="Пам'ятник або саркофаг">Замовити</button></div>
         </li>
-        <li class="prod" data-cat="pam">
+        <li class="prod frame" data-cat="pam">
           <div class="prod__vis"><img src="img/photos/p-cross.jpg" alt="Пам'ятник з хрестом — приклад виробу" loading="lazy" width="1000" height="750"><span class="prod__tag">фото-приклад</span></div>
           <h3 class="prod__name">Пам'ятник з хрестом</h3>
-          <p class="prod__spec">Граніт · 120×60×8 см</p>
+          <dl class="prod__dl"><div><dt>Матеріал</dt><dd>Граніт</dd></div><div><dt>Розмір</dt><dd>120×60×8 см</dd></div><div><dt>Термін</dt><dd>від 14 днів</dd></div><div><dt>Монтаж</dt><dd>так</dd></div></dl>
           <div class="prod__row"><p class="prod__price"><small>від</small> 14 500 <small>грн</small></p><button class="prod__buy" type="button" data-product="Пам'ятник з хрестом" data-kind="Пам'ятник або саркофаг">Замовити</button></div>
         </li>
-        <li class="prod" data-cat="pam">
+        <li class="prod frame" data-cat="pam">
           <div class="prod__vis"><img src="img/photos/p-double.jpg" alt="Подвійний пам'ятник — приклад виробу" loading="lazy" width="1000" height="750"><span class="prod__tag">фото-приклад</span></div>
           <h3 class="prod__name">Подвійний пам'ятник</h3>
-          <p class="prod__spec">Граніт · 100×100×8 см</p>
+          <dl class="prod__dl"><div><dt>Матеріал</dt><dd>Граніт</dd></div><div><dt>Розмір</dt><dd>100×100×8 см</dd></div><div><dt>Термін</dt><dd>від 14 днів</dd></div><div><dt>Монтаж</dt><dd>так</dd></div></dl>
           <div class="prod__row"><p class="prod__price"><small>від</small> 21 000 <small>грн</small></p><button class="prod__buy" type="button" data-product="Подвійний пам'ятник" data-kind="Пам'ятник або саркофаг">Замовити</button></div>
         </li>
-        <li class="prod" data-cat="pam">
+        <li class="prod frame" data-cat="pam">
           <div class="prod__vis"><img src="img/photos/p-sarc.jpg" alt="Саркофаг — приклад виробу" loading="lazy" width="1000" height="750"><span class="prod__tag">фото-приклад</span></div>
           <h3 class="prod__name">Саркофаг</h3>
-          <p class="prod__spec">Граніт · 180×80 см</p>
+          <dl class="prod__dl"><div><dt>Матеріал</dt><dd>Граніт</dd></div><div><dt>Розмір</dt><dd>180×80 см</dd></div><div><dt>Термін</dt><dd>від 14 днів</dd></div><div><dt>Монтаж</dt><dd>так</dd></div></dl>
           <div class="prod__row"><p class="prod__price"><small>від</small> 18 500 <small>грн</small></p><button class="prod__buy" type="button" data-product="Саркофаг" data-kind="Пам'ятник або саркофаг">Замовити</button></div>
         </li>
-        <li class="prod" data-cat="int">
+        <li class="prod frame" data-cat="int">
           <div class="prod__vis"><img src="img/photos/p-counter.jpg" alt="Кухонна стільниця — приклад виробу" loading="lazy" width="1000" height="750"><span class="prod__tag">фото-приклад</span></div>
           <h3 class="prod__name">Кухонна стільниця</h3>
-          <p class="prod__spec">Граніт · за погонний метр</p>
+          <dl class="prod__dl"><div><dt>Матеріал</dt><dd>Граніт</dd></div><div><dt>Розмір</dt><dd>за погонний метр</dd></div><div><dt>Термін</dt><dd>від 14 днів</dd></div><div><dt>Монтаж</dt><dd>так</dd></div></dl>
           <div class="prod__row"><p class="prod__price"><small>від</small> 6 500 <small>грн</small></p><button class="prod__buy" type="button" data-product="Кухонна стільниця" data-kind="Стільниця або барна стійка">Замовити</button></div>
         </li>
-        <li class="prod" data-cat="int">
+        <li class="prod frame" data-cat="int">
           <div class="prod__vis"><img src="img/photos/p-sill-granite.jpg" alt="Підвіконня з граніту — приклад виробу" loading="lazy" width="1000" height="750"><span class="prod__tag">фото-приклад</span></div>
           <h3 class="prod__name">Підвіконня з граніту</h3>
-          <p class="prod__spec">Граніт · за погонний метр</p>
+          <dl class="prod__dl"><div><dt>Матеріал</dt><dd>Граніт</dd></div><div><dt>Розмір</dt><dd>за погонний метр</dd></div><div><dt>Термін</dt><dd>від 14 днів</dd></div><div><dt>Монтаж</dt><dd>так</dd></div></dl>
           <div class="prod__row"><p class="prod__price"><small>від</small> 2 400 <small>грн</small></p><button class="prod__buy" type="button" data-product="Підвіконня з граніту" data-kind="Підвіконня">Замовити</button></div>
         </li>
-        <li class="prod" data-cat="int">
+        <li class="prod frame" data-cat="int">
           <div class="prod__vis"><img src="img/photos/p-sill-marble.jpg" alt="Підвіконня з мармуру — приклад виробу" loading="lazy" width="1000" height="750"><span class="prod__tag">фото-приклад</span></div>
           <h3 class="prod__name">Підвіконня з мармуру</h3>
-          <p class="prod__spec">Мармур · за погонний метр</p>
+          <dl class="prod__dl"><div><dt>Матеріал</dt><dd>Мармур</dd></div><div><dt>Розмір</dt><dd>за погонний метр</dd></div><div><dt>Термін</dt><dd>від 14 днів</dd></div><div><dt>Монтаж</dt><dd>так</dd></div></dl>
           <div class="prod__row"><p class="prod__price"><small>від</small> 3 200 <small>грн</small></p><button class="prod__buy" type="button" data-product="Підвіконня з мармуру" data-kind="Підвіконня">Замовити</button></div>
         </li>
-        <li class="prod" data-cat="int">
+        <li class="prod frame" data-cat="int">
           <div class="prod__vis"><img src="img/photos/p-step.jpg" alt="Сходинка — приклад виробу" loading="lazy" width="1000" height="750"><span class="prod__tag">фото-приклад</span></div>
           <h3 class="prod__name">Сходинка</h3>
-          <p class="prod__spec">Граніт · 1200×300×30 мм</p>
+          <dl class="prod__dl"><div><dt>Матеріал</dt><dd>Граніт</dd></div><div><dt>Розмір</dt><dd>1200×300×30 мм</dd></div><div><dt>Термін</dt><dd>від 14 днів</dd></div><div><dt>Монтаж</dt><dd>так</dd></div></dl>
           <div class="prod__row"><p class="prod__price"><small>від</small> 3 200 <small>грн</small></p><button class="prod__buy" type="button" data-product="Сходинка" data-kind="Сходи">Замовити</button></div>
         </li>
-        <li class="prod" data-cat="int">
+        <li class="prod frame" data-cat="int">
           <div class="prod__vis"><img src="img/photos/p-sink.jpg" alt="Мийка з мармуру — приклад виробу" loading="lazy" width="1000" height="750"><span class="prod__tag">фото-приклад</span></div>
           <h3 class="prod__name">Мийка з мармуру</h3>
-          <p class="prod__spec">Мармур · 500×400 мм</p>
+          <dl class="prod__dl"><div><dt>Матеріал</dt><dd>Мармур</dd></div><div><dt>Розмір</dt><dd>500×400 мм</dd></div><div><dt>Термін</dt><dd>від 14 днів</dd></div><div><dt>Монтаж</dt><dd>так</dd></div></dl>
           <div class="prod__row"><p class="prod__price"><small>від</small> 8 500 <small>грн</small></p><button class="prod__buy" type="button" data-product="Мийка з мармуру" data-kind="Інше">Замовити</button></div>
         </li>
-        <li class="prod" data-cat="int">
+        <li class="prod frame" data-cat="int">
           <div class="prod__vis"><img src="img/photos/p-portal.jpg" alt="Камінний портал — приклад виробу" loading="lazy" width="1000" height="750"><span class="prod__tag">фото-приклад</span></div>
           <h3 class="prod__name">Камінний портал</h3>
-          <p class="prod__spec">Мармур · під розмір топки</p>
+          <dl class="prod__dl"><div><dt>Матеріал</dt><dd>Мармур</dd></div><div><dt>Розмір</dt><dd>під розмір топки</dd></div><div><dt>Термін</dt><dd>від 14 днів</dd></div><div><dt>Монтаж</dt><dd>так</dd></div></dl>
           <div class="prod__row"><p class="prod__price"><small>від</small> 32 000 <small>грн</small></p><button class="prod__buy" type="button" data-product="Камінний портал" data-kind="Камін">Замовити</button></div>
         </li>
-        <li class="prod" data-cat="out">
+        <li class="prod frame" data-cat="out">
           <div class="prod__vis"><img src="img/photos/p-paver.jpg" alt="Гранітна бруківка — приклад виробу" loading="lazy" width="1000" height="750"><span class="prod__tag">фото-приклад</span></div>
           <h3 class="prod__name">Гранітна бруківка</h3>
-          <p class="prod__spec">Граніт · за м²</p>
+          <dl class="prod__dl"><div><dt>Матеріал</dt><dd>Граніт</dd></div><div><dt>Розмір</dt><dd>за м²</dd></div><div><dt>Термін</dt><dd>від 14 днів</dd></div><div><dt>Монтаж</dt><dd>так</dd></div></dl>
           <div class="prod__row"><p class="prod__price"><small>від</small> 1 350 <small>грн</small></p><button class="prod__buy" type="button" data-product="Гранітна бруківка" data-kind="Фасад або бруківка">Замовити</button></div>
         </li>
-        <li class="prod" data-cat="out">
+        <li class="prod frame" data-cat="out">
           <div class="prod__vis"><img src="img/photos/p-tile.jpg" alt="Фасадна плитка — приклад виробу" loading="lazy" width="1000" height="750"><span class="prod__tag">фото-приклад</span></div>
           <h3 class="prod__name">Фасадна плитка</h3>
-          <p class="prod__spec">Граніт · за м²</p>
+          <dl class="prod__dl"><div><dt>Матеріал</dt><dd>Граніт</dd></div><div><dt>Розмір</dt><dd>за м²</dd></div><div><dt>Термін</dt><dd>від 14 днів</dd></div><div><dt>Монтаж</dt><dd>так</dd></div></dl>
           <div class="prod__row"><p class="prod__price"><small>від</small> 1 700 <small>грн</small></p><button class="prod__buy" type="button" data-product="Фасадна плитка" data-kind="Фасад або бруківка">Замовити</button></div>
         </li>
-        <li class="prod" data-cat="out">
+        <li class="prod frame" data-cat="out">
           <div class="prod__vis"><img src="img/photos/p-porch.jpg" alt="Ступені ґанку — приклад виробу" loading="lazy" width="1000" height="750"><span class="prod__tag">фото-приклад</span></div>
           <h3 class="prod__name">Ступені ґанку</h3>
-          <p class="prod__spec">Граніт · за штуку</p>
+          <dl class="prod__dl"><div><dt>Матеріал</dt><dd>Граніт</dd></div><div><dt>Розмір</dt><dd>за штуку</dd></div><div><dt>Термін</dt><dd>від 14 днів</dd></div><div><dt>Монтаж</dt><dd>так</dd></div></dl>
           <div class="prod__row"><p class="prod__price"><small>від</small> 3 800 <small>грн</small></p><button class="prod__buy" type="button" data-product="Ступені ґанку" data-kind="Сходи">Замовити</button></div>
         </li>
       </ul>
@@ -362,7 +408,7 @@
         <p class="lead">Підкажемо, який камінь підійде саме для вашого виробу. Коротко про різницю:</p>
       </div>
       <div class="mats">
-        <article class="mat" data-reveal>
+        <article class="mat frame" data-reveal>
           <div class="mat__slab mat__slab--photo" data-parallax aria-hidden="true" style="background-image:url(img/photos/mat-granite.jpg)"></div>
           <div class="mat__body">
             <h3 class="h3">Граніт</h3>
@@ -375,7 +421,7 @@
             </ul>
           </div>
         </article>
-        <article class="mat" data-reveal>
+        <article class="mat frame" data-reveal>
           <div class="mat__slab mat__slab--photo" data-parallax aria-hidden="true" style="background-image:url(img/photos/mat-marble.jpg)"></div>
           <div class="mat__body">
             <h3 class="h3">Мармур</h3>
@@ -463,9 +509,9 @@
         <h2 id="rev-title" class="h2">Що кажуть наші клієнти</h2>
       </div>
       <ul class="reviews" data-stagger>
-        <li class="review"><blockquote>Тут буде справжній відгук клієнта GRAND-GRANIT.</blockquote><p class="review__who">Ім'я клієнта, місто</p></li>
-        <li class="review"><blockquote>Тут буде справжній відгук клієнта GRAND-GRANIT.</blockquote><p class="review__who">Ім'я клієнта, місто</p></li>
-        <li class="review"><blockquote>Тут буде справжній відгук клієнта GRAND-GRANIT.</blockquote><p class="review__who">Ім'я клієнта, місто</p></li>
+        <li class="review frame"><blockquote>Тут буде справжній відгук клієнта GRAND-GRANIT.</blockquote><p class="review__who">Ім'я клієнта, місто</p></li>
+        <li class="review frame"><blockquote>Тут буде справжній відгук клієнта GRAND-GRANIT.</blockquote><p class="review__who">Ім'я клієнта, місто</p></li>
+        <li class="review frame"><blockquote>Тут буде справжній відгук клієнта GRAND-GRANIT.</blockquote><p class="review__who">Ім'я клієнта, місто</p></li>
       </ul>
     </div>
   </section>
@@ -525,7 +571,7 @@
         <p class="eyebrow">Контакти</p>
         <h2 id="ct-title" class="h2">Розкажіть, що вам потрібно</h2>
         <p class="lead">Зателефонуйте або залиште заявку, і ми передзвонимо, щоб уточнити деталі й вартість.</p>
-        <ul class="cl">
+        <ul class="cl frame">
           <li><svg class="ic ic--lg" aria-hidden="true"><use href="#i-phone"/></svg><span><small>Телефон</small><a href="tel:+380962086415">+38 096 208 64 15</a></span></li>
           <li><svg class="ic ic--lg" aria-hidden="true"><use href="#i-mail"/></svg><span><small>Email</small><a href="mailto:grand-granit@ukr.net">grand-granit@ukr.net</a></span></li>
           <li><svg class="ic ic--lg" aria-hidden="true"><use href="#i-pin"/></svg><span><small>Адреса</small>вул. Олени Пчілки, 68 (2-й поверх), 77300 Калуш</span></li>
