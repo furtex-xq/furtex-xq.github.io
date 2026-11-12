@@ -5,6 +5,7 @@ on:
     branches: ["beta/grand-granit"]
     paths:
       - "tools/queries.json"
+      - "tools/urls.json"
       - "tools/chosen.json"
       - "tools/fetch_photos.py"
 
@@ -25,7 +26,7 @@ jobs:
           python-version: "3.12"
       - name: Fetch photos
         run: |
-          if [ -f tools/chosen.json ]; then python tools/fetch_photos.py --chosen; else python tools/fetch_photos.py --unsplash; fi
+          if [ -f tools/chosen.json ]; then python tools/fetch_photos.py --chosen; else python tools/fetch_photos.py --urls; fi
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"

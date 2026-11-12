@@ -97,6 +97,17 @@ def unsplash_candidates():
         print("unsplash", slot, len(allc[slot]))
     json.dump(allc, open(os.path.join(outdir, "unsplash.json"), "w"), ensure_ascii=False, indent=1)
 
+def url_candidates():
+    d = json.load(open(os.path.join(ROOT, "tools/urls.json")))
+    outdir = os.path.join(ROOT, "tools/candidates"); os.makedirs(outdir, exist_ok=True)
+    for slot, urls in d.items():
+        for i, u in enumerate(urls):
+            try:
+                download(u + "?auto=format&fm=jpg&fit=max&w=480&q=60", os.path.join(outdir, f"x-{slot}-{i}.jpg"))
+            except Exception as e:
+                print("dl fail", u, e)
+            time.sleep(0.3)
+
 def chosen():
     path = os.path.join(ROOT, "tools/chosen.json")
     if not os.path.exists(path): return
@@ -118,4 +129,5 @@ def chosen():
 if __name__ == "__main__":
     if "--chosen" in sys.argv: chosen()
     elif "--unsplash" in sys.argv: unsplash_candidates()
+    elif "--urls" in sys.argv: url_candidates()
     else: candidates()
