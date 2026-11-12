@@ -403,3 +403,7 @@ p{margin:0 0 1em}
   .gal figure:not(.in) img{transform:none}
   .master__ph span,.mbar__main,.hero__quote,.swatches button::before{animation:none!important}
 }
+
+/* symmetry fixes: inline photo tag inherited translateX(-50%); footer wordmark must stay on one line */
+.tag-photo--inline{transform:none}
+.ftr__big{font-size:clamp(48px,17vw,225px);white-space:nowrap}
