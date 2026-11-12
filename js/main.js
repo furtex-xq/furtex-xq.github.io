@@ -363,7 +363,7 @@
   // generic reveals
   var reveal = $$('.promo__box, .calc__step, .calc__sum, .sec__head,.row, .dir__note, .prod, .step, .quote, .stats div, .clist li, .socials, .map, .mosaic figure, .tint__copy > *, .about__copy > *, .reviews__side > *, .contact__form > *, .demo-note');
   reveal.forEach(function (el) { el.setAttribute('data-r', ''); });
-  ST.batch('[data-r]', { start: 'top 90%', once: true, onEnter: function (els) { gsap.to(els, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', stagger: .07, overwrite: true }); } });
+  ST.batch('[data-r]', { start: 'top 90%', once: true, onEnter: function (els) { gsap.to(els, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', stagger: .07, overwrite: 'auto' }); } });
 
   // direction images: slow parallax inside sticky frame
   $$('.dir__media img, .about__media img').forEach(function (img) {
@@ -402,8 +402,119 @@
     } });
   });
 
-  // footer word
-  gsap.from('.ftr__big', { yPercent: 40, opacity: 0, ease: 'none', scrollTrigger: { trigger: '.ftr', start: 'top bottom', end: 'top 50%', scrub: true } });
+
+  /* ================= раунд 3: більше анімацій (тільки transform/opacity) ================= */
+
+  // 1. scroll progress line under the header
+  var prog = document.createElement('i'); prog.className = 'progress'; prog.setAttribute('aria-hidden', 'true'); hdr.appendChild(prog);
+  gsap.to(prog, { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: .3 } });
+
+  // 2. headings: words rise from a mask
+  $$('.h2, .promo__title, .modal__title').forEach(function (h) {
+    if (h.closest('.modal')) return;
+    (function wrap(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            var o = document.createElement('span'); o.className = 'w';
+            var i = document.createElement('span'); i.className = 'wi'; i.textContent = part;
+            o.appendChild(i); frag.appendChild(o);
+          });
+          node.replaceChild(frag, n);
+        } else if (n.nodeType === 1 && n.tagName !== 'BR') wrap(n);
+      });
+    })(h);
+    gsap.from($$('.wi', h), { yPercent: 115, rotate: 4, duration: 1.1, ease: 'expo.out', stagger: .045, scrollTrigger: { trigger: h, start: 'top 88%', once: true } });
+  });
+
+  // 3. eyebrow labels slide in from the left
+  $$('.eyebrow').forEach(function (e) {
+    if (e.closest('.hero')) return;
+    gsap.from(e, { x: -24, opacity: 0, duration: .9, ease: 'expo.out', scrollTrigger: { trigger: e, start: 'top 92%', once: true } });
+  });
+
+  // 4. corner brackets "lock on" when their block appears
+  ST.batch('.fr', { start: 'top 92%', once: true, onEnter: function (els) {
+    gsap.fromTo(els, { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: .9, ease: 'expo.out', stagger: .04 });
+  } });
+
+  // 5. photos zoom out inside their frames
+  $$('.dir__media img, .about__media img, .tint__view img, .mosaic img').forEach(function (img) {
+    gsap.from(img, { scale: 1.25, duration: 1.8, ease: 'expo.out', scrollTrigger: { trigger: img.parentNode, start: 'top 88%', once: true } });
+  });
+
+  // 6. service rows: numbers drop in, row slides from the side
+  $$('.dir__list').forEach(function (list) {
+    var rows = $$('.row', list);
+    gsap.from($$('.row__n', list), { yPercent: -60, opacity: 0, duration: .8, ease: 'back.out(2)', stagger: .08, scrollTrigger: { trigger: list, start: 'top 85%', once: true } });
+    gsap.from($$('.row__go', list), { x: 20, opacity: 0, duration: .8, ease: 'expo.out', stagger: .08, delay: .2, scrollTrigger: { trigger: list, start: 'top 85%', once: true } });
+  });
+
+  // 7. shop: spec numbers punch in
+  ST.batch('.prod__spec', { start: 'top 92%', once: true, onEnter: function (els) {
+    gsap.from(els, { scale: .6, opacity: 0, duration: .9, ease: 'back.out(1.8)', stagger: .06, transformOrigin: '0% 100%' });
+  } });
+
+  // 8. reviews alternate from left/right; stars pop
+  $$('.quote').forEach(function (q, k) {
+    gsap.from(q, { x: k % 2 ? 40 : -40, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: q, start: 'top 90%', once: true } });
+    gsap.from($$('.quote__top svg', q), { scale: 0, duration: .5, ease: 'back.out(3)', stagger: .06, delay: .2, scrollTrigger: { trigger: q, start: 'top 90%', once: true } });
+  });
+  gsap.from('.bigrate__n', { scale: .5, opacity: 0, duration: 1.2, ease: 'back.out(1.6)', transformOrigin: '0% 100%', scrollTrigger: { trigger: '.bigrate', start: 'top 88%', once: true } });
+
+  // 9. process diamonds spin in
+  gsap.from('.step__n', { y: 30, opacity: 0, duration: 1, ease: 'expo.out', stagger: .12, scrollTrigger: { trigger: '.steps', start: 'top 82%', once: true } });
+
+  // 10. promo: badge stamp + idle breathing
+  gsap.from('.promo__badge', { scale: 1.6, rotate: -12, opacity: 0, duration: 1, ease: 'back.out(1.6)', scrollTrigger: { trigger: '.promo', start: 'top 80%', once: true },
+    onComplete: function () { gsap.to('.promo__badge', { scale: 1.04, duration: 1.4, ease: 'sine.inOut', yoyo: true, repeat: -1 }); } });
+  gsap.from('.timer > div', { y: 24, opacity: 0, duration: .8, ease: 'expo.out', stagger: .08, scrollTrigger: { trigger: '.timer', start: 'top 90%', once: true } });
+
+  // 11. calculator total bumps on change; chosen items pop
+  $('#calc').addEventListener('change', function (e) {
+    gsap.fromTo('#calc-total', { scale: 1.12 }, { scale: 1, duration: .5, ease: 'back.out(3)' });
+    var lab = e.target.closest('label');
+    if (lab) gsap.fromTo(lab.querySelector('span'), { scale: .96 }, { scale: 1, duration: .4, ease: 'back.out(3)' });
+  });
+
+  // 12. hero: pointer parallax on desktop
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    var heroEl = $('.hero');
+    var gx = gsap.quickTo('.hero__ghost', 'x', { duration: .9, ease: 'power3' }), gy = gsap.quickTo('.hero__ghost', 'y', { duration: .9, ease: 'power3' });
+    var ix = gsap.quickTo('.hero__media', 'x', { duration: 1.2, ease: 'power3' }), iy = gsap.quickTo('.hero__media', 'y', { duration: 1.2, ease: 'power3' });
+    heroEl.addEventListener('pointermove', function (e) {
+      var px = e.clientX / window.innerWidth - .5, py = e.clientY / window.innerHeight - .5;
+      gx(px * -40); gy(py * -24); ix(px * 14); iy(py * 10);
+    });
+
+    // 13. magnetic buttons
+    $$('.btn--sig, .btn--sq, .row__go').forEach(function (b) {
+      var bx = gsap.quickTo(b, 'x', { duration: .5, ease: 'power3' }), by = gsap.quickTo(b, 'y', { duration: .5, ease: 'power3' });
+      b.addEventListener('pointermove', function (e) { var r = b.getBoundingClientRect(); bx((e.clientX - r.left - r.width / 2) * .25); by((e.clientY - r.top - r.height / 2) * .35); });
+      b.addEventListener('pointerleave', function () { bx(0); by(0); });
+    });
+
+    // 14. product cards tilt slightly toward the pointer
+    $$('.prod').forEach(function (p) {
+      var sp = p.querySelector('.prod__spec');
+      var sx = gsap.quickTo(sp, 'x', { duration: .6, ease: 'power3' });
+      p.addEventListener('pointermove', function (e) { var r = p.getBoundingClientRect(); sx(((e.clientX - r.left) / r.width - .5) * 16); });
+      p.addEventListener('pointerleave', function () { sx(0); });
+    });
+  }
+
+  // 15. footer: letters of SPL rise one by one
+  var big = $('.ftr__big');
+  if (big) {
+    big.innerHTML = big.textContent.split('').map(function (c) { return '<span class="ch">' + c + '</span>'; }).join('');
+    gsap.from($$('.ftr__big .ch'), { yPercent: 70, opacity: 0, duration: 1.2, ease: 'expo.out', stagger: .1, scrollTrigger: { trigger: '.ftr', start: 'top 85%', once: true } });
+  }
+
+  // 16. map + contact list
+  gsap.from('.clist li .ic', { scale: 0, rotate: -90, duration: .7, ease: 'back.out(2.5)', stagger: .1, scrollTrigger: { trigger: '.clist', start: 'top 88%', once: true } });
 
   window.addEventListener('load', function () { ST.refresh(); });
 })();
