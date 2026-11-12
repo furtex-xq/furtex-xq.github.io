@@ -105,7 +105,26 @@
     });
   }
 
-  gsap.from(".hero__title .ln > span", { yPercent: 110, duration: 1, ease: "power4.out", stagger: 0.1 });
+  /* split section headings into words for a staggered reveal */
+  document.querySelectorAll("h2").forEach(function (h) {
+    Array.prototype.slice.call(h.childNodes).forEach(function (n) {
+      if (n.nodeType !== 3) return;
+      var frag = document.createDocumentFragment();
+      n.textContent.split(/(\s+)/).forEach(function (w) {
+        if (!w) return;
+        if (/^\s+$/.test(w)) { frag.appendChild(document.createTextNode(" ")); return; }
+        var o = document.createElement("span"); o.className = "w";
+        var i = document.createElement("span"); i.textContent = w; o.appendChild(i); frag.appendChild(o);
+      });
+      h.replaceChild(frag, n);
+    });
+  });
+
+  var intro = gsap.timeline();
+  intro.from(".hero__top", { opacity: 0, y: -10, duration: 0.6 })
+    .fromTo(".hero__top", { "--line": 0 }, { "--line": 1, duration: 0.9, ease: "power3.out" }, 0)
+    .from(".hero__title .ln > span", { yPercent: 110, duration: 1, ease: "power4.out", stagger: 0.1 }, 0.1)
+    .to(".hero__title b", { color: "#2236ff", duration: 0.8, ease: "power2.inOut", stagger: 0.2 }, 0.9);
   gsap.from(".hero__copy, .hero__facts li", { opacity: 0, y: 20, duration: 0.8, ease: "power2.out", stagger: 0.08, delay: 0.45 });
   gsap.from(".hero__photo", { clipPath: "inset(100% 0 0 0 round 24px)", duration: 1.3, ease: "power3.inOut", delay: 0.2 });
 
@@ -116,14 +135,79 @@
   mm.add("(min-width: 1021px)", function () {
     var track = document.getElementById("track");
     var dist = function () { return Math.max(0, track.scrollWidth - window.innerWidth); };
-    gsap.to(track, {
+    var hs = gsap.to(track, {
       x: function () { return -dist(); }, ease: "none",
       scrollTrigger: { trigger: ".prac__pin", start: "top 64px", end: function () { return "+=" + dist(); }, pin: true, scrub: 0.6, invalidateOnRefresh: true }
     });
+    gsap.utils.toArray(".pc").forEach(function (c) {
+      gsap.from(c.querySelector(".pc__n"), { xPercent: 60, opacity: 0.2, ease: "none", scrollTrigger: { trigger: c, containerAnimation: hs, start: "left 95%", end: "left 45%", scrub: true } });
+      gsap.from(c.querySelectorAll("li"), { opacity: 0, x: 24, stagger: 0.05, ease: "none", scrollTrigger: { trigger: c, containerAnimation: hs, start: "left 90%", end: "left 50%", scrub: true } });
+    });
   });
 
-  gsap.utils.toArray(".check__intro, .qs li, .urgent__in, .about__copy > *, .about__photo, .proc__row li, .rc, .faq details, .contact__info, .form").forEach(function (el) {
+  gsap.utils.toArray(".check__intro > p, .qs li, .urgent__in, .about__copy > p, .about__list li, .about__facts, .about__photo, .proc__row li, .rc, .faq details, .contact__list li, .contact__msg, .form").forEach(function (el) {
     el.classList.add("rv");
     gsap.to(el, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 90%", once: true } });
+  });
+
+  /* headings: words rise in */
+  gsap.utils.toArray("h2").forEach(function (h) {
+    gsap.from(h.querySelectorAll(".w > span"), { yPercent: 105, duration: 0.9, ease: "power4.out", stagger: 0.05, scrollTrigger: { trigger: h, start: "top 88%", once: true } });
+  });
+  /* kicker dash draws */
+  gsap.utils.toArray(".kicker").forEach(function (k) {
+    gsap.fromTo(k, { "--dash": 0, opacity: 0, x: -8 }, { "--dash": 1, opacity: 1, x: 0, duration: 0.7, ease: "power2.out", scrollTrigger: { trigger: k, start: "top 92%", once: true } });
+  });
+
+  /* hero numbers count up */
+  document.querySelectorAll(".hero__facts b, .rev h2 .w:first-child > span").forEach(function (b) {
+    var txt = b.textContent.trim(), num = parseFloat(txt.replace(",", "."));
+    if (isNaN(num)) return;
+    var dec = txt.indexOf(",") > -1 ? 1 : 0, o = { v: 0 };
+    gsap.to(o, { v: num, duration: 1.4, ease: "power2.out", delay: b.closest(".hero") ? 0.8 : 0,
+      scrollTrigger: b.closest(".hero") ? null : { trigger: b, start: "top 85%", once: true },
+      onUpdate: function () { b.textContent = o.v.toFixed(dec).replace(".", ","); } });
+  });
+  gsap.from(".rev .rating__stars svg", { scale: 0, rotate: -40, duration: 0.5, ease: "back.out(3)", stagger: 0.08, scrollTrigger: { trigger: ".rev", start: "top 70%", once: true } });
+
+  /* hero photo drifts and un-zooms on scroll */
+  gsap.fromTo(".hero__photo .duo", { scale: 1.15 }, { scale: 1, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+  gsap.fromTo(".about__photo .duo", { backgroundPosition: "50% 0%" }, { backgroundPosition: "50% 100%", ease: "none", scrollTrigger: { trigger: ".about", start: "top bottom", end: "bottom top", scrub: true } });
+
+  /* ticker: speeds up and reverses with scroll direction */
+  var row = document.querySelector(".ticker__row");
+  if (row) {
+    document.documentElement.classList.add("gs-ticker");
+    var tick = gsap.to(row, { xPercent: -50, duration: 32, ease: "none", repeat: -1 });
+    var dir = 1;
+    ScrollTrigger.create({ onUpdate: function (self) {
+      var v = self.getVelocity(); if (Math.abs(v) < 5) return;
+      dir = v > 0 ? 1 : -1;
+      gsap.to(tick, { timeScale: dir * Math.min(5, 1 + Math.abs(v) / 400), duration: 0.2, overwrite: true });
+      gsap.to(tick, { timeScale: dir, duration: 1, delay: 0.25 });
+    } });
+  }
+
+  /* risk check: tiles cascade in */
+  gsap.from("#riskGrid li", { opacity: 0, y: 16, scale: 0.92, duration: 0.5, ease: "back.out(2)", stagger: 0.06, scrollTrigger: { trigger: ".risk", start: "top 88%", once: true } });
+  /* urgent strip: shield pulses once in view */
+  gsap.fromTo(".urgent__ic", { scale: 0.6, rotate: -15 }, { scale: 1, rotate: 0, duration: 0.8, ease: "elastic.out(1, .5)", scrollTrigger: { trigger: ".urgent", start: "top 85%", once: true } });
+  /* process: top rules draw one after another */
+  gsap.fromTo(".proc__row li", { "--rule": 0 }, { "--rule": 1, duration: 0.7, ease: "power2.inOut", stagger: 0.18, scrollTrigger: { trigger: ".proc__row", start: "top 85%", once: true } });
+  /* contact phone underline grows */
+  gsap.fromTo(".contact__tel", { "--u": 0 }, { "--u": 1, duration: 1, ease: "power3.inOut", scrollTrigger: { trigger: ".contact__tel", start: "top 90%", once: true } });
+
+  /* desktop: practice card numbers slide inside the moving track, magnetic buttons */
+  mm.add("(min-width: 1021px) and (pointer: fine)", function () {
+    document.querySelectorAll(".btn, .hdr__call").forEach(function (btn) {
+      var xTo = gsap.quickTo(btn, "x", { duration: 0.4, ease: "power3" }), yTo = gsap.quickTo(btn, "y", { duration: 0.4, ease: "power3" });
+      var move = function (e) { var r = btn.getBoundingClientRect(); xTo((e.clientX - r.left - r.width / 2) * 0.25); yTo((e.clientY - r.top - r.height / 2) * 0.35); };
+      var leave = function () { xTo(0); yTo(0); };
+      btn.addEventListener("mousemove", move); btn.addEventListener("mouseleave", leave);
+      return function () { btn.removeEventListener("mousemove", move); btn.removeEventListener("mouseleave", leave); };
+    });
+  });
+  mm.add("(max-width: 1020px)", function () {
+    gsap.from(".pc", { opacity: 0, x: 60, duration: 0.8, ease: "power3.out", stagger: 0.1, scrollTrigger: { trigger: ".prac__track", start: "top 85%", once: true } });
   });
 })();
