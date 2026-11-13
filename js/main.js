@@ -95,6 +95,8 @@
       var key = a.getAttribute('data-quick');
       syms.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-sym') === key ? 'true' : 'false'); });
       applyFinder();
+      var on = $('.sym[data-sym="' + key + '"]'), strip = $('.symptoms');
+      if (on && strip.scrollWidth > strip.clientWidth) strip.scrollLeft = on.offsetLeft - strip.offsetLeft - 20;
     });
   });
 
