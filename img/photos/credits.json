@@ -1,0 +1,53 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1506929562872-bb421503ef21",
+   "bytes": 1094475,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "sea",
+   "url": "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff",
+   "bytes": 182752,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "tropic",
+   "url": "https://images.unsplash.com/photo-1755545414327-36524febb5b6",
+   "bytes": 162125,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "mountains",
+   "url": "https://images.unsplash.com/photo-1572376218380-47c6b21fe84a",
+   "bytes": 179188,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "city",
+   "url": "https://images.unsplash.com/photo-1715368139341-362fc0364e39",
+   "bytes": 225640,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "coast",
+   "url": "https://images.unsplash.com/photo-1588592997030-b842946c2023",
+   "bytes": 273745,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "plane",
+   "url": "https://images.unsplash.com/photo-1545132147-d037e6c54cfd",
+   "bytes": 173600,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "about",
+   "url": "https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9",
+   "bytes": 253829,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
