@@ -14,8 +14,8 @@
   },
   {
    "slot": "taps",
-   "url": "https://images.unsplash.com/photo-1776775374838-86d782745860",
-   "bytes": 165591,
+   "url": "https://images.unsplash.com/photo-1593887937265-2a09787dcc19",
+   "bytes": 144179,
    "license": "Unsplash License"
   },
   {
@@ -26,8 +26,8 @@
   },
   {
    "slot": "interior",
-   "url": "https://images.unsplash.com/photo-1766500616162-4ca819ff24a3",
-   "bytes": 102262,
+   "url": "https://images.unsplash.com/photo-1566662268802-04e019e08e6d",
+   "bytes": 168289,
    "license": "Unsplash License"
   },
   {
@@ -38,26 +38,26 @@
   },
   {
    "slot": "music",
-   "url": "https://images.unsplash.com/photo-1779551247281-dbfdfb8fe967",
-   "bytes": 405870,
+   "url": "https://images.unsplash.com/photo-1718182147550-5d6f9208432d",
+   "bytes": 120236,
    "license": "Unsplash License"
   },
   {
    "slot": "friends",
-   "url": "https://images.unsplash.com/photo-1671116810339-1b58cf241509",
-   "bytes": 130072,
+   "url": "https://images.unsplash.com/photo-1695606453521-a160be0c7706",
+   "bytes": 210341,
    "license": "Unsplash License"
   },
   {
    "slot": "food",
-   "url": "https://images.unsplash.com/photo-1766589221078-7eefcc2346a5",
-   "bytes": 320723,
+   "url": "https://images.unsplash.com/photo-1766589221127-ab3fb1db8b7a",
+   "bytes": 355996,
    "license": "Unsplash License"
   },
   {
    "slot": "snacks",
-   "url": "https://images.unsplash.com/photo-1766589152188-54bd12a5c71b",
-   "bytes": 258785,
+   "url": "https://images.unsplash.com/photo-1766589221562-e16eeacca795",
+   "bytes": 349000,
    "license": "Unsplash License"
   },
   {
@@ -70,6 +70,18 @@
    "slot": "cocktail",
    "url": "https://images.unsplash.com/photo-1778104959469-0861d423de46",
    "bytes": 79178,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "music2",
+   "url": "https://images.unsplash.com/photo-1718182140778-4f2e00c81874",
+   "bytes": 215732,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "fish",
+   "url": "https://images.unsplash.com/photo-1764397557799-258db31fe6a4",
+   "bytes": 200723,
    "license": "Unsplash License"
   }
  ],
