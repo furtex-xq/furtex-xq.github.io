@@ -4,11 +4,14 @@
 
   /* ---------- НАЛАШТУВАННЯ ДЛЯ КЛІЄНТА ---------- */
   // Графік: [відкриття, закриття] у годинах (можна 9.5 = 09:30), null — вихідний. 0 = неділя.
+  // Якщо графік невідомий — HOURS = null: статус «відчинено» і таблиця ховаються.
   var HOURS = { 1: [10, 21], 2: [10, 21], 3: [10, 21], 4: [10, 21], 5: [10, 21], 6: [10, 19], 0: null };
   var CONTACT = {
     telegram: "username",          // https://t.me/username
     viber: "%2B380000000000",      // viber://chat?number=...
-    email: "hello@example.com"
+    email: "hello@example.com",
+    sms: "",                       // "+380..." — варіант «SMS» у формі
+    instagram: ""                  // нік — варіант «Instagram» у формі (ig.me)
   };
 
   var doc = document.documentElement;
@@ -73,10 +76,15 @@
     }
     return "";
   }
+  function allDay(s) { return s && s[0] === 0 && s[1] >= 24; }
   function renderHours() {
+    if (!HOURS) {
+      document.querySelectorAll("[data-status],[data-hours]").forEach(function (el) { el.remove(); });
+      return false;
+    }
     var now = kyivNow(), today = HOURS[now.day];
     var open = !!today && now.h >= today[0] && now.h < today[1];
-    var text = open ? "Зараз відчинено · до " + fmt(today[1]) : "Зараз зачинено · відкриємось " + nextOpen(now);
+    var text = open ? (allDay(today) ? "Відчинено цілодобово" : "Зараз відчинено · до " + fmt(today[1])) : "Зараз зачинено · відкриємось " + nextOpen(now);
     document.querySelectorAll("[data-status]").forEach(function (el) {
       el.classList.toggle("is-open", open); el.classList.toggle("is-closed", !open);
       el.querySelector("span").textContent = text;
@@ -86,13 +94,13 @@
       var order = [1, 2, 3, 4, 5, 6, 0], html = "";
       order.forEach(function (d) {
         var s = HOURS[d];
-        html += '<tr' + (d === now.day ? ' class="is-today"' : "") + "><td>" + DAYS[d] + "</td><td>" + (s ? fmt(s[0]) + " – " + fmt(s[1]) : "вихідний") + "</td></tr>";
+        html += '<tr' + (d === now.day ? ' class="is-today"' : "") + "><td>" + DAYS[d] + "</td><td>" + (s ? (allDay(s) ? "цілодобово" : fmt(s[0]) + " – " + fmt(s[1])) : "вихідний") + "</td></tr>";
       });
       tb.innerHTML = html;
     }
+    return true;
   }
-  renderHours();
-  setInterval(renderHours, 60000);
+  if (renderHours() !== false) setInterval(renderHours, 60000);
 
   /* ---------- Карта тіла ---------- */
   var ZONES = {
@@ -199,12 +207,14 @@
     if (f.note.value.trim()) lines.push("Коментар: " + f.note.value.trim());
     var msg = lines.join("\n");
     var via = form.querySelector('input[name="via"]:checked').value;
-    var url = via === "viber" ? "viber://chat?number=" + CONTACT.viber + "&draft=" + encodeURIComponent(msg)
+    var url = via === "sms" ? "sms:" + CONTACT.sms + "?&body=" + encodeURIComponent(msg)
+      : via === "ig" ? "https://ig.me/m/" + CONTACT.instagram
+      : via === "viber" ? "viber://chat?number=" + CONTACT.viber + "&draft=" + encodeURIComponent(msg)
       : via === "mail" ? "mailto:" + CONTACT.email + "?subject=" + encodeURIComponent("Запис на масаж") + "&body=" + encodeURIComponent(msg)
       : "https://t.me/" + CONTACT.telegram + "?text=" + encodeURIComponent(msg);
     try { if (navigator.clipboard) navigator.clipboard.writeText(msg).catch(function () {}); } catch (err) {}
     ok.hidden = false; ok.focus();
-    if (via === "tg") { window.open(url, "_blank", "noopener"); } else { window.location.href = url; }
+    if (via === "tg" || via === "ig") { window.open(url, "_blank", "noopener"); } else { window.location.href = url; }
   });
   form.querySelector("[data-again]").addEventListener("click", function () { ok.hidden = true; form.reset(); form.elements.name.focus(); });
 

@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob: https://raw.githubusercontent.com; frame-src https://www.google.com https://maps.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Масаж Івано-Франківськ — масажний кабінет [НАЗВА] | лікувальний, релакс, SPA</title>
-<meta name="description" content="Масажний кабінет [НАЗВА] в Івано-Франківську: класичний і лікувальний масаж спини, шиї, релакс-масаж з олією, гаряче каміння, лімфодренаж. Запис онлайн або за телефоном [ТЕЛЕФОН].">
+<title>[НАЗВА] — масаж Івано-Франківськ | лікувальний, релакс, SPA</title>
+<meta name="description" content="[НАЗВА] — масаж в Івано-Франківську: класичний і лікувальний масаж спини, шиї, релакс-масаж з олією, гаряче каміння, лімфодренаж. Запис онлайн або за телефоном [ТЕЛЕФОН].">
 <meta name="theme-color" content="#2f4239">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/alice-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -87,7 +87,7 @@
       <a class="nav__book" href="#book">Записатися</a>
     </nav>
     <span class="status" data-status aria-live="polite"><i></i><span>Перевіряємо графік…</span></span>
-    <a class="top__tel" href="tel:+380000000000" aria-label="Зателефонувати"><svg><use href="#i-phone"/></svg><span class="ph">[ТЕЛЕФОН]</span></a>
+    <a data-ch="tel" class="top__tel" href="tel:+380000000000" aria-label="Зателефонувати"><svg><use href="#i-phone"/></svg><span class="top__num"><span class="ph">[ТЕЛЕФОН]</span></span></a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Відкрити меню"><span></span><span></span></button>
   </div>
 </header>
@@ -113,7 +113,7 @@
     <p class="hero__lead">Лікувальний масаж спини й шиї, релакс з теплою олією, гаряче каміння. Тиха кімната на одну людину, без поспіху між клієнтами — і десять хвилин тиші з чаєм після сеансу.</p>
     <div class="hero__cta">
       <a class="btn btn--solid" href="#book"><svg><use href="#i-cal"/></svg>Записатися на сеанс</a>
-      <a class="btn btn--line" href="tel:+380000000000"><svg><use href="#i-phone"/></svg>Зателефонувати</a>
+      <a data-ch="tel" class="btn btn--line" href="tel:+380000000000"><svg><use href="#i-phone"/></svg>Зателефонувати</a>
     </div>
     <p class="hero__note">Поки читаєте — спробуйте дихати разом з колом: чотири рахунки вдих, шість — видих.</p>
   </div>
@@ -322,7 +322,7 @@
     <header class="sec-head reveal">
       <p class="eyebrow">Питання</p>
       <h2 id="faq-h">Перед першим візитом</h2>
-      <p>Не знайшли відповіді — напишіть у месенджер, відповідаємо протягом дня.</p>
+      <p>Не знайшли відповіді — напишіть або зателефонуйте, відповідаємо протягом дня.</p>
     </header>
     <div class="faq__list reveal">
       <details>
@@ -360,14 +360,14 @@
       <p class="eyebrow">Контакти</p>
       <h2 id="contacts-h">Приходьте подихати</h2>
       <p class="addr"><svg><use href="#i-pin"/></svg><span><span class="ph">[АДРЕСА]</span>, <span class="ph">[МІСТО]</span></span></p>
-      <a class="bigtel" href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>
+      <a data-ch="tel" class="bigtel" href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>
       <div class="channels">
-        <a href="viber://chat?number=%2B380000000000"><svg><use href="#i-chat"/></svg>Viber</a>
-        <a href="https://t.me/username" target="_blank" rel="noopener"><svg><use href="#i-send"/></svg>Telegram</a>
-        <a href="https://wa.me/380000000000" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
-        <a href="https://www.instagram.com/username/" target="_blank" rel="noopener"><svg><use href="#i-insta"/></svg><span class="ph">[ІНСТАГРАМ]</span></a>
-        <a href="https://www.facebook.com/username" target="_blank" rel="noopener"><svg><use href="#i-fb"/></svg>Facebook</a>
-        <a href="mailto:hello@example.com"><svg><use href="#i-mail"/></svg><span class="ph">[EMAIL]</span></a>
+        <a data-ch="viber" href="viber://chat?number=%2B380000000000"><svg><use href="#i-chat"/></svg>Viber</a>
+        <a data-ch="tg" href="https://t.me/username" target="_blank" rel="noopener"><svg><use href="#i-send"/></svg>Telegram</a>
+        <a data-ch="wa" href="https://wa.me/380000000000" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+        <a data-ch="ig" href="https://www.instagram.com/username/" target="_blank" rel="noopener"><svg><use href="#i-insta"/></svg><span class="ph">[ІНСТАГРАМ]</span></a>
+        <a data-ch="fb" href="https://www.facebook.com/username" target="_blank" rel="noopener"><svg><use href="#i-fb"/></svg>Facebook</a>
+        <a data-ch="mail" href="mailto:hello@example.com"><svg><use href="#i-mail"/></svg><span class="ph">[EMAIL]</span></a>
       </div>
       <div class="hours">
         <p class="hours__head"><span>Графік роботи</span><span class="status status--inline" data-status><i></i><span>…</span></span></p>
@@ -378,7 +378,7 @@
 
     <form class="book reveal" id="book" novalidate aria-labelledby="book-h">
       <h3 id="book-h">Запис на масаж</h3>
-      <p class="book__sub">Залиште дані — повідомлення відкриється у вибраному месенджері, вам лишиться натиснути «Надіслати».</p>
+      <p class="book__sub">Залиште дані — текст заявки відкриється у вибраному застосунку, вам лишиться натиснути «Надіслати».</p>
       <label class="fld"><span>Ваше ім'я</span><input name="name" autocomplete="given-name" required minlength="2" placeholder="Як до вас звертатися"><em class="err">Напишіть, як до вас звертатися</em></label>
       <label class="fld"><span>Телефон</span><input name="phone" type="tel" autocomplete="tel" required placeholder="+380 __ ___ __ __" inputmode="tel"><em class="err">Перевірте номер: потрібно щонайменше 10 цифр</em></label>
       <label class="fld"><span>Масаж</span>
@@ -410,15 +410,15 @@
       <label class="fld"><span>Коментар <small>(необов'язково)</small></span><textarea name="note" rows="2" placeholder="Наприклад: болить поперек після спортзалу"></textarea></label>
       <fieldset class="via">
         <legend>Куди надіслати заявку</legend>
-        <label><input type="radio" name="via" value="tg" checked><span><svg><use href="#i-send"/></svg>Telegram</span></label>
-        <label><input type="radio" name="via" value="viber"><span><svg><use href="#i-chat"/></svg>Viber</span></label>
-        <label><input type="radio" name="via" value="mail"><span><svg><use href="#i-mail"/></svg>Email</span></label>
+        <label data-ch="tg"><input type="radio" name="via" value="tg" checked><span><svg><use href="#i-send"/></svg>Telegram</span></label>
+        <label data-ch="viber"><input type="radio" name="via" value="viber"><span><svg><use href="#i-chat"/></svg>Viber</span></label>
+        <label data-ch="mail"><input type="radio" name="via" value="mail"><span><svg><use href="#i-mail"/></svg>Email</span></label>
       </fieldset>
       <button class="btn btn--solid btn--wide" type="submit">Надіслати заявку<svg><use href="#i-arrow"/></svg></button>
       <div class="book__ok" hidden tabindex="-1">
         <svg><use href="#i-check"/></svg>
         <h3>Заявку сформовано</h3>
-        <p>Якщо месенджер не відкрився, текст уже скопійовано — вставте його в чат або просто зателефонуйте: <a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>.</p>
+        <p>Якщо застосунок не відкрився, текст уже скопійовано — вставте його в чат<span data-ch="tel"> або просто зателефонуйте: <a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a></span>.</p>
         <button type="button" class="btn btn--line" data-again>Заповнити ще раз</button>
       </div>
     </form>
@@ -434,11 +434,12 @@
   <div class="wrap foot__in">
     <div>
       <p class="foot__brand"><span class="ph">[НАЗВА]</span></p>
-      <p>Масажний кабінет у <span class="ph">[МІСТО]</span> — лікувальний, класичний та релакс-масаж.</p>
+      <p>Масажний кабінет в <span class="ph">[МІСТО]</span> — лікувальний, класичний та релакс-масаж.</p>
     </div>
     <div>
       <p><span class="ph">[АДРЕСА]</span></p>
-      <p><a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a> · <a href="mailto:hello@example.com"><span class="ph">[EMAIL]</span></a></p>
+      <p data-ch="tel"><a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a></p>
+      <p data-ch="mail"><a href="mailto:hello@example.com"><span class="ph">[EMAIL]</span></a></p>
     </div>
     <div>
       <p><span class="ph">[ФОП]</span></p>
@@ -448,7 +449,7 @@
 </footer>
 
 <nav class="dock" aria-label="Швидкі дії">
-  <a href="tel:+380000000000"><svg><use href="#i-phone"/></svg>Дзвінок</a>
+  <a data-ch="tel" href="tel:+380000000000"><svg><use href="#i-phone"/></svg>Дзвінок</a>
   <a href="#book" class="dock__main"><svg><use href="#i-cal"/></svg>Записатися</a>
   <a href="https://www.google.com/maps/dir/?api=1&amp;destination=%D0%86%D0%B2%D0%B0%D0%BD%D0%BE-%D0%A4%D1%80%D0%B0%D0%BD%D0%BA%D1%96%D0%B2%D1%81%D1%8C%D0%BA" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg>Маршрут</a>
 </nav>

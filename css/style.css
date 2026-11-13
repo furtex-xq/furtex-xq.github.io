@@ -101,7 +101,7 @@ section{padding:clamp(72px,10vw,132px) 0}
 .status.is-open i{background:var(--euc);box-shadow:0 0 0 0 rgba(93,123,108,.5);animation:ping 2.6s ease-out infinite}
 .status.is-closed i{background:#b0624a}
 @keyframes ping{to{box-shadow:0 0 0 9px rgba(93,123,108,0)}}
-.top__tel{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:15px;padding:10px 16px;border-radius:99px;background:var(--euc-d);color:var(--sand)}
+.top__tel{flex:none;display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:15px;padding:10px 16px;border-radius:99px;background:var(--euc-d);color:var(--sand)}
 .top__tel svg{font-size:16px}
 .burger{display:none}
 
@@ -112,7 +112,7 @@ section{padding:clamp(72px,10vw,132px) 0}
   .top__in{min-height:62px;gap:12px}
   .top__tel span{display:none}
   .top__tel{padding:0;width:44px;height:44px;justify-content:center}
-  .burger{display:flex;flex-direction:column;justify-content:center;gap:6px;width:44px;height:44px;border:1.5px solid rgba(39,35,31,.25);background:none;border-radius:50%;padding:0 12px;cursor:pointer}
+  .burger{flex:none;display:flex;flex-direction:column;justify-content:center;gap:6px;width:44px;height:44px;border:1.5px solid rgba(39,35,31,.25);background:none;border-radius:50%;padding:0 12px;cursor:pointer}
   .burger span{height:1.5px;background:var(--ink);border-radius:2px;transition:transform .4s var(--ease)}
   .burger[aria-expanded="true"] span:first-child{transform:translateY(3.75px) rotate(45deg)}
   .burger[aria-expanded="true"] span:last-child{transform:translateY(-3.75px) rotate(-45deg)}
@@ -303,6 +303,7 @@ section{padding:clamp(72px,10vw,132px) 0}
 .channels{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:34px}
 .channels a{display:flex;align-items:center;gap:10px;min-height:50px;padding:0 14px;border:1px solid rgba(39,35,31,.2);border-radius:12px;text-decoration:none;font-weight:600;font-size:15px;transition:background .4s var(--ease),border-color .4s;min-width:0}
 .channels a span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.channels a:last-child:nth-child(odd){grid-column:1/-1}
 .channels a:hover{background:var(--sand);border-color:var(--euc)}
 .channels svg{font-size:19px;color:var(--euc)}
 .hours{background:var(--sand);border-radius:var(--r);padding:22px 22px 14px}
@@ -333,7 +334,7 @@ section{padding:clamp(72px,10vw,132px) 0}
 .fld-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .via{border:0;padding:0;margin:4px 0 22px}
 .via legend{font-size:14px;font-weight:600;margin-bottom:9px;color:rgba(236,230,219,.85);padding:0}
-.via{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.via{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:8px}
 .via legend{grid-column:1/-1}
 .via label{position:relative}
 .via input{position:absolute;opacity:0;inset:0}
@@ -367,11 +368,11 @@ section{padding:clamp(72px,10vw,132px) 0}
 @media (min-width:800px){.foot__in{grid-template-columns:1.2fr 1fr 1fr;gap:40px}}
 
 /* ===== Мобільна панель ===== */
-.dock{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:6px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:var(--linen);border-top:1px solid rgba(39,35,31,.12);transform:translateY(110%);transition:transform .5s var(--ease)}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:6px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:var(--linen);border-top:1px solid rgba(39,35,31,.12);transform:translateY(110%);transition:transform .5s var(--ease)}
 .dock.is-on{transform:none}
-.dock a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:52px;border-radius:14px;text-decoration:none;font-size:13px;font-weight:600;color:var(--ink)}
+.dock a{flex:1 1 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:52px;border-radius:14px;text-decoration:none;font-size:13px;font-weight:600;color:var(--ink)}
 .dock svg{font-size:20px}
-.dock .dock__main{background:var(--euc-d);color:var(--sand);flex-direction:row;gap:8px;font-size:15.5px}
+.dock .dock__main{flex-grow:1.3;background:var(--euc-d);color:var(--sand);flex-direction:row;gap:8px;font-size:15.5px}
 @media (max-width:899px){.foot{padding-bottom:calc(110px + env(safe-area-inset-bottom))}}
 @media (min-width:900px){.dock{display:none}}
 
