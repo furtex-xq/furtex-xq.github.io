@@ -1,0 +1,65 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1760317890314-e964ffd7e6a6",
+   "bytes": 219872,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "shop",
+   "url": "https://images.unsplash.com/photo-1767341372150-b9521fec39a3",
+   "bytes": 219040,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "lights",
+   "url": "https://images.unsplash.com/photo-1777213003360-0419fd2fbfdf",
+   "bytes": 438065,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "engine",
+   "url": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3",
+   "bytes": 115032,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "oil",
+   "url": "https://images.unsplash.com/photo-1487754180451-c456f719a1fc",
+   "bytes": 105546,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "suspension",
+   "url": "https://images.unsplash.com/photo-1769218401807-5495675a2eb1",
+   "bytes": 200745,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "plugs",
+   "url": "https://images.unsplash.com/photo-1782885044133-27c4df887d96",
+   "bytes": 121713,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "mechanic",
+   "url": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e",
+   "bytes": 106524,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "shelves",
+   "url": "https://images.unsplash.com/photo-1644079446600-219068676743",
+   "bytes": 152937,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "tires",
+   "url": "https://images.unsplash.com/photo-1772057593749-4038650963d4",
+   "bytes": 169957,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
