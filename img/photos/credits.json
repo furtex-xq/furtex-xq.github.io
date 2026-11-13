@@ -71,6 +71,18 @@
    "url": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108",
    "bytes": 113366,
    "license": "Unsplash License"
+  },
+  {
+   "slot": "hair",
+   "url": "https://images.unsplash.com/photo-1695527081848-1e46c06e6458",
+   "bytes": 245202,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "hair2",
+   "url": "https://images.unsplash.com/photo-1746723378067-83a345ff3160",
+   "bytes": 83635,
+   "license": "Unsplash License"
   }
  ],
  "failed": []
