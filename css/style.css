@@ -357,3 +357,4 @@ svg{width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:1.8;st
 }
 .faq-img{margin-top:26px;width:100%;aspect-ratio:16/10;object-fit:cover;filter:saturate(.8)}
 
+.hours-sum.hours-only{margin:0;padding-top:12px;border-top:1px solid var(--ink);font-size:16px;color:var(--ink)}
