@@ -1,0 +1,95 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1503951914875-452162b0f3f1",
+   "bytes": 164397,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "interior",
+   "url": "https://images.unsplash.com/photo-1585747860715-2ba37e788b70",
+   "bytes": 211754,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "tools",
+   "url": "https://images.unsplash.com/photo-1621605815971-fbc98d665033",
+   "bytes": 134030,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "shave",
+   "url": "https://images.unsplash.com/photo-1532710093739-9470acff878f",
+   "bytes": 134027,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "beard",
+   "url": "https://images.unsplash.com/photo-1599011176306-4a96f1516d4d",
+   "bytes": 263715,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "scissors",
+   "url": "https://images.unsplash.com/photo-1647140655214-e4a2d914971f",
+   "bytes": 123909,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "look-fade",
+   "url": "https://images.unsplash.com/photo-1772442088712-df1780cbb709",
+   "bytes": 166623,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "look-crop",
+   "url": "https://images.unsplash.com/photo-1593702275687-f8b402bf1fb5",
+   "bytes": 119429,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "look-undercut",
+   "url": "https://images.unsplash.com/photo-1568339434343-2a640a1a9946",
+   "bytes": 339749,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "look-pompadour",
+   "url": "https://images.unsplash.com/photo-1761931403667-a6753db21f32",
+   "bytes": 239265,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "look-classic",
+   "url": "https://images.unsplash.com/photo-1605497788044-5a32c7078486",
+   "bytes": 221901,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "look-beard",
+   "url": "https://images.unsplash.com/photo-1630827020718-3433092696e7",
+   "bytes": 236442,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "alt-1",
+   "url": "https://images.unsplash.com/photo-1635273051839-003bf06a8751",
+   "bytes": 201685,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "alt-2",
+   "url": "https://images.unsplash.com/photo-1599351431202-1e0f0137899a",
+   "bytes": 315213,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "alt-3",
+   "url": "https://images.unsplash.com/photo-1517832606299-7ae9b720a186",
+   "bytes": 191373,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
