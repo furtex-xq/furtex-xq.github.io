@@ -1,3 +1,10 @@
-# one URL per line
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/beta/white-story/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/beta/shamanka/index.html
+# templates batch 1
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/salon-krasy/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/barbershop/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/atelie/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/avtoshkola/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/remont-telefoniv/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/nerukhomist/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/dytiachyi-tsentr/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/kavyarnia/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/masazh/index.html
