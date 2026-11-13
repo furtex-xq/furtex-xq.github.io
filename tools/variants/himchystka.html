@@ -1,0 +1,270 @@
+<!--
+  Варіант «Хімчистка / пральня» для шаблону klininh.
+  Кожен блок «v:ID … /v:ID» замінює однойменний блок в index.html.
+  Застосовується так:  python3 tools/personalize.py <lead.json> <outdir> --variant himchystka
+  (для лідів-хімчисток personalize.py обирає цей варіант автоматично).
+-->
+
+<!--v:head-->
+<title>Хімчистка [МІСТО] — чистка одягу, пуховиків, ковдр і килимів | [НАЗВА]</title>
+<meta name="description" content="Хімчистка і пральня [НАЗВА], [МІСТО]: чистка костюмів, пальт, пуховиків, суконь і трикотажу, прання ковдр, штор і килимів. Огляд речі при прийманні, ціна одразу.">
+<meta property="og:title" content="[НАЗВА] — хімчистка і пральня в [МІСТО]">
+<meta property="og:description" content="Чистка одягу, пуховиків, ковдр і килимів. Порахуйте вартість онлайн і принесіть речі у зручний час.">
+<!--/v:head-->
+
+<!--v:og-image-->
+<meta property="og:image" content="https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/6a927d88dfd35f9bb791cad12600fd6181e5c5d0/img/photos/d-suits.jpg">
+<!--/v:og-image-->
+
+<!--v:ld-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DryCleaningOrLaundry",
+  "name": "[НАЗВА]",
+  "description": "Хімчистка і пральня в [МІСТО]: чистка одягу, пуховиків і трикотажу, прання ковдр, подушок, штор і килимів.",
+  "image": "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/6a927d88dfd35f9bb791cad12600fd6181e5c5d0/img/photos/d-suits.jpg",
+  "telephone": "[ТЕЛЕФОН]",
+  "email": "[EMAIL]",
+  "foundingDate": "[РІК]",
+  "priceRange": "від [ЦІНА] грн",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "[АДРЕСА]",
+    "addressLocality": "[МІСТО]",
+    "addressCountry": "UA"
+  },
+  "areaServed": "[МІСТО]",
+  "openingHours": ["Mo-Sa 08:00-20:00", "Su 09:00-18:00"],
+  "sameAs": ["https://www.instagram.com/username/", "https://www.facebook.com/username"]
+}
+</script>
+<!--/v:ld-->
+
+<!--v:brand-sub--><small>хімчистка · пральня</small><!--/v:brand-sub-->
+
+<!--v:hero-copy-->
+      <p class="eyebrow">Хімчистка і пральня в <span class="ph">[МІСТО]</span></p>
+      <h1 class="hero__title">Повертаємо речам <em>свіжий</em> вигляд</h1>
+      <p class="hero__lead">Чистимо костюми, пальта, пуховики, сукні й трикотаж, перемо ковдри, подушки, штори та килими. Кожну річ оглядаємо при прийманні й чесно кажемо, які плями підуть, а з якими варто бути обережними.</p>
+<!--/v:hero-copy-->
+
+<!--v:hero-facts-->
+      <ul class="facts">
+        <li><svg aria-hidden="true"><use href="#i-list"/></svg>Огляд і маркування кожної речі при прийманні</li>
+        <li><svg aria-hidden="true"><use href="#i-shirt"/></svg>Делікатні програми для вовни, шовку й пуху</li>
+        <li><svg aria-hidden="true"><use href="#i-shield"/></svg>Ціну й термін називаємо одразу</li>
+      </ul>
+<!--/v:hero-facts-->
+
+<!--v:hero-photo-->
+      <img class="win__img" src="https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/6a927d88dfd35f9bb791cad12600fd6181e5c5d0/img/photos/d-suits.jpg" alt="Чисті піджаки й сорочки на плічках у хімчистці" width="1100" height="733" fetchpriority="high" decoding="async">
+      <img class="win__fog" src="https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/6a927d88dfd35f9bb791cad12600fd6181e5c5d0/img/photos/d-suits.jpg" alt="" aria-hidden="true" width="1100" height="733" decoding="async">
+<!--/v:hero-photo-->
+
+<!--v:hero-cap-->
+      <figcaption class="win__cap"><b>Сорочки, костюми, пальта</b> — чисті, відпрасовані, на плічках</figcaption>
+<!--/v:hero-cap-->
+
+<!--v:calc-head-->
+      <h2 id="calc-h">Скільки коштуватиме чистка</h2>
+      <p class="sec-lead">Додайте речі, які хочете здати, — калькулятор покаже орієнтовну ціну. Точну суму й термін назве приймальник після огляду: вона залежить від тканини, кольору й складності плям.</p>
+<!--/v:calc-head-->
+
+<!--v:calc-controls-->
+        <fieldset class="cgroup">
+          <legend>Одяг</legend>
+          <ul class="items">
+            <li class="item" data-item data-label="Костюм (2 предмети)" data-price="[ЦІНА]"><span class="item__name">Костюм<small>піджак і штани або спідниця</small></span><span class="qty"><button type="button" data-q="-1" aria-label="Менше костюмів"><svg aria-hidden="true"><use href="#i-minus"/></svg></button><output data-q-out>1</output><button type="button" data-q="1" aria-label="Більше костюмів"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></span></li>
+            <li class="item" data-item data-label="Сорочка або блуза" data-price="[ЦІНА]"><span class="item__name">Сорочка або блуза<small>з прасуванням</small></span><span class="qty"><button type="button" data-q="-1" aria-label="Менше сорочок"><svg aria-hidden="true"><use href="#i-minus"/></svg></button><output data-q-out>2</output><button type="button" data-q="1" aria-label="Більше сорочок"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></span></li>
+            <li class="item" data-item data-label="Сукня" data-price="[ЦІНА]"><span class="item__name">Сукня<small>повсякденна або вечірня</small></span><span class="qty"><button type="button" data-q="-1" aria-label="Менше суконь"><svg aria-hidden="true"><use href="#i-minus"/></svg></button><output data-q-out>0</output><button type="button" data-q="1" aria-label="Більше суконь"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></span></li>
+            <li class="item" data-item data-label="Пальто" data-price="[ЦІНА]"><span class="item__name">Пальто<small>вовна, кашемір, суміші</small></span><span class="qty"><button type="button" data-q="-1" aria-label="Менше пальт"><svg aria-hidden="true"><use href="#i-minus"/></svg></button><output data-q-out>0</output><button type="button" data-q="1" aria-label="Більше пальт"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></span></li>
+            <li class="item" data-item data-label="Пуховик або куртка" data-price="[ЦІНА]"><span class="item__name">Пуховик або куртка<small>зі збиванням пуху</small></span><span class="qty"><button type="button" data-q="-1" aria-label="Менше пуховиків"><svg aria-hidden="true"><use href="#i-minus"/></svg></button><output data-q-out>0</output><button type="button" data-q="1" aria-label="Більше пуховиків"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></span></li>
+          </ul>
+        </fieldset>
+        <fieldset class="cgroup">
+          <legend>Для дому</legend>
+          <ul class="items">
+            <li class="item" data-item data-label="Ковдра або подушка" data-price="[ЦІНА]"><span class="item__name">Ковдра або подушка<small>пухові, вовняні, синтетичні</small></span><span class="qty"><button type="button" data-q="-1" aria-label="Менше ковдр"><svg aria-hidden="true"><use href="#i-minus"/></svg></button><output data-q-out>0</output><button type="button" data-q="1" aria-label="Більше ковдр"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></span></li>
+            <li class="item" data-item data-max="60" data-label="Килим, м²" data-price="[ЦІНА]"><span class="item__name">Килим<small>за м²</small></span><span class="qty"><button type="button" data-q="-1" aria-label="Менше квадратних метрів"><svg aria-hidden="true"><use href="#i-minus"/></svg></button><output data-q-out>0</output><button type="button" data-q="1" aria-label="Більше квадратних метрів"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></span></li>
+          </ul>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" data-item data-label="Штори (комплект)" data-price="[ЦІНА]"><span>Штори</span></label>
+            <label class="chip"><input type="checkbox" data-item data-label="Виведення складних плям" data-price="[ЦІНА]"><span>Складні плями</span></label>
+            <label class="chip"><input type="checkbox" data-item data-label="Дрібний ремонт" data-price="[ЦІНА]"><span>Дрібний ремонт</span></label>
+            <label class="chip"><input type="checkbox" data-item data-label="Термінове виконання" data-price="[ЦІНА]"><span>Терміново</span></label>
+          </div>
+        </fieldset>
+<!--/v:calc-controls-->
+
+<!--v:services-->
+<section class="services" id="services" aria-labelledby="srv-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Послуги й ціни</p>
+      <h2 id="srv-h">Що чистимо і скільки це коштує</h2>
+      <p class="sec-lead">Ціна залежить від тканини, розміру й забруднення. Приймальник називає її одразу, при вас, і вписує в квитанцію.</p>
+    </div>
+    <div class="srv">
+      <article class="srv__card srv__card--photo">
+        <img src="https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/6a927d88dfd35f9bb791cad12600fd6181e5c5d0/img/photos/d-suits.jpg" alt="Піджаки й сорочки на плічках після чистки" width="1100" height="733" loading="lazy" decoding="async">
+        <div class="srv__body">
+          <h3>Одяг і костюми</h3>
+          <ul class="price">
+            <li><span>Костюм<small>піджак і штани або спідниця</small></span><b>від <span class="ph">[ЦІНА]</span> грн</b></li>
+            <li><span>Піджак або жакет</span><b>від <span class="ph">[ЦІНА]</span> грн</b></li>
+            <li><span>Штани або спідниця</span><b>від <span class="ph">[ЦІНА]</span> грн</b></li>
+            <li><span>Сукня<small>повсякденна, вечірня, весільна — після огляду</small></span><b>від <span class="ph">[ЦІНА]</span> грн</b></li>
+          </ul>
+        </div>
+      </article>
+      <article class="srv__card srv__card--photo">
+        <img src="https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/6a927d88dfd35f9bb791cad12600fd6181e5c5d0/img/photos/d-knit.jpg" alt="Стос вовняних светрів після делікатної чистки" width="1100" height="733" loading="lazy" decoding="async">
+        <div class="srv__body">
+          <h3>Верхній одяг і трикотаж</h3>
+          <ul class="price">
+            <li><span>Пальто<small>вовна, кашемір, суміші</small></span><b>від <span class="ph">[ЦІНА]</span> грн</b></li>
+            <li><span>Пуховик або куртка<small>з відновленням об'єму пуху</small></span><b>від <span class="ph">[ЦІНА]</span> грн</b></li>
+            <li><span>Светр, кардиган<small>делікатна програма</small></span><b>від <span class="ph">[ЦІНА]</span> грн</b></li>
+          </ul>
+        </div>
+      </article>
+      <article class="srv__card srv__card--photo">
+        <img src="https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/6a927d88dfd35f9bb791cad12600fd6181e5c5d0/img/photos/d-press.jpg" alt="Прасування сорочки на професійній прасувальній системі" width="1100" height="733" loading="lazy" decoding="async">
+        <div class="srv__body">
+          <h3>Прання й прасування</h3>
+          <ul class="price">
+            <li><span>Сорочка або блуза<small>прання й прасування на плічках</small></span><b>від <span class="ph">[ЦІНА]</span> грн</b></li>
+            <li><span>Прання білизни<small>за кг, з сушінням</small></span><b>від <span class="ph">[ЦІНА]</span> грн</b></li>
+            <li><span>Лише прасування<small>за річ</small></span><b>від <span class="ph">[ЦІНА]</span> грн</b></li>
+          </ul>
+        </div>
+      </article>
+      <article class="srv__card srv__card--photo">
+        <img src="https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/6a927d88dfd35f9bb791cad12600fd6181e5c5d0/img/photos/d-washers.jpg" alt="Ряд професійних пральних машин у пральні" width="1100" height="733" loading="lazy" decoding="async">
+        <div class="srv__body">
+          <h3>Домашній текстиль</h3>
+          <ul class="price">
+            <li><span>Ковдра<small>пухова, вовняна, синтетична</small></span><b>від <span class="ph">[ЦІНА]</span> грн</b></li>
+            <li><span>Подушка<small>з заміною напірника за потреби</small></span><b>від <span class="ph">[ЦІНА]</span> грн</b></li>
+            <li><span>Штори й тюль<small>за м² або за комплект</small></span><b>від <span class="ph">[ЦІНА]</span> грн</b></li>
+            <li><span>Килим<small>за м²</small></span><b>від <span class="ph">[ЦІНА]</span> грн</b></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="rooms" data-tabs>
+      <h3 class="rooms__h">Як ми доглядаємо за різними тканинами</h3>
+      <div class="rooms__tabs" role="tablist" aria-label="Тканини">
+        <button type="button" role="tab" id="t-wool" aria-controls="p-wool" aria-selected="true">Вовна й кашемір</button>
+        <button type="button" role="tab" id="t-silk" aria-controls="p-silk" aria-selected="false" tabindex="-1">Шовк і віскоза</button>
+        <button type="button" role="tab" id="t-down" aria-controls="p-down" aria-selected="false" tabindex="-1">Пуховики</button>
+        <button type="button" role="tab" id="t-home" aria-controls="p-home" aria-selected="false" tabindex="-1">Ковдри й килими</button>
+      </div>
+      <ul class="rooms__panel" role="tabpanel" id="p-wool" aria-labelledby="t-wool">
+        <li>Перевіряємо етикетку й тест на линяння</li><li>Делікатна чистка без усадки</li><li>Знімаємо катишки</li><li>Відпарювання замість гарячої праски</li><li>Сушіння в розправленому вигляді</li><li>Видаємо на плічках у чохлі</li>
+      </ul>
+      <ul class="rooms__panel" role="tabpanel" id="p-silk" aria-labelledby="t-silk" hidden>
+        <li>Тест барвника на непомітній ділянці</li><li>М'які засоби без агресивних розчинників</li><li>Плями — точково, вручну</li><li>Прасування через тканину</li><li>Бережемо фурнітуру й декор</li><li>Видаємо в чохлі</li>
+      </ul>
+      <ul class="rooms__panel" role="tabpanel" id="p-down" aria-labelledby="t-down" hidden>
+        <li>Огляд швів і фурнітури</li><li>Чистка комірця й манжетів</li><li>Прання на спеціальній програмі</li><li>Сушіння з розбиванням пуху</li><li>Без грудок і розводів</li><li>Повертаємо об'єм</li>
+      </ul>
+      <ul class="rooms__panel" role="tabpanel" id="p-home" aria-labelledby="t-home" hidden>
+        <li>Вибиваємо пил перед пранням</li><li>Підбираємо засіб під ворс і основу</li><li>Виводимо плями від тварин і напоїв</li><li>Обробка від пилового кліща</li><li>Повне сушіння — без запаху вогкості</li><li>Пакуємо для перевезення</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!--/v:services-->
+
+<!--v:ba-copy-->
+      <h2 id="ba-h">Протягніть — і побачите різницю</h2>
+      <p>Тягніть ручку вбік. Саме так виглядає річ після чистки: свіжий колір, рівна тканина, жодних слідів плям і затертостей.</p>
+<!--/v:ba-copy-->
+
+<!--v:ba-photos-->
+      <img class="ba__after" src="https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/6a927d88dfd35f9bb791cad12600fd6181e5c5d0/img/photos/d-knit.jpg" alt="Після: чистий вовняний трикотаж" width="1100" height="733" loading="lazy" decoding="async">
+      <img class="ba__before is-sim" src="https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/6a927d88dfd35f9bb791cad12600fd6181e5c5d0/img/photos/d-knit.jpg" alt="До: ті самі речі до чистки" width="1100" height="733" loading="lazy" decoding="async">
+<!--/v:ba-photos-->
+
+<!--v:process-->
+      <h2 id="proc-h">Як ваша річ проходить чистку</h2>
+    </div>
+    <ol class="steps">
+      <li class="step-card"><span class="step-card__n">1</span><h3>Приймання</h3><p>Приносите речі — разом оглядаємо їх, звіряємо етикетки й показуєте плями, на які варто звернути увагу.</p></li>
+      <li class="step-card"><span class="step-card__n">2</span><h3>Квитанція</h3><p>Маркуємо кожну річ, фіксуємо її стан, ціну й дату видачі. Квитанція — ваша гарантія.</p></li>
+      <li class="step-card"><span class="step-card__n">3</span><h3>Чистка</h3><p>Підбираємо програму під тканину, вручну виводимо плями, сушимо й прасуємо.</p></li>
+      <li class="step-card"><span class="step-card__n">4</span><h3>Видача</h3><p>Забираєте речі на плічках і в чохлах. Ми повідомимо, коли все буде готово.</p></li>
+    </ol>
+<!--/v:process-->
+
+<!--v:about-photo-->
+      <img src="https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/6a927d88dfd35f9bb791cad12600fd6181e5c5d0/img/photos/d-hero.jpg" alt="Вітрина хімчистки з речами на плічках у чохлах" width="1100" height="1647" loading="lazy" decoding="async">
+<!--/v:about-photo-->
+
+<!--v:about-->
+      <h2 id="about-h"><span class="ph">[НАЗВА]</span> — хімчистка, якій довіряють улюблені речі</h2>
+      <p>Ми — місцева хімчистка й пральня в <span class="ph">[МІСТО]</span>. Чистимо щоденний і святковий одяг, верхній одяг і пуховики, перемо ковдри, подушки, штори й килими.</p>
+      <p>Кожну річ приймаємо з оглядом: дивимося на тканину, шви й фурнітуру та чесно попереджаємо про ризики. Так ви знаєте, чого очікувати, ще до чистки.</p>
+      <ul class="why">
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><b>Програма під тканину.</b> Вовна, шовк, пух і синтетика чистяться по-різному.</span></li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><b>Ціна в квитанції.</b> Називаємо при прийманні — без доплат при видачі.</span></li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><b>Плями вручну.</b> Складні забруднення обробляємо точково, а не «загальним пранням».</span></li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><b>Готово — повідомимо.</b> Зателефонуємо або напишемо, щойно речі будуть готові.</span></li>
+      </ul>
+<!--/v:about-->
+
+<!--v:reviews-->
+      <figure class="rev ph-card">
+        <span class="ph-label">Приклад відгуку — замініть на реальний</span>
+        <blockquote>Здавала світле вовняне пальто з плямою від кави. Приймальниця одразу сказала, що пляму виведуть, але попередила про рукави. Забрала як нове — і нічого не сіло.</blockquote>
+        <figcaption><b><span class="ph">[ІМ'Я]</span></b><span>чистка пальта</span></figcaption>
+      </figure>
+      <figure class="rev ph-card">
+        <span class="ph-label">Приклад відгуку — замініть на реальний</span>
+        <blockquote>Ношу сюди сорочки щотижня. Віддають рівно відпрасованими на плічках, ціну знаю наперед. Зручно, що можна забрати по дорозі з роботи.</blockquote>
+        <figcaption><b><span class="ph">[ІМ'Я]</span></b><span>прання й прасування сорочок</span></figcaption>
+      </figure>
+      <figure class="rev ph-card">
+        <span class="ph-label">Приклад відгуку — замініть на реальний</span>
+        <blockquote>Віддали дві пухові ковдри й дитячий пуховик. Пух не збився, запаху немає, усе пухке. Наступного сезону знову принесемо.</blockquote>
+        <figcaption><b><span class="ph">[ІМ'Я]</span></b><span>ковдри й пуховик</span></figcaption>
+      </figure>
+<!--/v:reviews-->
+
+<!--v:faq-->
+      <details><summary>Скільки часу триває чистка?</summary><p>Залежить від речі й тканини: точний термін приймальник назве одразу й впише в квитанцію. Якщо річ потрібна швидше — запитайте про термінове виконання.</p></details>
+      <details><summary>Чи виведете будь-яку пляму?</summary><p>Більшість — так. Але деякі плями (старі, від фарби чи після спроб вивести вдома) можуть залишити слід. Про такі випадки попереджаємо ще при прийманні.</p></details>
+      <details><summary>Що, якщо на речі немає етикетки?</summary><p>Приймаємо й такі речі, але чистимо за найделікатнішою програмою та попереджаємо про можливі ризики. Рішення — за вами.</p></details>
+      <details><summary>Чи приймаєте ковдри, подушки й килими?</summary><p>Так. Перемо пухові, вовняні й синтетичні ковдри та подушки, штори, тюль і килими. Великі килими краще попередньо погодити телефоном.</p></details>
+      <details><summary>Як дізнатися, що замовлення готове?</summary><p>Зателефонуємо або напишемо на номер із квитанції. Забрати речі можна в робочий час — квитанцію бажано мати з собою.</p></details>
+<!--/v:faq-->
+
+<!--v:order-copy-->
+      <h2 id="order-h">Запитати про чистку</h2>
+<!--/v:order-copy-->
+
+<!--v:form-subject--><input type="hidden" name="subject" value="Заявка в хімчистку"><!--/v:form-subject-->
+
+<!--v:form-service-->
+        <label for="f-service">Послуга</label>
+        <select id="f-service" name="service">
+          <option>Чистка одягу</option>
+          <option>Пальто, пуховик, куртка</option>
+          <option>Прання й прасування</option>
+          <option>Ковдри й подушки</option>
+          <option>Штори або килими</option>
+          <option>Інше — опишу в коментарі</option>
+        </select>
+<!--/v:form-service-->
+
+<!--v:form-where-->
+        <label for="f-where">Що хочете почистити</label>
+        <input id="f-where" name="where" type="text" maxlength="120" placeholder="Наприклад, пальто й 2 сорочки">
+<!--/v:form-where-->
+
+<!--v:form-msg--><textarea id="f-msg" name="msg" rows="3" maxlength="800" placeholder="Тканина, плями, бажаний термін — усе, що варто знати"></textarea><!--/v:form-msg-->
+
+<!--v:foot-sub--><small>хімчистка і пральня</small><!--/v:foot-sub-->
