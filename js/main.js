@@ -9,13 +9,16 @@
   var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
 
   /* ---------- Налаштування (змініть під клієнта) ---------- */
-  var CONTACT = {
+  var CONTACT = /*CONTACT*/{
     tg: 'https://t.me/username',
     viber: 'viber://chat?number=%2B380000000000',
-    email: 'hello@example.com'
-  };
+    email: 'hello@example.com',
+    sms: 'sms:+380000000000',
+    ig: 'https://www.instagram.com/username/'
+  }/*/CONTACT*/;
   // Графік: 0 = неділя … 6 = субота; [відкриття, закриття] у годинах (можна 9.5 = 9:30), null = вихідний
-  var HOURS = { 1: [9, 19], 2: [9, 19], 3: [9, 19], 4: [9, 19], 5: [9, 19], 6: [10, 17], 0: null };
+  // null = графік невідомий: живий статус і таблиця не показуються
+  var HOURS = /*HOURS*/{ 1: [9, 19], 2: [9, 19], 3: [9, 19], 4: [9, 19], 5: [9, 19], 6: [10, 17], 0: null }/*/HOURS*/;
 
   /* ---------- Меню ---------- */
   var burger = $('.burger'), nav = $('#nav');
@@ -54,6 +57,11 @@
   }
   function fmt(h) { var m = Math.round((h % 1) * 60); return Math.floor(h) + ':' + (m < 10 ? '0' : '') + m; }
   function renderHours() {
+    if (!HOURS) {
+      $$('[data-status]').forEach(function (el) { el.parentNode.removeChild(el); });
+      var ht = $('#hours'); if (ht) ht.parentNode.removeChild(ht);
+      return;
+    }
     var k = kyivNow(), t = HOURS[k.day], txt, open = false;
     if (t && k.h >= t[0] && k.h < t[1]) { open = true; txt = 'Зараз відчинено · до ' + fmt(t[1]); }
     else if (t && k.h < t[0]) { txt = 'Зачинено · відкриємось о ' + fmt(t[0]); }
@@ -77,7 +85,7 @@
       });
     }
   }
-  renderHours(); setInterval(renderHours, 60000);
+  renderHours(); if (HOURS) setInterval(renderHours, 60000);
 
   /* ---------- Reveal ---------- */
   var reveals = $$('.reveal');
@@ -270,10 +278,15 @@
         'Телефон: ' + phone.value.trim() + '\n' +
         'Пристрій: ' + dev.value.trim() +
         (msg.value.trim() ? '\nПроблема: ' + msg.value.trim() : '');
-      var via = ($('input[name="via"]:checked', form) || {}).value || 'tg';
+      var viaEl = $('input[name="via"]:checked', form) || $('input[name="via"][type="hidden"]', form);
+      var via = viaEl ? viaEl.value : 'tg';
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).catch(function () {});
       if (via === 'viber') {
         window.location.href = CONTACT.viber + '&draft=' + encodeURIComponent(text);
+      } else if (via === 'sms') {
+        window.location.href = CONTACT.sms + '?&body=' + encodeURIComponent(text);
+      } else if (via === 'ig') {
+        window.open(CONTACT.ig, '_blank', 'noopener');
       } else if (via === 'mail') {
         window.location.href = 'mailto:' + CONTACT.email + '?subject=' + encodeURIComponent('Заявка на ремонт: ' + dev.value.trim()) + '&body=' + encodeURIComponent(text);
       } else {

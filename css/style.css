@@ -333,7 +333,8 @@ details p{color:#c5cbb9;margin:0 0 22px;max-width:62ch}
 .lnk{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 14px;border:1px solid var(--line2);border-radius:10px;text-decoration:none;font-size:15px;font-weight:500;transition:border-color .2s,color .2s;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .lnk svg{width:19px;height:19px;flex:none;color:var(--lime)}
 .lnk:hover{border-color:var(--lime)}
-.lnk--wide{grid-column:1/-1}
+.lnk--wide,.links .lnk:last-child:nth-child(odd){grid-column:1/-1}
+.links--stack{grid-template-columns:1fr}
 .form h3{font-size:24px;margin-bottom:8px}
 .form>.muted{margin-bottom:22px}
 .field{margin-bottom:16px;display:block}
