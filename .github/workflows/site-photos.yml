@@ -1,0 +1,35 @@
+name: Client site photos
+
+on:
+  push:
+    branches: ["beta/**"]
+    paths:
+      - "tools/site_photos.json"
+      - "tools/fetch_site_photos.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site-photos-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow
+      - name: Fetch photos from the client's current site
+        run: python tools/fetch_site_photos.py
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add img/site
+          git diff --cached --quiet && echo "nothing new" && exit 0
+          git commit -m "Photos: download the client's own photos from their current site"
+          for i in 1 2 3; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep 5; done
