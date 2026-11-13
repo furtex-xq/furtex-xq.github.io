@@ -1,10 +1,11 @@
-# templates batch 1
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/salon-krasy/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/barbershop/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/atelie/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/avtoshkola/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/remont-telefoniv/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/nerukhomist/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/dytiachyi-tsentr/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/kavyarnia/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/masazh/index.html
+# batch 2
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/restoran/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/movna-shkola/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/butik-odyagu/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/kvity/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/mebli-na-zamovlennia/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/klinika/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/bar/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/turahentsiia/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/avtozapchastyny/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/hrumin-vet/index.html
