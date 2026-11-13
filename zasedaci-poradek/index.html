@@ -20,24 +20,16 @@
   .seat.over, .pool.over { background: #dff0d8; border-color: #4a4; }
   .name { background: #2d5be3; color: #fff; padding: 6px 10px; border-radius: 6px; cursor: grab; font-size: 14px; user-select: none; touch-action: none; }
   .seat .name { width: 100%; text-align: center; }
-  .pool-wrap { margin-top: 28px; max-width: 1000px; }
+  .pool-wrap { margin-top: 28px; max-width: 1000px; position: sticky; bottom: 0; background: #f4f1ea; padding: 8px 0; }
+  .pool-wrap h3 { margin: 0 0 6px; }
+  .pool { max-height: 35vh; overflow-y: auto; }
   .pool { min-height: 70px; border: 2px dashed #888; border-radius: 8px; padding: 10px; display: flex; flex-wrap: wrap; gap: 8px; background: #fff; }
   .hint { font-size: 13px; color: #666; margin: 6px 0; }
   @media print { .toolbar, .pool-wrap, textarea, .hint { display: none; } body { background: #fff; } }
 </style>
 </head>
 <body>
-<h1>Zasedací pořádek</h1>
 
-<textarea id="input" placeholder="Vlož jména oddělená čárkou nebo novým řádkem…"></textarea>
-<div class="toolbar">
-  <button id="add">Přidat jména</button>
-  <button id="shuffle" class="secondary">Náhodně rozsadit</button>
-  <button id="clearSeats" class="secondary">Vrátit všechny dolů</button>
-  <button id="print" class="secondary">Tisk</button>
-  <button id="reset" class="danger">Smazat vše</button>
-</div>
-<p class="hint">Přetáhni jméno na místo. Přetažením na obsazené místo se jména prohodí. Dvojklik vrátí jméno dolů.</p>
 
 <div class="teacher">UČITEL</div>
 <div class="classroom" id="classroom"></div>
@@ -156,24 +148,6 @@ function onUp() {
   drag = null;
 }
 
-document.getElementById('add').onclick = () => {
-  const input = document.getElementById('input');
-  const names = input.value.split(/[,\n;]+/).map(s => s.trim()).filter(Boolean);
-  names.forEach(n => { if (!state.names.includes(n)) state.names.push(n); });
-  input.value = '';
-  render();
-};
-document.getElementById('shuffle').onclick = () => {
-  const names = [...state.names].sort(() => Math.random() - .5);
-  state.seats = {};
-  names.slice(0, allSeats.length).forEach((n, i) => state.seats[allSeats[i].dataset.id] = n);
-  render();
-};
-document.getElementById('clearSeats').onclick = () => { state.seats = {}; render(); };
-document.getElementById('print').onclick = () => window.print();
-document.getElementById('reset').onclick = () => {
-  if (confirm('Opravdu smazat všechna jména?')) { state = { names: [], seats: {}, defaultsLoaded: true }; render(); }
-};
 
 render();
 </script>
