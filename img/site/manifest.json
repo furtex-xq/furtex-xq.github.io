@@ -1,0 +1,50 @@
+{
+ "reception": {
+  "src": "https://framerusercontent.com/images/AECGcggHglOfx4aED9XZZPpy5IQ.jpg",
+  "file": "reception.jpg",
+  "w": 1600,
+  "h": 1067
+ },
+ "reception-v": {
+  "src": "https://framerusercontent.com/images/EDlbhpciZeGYBSIzHue3mTWtpA.jpg",
+  "file": "reception-v.jpg",
+  "w": 1600,
+  "h": 2400
+ },
+ "waiting": {
+  "src": "https://framerusercontent.com/images/UNyWpCRhzfSuO5Y4VP7CejcmzoE.jpg",
+  "file": "waiting.jpg",
+  "w": 1600,
+  "h": 2400
+ },
+ "interior": {
+  "src": "https://framerusercontent.com/images/ZPMiQDQDiI55FZIm9dKAIP7di5U.jpg",
+  "file": "interior.jpg",
+  "w": 1600,
+  "h": 1067
+ },
+ "detail-1": {
+  "src": "https://framerusercontent.com/images/DJrw2TSE385VaJYMp6Y3XM4GSQ.jpg",
+  "file": "detail-1.jpg",
+  "w": 1600,
+  "h": 2400
+ },
+ "detail-2": {
+  "src": "https://framerusercontent.com/images/a3DFlq4IDEhTXrG5zQqpcJIwuL0.jpg",
+  "file": "detail-2.jpg",
+  "w": 1600,
+  "h": 2400
+ },
+ "microscope-room": {
+  "src": "https://framerusercontent.com/images/Kr6GPHmrR8eqHCf8h0opDxlXc.jpg",
+  "file": "microscope-room.jpg",
+  "w": 1600,
+  "h": 900
+ },
+ "video-story": {
+  "src": "https://i.ytimg.com/vi/vOgtksN9gI4/maxresdefault.jpg",
+  "file": "video-story.jpg",
+  "w": 1280,
+  "h": 720
+ }
+}
