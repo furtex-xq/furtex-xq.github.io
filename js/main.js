@@ -4,20 +4,28 @@
   document.documentElement.classList.add('js');
 
   /* ===== Налаштування (змініть під клієнта) ===== */
+  /*CONFIG-START*/
   var CONFIG = {
-    open: 8,          // година відкриття (Київ)
-    close: 21,        // година закриття
+    // графік за днями тижня (Київ): "0" — неділя, "1" — понеділок…; null — вихідний.
+    // hours: null — графік невідомий: живий статус «відчинено/зачинено» ховається.
+    hours: { '0': ['08:00', '21:00'], '1': ['08:00', '21:00'], '2': ['08:00', '21:00'], '3': ['08:00', '21:00'], '4': ['08:00', '21:00'], '5': ['08:00', '21:00'], '6': ['08:00', '21:00'] },
     prepHours: 2,     // скільки годин потрібно, щоб зібрати й привезти букет
     slots: [[9, 12], [12, 15], [15, 18], [18, 21]],
     telegram: 'https://t.me/username',
     viber: 'viber://chat?number=%2B380000000000',
-    email: 'mailto:hello@example.com'
+    email: 'mailto:hello@example.com',
+    sms: '',          // напр. 'sms:+380XXXXXXXXX'
+    instagramDm: ''   // напр. 'https://ig.me/m/handle'
   };
+  /*CONFIG-END*/
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function $(s, r) { return (r || document).querySelector(s); }
   function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
   function pad(n) { return (n < 10 ? '0' : '') + n; }
+  var DAYS_ACC = ['у неділю', 'у понеділок', 'у вівторок', 'у середу', 'у четвер', 'у п\'ятницю', 'у суботу'];
+  var DAYS_SHORT = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+  var live = !!CONFIG.hours;
 
   /* ===== Київський час ===== */
   function kyivNow() {
@@ -26,30 +34,54 @@
       var tz = 'Europe/Kyiv';
       try { new Intl.DateTimeFormat('en-GB', { timeZone: tz }); } catch (e) { tz = 'Europe/Kiev'; }
       new Intl.DateTimeFormat('en-GB', {
-        timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit',
+        timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'short',
         hour: '2-digit', minute: '2-digit', hour12: false
       }).formatToParts(new Date()).forEach(function (p) { parts[p.type] = p.value; });
       var h = parseInt(parts.hour, 10) % 24;
-      return { y: parts.year, m: parts.month, d: parts.day, h: h, min: parseInt(parts.minute, 10), date: parts.year + '-' + parts.month + '-' + parts.day };
+      return { h: h, min: parseInt(parts.minute, 10), wd: DAYS_SHORT[parts.weekday], date: parts.year + '-' + parts.month + '-' + parts.day };
     } catch (e) {
       var n = new Date();
-      return { h: n.getHours(), min: n.getMinutes(), date: n.getFullYear() + '-' + pad(n.getMonth() + 1) + '-' + pad(n.getDate()) };
+      return { h: n.getHours(), min: n.getMinutes(), wd: n.getDay(), date: n.getFullYear() + '-' + pad(n.getMonth() + 1) + '-' + pad(n.getDate()) };
     }
   }
-
-  function slotOpen(slot, now) {
-    var t = now.h + now.min / 60;
-    return t + CONFIG.prepHours <= slot[1] && t < CONFIG.close;
+  function toH(str) { var p = str.split(':'); return parseInt(p[0], 10) + parseInt(p[1], 10) / 60; }
+  function dayHours(wd) {
+    if (!live) return null;
+    var d = CONFIG.hours[String(wd)];
+    return d ? [toH(d[0]), toH(d[1]), d[0], d[1]] : null;
+  }
+  // чи можна доставити слот у день wd; t — поточний час (лише для сьогодні)
+  function slotOk(slot, wd, t) {
+    if (!live) return true;
+    var d = dayHours(wd);
+    if (!d || slot[0] >= d[1] || slot[1] <= d[0]) return false;
+    if (t == null) return true;
+    return t + CONFIG.prepHours <= Math.min(slot[1], d[1]);
   }
   function slotLabel(s) { return pad(s[0]) + ':00 — ' + pad(s[1]) + ':00'; }
 
   function updateStatus() {
+    if (!live) {
+      $$('[data-live]').forEach(function (el) { el.hidden = true; });
+      $$('[data-slot-board] em').forEach(function (el) { el.hidden = true; });
+      $$('[data-slot-title]').forEach(function (el) { el.textContent = 'Слоти доставки'; });
+      syncFormSlots();
+      return;
+    }
     var now = kyivNow();
     var t = now.h + now.min / 60;
-    var isOpen = t >= CONFIG.open && t < CONFIG.close;
-    var text = isOpen
-      ? 'Зараз відчинено · до ' + pad(CONFIG.close) + ':00'
-      : 'Зараз зачинено · відкриємося ' + (t >= CONFIG.close ? 'завтра ' : '') + 'о ' + pad(CONFIG.open) + ':00';
+    var today = dayHours(now.wd);
+    var isOpen = !!today && t >= today[0] && t < today[1];
+    var text;
+    if (isOpen) text = 'Зараз відчинено · до ' + today[3];
+    else if (today && t < today[0]) text = 'Зараз зачинено · відкриємося о ' + today[2];
+    else {
+      text = 'Зараз зачинено';
+      for (var k = 1; k <= 7; k++) {
+        var nd = dayHours((now.wd + k) % 7);
+        if (nd) { text += ' · відкриємося ' + (k === 1 ? 'завтра' : DAYS_ACC[(now.wd + k) % 7]) + ' о ' + nd[2]; break; }
+      }
+    }
     $$('[data-open-text]').forEach(function (el) { el.textContent = text; });
     $$('[data-open-dot]').forEach(function (el) {
       el.classList.toggle('is-open', isOpen);
@@ -59,15 +91,25 @@
     var next = null;
     $$('[data-slot-board] li').forEach(function (li, i) {
       var s = CONFIG.slots[i]; if (!s) return;
-      var ok = slotOpen(s, now);
+      var dayOk = slotOk(s, now.wd, null);
+      var ok = slotOk(s, now.wd, t);
       var current = ok && t >= s[0] - CONFIG.prepHours;
       li.classList.toggle('is-past', !ok);
       li.classList.toggle('is-soon', current);
-      li.querySelector('em').textContent = ok ? (current ? 'ще встигаємо' : 'вільно') : 'закрито';
+      li.querySelector('em').textContent = ok ? (current ? 'ще встигаємо' : 'вільно') : (dayOk ? 'закрито' : 'не працюємо');
       if (ok && !next) next = s;
     });
+    var nextText = next ? 'сьогодні, ' + slotLabel(next) : '';
+    if (!next) {
+      for (var j = 1; j <= 7 && !nextText; j++) {
+        var wd = (now.wd + j) % 7;
+        for (var q = 0; q < CONFIG.slots.length; q++) {
+          if (slotOk(CONFIG.slots[q], wd, null)) { nextText = (j === 1 ? 'завтра' : DAYS_ACC[wd]) + ', ' + slotLabel(CONFIG.slots[q]); break; }
+        }
+      }
+    }
     var nextEl = $('[data-next-slot]');
-    if (nextEl) nextEl.textContent = next ? 'сьогодні, ' + slotLabel(next) : 'завтра, ' + slotLabel(CONFIG.slots[0]);
+    if (nextEl) nextEl.textContent = nextText || '—';
     syncFormSlots();
   }
 
@@ -264,9 +306,13 @@
     if (!order) return;
     var now = kyivNow();
     if (dateInput && !dateInput.min) dateInput.min = now.date;
-    var today = dateInput && dateInput.value === now.date;
+    var val = dateInput && dateInput.value;
+    var wd = null;
+    if (val) { var p = val.split('-'); wd = new Date(+p[0], +p[1] - 1, +p[2]).getDay(); }
+    var isToday = val === now.date;
+    var t = now.h + now.min / 60;
     $$('[data-form-slots] input').forEach(function (inp, i) {
-      var dis = today && !slotOpen(CONFIG.slots[i], now);
+      var dis = live && wd !== null && !slotOk(CONFIG.slots[i], wd, isToday ? t : null);
       inp.disabled = dis;
       if (dis && inp.checked) inp.checked = false;
     });
@@ -327,16 +373,25 @@
       var text = lines.join('\n');
       var enc = encodeURIComponent(text);
       var channel = order.elements.channel.value;
-      var url;
+      var url, newTab = false, copy = false;
       if (channel === 'viber') url = CONFIG.viber + '&draft=' + enc;
       else if (channel === 'email') url = CONFIG.email + '?subject=' + encodeURIComponent('Замовлення букета — ' + name) + '&body=' + enc;
-      else url = CONFIG.telegram + '?text=' + enc;
+      else if (channel === 'sms') url = CONFIG.sms + '?&body=' + enc;
+      else if (channel === 'instagram') { url = CONFIG.instagramDm; newTab = true; copy = true; }
+      else if (channel === 'none') url = '';
+      else { url = CONFIG.telegram + '?text=' + enc; newTab = true; }
 
       var ok = $('#formSuccess');
+      var note = $('[data-copy-note]');
+      if (copy) {
+        try { if (navigator.clipboard) navigator.clipboard.writeText(text).catch(function () {}); } catch (err) { /* без буфера */ }
+      }
+      if (note) note.hidden = !copy;
       ok.hidden = false;
       ok.focus({ preventScroll: true });
       ok.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
-      if (channel === 'telegram') window.open(url, '_blank', 'noopener');
+      if (!url) return;
+      if (newTab) window.open(url, '_blank', 'noopener');
       else window.location.href = url;
     });
   }

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob: https://raw.githubusercontent.com; frame-src https://www.google.com https://maps.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Квіти з доставкою [МІСТО] — квітковий магазин [НАЗВА], букети на замовлення</title>
+<title>[НАЗВА] — квіти з доставкою в [МІСТО], букети на замовлення</title>
 <meta name="description" content="Квітковий магазин [НАЗВА] у [МІСТО]: авторські букети, троянди, півонії, сухоцвіти й весільна флористика. Доставка квітів по місту у зручний часовий слот, фото букета перед відправкою.">
 <meta name="theme-color" content="#3a1a31">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
@@ -13,7 +13,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="uk_UA">
 <meta property="og:site_name" content="[НАЗВА]">
-<meta property="og:title" content="Квіти з доставкою — [НАЗВА], [МІСТО]">
+<meta property="og:title" content="[НАЗВА] — квіти з доставкою в [МІСТО]">
 <meta property="og:description" content="Авторські букети, півонії, троянди й сухоцвіти. Зберіть букет онлайн і оберіть часовий слот доставки.">
 <meta property="og:url" content="https://example.com/">
 <meta property="og:image" content="https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/4e0edd753928ff7019d8d0d8a04a6891ebbabb87/img/photos/hero.jpg">
@@ -23,7 +23,7 @@
 <link rel="preload" href="fonts/noto-serif-display-cyrillic-wght-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/montserrat-alternates-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
-<script type="application/ld+json">
+<!--jsonld--><script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Florist",
@@ -45,7 +45,7 @@
   "openingHours": "[ГОДИНИ]",
   "sameAs": ["https://www.instagram.com/username/", "https://www.facebook.com/username"]
 }
-</script>
+</script><!--/jsonld-->
 </head>
 <body>
 <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
@@ -78,7 +78,7 @@
       <a href="#about">Про нас</a>
       <a href="#reviews">Відгуки</a>
       <a href="#contacts">Контакти</a>
-      <a class="nav-call" href="tel:+380000000000"><svg class="ico"><use href="#i-phone"/></svg><span class="ph">[ТЕЛЕФОН]</span></a>
+      <!--ch:phone--><a class="nav-call" href="tel:+380000000000"><svg class="ico"><use href="#i-phone"/></svg><span class="ph">[ТЕЛЕФОН]</span></a><!--/ch:phone-->
     </nav>
     <a class="btn btn-sm btn-light header-cta" href="#order">Замовити</a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Відкрити меню"><span></span><span></span></button>
@@ -100,7 +100,7 @@
       <a class="btn btn-blush" href="#order">Замовити букет <svg class="ico"><use href="#i-arrow"/></svg></a>
       <a class="btn btn-ghost-light" href="#builder">Зібрати свій</a>
     </div>
-    <ul class="hero-facts" aria-label="Коротко про нас">
+    <ul class="hero-facts" aria-label="Коротко про нас" data-live>
       <li><span class="open-dot" data-open-dot></span><span data-open-text>Перевіряємо, чи ми відчинені…</span></li>
       <li><svg class="ico"><use href="#i-clock"/></svg>Найближчий слот доставки: <strong data-next-slot>—</strong></li>
     </ul>
@@ -265,21 +265,21 @@
     </div>
     <div class="delivery-grid">
       <ol class="steps">
-        <li class="reveal"><h3>Ви замовляєте</h3><p>На сайті, телефоном або в месенджері. Можна анонімно — кур'єр не скаже, від кого квіти, якщо ви попросите.</p></li>
+        <li class="reveal"><h3>Ви замовляєте</h3><p>На сайті, у магазині або повідомленням. Можна анонімно — кур'єр не скаже, від кого квіти, якщо ви попросите.</p></li>
         <li class="reveal"><h3>Флорист збирає</h3><p>Букет збирають із квітів, що надійшли того ж ранку. Перед відправкою надсилаємо вам фото.</p></li>
         <li class="reveal"><h3>Кур'єр у дорозі</h3><p>Квіти їдуть у воді або в аквабоксі, взимку — в утепленому пакуванні.</p></li>
         <li class="reveal"><h3>Вручення</h3><p>Повідомляємо, щойно букет у руках отримувача. За бажанням — коротке відео моменту.</p></li>
       </ol>
       <aside class="slots" aria-labelledby="slots-h">
-        <h3 id="slots-h" class="slots-title">Слоти на сьогодні</h3>
-        <p class="slots-note">Оновлюється за київським часом</p>
+        <h3 id="slots-h" class="slots-title" data-slot-title>Слоти на сьогодні</h3>
+        <p class="slots-note" data-live>Оновлюється за київським часом</p>
         <ul class="slot-list" data-slot-board>
           <li data-slot="09-12"><span>09:00 — 12:00</span><em>—</em></li>
           <li data-slot="12-15"><span>12:00 — 15:00</span><em>—</em></li>
           <li data-slot="15-18"><span>15:00 — 18:00</span><em>—</em></li>
           <li data-slot="18-21"><span>18:00 — 21:00</span><em>—</em></li>
         </ul>
-        <p class="slots-foot">Потрібно терміново? Зберемо й привеземо за 2 години — уточніть за телефоном <a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>.</p>
+        <!--ch:phone--><p class="slots-foot">Потрібно терміново? Зберемо й привеземо за 2 години — уточніть за телефоном <a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>.</p><!--/ch:phone--><!--alt:phone <p class="slots-foot">Потрібно терміново? Зберемо й привеземо за 2 години — напишіть нам, і ми скажемо, чи встигаємо.</p> -->
       </aside>
     </div>
   </div>
@@ -327,7 +327,7 @@
       </figure>
       <figure class="review ph-card reveal">
         <span class="ph-label">Приклад відгуку — замініть на реальний</span>
-        <blockquote>Беру у вас квіти для офісу щопонеділка. Завжди різні, завжди свіжі, і жодного разу не довелося нагадувати. Дуже зручно, що можна просто написати в Telegram.</blockquote>
+        <blockquote>Беру у вас квіти для офісу щопонеділка. Завжди різні, завжди свіжі, і жодного разу не довелося нагадувати. Дуже зручно, що можна просто написати повідомлення.</blockquote>
         <figcaption><span class="ph">[ІМ'Я]</span><small>квіти для офісу щотижня</small></figcaption>
       </figure>
     </div>
@@ -345,11 +345,11 @@
     <div class="faq-list">
       <details>
         <summary>Чи можна замовити доставку на сьогодні?</summary>
-        <p>Так. Якщо слот на сьогодні ще відкритий, оформіть замовлення на сайті або подзвоніть. Термінову доставку за 2 години краще уточнити телефоном.</p>
+        <p>Так. Якщо слот на сьогодні ще відкритий, оформіть замовлення на сайті або зв'яжіться з нами. Термінову доставку за 2 години краще уточнити заздалегідь.</p>
       </details>
       <details>
         <summary>Як я дізнаюся, що букет виглядає так, як я хотів?</summary>
-        <p>Перед відправкою ми надсилаємо фото готового букета у Viber або Telegram. Якщо щось не так — підправимо до виїзду кур'єра.</p>
+        <p>Перед відправкою ми надсилаємо фото готового букета в месенджер. Якщо щось не так — підправимо до виїзду кур'єра.</p>
       </details>
       <details>
         <summary>Що, якщо отримувача не буде вдома?</summary>
@@ -377,11 +377,12 @@
     <div class="order-intro">
       <p class="eyebrow eyebrow-light">Замовлення</p>
       <h2 id="order-h" class="h2">Оформіть букет — <em>ми передзвонимо</em></h2>
-      <p>Заповніть форму, оберіть, куди надіслати замовлення, — відкриється месенджер із готовим повідомленням. Флорист підтвердить склад, вартість і час доставки.</p>
+      <p>Заповніть форму — відкриється <!--sendvia-->месенджер<!--/sendvia--> із готовим повідомленням. Флорист підтвердить склад, вартість і час доставки.</p>
       <ul class="order-quick">
-        <li><a href="tel:+380000000000"><svg class="ico"><use href="#i-phone"/></svg><span class="ph">[ТЕЛЕФОН]</span></a></li>
-        <li><a href="https://t.me/username" target="_blank" rel="noopener"><svg class="ico"><use href="#i-send"/></svg>Telegram</a></li>
-        <li><a href="viber://chat?number=%2B380000000000"><svg class="ico"><use href="#i-viber"/></svg>Viber</a></li>
+        <!--ch:phone--><li><a href="tel:+380000000000"><svg class="ico"><use href="#i-phone"/></svg><span class="ph">[ТЕЛЕФОН]</span></a></li><!--/ch:phone-->
+        <!--ch:telegram--><li><a href="https://t.me/username" target="_blank" rel="noopener"><svg class="ico"><use href="#i-send"/></svg>Telegram</a></li><!--/ch:telegram-->
+        <!--ch:viber--><li><a href="viber://chat?number=%2B380000000000"><svg class="ico"><use href="#i-viber"/></svg>Viber</a></li><!--/ch:viber-->
+        <!--if:instagram <li><a href="https://www.instagram.com/username/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig"/></svg>Instagram</a></li> -->
       </ul>
     </div>
 
@@ -435,19 +436,20 @@
         <label for="f-card">Текст листівки <small>(необов'язково)</small></label>
         <input id="f-card" name="card" type="text" maxlength="160">
       </div>
-      <fieldset class="field">
+      <!--channels--><fieldset class="field">
         <legend class="label">Куди надіслати замовлення</legend>
         <div class="chips chips-light">
           <label class="chip"><input type="radio" name="channel" value="telegram" checked><span>Telegram</span></label>
           <label class="chip"><input type="radio" name="channel" value="viber"><span>Viber</span></label>
           <label class="chip"><input type="radio" name="channel" value="email"><span>Email</span></label>
         </div>
-      </fieldset>
+      </fieldset><!--/channels-->
       <button class="btn btn-blush btn-wide" type="submit">Надіслати замовлення <svg class="ico"><use href="#i-arrow"/></svg></button>
-      <p class="form-note">Натискаючи кнопку, ви відкриваєте месенджер із готовим текстом. Ми нічого не зберігаємо на сайті.</p>
+      <p class="form-note">Натискаючи кнопку, ви відкриваєте <!--sendvia-->месенджер<!--/sendvia--> із готовим текстом. Ми нічого не зберігаємо на сайті.</p>
       <div class="form-success" id="formSuccess" hidden tabindex="-1">
+        <p class="copy-note" data-copy-note hidden>Текст замовлення скопійовано — вставте його в повідомлення.</p>
         <svg class="ico ico-lg"><use href="#i-flower"/></svg>
-        <p><b>Замовлення підготовлено.</b> Якщо месенджер не відкрився, напишіть нам <a href="https://t.me/username" target="_blank" rel="noopener">у Telegram</a> або подзвоніть <a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>.</p>
+        <!--success--><p><b>Замовлення підготовлено.</b> Якщо месенджер не відкрився, напишіть нам <a href="https://t.me/username" target="_blank" rel="noopener">у Telegram</a> або подзвоніть <a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>.</p><!--/success-->
       </div>
     </form>
   </div>
@@ -461,17 +463,17 @@
       <h2 id="contacts-h" class="h2">Заходьте <em>по квіти</em></h2>
       <p class="addr"><svg class="ico"><use href="#i-pin"/></svg><span><span class="ph">[АДРЕСА]</span>, <span class="ph">[МІСТО]</span></span></p>
       <div class="hours">
-        <p class="hours-status"><span class="open-dot" data-open-dot></span><span data-open-text>Перевіряємо графік…</span></p>
+        <p class="hours-status" data-live><span class="open-dot" data-open-dot></span><span data-open-text>Перевіряємо графік…</span></p>
         <p><svg class="ico"><use href="#i-clock"/></svg><span class="ph">[ГОДИНИ]</span></p>
       </div>
       <ul class="contact-buttons">
-        <li><a href="tel:+380000000000"><svg class="ico"><use href="#i-phone"/></svg><span>Подзвонити<small class="ph">[ТЕЛЕФОН]</small></span></a></li>
-        <li><a href="viber://chat?number=%2B380000000000"><svg class="ico"><use href="#i-viber"/></svg><span>Viber<small>написати</small></span></a></li>
-        <li><a href="https://t.me/username" target="_blank" rel="noopener"><svg class="ico"><use href="#i-send"/></svg><span>Telegram<small>написати</small></span></a></li>
-        <li><a href="https://wa.me/380000000000" target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg><span>WhatsApp<small>написати</small></span></a></li>
-        <li><a href="https://www.instagram.com/username/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig"/></svg><span>Instagram<small class="ph">[ІНСТАГРАМ]</small></span></a></li>
-        <li><a href="https://www.facebook.com/username" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb"/></svg><span>Facebook<small>сторінка</small></span></a></li>
-        <li><a href="mailto:hello@example.com"><svg class="ico"><use href="#i-mail"/></svg><span>Email<small class="ph">[EMAIL]</small></span></a></li>
+        <!--ch:phone--><li><a href="tel:+380000000000"><svg class="ico"><use href="#i-phone"/></svg><span>Подзвонити<small class="ph">[ТЕЛЕФОН]</small></span></a></li><!--/ch:phone-->
+        <!--ch:viber--><li><a href="viber://chat?number=%2B380000000000"><svg class="ico"><use href="#i-viber"/></svg><span>Viber<small>написати</small></span></a></li><!--/ch:viber-->
+        <!--ch:telegram--><li><a href="https://t.me/username" target="_blank" rel="noopener"><svg class="ico"><use href="#i-send"/></svg><span>Telegram<small>написати</small></span></a></li><!--/ch:telegram-->
+        <!--ch:whatsapp--><li><a href="https://wa.me/380000000000" target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg><span>WhatsApp<small>написати</small></span></a></li><!--/ch:whatsapp-->
+        <!--ch:instagram--><li><a href="https://www.instagram.com/username/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig"/></svg><span>Instagram<small class="ph">[ІНСТАГРАМ]</small></span></a></li><!--/ch:instagram-->
+        <!--ch:facebook--><li><a href="https://www.facebook.com/username" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb"/></svg><span>Facebook<small>сторінка</small></span></a></li><!--/ch:facebook-->
+        <!--ch:email--><li><a href="mailto:hello@example.com"><svg class="ico"><use href="#i-mail"/></svg><span>Email<small class="ph">[EMAIL]</small></span></a></li><!--/ch:email-->
         <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=%D0%86%D0%B2%D0%B0%D0%BD%D0%BE-%D0%A4%D1%80%D0%B0%D0%BD%D0%BA%D1%96%D0%B2%D1%81%D1%8C%D0%BA" target="_blank" rel="noopener"><svg class="ico"><use href="#i-route"/></svg><span>Маршрут<small>Google Maps</small></span></a></li>
       </ul>
     </div>
@@ -495,9 +497,9 @@
       <p><span class="ph">[АДРЕСА]</span>, <span class="ph">[МІСТО]</span></p>
     </div>
     <div class="footer-links">
-      <a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>
-      <a href="mailto:hello@example.com"><span class="ph">[EMAIL]</span></a>
-      <a href="https://www.instagram.com/username/" target="_blank" rel="noopener"><span class="ph">[ІНСТАГРАМ]</span></a>
+      <!--ch:phone--><a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a><!--/ch:phone-->
+      <!--ch:email--><a href="mailto:hello@example.com"><span class="ph">[EMAIL]</span></a><!--/ch:email-->
+      <!--ch:instagram--><a href="https://www.instagram.com/username/" target="_blank" rel="noopener"><span class="ph">[ІНСТАГРАМ]</span></a><!--/ch:instagram-->
     </div>
   </div>
   <div class="wrap footer-bottom">
@@ -507,7 +509,7 @@
 </footer>
 
 <nav class="action-bar" aria-label="Швидкі дії">
-  <a href="tel:+380000000000"><svg class="ico"><use href="#i-phone"/></svg>Дзвінок</a>
+  <!--ch:phone--><a href="tel:+380000000000"><svg class="ico"><use href="#i-phone"/></svg>Дзвінок</a><!--/ch:phone--><!--alt:phone <a href="https://www.instagram.com/username/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig"/></svg>Instagram</a> -->
   <a class="action-main" href="#order"><svg class="ico"><use href="#i-flower"/></svg>Замовити</a>
   <a href="https://www.google.com/maps/dir/?api=1&amp;destination=%D0%86%D0%B2%D0%B0%D0%BD%D0%BE-%D0%A4%D1%80%D0%B0%D0%BD%D0%BA%D1%96%D0%B2%D1%81%D1%8C%D0%BA" target="_blank" rel="noopener"><svg class="ico"><use href="#i-route"/></svg>Маршрут</a>
 </nav>

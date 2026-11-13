@@ -34,6 +34,7 @@ h1,h2,h3{margin:0;font-weight:400}
 p{margin:0 0 1em}
 button,input,textarea,select{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:6px}
+[hidden]{display:none!important}
 .sprite{position:absolute;width:0;height:0;overflow:hidden}
 .ico{width:1.15em;height:1.15em;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em}
 .ico-lg{width:34px;height:34px}
@@ -257,6 +258,10 @@ legend,.label{display:flex;align-items:center;gap:10px;font:500 13px/1.2 var(--s
 .form-success[hidden]{display:none}
 .form-success .ico{color:var(--rose)}
 .form-success p{margin:0;font-size:14.5px}
+.form-success{flex-wrap:wrap}
+.form-success .copy-note{flex-basis:100%;font-size:13px;color:var(--muted)}
+.form-success .copy-note[hidden]{display:none}
+.contact-buttons li:last-child:nth-child(odd){grid-column:1/-1}
 
 /* ===== Contacts ===== */
 .contacts-grid{display:grid;gap:36px}
@@ -307,7 +312,8 @@ legend,.label{display:flex;align-items:center;gap:10px;font:500 13px/1.2 var(--s
   .price-cols{grid-template-columns:1fr 1fr;gap:40px}
   .price-table dt{flex:0 1 auto}
   .price-table div::after{display:block}
-  .contact-buttons{grid-template-columns:repeat(4,1fr)}
+  .contact-buttons{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+  .contact-buttons li:last-child:nth-child(odd){grid-column:auto}
   .review-row{grid-auto-columns:46%}
   .hero-actions .btn{flex:0 0 auto}
 }
@@ -382,6 +388,7 @@ legend,.label{display:flex;align-items:center;gap:10px;font:500 13px/1.2 var(--s
 
   .contacts-grid{grid-template-columns:1fr 1fr;gap:64px;align-items:start}
   .contact-buttons{grid-template-columns:1fr 1fr}
+  .contact-buttons li:last-child:nth-child(odd){grid-column:1/-1}
   .contacts-map iframe{height:340px}
 
   .footer-grid{grid-template-columns:2fr 2fr 1fr}
