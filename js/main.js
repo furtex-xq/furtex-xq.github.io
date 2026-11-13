@@ -9,6 +9,9 @@
   var LINK_TG = "https://t.me/username";
   var LINK_VIBER = "viber://chat?number=%2B380000000000";
   var LINK_MAIL = "mailto:hello@example.com";
+  var LINK_SMS = "";   // напр. "sms:+380XXXXXXXXX" — для персоналізованих копій
+  var LINK_IG = "";    // напр. "https://ig.me/m/<нікнейм>" — Instagram Direct
+  var VIA_DEFAULT = "tg"; // канал, якщо в формі немає перемикача
 
   /* ---------- Меню ---------- */
   var burger = document.querySelector(".burger");
@@ -322,11 +325,13 @@
         "Телефон: " + phone + "\n" +
         "Що замовити: " + fe.type.value +
         (fe.msg.value.trim() ? "\nКоментар: " + fe.msg.value.trim() : "");
-      var via = (form.querySelector('input[name="via"]:checked') || {}).value || "tg";
+      var via = (form.querySelector('input[name="via"]:checked') || {}).value || VIA_DEFAULT;
       try { if (navigator.clipboard) navigator.clipboard.writeText(text).catch(function () {}); } catch (err) {}
       var enc = encodeURIComponent(text);
       if (via === "viber") window.location.href = LINK_VIBER + "&draft=" + enc;
       else if (via === "mail") window.location.href = LINK_MAIL + "?subject=" + encodeURIComponent("Заявка на замір меблів") + "&body=" + enc;
+      else if (via === "sms") window.location.href = LINK_SMS + "?&body=" + enc;
+      else if (via === "ig") window.open(LINK_IG, "_blank", "noopener");
       else window.open(LINK_TG + "?text=" + enc, "_blank", "noopener");
 
       form.hidden = true; ok.hidden = false; ok.focus();
