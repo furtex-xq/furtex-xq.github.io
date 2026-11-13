@@ -1,0 +1,59 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1541167760496-1628856ab772",
+   "bytes": 134313,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "pour",
+   "url": "https://images.unsplash.com/photo-1532713107108-dfb5d8d2fc42",
+   "bytes": 163844,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "interior",
+   "url": "https://images.unsplash.com/photo-1511081692775-05d0f180a065",
+   "bytes": 336470,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "people",
+   "url": "https://images.unsplash.com/photo-1521017432531-fbd92d768814",
+   "bytes": 209039,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "croissants",
+   "url": "https://images.unsplash.com/photo-1623334044303-241021148842",
+   "bytes": 221601,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "vitrine",
+   "url": "https://images.unsplash.com/photo-1758797957671-20943209f1f5",
+   "bytes": 246950,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "beans",
+   "url": "https://images.unsplash.com/photo-1553292218-4892c2e7e1ae",
+   "bytes": 179907,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "latte",
+   "url": "https://images.unsplash.com/photo-1529892485617-25f63cd7b1e9",
+   "bytes": 206916,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "bread",
+   "url": "https://images.unsplash.com/photo-1612366747681-e4ca6992b1e9",
+   "bytes": 296858,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
