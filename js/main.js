@@ -394,7 +394,7 @@
       if (ch === "telegram" && CONFIG.telegram) url = CONFIG.telegram + "?text=" + encodeURIComponent(text);
       else if (ch === "viber" && CONFIG.viber) url = CONFIG.viber + "&draft=" + encodeURIComponent(text);
       else if (ch === "email" && CONFIG.email) url = CONFIG.email + "?subject=" + encodeURIComponent("Заявка на друк") + "&body=" + encodeURIComponent(text);
-      else if (ch === "sms" && CONFIG.sms) url = CONFIG.sms + "?body=" + encodeURIComponent(text);
+      else if (ch === "sms" && CONFIG.sms) url = CONFIG.sms + "?&body=" + encodeURIComponent(text);
       else if (ch === "instagram" && CONFIG.instagramDm) {
         url = CONFIG.instagramDm;
         try { if (navigator.clipboard) navigator.clipboard.writeText(text); } catch (err) { /* без буфера */ }
