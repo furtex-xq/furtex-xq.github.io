@@ -325,3 +325,13 @@ svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke
   *,*::before,*::after{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
 }
+
+/* photo crops */
+.arch img{object-position:55% 40%}
+.about__photo img{object-position:50% 50%}
+.visit__photo img{object-position:62% 50%}
+.looks__photo img[src*="look-crop"]{object-position:68% 50%}
+.links a:last-child:nth-child(odd){grid-column:1/-1}
+.map iframe{background:var(--green-800)}
+@media (max-width:899px){.looks__card .btn{width:100%}}
+@media (min-width:640px) and (max-width:899px){.links a:last-child:nth-child(odd){grid-column:auto}}
