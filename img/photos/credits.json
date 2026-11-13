@@ -2,32 +2,20 @@
  "photos": [
   {
    "slot": "hero",
-   "url": "https://images.unsplash.com/photo-1759665947926-409c5ce214ba",
-   "bytes": 859353,
+   "url": "https://images.unsplash.com/photo-1768198566890-c093ec87a972",
+   "bytes": 609016,
    "license": "Unsplash License"
   },
   {
    "slot": "room",
-   "url": "https://images.unsplash.com/photo-1787496994323-59ac5cff09f9",
-   "bytes": 217758,
+   "url": "https://images.unsplash.com/photo-1776313756922-3252475a6c27",
+   "bytes": 63663,
    "license": "Unsplash License"
   },
   {
    "slot": "notes",
-   "url": "https://images.unsplash.com/photo-1757890250882-273c2c3e330a",
-   "bytes": 72550,
-   "license": "Unsplash License"
-  },
-  {
-   "slot": "online",
-   "url": "https://images.unsplash.com/photo-1648737966837-66cc4a189b05",
-   "bytes": 135362,
-   "license": "Unsplash License"
-  },
-  {
-   "slot": "couple",
-   "url": "https://images.unsplash.com/photo-1506014299253-3725319c0f69",
-   "bytes": 289308,
+   "url": "https://images.unsplash.com/photo-1617140952698-08a287842fcb",
+   "bytes": 164395,
    "license": "Unsplash License"
   },
   {
@@ -38,8 +26,8 @@
   },
   {
    "slot": "cozy",
-   "url": "https://images.unsplash.com/photo-1768198566890-c093ec87a972",
-   "bytes": 236041,
+   "url": "https://images.unsplash.com/photo-1712252864284-89806311d85b",
+   "bytes": 258025,
    "license": "Unsplash License"
   },
   {
