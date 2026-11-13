@@ -1,74 +1,44 @@
 [
  {
-  "slot": "hero",
+  "slot": "m1",
   "source": "Unsplash",
-  "url": "https://images.unsplash.com/photo-1554519934-e32b1629d9ee",
+  "url": "https://images.unsplash.com/photo-1774660810725-fb04e002003d",
   "license": "Unsplash License"
  },
  {
-  "slot": "color",
+  "slot": "m2",
   "source": "Unsplash",
-  "url": "https://images.unsplash.com/photo-1617391654484-2894196c2cc9",
+  "url": "https://images.unsplash.com/photo-1785456463151-623876d5b7af",
   "license": "Unsplash License"
  },
  {
-  "slot": "cut",
+  "slot": "m3",
   "source": "Unsplash",
-  "url": "https://images.unsplash.com/photo-1707812343087-c9ff9e5abb43",
+  "url": "https://images.unsplash.com/photo-1599351431202-1e0f0137899a",
   "license": "Unsplash License"
  },
  {
-  "slot": "style",
+  "slot": "s1",
   "source": "Unsplash",
-  "url": "https://images.unsplash.com/photo-1562322140-8baeececf3df",
+  "url": "https://images.unsplash.com/photo-1695527081848-1e46c06e6458",
   "license": "Unsplash License"
  },
  {
-  "slot": "barber",
+  "slot": "s2",
   "source": "Unsplash",
-  "url": "https://images.unsplash.com/photo-1761931403671-d020a14928d9",
+  "url": "https://images.unsplash.com/photo-1634449571010-02389ed0f9b0",
   "license": "Unsplash License"
  },
  {
-  "slot": "brows",
+  "slot": "s3",
   "source": "Unsplash",
-  "url": "https://images.unsplash.com/photo-1542833807-ad5af0977050",
+  "url": "https://images.unsplash.com/photo-1700760934268-8aa0ef52ce0a",
   "license": "Unsplash License"
  },
  {
-  "slot": "tools",
+  "slot": "s4",
   "source": "Unsplash",
-  "url": "https://images.unsplash.com/photo-1595475884562-073c30d45670",
-  "license": "Unsplash License"
- },
- {
-  "slot": "salon",
-  "source": "Unsplash",
-  "url": "https://images.unsplash.com/photo-1600948836101-f9ffda59d250",
-  "license": "Unsplash License"
- },
- {
-  "slot": "g1",
-  "source": "Unsplash",
-  "url": "https://images.unsplash.com/photo-1785456283212-338f5bc44d50",
-  "license": "Unsplash License"
- },
- {
-  "slot": "g2",
-  "source": "Unsplash",
-  "url": "https://images.unsplash.com/photo-1785456390070-9960e3997066",
-  "license": "Unsplash License"
- },
- {
-  "slot": "g3",
-  "source": "Unsplash",
-  "url": "https://images.unsplash.com/photo-1746723378067-83a345ff3160",
-  "license": "Unsplash License"
- },
- {
-  "slot": "g4",
-  "source": "Unsplash",
-  "url": "https://images.unsplash.com/photo-1497433550656-7fb185be365e",
+  "url": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f",
   "license": "Unsplash License"
  }
 ]
