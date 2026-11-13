@@ -1,2 +1,3 @@
 # one URL per line
 https://raw.githack.com/furtex-xq/furtex-xq.github.io/beta/white-story/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/beta/shamanka/index.html
