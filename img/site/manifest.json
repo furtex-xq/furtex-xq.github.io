@@ -1,0 +1,158 @@
+{
+ "logo-white": {
+  "src": "https://fineline.ua/wp-content/uploads/2022/06/LogoFine_big_bilyj_1.png",
+  "file": "logo-white.png",
+  "w": 220,
+  "h": 144
+ },
+ "logo": {
+  "src": "https://fineline.ua/wp-content/uploads/2023/02/Logo-fajnlajn.png",
+  "file": "logo.png",
+  "w": 200,
+  "h": 200
+ },
+ "laser-hero": {
+  "src": "https://fineline.ua/wp-content/uploads/2023/08/Dyzajn-bez-nazvanyya-21.jpg",
+  "file": "laser-hero.jpg",
+  "w": 960,
+  "h": 720
+ },
+ "laser-device": {
+  "src": "https://fineline.ua/wp-content/uploads/2023/08/Dyzajn-bez-nazvanyya-13-1.png",
+  "file": "laser-device.jpg",
+  "w": 800,
+  "h": 800
+ },
+ "laser": {
+  "src": "https://fineline.ua/wp-content/uploads/2022/06/Laser-hair-removal-Antea-services-1024x681-1.jpg",
+  "file": "laser.jpg",
+  "w": 1024,
+  "h": 681
+ },
+ "laser2": {
+  "src": "https://fineline.ua/wp-content/uploads/2022/05/Alexandrite_Laser_Hair_Removal_big.jpg",
+  "file": "laser2.jpg",
+  "w": 1050,
+  "h": 550
+ },
+ "krio": {
+  "src": "https://fineline.ua/wp-content/uploads/2023/09/photo_5872727402407378812_w-1-1.jpg",
+  "file": "krio.jpg",
+  "w": 1280,
+  "h": 848
+ },
+ "krio-stages": {
+  "src": "https://fineline.ua/wp-content/uploads/2023/08/photo_5866160358757088691_y-1-1.jpg",
+  "file": "krio-stages.jpg",
+  "w": 1075,
+  "h": 1280
+ },
+ "krio-device": {
+  "src": "https://fineline.ua/wp-content/uploads/2023/08/3.jpg",
+  "file": "krio-device.jpg",
+  "w": 810,
+  "h": 810
+ },
+ "chistka": {
+  "src": "https://fineline.ua/wp-content/uploads/2021/02/chistka-litsa.jpg",
+  "file": "chistka.jpg",
+  "w": 1000,
+  "h": 667
+ },
+ "chistka2": {
+  "src": "https://fineline.ua/wp-content/uploads/2019/02/5a7c7e50059d7.jpg",
+  "file": "chistka2.jpg",
+  "w": 1360,
+  "h": 500
+ },
+ "inject": {
+  "src": "https://fineline.ua/wp-content/uploads/2021/12/inject_cosm.jpg",
+  "file": "inject.jpg",
+  "w": 800,
+  "h": 800
+ },
+ "lips": {
+  "src": "https://fineline.ua/wp-content/uploads/2019/07/top-5-kosmetologichnyh-poslug-zbilshennya-gub.jpg",
+  "file": "lips.jpg",
+  "w": 1280,
+  "h": 1280
+ },
+ "bioreval": {
+  "src": "https://fineline.ua/wp-content/uploads/2018/11/biorevitalizacija-i-mezoterapija-kakuju-metodiku-vybrat.jpg",
+  "file": "bioreval.jpg",
+  "w": 635,
+  "h": 422
+ },
+ "massage": {
+  "src": "https://fineline.ua/wp-content/uploads/2021/04/glavnaja-5.jpg",
+  "file": "massage.jpg",
+  "w": 1000,
+  "h": 679
+ },
+ "massage2": {
+  "src": "https://fineline.ua/wp-content/uploads/2021/10/suchasni-metody-korektsiyi-figury-antytselyulitnyj-masazh.jpg",
+  "file": "massage2.jpg",
+  "w": 1080,
+  "h": 720
+ },
+ "pedicure": {
+  "src": "https://fineline.ua/wp-content/uploads/2021/12/medychnyj-pedykyur-podologiya.jpg",
+  "file": "pedicure.jpg",
+  "w": 504,
+  "h": 364
+ },
+ "hair": {
+  "src": "https://fineline.ua/wp-content/uploads/2018/11/164354267-hair-wallpapers.jpg",
+  "file": "hair.jpg",
+  "w": 1600,
+  "h": 1000
+ },
+ "about": {
+  "src": "https://fineline.ua/wp-content/uploads/2021/11/12.webp",
+  "file": "about.jpg",
+  "w": 1600,
+  "h": 985
+ },
+ "license": {
+  "src": "https://fineline.ua/wp-content/uploads/2021/02/IMG_20210203_152549-2-1-1-1-1.jpg",
+  "file": "license.jpg",
+  "w": 573,
+  "h": 800
+ },
+ "faq": {
+  "src": "https://fineline.ua/wp-content/uploads/2023/04/Dyzajn-bez-nazvanyya-1.jpg",
+  "file": "faq.jpg",
+  "w": 945,
+  "h": 945
+ },
+ "microcurrent": {
+  "src": "https://fineline.ua/wp-content/uploads/2022/05/mikrotokovij-masaz-oblicca-hmelnickij_5f9180b199c41.jpg",
+  "file": "microcurrent.jpg",
+  "w": 800,
+  "h": 533
+ },
+ "face-cryo": {
+  "src": "https://fineline.ua/wp-content/uploads/2022/05/krioterapiya-dlya-litsa.jpg",
+  "file": "face-cryo.jpg",
+  "w": 900,
+  "h": 600
+ },
+ "device-f5": {
+  "src": "https://fineline.ua/wp-content/uploads/2022/07/kosmetologicheskij-kombajn-f-5-bq-0045-1-600x600-1.webp",
+  "file": "device-f5.jpg",
+  "w": 600,
+  "h": 600
+ },
+ "kriolipoliz-card": {
+  "src": "https://fineline.ua/wp-content/uploads/2021/12/kriolipoliz-korektsiya-figury.jpg",
+  "file": "kriolipoliz-card.jpg",
+  "w": 833,
+  "h": 546
+ },
+ "dermatology": {
+  "src": "https://fineline.ua/wp-content/uploads/2019/08/dermatology.jpg",
+  "file": "dermatology.jpg",
+  "w": 512,
+  "h": 300
+ }
+}
