@@ -1,0 +1,15 @@
+name: Shamanka – check demo URLs
+
+on:
+  push:
+    branches: ["beta/shamanka"]
+    paths: ["tools/check.txt"]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Headers
+        run: |
+          while read -r u; do [ -z "$u" ] && continue; echo "== $u"; curl -sSIL -A "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Safari/604.1" "$u" | grep -iE "^HTTP|content-type|content-length|location|content-security" ; done < tools/check.txt

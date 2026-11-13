@@ -1,0 +1,6 @@
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/beta/shamanka/img/photos/hero.jpg
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/beta/shamanka/fonts/raleway-cyrillic-wght-normal.woff2
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/beta/shamanka/index.html
+https://cdn.jsdelivr.net/gh/furtex-xq/furtex-xq.github.io@ff5e5a49f30a4ce0b831b0e34d372478124fae83/img/photos/hero.jpg
+https://rawcdn.githack.com/furtex-xq/furtex-xq.github.io/ff5e5a49f30a4ce0b831b0e34d372478124fae83/img/photos/hero.jpg
+https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/beta/shamanka/img/photos/hero.jpg
