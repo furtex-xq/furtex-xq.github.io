@@ -434,3 +434,21 @@ body{background:var(--paper);font-size:16.5px}
   .hero__facts li{margin-right:0;padding-right:14px}
   .hero__facts li:nth-child(3){grid-column:1/-1;border-left:0;padding-left:0;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
 }
+
+/* ===== v4: real prices + clinic gallery ===== */
+.srv__prices{list-style:none;margin:0 0 24px;padding:0;max-width:600px;border-top:1px solid var(--line)}
+.srv__prices li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.srv__prices b{font-family:var(--mono);font-weight:500;font-size:14.5px;color:var(--pine);white-space:nowrap;text-align:right}
+@media (max-width:480px){.srv__prices li{flex-direction:column;gap:2px}.srv__prices b{text-align:left}}
+.doctor__list li span{display:block}
+.clinic{padding:clamp(80px,10vw,140px) 0;background:var(--bone)}
+.clinic__grid{display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:auto auto;gap:14px;margin-top:clamp(32px,5vw,56px)}
+.clinic__grid figure{margin:0;overflow:hidden;border-radius:2px}
+.clinic__grid img{width:100%;height:100%;object-fit:cover;display:block}
+.clinic__a{aspect-ratio:3/2}
+.clinic__b{grid-row:span 2}
+.clinic__c{aspect-ratio:3/2}
+@media (max-width:700px){.clinic__grid{grid-template-columns:1fr}.clinic__b{grid-row:auto;aspect-ratio:4/5}}
+.doctor__list li{flex-direction:column;gap:4px}
+.doctor__list li b{font-size:18px}
+.doctor__list span{text-align:left}
