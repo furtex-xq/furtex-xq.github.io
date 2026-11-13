@@ -50,7 +50,12 @@
 <script>
 const ROWS = 6, COLS = 3, SEATS_PER_DESK = 2;
 const KEY = 'zasedaci-poradek-v1';
+const DEFAULT_NAMES = ['Radek','Štefan','Kuba','Doležel','Roman','Holeček','Chlup','Marek','Mrkvica','Kocap','Kravál','Vojtěchovsky','Bilokon','Míra','Anna','Denis','Lukáš','Vojta','Robin','Peprla','Petriv','Mikulášek','Alexsandr','Svjat','Tobik','Honza'];
 let state = load() || { names: [], seats: {} }; // seats: seatId -> name
+if (!state.defaultsLoaded) {
+  DEFAULT_NAMES.forEach(n => { if (!state.names.includes(n)) state.names.push(n); });
+  state.defaultsLoaded = true;
+}
 
 function load() { try { return JSON.parse(localStorage.getItem(KEY)); } catch(e) { return null; } }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
@@ -167,7 +172,7 @@ document.getElementById('shuffle').onclick = () => {
 document.getElementById('clearSeats').onclick = () => { state.seats = {}; render(); };
 document.getElementById('print').onclick = () => window.print();
 document.getElementById('reset').onclick = () => {
-  if (confirm('Opravdu smazat všechna jména?')) { state = { names: [], seats: {} }; render(); }
+  if (confirm('Opravdu smazat všechna jména?')) { state = { names: [], seats: {}, defaultsLoaded: true }; render(); }
 };
 
 render();
