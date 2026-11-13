@@ -11,6 +11,8 @@
     const m = im.src.match(/raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/([0-9a-f]{40})\/(.+)$/);
     if (m) { im.dataset.fb = 1; im.src = `https://cdn.jsdelivr.net/gh/${m[1]}/${m[2]}@${m[3]}/${m[4]}`; }
   }, true);
+  /* Фото в закритих послугах: підвантажуємо заздалегідь, щоб при відкритті вони вже були */
+  addEventListener('load', () => $$('.svc__inner img').forEach(i => { const x = new Image(); x.src = i.currentSrc || i.src; if (i.decode) i.decode().catch(() => {}); }));
   /* Плавний скрол */
   let lenis = null;
   if (!reduce && window.Lenis) {
