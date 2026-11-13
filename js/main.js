@@ -223,7 +223,8 @@
       return '<label class="chip"><input type="radio" name="channel" value="' + c.id + '"' + (i === 0 ? " checked" : "") + "><span>" + c.label + "</span></label>";
     }).join("");
   } else if (chans.length === 1) {
-    chanField.innerHTML = '<p class="chan-one">Заявка відкриється в ' + (chans[0].id === "email" ? "поштовому застосунку" : chans[0].id === "sms" ? "SMS" : chans[0].label) + " з уже готовим текстом.</p>";
+    chanField.innerHTML = '<p class="chan-one">' + (chans[0].id === "instagram" ? "Скопіюємо текст заявки й відкриємо Instagram Direct — залишиться вставити й надіслати." : "Заявка відкриється в " + (chans[0].id === "email" ? "поштовому застосунку" : chans[0].id === "sms" ? "SMS" : chans[0].label) + " з уже готовим текстом.") + "</p>";
+    if (chans[0].id === "instagram") $("#formNote").hidden = true;
   } else {
     chanField.hidden = true;
     $("#sendLabel").textContent = "Підготувати заявку";
@@ -283,7 +284,14 @@
       else if (ch.id === "sms") url = ch.url + "?&body=" + enc;
       else if (ch.id === "instagram") {
         url = ch.url;
-        try { if (navigator.clipboard) { navigator.clipboard.writeText(text); copied = true; } } catch (err) {}
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            copied = true;
+            navigator.clipboard.writeText(text).catch(function () {
+              var ex = $("#successExtra"); if (ex) ex.textContent = "Надішліть цей текст у Direct: " + text.replace(/\n/g, "; ");
+            });
+          }
+        } catch (err) { copied = false; }
       }
     }
     if (url) {
