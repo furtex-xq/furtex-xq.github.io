@@ -1,0 +1,65 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1630406144797-821be1f35d75",
+   "bytes": 310756,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "lesson",
+   "url": "https://images.unsplash.com/photo-1527593167147-e9c94a5883e6",
+   "bytes": 121995,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "wheel",
+   "url": "https://images.unsplash.com/photo-1764588224022-ef99db06bde0",
+   "bytes": 61221,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "duo",
+   "url": "https://images.unsplash.com/photo-1553782097-130fef5d3e27",
+   "bytes": 74749,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "cat-a",
+   "url": "https://images.unsplash.com/photo-1590507014612-08b6a0b4e31e",
+   "bytes": 256882,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "cat-b",
+   "url": "https://images.unsplash.com/photo-1578041262130-633307b3bfd6",
+   "bytes": 85184,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "cat-c",
+   "url": "https://images.unsplash.com/photo-1675889335425-a4af2d00154d",
+   "bytes": 171516,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "cones",
+   "url": "https://images.unsplash.com/photo-1781520422303-ec01fd74600e",
+   "bytes": 188000,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "crossing",
+   "url": "https://images.unsplash.com/photo-1757372430437-0137508bb229",
+   "bytes": 410297,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "markings",
+   "url": "https://images.unsplash.com/photo-1759917061237-8040bdfa6933",
+   "bytes": 292330,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
