@@ -1,0 +1,33 @@
+name: Shamanka – iPhone WebKit check
+
+on:
+  push:
+    branches: ["beta/shamanka"]
+    paths: ["tools/webkit-urls.txt", "tools/webkit-check.mjs"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shamanka-webkit
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm i --no-save playwright@latest && npx playwright install --with-deps webkit chromium
+      - run: node tools/webkit-check.mjs
+      - name: Commit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/report
+          git commit -m "Shamanka: WebKit check report" || exit 0
+          for i in 1 2 3; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep 5; done
