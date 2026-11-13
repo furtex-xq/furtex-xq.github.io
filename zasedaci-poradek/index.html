@@ -145,6 +145,11 @@ function onCancel() { endDrag(false); }
 function onUp() { endDrag(true); }
 // stop the page from scrolling while dragging on phones
 document.addEventListener('touchmove', e => { if (drag) e.preventDefault(); }, { passive: false });
+// extra safety for iPhone: finish the drag on touchend too, and clear any leftover copies
+document.addEventListener('touchend', () => { if (drag) endDrag(true); });
+document.addEventListener('touchcancel', () => { if (drag) endDrag(false); });
+window.addEventListener('blur', () => { if (drag) endDrag(false); });
+document.addEventListener('pointerdown', () => { if (!drag) document.querySelectorAll('.ghost').forEach(g => g.remove()); }, true);
 function onMove(e) {
   drag.ghost.style.left = (e.clientX - drag.dx) + 'px';
   drag.ghost.style.top = (e.clientY - drag.dy) + 'px';
