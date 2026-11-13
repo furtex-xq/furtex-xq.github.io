@@ -81,7 +81,7 @@
     }
   }
   function fmt(h) { var hh = Math.floor(h), mm = Math.round((h - hh) * 60); return (hh < 10 ? '0' : '') + hh + ':' + (mm < 10 ? '0' : '') + mm; }
-  if (hoursEl) {
+  if (hoursEl && hoursEl.hasAttribute('data-live') && document.getElementById('open-status')) {
     var cfg = {};
     try { cfg = JSON.parse(hoursEl.getAttribute('data-hours')) || {}; } catch (e) { cfg = {}; }
     var now = kyivNow();
@@ -108,9 +108,11 @@
 
   /* ---- booking form → Telegram / Viber / email ---- */
   var form = document.getElementById('book');
-  var PHONE = '+380000000000';
-  var TG = 'https://t.me/username';
-  var MAIL = 'hello@example.com';
+  var ds = form ? form.dataset : {};
+  var PHONE = ds.phone || '';
+  var TG = ds.tg || '';
+  var MAIL = ds.mail || '';
+  var IG = ds.ig || '';
   function setBad(input, bad) {
     var f = input.closest('.field');
     f.classList.toggle('is-bad', bad);
@@ -142,8 +144,19 @@
       ];
       if (val('msg')) lines.push('Коментар: ' + val('msg'));
       var text = lines.join('\n');
-      var via = val('via'), url, note;
-      if (via === 'viber') {
+      var via = val('via'), url = '', note;
+      function copy() { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).catch(function () {}); }
+      if (!via) {
+        copy();
+        note = PHONE ? 'Текст заявки скопійовано. Зателефонуйте нам за номером ' + (ds.phoneText || PHONE) + ' — запишемо вас на консультацію.' : 'Текст заявки скопійовано — надішліть його нам зручним способом.';
+      } else if (via === 'instagram') {
+        copy();
+        url = 'https://ig.me/m/' + IG;
+        note = 'Текст заявки скопійовано. Відкриваємо Instagram — вставте його в повідомлення й надішліть.';
+      } else if (via === 'sms') {
+        url = 'sms:' + PHONE + '?&body=' + encodeURIComponent(text);
+        note = 'Відкриваємо SMS із готовим текстом — залишилось натиснути «Надіслати».';
+      } else if (via === 'viber') {
         url = 'viber://chat?number=' + encodeURIComponent(PHONE) + '&draft=' + encodeURIComponent(text);
         note = 'Відкриваємо Viber із готовим текстом — залишилось натиснути «Надіслати».';
       } else if (via === 'email') {
@@ -152,14 +165,15 @@
       } else {
         url = TG + '?text=' + encodeURIComponent(text);
         note = 'Текст заявки скопійовано. Відкриваємо Telegram — вставте його в чат і надішліть.';
-        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).catch(function () {});
+        copy();
       }
       var ok = document.getElementById('book-ok');
       document.getElementById('ok-text').textContent = note;
       ok.hidden = false;
       ok.focus({ preventScroll: true });
       ok.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
-      if (via === 'telegram') window.open(url, '_blank', 'noopener'); else window.location.href = url;
+      if (!url) return;
+      if (via === 'telegram' || via === 'instagram') window.open(url, '_blank', 'noopener'); else window.location.href = url;
     });
   }
 
