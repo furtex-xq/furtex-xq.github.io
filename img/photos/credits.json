@@ -7,21 +7,9 @@
    "license": "Unsplash License"
   },
   {
-   "slot": "hero-b",
-   "url": "https://images.unsplash.com/photo-1628745277862-bc0b2d68c50c",
-   "bytes": 287638,
-   "license": "Unsplash License"
-  },
-  {
    "slot": "hero-c",
    "url": "https://images.unsplash.com/photo-1631048835473-73c7aaf86096",
    "bytes": 271521,
-   "license": "Unsplash License"
-  },
-  {
-   "slot": "hero-d",
-   "url": "https://images.unsplash.com/photo-1636138390625-80afec896b28",
-   "bytes": 860733,
    "license": "Unsplash License"
   },
   {
@@ -34,18 +22,6 @@
    "slot": "drawer",
    "url": "https://images.unsplash.com/photo-1676907228185-6869277a9f8f",
    "bytes": 108927,
-   "license": "Unsplash License"
-  },
-  {
-   "slot": "drawer2",
-   "url": "https://images.unsplash.com/photo-1678108429557-546cf9a84c35",
-   "bytes": 135877,
-   "license": "Unsplash License"
-  },
-  {
-   "slot": "wardrobe",
-   "url": "https://images.unsplash.com/photo-1708397016786-8916880649b8",
-   "bytes": 174534,
    "license": "Unsplash License"
   },
   {
@@ -67,27 +43,9 @@
    "license": "Unsplash License"
   },
   {
-   "slot": "living2",
-   "url": "https://images.unsplash.com/photo-1772797583328-f83bc3f94f80",
-   "bytes": 177125,
-   "license": "Unsplash License"
-  },
-  {
-   "slot": "workshop",
-   "url": "https://images.unsplash.com/photo-1788296817269-8df0458ab799",
-   "bytes": 125954,
-   "license": "Unsplash License"
-  },
-  {
    "slot": "workshop2",
    "url": "https://images.unsplash.com/photo-1659930087003-2d64e33181f7",
    "bytes": 116922,
-   "license": "Unsplash License"
-  },
-  {
-   "slot": "craft",
-   "url": "https://images.unsplash.com/photo-1544164560-adac3045edb2",
-   "bytes": 352924,
    "license": "Unsplash License"
   },
   {
