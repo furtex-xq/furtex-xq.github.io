@@ -326,7 +326,8 @@ section{position:relative}
 .contacts__phone{display:inline-block;font-weight:800;font-size:1.25rem;color:var(--gold-2);text-decoration:none;margin-bottom:.6rem}
 .contacts__hours{display:flex;align-items:center;gap:.55rem;color:rgba(239,228,210,.8)}
 .contacts__hours .ico{color:var(--gold)}
-.links{list-style:none;margin:1.6rem 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.contacts__grid>*{min-width:0}
+.links{list-style:none;margin:1.6rem 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem}
 .links a{display:flex;align-items:center;gap:.6rem;min-height:50px;padding:.6rem .9rem;border:1px solid var(--line);text-decoration:none;font-size:.9rem;font-weight:700;transition:border-color .2s,background .2s,color .2s;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .links a .ico{color:var(--gold)}
 .links li:last-child:nth-child(odd){grid-column:1 / -1}
