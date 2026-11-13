@@ -59,12 +59,12 @@
       <a href="#sell">Продати</a>
       <a href="#about">Про нас</a>
       <a href="#contacts">Контакти</a>
-      <a class="nav__tel" href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>
+      <!--ch:tel--><a class="nav__tel" href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a><!--/ch:tel-->
     </nav>
-    <a class="top__tel" href="tel:+380000000000">
+    <!--ch:tel--><a class="top__tel" href="tel:+380000000000">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
       <span class="ph">[ТЕЛЕФОН]</span>
-    </a>
+    </a><!--/ch:tel-->
     <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Відкрити меню"><span></span><span></span></button>
   </div>
 </header>
@@ -353,7 +353,7 @@
       <button class="btn btn--forest btn--full" type="submit">Замовити безкоштовну оцінку</button>
       <p class="form__err" role="alert" hidden></p>
       <div class="form__ok" hidden>
-        <p><strong>Заявку сформовано.</strong> Текст заявки скопійовано й відкрито месенджер — надішліть повідомлення, і ми передзвонимо, щоб домовитися про огляд.</p>
+        <p><strong>Заявку сформовано.</strong> Текст заявки скопійовано, а вибраний спосіб зв’язку вже відкрито — надішліть повідомлення, і ми передзвонимо, щоб домовитися про огляд.</p>
         <button type="button" class="link" data-reset>Заповнити ще одну</button>
       </div>
     </form>
@@ -370,7 +370,7 @@
     <div class="about__text">
       <p class="eyebrow">Про агенцію</p>
       <h2 id="about-h">Знаємо кожен район не з карти, а з власних переглядів</h2>
-      <p class="about__lead"><span class="ph">[НАЗВА]</span> — команда ріелторів і юриста, які працюють лише з нерухомістю <span class="ph">[МІСТО]</span> та передмість. Ми знаємо, де тихо вночі, які будинки мають проблеми з дахом і в яких новобудовах реально здають квартири вчасно.</p>
+      <p class="about__lead"><span class="ph">[НАЗВА]</span> — команда ріелторів і юриста, які працюють лише з нерухомістю в <span class="ph">[МІСТО]</span> та передмісті. Ми знаємо, де тихо вночі, які будинки мають проблеми з дахом і в яких новобудовах реально здають квартири вчасно.</p>
       <ul class="why">
         <li><h3>Перевірка до перегляду</h3><p>Документи на об’єкт дивимося до того, як ви поїдете його оглядати. Сумнівні варіанти просто не потрапляють у добірку.</p></li>
         <li><h3>Одна людина від першого дзвінка до ключів</h3><p>Вас веде один агент, який знає всю історію пошуку й на зв’язку в месенджері.</p></li>
@@ -437,7 +437,7 @@
     <div>
       <p class="eyebrow">Питання</p>
       <h2 id="faq-h">Часті запитання</h2>
-      <p class="faq__aside">Не знайшли відповіді? Напишіть у <a href="https://t.me/username" target="_blank" rel="noopener">Telegram</a> — відповімо протягом робочого дня.</p>
+      <!--ch:faq--><p class="faq__aside">Не знайшли відповіді? Напишіть у <a href="https://t.me/username" target="_blank" rel="noopener">Telegram</a> — відповімо протягом робочого дня.</p><!--/ch:faq-->
     </div>
     <div class="faq__list">
       <details><summary>Хто платить комісію агенції — покупець чи продавець?</summary><p>Залежить від того, з ким укладено договір. Якщо ми продаємо квартиру власника, комісію зазвичай сплачує він. Якщо ви замовляєте підбір — платите ви. Сума завжди фіксується в договорі заздалегідь.</p></details>
@@ -457,22 +457,23 @@
       <h2 id="contacts-h">Приходьте в офіс або напишіть зручним способом</h2>
       <p class="contacts__addr"><span class="ph">[АДРЕСА]</span>, <span class="ph">[МІСТО]</span></p>
       <div class="links">
-        <a class="lk" href="tel:+380000000000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span>Телефон<b><span class="ph">[ТЕЛЕФОН]</span></b></span></a>
-        <a class="lk" href="viber://chat?number=%2B380000000000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><path d="M9 9.5c.5 2.5 3 5 5.5 5.5M13 7.5a3.5 3.5 0 0 1 3.5 3.5"/></svg><span>Viber<b>написати</b></span></a>
-        <a class="lk" href="https://t.me/username" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg><span>Telegram<b>написати</b></span></a>
-        <a class="lk" href="https://wa.me/380000000000" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 9c0 3 3 6 6 6l1-1.5-2-1-1 1c-1-.4-2.1-1.5-2.5-2.5l1-1-1-2z"/></svg><span>WhatsApp<b>написати</b></span></a>
-        <a class="lk" href="https://www.instagram.com/username/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span>Instagram<b><span class="ph">[ІНСТАГРАМ]</span></b></span></a>
-        <a class="lk" href="https://www.facebook.com/username" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg><span>Facebook<b>сторінка</b></span></a>
-        <a class="lk" href="mailto:hello@example.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span>Email<b><span class="ph">[EMAIL]</span></b></span></a>
+        <!--ch:tel--><a class="lk" href="tel:+380000000000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span>Телефон<b><span class="ph">[ТЕЛЕФОН]</span></b></span></a><!--/ch:tel-->
+        <!--ch:viber--><a class="lk" href="viber://chat?number=%2B380000000000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><path d="M9 9.5c.5 2.5 3 5 5.5 5.5M13 7.5a3.5 3.5 0 0 1 3.5 3.5"/></svg><span>Viber<b>написати</b></span></a><!--/ch:viber-->
+        <!--ch:tg--><a class="lk" href="https://t.me/username" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg><span>Telegram<b>написати</b></span></a><!--/ch:tg-->
+        <!--ch:wa--><a class="lk" href="https://wa.me/380000000000" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 9c0 3 3 6 6 6l1-1.5-2-1-1 1c-1-.4-2.1-1.5-2.5-2.5l1-1-1-2z"/></svg><span>WhatsApp<b>написати</b></span></a><!--/ch:wa-->
+        <!--ch:ig--><a class="lk" href="https://www.instagram.com/username/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span>Instagram<b><span class="ph">[ІНСТАГРАМ]</span></b></span></a><!--/ch:ig-->
+        <!--ch:fb--><a class="lk" href="https://www.facebook.com/username" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg><span>Facebook<b>сторінка</b></span></a><!--/ch:fb-->
+        <!--ch:email--><a class="lk" href="mailto:hello@example.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span>Email<b><span class="ph">[EMAIL]</span></b></span></a><!--/ch:email-->
+        <a class="lk" href="https://www.google.com/maps/dir/?api=1&amp;destination=%D0%86%D0%B2%D0%B0%D0%BD%D0%BE-%D0%A4%D1%80%D0%B0%D0%BD%D0%BA%D1%96%D0%B2%D1%81%D1%8C%D0%BA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Маршрут<b>прокласти в Google Maps</b></span></a>
       </div>
 
-      <div class="hours" id="hours" data-hours='{"1":[9,19],"2":[9,19],"3":[9,19],"4":[9,19],"5":[9,19],"6":[10,16],"0":null}'>
+      <div class="hours" id="hours" data-hours='{"1":["09:00","19:00"],"2":["09:00","19:00"],"3":["09:00","19:00"],"4":["09:00","19:00"],"5":["09:00","19:00"],"6":["10:00","16:00"],"0":null}'>
         <div class="hours__head">
           <h3>Години роботи</h3>
-          <span class="status" id="status">—</span>
+          <!--ch:live--><span class="status" id="status">—</span><!--/ch:live-->
         </div>
         <p class="hours__sum"><span class="ph">[ГОДИНИ]</span></p>
-        <ul class="hours__list">
+        <!--ch:live--><ul class="hours__list">
           <li data-d="1"><span>Понеділок</span><span>9:00 – 19:00</span></li>
           <li data-d="2"><span>Вівторок</span><span>9:00 – 19:00</span></li>
           <li data-d="3"><span>Середа</span><span>9:00 – 19:00</span></li>
@@ -480,7 +481,7 @@
           <li data-d="5"><span>П’ятниця</span><span>9:00 – 19:00</span></li>
           <li data-d="6"><span>Субота</span><span>10:00 – 16:00</span></li>
           <li data-d="0"><span>Неділя</span><span>покази за домовленістю</span></li>
-        </ul>
+        </ul><!--/ch:live-->
       </div>
     </div>
 
@@ -506,7 +507,7 @@
       <button class="btn btn--brass btn--full" type="submit">Надіслати заявку</button>
       <p class="form__err" role="alert" hidden></p>
       <div class="form__ok" hidden>
-        <p><strong>Заявку сформовано.</strong> Текст заявки скопійовано й відкрито месенджер — надішліть повідомлення, і ми відповімо протягом робочого дня.</p>
+        <p><strong>Заявку сформовано.</strong> Текст заявки скопійовано, а вибраний спосіб зв’язку вже відкрито — надішліть повідомлення, і ми відповімо протягом робочого дня.</p>
         <button type="button" class="link" data-reset>Заповнити ще одну</button>
       </div>
     </form>
@@ -529,15 +530,15 @@
       <p><span class="ph">[АДРЕСА]</span></p>
     </div>
     <div>
-      <p><a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a></p>
-      <p><a href="mailto:hello@example.com"><span class="ph">[EMAIL]</span></a></p>
+      <!--ch:tel--><p><a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a></p><!--/ch:tel-->
+      <!--ch:email--><p><a href="mailto:hello@example.com"><span class="ph">[EMAIL]</span></a></p><!--/ch:email-->
     </div>
     <p class="foot__copy">© <span id="year">2026</span> <span class="ph">[НАЗВА]</span>. Інформація на сайті не є публічною офертою.</p>
   </div>
 </footer>
 
 <nav class="bar" aria-label="Швидкі дії">
-  <a href="tel:+380000000000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Подзвонити</a>
+  <!--ch:tel--><a href="tel:+380000000000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Подзвонити</a><!--/ch:tel-->
   <a class="bar__main" href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>На перегляд</a>
   <a href="https://www.google.com/maps/dir/?api=1&amp;destination=%D0%86%D0%B2%D0%B0%D0%BD%D0%BE-%D0%A4%D1%80%D0%B0%D0%BD%D0%BA%D1%96%D0%B2%D1%81%D1%8C%D0%BA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Маршрут</a>
 </nav>

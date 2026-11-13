@@ -9,6 +9,8 @@
   var TG = "https://t.me/username";
   var VIBER = "viber://chat?number=%2B380000000000";
   var MAIL = "mailto:hello@example.com";
+  var SMS = "";      /* e.g. "sms:+380XXXXXXXXX" — used when the form offers an SMS option */
+  var FALLBACK = ""; /* social URL opened when the form has no send options */
 
   requestAnimationFrame(function () { doc.body.classList.add("is-ready"); });
   var y = $("#year"); if (y) y.textContent = new Date().getFullYear();
@@ -159,11 +161,13 @@
         var v = (f.value || "").trim(); if (v) lines.push(f.name + ": " + v);
       });
       var text = lines.join("\n"), via = (form.querySelector("[name=via]:checked") || {}).value, url;
-      if (via === "viber") url = VIBER + "&draft=" + encodeURIComponent(text);
+      if (!via) url = FALLBACK;
+      else if (via === "sms") url = SMS + "?&body=" + encodeURIComponent(text);
+      else if (via === "viber") url = VIBER + "&draft=" + encodeURIComponent(text);
       else if (via === "mail") url = MAIL + "?subject=" + encodeURIComponent(form.getAttribute("data-kind")) + "&body=" + encodeURIComponent(text);
       else url = TG + "?text=" + encodeURIComponent(text);
       try { if (navigator.clipboard) navigator.clipboard.writeText(text).catch(function () {}); } catch (x) {}
-      if (via === "tg") window.open(url, "_blank", "noopener"); else window.location.href = url;
+      if (url) { if (via === "tg" || !via) window.open(url, "_blank", "noopener"); else window.location.href = url; }
       form.classList.add("is-sent"); ok.hidden = false;
     });
     $$("input, select, textarea", form).forEach(function (f) {
@@ -173,28 +177,29 @@
   });
 
   /* ---- opening hours, Kyiv time ---- */
-  var hoursEl = $("#hours");
-  if (hoursEl) {
-    var H = JSON.parse(hoursEl.getAttribute("data-hours"));
-    var st = $("#status");
+  var hoursEl = $("#hours"), st = $("#status");
+  if (hoursEl && st) {
+    var H = JSON.parse(hoursEl.getAttribute("data-hours") || "{}");
+    var toMin = function (s) { var p = String(s).split(":"); return (+p[0]) * 60 + (+(p[1] || 0)); };
+    var DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+    var ON = ["у неділю","у понеділок","у вівторок","у середу","у четвер","у п’ятницю","у суботу"];
     var tick = function () {
       var parts = {};
       try {
         new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Kyiv", weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false })
           .formatToParts(new Date()).forEach(function (p) { parts[p.type] = p.value; });
-      } catch (x) { var d = new Date(); parts = { weekday: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][d.getDay()], hour: d.getHours(), minute: d.getMinutes() }; }
-      var day = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(parts.weekday);
-      var now = (+parts.hour % 24) + (+parts.minute) / 60, today = H[day];
-      var open = !!today && now >= today[0] && now < today[1];
+      } catch (x) { var d = new Date(); parts = { weekday: DAYS[d.getDay()], hour: d.getHours(), minute: d.getMinutes() }; }
+      var day = DAYS.indexOf(parts.weekday), now = (+parts.hour % 24) * 60 + (+parts.minute), today = H[day];
+      var open = !!today && now >= toMin(today[0]) && now < toMin(today[1]);
       st.classList.toggle("is-open", open); st.classList.toggle("is-closed", !open);
-      if (open) st.textContent = "Зараз відчинено до " + today[1] + ":00";
+      if (open) st.textContent = "Зараз відчинено до " + today[1].replace(/^0/, "");
       else {
-        var nd = day, txt = "";
-        for (var k = 0; k < 7; k++) {
+        var txt = "";
+        for (var k = 0; k < 8; k++) {
           var cand = (day + k) % 7, h = H[cand];
-          if (h && (k > 0 || now < h[0])) { txt = (k === 0 ? "сьогодні" : k === 1 ? "завтра" : ["у неділю","у понеділок","у вівторок","у середу","у четвер","у п’ятницю","у суботу"][cand]) + " о " + h[0] + ":00"; break; }
+          if (h && (k > 0 || now < toMin(h[0]))) { txt = (k === 0 ? "сьогодні" : k === 1 ? "завтра" : ON[cand]) + " о " + h[0].replace(/^0/, ""); break; }
         }
-        st.textContent = "Зараз зачинено · відкриємо " + txt;
+        st.textContent = txt ? "Зараз зачинено · відкриємо " + txt : "Зараз зачинено";
       }
       $$("li", hoursEl).forEach(function (li) { li.classList.toggle("is-today", +li.dataset.d === day); });
     };
