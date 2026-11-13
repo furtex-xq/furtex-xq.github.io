@@ -1,0 +1,65 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+   "bytes": 296939,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "kids",
+   "url": "https://images.unsplash.com/photo-1577896851231-70ef18881754",
+   "bytes": 167845,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "teens",
+   "url": "https://images.unsplash.com/photo-1581726690015-c9861fa5057f",
+   "bytes": 169816,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "adults",
+   "url": "https://images.unsplash.com/photo-1543269865-cbf427effbad",
+   "bytes": 126809,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "online",
+   "url": "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b",
+   "bytes": 155921,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "notebook",
+   "url": "https://images.unsplash.com/photo-1460518451285-97b6aa326961",
+   "bytes": 174914,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "tiles",
+   "url": "https://images.unsplash.com/photo-1673515334717-da4d85aaf38b",
+   "bytes": 118643,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "classroom",
+   "url": "https://images.unsplash.com/photo-1519406596751-0a3ccc4937fe",
+   "bytes": 144768,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "dictionary",
+   "url": "https://images.unsplash.com/photo-1543165796-5426273eaab3",
+   "bytes": 152376,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "team",
+   "url": "https://images.unsplash.com/photo-1517048676732-d65bc937f952",
+   "bytes": 114730,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
