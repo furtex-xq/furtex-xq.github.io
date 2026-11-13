@@ -1,0 +1,65 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1629909613654-28e377c37b09",
+   "bytes": 239200,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "cabinet",
+   "url": "https://images.unsplash.com/photo-1598256989800-fe5f95da9787",
+   "bytes": 115187,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "consult",
+   "url": "https://images.unsplash.com/photo-1777331903190-341a3dd0441b",
+   "bytes": 139142,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "implant",
+   "url": "https://images.unsplash.com/photo-1593022356769-11f762e25ed9",
+   "bytes": 90722,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "tools",
+   "url": "https://images.unsplash.com/photo-1606811856475-5e6fcdc6e509",
+   "bytes": 84719,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "xray",
+   "url": "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5",
+   "bytes": 99460,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "smile",
+   "url": "https://images.unsplash.com/photo-1677026010083-78ec7f1b84ed",
+   "bytes": 86203,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "room",
+   "url": "https://images.unsplash.com/photo-1643660526741-094639fbe53a",
+   "bytes": 120848,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "hygiene",
+   "url": "https://images.unsplash.com/photo-1777446523856-e7acffa844a7",
+   "bytes": 77717,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "mirror",
+   "url": "https://images.unsplash.com/photo-1698749778813-ad5f2814e50f",
+   "bytes": 80407,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
