@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob: https://raw.githubusercontent.com; frame-src https://www.google.com https://maps.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Бутик одягу [НАЗВА] — [МІСТО] | жіночий одяг, примірка, стиліст</title>
+<title>Бутик одягу [НАЗВА] — [МІСТО] | одяг, примірка, стиліст</title>
 <meta name="description" content="Бутик одягу [НАЗВА] у [МІСТО]: пальта, трикотаж, костюми, сукні й аксесуари невеликими партіями. Примірка без поспіху, допомога стиліста, підгонка по фігурі. [АДРЕСА], [ТЕЛЕФОН].">
 <meta name="theme-color" content="#efeee9">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
@@ -76,7 +76,7 @@
       <a href="#fitting">Примірка</a>
       <a href="#contacts">Контакти</a>
     </nav>
-    <a class="mast__tel" href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>
+    <a class="mast__tel" data-ch="tel" href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>
     <a class="btn btn--ink btn--sm mast__cta" href="#book">Записатися</a>
     <button class="mast__burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Відкрити меню"><span></span><span></span></button>
   </div>
@@ -91,7 +91,7 @@
     </nav>
     <div class="menu__foot">
       <a class="btn btn--ink" href="#book">Записатися на примірку</a>
-      <a class="btn btn--line" href="tel:+380000000000"><svg class="ic"><use href="#i-phone"/></svg><span class="ph">[ТЕЛЕФОН]</span></a>
+      <a class="btn btn--line" data-ch="tel" href="tel:+380000000000"><svg class="ic"><use href="#i-phone"/></svg><span class="ph">[ТЕЛЕФОН]</span></a>
     </div>
   </div>
 </header>
@@ -120,7 +120,7 @@
       <p class="cover__lead">Пальта, трикотаж, костюми й сукні, які привозимо невеликими партіями. Приходьте на примірку — допоможемо зібрати образ і підігнати річ по фігурі.</p>
       <div class="cover__cta">
         <a class="btn btn--ink" href="#book"><svg class="ic"><use href="#i-hanger"/></svg>Записатися на примірку</a>
-        <a class="btn btn--line" href="tel:+380000000000"><svg class="ic"><use href="#i-phone"/></svg>Зателефонувати</a>
+        <a class="btn btn--line" data-ch="tel" data-alt="cta" href="tel:+380000000000"><svg class="ic"><use href="#i-phone"/></svg>Зателефонувати</a>
       </div>
       <ol class="cover__lines" aria-label="У цьому випуску">
         <li><a href="#lookbook"><span class="cl__t">Лукбук сезону: сім образів</span><span class="cl__p">с. 02</span></a></li>
@@ -272,7 +272,7 @@
       <li class="reveal"><h3>Мало моделей — багато уваги</h3><p>Кожну річ привозимо в кількох розмірах, а не десятками. Ви не побачите свій образ на кожній другій людині в місті.</p></li>
       <li class="reveal"><h3>Чесно про посадку</h3><p>Скажемо, якщо річ не ваша, і запропонуємо інший крій. Нам важливо, щоб ви поверталися, а не здавали покупку.</p></li>
       <li class="reveal"><h3>Підгонка на місці</h3><p>Довжина штанів, рукава, талія — підженемо, щоб річ сиділа так, ніби шилася саме для вас.</p></li>
-      <li class="reveal"><h3>Відкладемо до візиту</h3><p>Напишіть, що сподобалось у лукбуку чи Instagram, — підготуємо ваш розмір у примірювальній.</p></li>
+      <li class="reveal"><h3>Відкладемо до візиту</h3><p>Напишіть, що сподобалось у лукбуку, — підготуємо ваш розмір у примірювальній.</p></li>
     </ul>
   </div>
 </section>
@@ -286,7 +286,7 @@
     </div>
     <div class="fit__grid">
       <ol class="steps">
-        <li class="reveal"><span class="steps__n">1</span><div><h3>Запис</h3><p>Обираєте зручний день у формі нижче або пишете в месенджер. Розкажіть, для чого шукаєте одяг: робота, подія, подорож, оновлення гардеробу.</p></div></li>
+        <li class="reveal"><span class="steps__n">1</span><div><h3>Запис</h3><p>Обираєте зручний день у формі нижче. Розкажіть, для чого шукаєте одяг: робота, подія, подорож, оновлення гардеробу.</p></div></li>
         <li class="reveal"><span class="steps__n">2</span><div><h3>Підбір до вашого приходу</h3><p>Стиліст заздалегідь відбирає речі вашого розміру й кольорової гами — ви приходите до готової вішалки, а не до пошуків.</p></div></li>
         <li class="reveal"><span class="steps__n">3</span><div><h3>Примірка без поспіху</h3><p>Пробуєте різні поєднання, порівнюєте крої. Підкажемо, з чим із вашої шафи це поєднати.</p></div></li>
         <li class="reveal"><span class="steps__n">4</span><div><h3>Підгонка та пакування</h3><p>Якщо треба — вкоротимо чи підігнемо. Речі пакуємо так, щоб їх було приємно відкрити, а подарунок — подарувати.</p></div></li>
@@ -338,7 +338,7 @@
       </details>
       <details>
         <summary>Як дізнатися, чи є мій розмір?<svg class="ic"><use href="#i-plus"/></svg></summary>
-        <p>Напишіть нам у Telegram, Viber чи Instagram назву речі або номер образу з лукбука — відповімо, які розміри є в наявності, і за потреби надішлемо заміри.</p>
+        <p>Напишіть або зателефонуйте нам і назвіть річ чи номер образу з лукбука — відповімо, які розміри є в наявності, і за потреби надішлемо заміри.</p>
       </details>
       <details>
         <summary>Чи відправляєте по Україні?<svg class="ic"><use href="#i-plus"/></svg></summary>
@@ -370,9 +370,9 @@
         <svg class="ic"><use href="#i-pin"/></svg>
         <span><span class="ph">[АДРЕСА]</span>, <span class="ph">[МІСТО]</span></span>
       </address>
-      <p class="contact__tel"><a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a></p>
+      <p class="contact__tel" data-ch="tel"><a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a></p>
 
-      <div class="hours">
+      <div class="hours"><!--hours-->
         <div class="hours__top">
           <h3>Години роботи</h3>
           <span class="status" data-status><i></i><span class="status__t">Графік: <span class="ph">[ГОДИНИ]</span></span></span>
@@ -385,23 +385,23 @@
             <tr data-days="0" data-open="11:00" data-close="18:00"><th scope="row">Неділя</th><td>11:00 — 18:00</td></tr>
           </tbody>
         </table>
-      </div>
+      <!--/hours--></div>
 
       <ul class="chan">
-        <li><a href="tel:+380000000000"><svg class="ic"><use href="#i-phone"/></svg>Телефон</a></li>
-        <li><a href="viber://chat?number=%2B380000000000"><svg class="ic"><use href="#i-viber"/></svg>Viber</a></li>
-        <li><a href="https://t.me/username" target="_blank" rel="noopener"><svg class="ic"><use href="#i-send"/></svg>Telegram</a></li>
-        <li><a href="https://wa.me/380000000000" target="_blank" rel="noopener"><svg class="ic"><use href="#i-whatsapp"/></svg>WhatsApp</a></li>
-        <li><a href="https://www.instagram.com/username/" target="_blank" rel="noopener"><svg class="ic"><use href="#i-instagram"/></svg><span class="ph">[ІНСТАГРАМ]</span></a></li>
-        <li><a href="https://www.facebook.com/username" target="_blank" rel="noopener"><svg class="ic"><use href="#i-facebook"/></svg>Facebook</a></li>
-        <li class="chan__wide"><a href="mailto:hello@example.com"><svg class="ic"><use href="#i-mail"/></svg><span class="ph">[EMAIL]</span></a></li>
+        <li data-ch="tel"><a href="tel:+380000000000"><svg class="ic"><use href="#i-phone"/></svg>Телефон</a></li>
+        <li data-ch="viber"><a href="viber://chat?number=%2B380000000000"><svg class="ic"><use href="#i-viber"/></svg>Viber</a></li>
+        <li data-ch="tg"><a href="https://t.me/username" target="_blank" rel="noopener"><svg class="ic"><use href="#i-send"/></svg>Telegram</a></li>
+        <li data-ch="wa"><a href="https://wa.me/380000000000" target="_blank" rel="noopener"><svg class="ic"><use href="#i-whatsapp"/></svg>WhatsApp</a></li>
+        <li data-ch="ig"><a href="https://www.instagram.com/username/" target="_blank" rel="noopener"><svg class="ic"><use href="#i-instagram"/></svg><span class="ph">[ІНСТАГРАМ]</span></a></li>
+        <li data-ch="fb"><a href="https://www.facebook.com/username" target="_blank" rel="noopener"><svg class="ic"><use href="#i-facebook"/></svg>Facebook</a></li>
+        <li data-ch="mail"><a href="mailto:hello@example.com"><svg class="ic"><use href="#i-mail"/></svg><span class="ph">[EMAIL]</span></a></li>
       </ul>
     </div>
 
     <div class="book" id="book">
-      <form class="form" novalidate>
+      <form class="form" novalidate data-prefix="Заявка з сайту [НАЗВА]">
         <h3 class="form__title">Запис на примірку</h3>
-        <p class="form__sub">Заповніть форму — повідомлення відкриється у вибраному месенджері, вам залишиться лише натиснути «Надіслати».</p>
+        <p class="form__sub">Заповніть форму — повідомлення відкриється у вибраному застосунку, вам залишиться лише натиснути «Надіслати».</p>
         <div class="field">
           <label for="f-name">Ваше ім’я</label>
           <input id="f-name" name="name" type="text" autocomplete="name" required minlength="2" placeholder="Олена">
@@ -442,17 +442,17 @@
         </div>
         <fieldset class="via">
           <legend>Куди надіслати заявку</legend>
-          <label><input type="radio" name="via" value="tg" checked><span>Telegram</span></label>
-          <label><input type="radio" name="via" value="viber"><span>Viber</span></label>
-          <label><input type="radio" name="via" value="mail"><span>Email</span></label>
+          <label data-ch="tg"><input type="radio" name="via" value="tg" data-url="https://t.me/username" checked><span>Telegram</span></label>
+          <label data-ch="viber"><input type="radio" name="via" value="viber" data-url="viber://chat?number=%2B380000000000"><span>Viber</span></label>
+          <label data-ch="mail"><input type="radio" name="via" value="mail" data-url="mailto:hello@example.com"><span>Email</span></label>
         </fieldset>
         <button class="btn btn--ink btn--full" type="submit">Записатися на примірку<svg class="ic"><use href="#i-arrow"/></svg></button>
         <p class="form__fine">Ми не зберігаємо ваші дані на сайті — вони йдуть напряму в повідомлення.</p>
       </form>
       <div class="form__ok" hidden tabindex="-1">
         <p class="eyebrow">Майже готово</p>
-        <p class="form__ok-t">Дякуємо! Залишилось натиснути «Надіслати» у месенджері.</p>
-        <p>Якщо вікно не відкрилося, зателефонуйте нам: <a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>.</p>
+        <p class="form__ok-t">Дякуємо! Залишилось лише натиснути «Надіслати».</p>
+        <p data-ch="tel">Якщо вікно не відкрилося, зателефонуйте нам: <a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>.</p>
         <button class="btn btn--line" type="button" data-reset>Заповнити ще раз</button>
       </div>
     </div>
@@ -475,8 +475,8 @@
       </div>
       <div>
         <p class="foot__lbl">Зв’язок</p>
-        <p><a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a></p>
-        <p><a href="mailto:hello@example.com"><span class="ph">[EMAIL]</span></a></p>
+        <p data-ch="tel"><a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a></p>
+        <p data-ch="mail"><a href="mailto:hello@example.com"><span class="ph">[EMAIL]</span></a></p>
       </div>
       <div>
         <p class="foot__lbl">Розділи</p>
@@ -492,7 +492,7 @@
 </footer>
 
 <nav class="dock" aria-label="Швидкі дії">
-  <a href="tel:+380000000000"><svg class="ic"><use href="#i-phone"/></svg>Дзвінок</a>
+  <a data-ch="tel" data-alt="dock" href="tel:+380000000000"><svg class="ic"><use href="#i-phone"/></svg>Дзвінок</a>
   <a href="#book" class="dock__main"><svg class="ic"><use href="#i-hanger"/></svg>Примірка</a>
   <a href="https://www.google.com/maps/dir/?api=1&amp;destination=%D0%86%D0%B2%D0%B0%D0%BD%D0%BE-%D0%A4%D1%80%D0%B0%D0%BD%D0%BA%D1%96%D0%B2%D1%81%D1%8C%D0%BA" target="_blank" rel="noopener"><svg class="ic"><use href="#i-route"/></svg>Маршрут</a>
 </nav>

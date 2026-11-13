@@ -132,9 +132,6 @@
   /* ---------- форма запису → Telegram / Viber / Email ---------- */
   var form = document.querySelector(".form");
   var ok = document.querySelector(".form__ok");
-  var TG = "https://t.me/username";
-  var VIBER = "viber://chat?number=%2B380000000000";
-  var MAIL = "mailto:hello@example.com";
   var dateEl = document.getElementById("f-date");
   if (dateEl) {
     var t0 = new Date(); t0.setMinutes(t0.getMinutes() - t0.getTimezoneOffset());
@@ -166,7 +163,7 @@
       var el = form.elements;
       var date = el.date.value ? el.date.value.split("-").reverse().join(".") : "будь-який день";
       var lines = [
-        "Заявка з сайту [НАЗВА]",
+        form.getAttribute("data-prefix") || "Заявка з сайту",
         "Ім’я: " + el.name.value.trim(),
         "Телефон: " + el.phone.value.trim(),
         "Мета: " + el.goal.value,
@@ -175,12 +172,22 @@
       ];
       if (el.msg.value.trim()) lines.push("Коментар: " + el.msg.value.trim());
       var text = lines.join("\n");
-      var via = (form.querySelector("input[name=via]:checked") || {}).value;
-      var url;
-      if (via === "viber") url = VIBER + "&draft=" + encodeURIComponent(text);
-      else if (via === "mail") url = MAIL + "?subject=" + encodeURIComponent("Запис на примірку — " + el.name.value.trim()) + "&body=" + encodeURIComponent(text);
-      else url = TG + "?text=" + encodeURIComponent(text);
-      if (via === "tg") window.open(url, "_blank", "noopener"); else window.location.href = url;
+      var radio = form.querySelector("input[name=via]:checked") || form.querySelector("input[name=via]");
+      var via = radio ? radio.value : "";
+      var base = radio ? radio.getAttribute("data-url") : "";
+      var okT = ok.querySelector(".form__ok-t");
+      if (okT && !okT.getAttribute("data-def")) okT.setAttribute("data-def", okT.textContent);
+      if (okT) okT.textContent = okT.getAttribute("data-def");
+      if (via === "viber") window.location.href = base + "&draft=" + encodeURIComponent(text);
+      else if (via === "mail") window.location.href = base + "?subject=" + encodeURIComponent("Запис на примірку — " + el.name.value.trim()) + "&body=" + encodeURIComponent(text);
+      else if (via === "sms") window.location.href = base + "?&body=" + encodeURIComponent(text);
+      else if (via === "tg") window.open(base + "?text=" + encodeURIComponent(text), "_blank", "noopener");
+      else if (base) {
+        // Instagram / Facebook не приймають готовий текст: копіюємо його в буфер і відкриваємо профіль
+        try { if (navigator.clipboard) navigator.clipboard.writeText(text).catch(function () {}); } catch (err) {}
+        window.open(base, "_blank", "noopener");
+        if (okT) okT.textContent = "Текст заявки скопійовано — вставте його в повідомлення в " + (via === "fb" ? "Facebook" : "Instagram") + ".";
+      }
       form.hidden = true; ok.hidden = false; ok.focus();
     });
     var reset = ok && ok.querySelector("[data-reset]");
