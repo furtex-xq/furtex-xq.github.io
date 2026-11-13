@@ -1,0 +1,71 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1484820540004-14229fe36ca4",
+   "bytes": 507521,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "art",
+   "url": "https://images.unsplash.com/photo-1605627079912-97c3810a11a4",
+   "bytes": 144843,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "crayons",
+   "url": "https://images.unsplash.com/photo-1637195141546-2469a5312504",
+   "bytes": 68237,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "reading",
+   "url": "https://images.unsplash.com/photo-1599689868384-59cb2b01bb21",
+   "bytes": 97775,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "music",
+   "url": "https://images.unsplash.com/photo-1509781827353-fb95c262fc40",
+   "bytes": 101871,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "shapes",
+   "url": "https://images.unsplash.com/photo-1575364289437-fb1479d52732",
+   "bytes": 122304,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "room",
+   "url": "https://images.unsplash.com/photo-1567746455504-cb3213f8f5b8",
+   "bytes": 156118,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "letters",
+   "url": "https://images.unsplash.com/photo-1535572290543-960a8046f5af",
+   "bytes": 126421,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "paints",
+   "url": "https://images.unsplash.com/photo-1452802447250-470a88ac82bc",
+   "bytes": 212236,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "toys",
+   "url": "https://images.unsplash.com/photo-1786667395574-8121327f52c8",
+   "bytes": 162934,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "toddler",
+   "url": "https://images.unsplash.com/photo-1600880291319-1a7499c191e8",
+   "bytes": 250242,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
