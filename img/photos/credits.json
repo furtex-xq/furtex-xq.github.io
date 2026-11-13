@@ -2,26 +2,32 @@
  "photos": [
   {
    "slot": "hero",
-   "url": "https://images.unsplash.com/photo-1778487413263-f16954bacef1",
-   "bytes": 429108,
+   "url": "https://images.unsplash.com/photo-1512916194211-3f2b7f5f7de3",
+   "bytes": 246477,
    "license": "Unsplash License"
   },
   {
-   "slot": "hero-alt",
-   "url": "https://images.unsplash.com/photo-1722888799634-c5093906feae",
-   "bytes": 412481,
+   "slot": "hero-b",
+   "url": "https://images.unsplash.com/photo-1628745277862-bc0b2d68c50c",
+   "bytes": 287638,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "hero-c",
+   "url": "https://images.unsplash.com/photo-1631048835473-73c7aaf86096",
+   "bytes": 271521,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "hero-d",
+   "url": "https://images.unsplash.com/photo-1636138390625-80afec896b28",
+   "bytes": 860733,
    "license": "Unsplash License"
   },
   {
    "slot": "kitchen",
    "url": "https://images.unsplash.com/photo-1610733374054-59454fe657cd",
    "bytes": 258149,
-   "license": "Unsplash License"
-  },
-  {
-   "slot": "kitchen2",
-   "url": "https://images.unsplash.com/photo-1512916194211-3f2b7f5f7de3",
-   "bytes": 115547,
    "license": "Unsplash License"
   },
   {
@@ -68,20 +74,20 @@
   },
   {
    "slot": "workshop",
-   "url": "https://images.unsplash.com/photo-1683115099191-51e617fc5ff1",
-   "bytes": 150947,
+   "url": "https://images.unsplash.com/photo-1788296817269-8df0458ab799",
+   "bytes": 125954,
    "license": "Unsplash License"
   },
   {
    "slot": "workshop2",
-   "url": "https://images.unsplash.com/photo-1683115099860-5379ac101bce",
-   "bytes": 158910,
+   "url": "https://images.unsplash.com/photo-1659930087003-2d64e33181f7",
+   "bytes": 116922,
    "license": "Unsplash License"
   },
   {
    "slot": "craft",
-   "url": "https://images.unsplash.com/photo-1683115100702-af818681184d",
-   "bytes": 124271,
+   "url": "https://images.unsplash.com/photo-1544164560-adac3045edb2",
+   "bytes": 352924,
    "license": "Unsplash License"
   },
   {
