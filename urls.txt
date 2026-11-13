@@ -1,4 +1,23 @@
-#mode=iphone (batch 2)
+#mode=iphone (batch 2 + 19 new templates)
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/advokat/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/fitnes/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/stomatolohiia/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/fotostudiia/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/hotel/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/zoomahazyn/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/tantsi/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/sport-velo/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/optyka/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/tatu/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/kulky-dekor/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/ihrashky-podarunky/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/fastfud/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/klininh/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/avtomyika/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/yuveliry/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/polihrafiia/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/psykholoh/index.html
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/budivnytstvo/index.html
 https://raw.githack.com/furtex-xq/furtex-xq.github.io/beta/ivonenko-ivan-fedorovych/index.html
 https://raw.githack.com/furtex-xq/furtex-xq.github.io/beta/moris/index.html
 https://raw.githack.com/furtex-xq/furtex-xq.github.io/beta/botvintseva-o-v/index.html
