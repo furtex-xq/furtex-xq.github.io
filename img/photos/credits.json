@@ -8,8 +8,8 @@
   },
   {
    "slot": "exam",
-   "url": "https://images.unsplash.com/photo-1758656321519-02fb5f48dc7e",
-   "bytes": 148253,
+   "url": "https://images.unsplash.com/photo-1757386320806-e3f03c9f41e8",
+   "bytes": 107759,
    "license": "Unsplash License"
   },
   {
@@ -46,6 +46,12 @@
    "slot": "contacts",
    "url": "https://images.unsplash.com/photo-1599243315159-faa0eac09ec1",
    "bytes": 61567,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "device",
+   "url": "https://images.unsplash.com/photo-1539036776273-021ec1d78bec",
+   "bytes": 119919,
    "license": "Unsplash License"
   }
  ],
