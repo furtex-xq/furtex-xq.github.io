@@ -1,0 +1,77 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1761312834150-4beefff097a7",
+   "bytes": 906457,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "foam",
+   "url": "https://images.unsplash.com/photo-1633014041037-f5446fb4ce99",
+   "bytes": 264752,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "foam2",
+   "url": "https://images.unsplash.com/photo-1769641156628-52ed6dc1a951",
+   "bytes": 423849,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "rinse",
+   "url": "https://images.unsplash.com/photo-1607860108855-64acf2078ed9",
+   "bytes": 204588,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "wheel",
+   "url": "https://images.unsplash.com/photo-1708805282683-50a060eba80f",
+   "bytes": 147573,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "wheel2",
+   "url": "https://images.unsplash.com/photo-1565689876697-e467b6c54da2",
+   "bytes": 344899,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "interior",
+   "url": "https://images.unsplash.com/photo-1605437241278-c1806d14a4d9",
+   "bytes": 232168,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "dash",
+   "url": "https://images.unsplash.com/photo-1771491237209-b89bc7290588",
+   "bytes": 90159,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "polish",
+   "url": "https://images.unsplash.com/photo-1780558852670-3f49298ecc1f",
+   "bytes": 98497,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "drops",
+   "url": "https://images.unsplash.com/photo-1611239179213-d972da54091a",
+   "bytes": 148045,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "cloth",
+   "url": "https://images.unsplash.com/photo-1732357624591-f2137085659b",
+   "bytes": 168847,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "tunnel",
+   "url": "https://images.unsplash.com/photo-1762933868999-a7adb3f60287",
+   "bytes": 164502,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
