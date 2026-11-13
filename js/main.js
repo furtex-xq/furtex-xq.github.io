@@ -256,7 +256,7 @@
       else if (via === 'email') url = href + '?subject=' + encodeURIComponent('Запис на перевірку зору') + '&body=' + enc;
       else if (via === 'viber') url = 'viber://forward?text=' + enc;
       else { copied = copyText(msg); url = href; }
-      if (doneText) {
+      if (doneText && !doneText.hasAttribute('data-keep')) {
         doneText.textContent = (via === 'instagram' || via === 'telegram')
           ? (copied ? 'Текст заявки скопійовано — вставте його в чат, що відкрився, і надішліть. Ми підтвердимо час.' : 'Напишіть нам у чат, що відкрився: ім’я, телефон і бажаний час.')
           : (via === 'copy' ? (copied ? 'Текст заявки скопійовано — надішліть його нам зручним способом.' : msg) : defaultDone);
