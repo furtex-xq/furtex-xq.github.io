@@ -73,35 +73,44 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero" aria-labelledby="h1">
-  <div class="hero__text">
-    <p class="kicker"><span class="status" data-status>Фотосалон у центрі міста</span></p>
-    <h1 id="h1" class="hero__title">
-      <span class="line">Фото на документи,</span>
-      <span class="line"><em>друк</em> і фотосесії</span>
-      <span class="line line--small">в Івано-Франківську</span>
-    </h1>
-    <p class="hero__lead">Зробимо фото на паспорт, візу чи студентський без запису, надрукуємо знімки з телефона, відскануємо документи й повернемо життя старим сімейним фото. Вулиця Грушевського, 42.</p>
-    <div class="hero__cta">
-      <a class="btn btn--red" href="tel:+380970304830"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Подзвонити</a>
-      <a class="btn btn--ghost" href="#kontakty"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>Як нас знайти</a>
+  <div class="hero__bg press" data-press aria-hidden="true">
+    <img class="press__img" src="img/photos/hero.jpg" alt="" width="1600" height="2844" fetchpriority="high">
+    <span class="press__ghost press__ghost--c"></span>
+    <span class="press__ghost press__ghost--m"></span>
+    <span class="press__ghost press__ghost--y"></span>
+    <span class="hero__shade"></span>
+  </div>
+  <i class="reg reg--tl" aria-hidden="true"></i><i class="reg reg--tr" aria-hidden="true"></i>
+
+  <div class="hero__inner">
+    <div class="hero__text">
+      <p class="hero__chip"><span class="status" data-status>Фотосалон у центрі міста</span></p>
+      <h1 id="h1" class="hero__title">
+        <span class="line">Фото на документи,</span>
+        <span class="line">друк і <em>фотосесії</em></span>
+      </h1>
+      <p class="hero__place mono">Івано-Франківськ · вул. Грушевського, 42</p>
+      <p class="hero__lead">Фото на паспорт, візу чи студентський без запису. Друк знімків з телефона, сканування документів і реставрація старих сімейних фото.</p>
+      <div class="hero__cta">
+        <a class="btn btn--red" href="tel:+380970304830"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Подзвонити</a>
+        <a class="btn btn--glass" href="#kontakty"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>Як нас знайти</a>
+      </div>
     </div>
+
+    <div class="hero__cards" aria-hidden="true">
+      <figure class="pcard pcard--doc"><img src="img/photos/doc.jpg" alt=""><figcaption><b>3 × 4</b><span class="mono">фото на документ</span></figcaption></figure>
+      <figure class="pcard pcard--fam"><img src="img/photos/session.jpg" alt=""><figcaption><b>Фотосесії</b><span class="mono">дитячі · сімейні</span></figcaption></figure>
+    </div>
+  </div>
+
+  <div class="hero__base">
     <dl class="hero__facts">
       <div><dt>Пн–Пт</dt><dd>9:00–18:00</dd></div>
       <div><dt>Субота</dt><dd>10:00–15:00</dd></div>
-      <div><dt>Адреса</dt><dd>Грушевського, 42</dd></div>
+      <div class="hide-sm"><dt>Без запису</dt><dd>документи й друк</dd></div>
     </dl>
+    <p class="press__bar" aria-hidden="true"><span class="sw sw--c"></span><span class="sw sw--m"></span><span class="sw sw--y"></span><span class="sw sw--k"></span><span class="mono">друк… <span data-dev>0</span>%</span></p>
   </div>
-
-  <figure class="hero__print" aria-label="Фото друкується шарами CMYK і сходиться в одне зображення">
-    <div class="press" data-press>
-      <img class="press__img" src="img/photos/hero.jpg" alt="Фотостудія зі студійним світлом і стільцем для зйомки" width="1000" height="1250" fetchpriority="high">
-      <span class="press__ghost press__ghost--c" aria-hidden="true"></span>
-      <span class="press__ghost press__ghost--m" aria-hidden="true"></span>
-      <span class="press__ghost press__ghost--y" aria-hidden="true"></span>
-      <i class="reg reg--tl" aria-hidden="true"></i><i class="reg reg--tr" aria-hidden="true"></i><i class="reg reg--bl" aria-hidden="true"></i><i class="reg reg--br" aria-hidden="true"></i>
-    </div>
-    <figcaption class="press__bar"><span class="sw sw--c"></span><span class="sw sw--m"></span><span class="sw sw--y"></span><span class="sw sw--k"></span><span class="mono">друк… <span data-dev>0</span>%</span></figcaption>
-  </figure>
 </section>
 
 <!-- film strip ticker -->

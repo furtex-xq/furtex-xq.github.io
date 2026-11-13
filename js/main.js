@@ -41,6 +41,7 @@
   const setMenu = open => {
     burger.setAttribute('aria-expanded', open); drawer.hidden = !open;
     document.body.style.overflow = open ? 'hidden' : '';
+    document.body.classList.toggle('menu-open', open);
   };
   burger.addEventListener('click', () => setMenu(drawer.hidden));
   $$('a', drawer).forEach(a => a.addEventListener('click', () => setMenu(false)));
@@ -138,7 +139,8 @@
   $$('.sec-head, .docs__intro, .frame, .restore__text, .ba, .about__img, .about__text, .rev blockquote, .contacts__info, .form').forEach(el => el.setAttribute('data-r', ''));
   ScrollTrigger.batch('[data-r]', { start: 'top 88%', once: true, onEnter: b => gsap.to(b, { opacity: 1, y: 0, duration: .9, stagger: .1, ease: 'power2.out' }) });
   gsap.from('.svc__item', { scrollTrigger: { trigger: '.svc', start: 'top 85%' }, y: 30, opacity: 0, duration: .7, stagger: .06, ease: 'power2.out' });
-  gsap.to('.press', { scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }, y: 50 });
+  gsap.to('.hero__bg', { scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }, yPercent: 12, scale: 1.06 });
+  gsap.from('.pcard', { y: 80, opacity: 0, duration: 1.2, stagger: .15, delay: .9, ease: 'power3.out' });
 
   /* ---- друкарські анімації ---- */
   document.documentElement.classList.add('anim');
@@ -174,13 +176,11 @@
     gsap.fromTo('[data-photo]', { boxShadow: '-10px -6px 0 #00A0DC, 10px 6px 0 #E5007D' }, { boxShadow: '0px 0px 0 #00A0DC, 0px 0px 0 #E5007D', duration: .6, ease: 'power2.out' });
     gsap.fromTo('[data-size]', { scale: .8, opacity: 0 }, { scale: 1, opacity: 1, duration: .45, ease: 'back.out(2.5)' });
   }));
-  // 8. hero на ПК: аркуш злегка нахиляється за мишею
+  // 8. hero на ПК: фотокартки пливуть за мишею (паралакс)
   if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
-    const pr = $('.press'), hero = $('.hero');
-    gsap.set(pr, { transformPerspective: 900 });
-    const rotY = gsap.quickTo(pr, 'rotationY', { duration: .6 }), rotX = gsap.quickTo(pr, 'rotationX', { duration: .6 });
-    hero.addEventListener('mousemove', e => { const b = hero.getBoundingClientRect(); rotY((e.clientX - b.left) / b.width * 10 - 5); rotX(-((e.clientY - b.top) / b.height * 8 - 4)); });
-    hero.addEventListener('mouseleave', () => { rotY(0); rotX(0); });
+    const hero = $('.hero');
+    const movers = $$('.pcard').map((c, i) => ({ x: gsap.quickTo(c, 'x', { duration: .8 }), y: gsap.quickTo(c, 'y', { duration: .8 }), k: i ? 24 : 12 }));
+    hero.addEventListener('mousemove', e => { const b = hero.getBoundingClientRect(); const dx = (e.clientX - b.left) / b.width - .5, dy = (e.clientY - b.top) / b.height - .5; movers.forEach(m => { m.x(dx * m.k); m.y(dy * m.k); }); });
   }
   // 9. біжучий рядок нахиляється від швидкості скролу
   const track = $('.strip__track');
