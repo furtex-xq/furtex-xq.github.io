@@ -13,6 +13,7 @@
   "title": "Салон краси [НАЗВА] — косметологія, манікюр, брови й вії | [МІСТО]",
   "imgCount": 9,
   "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
@@ -23,9 +24,7 @@
   "setup": "iphone-webkit",
   "console": [],
   "pageErrors": [],
-  "failedRequests": [
-   "https://srv.carbonads.net/ads/CEADPK3U.json?segment=placement:rawgithackcom&v=true Load request cancelled"
-  ],
+  "failedRequests": [],
   "badResponses": [],
   "csp": [],
   "status": 200,
@@ -34,6 +33,7 @@
   "title": "Барбершоп [НАЗВА] — чоловічі стрижки та борода, [МІСТО]",
   "imgCount": 6,
   "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
@@ -55,6 +55,7 @@
   "title": "Ательє [НАЗВА] — пошиття і ремонт одягу, Івано-Франківськ",
   "imgCount": 8,
   "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
@@ -76,6 +77,7 @@
   "title": "Автошкола [НАЗВА] — права категорій A, B, C у [МІСТО] | Курси водіння Івано-Франківськ",
   "imgCount": 8,
   "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
@@ -96,22 +98,19 @@
   "interstitial": true,
   "title": "Ремонт телефонів [МІСТО] — [НАЗВА]: заміна екрана, батареї, ремонт ноутбуків",
   "imgCount": 7,
-  "brokenImgs": [
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a8821026bf6f9c04434c53f78a94577978d4ced4/img/photos/gloves.jpg"
-  ],
+  "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
-  "ok": false
+  "ok": true
  },
  {
   "url": "https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/nerukhomist/index.html",
   "setup": "iphone-webkit",
   "console": [],
   "pageErrors": [],
-  "failedRequests": [
-   "https://srv.carbonads.net/ads/CEADPK3U.json?segment=placement:rawgithackcom&v=true Load request cancelled"
-  ],
+  "failedRequests": [],
   "badResponses": [],
   "csp": [],
   "status": 200,
@@ -120,6 +119,7 @@
   "title": "Агенція нерухомості [МІСТО] — купівля, продаж і оренда квартир | [НАЗВА]",
   "imgCount": 9,
   "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
@@ -140,23 +140,19 @@
   "interstitial": true,
   "title": "Дитячий розвивальний центр [МІСТО] — [НАЗВА] | заняття для дітей 1–10 років",
   "imgCount": 11,
-  "brokenImgs": [
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/12de4973fd46a047a3a794d96737c119605daa77/img/photos/room.jpg",
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/12de4973fd46a047a3a794d96737c119605daa77/img/photos/toys.jpg"
-  ],
+  "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
-  "ok": false
+  "ok": true
  },
  {
   "url": "https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/kavyarnia/index.html",
   "setup": "iphone-webkit",
   "console": [],
   "pageErrors": [],
-  "failedRequests": [
-   "https://srv.carbonads.net/ads/CEADPK3U.json?segment=placement:rawgithackcom&v=true Load request cancelled"
-  ],
+  "failedRequests": [],
   "badResponses": [],
   "csp": [],
   "status": 200,
@@ -165,6 +161,7 @@
   "title": "[НАЗВА] — кав'ярня-пекарня в [МІСТО] | кава з собою, свіжа випічка, сніданки",
   "imgCount": 7,
   "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
@@ -185,24 +182,19 @@
   "interstitial": true,
   "title": "Масаж Івано-Франківськ — масажний кабінет [НАЗВА] | лікувальний, релакс, SPA",
   "imgCount": 8,
-  "brokenImgs": [
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/2ab2f9cce7e12dc5b52f14e8836eba7bbd839088/img/photos/eucalyptus.jpg"
-  ],
+  "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
-  "ok": false
+  "ok": true
  },
  {
   "url": "https://raw.githack.com/furtex-xq/furtex-xq.github.io/template/salon-krasy/index.html",
   "setup": "desktop-chromium",
-  "console": [
-   "Failed to load resource: net::ERR_BLOCKED_BY_RESPONSE.NotSameOrigin"
-  ],
+  "console": [],
   "pageErrors": [],
-  "failedRequests": [
-   "https://server.ethicalads.io/api/v1/decision/?publisher=githackcom&ad_types=image-v1&div_ids=githack-other-ad&callback=ad_1794562180568_8307&keywords=&campaign_types=paid%7Cpublisher-house%7Ccommunity%7Chouse&format=jsonp&client_version=2.5.0&placement_index=0&url=https%3A%2F%2Fraw.githack.com%2Ffurtex-xq%2Ffurtex-xq.github.io%2Ftemplate%2Fsalon-krasy%2Findex.html net::ERR_BLOCKED_BY_RESPONSE.NotSameOrigin"
-  ],
+  "failedRequests": [],
   "badResponses": [],
   "csp": [],
   "status": 200,
@@ -211,6 +203,7 @@
   "title": "Салон краси [НАЗВА] — косметологія, манікюр, брови й вії | [МІСТО]",
   "imgCount": 9,
   "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
@@ -230,6 +223,7 @@
   "title": "Барбершоп [НАЗВА] — чоловічі стрижки та борода, [МІСТО]",
   "imgCount": 6,
   "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
@@ -249,6 +243,7 @@
   "title": "Ательє [НАЗВА] — пошиття і ремонт одягу, Івано-Франківськ",
   "imgCount": 8,
   "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
@@ -259,7 +254,10 @@
   "setup": "desktop-chromium",
   "console": [],
   "pageErrors": [],
-  "failedRequests": [],
+  "failedRequests": [
+   "https://srv.carbonads.net/static/30242/f000f2c5e921c25a1191d5ea40a76821fb4610a6 net::ERR_ABORTED",
+   "https://srv.carbonads.net/static/30242/644f9eed5b69b603e53bd1ed60e0630d40d6c9f1 net::ERR_ABORTED"
+  ],
   "badResponses": [],
   "csp": [],
   "status": 200,
@@ -268,6 +266,7 @@
   "title": "Автошкола [НАЗВА] — права категорій A, B, C у [МІСТО] | Курси водіння Івано-Франківськ",
   "imgCount": 8,
   "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
@@ -287,6 +286,7 @@
   "title": "Ремонт телефонів [МІСТО] — [НАЗВА]: заміна екрана, батареї, ремонт ноутбуків",
   "imgCount": 7,
   "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
@@ -298,8 +298,7 @@
   "console": [],
   "pageErrors": [],
   "failedRequests": [
-   "https://srv.carbonads.net/static/30242/400c8e2093e72466a93a26b1de86feabbcd1a9e3 net::ERR_ABORTED",
-   "https://srv.carbonads.net/static/30242/a719f75f8b6a44161528117f997a5d75d3ea8145 net::ERR_ABORTED"
+   "https://srv.carbonads.net/static/30242/e1130b06f0096fbbd01a8d15bca68e6092cdebef net::ERR_ABORTED"
   ],
   "badResponses": [],
   "csp": [],
@@ -309,6 +308,7 @@
   "title": "Агенція нерухомості [МІСТО] — купівля, продаж і оренда квартир | [НАЗВА]",
   "imgCount": 9,
   "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
@@ -328,6 +328,7 @@
   "title": "Дитячий розвивальний центр [МІСТО] — [НАЗВА] | заняття для дітей 1–10 років",
   "imgCount": 11,
   "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
@@ -347,6 +348,7 @@
   "title": "[НАЗВА] — кав'ярня-пекарня в [МІСТО] | кава з собою, свіжа випічка, сніданки",
   "imgCount": 7,
   "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
@@ -366,6 +368,7 @@
   "title": "Масаж Івано-Франківськ — масажний кабінет [НАЗВА] | лікувальний, релакс, SPA",
   "imgCount": 8,
   "brokenImgs": [],
+  "hiddenNotLoaded": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
