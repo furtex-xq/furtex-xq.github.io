@@ -1,0 +1,65 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1550041473-d296a3a8a18a",
+   "bytes": 641222,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "screen",
+   "url": "https://images.unsplash.com/photo-1746005514011-ea00280f3b6e",
+   "bytes": 135892,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "inside",
+   "url": "https://images.unsplash.com/photo-1782671987176-a9b521bcf296",
+   "bytes": 75013,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "laptop",
+   "url": "https://images.unsplash.com/photo-1721333089073-215a56fd710c",
+   "bytes": 301001,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "solder",
+   "url": "https://images.unsplash.com/photo-1640955785023-1854685dae05",
+   "bytes": 160332,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "board",
+   "url": "https://images.unsplash.com/photo-1518770660439-4636190af475",
+   "bytes": 146800,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "gloves",
+   "url": "https://images.unsplash.com/photo-1639776738932-956082f0b704",
+   "bytes": 108122,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "tester",
+   "url": "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e",
+   "bytes": 197030,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "fixing",
+   "url": "https://images.unsplash.com/photo-1539331586018-346b53b2aaa4",
+   "bytes": 101535,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "battery",
+   "url": "https://images.unsplash.com/photo-1769085794153-54fd3d57efaf",
+   "bytes": 394608,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
