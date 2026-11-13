@@ -1,0 +1,65 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1591946614720-90a587da4a36",
+   "bytes": 329851,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "dog-bowl",
+   "url": "https://images.unsplash.com/photo-1591946559594-8c6d3b7391eb",
+   "bytes": 120665,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "cat-eating",
+   "url": "https://images.unsplash.com/photo-1596854331442-3cf47265cefb",
+   "bytes": 66621,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "kittens",
+   "url": "https://images.unsplash.com/photo-1683871287549-852bcc3878b2",
+   "bytes": 90604,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "treats",
+   "url": "https://images.unsplash.com/photo-1568640347023-a616a30bc3bd",
+   "bytes": 96987,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "fish",
+   "url": "https://images.unsplash.com/photo-1606137029647-71daa7c9c5c8",
+   "bytes": 133618,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "hamster",
+   "url": "https://images.unsplash.com/photo-1676918555382-fcd06a483e25",
+   "bytes": 115132,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "budgie",
+   "url": "https://images.unsplash.com/photo-1560595643-90bb555b2eaa",
+   "bytes": 73723,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "leash",
+   "url": "https://images.unsplash.com/photo-1708062270853-ee7c66b69f07",
+   "bytes": 741955,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "shop-cat",
+   "url": "https://images.unsplash.com/photo-1780859037342-45befe40367a",
+   "bytes": 152573,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
