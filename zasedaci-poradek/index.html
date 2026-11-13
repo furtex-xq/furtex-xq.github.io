@@ -28,7 +28,7 @@
     .classroom { gap: 10px 5px; }
     .desk { flex-direction: column; padding: 4px; gap: 4px; }
     .seat { min-height: 44px; padding: 2px; border-width: 1.5px; }
-    .seat .name { font-size: 13px; padding: 5px 2px; overflow-wrap: normal; word-break: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .seat .name { font-size: 13px; padding: 5px 2px; overflow-wrap: normal; word-break: normal; white-space: normal; }
     .teacher { width: 140px; padding: 10px; margin-bottom: 14px; }
   }
   .seat .name { width: 100%; text-align: center; }
@@ -60,9 +60,15 @@
 <script>
 const ROWS = 6, COLS = 3, SEATS_PER_DESK = 2;
 const KEY = 'zasedaci-poradek-v1';
-const DEFAULT_NAMES = ['Radek','Štefan','Kuba','Doležel','Roman','Holeček','Chlup','Marek','Mrkvica','Kocap','Kravál','Vojtěchovsky','Bilokon','Míra','Anna','Denis','Lukáš','Vojta','Robin','Peprla','Petriv','Mikulášek','Alexsandr','Svjat','Tobik','Honza','Svoboda','Illia'];
+const DEFAULT_NAMES = ['Maksym Bilokon','Martin Chlup','Oleksandr Dobrianskyi','Jakub Doležel','Jakub Florian','Tobiáš Gründling','Martin Holeček','Štefan Husák','Denis Jindra','Radek Juran','Roman Khrenkov','Patrik Kocáb','Lukáš Kopecký','Petr Kraval','Martin Mikulášek','Dan Mrkvica','Marek Odehnal','Daniel Peprla','Davyd Petriv','Mira Rozhyk','Jan Sanetrník','Vojtěch Sedláček','Ilja Smrechani','Anna Spilková','Adam Svoboda','Svjatoslav Vakiv','Patrik Vojtěchovský','Robin Větříček'];
+const RENAME = {'Radek':'Radek Juran','Štefan':'Štefan Husák','Kuba':'Jakub Florian','Doležel':'Jakub Doležel','Roman':'Roman Khrenkov','Holeček':'Martin Holeček','Chlup':'Martin Chlup','Marek':'Marek Odehnal','Mrkvica':'Dan Mrkvica','Kocap':'Patrik Kocáb','Kravál':'Petr Kraval','Vojtěchovsky':'Patrik Vojtěchovský','Bilokon':'Maksym Bilokon','Míra':'Mira Rozhyk','Anna':'Anna Spilková','Denis':'Denis Jindra','Lukáš':'Lukáš Kopecký','Vojta':'Vojtěch Sedláček','Robin':'Robin Větříček','Peprla':'Daniel Peprla','Petriv':'Davyd Petriv','Mikulášek':'Martin Mikulášek','Alexsandr':'Oleksandr Dobrianskyi','Svjat':'Svjatoslav Vakiv','Tobik':'Tobiáš Gründling','Honza':'Jan Sanetrník','Svoboda':'Adam Svoboda','Illia':'Ilja Smrechani'};
 let state = load() || { names: [], seats: {} }; // seats: seatId -> name
-DEFAULT_NAMES.forEach(n => { if (!state.names.includes(n)) state.names.push(n); });
+// switch old short names to full names, keep seats
+for (const k in state.seats) {
+  const n = RENAME[state.seats[k]] || state.seats[k];
+  if (DEFAULT_NAMES.includes(n)) state.seats[k] = n; else delete state.seats[k];
+}
+state.names = [...DEFAULT_NAMES];
 
 function load() {
   // 1) arrangement stored in the link (#...), 2) browser storage
