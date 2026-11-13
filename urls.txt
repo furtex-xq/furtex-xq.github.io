@@ -1,4 +1,4 @@
-#mode=iphone
+#mode=iphone (batch 1)
 https://raw.githack.com/furtex-xq/furtex-xq.github.io/beta/12v-volt/index.html
 https://raw.githack.com/furtex-xq/furtex-xq.github.io/beta/3-7-coffee-boutique/index.html
 https://raw.githack.com/furtex-xq/furtex-xq.github.io/beta/a-plus/index.html
