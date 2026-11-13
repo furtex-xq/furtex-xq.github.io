@@ -2,8 +2,14 @@
  "photos": [
   {
    "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1596068587619-e4b11c7a3488",
+   "bytes": 928666,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "giftpink",
    "url": "https://images.unsplash.com/photo-1549465220-1a8b9238cd48",
-   "bytes": 211417,
+   "bytes": 84726,
    "license": "Unsplash License"
   },
   {
@@ -25,21 +31,15 @@
    "license": "Unsplash License"
   },
   {
+   "slot": "teddy",
+   "url": "https://images.unsplash.com/photo-1556012018-50c5c0da73bf",
+   "bytes": 110641,
+   "license": "Unsplash License"
+  },
+  {
    "slot": "wooden",
    "url": "https://images.unsplash.com/photo-1777351396220-9a3801de44df",
    "bytes": 128504,
-   "license": "Unsplash License"
-  },
-  {
-   "slot": "games",
-   "url": "https://images.unsplash.com/photo-1629760946220-5693ee4c46ac",
-   "bytes": 113318,
-   "license": "Unsplash License"
-  },
-  {
-   "slot": "lego",
-   "url": "https://images.unsplash.com/photo-1611891487122-207579d67d98",
-   "bytes": 93530,
    "license": "Unsplash License"
   },
   {
@@ -49,15 +49,21 @@
    "license": "Unsplash License"
   },
   {
-   "slot": "shop",
-   "url": "https://images.unsplash.com/photo-1596068587619-e4b11c7a3488",
-   "bytes": 435120,
+   "slot": "games",
+   "url": "https://images.unsplash.com/photo-1629760946220-5693ee4c46ac",
+   "bytes": 113318,
    "license": "Unsplash License"
   },
   {
-   "slot": "sets",
-   "url": "https://images.unsplash.com/photo-1765887986673-953fccf56464",
-   "bytes": 147753,
+   "slot": "meeples",
+   "url": "https://images.unsplash.com/photo-1611891487122-207579d67d98",
+   "bytes": 93530,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "lego",
+   "url": "https://images.unsplash.com/photo-1587654780291-39c9404d746b",
+   "bytes": 233357,
    "license": "Unsplash License"
   },
   {
@@ -67,9 +73,9 @@
    "license": "Unsplash License"
   },
   {
-   "slot": "elephants",
-   "url": "https://images.unsplash.com/photo-1703581698778-2224c729135b",
-   "bytes": 71361,
+   "slot": "presents",
+   "url": "https://images.unsplash.com/photo-1713496736683-ffb12c754c27",
+   "bytes": 107463,
    "license": "Unsplash License"
   }
  ],
