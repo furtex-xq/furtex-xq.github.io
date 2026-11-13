@@ -1,0 +1,89 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1568515045052-f9a854d70bfd",
+   "bytes": 626325,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "work",
+   "url": "https://images.unsplash.com/photo-1565058379802-bbe93b2f703a",
+   "bytes": 78548,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "wall",
+   "url": "https://images.unsplash.com/photo-1769485016772-c5a4234a6be3",
+   "bytes": 168194,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "machine",
+   "url": "https://images.unsplash.com/photo-1526893299283-37e82b1e4da5",
+   "bytes": 183860,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "lion",
+   "url": "https://images.unsplash.com/photo-1522687533888-1078974f88ec",
+   "bytes": 241261,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "grey",
+   "url": "https://images.unsplash.com/photo-1570168983832-8989dae1522e",
+   "bytes": 220561,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "floral",
+   "url": "https://images.unsplash.com/photo-1562379825-415aea84ebcf",
+   "bytes": 263855,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "mountain",
+   "url": "https://images.unsplash.com/photo-1576904394143-8cfeacabde55",
+   "bytes": 191757,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "hand",
+   "url": "https://images.unsplash.com/photo-1611763123076-b4277e3d8e24",
+   "bytes": 47710,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "master",
+   "url": "https://images.unsplash.com/photo-1542744383-8c330d91f4b1",
+   "bytes": 168108,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "work2",
+   "url": "https://images.unsplash.com/photo-1513078094721-e7b6e0394a6a",
+   "bytes": 170431,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "sleeve",
+   "url": "https://images.unsplash.com/photo-1543244128-30d70d41e2a9",
+   "bytes": 105221,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "work3",
+   "url": "https://images.unsplash.com/photo-1775135981378-4e7c1767436d",
+   "bytes": 118782,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "angel",
+   "url": "https://images.unsplash.com/photo-1540174053853-1cc5d1fa8814",
+   "bytes": 129344,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
