@@ -1,0 +1,77 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1611892440504-42a792e24d32",
+   "bytes": 383736,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "room-double",
+   "url": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
+   "bytes": 139279,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "room-twin",
+   "url": "https://images.unsplash.com/photo-1727706572437-4fcda0cbd66f",
+   "bytes": 175574,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "room-family",
+   "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461",
+   "bytes": 124876,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "room-suite",
+   "url": "https://images.unsplash.com/photo-1765547090903-348b711f0eee",
+   "bytes": 356914,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "room-single",
+   "url": "https://images.unsplash.com/photo-1578898886225-c7c894047899",
+   "bytes": 233822,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "breakfast",
+   "url": "https://images.unsplash.com/photo-1596701062351-8c2c14d1fdd0",
+   "bytes": 144410,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "keys",
+   "url": "https://images.unsplash.com/photo-1769065649791-fde54d23f699",
+   "bytes": 355920,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "bell",
+   "url": "https://images.unsplash.com/photo-1758708536313-e7055ddba277",
+   "bytes": 70995,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "mountains",
+   "url": "https://images.unsplash.com/photo-1646868107258-421caad2eea9",
+   "bytes": 180603,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "city",
+   "url": "https://images.unsplash.com/photo-1763160978503-5298243b2a1d",
+   "bytes": 377553,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "reception",
+   "url": "https://images.unsplash.com/photo-1759038085950-1234ca8f5fed",
+   "bytes": 139147,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
