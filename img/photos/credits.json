@@ -1,0 +1,71 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2",
+   "bytes": 164209,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "back",
+   "url": "https://images.unsplash.com/photo-1741522509438-a120c0bb5e88",
+   "bytes": 212962,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "hands",
+   "url": "https://images.unsplash.com/photo-1757689314932-bec6e9c39e51",
+   "bytes": 118102,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "stones",
+   "url": "https://images.unsplash.com/photo-1696841212541-449ca29397cc",
+   "bytes": 163407,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "face",
+   "url": "https://images.unsplash.com/photo-1598901986949-f593ff2a31a6",
+   "bytes": 35663,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "candles",
+   "url": "https://images.unsplash.com/photo-1620733723572-11c53f73a416",
+   "bytes": 90885,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "oil",
+   "url": "https://images.unsplash.com/photo-1515377905703-c4788e51af15",
+   "bytes": 60142,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "eucalyptus",
+   "url": "https://images.unsplash.com/photo-1546387903-6d82d96ccca6",
+   "bytes": 31622,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "herbal",
+   "url": "https://images.unsplash.com/photo-1775133262667-316bd4d9e5b5",
+   "bytes": 86442,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "relax",
+   "url": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874",
+   "bytes": 93119,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "therapist",
+   "url": "https://images.unsplash.com/photo-1519823551278-64ac92734fb1",
+   "bytes": 127270,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
