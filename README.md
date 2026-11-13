@@ -37,12 +37,13 @@
 | Рядок | Де |
 |---|---|
 | `tel:+380000000000` | шапка (моб. меню), бронювання, контакти, футер, нижня панель |
-| `viber://chat?number=%2B380000000000` | контакти, `data-viber` форми |
-| `https://wa.me/380000000000` | контакти, `data-wa` форми |
-| `https://t.me/username` | контакти, `data-tg` форми |
+| `viber://chat?number=%2B380000000000` | контакти, варіант Viber у формі (`data-href`) |
+| `https://wa.me/380000000000` | контакти, варіант WhatsApp у формі |
+| `https://t.me/username` | контакти, варіант Telegram у формі |
+| `sms:+380000000000` | варіант SMS у формі |
 | `https://www.instagram.com/username/` | контакти, JSON-LD `sameAs` |
 | `https://www.facebook.com/username` | контакти, JSON-LD `sameAs` |
-| `mailto:hello@example.com` | контакти, футер, `data-mail` форми |
+| `mailto:hello@example.com` | контакти, футер, варіант Email у формі |
 | `https://www.google.com/maps?q=%D0%86%D0%B2%D0%B0%D0%BD%D0%BE-%D0%A4%D1%80%D0%B0%D0%BD%D0%BA%D1%96%D0%B2%D1%81%D1%8C%D0%BA&output=embed` | iframe карти (замініть `q=` на закодовану адресу) |
 | `https://www.google.com/maps/dir/?api=1&destination=%D0%86%D0%B2…` | кнопки «Маршрут» (контакти й нижня панель) |
 | `https://raw.githack.com/furtex-xq/…/index.html` | `og:url`, JSON-LD `menu` — замініть на домен клієнта |

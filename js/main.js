@@ -157,7 +157,7 @@
         var li = document.createElement("li");
         if (i === now.dow) li.className = "is-today";
         var a = document.createElement("span"); a.textContent = DAYS[i - 1];
-        var b = document.createElement("span"); b.className = "ph"; b.textContent = r ? r.open + "–" + r.close : "вихідний";
+        var b = document.createElement("span"); if (hoursEl.hasAttribute("data-sample")) b.className = "ph"; b.textContent = r ? r.open + "–" + r.close : "вихідний";
         li.appendChild(a); li.appendChild(b); list.appendChild(li);
       }
     }
@@ -209,7 +209,10 @@
     if (!v) { fTime.add(new Option("Спершу дата", "")); return; }
     var p = v.split("-"); var jsd = new Date(+p[0], +p[1] - 1, +p[2]);
     var dow = (jsd.getDay() + 6) % 7 + 1;
-    var r = range(dow) || { o: 720, c: 1380 };
+    var known = Object.keys(schedule).length > 0;
+    var r = range(dow);
+    if (!r && known) { fTime.add(new Option("У цей день ми зачинені — оберіть іншу дату", "")); return; }
+    if (!r) r = { o: 600, c: 1410 }; // hours unknown: offer a broad request window
     var start = r.o, end = r.c - 90; // last seating 1.5 h before closing
     if (v === todayStr) { var nm = kyivNow().min + 30; start = Math.max(start, Math.ceil(nm / 30) * 30); }
     var count = 0;
@@ -260,6 +263,14 @@
     return Promise.resolve();
   }
 
+  var hint = form.querySelector(".form__hint");
+  function syncHint() {
+    var r = form.querySelector('input[name="via"]:checked');
+    if (hint && r && r.getAttribute("data-hint")) hint.textContent = r.getAttribute("data-hint");
+  }
+  form.querySelectorAll('input[name="via"]').forEach(function (r) { r.addEventListener("change", syncHint); });
+  syncHint();
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     if (!validate()) {
@@ -281,21 +292,27 @@
     if (document.getElementById("f-note").value.trim()) lines.push("Побажання: " + document.getElementById("f-note").value.trim());
     var msg = lines.join("\n");
     var enc = encodeURIComponent(msg);
-    var via = form.querySelector('input[name="via"]:checked').value;
+    var radio = form.querySelector('input[name="via"]:checked');
+    var mode = radio ? radio.getAttribute("data-mode") : "copy";
+    var href = radio ? radio.getAttribute("data-href") : "";
+    var label = radio ? radio.parentNode.textContent.trim() : "";
     var okText = form.querySelector("[data-ok-text]");
-    if (via === "tg") {
-      copyText(msg);
-      window.open(form.getAttribute("data-tg"), "_blank", "noopener");
-      okText.textContent = "Текст заявки скопійовано. Вставте його в чат Telegram, що відкрився, і надішліть — ми підтвердимо бронь.";
-    } else if (via === "viber") {
-      window.location.href = form.getAttribute("data-viber") + "&draft=" + enc;
+    if (mode === "viber") {
+      window.location.href = href + "&draft=" + enc;
       okText.textContent = "Відкриваємо Viber з готовим текстом. Натисніть «Надіслати» — ми підтвердимо бронь.";
-    } else if (via === "wa") {
-      window.open(form.getAttribute("data-wa") + "?text=" + enc, "_blank", "noopener");
+    } else if (mode === "wa") {
+      window.open(href + "?text=" + enc, "_blank", "noopener");
       okText.textContent = "Відкриваємо WhatsApp з готовим текстом. Натисніть «Надіслати» — ми підтвердимо бронь.";
-    } else {
-      window.location.href = form.getAttribute("data-mail") + "?subject=" + encodeURIComponent("Бронювання столика") + "&body=" + enc;
+    } else if (mode === "sms") {
+      window.location.href = href + "?&body=" + enc;
+      okText.textContent = "Відкриваємо SMS з готовим текстом. Натисніть «Надіслати» — ми підтвердимо бронь.";
+    } else if (mode === "mail") {
+      window.location.href = href + "?subject=" + encodeURIComponent("Бронювання столика") + "&body=" + enc;
       okText.textContent = "Відкриваємо пошту з готовим листом. Надішліть його — ми відповімо найближчим часом.";
+    } else {
+      copyText(msg);
+      if (href) window.open(href, "_blank", "noopener");
+      okText.textContent = "Текст заявки скопійовано. Вставте його в повідомлення (" + label + "), що відкрилося, і надішліть — ми підтвердимо бронь.";
     }
     var ok = form.querySelector(".form__ok");
     ok.hidden = false;
