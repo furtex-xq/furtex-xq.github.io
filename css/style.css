@@ -84,12 +84,12 @@ p{margin:0}
 
 /* Hero */
 .hero{padding:28px 0 0}
-.hero-grid{display:grid;gap:36px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:36px}
 .sheet{position:relative;background:var(--sheet);padding:28px 20px 26px;box-shadow:0 1px 0 var(--rule),0 18px 40px -28px rgba(18,19,21,.35)}
 .slug{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);padding-bottom:14px;border-bottom:1px solid var(--rule);margin-bottom:22px}
 .hero-title{display:block}
 .h1-kicker{display:block;font-size:clamp(20px,5.4vw,30px);font-weight:600;margin-bottom:10px;letter-spacing:0}
-.reg-type{display:grid;font-size:clamp(34px,12.6vw,104px);font-weight:800;line-height:.92;text-transform:uppercase;letter-spacing:-.005em}
+.reg-type{display:grid;font-size:clamp(34px,11vw,104px);font-weight:800;line-height:.92;text-transform:uppercase;letter-spacing:-.005em}
 .rl{grid-area:1/1;transition:transform 1.8s cubic-bezier(.65,0,.25,1)}
 .rl-k{position:relative;z-index:2;color:var(--key)}
 .rl-c{color:var(--c);mix-blend-mode:multiply}
@@ -102,7 +102,7 @@ p{margin:0}
 .hero-meta div{display:grid;grid-template-columns:76px 1fr;gap:10px}
 .hero-meta dt{color:var(--ink-2);text-transform:uppercase;font-size:11px;letter-spacing:.08em;padding-top:2px}
 .hero-meta dd{margin:0}
-.status{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.status{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;white-space:normal}
 .status::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
 .status.open{color:#0a7d3e}.status.closed{color:var(--m)}
 .hero-photo{position:relative;margin:0 10px}
@@ -250,7 +250,8 @@ p{margin:0}
 
 /* Контакти */
 .sec-contacts{padding-bottom:40px}
-.contacts{display:grid;gap:40px}
+.contacts{display:grid;grid-template-columns:minmax(0,1fr);gap:40px}
+.contacts>*,.hero-meta>*{min-width:0}
 .contact-card{display:grid;gap:26px;align-content:start}
 .channels{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
 .ch{display:flex;align-items:center;gap:14px;min-height:62px;padding:10px 16px;background:var(--sheet);border:1.5px solid var(--key);text-decoration:none;font-weight:700;font-size:14px;word-break:break-word;transition:background .15s,transform .15s}
