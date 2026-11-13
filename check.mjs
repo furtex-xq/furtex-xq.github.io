@@ -9,9 +9,11 @@ const setups = [
   { name: "iphone-webkit", type: webkit, opts: { ...devices["iPhone 13"] } },
   { name: "desktop-chromium", type: chromium, opts: { viewport: { width: 1440, height: 900 } } },
 ];
+const raw = fs.readFileSync("urls.txt", "utf8");
+const iphoneOnly = raw.includes("#mode=iphone");
 const results = [];
 // interstitial check only; real page content follows
-for (const s of setups) {
+for (const s of setups.filter(x => !iphoneOnly || x.name === "iphone-webkit")) {
   const browser = await s.type.launch();
   for (const url of urls) {
     const slug = (url.match(/template\/([^/]+)/) || url.match(/beta\/([^/]+)/) || [, "page"])[1];
@@ -54,7 +56,7 @@ for (const s of setups) {
       }));
       await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(800);
       await page.screenshot({ path: `report/shots/${slug}-${s.name}-top.jpg`, type: "jpeg", quality: 55 });
-      await page.screenshot({ path: `report/shots/${slug}-${s.name}-full.jpg`, type: "jpeg", quality: 40, fullPage: true }).catch(() => {});
+      if (!iphoneOnly) await page.screenshot({ path: `report/shots/${slug}-${s.name}-full.jpg`, type: "jpeg", quality: 40, fullPage: true }).catch(() => {});
     } catch (e) { r.fatal = String(e).slice(0, 400); }
     r.ok = !r.fatal && r.status === 200 && !(r.brokenImgs || []).length && !(r.brokenBg || []).length && !r.pageErrors.length && !(r.csp || []).length && (r.overflowX || 0) <= 1;
     results.push(r); console.log(r.ok ? "OK  " : "FAIL", s.name, url, r.fatal || "", JSON.stringify({ b: r.brokenImgs, bg: r.brokenBg, csp: r.csp, pe: r.pageErrors, ox: r.overflowX }));
