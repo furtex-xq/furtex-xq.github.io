@@ -30,12 +30,12 @@
 | `[ЦІНА]` | прейскурант (грумінг і ветеринарія), факти на головному екрані, підбір пакета, JSON-LD `priceRange` |
 | `[ІМ'Я]` | команда в «Про нас», автори відгуків |
 | `tel:+380000000000` | шапка, запис, контакти, футер, мобільна панель |
-| `viber://chat?number=%2B380000000000` | контакти; форма бере посилання звідси (`data-link="viber"`) |
-| `https://t.me/username` | контакти; форма бере посилання звідси (`data-link="tg"`) |
+| `viber://chat?number=%2B380000000000` | контакти; атрибут `data-href` каналу Viber у формі |
+| `https://t.me/username` | контакти; атрибут `data-href` каналу Telegram у формі |
 | `https://wa.me/380000000000` | контакти |
 | `https://www.instagram.com/username/` | контакти, JSON-LD `sameAs` |
 | `https://www.facebook.com/username` | контакти, JSON-LD `sameAs` |
-| `mailto:hello@example.com` | контакти, футер; форма (`data-link="mail"`) |
+| `mailto:hello@example.com` | контакти, футер; атрибут `data-href` каналу «Пошта» у формі |
 | `https://www.google.com/maps?q=Івано-Франківськ&output=embed` (закодовано) | iframe карти; та сама адреса в кнопках «Маршрут» (`maps/dir/?api=1&destination=…`) |
 
 Також:

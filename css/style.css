@@ -93,6 +93,9 @@ section{padding:72px 0}
 .hero__facts li{display:flex;gap:10px;align-items:center;white-space:nowrap}
 .hero__facts .ic{color:var(--teal)}
 .hero__status{margin:18px 0 0}
+.hero__hours{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.92rem;color:var(--ink-2)}
+.hero__hours .ic{color:var(--teal)}
+.hours__text{font-weight:700;font-size:1.05rem;margin:4px 0 0}
 .hero__tag{margin:34px 0 0;position:relative;padding:0 6px}
 .tag{position:relative;background:var(--cream-2);border-radius:40px 40px 40px 40px;padding:14px 14px 0;border:2px solid var(--ink);transform:rotate(-2.2deg);box-shadow:10px 12px 0 var(--peach)}
 .tag img{border-radius:28px;aspect-ratio:4/3.4;object-fit:cover;width:100%}
@@ -253,7 +256,7 @@ legend{display:flex;align-items:center;gap:10px;font-family:var(--f-d);font-size
 .field__err{display:none;font-style:normal;font-weight:700;font-size:.82rem;color:#B4472A}
 .field.is-bad input,.field.is-bad select{border-color:#B4472A}
 .field.is-bad .field__err{display:block}
-.channel{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.channel{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px}
 .channel .chip>span{width:100%;justify-content:center;padding:10px 8px;gap:6px}
 .channel legend{font:700 .92rem var(--f-t);margin-bottom:8px}
 .channel .chip>span{border-color:var(--sand-2)}

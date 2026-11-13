@@ -428,9 +428,9 @@
       <label class="field"><span>Коментар</span><textarea name="note" rows="3" placeholder="Вік, характер, особливості шерсті чи здоров'я"></textarea></label>
       <fieldset class="channel">
         <legend>Куди надіслати заявку</legend>
-        <label class="chip"><input type="radio" name="channel" value="telegram" checked><span><svg class="ic" aria-hidden="true"><use href="#i-send"/></svg>Telegram</span></label>
-        <label class="chip"><input type="radio" name="channel" value="viber"><span><svg class="ic" aria-hidden="true"><use href="#i-viber"/></svg>Viber</span></label>
-        <label class="chip"><input type="radio" name="channel" value="email"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Пошта</span></label>
+        <label class="chip"><input type="radio" name="channel" value="telegram" data-href="https://t.me/username" checked><span><svg class="ic" aria-hidden="true"><use href="#i-send"/></svg>Telegram</span></label>
+        <label class="chip"><input type="radio" name="channel" value="viber" data-href="viber://chat?number=%2B380000000000"><span><svg class="ic" aria-hidden="true"><use href="#i-viber"/></svg>Viber</span></label>
+        <label class="chip"><input type="radio" name="channel" value="email" data-href="mailto:hello@example.com"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Пошта</span></label>
       </fieldset>
       <button class="btn btn--peach btn--lg btn--block" type="submit"><svg class="ic" aria-hidden="true"><use href="#i-send"/></svg>Надіслати заявку</button>
       <p class="form__hint">Натискаючи кнопку, ви відкриваєте месенджер із готовим текстом. Ми не зберігаємо ваші дані на сайті.</p>
@@ -458,12 +458,12 @@
       <p class="contacts__addr"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><span><span class="ph">[АДРЕСА]</span>, <span class="ph">[МІСТО]</span></span></p>
       <div class="links">
         <a class="link link--main" href="tel:+380000000000"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span>Подзвонити<small><span class="ph">[ТЕЛЕФОН]</span></small></span></a>
-        <a class="link" href="viber://chat?number=%2B380000000000" data-link="viber"><svg class="ic" aria-hidden="true"><use href="#i-viber"/></svg>Viber</a>
-        <a class="link" href="https://t.me/username" target="_blank" rel="noopener" data-link="tg"><svg class="ic" aria-hidden="true"><use href="#i-send"/></svg>Telegram</a>
+        <a class="link" href="viber://chat?number=%2B380000000000"><svg class="ic" aria-hidden="true"><use href="#i-viber"/></svg>Viber</a>
+        <a class="link" href="https://t.me/username" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-send"/></svg>Telegram</a>
         <a class="link" href="https://wa.me/380000000000" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
         <a class="link" href="https://www.facebook.com/username" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-fb"/></svg>Facebook</a>
         <a class="link link--wide" href="https://www.instagram.com/username/" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-insta"/></svg><span class="ph">[ІНСТАГРАМ]</span></a>
-        <a class="link link--wide" href="mailto:hello@example.com" data-link="mail"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><span class="ph">[EMAIL]</span></a>
+        <a class="link link--wide" href="mailto:hello@example.com"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><span class="ph">[EMAIL]</span></a>
       </div>
       <div class="hours">
         <div class="hours__head"><h3>Години роботи</h3><span class="status status--lg" data-status><i></i><span data-status-text><span class="ph">[ГОДИНИ]</span></span></span></div>

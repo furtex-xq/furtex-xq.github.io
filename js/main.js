@@ -113,7 +113,7 @@
       var size = SIZES[sp].filter(function (x) { return x.v === pf.elements.size.value; })[0] || SIZES[sp][0];
       var coat = pf.elements.coat.value;
       var p = PACKS[sp + "-" + coat];
-      var vet = $("#addVet").checked;
+      var vetEl = $("#addVet"), vet = !!(vetEl && vetEl.checked);
       petUse.setAttribute("href", sp === "cat" ? "#cat" : "#dog");
       petSvg.style.setProperty("--pet-w", size.w + "px");
       rSize.textContent = size.t + " · " + size.s;
@@ -194,12 +194,14 @@
       ];
       if (v("note")) lines.push("Коментар: " + v("note"));
       lastMsg = lines.join("\n");
-      var ch = form.elements.channel.value, enc = encodeURIComponent(lastMsg), url, info;
-      var tg = $("[data-link=tg]").getAttribute("href"), vb = $("[data-link=viber]").getAttribute("href"), ml = $("[data-link=mail]").getAttribute("href");
-      if (ch === "viber") { url = vb + "&draft=" + enc; info = "Відкриваємо Viber із готовим текстом. Якщо він не відкрився — скопіюйте текст нижче й надішліть нам."; }
-      else if (ch === "email") { url = ml + "?subject=" + encodeURIComponent("Запис на грумінг / до ветеринара") + "&body=" + enc; info = "Відкриваємо поштову програму з готовим листом — залишилось натиснути «Надіслати»."; }
-      else { url = tg; info = "Текст заявки скопійовано. У Telegram, що відкрився, вставте його в чат і надішліть."; copy(lastMsg); }
-      if (ch === "telegram") window.open(url, "_blank", "noopener"); else window.location.href = url;
+      var chIn = form.querySelector("input[name=channel]:checked") || form.querySelector("input[name=channel]");
+      var ch = chIn ? chIn.value : "copy", href = chIn ? chIn.getAttribute("data-href") : "", enc = encodeURIComponent(lastMsg), url = "", info;
+      if (ch === "viber") { url = href + "&draft=" + enc; info = "Відкриваємо Viber із готовим текстом. Якщо він не відкрився — скопіюйте текст нижче й надішліть нам."; }
+      else if (ch === "email") { url = href + "?subject=" + encodeURIComponent("Запис на грумінг") + "&body=" + enc; info = "Відкриваємо поштову програму з готовим листом — залишилось натиснути «Надіслати»."; }
+      else if (ch === "sms") { url = href + "?&body=" + enc; info = "Відкриваємо SMS із готовим текстом — залишилось натиснути «Надіслати»."; }
+      else if (ch === "telegram" || ch === "instagram") { url = href; info = "Текст заявки скопійовано. У " + (ch === "telegram" ? "Telegram" : "Instagram") + ", що відкрився, вставте його в чат і надішліть."; copy(lastMsg); }
+      else { info = "Скопіюйте текст заявки нижче й надішліть нам у зручний спосіб."; copy(lastMsg); }
+      if (url) { if (ch === "telegram" || ch === "instagram") window.open(url, "_blank", "noopener"); else window.location.href = url; }
       $("[data-done-msg]").textContent = lastMsg;
       $("[data-done-text]").textContent = info;
       form.hidden = true; done.hidden = false; done.focus();
