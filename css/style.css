@@ -348,3 +348,14 @@ body.menu-open .top .burger span{background:var(--k)}
 .foot__grid .mono{margin-top:12px}
 .gifts h2 em,.contacts h2 em{background-color:transparent;background-image:linear-gradient(transparent 16%,var(--y) 16% 96%,transparent 96%)}
 .anim .gifts h2 em,.anim .contacts h2 em{background-image:linear-gradient(transparent 16%,var(--y) 16% 96%,transparent 96%)}
+/* phones: one small floating print in the empty top area of the hero */
+@media (max-width:999px){
+  .hero__cards{display:block;position:absolute;top:84px;right:var(--gut);z-index:1}
+  .hero__cards .pcard--fam{display:none}
+  .hero__cards .pcard--doc{width:112px;padding:6px 6px 8px}
+  .hero__cards .pcard--doc figcaption{margin-top:6px}
+  .hero__cards .pcard--doc b{font-size:14px}
+  .hero__cards .pcard--doc .mono{display:none}
+  .hero .reg--tr{display:none}
+}
+@media (max-height:700px) and (max-width:999px){.hero__cards{display:none}}
