@@ -4,9 +4,7 @@
   "setup": "iphone-webkit",
   "console": [],
   "pageErrors": [],
-  "failedRequests": [
-   "https://srv.carbonads.net/ads/CEADPK3U.json?segment=placement:rawgithackcom&v=true Load request cancelled"
-  ],
+  "failedRequests": [],
   "badResponses": [],
   "csp": [],
   "status": 200,
@@ -15,15 +13,9 @@
   "title": "Перукарня Shamanka — Івано-Франківськ, Бельведерська 23 | стрижки, фарбування, брови",
   "imgCount": 21,
   "brokenImgs": [
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/cut.jpg",
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/style.jpg",
    "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/barber.jpg",
    "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/brows.jpg",
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/tools.jpg",
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/s1.jpg",
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/s2.jpg",
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/s3.jpg",
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/s4.jpg"
+   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/tools.jpg"
   ],
   "bgCount": 0,
   "brokenBg": [],
@@ -35,7 +27,9 @@
   "setup": "desktop-chromium",
   "console": [],
   "pageErrors": [],
-  "failedRequests": [],
+  "failedRequests": [
+   "https://srv.carbonads.net/ads/CEADPK3U.json?segment=placement:rawgithackcom&v=true net::ERR_ABORTED"
+  ],
   "badResponses": [],
   "csp": [],
   "status": 200,
@@ -43,17 +37,10 @@
   "interstitial": true,
   "title": "Перукарня Shamanka — Івано-Франківськ, Бельведерська 23 | стрижки, фарбування, брови",
   "imgCount": 21,
-  "brokenImgs": [
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/color.jpg",
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/cut.jpg",
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/style.jpg",
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/barber.jpg",
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/brows.jpg",
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/tools.jpg"
-  ],
+  "brokenImgs": [],
   "bgCount": 0,
   "brokenBg": [],
   "overflowX": 0,
-  "ok": false
+  "ok": true
  }
 ]
