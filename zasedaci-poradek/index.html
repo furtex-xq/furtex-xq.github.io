@@ -36,6 +36,9 @@
   .pool-wrap h3 { margin: 0 0 6px; }
   .pool { max-height: 35vh; overflow-y: auto; }
   .pool { min-height: 70px; border: 2px dashed #888; border-radius: 8px; padding: 10px; display: flex; flex-wrap: wrap; gap: 8px; background: #fff; }
+  .top { display: flex; justify-content: space-between; align-items: flex-start; max-width: 1200px; }
+  #saveBtn { padding: 12px 18px; font-size: 16px; font-weight: bold; background: #1f9d55; }
+  #saveBtn.done { background: #157a40; }
   .hint { font-size: 13px; color: #666; margin: 6px 0; }
   @media print { .toolbar, .pool-wrap, textarea, .hint { display: none; } body { background: #fff; } }
 </style>
@@ -43,7 +46,10 @@
 <body>
 
 
-<div class="teacher">UČITEL</div>
+<div class="top">
+  <div class="teacher">UČITEL</div>
+  <button id="saveBtn">💾 Uložit</button>
+</div>
 <div class="classroom" id="classroom"></div>
 
 <div class="pool-wrap">
@@ -54,12 +60,9 @@
 <script>
 const ROWS = 6, COLS = 3, SEATS_PER_DESK = 2;
 const KEY = 'zasedaci-poradek-v1';
-const DEFAULT_NAMES = ['Radek','Štefan','Kuba','Doležel','Roman','Holeček','Chlup','Marek','Mrkvica','Kocap','Kravál','Vojtěchovsky','Bilokon','Míra','Anna','Denis','Lukáš','Vojta','Robin','Peprla','Petriv','Mikulášek','Alexsandr','Svjat','Tobik','Honza'];
+const DEFAULT_NAMES = ['Radek','Štefan','Kuba','Doležel','Roman','Holeček','Chlup','Marek','Mrkvica','Kocap','Kravál','Vojtěchovsky','Bilokon','Míra','Anna','Denis','Lukáš','Vojta','Robin','Peprla','Petriv','Mikulášek','Alexsandr','Svjat','Tobik','Honza','Svoboda'];
 let state = load() || { names: [], seats: {} }; // seats: seatId -> name
-if (!state.defaultsLoaded) {
-  DEFAULT_NAMES.forEach(n => { if (!state.names.includes(n)) state.names.push(n); });
-  state.defaultsLoaded = true;
-}
+DEFAULT_NAMES.forEach(n => { if (!state.names.includes(n)) state.names.push(n); });
 
 function load() {
   // 1) arrangement stored in the link (#...), 2) browser storage
@@ -188,6 +191,16 @@ function endDrag(apply) {
   drag = null;
 }
 
+
+document.getElementById('saveBtn').onclick = async () => {
+  const btn = document.getElementById('saveBtn');
+  save();
+  let copied = false;
+  try { await navigator.clipboard.writeText(location.href); copied = true; } catch(e) {}
+  btn.textContent = copied ? '✓ Uloženo (odkaz zkopírován)' : '✓ Uloženo';
+  btn.classList.add('done');
+  setTimeout(() => { btn.textContent = '💾 Uložit'; btn.classList.remove('done'); }, 2000);
+};
 
 render();
 </script>
