@@ -1,12 +1,2 @@
-#mode=iphone (recheck fixed pages, pinned to commit to skip githack cache)
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/3b25b50cacc1db44be5943e387fd3cefecf97810/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/3aeee6954ea63281b54862e7d869a66f53a71bdf/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/1e4f0a828760e33355b089c86d1b4fe1e0ad8d83/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/f98485aa43e1e67d0ca765b2acc3858c1ca3b69a/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/c98d9e6a167de011dced7296e73a823c2883c0c9/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/5b9c9e29d662f71aea35b54731cba45e832d008b/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/493ed64caabc04371f47b761fb576aee33aadb9f/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/daebaafa6bce3494e936ec1e6a70de8b207d2e92/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/a3ac1c45a19e9ce2ce173abcddfea85f29d96834/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/9fcc0b82cbd4c36004ab62dbd7feb56366a6d56e/index.html
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/7a8e3df49a28e79745d10c1f042dd5f7d9016299/index.html
+#mode=iphone (FineLine rebuild from fineline.ua)
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/22bab353dbe47c462d3c10a2096531da4b1ecd67/index.html
