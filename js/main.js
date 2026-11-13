@@ -8,7 +8,8 @@
   var CONTACT = {
     telegram: 'https://t.me/username',
     viber: 'viber://chat?number=%2B380000000000',
-    email: 'mailto:hello@example.com'
+    email: 'mailto:hello@example.com',
+    sms: ''
   };
 
   var $ = function (s, c) { return (c || d).querySelector(s); };
@@ -166,12 +167,13 @@
     ];
     if (F('msg').value.trim()) lines.push('Коментар: ' + F('msg').value.trim());
     var text = lines.join('\n');
-    var via = form.querySelector('input[name="via"]:checked').value, url;
-    if (via === 'email') url = CONTACT.email + '?subject=' + encodeURIComponent('Запис на прийом — ' + F('name').value.trim()) + '&body=' + encodeURIComponent(text);
-    else if (via === 'viber') url = CONTACT.viber + '&draft=' + encodeURIComponent(text);
-    else url = CONTACT.telegram + '?text=' + encodeURIComponent(text);
+    var viaEl = form.querySelector('input[name="via"]:checked'), via = viaEl ? viaEl.value : '', url = '';
+    if (via === 'email' && CONTACT.email) url = CONTACT.email + '?subject=' + encodeURIComponent('Запис на прийом — ' + F('name').value.trim()) + '&body=' + encodeURIComponent(text);
+    else if (via === 'viber' && CONTACT.viber) url = CONTACT.viber + '&draft=' + encodeURIComponent(text);
+    else if (via === 'sms' && CONTACT.sms) url = CONTACT.sms + '?&body=' + encodeURIComponent(text);
+    else if (via === 'telegram' && CONTACT.telegram) url = CONTACT.telegram + '?text=' + encodeURIComponent(text);
     try { if (navigator.clipboard) navigator.clipboard.writeText(text).catch(function () {}); } catch (err) {}
-    if (via === 'telegram') window.open(url, '_blank', 'noopener'); else window.location.href = url;
+    if (url) { if (via === 'telegram') window.open(url, '_blank', 'noopener'); else window.location.href = url; }
     form.hidden = true; done.hidden = false; done.focus();
   });
   $('[data-form-again]').addEventListener('click', function () { form.reset(); done.hidden = true; form.hidden = false; F('name').focus(); });

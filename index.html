@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob: https://raw.githubusercontent.com; frame-src https://www.google.com https://maps.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Медичний центр [НАЗВА] — лікарі, УЗД та аналізи | Клініка [МІСТО]</title>
+<title>Медичний центр [НАЗВА] — лікарі, УЗД та аналізи | Клініка у [МІСТО]</title>
 <meta name="description" content="Медичний центр [НАЗВА] у [МІСТО]: терапевт, педіатр, кардіолог, невролог та інші спеціалісти, УЗД, ЕКГ, аналізи. Запис на зручний час, прозорі ціни. Тел. [ТЕЛЕФОН].">
 <meta name="theme-color" content="#1F4A63">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
@@ -82,7 +82,7 @@
       <a class="btn btn-primary nav-cta" href="#booking">Записатися</a>
     </nav>
     <div class="header-actions">
-      <a class="header-phone" href="tel:+380000000000"><svg aria-hidden="true"><use href="#i-phone"/></svg><span class="ph">[ТЕЛЕФОН]</span></a>
+      <a class="header-phone" data-ch="phone" href="tel:+380000000000"><svg aria-hidden="true"><use href="#i-phone"/></svg><span class="ph">[ТЕЛЕФОН]</span></a>
       <a class="btn btn-primary btn-sm header-book" href="#booking">Записатися</a>
       <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Відкрити меню"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
     </div>
@@ -96,11 +96,11 @@
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <p class="status-pill" data-status><span class="dot" aria-hidden="true"></span><span data-status-text>Перевіряємо графік…</span></p>
-      <h1><span class="h1-kicker">Медичний центр <span class="ph">[НАЗВА]</span> · <span class="ph">[МІСТО]</span></span>Спокійний прийом і&nbsp;зрозумілий план лікування</h1>
+      <h1><span class="h1-kicker">Медичний центр <span class="ph">[НАЗВА]</span>, <span class="ph">[МІСТО]</span></span>Спокійний прийом і&nbsp;зрозумілий план лікування</h1>
       <p class="lead">Терапевт, вузькі спеціалісти, УЗД та аналізи в одному місці. Записуємо на зручний час і пояснюємо результати простими словами — без поспіху й зайвих призначень.</p>
       <div class="hero-cta">
         <a class="btn btn-primary btn-lg" href="#booking"><svg aria-hidden="true"><use href="#i-cal"/></svg>Записатися на прийом</a>
-        <a class="btn btn-ghost btn-lg" href="tel:+380000000000"><svg aria-hidden="true"><use href="#i-phone"/></svg>Зателефонувати</a>
+        <a class="btn btn-ghost btn-lg" data-ch="phone" href="tel:+380000000000"><svg aria-hidden="true"><use href="#i-phone"/></svg>Зателефонувати</a>
       </div>
       <dl class="hero-facts">
         <div><dt>Приймаємо</dt><dd>дорослих і дітей</dd></div>
@@ -119,7 +119,7 @@
         </div>
         <p class="ticket-status" data-status><span class="dot" aria-hidden="true"></span><span data-status-text>—</span></p>
         <p class="ticket-hours"><svg aria-hidden="true"><use href="#i-clock"/></svg><span data-today-hours>—</span></p>
-        <a class="ticket-link" href="tel:+380000000000">Уточнити вільний час <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="ticket-link" data-ch="phone-alt" href="tel:+380000000000">Уточнити вільний час <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </aside>
     </div>
   </div>
@@ -421,16 +421,16 @@
       <p class="eyebrow">Контакти</p>
       <h2 id="contacts-title">Запишіться зручним способом</h2>
       <p class="addr"><svg aria-hidden="true"><use href="#i-pin"/></svg><span><span class="ph">[АДРЕСА]</span>, <span class="ph">[МІСТО]</span></span></p>
-      <a class="big-phone" href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>
+      <a class="big-phone" data-ch="phone" href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>
 
       <div class="channels">
-        <a class="ch" href="tel:+380000000000"><svg aria-hidden="true"><use href="#i-phone"/></svg>Дзвінок</a>
-        <a class="ch" href="viber://chat?number=%2B380000000000"><svg aria-hidden="true"><use href="#i-viber"/></svg>Viber</a>
-        <a class="ch" href="https://t.me/username" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-send"/></svg>Telegram</a>
-        <a class="ch" href="https://wa.me/380000000000" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
-        <a class="ch" href="https://www.instagram.com/username/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg><span class="ph">[ІНСТАГРАМ]</span></a>
-        <a class="ch" href="https://www.facebook.com/username" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-fb"/></svg>Facebook</a>
-        <a class="ch ch-wide" href="mailto:hello@example.com"><svg aria-hidden="true"><use href="#i-mail"/></svg><span class="ph">[EMAIL]</span></a>
+        <a class="ch" data-ch="phone" href="tel:+380000000000"><svg aria-hidden="true"><use href="#i-phone"/></svg>Дзвінок</a>
+        <a class="ch" data-ch="viber" href="viber://chat?number=%2B380000000000"><svg aria-hidden="true"><use href="#i-viber"/></svg>Viber</a>
+        <a class="ch" data-ch="telegram" href="https://t.me/username" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-send"/></svg>Telegram</a>
+        <a class="ch" data-ch="whatsapp" href="https://wa.me/380000000000" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+        <a class="ch" data-ch="instagram" href="https://www.instagram.com/username/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg><span class="ph">[ІНСТАГРАМ]</span></a>
+        <a class="ch" data-ch="facebook" href="https://www.facebook.com/username" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-fb"/></svg>Facebook</a>
+        <a class="ch ch-wide" data-ch="email" href="mailto:hello@example.com"><svg aria-hidden="true"><use href="#i-mail"/></svg><span class="ph">[EMAIL]</span></a>
       </div>
 
       <div class="hours">
@@ -455,7 +455,7 @@
     <div class="booking" id="booking">
       <form class="book-form" novalidate>
         <h3 class="form-title">Запис на прийом</h3>
-        <p class="form-sub">Заповніть форму — повідомлення відкриється в обраному месенджері, вам залишиться лише надіслати його.</p>
+        <p class="form-sub" data-form-sub>Заповніть форму — повідомлення відкриється в обраному месенджері, вам залишиться лише надіслати його.</p>
         <div class="field">
           <label for="f-name">Ваше ім'я</label>
           <input id="f-name" name="name" type="text" autocomplete="name" required minlength="2" placeholder="Як до вас звертатися">
@@ -494,9 +494,9 @@
         </div>
         <fieldset class="field via">
           <legend>Надіслати через</legend>
-          <label><input type="radio" name="via" value="telegram" checked><span><svg aria-hidden="true"><use href="#i-send"/></svg>Telegram</span></label>
-          <label><input type="radio" name="via" value="viber"><span><svg aria-hidden="true"><use href="#i-viber"/></svg>Viber</span></label>
-          <label><input type="radio" name="via" value="email"><span><svg aria-hidden="true"><use href="#i-mail"/></svg>Email</span></label>
+          <label data-ch="telegram"><input type="radio" name="via" value="telegram" checked><span><svg aria-hidden="true"><use href="#i-send"/></svg>Telegram</span></label>
+          <label data-ch="viber"><input type="radio" name="via" value="viber"><span><svg aria-hidden="true"><use href="#i-viber"/></svg>Viber</span></label>
+          <label data-ch="email"><input type="radio" name="via" value="email"><span><svg aria-hidden="true"><use href="#i-mail"/></svg>Email</span></label>
         </fieldset>
         <label class="consent"><input type="checkbox" name="consent" required><span>Погоджуюся на обробку персональних даних для запису на прийом</span></label>
         <span class="err" data-err="consent">Потрібна ваша згода, щоб ми могли зв'язатися з вами.</span>
@@ -505,8 +505,8 @@
       <div class="form-done" hidden tabindex="-1">
         <span class="done-icon" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
         <h3>Заявку сформовано</h3>
-        <p>Ми відкрили месенджер із готовим повідомленням — надішліть його, і адміністратор підтвердить час прийому. Текст також скопійовано в буфер обміну.</p>
-        <p class="done-alt">Месенджер не відкрився? Зателефонуйте: <a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a></p>
+        <p data-done-text>Ми відкрили повідомлення з готовою заявкою — надішліть його, і адміністратор підтвердить час прийому. Текст також скопійовано в буфер обміну.</p>
+        <p class="done-alt" data-ch="phone">Повідомлення не відкрилося? Зателефонуйте: <a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a></p>
         <button type="button" class="btn btn-ghost" data-form-again>Заповнити ще раз</button>
       </div>
     </div>
@@ -535,8 +535,8 @@
     </div>
     <div class="f-col">
       <h3>Контакти</h3>
-      <a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>
-      <a href="mailto:hello@example.com"><span class="ph">[EMAIL]</span></a>
+      <a data-ch="phone" href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>
+      <a data-ch="email" href="mailto:hello@example.com"><span class="ph">[EMAIL]</span></a>
       <span><span class="ph">[АДРЕСА]</span>, <span class="ph">[МІСТО]</span></span>
       <span><span class="ph">[ГОДИНИ]</span></span>
     </div>
@@ -548,7 +548,7 @@
 </footer>
 
 <nav class="actionbar" aria-label="Швидкі дії">
-  <a href="tel:+380000000000"><svg aria-hidden="true"><use href="#i-phone"/></svg>Подзвонити</a>
+  <a data-ch="phone-bar" href="tel:+380000000000"><svg aria-hidden="true"><use href="#i-phone"/></svg>Подзвонити</a>
   <a href="#booking" class="ab-main"><svg aria-hidden="true"><use href="#i-cal"/></svg>Записатися</a>
   <a href="https://www.google.com/maps/dir/?api=1&amp;destination=%D0%86%D0%B2%D0%B0%D0%BD%D0%BE-%D0%A4%D1%80%D0%B0%D0%BD%D0%BA%D1%96%D0%B2%D1%81%D1%8C%D0%BA" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-route"/></svg>Маршрут</a>
 </nav>
