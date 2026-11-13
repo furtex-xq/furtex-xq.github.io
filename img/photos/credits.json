@@ -1,0 +1,77 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1560128411-79892dd93bf8",
+   "bytes": 217033,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "hero2",
+   "url": "https://images.unsplash.com/photo-1780586382191-bef9c740798e",
+   "bytes": 461854,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "birthday",
+   "url": "https://images.unsplash.com/photo-1741969494307-55394e3e4071",
+   "bytes": 125874,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "baby",
+   "url": "https://images.unsplash.com/photo-1768776182359-75ecacc8735d",
+   "bytes": 154690,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "gender",
+   "url": "https://images.unsplash.com/photo-1677189138815-26380569685e",
+   "bytes": 77444,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "foil",
+   "url": "https://images.unsplash.com/photo-1530098403657-0d93d64d087d",
+   "bytes": 72914,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "sky",
+   "url": "https://images.unsplash.com/photo-1517981834318-5f56734fe518",
+   "bytes": 59571,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "bunch",
+   "url": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d",
+   "bytes": 77405,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "pastel",
+   "url": "https://images.unsplash.com/photo-1604080907141-8476a60708dc",
+   "bytes": 82407,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "arch",
+   "url": "https://images.unsplash.com/photo-1769867627452-46a2f513e05a",
+   "bytes": 267573,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "studio",
+   "url": "https://images.unsplash.com/photo-1768776183829-45e5f7553629",
+   "bytes": 265126,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "table",
+   "url": "https://images.unsplash.com/photo-1777332547120-e7ec407b5ed6",
+   "bytes": 412684,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
