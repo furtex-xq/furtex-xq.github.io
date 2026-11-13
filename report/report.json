@@ -1,27 +1,20 @@
 [
  {
-  "url": "https://raw.githack.com/furtex-xq/furtex-xq.github.io/22bab353dbe47c462d3c10a2096531da4b1ecd67/index.html",
+  "url": "https://raw.githack.com/furtex-xq/furtex-xq.github.io/bfee1a38330823cae8d1636d8d7e805b15a2220d/index.html",
   "setup": "iphone-webkit",
   "console": [],
   "pageErrors": [],
-  "failedRequests": [
-   "https://srv.carbonads.net/ads/CEADPK3U.json?segment=placement:rawgithackcom&v=true Load request cancelled"
-  ],
+  "failedRequests": [],
   "badResponses": [],
   "csp": [],
   "status": 200,
   "contentType": "text/html",
   "interstitial": true,
-  "title": "FineLine — косметологічний центр у Івано-Франківську: лазерна епіляція, косметологія, кріоліполіз",
+  "title": "Kulyk Medicine — естетична стоматологія в Івано-Франківську: вініри, брекети Damon, лікування під мікроскопом",
   "imgCount": 14,
   "brokenImgs": [],
-  "hiddenNotLoaded": [
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/28077b321c54c2ef5f34028fa7456ce43ce86ba0/img/site/chistka.jpg",
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/28077b321c54c2ef5f34028fa7456ce43ce86ba0/img/site/inject.jpg",
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/28077b321c54c2ef5f34028fa7456ce43ce86ba0/img/site/krio.jpg",
-   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/28077b321c54c2ef5f34028fa7456ce43ce86ba0/img/site/pedicure.jpg"
-  ],
-  "bgCount": 0,
+  "hiddenNotLoaded": [],
+  "bgCount": 1,
   "brokenBg": [],
   "overflowX": 0,
   "ok": true
