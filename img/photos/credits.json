@@ -1,0 +1,77 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1567696911980-2eed69a46042",
+   "bytes": 886491,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "bar",
+   "url": "https://images.unsplash.com/photo-1792670846245-09ef04789925",
+   "bytes": 249418,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "taps",
+   "url": "https://images.unsplash.com/photo-1776775374838-86d782745860",
+   "bytes": 165591,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "pour",
+   "url": "https://images.unsplash.com/photo-1777558578003-e65755409d8e",
+   "bytes": 181677,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "interior",
+   "url": "https://images.unsplash.com/photo-1766500616162-4ca819ff24a3",
+   "bytes": 102262,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "woodbar",
+   "url": "https://images.unsplash.com/photo-1779372178480-28385582bf53",
+   "bytes": 177858,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "music",
+   "url": "https://images.unsplash.com/photo-1779551247281-dbfdfb8fe967",
+   "bytes": 405870,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "friends",
+   "url": "https://images.unsplash.com/photo-1671116810339-1b58cf241509",
+   "bytes": 130072,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "food",
+   "url": "https://images.unsplash.com/photo-1766589221078-7eefcc2346a5",
+   "bytes": 320723,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "snacks",
+   "url": "https://images.unsplash.com/photo-1766589152188-54bd12a5c71b",
+   "bytes": 258785,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "mugs",
+   "url": "https://images.unsplash.com/photo-1471421298428-1513ab720a8e",
+   "bytes": 225557,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "cocktail",
+   "url": "https://images.unsplash.com/photo-1778104959469-0861d423de46",
+   "bytes": 79178,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
