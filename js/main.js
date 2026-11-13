@@ -121,10 +121,11 @@
   });
   var lookSelect = document.getElementById('f-look');
   document.querySelector('[data-look-book]').addEventListener('click', function () {
-    lookSelect.value = LOOKS[current].name;
     var svc = document.getElementById('f-service');
-    svc.value = LOOKS[current].name === 'Борода' ? 'Моделювання бороди' : (LOOKS[current].name === 'Фейд' ? 'Фейд / скін-фейд' : 'Чоловіча стрижка');
     document.getElementById('booking').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+    if (!lookSelect || !svc) return;
+    lookSelect.value = LOOKS[current].name;
+    svc.value = LOOKS[current].name === 'Борода' ? 'Моделювання бороди' : (LOOKS[current].name === 'Фейд' ? 'Фейд / скін-фейд' : 'Чоловіча стрижка');
     setTimeout(function () { document.getElementById('f-date').focus({ preventScroll: true }); }, reduce ? 0 : 700);
   });
 
@@ -171,14 +172,12 @@
 
   /* ---------- Booking form → messenger ---------- */
   var form = document.getElementById('form');
+  if (form) initForm();
+  function initForm() {
   var ok = document.getElementById('form-ok');
   var date = document.getElementById('f-date');
   var today = new Date(); today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
   date.min = today.toISOString().slice(0, 10);
-
-  var TG = 'https://t.me/username';
-  var VIBER = 'viber://chat?number=%2B380000000000';
-  var MAIL = 'mailto:hello@example.com';
 
   function setBad(input, bad) { input.closest('.field').classList.toggle('is-bad', bad); input.setAttribute('aria-invalid', String(bad)); }
   function validate() {
@@ -206,13 +205,18 @@
       form.note.value.trim() ? 'Коментар: ' + form.note.value.trim() : ''
     ].filter(Boolean);
     var msg = lines.join('\n');
-    var ch = form.channel.value, url;
-    if (ch === 'viber') url = VIBER + '&draft=' + encodeURIComponent(msg);
-    else if (ch === 'email') url = MAIL + '?subject=' + encodeURIComponent('Запис на стрижку — ' + form.name.value.trim()) + '&body=' + encodeURIComponent(msg);
-    else url = TG + '?text=' + encodeURIComponent(msg);
+    var chEl = form.querySelector('input[name="channel"]:checked');
+    var ch = chEl ? chEl.value : '', base = form.getAttribute('data-' + ch) || '', url;
+    if (!base) return;
+    if (ch === 'viber') url = base + '&draft=' + encodeURIComponent(msg);
+    else if (ch === 'email') url = base + '?subject=' + encodeURIComponent('Запис на стрижку — ' + form.name.value.trim()) + '&body=' + encodeURIComponent(msg);
+    else if (ch === 'sms') url = base + '?&body=' + encodeURIComponent(msg);
+    else url = base + '?text=' + encodeURIComponent(msg);
     ok.hidden = false;
     if (ch === 'telegram') window.open(url, '_blank', 'noopener'); else window.location.href = url;
   });
+
+  }
 
   /* ---------- Year ---------- */
   var y = document.querySelector('[data-year]');
