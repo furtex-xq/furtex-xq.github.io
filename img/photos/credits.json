@@ -37,12 +37,6 @@
    "license": "Unsplash License"
   },
   {
-   "slot": "burger3",
-   "url": "https://images.unsplash.com/photo-1550547660-d9450f859349",
-   "bytes": 204271,
-   "license": "Unsplash License"
-  },
-  {
    "slot": "fries",
    "url": "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d",
    "bytes": 127341,
@@ -70,12 +64,6 @@
    "slot": "kitchen",
    "url": "https://images.unsplash.com/photo-1651981075280-9a9e01acbff0",
    "bytes": 437299,
-   "license": "Unsplash License"
-  },
-  {
-   "slot": "bag",
-   "url": "https://images.unsplash.com/photo-1600728619239-d2a73f7aa541",
-   "bytes": 126199,
    "license": "Unsplash License"
   },
   {
