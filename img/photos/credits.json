@@ -8,8 +8,8 @@
   },
   {
    "slot": "shop",
-   "url": "https://images.unsplash.com/photo-1767341372150-b9521fec39a3",
-   "bytes": 219040,
+   "url": "https://images.unsplash.com/photo-1759419282068-eb664e0f0a17",
+   "bytes": 275746,
    "license": "Unsplash License"
   },
   {
@@ -25,9 +25,9 @@
    "license": "Unsplash License"
   },
   {
-   "slot": "oil",
-   "url": "https://images.unsplash.com/photo-1487754180451-c456f719a1fc",
-   "bytes": 105546,
+   "slot": "filter",
+   "url": "https://images.unsplash.com/photo-1777118947168-b6e806cb80cf",
+   "bytes": 179829,
    "license": "Unsplash License"
   },
   {
@@ -50,14 +50,14 @@
   },
   {
    "slot": "shelves",
-   "url": "https://images.unsplash.com/photo-1644079446600-219068676743",
-   "bytes": 152937,
+   "url": "https://images.unsplash.com/photo-1694885156873-6a0823e14848",
+   "bytes": 240530,
    "license": "Unsplash License"
   },
   {
    "slot": "tires",
-   "url": "https://images.unsplash.com/photo-1772057593749-4038650963d4",
-   "bytes": 169957,
+   "url": "https://images.unsplash.com/photo-1656232976683-7b688560e427",
+   "bytes": 95848,
    "license": "Unsplash License"
   }
  ],
