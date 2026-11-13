@@ -25,12 +25,6 @@
    "license": "Unsplash License"
   },
   {
-   "slot": "filter",
-   "url": "https://images.unsplash.com/photo-1777118947168-b6e806cb80cf",
-   "bytes": 179829,
-   "license": "Unsplash License"
-  },
-  {
    "slot": "suspension",
    "url": "https://images.unsplash.com/photo-1769218401807-5495675a2eb1",
    "bytes": 200745,
@@ -46,12 +40,6 @@
    "slot": "mechanic",
    "url": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e",
    "bytes": 106524,
-   "license": "Unsplash License"
-  },
-  {
-   "slot": "shelves",
-   "url": "https://images.unsplash.com/photo-1694885156873-6a0823e14848",
-   "bytes": 240530,
    "license": "Unsplash License"
   },
   {
