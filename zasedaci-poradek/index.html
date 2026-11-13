@@ -15,22 +15,23 @@
   button.secondary { background: #777; }
   button.danger { background: #d33; }
   .teacher { width: 180px; padding: 14px; text-align: center; background: #6b4f2a; color: #fff; border-radius: 8px; font-weight: bold; margin-bottom: 20px; }
-  .classroom { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 40px; max-width: 1000px; }
+  .classroom { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 24px; max-width: 1200px; }
   .desk { min-width: 0; background: #c9a36b; border-radius: 8px; padding: 5px; display: flex; gap: 4px; box-shadow: 0 2px 4px rgba(0,0,0,.2); }
-  .seat { flex: 1 1 0; min-width: 0; min-height: 52px; background: #fffaf0; border: 2px dashed #a88; border-radius: 6px; display: flex; align-items: center; justify-content: center; padding: 4px; }
+  .seat { flex: 1 1 0; min-width: 0; min-height: 64px; background: #fffaf0; border: 2px dashed #a88; border-radius: 6px; display: flex; align-items: center; justify-content: center; padding: 4px; }
   .seat.over, .pool.over { background: #dff0d8; border-color: #4a4; }
   .name { background: #2d5be3; color: #fff; padding: 6px 10px; border-radius: 6px; cursor: grab; font-size: 14px; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; touch-action: none; }
-  .seat .name { padding: 4px 2px; font-size: 13px; line-height: 1.15; overflow-wrap: anywhere; }
+  .seat .name { padding: 6px 3px; font-size: 15px; line-height: 1.15; overflow-wrap: anywhere; }
   .ghost { position: fixed; pointer-events: none; z-index: 1000; opacity: .85; }
   @media (max-width: 600px) {
     body { padding: 8px; }
-    .classroom { gap: 14px 8px; }
-    .seat { min-height: 58px; padding: 2px; border-width: 1.5px; }
-    .seat .name { font-size: 11px; padding: 4px 1px; }
+    .classroom { gap: 10px 5px; }
+    .desk { flex-direction: column; padding: 4px; gap: 4px; }
+    .seat { min-height: 44px; padding: 2px; border-width: 1.5px; }
+    .seat .name { font-size: 13px; padding: 5px 2px; overflow-wrap: normal; word-break: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .teacher { width: 140px; padding: 10px; margin-bottom: 14px; }
   }
   .seat .name { width: 100%; text-align: center; }
-  .pool-wrap { margin-top: 28px; max-width: 1000px; position: sticky; bottom: 0; background: #f4f1ea; padding: 8px 0; }
+  .pool-wrap { margin-top: 28px; max-width: 1200px; position: sticky; bottom: 0; background: #f4f1ea; padding: 8px 0; }
   .pool-wrap h3 { margin: 0 0 6px; }
   .pool { max-height: 35vh; overflow-y: auto; }
   .pool { min-height: 70px; border: 2px dashed #888; border-radius: 8px; padding: 10px; display: flex; flex-wrap: wrap; gap: 8px; background: #fff; }
