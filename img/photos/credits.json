@@ -1,0 +1,83 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1758613655581-0e3491b0f556",
+   "bytes": 188523,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "session",
+   "url": "https://images.unsplash.com/photo-1758613655304-48776efb25d8",
+   "bytes": 81530,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "studio",
+   "url": "https://images.unsplash.com/photo-1768818928341-3b31b8965c6d",
+   "bytes": 166866,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "studio2",
+   "url": "https://images.unsplash.com/photo-1647427854253-b92bb40c9330",
+   "bytes": 137673,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "portrait1",
+   "url": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04",
+   "bytes": 216964,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "portrait2",
+   "url": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde",
+   "bytes": 123796,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "portrait3",
+   "url": "https://images.unsplash.com/photo-1612928414075-bc722ade44f1",
+   "bytes": 270259,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "portrait4",
+   "url": "https://images.unsplash.com/photo-1571513722275-4b41940f54b8",
+   "bytes": 95423,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "family1",
+   "url": "https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb",
+   "bytes": 245418,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "family2",
+   "url": "https://images.unsplash.com/photo-1602255680702-c47261041a97",
+   "bytes": 215729,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "love1",
+   "url": "https://images.unsplash.com/photo-1540076156429-35ffe82b7870",
+   "bytes": 276983,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "love2",
+   "url": "https://images.unsplash.com/photo-1561240055-102e7eaa2961",
+   "bytes": 203467,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "camera",
+   "url": "https://images.unsplash.com/photo-1554048612-b6a482bc67e5",
+   "bytes": 61668,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
