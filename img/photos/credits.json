@@ -37,12 +37,6 @@
    "license": "Unsplash License"
   },
   {
-   "slot": "chef2",
-   "url": "https://images.unsplash.com/photo-1577219491135-ce391730fb2c",
-   "bytes": 267382,
-   "license": "Unsplash License"
-  },
-  {
    "slot": "steak",
    "url": "https://images.unsplash.com/photo-1663530761401-15eefb544889",
    "bytes": 81258,
@@ -74,14 +68,26 @@
   },
   {
    "slot": "wine",
-   "url": "https://images.unsplash.com/photo-1469234496837-d0101f54be3e",
-   "bytes": 118708,
+   "url": "https://images.unsplash.com/photo-1641759756543-20168fcab299",
+   "bytes": 233886,
    "license": "Unsplash License"
   },
   {
    "slot": "plate",
    "url": "https://images.unsplash.com/photo-1689672235501-6dc1e56d454c",
    "bytes": 171194,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "room",
+   "url": "https://images.unsplash.com/photo-1469234496837-d0101f54be3e",
+   "bytes": 118708,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "wine2",
+   "url": "https://images.unsplash.com/photo-1700455350393-34e80e3e0997",
+   "bytes": 58599,
    "license": "Unsplash License"
   }
  ],
