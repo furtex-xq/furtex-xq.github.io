@@ -186,9 +186,21 @@
         f.msg.value.trim() ? "Побажання: " + f.msg.value.trim() : ""
       ].filter(Boolean);
       var text = lines.join("\n"), enc = encodeURIComponent(text);
-      var ch = (form.querySelector("input[name=channel]:checked") || {}).value || "telegram";
+      var ch = (form.querySelector("input[name=channel]:checked") || {}).value || form.getAttribute("data-channel") || "telegram";
       var url;
-      if (ch === "viber") {
+      if (ch === "sms") {
+        url = form.getAttribute("data-sms") + "?&body=" + enc;
+        okText.textContent = "Ми відкрили SMS з готовим текстом заявки — залишилось натиснути «Надіслати».";
+        window.location.href = url;
+      } else if (ch === "call") {
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).catch(function () {});
+        okText.textContent = "Ми скопіювали вашу заявку. Зателефонуйте нам — менеджер підбере тур під ці побажання.";
+        window.location.href = form.getAttribute("data-tel");
+      } else if (ch === "instagram") {
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).catch(function () {});
+        okText.textContent = "Ми відкрили Instagram і скопіювали текст заявки — вставте його в повідомлення й надішліть.";
+        window.open(form.getAttribute("data-ig"), "_blank", "noopener");
+      } else if (ch === "viber") {
         url = form.getAttribute("data-viber") + "&draft=" + enc;
         okText.textContent = "Ми відкрили Viber з готовим текстом заявки — залишилось натиснути «Надіслати».";
         window.location.href = url;
