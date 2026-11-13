@@ -1,13 +1,13 @@
 /* ==========================================================================
    СТО / автосервіс — універсальний шаблон
-   Шрифти: Tektur (заголовки, коди) + Roboto Condensed (текст)
+   Шрифти: Play (заголовки, коди, цифри) + Roboto Condensed (текст, кнопки, підписи)
    Палітра: графіт + сигнальний жовтий, технічні лінії
    ========================================================================== */
 
-@font-face{font-family:"Tektur";font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/tektur-cyrillic-500-normal.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
-@font-face{font-family:"Tektur";font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/tektur-latin-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:"Tektur";font-style:normal;font-weight:700;font-display:swap;src:url(../fonts/tektur-cyrillic-700-normal.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
-@font-face{font-family:"Tektur";font-style:normal;font-weight:700;font-display:swap;src:url(../fonts/tektur-latin-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Play";font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/play-cyrillic-400-normal.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Play";font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/play-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Play";font-style:normal;font-weight:700;font-display:swap;src:url(../fonts/play-cyrillic-700-normal.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Play";font-style:normal;font-weight:700;font-display:swap;src:url(../fonts/play-latin-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Roboto Condensed";font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/roboto-condensed-cyrillic-400-normal.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
 @font-face{font-family:"Roboto Condensed";font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/roboto-condensed-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Roboto Condensed";font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/roboto-condensed-cyrillic-500-normal.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
@@ -34,7 +34,7 @@
   --ok:#5fbf7a;
   --bad:#e0563f;
 
-  --f-disp:"Tektur","Arial Narrow",system-ui,sans-serif;
+  --f-disp:"Play","Arial Narrow",system-ui,sans-serif;
   --f-text:"Roboto Condensed","Arial Narrow",system-ui,sans-serif;
   --gut:16px;
   --max:1280px;
@@ -449,9 +449,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .bar .bar__main .ic{color:var(--signal-ink)}
 @media (min-width:900px){.bar{display:none}}
 
-/* ---------- службовий шрифт ----------
-   Tektur має стилізовану кириличну «д» (схожу на латинську g). Тому Tektur — лише для заголовків,
-   кодів робіт і цифр, а кнопки, підписи й дрібні мітки набрані Roboto Condensed. */
+/* ---------- службовий шрифт: кнопки, підписи й мітки — Roboto Condensed ---------- */
 .btn,.lk,.chip,.seg span,.via span,.f label,.f legend,.status,.nav a,.bar a,.faq summary,.gal__grid figcaption,.ph-label,
 .callout>span,.rev figcaption span,.hero__cap,.peek,.ticket__no,.eyebrow,.label,.spec dt,.logo__txt small,.foot__lbl,
 .about__since small,.rules dt,.wgroup h4,.car__dimtxt{font-family:var(--f-text)}
