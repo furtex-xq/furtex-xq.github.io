@@ -215,12 +215,18 @@
     if (el.msg.value.trim()) lines.push("Коментар: " + el.msg.value.trim());
     var text = lines.join("\n");
     var via = form.querySelector("input[name=via]:checked").value;
-    var url;
-    if (via === "tg") url = form.getAttribute("data-tg") + "?text=" + encodeURIComponent(text);
+    var url, newTab = false, copyOnly = false;
+    if (via === "tg") { url = form.getAttribute("data-tg") + "?text=" + encodeURIComponent(text); newTab = true; }
     else if (via === "viber") url = form.getAttribute("data-viber") + "&draft=" + encodeURIComponent(text);
+    else if (via === "sms") url = form.getAttribute("data-sms") + "?&body=" + encodeURIComponent(text);
+    else if (via === "ig" || via === "fb") { url = form.getAttribute("data-" + via); newTab = true; copyOnly = true; }
     else url = form.getAttribute("data-mail") + "?subject=" + encodeURIComponent("Запис у салон") + "&body=" + encodeURIComponent(text);
     try { if (navigator.clipboard) navigator.clipboard.writeText(text).catch(function () {}); } catch (err) {}
-    if (via === "tg") window.open(url, "_blank", "noopener"); else window.location.href = url;
+    var okMain = ok.querySelector(".form-ok__main");
+    if (okMain) okMain.textContent = copyOnly
+      ? "Текст заявки скопійовано. Вставте його в повідомлення " + (via === "ig" ? "в Instagram" : "у Facebook") + " і надішліть — ми підтвердимо запис."
+      : "Ми відкрили " + (via === "mail" ? "пошту" : via === "sms" ? "SMS" : "месенджер") + " з текстом заявки. Надішліть повідомлення — і ми підтвердимо запис.";
+    if (newTab) window.open(url, "_blank", "noopener"); else window.location.href = url;
     form.hidden = true; ok.hidden = false; ok.focus();
   });
   document.getElementById("form-again").addEventListener("click", function () {
