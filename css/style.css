@@ -99,7 +99,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .top__in{display:flex;align-items:center;gap:16px;height:var(--top-h)}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto;min-width:0}
 .logo__mark{width:34px;height:34px;flex:none;fill:none;stroke:var(--signal);stroke-width:2.2;stroke-linejoin:round}
-.logo__txt{display:flex;flex-direction:column;font:700 17px/1.1 var(--f-disp);white-space:nowrap}
+.logo__txt{display:flex;flex-direction:column;font:700 17px/1.1 var(--f-disp);white-space:nowrap;min-width:0}
+@media (max-width:599px){.logo__txt{white-space:normal;overflow-wrap:anywhere;font-size:15px}}
 .logo__txt small{font:500 11px/1.3 var(--f-disp);letter-spacing:.1em;text-transform:uppercase;color:var(--mute-d);margin-top:3px}
 .nav{display:none}
 .top__cta{display:none}
