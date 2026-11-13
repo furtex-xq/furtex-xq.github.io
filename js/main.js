@@ -98,8 +98,12 @@
   /* ---------- Opening hours, Kyiv time ---------- */
   var hoursEl = document.getElementById('hours');
   if (hoursEl) {
-    var H = {};
+    var H = null;
     try { H = JSON.parse(hoursEl.getAttribute('data-hours')); } catch (e) {}
+    if (!H) {
+      /* schedule unknown: show only the text summary, no live status */
+      Array.prototype.forEach.call(hoursEl.querySelectorAll('.hours__status, .hours__t'), function (el) { el.hidden = true; });
+    } else {
     var names = ['Неділя', 'Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П’ятниця', 'Субота'];
     var order = [1, 2, 3, 4, 5, 6, 0];
     var now = null;
@@ -132,6 +136,7 @@
       st.classList.add(open ? 'is-open' : 'is-closed');
       st.querySelector('span').textContent = txt;
     }
+    }
   }
 
   /* ---------- Booking form → Telegram / Viber / email ---------- */
@@ -140,7 +145,16 @@
   var LINKS = {
     telegram: 'https://t.me/username',
     viber: 'viber://chat?number=%2B380000000000',
-    email: 'mailto:hello@example.com'
+    email: 'mailto:hello@example.com',
+    sms: '',
+    instagram: ''
+  };
+  var OK_TEXT = {
+    telegram: 'Ми відкрили Telegram із готовим текстом — натисніть «Надіслати».',
+    viber: 'Ми відкрили Viber із готовим текстом — натисніть «Надіслати».',
+    email: 'Ми відкрили лист із готовим текстом — натисніть «Надіслати».',
+    sms: 'Ми відкрили SMS із готовим текстом — натисніть «Надіслати».',
+    instagram: 'Текст заявки скопійовано. Вставте його в повідомлення в Instagram і надішліть.'
   };
   function setErr(input, msg) {
     var f = input.closest('.field');
@@ -188,9 +202,13 @@
       var url;
       if (ch === 'telegram') url = LINKS.telegram + '?text=' + encodeURIComponent(msg);
       else if (ch === 'viber') url = LINKS.viber + '&draft=' + encodeURIComponent(msg);
+      else if (ch === 'sms') url = LINKS.sms + '?&body=' + encodeURIComponent(msg);
+      else if (ch === 'instagram') url = LINKS.instagram;
       else url = LINKS.email + '?subject=' + encodeURIComponent('Запис в ательє') + '&body=' + encodeURIComponent(msg);
       if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(msg).catch(function () {}); }
-      if (ch === 'telegram') { var a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); }
+      var okMsg = document.getElementById('formOkMsg');
+      if (okMsg && OK_TEXT[ch]) okMsg.textContent = OK_TEXT[ch];
+      if (ch === 'telegram' || ch === 'instagram') { var a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); }
       else window.location.href = url;
       form.hidden = true; ok.hidden = false; ok.focus();
     });

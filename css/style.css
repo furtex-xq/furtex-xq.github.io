@@ -336,11 +336,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 .form__ok p{color:rgba(240,239,234,.78)}
 .form__ok a{color:var(--tape)}
 .form__ok .link{color:var(--chalk)}
-@media (min-width:600px){.form{grid-template-columns:1fr 1fr}.field--full,.form__submit,.form__hint{grid-column:1/-1}.cbtns{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:600px){.form{grid-template-columns:1fr 1fr}.field--full,.form__submit,.form__hint{grid-column:1/-1}}
+.cbtns .cbtn:last-child:nth-child(even){grid-column:1/-1}
 @media (min-width:1000px){
   .contacts__grid{grid-template-columns:1fr 1.05fr;gap:64px;align-items:start}
   .booking{padding:46px 44px}
-  .cbtns{grid-template-columns:1fr 1fr}
 }
 .map{margin-top:76px;line-height:0;border-top:1px solid var(--line)}
 .map iframe{width:100%;height:360px;border:0;filter:grayscale(.55) contrast(1.05)}

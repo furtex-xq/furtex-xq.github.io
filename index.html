@@ -225,7 +225,7 @@
           <li><span class="plist__n">Пальто</span><span class="plist__t">від 21 дня</span><span class="plist__p">від <span class="ph">[ЦІНА]</span> грн</span></li>
         </ul>
       </div>
-      <p class="pricebook__note">Не знайшли свою річ? Надішліть фото у <a href="https://t.me/username" target="_blank" rel="noopener">Telegram</a> або <a href="viber://chat?number=%2B380000000000">Viber</a> — орієнтовну ціну скажемо за кілька хвилин.</p>
+      <p class="pricebook__note" id="priceNote">Не знайшли свою річ? Надішліть фото у <a href="https://t.me/username" target="_blank" rel="noopener">Telegram</a> або <a href="viber://chat?number=%2B380000000000">Viber</a> — орієнтовну ціну скажемо за кілька хвилин.</p>
     </div>
   </div>
 </section>
@@ -397,7 +397,7 @@
 
     <div class="booking" id="zapys">
       <h3 class="booking__title">Запис на примірку чи ремонт</h3>
-      <p class="booking__lead">Заповніть кілька полів — повідомлення відкриється у вибраному месенджері, вам лишиться натиснути «Надіслати».</p>
+      <p class="booking__lead">Заповніть кілька полів — заявка відкриється з готовим текстом, вам лишиться натиснути «Надіслати».</p>
       <form class="form" id="form" novalidate>
         <div class="field">
           <label for="f-name">Ваше ім’я</label>
@@ -444,7 +444,7 @@
       <div class="form__ok" id="formOk" hidden tabindex="-1">
         <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22"/><path d="m14 25 7 7 13-15"/></svg>
         <h4>Заявку підготовлено</h4>
-        <p>Ми відкрили месенджер із готовим текстом — натисніть «Надіслати». Якщо вікно не відкрилося, зателефонуйте: <a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>.</p>
+        <p><span id="formOkMsg">Ми відкрили месенджер із готовим текстом — натисніть «Надіслати».</span> <span class="form__ok-alt">Якщо вікно не відкрилося, зателефонуйте: <a href="tel:+380000000000"><span class="ph">[ТЕЛЕФОН]</span></a>.</span></p>
         <button class="link" type="button" id="formAgain">Заповнити ще одну заявку</button>
       </div>
     </div>
