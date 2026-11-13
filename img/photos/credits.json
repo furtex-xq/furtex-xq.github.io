@@ -1,0 +1,65 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1633655442356-ab2dbc69c772",
+   "bytes": 803861,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "sewing",
+   "url": "https://images.unsplash.com/photo-1606501126768-b78d4569d3f9",
+   "bytes": 65648,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "repair",
+   "url": "https://images.unsplash.com/photo-1759310224829-75ca3c725a18",
+   "bytes": 214743,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "tape",
+   "url": "https://images.unsplash.com/photo-1536867520774-5b4f2628a69b",
+   "bytes": 311930,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "cutting",
+   "url": "https://images.unsplash.com/photo-1718184021018-d2158af6b321",
+   "bytes": 116568,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "threads",
+   "url": "https://images.unsplash.com/photo-1474128670149-7082a8d370ea",
+   "bytes": 397694,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "fabric",
+   "url": "https://images.unsplash.com/photo-1705493253575-e911888621ff",
+   "bytes": 410239,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "machine",
+   "url": "https://images.unsplash.com/photo-1625479144604-ae69462778b7",
+   "bytes": 156449,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "suit",
+   "url": "https://images.unsplash.com/photo-1769935254385-e1381671a609",
+   "bytes": 143719,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "pattern",
+   "url": "https://images.unsplash.com/photo-1786276479250-e5840e89742e",
+   "bytes": 191029,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
