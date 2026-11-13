@@ -1,0 +1,77 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85",
+   "bytes": 227375,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "hero2",
+   "url": "https://images.unsplash.com/photo-1764106813759-9ef7bf42a0af",
+   "bytes": 151405,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "books",
+   "url": "https://images.unsplash.com/photo-1505664194779-8beaceb93744",
+   "bytes": 148238,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "oldbooks",
+   "url": "https://images.unsplash.com/photo-1765969934461-2f945e5aacb8",
+   "bytes": 113913,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "justice",
+   "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f",
+   "bytes": 101134,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "consult",
+   "url": "https://images.unsplash.com/photo-1758518730327-98070967caab",
+   "bytes": 69016,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "review",
+   "url": "https://images.unsplash.com/photo-1775163024488-e88e4a71179f",
+   "bytes": 80348,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "sign",
+   "url": "https://images.unsplash.com/photo-1521791055366-0d553872125f",
+   "bytes": 68403,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "pen",
+   "url": "https://images.unsplash.com/photo-1648712898089-4435bc87b587",
+   "bytes": 64387,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "notebook",
+   "url": "https://images.unsplash.com/photo-1423592707957-3b212afa6733",
+   "bytes": 60634,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "office",
+   "url": "https://images.unsplash.com/photo-1755551636128-2385f552d7ec",
+   "bytes": 174006,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "desk",
+   "url": "https://images.unsplash.com/photo-1787532378729-fe4241197405",
+   "bytes": 119885,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
