@@ -1,0 +1,77 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881",
+   "bytes": 322954,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "face",
+   "url": "https://images.unsplash.com/photo-1552693673-1bf958298935",
+   "bytes": 90828,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "face2",
+   "url": "https://images.unsplash.com/photo-1761718209835-c8586b7dcac0",
+   "bytes": 170897,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "nails",
+   "url": "https://images.unsplash.com/photo-1632345031435-8727f6897d53",
+   "bytes": 72891,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "nails2",
+   "url": "https://images.unsplash.com/photo-1604654894610-df63bc536371",
+   "bytes": 153724,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "nails3",
+   "url": "https://images.unsplash.com/photo-1610992015762-45dca7fa3a85",
+   "bytes": 131982,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "brows",
+   "url": "https://images.unsplash.com/photo-1674049406179-d7bf2c263e71",
+   "bytes": 94174,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "lashes",
+   "url": "https://images.unsplash.com/photo-1589710751893-f9a6770ad71b",
+   "bytes": 158085,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "body",
+   "url": "https://images.unsplash.com/photo-1786359410255-f0144e1a38e0",
+   "bytes": 252048,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "interior",
+   "url": "https://images.unsplash.com/photo-1637777277435-3c44f82fd0c9",
+   "bytes": 150711,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "interior2",
+   "url": "https://images.unsplash.com/photo-1626383120723-2a941488860d",
+   "bytes": 96249,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "serum",
+   "url": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108",
+   "bytes": 113366,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
