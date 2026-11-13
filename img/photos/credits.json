@@ -1,0 +1,65 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1486250944723-86bca2b15b06",
+   "bytes": 253468,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "exam",
+   "url": "https://images.unsplash.com/photo-1758656321505-95bf802f9a4c",
+   "bytes": 133066,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "exam2",
+   "url": "https://images.unsplash.com/photo-1576210117723-cd06449a467d",
+   "bytes": 143310,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "frames",
+   "url": "https://images.unsplash.com/photo-1534078477103-9f6a18b3a5e2",
+   "bytes": 217304,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "lenses",
+   "url": "https://images.unsplash.com/photo-1615468822882-4828d2602857",
+   "bytes": 90331,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "chart",
+   "url": "https://images.unsplash.com/photo-1743183988213-d5e24edf3dc8",
+   "bytes": 156553,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "sun",
+   "url": "https://images.unsplash.com/photo-1613631050894-bcf3e8ab2d98",
+   "bytes": 84423,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "book",
+   "url": "https://images.unsplash.com/photo-1574258495973-f010dfbb5371",
+   "bytes": 41096,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "store",
+   "url": "https://images.unsplash.com/photo-1682664175845-8fc194a4ac13",
+   "bytes": 276595,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "contacts",
+   "url": "https://images.unsplash.com/photo-1599243315159-faa0eac09ec1",
+   "bytes": 61567,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
