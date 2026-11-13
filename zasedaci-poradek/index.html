@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zasedací pořádek</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: system-ui, sans-serif; margin: 0; padding: 20px; background: #f4f1ea; color: #222; }
+  h1 { margin: 0 0 16px; font-size: 24px; }
+  .toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  textarea { width: 100%; max-width: 600px; height: 70px; padding: 8px; font-size: 14px; border-radius: 8px; border: 1px solid #bbb; }
+  button { padding: 8px 14px; border: none; border-radius: 8px; background: #2d5be3; color: #fff; font-size: 14px; cursor: pointer; }
+  button.secondary { background: #777; }
+  button.danger { background: #d33; }
+  .teacher { width: 180px; padding: 14px; text-align: center; background: #6b4f2a; color: #fff; border-radius: 8px; font-weight: bold; margin-bottom: 20px; }
+  .classroom { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px 40px; max-width: 1000px; }
+  .desk { background: #c9a36b; border-radius: 8px; padding: 6px; display: flex; gap: 6px; box-shadow: 0 2px 4px rgba(0,0,0,.2); }
+  .seat { flex: 1; min-height: 46px; background: #fffaf0; border: 2px dashed #a88; border-radius: 6px; display: flex; align-items: center; justify-content: center; padding: 4px; }
+  .seat.over, .pool.over { background: #dff0d8; border-color: #4a4; }
+  .name { background: #2d5be3; color: #fff; padding: 6px 10px; border-radius: 6px; cursor: grab; font-size: 14px; user-select: none; touch-action: none; }
+  .seat .name { width: 100%; text-align: center; }
+  .pool-wrap { margin-top: 28px; max-width: 1000px; }
+  .pool { min-height: 70px; border: 2px dashed #888; border-radius: 8px; padding: 10px; display: flex; flex-wrap: wrap; gap: 8px; background: #fff; }
+  .hint { font-size: 13px; color: #666; margin: 6px 0; }
+  @media print { .toolbar, .pool-wrap, textarea, .hint { display: none; } body { background: #fff; } }
+</style>
+</head>
+<body>
+<h1>Zasedací pořádek</h1>
+
+<textarea id="input" placeholder="Vlož jména oddělená čárkou nebo novým řádkem…"></textarea>
+<div class="toolbar">
+  <button id="add">Přidat jména</button>
+  <button id="shuffle" class="secondary">Náhodně rozsadit</button>
+  <button id="clearSeats" class="secondary">Vrátit všechny dolů</button>
+  <button id="print" class="secondary">Tisk</button>
+  <button id="reset" class="danger">Smazat vše</button>
+</div>
+<p class="hint">Přetáhni jméno na místo. Přetažením na obsazené místo se jména prohodí. Dvojklik vrátí jméno dolů.</p>
+
+<div class="teacher">UČITEL</div>
+<div class="classroom" id="classroom"></div>
+
+<div class="pool-wrap">
+  <h3>Nerozsazení žáci</h3>
+  <div class="pool" id="pool"></div>
+</div>
+
+<script>
+const ROWS = 6, COLS = 3, SEATS_PER_DESK = 2;
+const KEY = 'zasedaci-poradek-v1';
+let state = load() || { names: [], seats: {} }; // seats: seatId -> name
+
+function load() { try { return JSON.parse(localStorage.getItem(KEY)); } catch(e) { return null; } }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
+
+const classroom = document.getElementById('classroom');
+const pool = document.getElementById('pool');
+
+// Build desks: grid fills row by row -> 6 rows x 3 columns
+for (let r = 0; r < ROWS; r++) {
+  for (let c = 0; c < COLS; c++) {
+    const desk = document.createElement('div');
+    desk.className = 'desk';
+    for (let s = 0; s < SEATS_PER_DESK; s++) {
+      const seat = document.createElement('div');
+      seat.className = 'seat';
+      seat.dataset.id = `${r}-${c}-${s}`;
+      desk.appendChild(seat);
+    }
+    classroom.appendChild(desk);
+  }
+}
+const allSeats = [...document.querySelectorAll('.seat')];
+
+function render() {
+  allSeats.forEach(s => s.innerHTML = '');
+  pool.innerHTML = '';
+  const seated = new Set(Object.values(state.seats));
+  for (const [id, name] of Object.entries(state.seats)) {
+    const seat = allSeats.find(s => s.dataset.id === id);
+    if (seat) seat.appendChild(makeName(name));
+  }
+  state.names.filter(n => !seated.has(n)).forEach(n => pool.appendChild(makeName(n)));
+  save();
+}
+
+function makeName(name) {
+  const el = document.createElement('div');
+  el.className = 'name';
+  el.textContent = name;
+  el.addEventListener('pointerdown', e => startDrag(e, el, name));
+  el.addEventListener('dblclick', () => { removeFromSeats(name); render(); });
+  return el;
+}
+
+function removeFromSeats(name) {
+  for (const k in state.seats) if (state.seats[k] === name) delete state.seats[k];
+}
+function seatOf(name) {
+  for (const k in state.seats) if (state.seats[k] === name) return k;
+  return null;
+}
+
+// Pointer-based drag (works on mouse and touch)
+let drag = null;
+function startDrag(e, el, name) {
+  e.preventDefault();
+  const rect = el.getBoundingClientRect();
+  const ghost = el.cloneNode(true);
+  Object.assign(ghost.style, { position: 'fixed', pointerEvents: 'none', zIndex: 1000, width: rect.width + 'px', opacity: .85,
+    left: rect.left + 'px', top: rect.top + 'px' });
+  document.body.appendChild(ghost);
+  el.style.opacity = .3;
+  drag = { name, el, ghost, dx: e.clientX - rect.left, dy: e.clientY - rect.top, target: null };
+  document.addEventListener('pointermove', onMove);
+  document.addEventListener('pointerup', onUp, { once: true });
+}
+function onMove(e) {
+  drag.ghost.style.left = (e.clientX - drag.dx) + 'px';
+  drag.ghost.style.top = (e.clientY - drag.dy) + 'px';
+  const under = document.elementFromPoint(e.clientX, e.clientY);
+  const t = under && (under.closest('.seat') || under.closest('.pool'));
+  if (drag.target && drag.target !== t) drag.target.classList.remove('over');
+  if (t) t.classList.add('over');
+  drag.target = t;
+}
+function onUp() {
+  document.removeEventListener('pointermove', onMove);
+  drag.ghost.remove();
+  drag.el.style.opacity = 1;
+  const t = drag.target;
+  if (t) {
+    t.classList.remove('over');
+    const name = drag.name;
+    const from = seatOf(name);
+    if (t.classList.contains('pool')) {
+      removeFromSeats(name);
+    } else {
+      const to = t.dataset.id;
+      const other = state.seats[to];
+      removeFromSeats(name);
+      if (other && other !== name) {
+        if (from) state.seats[from] = other; else delete state.seats[to];
+      }
+      state.seats[to] = name;
+    }
+    render();
+  }
+  drag = null;
+}
+
+document.getElementById('add').onclick = () => {
+  const input = document.getElementById('input');
+  const names = input.value.split(/[,\n;]+/).map(s => s.trim()).filter(Boolean);
+  names.forEach(n => { if (!state.names.includes(n)) state.names.push(n); });
+  input.value = '';
+  render();
+};
+document.getElementById('shuffle').onclick = () => {
+  const names = [...state.names].sort(() => Math.random() - .5);
+  state.seats = {};
+  names.slice(0, allSeats.length).forEach((n, i) => state.seats[allSeats[i].dataset.id] = n);
+  render();
+};
+document.getElementById('clearSeats').onclick = () => { state.seats = {}; render(); };
+document.getElementById('print').onclick = () => window.print();
+document.getElementById('reset').onclick = () => {
+  if (confirm('Opravdu smazat všechna jména?')) { state = { names: [], seats: {} }; render(); }
+};
+
+render();
+</script>
+</body>
+</html>
