@@ -1,0 +1,77 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1758801305205-edbf3de97b1b",
+   "bytes": 415083,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "kitchen",
+   "url": "https://images.unsplash.com/photo-1757387240036-d7eb9b096c40",
+   "bytes": 104517,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "windows",
+   "url": "https://images.unsplash.com/photo-1581578731548-c64695cc6952",
+   "bytes": 84160,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "sofa",
+   "url": "https://images.unsplash.com/photo-1686178827149-6d55c72d81df",
+   "bytes": 108280,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "floor",
+   "url": "https://images.unsplash.com/photo-1740657254989-42fe9c3b8cce",
+   "bytes": 94870,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "wipe",
+   "url": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba",
+   "bytes": 71890,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "team",
+   "url": "https://images.unsplash.com/photo-1646980241033-cd7abda2ee88",
+   "bytes": 94059,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "d-hero",
+   "url": "https://images.unsplash.com/photo-1763495195143-f3d6650630f9",
+   "bytes": 230637,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "d-suits",
+   "url": "https://images.unsplash.com/photo-1549037173-e3b717902c57",
+   "bytes": 111461,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "d-press",
+   "url": "https://images.unsplash.com/photo-1696546761220-6c418dfefb8d",
+   "bytes": 112907,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "d-knit",
+   "url": "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60",
+   "bytes": 102377,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "d-washers",
+   "url": "https://images.unsplash.com/photo-1604335398980-ededcadcc37d",
+   "bytes": 107071,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
