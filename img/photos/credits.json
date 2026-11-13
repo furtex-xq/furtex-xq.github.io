@@ -1,0 +1,95 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1778487413263-f16954bacef1",
+   "bytes": 429108,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "hero-alt",
+   "url": "https://images.unsplash.com/photo-1722888799634-c5093906feae",
+   "bytes": 412481,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "kitchen",
+   "url": "https://images.unsplash.com/photo-1610733374054-59454fe657cd",
+   "bytes": 258149,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "kitchen2",
+   "url": "https://images.unsplash.com/photo-1512916194211-3f2b7f5f7de3",
+   "bytes": 115547,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "drawer",
+   "url": "https://images.unsplash.com/photo-1676907228185-6869277a9f8f",
+   "bytes": 108927,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "drawer2",
+   "url": "https://images.unsplash.com/photo-1678108429557-546cf9a84c35",
+   "bytes": 135877,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "wardrobe",
+   "url": "https://images.unsplash.com/photo-1708397016786-8916880649b8",
+   "bytes": 174534,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "wardrobe2",
+   "url": "https://images.unsplash.com/photo-1722349674028-a148f4364e43",
+   "bytes": 137509,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "closet",
+   "url": "https://images.unsplash.com/photo-1640357154220-9775b0f31dec",
+   "bytes": 121292,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "living",
+   "url": "https://images.unsplash.com/photo-1662454419622-a41092ecd245",
+   "bytes": 140908,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "living2",
+   "url": "https://images.unsplash.com/photo-1772797583328-f83bc3f94f80",
+   "bytes": 177125,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "workshop",
+   "url": "https://images.unsplash.com/photo-1683115099191-51e617fc5ff1",
+   "bytes": 150947,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "workshop2",
+   "url": "https://images.unsplash.com/photo-1683115099860-5379ac101bce",
+   "bytes": 158910,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "craft",
+   "url": "https://images.unsplash.com/photo-1683115100702-af818681184d",
+   "bytes": 124271,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "oak",
+   "url": "https://images.unsplash.com/photo-1611072337226-1140ab367200",
+   "bytes": 130492,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
