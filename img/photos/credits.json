@@ -13,18 +13,6 @@
    "license": "Unsplash License"
   },
   {
-   "slot": "hall2",
-   "url": "https://images.unsplash.com/photo-1637558352935-1f62f4c5248f",
-   "bytes": 332622,
-   "license": "Unsplash License"
-  },
-  {
-   "slot": "table",
-   "url": "https://images.unsplash.com/photo-1562050344-f7ad946cee35",
-   "bytes": 100439,
-   "license": "Unsplash License"
-  },
-  {
    "slot": "candles",
    "url": "https://images.unsplash.com/photo-1767050179711-a8401bd02be9",
    "bytes": 221473,
@@ -76,18 +64,6 @@
    "slot": "plate",
    "url": "https://images.unsplash.com/photo-1689672235501-6dc1e56d454c",
    "bytes": 171194,
-   "license": "Unsplash License"
-  },
-  {
-   "slot": "room",
-   "url": "https://images.unsplash.com/photo-1469234496837-d0101f54be3e",
-   "bytes": 118708,
-   "license": "Unsplash License"
-  },
-  {
-   "slot": "wine2",
-   "url": "https://images.unsplash.com/photo-1700455350393-34e80e3e0997",
-   "bytes": 58599,
    "license": "Unsplash License"
   }
  ],
