@@ -5,12 +5,13 @@
  "table": "https://images.unsplash.com/photo-1562050344-f7ad946cee35",
  "candles": "https://images.unsplash.com/photo-1767050179711-a8401bd02be9",
  "chef": "https://images.unsplash.com/photo-1775513153018-0c7ac7899751",
- "chef2": "https://images.unsplash.com/photo-1577219491135-ce391730fb2c",
  "steak": "https://images.unsplash.com/photo-1663530761401-15eefb544889",
  "fish": "https://images.unsplash.com/photo-1676471926534-d5c9771909fa",
  "salad": "https://images.unsplash.com/photo-1616671276441-2f2c277b8bf9",
  "meat": "https://images.unsplash.com/photo-1514326640560-7d063ef2aed5",
  "dessert": "https://images.unsplash.com/photo-1703849133132-98c23595b981",
- "wine": "https://images.unsplash.com/photo-1469234496837-d0101f54be3e",
- "plate": "https://images.unsplash.com/photo-1689672235501-6dc1e56d454c"
+ "wine": "https://images.unsplash.com/photo-1641759756543-20168fcab299",
+ "plate": "https://images.unsplash.com/photo-1689672235501-6dc1e56d454c",
+ "room": "https://images.unsplash.com/photo-1469234496837-d0101f54be3e",
+ "wine2": "https://images.unsplash.com/photo-1700455350393-34e80e3e0997"
 }
