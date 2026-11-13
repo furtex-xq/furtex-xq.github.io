@@ -1,0 +1,89 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
+   "bytes": 287473,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "heropizza",
+   "url": "https://images.unsplash.com/photo-1513104890138-7c749659a591",
+   "bytes": 487289,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "pizza1",
+   "url": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38",
+   "bytes": 364444,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "pizza2",
+   "url": "https://images.unsplash.com/photo-1628840042765-356cda07504e",
+   "bytes": 356843,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "pizza3",
+   "url": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e",
+   "bytes": 432922,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "burger2",
+   "url": "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9",
+   "bytes": 120606,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "burger3",
+   "url": "https://images.unsplash.com/photo-1550547660-d9450f859349",
+   "bytes": 204271,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "fries",
+   "url": "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d",
+   "bytes": 127341,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "wings",
+   "url": "https://images.unsplash.com/photo-1567620832903-9fc6debc209f",
+   "bytes": 206164,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "drink",
+   "url": "https://images.unsplash.com/photo-1523677011781-c91d1bbe2f9e",
+   "bytes": 139276,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "oven",
+   "url": "https://images.unsplash.com/photo-1622880833523-7cf1c0bd4296",
+   "bytes": 116651,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "kitchen",
+   "url": "https://images.unsplash.com/photo-1651981075280-9a9e01acbff0",
+   "bytes": 437299,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "bag",
+   "url": "https://images.unsplash.com/photo-1600728619239-d2a73f7aa541",
+   "bytes": 126199,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "table",
+   "url": "https://images.unsplash.com/photo-1606066889831-35faf6fa6ff6",
+   "bytes": 425747,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
