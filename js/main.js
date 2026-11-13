@@ -6,12 +6,8 @@
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
   /* ---------- Contacts (one place to edit) ---------- */
-  var CONTACT = {
-    telegram: "https://t.me/username",
-    viber: "viber://chat?number=%2B380000000000",
-    email: "hello@example.com",
-    business: "[НАЗВА]"
-  };
+  /* one line on purpose: tools/personalize.py rewrites it */
+  var CONTACT = {"telegram": "https://t.me/username", "viber": "viber://chat?number=%2B380000000000", "email": "hello@example.com", "sms": "", "instagram": "", "facebook": "", "business": "[НАЗВА]"};
 
   /* ---------- Mobile menu ---------- */
   var burger = $(".burger"), nav = $("#nav");
@@ -58,12 +54,16 @@
     });
   }
   function statusText() {
-    var t = HOURS[now.day];
-    if (t && now.min >= toMin(t[0]) && now.min < toMin(t[1])) return { open: true, text: "Зараз відчинено · до " + t[1] };
-    if (t && now.min < toMin(t[0])) return { open: false, text: "Зараз зачинено · відчиняємось о " + t[0] };
+    if (!Object.keys(HOURS).length) return null;
+    function span(d) { var t = HOURS[d]; if (!t) return null; var o = toMin(t[0]), c = toMin(t[1]); if (c <= o) c += 1440; return [o, c]; }
+    var t = span(now.day), yd = (now.day + 6) % 7, y = span(yd);
+    if (y && y[1] > 1440 && now.min < y[1] - 1440) return { open: true, text: "Зараз відчинено · до " + HOURS[yd][1] };
+    if (t && now.min >= t[0] && now.min < t[1]) return { open: true, text: "Зараз відчинено · до " + HOURS[now.day][1] };
+    if (t && now.min < t[0]) return { open: false, text: "Зараз зачинено · відчиняємось о " + HOURS[now.day][0] };
+    var ON = ["в неділю", "в понеділок", "у вівторок", "в середу", "в четвер", "в п'ятницю", "в суботу"];
     for (var i = 1; i <= 7; i++) {
       var d = (now.day + i) % 7;
-      if (HOURS[d]) return { open: false, text: "Зараз зачинено · відчиняємось " + (i === 1 ? "завтра" : DAYS[d].toLowerCase() === "неділя" ? "в неділю" : "у " + DAYS[d].toLowerCase()) + " о " + HOURS[d][0] };
+      if (HOURS[d]) return { open: false, text: "Зараз зачинено · відчиняємось " + (i === 1 ? "завтра" : ON[d]) + " о " + HOURS[d][0] };
     }
     return null;
   }
@@ -257,13 +257,17 @@
     if (e.msg.value.trim()) lines.push("Побажання: " + e.msg.value.trim());
     var text = lines.join("\n");
     var via = e.via.value, okText;
-    if (via === "telegram") {
-      window.open(CONTACT.telegram, "_blank", "noopener");
+    var DM = { telegram: "Telegram", instagram: "Instagram", facebook: "Messenger" };
+    if (DM[via]) {
+      window.open(CONTACT[via], "_blank", "noopener");
       try { navigator.clipboard.writeText(text); } catch (err) {}
-      okText = "Відкрили Telegram, а текст заявки скопіювали — вставте його в чат і натисніть «Надіслати».";
+      okText = "Відкрили " + DM[via] + ", а текст заявки скопіювали — вставте його в чат і натисніть «Надіслати».";
     } else if (via === "viber") {
       window.location.href = CONTACT.viber + "&draft=" + encodeURIComponent(text);
       okText = "Відкрили Viber з готовим текстом — залишилось натиснути «Надіслати».";
+    } else if (via === "sms") {
+      window.location.href = CONTACT.sms + "?&body=" + encodeURIComponent(text);
+      okText = "Відкрили SMS з готовим текстом — залишилось натиснути «Надіслати».";
     } else {
       window.location.href = "mailto:" + CONTACT.email + "?subject=" + encodeURIComponent("Заявка з сайту: " + type) + "&body=" + encodeURIComponent(text);
       okText = "Відкрили поштову програму з готовим листом — залишилось натиснути «Надіслати».";

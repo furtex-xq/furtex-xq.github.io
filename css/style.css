@@ -101,6 +101,7 @@ section{padding-block:clamp(64px,10vw,128px)}
 .status__dot{width:10px;height:10px;border-radius:50%;background:var(--crema);flex:none}
 .status.is-open .status__dot{background:#4f7a3a;box-shadow:0 0 0 4px rgba(79,122,58,.18)}
 .status.is-closed .status__dot{background:var(--terra)}
+.status:not([data-status]) .status__dot{display:none}
 .hero__photo{position:relative;margin:0;justify-self:end;width:100%;max-width:470px}
 .arch{border-radius:999px 999px var(--r) var(--r);overflow:hidden;aspect-ratio:4/5;border:2px solid var(--espresso);box-shadow:10px 12px 0 var(--espresso);background:var(--kraft-deep)}
 .arch img{width:100%;height:100%;object-fit:cover}
@@ -241,6 +242,7 @@ section{padding-block:clamp(64px,10vw,128px)}
 .link{display:flex;align-items:center;gap:.6em;min-height:50px;padding:.6em 1em;border:1.5px solid rgba(251,246,238,.3);border-radius:12px;text-decoration:none;font-weight:500;transition:border-color .2s,background .2s;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .link:hover{border-color:var(--foam);background:rgba(251,246,238,.06)}
 .link--main{grid-column:1/-1;background:var(--terra);border-color:var(--terra);font-size:1.15rem}
+.link--full{grid-column:1/-1}
 .link--main:hover{background:var(--terra-dark);border-color:var(--terra-dark)}
 .contacts .ph{background:rgba(245,176,40,.2);border-bottom-color:#f0b54a}
 
@@ -248,6 +250,7 @@ section{padding-block:clamp(64px,10vw,128px)}
 .order__title{font-size:clamp(1.5rem,2.6vw,2rem)}
 .order__sub{color:var(--crema);font-size:.98rem}
 .seg{border:0;padding:0;margin:0 0 18px;display:flex;flex-wrap:wrap;gap:8px}
+.seg[hidden]{display:none}
 .seg legend{font-weight:500;font-size:.92rem;margin-bottom:8px;padding:0;width:100%}
 .seg label{position:relative}
 .seg input{position:absolute;opacity:0;inset:0;cursor:pointer}
@@ -326,6 +329,7 @@ section{padding-block:clamp(64px,10vw,128px)}
   .bar{display:grid;grid-template-columns:1fr 1.3fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--espresso);color:var(--foam);padding:8px 10px calc(8px + env(safe-area-inset-bottom));gap:8px;border-top:1px solid rgba(251,246,238,.15)}
   .bar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:52px;text-decoration:none;font-weight:500;font-size:.85rem;border-radius:12px}
   .bar__main{background:var(--terra)}
+  .bar--2{grid-template-columns:1.3fr 1fr}
   .bar .i{width:20px;height:20px}
 
   /* Brew meter on phones: compact sticky stage */
