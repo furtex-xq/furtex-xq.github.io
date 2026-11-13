@@ -5,7 +5,9 @@
   doc.classList.add("js");
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---- Контакти для форми (замініть разом із посиланнями в HTML) ---- */
+  /* ---- Контакти для форми (замініть разом із посиланнями в HTML) ----
+     Канали форми: telegram, viber, email, sms, instagram, facebook.
+     Для instagram/facebook текст копіюється в буфер і відкривається профіль. */
   var CONTACT = {
     telegram: "https://t.me/username",
     viber: "viber://chat?number=%2B380000000000",
@@ -233,19 +235,25 @@
 
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).catch(function () {});
 
-      if (channel === "viber") {
-        url = CONTACT.viber + "&draft=" + encodeURIComponent(text);
-        window.location.href = url;
-        doneText.textContent = "Відкриваємо Viber з готовим текстом. Якщо чат не відкрився — текст скопійовано, вставте його в повідомлення.";
-      } else if (channel === "email") {
-        url = "mailto:" + CONTACT.email + "?subject=" + encodeURIComponent("Запис на пробне заняття") + "&body=" + encodeURIComponent(text);
-        window.location.href = url;
+      var copied = " Текст заявки скопійовано — вставте його в повідомлення, якщо поле порожнє.";
+      if (channel === "viber" && CONTACT.viber) {
+        window.location.href = CONTACT.viber + "&draft=" + encodeURIComponent(text);
+        doneText.textContent = "Відкриваємо Viber з готовим текстом." + copied;
+      } else if (channel === "email" && CONTACT.email) {
+        window.location.href = "mailto:" + CONTACT.email + "?subject=" + encodeURIComponent("Запис на пробне заняття") + "&body=" + encodeURIComponent(text);
         doneText.textContent = "Відкриваємо поштову програму з готовим листом — залишилося натиснути «Надіслати».";
-      } else {
+      } else if (channel === "sms" && CONTACT.sms) {
+        window.location.href = "sms:" + CONTACT.sms + "?&body=" + encodeURIComponent(text);
+        doneText.textContent = "Відкриваємо SMS з готовим текстом — залишилося натиснути «Надіслати».";
+      } else if ((channel === "instagram" || channel === "facebook") && CONTACT[channel]) {
+        var wi = window.open(CONTACT[channel], "_blank", "noopener");
+        if (!wi) window.location.href = CONTACT[channel];
+        doneText.textContent = "Відкриваємо " + (channel === "instagram" ? "Instagram" : "Facebook") + ". Текст заявки скопійовано — вставте його в особисте повідомлення й надішліть.";
+      } else if (CONTACT.telegram) {
         url = CONTACT.telegram + "?text=" + encodeURIComponent(text);
         var w = window.open(url, "_blank", "noopener");
         if (!w) window.location.href = url;
-        doneText.textContent = "Відкриваємо Telegram. Текст заявки скопійовано — вставте й надішліть його, і ми зв’яжемося з вами.";
+        doneText.textContent = "Відкриваємо Telegram." + copied;
       }
       form.hidden = true;
       done.hidden = false;
