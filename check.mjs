@@ -34,14 +34,22 @@ for (const s of setups) {
       }
       const h = await page.evaluate(() => document.documentElement.scrollHeight);
       for (let y = 0; y < h; y += 500) { await page.evaluate(v => window.scrollTo(0, v), y); await page.waitForTimeout(120); }
-      await page.waitForTimeout(2500);
+      await page.waitForTimeout(1500);
+      // give every <img> a fair chance: scroll it into view and wait for it to finish (lazy images in WebKit)
+      const n = await page.evaluate(() => document.images.length);
+      for (let i = 0; i < n; i++) {
+        await page.evaluate(async i => { const im = document.images[i]; if (!im || (im.complete && im.naturalWidth)) return;
+          const vis = im.offsetParent !== null; if (vis) im.scrollIntoView({ block: "center" });
+          await Promise.race([im.decode().catch(() => {}), new Promise(r => setTimeout(r, 8000))]); }, i);
+      }
+      await page.waitForTimeout(1000);
       Object.assign(r, await page.evaluate(async () => {
-        const imgs = [...document.images].map(i => ({ src: i.currentSrc || i.src, ok: i.complete && i.naturalWidth > 0 }));
+        const imgs = [...document.images].map(i => ({ src: i.currentSrc || i.src, ok: i.complete && i.naturalWidth > 0, hidden: i.offsetParent === null }));
         const bgUrls = new Set();
         for (const el of document.querySelectorAll("*")) { const b = getComputedStyle(el).backgroundImage; (b.match(/url\("?([^")]+)"?\)/g) || []).forEach(u => bgUrls.add(u.replace(/^url\("?|"?\)$/g, ""))); }
         const bg = [];
         for (const u of bgUrls) { if (u.startsWith("data:")) continue; bg.push(await new Promise(res => { const im = new Image(); im.onload = () => res({ src: u, ok: im.naturalWidth > 0 }); im.onerror = () => res({ src: u, ok: false }); im.src = u; setTimeout(() => res({ src: u, ok: false, timeout: true }), 15000); })); }
-        return { title: document.title, imgCount: imgs.length, brokenImgs: imgs.filter(i => !i.ok).map(i => i.src), bgCount: bg.length, brokenBg: bg.filter(b => !b.ok).map(b => b.src),
+        return { title: document.title, imgCount: imgs.length, brokenImgs: imgs.filter(i => !i.ok && !i.hidden).map(i => i.src), hiddenNotLoaded: imgs.filter(i => !i.ok && i.hidden).map(i => i.src), bgCount: bg.length, brokenBg: bg.filter(b => !b.ok).map(b => b.src),
           overflowX: document.documentElement.scrollWidth - window.innerWidth, csp: window.__csp };
       }));
       await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(800);
