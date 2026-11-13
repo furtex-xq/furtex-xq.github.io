@@ -1,0 +1,77 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1549465220-1a8b9238cd48",
+   "bytes": 211417,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "boxes",
+   "url": "https://images.unsplash.com/photo-1513885535751-8b9238bd345a",
+   "bytes": 129736,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "wrap",
+   "url": "https://images.unsplash.com/photo-1764385827393-173f9406484d",
+   "bytes": 209686,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "plush",
+   "url": "https://images.unsplash.com/photo-1559764995-a071c12d009f",
+   "bytes": 118928,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "wooden",
+   "url": "https://images.unsplash.com/photo-1777351396220-9a3801de44df",
+   "bytes": 128504,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "games",
+   "url": "https://images.unsplash.com/photo-1629760946220-5693ee4c46ac",
+   "bytes": 113318,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "lego",
+   "url": "https://images.unsplash.com/photo-1611891487122-207579d67d98",
+   "bytes": 93530,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "cars",
+   "url": "https://images.unsplash.com/photo-1560859251-d563a49c5e4a",
+   "bytes": 115138,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "shop",
+   "url": "https://images.unsplash.com/photo-1596068587619-e4b11c7a3488",
+   "bytes": 435120,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "sets",
+   "url": "https://images.unsplash.com/photo-1765887986673-953fccf56464",
+   "bytes": 147753,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "candle",
+   "url": "https://images.unsplash.com/photo-1784292877311-fd49ac66ddc8",
+   "bytes": 304707,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "elephants",
+   "url": "https://images.unsplash.com/photo-1703581698778-2224c729135b",
+   "bytes": 71361,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
