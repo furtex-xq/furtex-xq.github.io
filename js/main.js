@@ -32,7 +32,7 @@
     var byDow = {};
     rows.forEach(function (li) { byDow[li.getAttribute('data-dow')] = li; });
     function span(dow) {
-      var li = byDow[dow]; if (!li) return null;
+      var li = byDow[dow]; if (!li || !li.getAttribute('data-open')) return null;
       var o = toMin(li.getAttribute('data-open')), c = toMin(li.getAttribute('data-close'));
       if (c <= o) c += 1440;
       return { o: o, c: c, close: li.getAttribute('data-close'), open: li.getAttribute('data-open') };
@@ -43,7 +43,10 @@
     else if (yest && t + 1440 < yest.c) { open = true; until = yest.close; }
     if (!open) {
       if (today && t < today.o) next = 'сьогодні о ' + today.open;
-      else { var tm = span((now.dow + 1) % 7); if (tm) next = 'завтра о ' + tm.open; }
+      else {
+        var acc = ['у неділю', 'у понеділок', 'у вівторок', 'у середу', 'у четвер', 'у п’ятницю', 'у суботу'];
+        for (var k = 1; k <= 7; k++) { var sp = span((now.dow + k) % 7); if (sp) { next = (k === 1 ? 'завтра' : acc[(now.dow + k) % 7]) + ' о ' + sp.open; break; } }
+      }
     }
     if (byDow[now.dow]) byDow[now.dow].classList.add('is-today');
     $$('[data-status]').forEach(function (el) {
@@ -204,7 +207,13 @@
     ];
     if (fd.get('note').trim()) msg.push('Коментар: ' + fd.get('note').trim());
     var text = msg.join('\n'), via = fd.get('via'), url, info;
-    if (via === 'viber') {
+    if (via === 'sms') {
+      url = form.getAttribute('data-sms') + '?&body=' + encodeURIComponent(text);
+      info = 'Відкрили SMS з готовим текстом — залишилось натиснути «Надіслати».';
+    } else if (via === 'ig') {
+      url = form.getAttribute('data-ig');
+      info = 'Текст заявки скопійовано. Відкрили Instagram — вставте текст у Direct і надішліть.';
+    } else if (via === 'viber') {
       url = form.getAttribute('data-viber') + '&draft=' + encodeURIComponent(text);
       info = 'Відкрили Viber з готовим текстом — залишилось натиснути «Надіслати».';
     } else if (via === 'mail') {
@@ -215,7 +224,7 @@
       info = 'Відкрили Telegram. Текст заявки скопійовано — вставте його в чат, якщо поле порожнє, і надішліть.';
     }
     try { if (navigator.clipboard) navigator.clipboard.writeText(text).catch(function () {}); } catch (err) {}
-    if (via === 'mail' || via === 'viber') window.location.href = url;
+    if (via === 'mail' || via === 'viber' || via === 'sms') window.location.href = url;
     else window.open(url, '_blank', 'noopener');
     $('[data-done-text]').textContent = info;
     form.hidden = true; done.hidden = false; done.focus();
