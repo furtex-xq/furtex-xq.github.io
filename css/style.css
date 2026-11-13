@@ -498,8 +498,8 @@ body::before{content:"";position:fixed;inset:0;z-index:70;pointer-events:none;op
 .master__ph span{position:absolute;left:18px;bottom:6px;font-size:clamp(70px,8vw,110px)!important;line-height:1;color:#f4e6df;text-shadow:0 6px 30px rgba(42,20,25,.55);z-index:2}
 .master__ph::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 45%,rgba(42,20,25,.55))}
 .master:hover .master__ph img{transform:scale(1.06)}
-.step__ph{margin:0 0 22px;aspect-ratio:4/3;border-radius:999px 999px 14px 14px;overflow:hidden;background:var(--paper)}
+.step__ph{margin:0 0 22px;height:clamp(150px,14vw,190px);border-radius:999px 999px 14px 14px;overflow:hidden;background:var(--paper)}
 .step__ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
 .step:hover .step__ph img{transform:scale(1.06)}
-@media (max-width:860px){.master__ph span{font-size:48px!important;left:12px}}
-@media (max-width:520px){.step__ph{aspect-ratio:16/9;border-radius:14px}}
+@media (max-width:860px){.master__ph span{display:none}}
+@media (max-width:520px){.step__ph{height:auto;aspect-ratio:16/9;border-radius:14px}}

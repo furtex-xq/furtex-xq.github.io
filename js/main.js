@@ -4,6 +4,13 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* Резерв для фото: якщо raw.githubusercontent недоступний, беремо ту саму версію з jsDelivr */
+  document.addEventListener('error', e => {
+    const im = e.target;
+    if (im.tagName !== 'IMG' || im.dataset.fb) return;
+    const m = im.src.match(/raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/([0-9a-f]{40})\/(.+)$/);
+    if (m) { im.dataset.fb = 1; im.src = `https://cdn.jsdelivr.net/gh/${m[1]}/${m[2]}@${m[3]}/${m[4]}`; }
+  }, true);
   /* Плавний скрол */
   let lenis = null;
   if (!reduce && window.Lenis) {
