@@ -1,0 +1,65 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1715154470884-1c2be0b0129f",
+   "bytes": 574773,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "press",
+   "url": "https://images.unsplash.com/photo-1503694978374-8a2fa686963a",
+   "bytes": 125716,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "wide",
+   "url": "https://images.unsplash.com/photo-1693031630369-bd429a57f115",
+   "bytes": 141917,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "cutter",
+   "url": "https://images.unsplash.com/photo-1693031630146-568e2f72db0e",
+   "bytes": 108725,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "cards",
+   "url": "https://images.unsplash.com/photo-1718670013921-2f144aba173a",
+   "bytes": 77856,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "flyers",
+   "url": "https://images.unsplash.com/photo-1769893715447-8f12c382e49c",
+   "bytes": 66504,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "stickers",
+   "url": "https://images.unsplash.com/photo-1633533452206-8ab246b00e30",
+   "bytes": 97421,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "swatches",
+   "url": "https://images.unsplash.com/photo-1581079289196-67865ea83118",
+   "bytes": 128205,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "paper",
+   "url": "https://images.unsplash.com/photo-1750537735437-847075c29538",
+   "bytes": 239668,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "screen",
+   "url": "https://images.unsplash.com/photo-1773525912476-213bff96b8a4",
+   "bytes": 366167,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
