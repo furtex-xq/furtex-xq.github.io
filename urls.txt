@@ -1,2 +1,2 @@
-#mode=iphone (FineLine rebuild from fineline.ua)
-https://raw.githack.com/furtex-xq/furtex-xq.github.io/22bab353dbe47c462d3c10a2096531da4b1ecd67/index.html
+#mode=iphone (Kulyk Medicine v4 from kulykmedicine.com)
+https://raw.githack.com/furtex-xq/furtex-xq.github.io/bfee1a38330823cae8d1636d8d7e805b15a2220d/index.html
