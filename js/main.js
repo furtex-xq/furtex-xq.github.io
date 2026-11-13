@@ -62,14 +62,25 @@
   var count = document.getElementById('qCount');
   var result = document.getElementById('result');
   var cur = 0;
-  var LEVELS = [
-    { lv: 'A1', name: 'Beginner', group: 'Англійська A1 · пн / ср, 16:00 (діти) або індивідуально', text: 'Ви на старті — і це найкращий момент, щоб поставити правильну вимову й базу без помилок, що потім «в’їдаються».' },
-    { lv: 'A1+', name: 'Elementary', group: 'Англійська A2 · пн / ср, 18:30', text: 'Базу ви вже маєте. У групі A2 швидко систематизуєте граматику і почнете вільніше говорити про себе й побут.' },
-    { lv: 'A2', name: 'Pre-Intermediate', group: 'Англійська A2 · пн / ср, 18:30', text: 'Ви розумієте прості тексти й розмови. Наступний крок — говорити впевнено і без довгих пауз.' },
-    { lv: 'B1', name: 'Intermediate', group: 'Англійська B1 · вт / чт, 18:30', text: 'Ви вже можете спілкуватися на більшість тем. Зараз головне — розширити словник і прибрати типові помилки.' },
-    { lv: 'B2', name: 'Upper-Intermediate', group: 'Англійська B2 · пт, 17:00 або розмовний клуб', text: 'Сильний рівень: можна готуватися до IELTS чи співбесід англійською і працювати над природністю мовлення.' },
-    { lv: 'C1', name: 'Advanced', group: 'Англійська C1 · сб, 10:00 (міні-група)', text: 'Чудовий результат. Пропонуємо міні-групу C1 або індивідуальну програму під вашу професійну мету.' }
-  ];
+  var LEVEL_SETS = {
+    en: [
+      { lv: 'A1', name: 'Beginner', group: 'Англійська A1 · пн / ср, 16:00 (діти) або індивідуально', text: 'Ви на старті — і це найкращий момент, щоб поставити правильну вимову й базу без помилок, що потім «в’їдаються».' },
+      { lv: 'A1+', name: 'Elementary', group: 'Англійська A2 · пн / ср, 18:30', text: 'Базу ви вже маєте. У групі A2 швидко систематизуєте граматику і почнете вільніше говорити про себе й побут.' },
+      { lv: 'A2', name: 'Pre-Intermediate', group: 'Англійська A2 · пн / ср, 18:30', text: 'Ви розумієте прості тексти й розмови. Наступний крок — говорити впевнено і без довгих пауз.' },
+      { lv: 'B1', name: 'Intermediate', group: 'Англійська B1 · вт / чт, 18:30', text: 'Ви вже можете спілкуватися на більшість тем. Зараз головне — розширити словник і прибрати типові помилки.' },
+      { lv: 'B2', name: 'Upper-Intermediate', group: 'Англійська B2 · пт, 17:00 або розмовний клуб', text: 'Сильний рівень: можна готуватися до IELTS чи співбесід англійською і працювати над природністю мовлення.' },
+      { lv: 'C1', name: 'Advanced', group: 'Англійська C1 · сб, 10:00 (міні-група)', text: 'Чудовий результат. Пропонуємо міні-групу C1 або індивідуальну програму під вашу професійну мету.' }
+    ],
+    de: [
+      { lv: 'A1', name: 'Anfänger', group: 'Німецька A1 · пн / ср, 18:30', text: 'Ви на старті — і це найкращий момент, щоб одразу поставити вимову, артиклі та порядок слів.' },
+      { lv: 'A1+', name: 'Grundkenntnisse', group: 'Німецька A2 · пн / ср, 17:00 або індивідуально', text: 'Базу ви вже маєте. У групі A2 систематизуєте граматику і почнете вільніше говорити про себе й побут.' },
+      { lv: 'A2', name: 'Grundstufe', group: 'Німецька A2 · пн / ср, 17:00', text: 'Ви розумієте прості тексти й розмови. Наступний крок — Perfekt, підрядні речення й упевнена розмова.' },
+      { lv: 'B1', name: 'Mittelstufe', group: 'Німецька B1 · вт / чт, 18:30', text: 'Ви можете спілкуватися на більшість тем. Саме час готуватися до Goethe-Zertifikat B1 і прибрати типові помилки.' },
+      { lv: 'B2', name: 'Gute Mittelstufe', group: 'Німецька B2 · сб, 10:00 (міні-група)', text: 'Сильний рівень: можна готуватися до B2 для роботи чи навчання і працювати над природністю мовлення.' },
+      { lv: 'C1', name: 'Fortgeschritten', group: 'Індивідуальна програма C1 або підготовка до Goethe C1', text: 'Чудовий результат. Пропонуємо індивідуальну програму під вашу професійну чи академічну мету.' }
+    ]
+  };
+  var LEVELS = LEVEL_SETS[quiz.getAttribute('data-lang')] || LEVEL_SETS.en;
 
   function show(i) {
     cur = i;
@@ -123,7 +134,7 @@
     show(0);
   });
   document.getElementById('rBook').addEventListener('click', function () {
-    setSelect('fLang', 'Англійська');
+    setSelect('fLang', quiz.getAttribute('data-form-lang') || '');
     var lv = result.dataset.level || '';
     var lvSel = document.getElementById('fLevel');
     Array.prototype.forEach.call(lvSel.options, function (o) { if (o.text.indexOf(lv) === 0) lvSel.value = o.value; });
@@ -160,6 +171,7 @@
   var stText = document.getElementById('openText');
   function toMin(t) { if (!t) return null; var a = t.split(':'); return +a[0] * 60 + +a[1]; }
   function updateHours() {
+    if (!st || !stText || !rows.length) return;
     var now = kyivNow(), open = false, closeAt = null;
     rows.forEach(function (r) {
       var days = r.getAttribute('data-days').split(',').map(Number);
@@ -172,16 +184,13 @@
     st.setAttribute('data-state', open ? 'open' : 'closed');
     stText.textContent = open ? 'Зараз відчинено · до ' + closeAt : 'Зараз зачинено · залиште заявку';
   }
-  updateHours();
-  setInterval(updateHours, 60000);
+  if (st && rows.length) { updateHours(); setInterval(updateHours, 60000); }
 
   /* ---------- Lead form ---------- */
   var form = document.getElementById('leadForm');
   var ok = document.getElementById('formOk');
   var okMsg = document.getElementById('formOkMsg');
-  var TG = 'https://t.me/username';
-  var VIBER_NUM = '%2B380000000000';
-  var MAIL = 'hello@example.com';
+  var okText = document.getElementById('formOkText');
 
   function setBad(id, bad) {
     var f = document.getElementById(id).closest('.field');
@@ -216,15 +225,27 @@
     ];
     if (v('fMsg')) lines.push('Коментар: ' + v('fMsg'));
     var text = lines.join('\n');
-    var ch = (form.querySelector('input[name="ch"]:checked') || {}).value || 'tg';
-    var url;
-    if (ch === 'viber') url = 'viber://chat?number=' + VIBER_NUM + '&draft=' + encodeURIComponent(text);
-    else if (ch === 'mail') url = 'mailto:' + MAIL + '?subject=' + encodeURIComponent('Запис на пробне заняття') + '&body=' + encodeURIComponent(text);
-    else url = TG + '?text=' + encodeURIComponent(text);
+    var chEl = form.querySelector('input[name="ch"]:checked') || form.querySelector('input[name="ch"][type="hidden"]');
+    var ch = chEl ? chEl.value : '';
+    var base = chEl ? chEl.getAttribute('data-url') : '';
+    var app = chEl ? (chEl.getAttribute('data-name') || '') : '';
+    var t = encodeURIComponent(text), url = base, prefilled = true;
+    if (ch === 'viber') url = base + '&draft=' + t;
+    else if (ch === 'mail') url = base + '?subject=' + encodeURIComponent('Запис на пробне заняття') + '&body=' + t;
+    else if (ch === 'sms') url = base + '?&body=' + t;
+    else if (ch === 'tg') url = base + '?text=' + t;
+    else prefilled = false; /* ig, fb: chat opens, text is pasted from clipboard */
 
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).catch(function () {});
-    if (ch === 'tg') { var w = window.open(url, '_blank', 'noopener'); if (!w) window.location.href = url; }
-    else window.location.href = url;
+    if (url) {
+      if (/^https?:/.test(url)) { var w = window.open(url, '_blank', 'noopener'); if (!w) window.location.href = url; }
+      else window.location.href = url;
+    }
+    if (okText) {
+      okText.textContent = prefilled
+        ? 'Ми відкрили ' + (app || 'месенджер') + ' з готовим текстом — залишилось натиснути «Надіслати». Якщо вікно не відкрилося, текст уже скопійовано: вставте його в чат.'
+        : 'Ми відкрили ' + (app || 'чат') + ' і скопіювали текст заявки — вставте його в повідомлення й надішліть.';
+    }
 
     okMsg.textContent = text;
     form.hidden = true;
