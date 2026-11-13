@@ -220,7 +220,7 @@
     else if (via === "viber") url = form.getAttribute("data-viber") + "&draft=" + encodeURIComponent(text);
     else if (via === "sms") url = form.getAttribute("data-sms") + "?&body=" + encodeURIComponent(text);
     else if (via === "ig" || via === "fb") { url = form.getAttribute("data-" + via); newTab = true; copyOnly = true; }
-    else url = form.getAttribute("data-mail") + "?subject=" + encodeURIComponent("Запис у салон") + "&body=" + encodeURIComponent(text);
+    else url = form.getAttribute("data-mail") + "?subject=" + encodeURIComponent("Запис у FineLine") + "&body=" + encodeURIComponent(text);
     try { if (navigator.clipboard) navigator.clipboard.writeText(text).catch(function () {}); } catch (err) {}
     var okMain = ok.querySelector(".form-ok__main");
     if (okMain) okMain.textContent = copyOnly
