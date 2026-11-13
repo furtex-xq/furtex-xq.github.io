@@ -1,0 +1,77 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1603189343302-e603f7add05a",
+   "bytes": 72007,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "look1",
+   "url": "https://images.unsplash.com/photo-1539533018447-63fcce2678e3",
+   "bytes": 529508,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "look2",
+   "url": "https://images.unsplash.com/photo-1613915617430-8ab0fd7c6baf",
+   "bytes": 230205,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "look3",
+   "url": "https://images.unsplash.com/photo-1574015974293-817f0ebebb74",
+   "bytes": 174279,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "look4",
+   "url": "https://images.unsplash.com/photo-1632149877166-f75d49000351",
+   "bytes": 91064,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "look5",
+   "url": "https://images.unsplash.com/photo-1485462537746-965f33f7f6a7",
+   "bytes": 206570,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "look6",
+   "url": "https://images.unsplash.com/photo-1619086303291-0ef7699e4b31",
+   "bytes": 157588,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "look7",
+   "url": "https://images.unsplash.com/photo-1663343683182-70885ae0a792",
+   "bytes": 270697,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "interior",
+   "url": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04",
+   "bytes": 141319,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "rack",
+   "url": "https://images.unsplash.com/photo-1603400521630-9f2de124b33b",
+   "bytes": 132899,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "detail",
+   "url": "https://images.unsplash.com/photo-1603798125914-7b5d27789248",
+   "bytes": 88694,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "about",
+   "url": "https://images.unsplash.com/photo-1525562723836-dca67a71d5f1",
+   "bytes": 197211,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
