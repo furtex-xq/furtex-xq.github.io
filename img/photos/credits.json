@@ -1,0 +1,77 @@
+{
+ "photos": [
+  {
+   "slot": "hero",
+   "url": "https://images.unsplash.com/photo-1761986757577-140af8859587",
+   "bytes": 595250,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "before",
+   "url": "https://images.unsplash.com/photo-1768321901750-f7b96d774456",
+   "bytes": 208479,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "after",
+   "url": "https://images.unsplash.com/photo-1741764014072-68953e93cd48",
+   "bytes": 122569,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "kitchen",
+   "url": "https://images.unsplash.com/photo-1601760561441-16420502c7e0",
+   "bytes": 114203,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "kitchen-wip",
+   "url": "https://images.unsplash.com/photo-1618832515490-e181c4794a45",
+   "bytes": 124550,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "bath",
+   "url": "https://images.unsplash.com/photo-1650894622076-e09ab837c502",
+   "bytes": 257962,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "paint",
+   "url": "https://images.unsplash.com/photo-1599619585752-c3edb42a414c",
+   "bytes": 87386,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "tile",
+   "url": "https://images.unsplash.com/photo-1523413307857-ef24c53571ae",
+   "bytes": 94929,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "tools",
+   "url": "https://images.unsplash.com/photo-1606676539940-12768ce0e762",
+   "bytes": 214773,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "ladder",
+   "url": "https://images.unsplash.com/photo-1517581177682-a085bb7ffb15",
+   "bytes": 164980,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "living",
+   "url": "https://images.unsplash.com/photo-1738168279272-c08d6dd22002",
+   "bytes": 192981,
+   "license": "Unsplash License"
+  },
+  {
+   "slot": "wall",
+   "url": "https://images.unsplash.com/photo-1523413363574-c30aa1c2a516",
+   "bytes": 130044,
+   "license": "Unsplash License"
+  }
+ ],
+ "failed": []
+}
