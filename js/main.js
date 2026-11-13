@@ -7,7 +7,9 @@
   var CONTACT = {
     telegram: 'https://t.me/username',
     viber: 'viber://chat?number=%2B380000000000',
-    mail: 'mailto:hello@example.com'
+    mail: 'mailto:hello@example.com',
+    sms: 'sms:+380000000000',
+    insta: 'https://www.instagram.com/username/'
   };
 
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -58,6 +60,7 @@
   function updateStatus() {
     if (!hoursBox) return;
     var sched; try { sched = JSON.parse(hoursBox.getAttribute('data-schedule')); } catch (e) { return; }
+    if (!sched) return;
     var now = kyivNow(), today = sched[String(now.day)], open = false, text;
     if (today && now.min >= toMin(today[0]) && now.min < toMin(today[1])) {
       open = true; text = 'Зараз відчинено · до ' + today[1];
@@ -237,11 +240,18 @@
         (v('date') ? '\nДата: ' + v('date').split('-').reverse().join('.') : '') +
         (v('time') ? '\nЧас: ' + v('time') : '') +
         (v('msg') ? '\n\n' + v('msg') : '');
-      var via = (form.querySelector('input[name="via"]:checked') || {}).value || 'tg';
+      var via = (form.querySelector('input[name="via"]:checked') || form.querySelector('input[type="hidden"][name="via"]') || {}).value || 'tg';
       var url, note;
       if (via === 'viber') {
         url = CONTACT.viber + '&draft=' + encodeURIComponent(text);
         note = 'Ми відкрили Viber з текстом заявки — натисніть «Надіслати», і майстер передзвонить.';
+      } else if (via === 'sms') {
+        url = CONTACT.sms + '?&body=' + encodeURIComponent(text);
+        note = 'Ми відкрили SMS з текстом заявки — надішліть його, і майстер передзвонить.';
+      } else if (via === 'ig') {
+        url = CONTACT.insta;
+        note = 'Текст заявки скопійовано. Ми відкрили Instagram — вставте текст у Direct і надішліть.';
+        try { if (navigator.clipboard) navigator.clipboard.writeText(text).catch(function () {}); } catch (err) {}
       } else if (via === 'mail') {
         url = CONTACT.mail + '?subject=' + encodeURIComponent('Запис на СТО — ' + v('name')) + '&body=' + encodeURIComponent(text);
         note = 'Ми відкрили поштову програму з листом — надішліть його, і ми відповімо найближчим часом.';
@@ -250,7 +260,7 @@
         note = 'Текст заявки скопійовано. Ми відкрили Telegram — вставте текст у чат і надішліть.';
         try { if (navigator.clipboard) navigator.clipboard.writeText(text).catch(function () {}); } catch (err) {}
       }
-      if (via === 'tg') window.open(url, '_blank', 'noopener'); else window.location.href = url;
+      if (via === 'tg' || via === 'ig') window.open(url, '_blank', 'noopener'); else window.location.href = url;
       $('[data-ok-text]', ok).textContent = note;
       form.hidden = true; ok.hidden = false; ok.focus();
     });
