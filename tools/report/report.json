@@ -1,0 +1,55 @@
+[
+ {
+  "url": "https://raw.githack.com/furtex-xq/furtex-xq.github.io/beta/shamanka/index.html",
+  "setup": "iphone-webkit",
+  "console": [],
+  "pageErrors": [
+   "Fetch API cannot load https: /srv.carbonads.net/ads/viewable/x/GTND4277CEBIC23NCKBLYKQUF6BIT5Q7CTBDCZ3JCAAIV53LCKAIE23KC67I52QWF6AIV2QJCK7DPKJYCWADCKJLHEYI55QWCWSDT23ECTNFKBZH5REN6SDH?segment=placement:rawgithackcom due to access control checks."
+  ],
+  "failedRequests": [],
+  "badResponses": [],
+  "csp": [],
+  "status": 200,
+  "contentType": "text/html",
+  "interstitial": true,
+  "title": "Перукарня Shamanka — Івано-Франківськ, Бельведерська 23 | стрижки, фарбування, брови",
+  "imgCount": 21,
+  "brokenImgs": [
+   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/cut.jpg",
+   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/style.jpg",
+   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/barber.jpg",
+   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/brows.jpg",
+   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/tools.jpg"
+  ],
+  "bgCount": 0,
+  "brokenBg": [],
+  "overflowX": 0,
+  "ok": false
+ },
+ {
+  "url": "https://raw.githack.com/furtex-xq/furtex-xq.github.io/beta/shamanka/index.html",
+  "setup": "desktop-chromium",
+  "console": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "badResponses": [],
+  "csp": [],
+  "status": 200,
+  "contentType": "text/html",
+  "interstitial": true,
+  "title": "Перукарня Shamanka — Івано-Франківськ, Бельведерська 23 | стрижки, фарбування, брови",
+  "imgCount": 21,
+  "brokenImgs": [
+   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/color.jpg",
+   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/cut.jpg",
+   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/style.jpg",
+   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/barber.jpg",
+   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/brows.jpg",
+   "https://raw.githubusercontent.com/furtex-xq/furtex-xq.github.io/a0f119098818448a21e8b04d8b371e193e1bbed1/img/photos/tools.jpg"
+  ],
+  "bgCount": 0,
+  "brokenBg": [],
+  "overflowX": 0,
+  "ok": false
+ }
+]
