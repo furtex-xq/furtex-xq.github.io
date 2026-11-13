@@ -1,5 +1,77 @@
 [
  {
+  "slot": "hero",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1554519934-e32b1629d9ee",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "color",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1617391654484-2894196c2cc9",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "cut",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1707812343087-c9ff9e5abb43",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "style",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1562322140-8baeececf3df",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "barber",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1761931403671-d020a14928d9",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "brows",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1542833807-ad5af0977050",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "tools",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1595475884562-073c30d45670",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "salon",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1600948836101-f9ffda59d250",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "g1",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1785456283212-338f5bc44d50",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "g2",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1785456390070-9960e3997066",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "g3",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1746723378067-83a345ff3160",
+  "license": "Unsplash License"
+ },
+ {
+  "slot": "g4",
+  "source": "Unsplash",
+  "url": "https://images.unsplash.com/photo-1497433550656-7fb185be365e",
+  "license": "Unsplash License"
+ },
+ {
   "slot": "m1",
   "source": "Unsplash",
   "url": "https://images.unsplash.com/photo-1774660810725-fb04e002003d",
