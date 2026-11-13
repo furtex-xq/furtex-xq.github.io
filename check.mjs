@@ -10,6 +10,7 @@ const setups = [
   { name: "desktop-chromium", type: chromium, opts: { viewport: { width: 1440, height: 900 } } },
 ];
 const results = [];
+// interstitial check only; real page content follows
 for (const s of setups) {
   const browser = await s.type.launch();
   for (const url of urls) {
@@ -25,6 +26,12 @@ for (const s of setups) {
       await page.addInitScript(() => { window.__csp = []; document.addEventListener("securitypolicyviolation", e => window.__csp.push(e.violatedDirective + " " + e.blockedURI)); });
       const resp = await page.goto(url, { waitUntil: "load", timeout: 60000 });
       r.status = resp?.status(); r.contentType = resp?.headers()["content-type"];
+      // raw.githack now shows a "One more step" interstitial before the page: record it, click through
+      if (await page.locator("text=One more step").count()) {
+        r.interstitial = true;
+        await Promise.all([page.waitForNavigation({ waitUntil: "load", timeout: 60000 }).catch(() => {}), page.locator("text=Open the page").first().click()]);
+        await page.waitForTimeout(1500);
+      }
       const h = await page.evaluate(() => document.documentElement.scrollHeight);
       for (let y = 0; y < h; y += 500) { await page.evaluate(v => window.scrollTo(0, v), y); await page.waitForTimeout(120); }
       await page.waitForTimeout(2500);
