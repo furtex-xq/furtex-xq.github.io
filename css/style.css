@@ -101,6 +101,8 @@ svg{width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:2;stro
 .hero__title{font-weight:900;text-transform:uppercase;letter-spacing:-.02em;font-size:clamp(30px,6.6vw,64px);line-height:1;margin:6px 0 20px}
 .hero__title .script{font-size:1.32em;transform:rotate(-3deg);transform-origin:left bottom;margin-bottom:.12em}
 .hero__line{display:block}
+.hero__city{display:inline-block;margin-top:.3em;font-size:.56em;letter-spacing:.02em;background:var(--ink);color:var(--paper);padding:.22em .45em .1em;border-radius:.3em;transform:rotate(-1deg);white-space:nowrap}
+.hero__city .ph{color:var(--ink)}
 .hero__lead{font-size:18px;max-width:46ch;color:var(--muted)}
 .hero__cta{display:flex;flex-wrap:wrap;gap:14px;margin:26px 0 22px}
 .hero__cta .btn{flex:1 1 220px}

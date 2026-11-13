@@ -277,7 +277,10 @@
     });
   }
   function copy(t) {
-    try { if (navigator.clipboard) { navigator.clipboard.writeText(t); return; } } catch (e) { /* fall through */ }
+    try { if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(t).catch(function () { legacyCopy(t); }); return; } } catch (e) { /* fall through */ }
+    legacyCopy(t);
+  }
+  function legacyCopy(t) {
     var ta = d.createElement('textarea'); ta.value = t; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
     d.body.appendChild(ta); ta.select(); try { d.execCommand('copy'); } catch (e) { /* ignore */ } d.body.removeChild(ta);
   }
