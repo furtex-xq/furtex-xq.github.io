@@ -407,3 +407,88 @@ p{margin:0 0 1em}
 /* symmetry fixes: inline photo tag inherited translateX(-50%); footer wordmark must stay on one line */
 .tag-photo--inline{transform:none}
 .ftr__big{font-size:clamp(48px,17vw,225px);white-space:nowrap}
+
+/* ===== Преміум v3 ===== */
+/* Тонке «зерно» поверх фону — відчуття друку, а не плаского екрана */
+body::before{content:"";position:fixed;inset:0;z-index:70;pointer-events:none;opacity:.07;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+::selection{background:var(--terra);color:var(--bone)}
+
+/* Перший екран */
+.hero{background:radial-gradient(120% 80% at 85% 20%,#f9ece6 0%,transparent 60%),var(--bone)}
+.hero__brand i{font-style:normal;color:var(--copper);margin:0 .35em}
+.hero__title{font-size:clamp(52px,8vw,120px)}
+.hero__title em{font-size:.86em}
+@media (min-width:861px){.hero__grid{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}}
+.hero__brand{line-height:1.6}
+.hero__media{padding:0 0 40px 40px}
+.hero__media>.arch:first-child{box-shadow:0 40px 80px -40px rgba(42,20,25,.55)}
+.hero__media::before{content:"";position:absolute;top:-14px;right:-14px;bottom:26px;left:26px;border:1px solid rgba(211,154,58,.65);border-radius:999px 999px 30px 30px;pointer-events:none;animation:fadeUp 1.2s var(--ease) .9s both}
+.arch--mini{position:absolute;left:-6%;top:16%;width:38%;aspect-ratio:4/5;border:6px solid var(--bone);box-shadow:0 24px 50px -24px rgba(42,20,25,.6);z-index:2;animation-delay:.6s!important}
+.hero__quote{left:-24%;bottom:2%;max-width:280px;z-index:3}
+.badge{position:absolute;right:-34px;top:-20px;width:128px;height:128px;z-index:4;display:grid;place-items:center;text-decoration:none;color:var(--ink)}
+.badge>svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 18s linear infinite}
+.badge text{font:600 10.5px var(--sans);letter-spacing:.2em;text-transform:uppercase;fill:var(--ink)}
+.badge__c{width:62px;height:62px;border-radius:50%;background:var(--terra);color:var(--bone);display:grid;place-items:center;transition:transform .5s var(--ease),background .3s}
+.badge__c .ic{width:24px;height:24px}
+.badge:hover .badge__c{transform:scale(1.1) rotate(45deg);background:var(--ink)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Смуга довіри */
+.stats{background:var(--ink);color:var(--bone);padding:clamp(28px,4vw,46px) 0}
+.stats__row{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{display:flex;align-items:center;gap:16px;padding:6px 24px;border-left:1px solid rgba(244,230,223,.15)}
+.stat:first-child{border-left:0;padding-left:0}
+.stat b{font:400 clamp(44px,5vw,68px)/1 var(--serif);color:var(--gold)}
+.stat span{font-size:14px;line-height:1.35;color:rgba(244,230,223,.75);max-width:150px}
+
+/* Шапка: преміальніші деталі */
+.hdr.is-solid{background:rgba(244,230,223,.86)}
+.logo__mark{transition:transform .8s var(--ease)}
+.logo:hover .logo__mark{transform:rotate(-25deg)}
+.hdr__call{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);place-items:center;color:var(--ink);margin-left:auto}
+.hdr__call .ic{width:18px;height:18px}
+
+/* Заголовки секцій і розділи */
+.sec__head h2{max-width:14ch}
+.sec__head--row h2{max-width:none}
+.services{background:linear-gradient(180deg,var(--bone),#f1ddd4)}
+.svc__row{padding:30px 0}
+.svc__price{font-family:var(--serif);font-size:20px;font-weight:400}
+.masters{background:radial-gradient(90% 60% at 50% 0%,#f6e1d8,var(--paper))}
+.master__ph{outline:1px solid rgba(168,64,90,.35);outline-offset:8px}
+.rev__big{background:linear-gradient(160deg,var(--terra),#7b2c43)}
+.form{box-shadow:0 40px 80px -40px rgba(0,0,0,.6)}
+
+/* Плаваюча кнопка запису (ПК) */
+.fab{position:fixed;right:58px;bottom:28px;z-index:60;display:none;align-items:center;gap:12px;padding:16px 26px;border-radius:999px;background:var(--terra);color:var(--bone);text-decoration:none;font-weight:700;font-size:15px;box-shadow:0 18px 40px -14px rgba(138,48,73,.7);transform:translateY(160%);transition:transform .5s var(--ease),background .3s}
+.fab.show{transform:none}
+.fab:hover{background:var(--ink)}
+.fab__dot{width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(226,178,90,.7);animation:ping 2s ease-out infinite}
+@keyframes ping{to{box-shadow:0 0 0 12px rgba(226,178,90,0)}}
+@media (min-width:861px){.fab{display:inline-flex}}
+
+@media (max-width:1080px){
+  .hdr__call{display:grid}
+  .burger{margin-left:4px}
+  .stats__row{grid-template-columns:1fr 1fr;gap:22px 0}
+  .stat:nth-child(3){border-left:0;padding-left:0}
+}
+@media (max-width:860px){
+  .hero__media{padding:0 0 30px 22px;max-width:460px}
+  .hero__quote{left:auto;right:-6px;bottom:-10px;max-width:240px}
+  .arch--mini{left:-4px;top:20%;bottom:auto;width:34%}
+  .hero__title{font-size:clamp(50px,15vw,72px)}
+  .hero__title em{font-size:.9em}
+  .hero__brand{letter-spacing:.12em;font-size:12px}
+  .badge{width:104px;height:104px;right:-6px;top:-24px}
+  .badge__c{width:50px;height:50px}
+  .stat{padding:4px 14px;gap:12px}
+  .stat b{font-size:42px}
+  .stat span{font-size:13px}
+  .mbar{transform:none}
+  .mbar.hide{transform:translateY(140%)}
+  .svc__price{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){
+  .badge>svg,.fab__dot{animation:none!important}
+}

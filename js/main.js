@@ -22,14 +22,15 @@
   }));
 
   /* Шапка, мобільна панель, «пасмо»-прогрес */
-  const hdr = $('.hdr'), mbar = $('.mbar'), sp = $('.sp-fg');
+  const hdr = $('.hdr'), mbar = $('.mbar'), fab = $('.fab'), sp = $('.sp-fg');
   let spLen = 0;
   if (sp) { spLen = sp.getTotalLength(); sp.style.strokeDasharray = spLen; sp.style.strokeDashoffset = spLen; }
   const onScroll = () => {
     const y = window.scrollY, h = document.documentElement.scrollHeight - innerHeight;
     hdr.classList.toggle('is-solid', y > 30);
     const nearForm = (() => { const f = $('#zapys').getBoundingClientRect(); return f.top < innerHeight && f.bottom > 0; })();
-    mbar.classList.toggle('show', y > innerHeight * .6 && !nearForm);
+    mbar.classList.toggle('show', !nearForm); mbar.classList.toggle('hide', nearForm);
+    if (fab) fab.classList.toggle('show', y > innerHeight * .8 && !nearForm);
     if (sp) sp.style.strokeDashoffset = spLen * (1 - Math.min(1, Math.max(0, y / h)));
   };
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
