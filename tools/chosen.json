@@ -1,8 +1,9 @@
 {
- "hero": "https://images.unsplash.com/photo-1778487413263-f16954bacef1",
- "hero-alt": "https://images.unsplash.com/photo-1722888799634-c5093906feae",
+ "hero": "https://images.unsplash.com/photo-1512916194211-3f2b7f5f7de3",
+ "hero-b": "https://images.unsplash.com/photo-1628745277862-bc0b2d68c50c",
+ "hero-c": "https://images.unsplash.com/photo-1631048835473-73c7aaf86096",
+ "hero-d": "https://images.unsplash.com/photo-1636138390625-80afec896b28",
  "kitchen": "https://images.unsplash.com/photo-1610733374054-59454fe657cd",
- "kitchen2": "https://images.unsplash.com/photo-1512916194211-3f2b7f5f7de3",
  "drawer": "https://images.unsplash.com/photo-1676907228185-6869277a9f8f",
  "drawer2": "https://images.unsplash.com/photo-1678108429557-546cf9a84c35",
  "wardrobe": "https://images.unsplash.com/photo-1708397016786-8916880649b8",
@@ -10,8 +11,8 @@
  "closet": "https://images.unsplash.com/photo-1640357154220-9775b0f31dec",
  "living": "https://images.unsplash.com/photo-1662454419622-a41092ecd245",
  "living2": "https://images.unsplash.com/photo-1772797583328-f83bc3f94f80",
- "workshop": "https://images.unsplash.com/photo-1683115099191-51e617fc5ff1",
- "workshop2": "https://images.unsplash.com/photo-1683115099860-5379ac101bce",
- "craft": "https://images.unsplash.com/photo-1683115100702-af818681184d",
+ "workshop": "https://images.unsplash.com/photo-1788296817269-8df0458ab799",
+ "workshop2": "https://images.unsplash.com/photo-1659930087003-2d64e33181f7",
+ "craft": "https://images.unsplash.com/photo-1544164560-adac3045edb2",
  "oak": "https://images.unsplash.com/photo-1611072337226-1140ab367200"
 }
