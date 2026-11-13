@@ -8,8 +8,8 @@
   },
   {
    "slot": "kids",
-   "url": "https://images.unsplash.com/photo-1577896851231-70ef18881754",
-   "bytes": 167845,
+   "url": "https://images.unsplash.com/photo-1583468982228-19f19164aee2",
+   "bytes": 174581,
    "license": "Unsplash License"
   },
   {
@@ -40,12 +40,6 @@
    "slot": "tiles",
    "url": "https://images.unsplash.com/photo-1673515334717-da4d85aaf38b",
    "bytes": 118643,
-   "license": "Unsplash License"
-  },
-  {
-   "slot": "classroom",
-   "url": "https://images.unsplash.com/photo-1519406596751-0a3ccc4937fe",
-   "bytes": 144768,
    "license": "Unsplash License"
   },
   {
