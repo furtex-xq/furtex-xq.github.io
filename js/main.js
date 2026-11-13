@@ -85,13 +85,15 @@
   }
 
   /* ---------- contact links (one source of truth: hrefs in HTML) ---------- */
-  function linkOf(ch, fallback) { var a = $('[data-channel="' + ch + '"]'); return a ? a.getAttribute("href") : fallback; }
+  function linkOf(ch) { var a = $('[data-channel="' + ch + '"]'); return a ? a.getAttribute("href") : null; }
   function sendVia(channel, text, subject) {
-    var url;
-    if (channel === "viber") url = linkOf("viber", "viber://chat?number=%2B380000000000") + "&draft=" + encodeURIComponent(text);
-    else if (channel === "email") url = linkOf("email", "mailto:hello@example.com") + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(text);
-    else url = linkOf("telegram", "https://t.me/username") + "?text=" + encodeURIComponent(text);
+    var base, url = null;
+    if (channel === "viber" && (base = linkOf("viber"))) url = base + "&draft=" + encodeURIComponent(text);
+    else if (channel === "email" && (base = linkOf("email"))) url = base + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(text);
+    else if (channel === "sms" && (base = linkOf("tel"))) url = base.replace(/^tel:/, "sms:") + "?&body=" + encodeURIComponent(text);
+    else if (channel === "telegram" && (base = linkOf("telegram"))) url = base + "?text=" + encodeURIComponent(text);
     copy(text);
+    if (!url) return;
     if (/^https?:/.test(url)) {
       var w = window.open(url, "_blank", "noopener");
       if (!w) window.location.href = url;
@@ -289,6 +291,6 @@
     if (ph.length < 10 || ph.length > 12) { er.textContent = "Перевірте номер: потрібно 10–12 цифр."; return; }
     er.textContent = "";
     $("[data-cb-ok]").hidden = false;
-    sendVia("telegram", "Прошу передзвонити\nІм'я: " + nm + "\nТелефон: " + $("#cb-phone").value.trim(), "Зворотний дзвінок");
+    sendVia(cb.getAttribute("data-channel") || "telegram", "Прошу передзвонити\nІм'я: " + nm + "\nТелефон: " + $("#cb-phone").value.trim(), "Зворотний дзвінок");
   });
 })();
