@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>ForkLog</title>
+	<atom:link href="https://forklog.com/feed" rel="self" type="application/rss+xml" />
+	<link>https://forklog.com</link>
+	<description>Интернет-журнал о биткоине, криптовалютах и децентрализации</description>
+	<lastBuildDate>Sat, 14 Nov 2026 13:26:42 +0000</lastBuildDate>
+	<language>ru-RU</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+
+<image>
+	<url>https://forklog.com/wp-content/uploads/FL_favicon-150x150.png</url>
+	<title>ForkLog</title>
+	<link>https://forklog.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Авиарегулятор США внедрил ИИ-систему по всей стране вопреки призывам законодателей</title>
+		<link>https://forklog.com/news/ai/aviaregulyator-ssha-vnedril-ii-sistemu-po-vsej-strane-vopreki-prizyvam-zakonodatelej</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Sat, 14 Nov 2026 13:10:52 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[США]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292909</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/AI-agents-II-agenty-3.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="AI-agents ИИ агенты 3" decoding="async" fetchpriority="high" srcset="" data-src="https://forklog.com/wp-content/uploads/AI-agents-II-agenty-3.webp" /></p>ИИ-система управления авиапотоками SMART охватила воздушное пространство всех 22 районных центров управления воздушным движением США. Федеральное управление гражданской авиации (FAA) объявило об этом 10 ноября, несмотря на призывы законодателей приостановить внедрение технологии до получения разъяснений о проверках безопасности.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>«Лаборатория Касперского» сообщила об атаках с трояном WebRAT через Telegram</title>
+		<link>https://forklog.com/news/laboratoriya-kasperskogo-soobshhila-ob-atakah-s-troyanom-webrat-cherez-telegram</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Sat, 14 Nov 2026 12:04:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Telegram]]></category>
+		<category><![CDATA[Кибербезопасность]]></category>
+		<category><![CDATA[Лаборатория Касперского]]></category>
+		<category><![CDATA[Сбои и уязвимости]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292901</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Telegram-IPO.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Telegram IPO" decoding="async" srcset="" data-src="https://forklog.com/wp-content/uploads/Telegram-IPO.webp" /></p>«Лаборатория Касперского» зафиксировала попытки заражения компьютеров трояном WebRAT (Salat Stealer) при посещении отдельных Telegram-каналов. Специалисты предположили, что злоумышленники могли воспользоваться уязвимостью новых HTML-виджетов мессенджера.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>СМИ: Meta начала тестировать приложение для рынков предсказаний</title>
+		<link>https://forklog.com/news/smi-meta-nachala-testirovat-prilozhenie-dlya-rynkov-predskazanij</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Sat, 14 Nov 2026 10:49:28 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[meta]]></category>
+		<category><![CDATA[Марк Цукерберг]]></category>
+		<category><![CDATA[рынки предсказаний]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292898</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Meta-Facebook.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Meta Facebook" decoding="async" srcset="" data-src="https://forklog.com/wp-content/uploads/Meta-Facebook.webp" /></p>Сотрудники Meta тестируют приложение для рынков предсказаний под названием Takes. Вместо денежных ставок в нем предусмотрены виртуальные баллы, пишет The Wall Street Journal со ссылкой на осведомленные источники.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Канадский пенсионный фонд раскрыл вложения на $35 млн в Hyperliquid Strategies</title>
+		<link>https://forklog.com/kanadskij-pensionnyj-fond-raskryl-vlozheniya-na-35-mln-v-hyperliquid-strategies</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Sat, 14 Nov 2026 09:15:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292875</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Canada-Kanada-kriptovalyuty.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Canada Канада криптовалюты" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Canada-Kanada-kriptovalyuty.webp" /></p>Пенсионный фонд Healthcare of Ontario Pension Plan отчитался о владении 2,88 млн акций Hyperliquid Strategies стоимостью $35,33 млн. Компания формирует криптовалютные резервы в токенах HYPE и получает доход от их стейкинга. В предыдущей квартальной отчетности организации этой позиции не было.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Что происходит с Nvidia после ухода Хуанга и потери $600 млрд?</title>
+		<link>https://forklog.com/news/chto-proishodit-s-nvidia-posle-uhoda-huanga-i-poteri-600-mlrd</link>
+		
+		<dc:creator><![CDATA[Лена Джесс]]></dc:creator>
+		<pubDate>Sat, 14 Nov 2026 09:13:30 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[подкаст]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292894</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-e7f7529dc9370297-25883986593014.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-e7f7529dc9370297-25883986593014" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-e7f7529dc9370297-25883986593014.webp" /></p>Текстовая версия свежей "Деконструкции".]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Пять лет Taproot: стала ли мультиподпись неотличимой от обычного платежа</title>
+		<link>https://forklog.com/exclusive/pyat-let-taproot-stala-li-multipodpis-neotlichimoj-ot-obychnogo-platezha</link>
+		
+		<dc:creator><![CDATA[ForkLog]]></dc:creator>
+		<pubDate>Sat, 14 Nov 2026 09:02:06 +0000</pubDate>
+				<category><![CDATA[Лонгриды]]></category>
+		<category><![CDATA[Биткоин]]></category>
+		<category><![CDATA[Приватность и личные данные]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292888</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-3f38fa5d9ddd6ed7-24718133203449.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-3f38fa5d9ddd6ed7-24718133203449" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-3f38fa5d9ddd6ed7-24718133203449.webp" /></p>Вместе с командой биткоин-миксера Mixer.Money разбираемся, когда Taproot прячет мультиподпись, а когда выдает, и как переехать в новое хранилище, не связав его с прежним.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Что такое нейроморфные чипы?</title>
+		<link>https://forklog.com/cryptorium/chto-takoe-nejromorfnye-chipy</link>
+		
+		<dc:creator><![CDATA[Елена Васильева]]></dc:creator>
+		<pubDate>Sat, 14 Nov 2026 08:15:37 +0000</pubDate>
+				<category><![CDATA[Крипториум]]></category>
+		<category><![CDATA[Крипториум: Технические основы]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292882</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-ee1cea31b6cd8297-22026895180417.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-ee1cea31b6cd8297-22026895180417" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-ee1cea31b6cd8297-22026895180417.webp" /></p>Как устроены нейроморфные чипы, почему архитектура человеческого мозга экономит энергию и способна ли новая технология потеснить классические видеокарты. ]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Глава Xapo Bank связал падение биткоина с IPO Anthropic</title>
+		<link>https://forklog.com/news/glava-xapo-bank-svyazal-padenie-bitkoina-s-ipo-anthropic</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Sat, 14 Nov 2026 07:54:21 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Anthropic]]></category>
+		<category><![CDATA[IPO]]></category>
+		<category><![CDATA[Мнения]]></category>
+		<category><![CDATA[Цена биткоина]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292877</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/neubeditelnaya-dinamika-bitkoina-spustya-god-posle-halvinga-bitcoin-dinamics-halving.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="bitcoin price btc цена биткоина" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/neubeditelnaya-dinamika-bitkoina-spustya-god-posle-halvinga-bitcoin-dinamics-halving.webp" /></p>Коррекция первой криптовалюты может быть связана с перераспределением капитала в преддверии первичного размещения акций компании Anthropic. Такое предположение высказал генеральный директор Xapo Bank Шеймус Рокка, пишет CoinDesk.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Сообщество Polkadot одобрило новую стратегию развития экосистемы</title>
+		<link>https://forklog.com/soobshhestvo-polkadot-odobrilo-novuyu-strategiyu-razvitiya-ekosistemy</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Sat, 14 Nov 2026 07:13:30 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292873</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-cf938e14ae716d6c-4826646230527079.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Polkadot DOT" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-cf938e14ae716d6c-4826646230527079.webp" /></p>Участники Polkadot проголосовали за инициативу Polkadot Community Foundation, набравшую 97% голосов. Стратегия предусматривает расширение применения стейблкоина dotUSD, создание мобильного приложения с приватными сообщениями и цифровыми платежами, а также привлечение новых пользователей. dotUSD запустили 8 октября с обеспечением в USDT. В дальнейшем разработчики планируют добавить возможность выпуска токенов под залог DOT.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Кража $2,5 млн агентом ФБР, утечки данных из приложений Grok и другие события кибербезопасности</title>
+		<link>https://forklog.com/news/krazha-2-5-mln-agentom-fbr-utechki-dannyh-iz-prilozhenij-grok-i-drugie-sobytiya-kiberbezopasnosti</link>
+		
+		<dc:creator><![CDATA[Сергей Голубенко]]></dc:creator>
+		<pubDate>Sat, 14 Nov 2026 04:00:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Дайджест кибербезопасности]]></category>
+		<category><![CDATA[Дайджесты]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292868</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-96142066b369f689-112189774486539.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="security_2026_2" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-96142066b369f689-112189774486539.webp" /></p>Мы собрали наиболее важные новости из мира кибербезопасности за неделю.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>«Всевидящее» «око» «Бога»</title>
+		<link>https://forklog.com/exclusive/ai/vsevidyashhee-oko-boga</link>
+		
+		<dc:creator><![CDATA[Сергей Голубенко]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 15:00:00 +0000</pubDate>
+				<category><![CDATA[Лонгриды]]></category>
+		<category><![CDATA[palantir]]></category>
+		<category><![CDATA[вайб-кодинг]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292857</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-9500d0cf8b39763d-1910059343965686.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-9500d0cf8b39763d-1910059343965686" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-9500d0cf8b39763d-1910059343965686.webp" /></p>Как вайбкодинг породил бесплатные аналоги Palantir и что на самом деле показывают эти экраны.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Власти США подали иск против Арканзаса из-за Kalshi</title>
+		<link>https://forklog.com/vlasti-ssha-podali-isk-protiv-arkanzasa-iz-za-kalshi</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 15:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292839</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/court_generic-sud-sudebnye-razbiratelstva.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="court_generic, суд, судебные разбирательства" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/court_generic-sud-sudebnye-razbiratelstva.webp" /></p>Комиссия по срочной биржевой торговле (CFTC) и Минюст США обратились в федеральный суд с требованием остановить преследование рынков предсказаний в Арканзасе. Поводом стал иск генпрокурора штата Тима Гриффина к Kalshi от 4 ноября, в котором тот обвинил платформу в организации незаконных азартных игр. Федеральные власти настаивают, что регулирование событийных контрактов относится к исключительной компетенции CFTC.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Nakamoto отчиталась об отрицательной выручке при прибыли $85,5 млн</title>
+		<link>https://forklog.com/news/nakamoto-otchitalas-ob-otritsatelnoj-vyruchke-pri-pribyli-85-5-mln</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 14:50:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[бизнес]]></category>
+		<category><![CDATA[Биткоин]]></category>
+		<category><![CDATA[отчеты]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292853</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Bitkoin-luchshee-sredstvo-sberezheniya.-Bitcoin-is-the-best-investment-2.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Биткоин лучшее средство сбережения. Bitcoin is the best investment" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Bitkoin-luchshee-sredstvo-sberezheniya.-Bitcoin-is-the-best-investment-2.webp" /></p>Публичная биткоин-компания Nakamoto завершила третий квартал с отрицательной операционной выручкой в размере $1,9 млн, но получила чистую прибыль $85,5 млн благодаря переоценке крипторезервов. Одновременно фирма пересмотрела условия кредита от Kraken на 165 млн USDT, следует из отчетности.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>SEC Таиланда предложила лимит на операции со стейблкоинами</title>
+		<link>https://forklog.com/sec-tailanda-predlozhila-limit-na-operatsii-so-stejblkoinami</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 14:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292831</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-61f088341e37636e-3696109586455160.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="stablecoin" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-61f088341e37636e-3696109586455160.webp" /></p>Комиссия по ценным бумагам и биржам Таиланда предложила установить отдельные суточные лимиты на ввод и вывод стейблкоинов — по 5 млн бат ($148 000) на клиента у каждого оператора. Проект также запрещает переводы через криптоплатформы на чужие кошельки и с них.
+
+Исключения предусмотрены для ряда операций, включая транзакции между собственными счетами на регулируемых площадках. Обсуждение продлится до 26 ноября.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Три центробанка испытали совместимость обычных расчетов и токенизированных денег</title>
+		<link>https://forklog.com/news/tri-tsentrobanka-ispytali-sovmestimost-obychnyh-raschetov-i-tokenizirovannyh-deneg</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 13:35:37 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Банки и финтех]]></category>
+		<category><![CDATA[Токенизация активов]]></category>
+		<category><![CDATA[Центробанки]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292849</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-27f22d4b414c803b-3841669557598535.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="RWA tokenization" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-27f22d4b414c803b-3841669557598535.webp" /></p>Банк Англии, Денежно-кредитное управление Сингапура (MAS) и ЦБ Таиланда успешно испытали синхронизацию валютных расчетов между традиционной платежной инфраструктурой и платформами токенизированных денег. Как сообщили регуляторы, эксперимент Project Meridian FX APAC показал, что для таких операций не требуется переводить все платежи в единый реестр.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>JPMorgan увеличил пакет акций Strategy на 36%</title>
+		<link>https://forklog.com/jpmorgan-uvelichil-paket-aktsij-strategy-na-36</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 13:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292837</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/jpmorgan-min-1.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="jpmorgan-min" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/jpmorgan-min-1.webp" /></p>JPMorgan Chase отчитался об увеличении вложений в Strategy в III квартале на 36% — до 848 932 акций стоимостью $131,3 млн. Позиция банка в спотовом биткоин-ETF IBIT от BlackRock выросла на 9,6%, до 11,4 млн акций на $540 млн. В отчетности также указаны 1,58 млн акций Coinbase и доли в майнинговых компаниях MARA, Riot Platforms и Core Scientific. Данные отражают активы под управлением, включая клиентские счета, по состоянию на 30 сентября.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Сенат США вызвал Хуанга и Латника на слушания по экспорту ИИ-чипов в Китай</title>
+		<link>https://forklog.com/news/ai/senat-ssha-vyzval-huanga-i-latnika-na-slushaniya-po-eksportu-ii-chipov-v-kitaj</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 12:27:34 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[NVIDIA]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[Китай]]></category>
+		<category><![CDATA[Расследования]]></category>
+		<category><![CDATA[США]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292841</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-4359f42aa4bd9fa7-97581062492663.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="USA-capitol" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-4359f42aa4bd9fa7-97581062492663.webp" /></p>Председатель банковского комитета Сената США Тим Скотт сообщил, что вызвал на слушания бывшего гендиректора Nvidia Дженсена Хуанга и министра торговли Говарда Латника. Законодатели намерены обсудить угрозы национальной безопасности и поставки передовых полупроводников в Китай.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Bloomberg узнал о планах Kalshi привлечь инвестиции при оценке в $65 млрд</title>
+		<link>https://forklog.com/bloomberg-uznal-o-planah-kalshi-privlech-investitsii-pri-otsenke-v-65-mlrd</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 12:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292835</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-c699a6135b7778c7-4213603715521737.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="prediction" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-c699a6135b7778c7-4213603715521737.webp" /></p>Платформа предсказаний Kalshi ведет переговоры с инвесторами о привлечении капитала при оценке бизнеса в $65 млрд, сообщает Bloomberg. В конце октября компания завершила раунд на $1 млрд под руководством Sequoia и Wellington, получив оценку в $40 млрд. Новые средства планируется направить в том числе на развитие торговли фьючерсами на вычислительные мощности для ИИ. Ранее Kalshi рассчитывала выйти на IPO без дополнительных частных раундов. Сумма нового финансирования пока не раскрывается.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Участники испытаний нейроимплантов потребовали больше прав и меньше ограничений</title>
+		<link>https://forklog.com/news/ai/uchastniki-ispytanij-nejroimplantov-potrebovali-bolshe-prav-i-menshe-ogranichenij</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 11:38:36 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[интерфейс мозг — компьютер (BCI)]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292833</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/II-AI-iskusstvennyi-intellekt-artificial-intelligence.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="ИИ AI искусственный интеллект artificial intelligence" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/II-AI-iskusstvennyi-intellekt-artificial-intelligence.webp" /></p>Участники клинических испытаний мозговых имплантов предложили ограничить соглашения о неразглашении (NDA), усилить защиту данных мозговой активности и обеспечить поддержку пользователей после завершения исследований. Объединение BCI Pioneers Coalition представило соответствующие рекомендации для разработчиков нейроинтерфейсов, ученых и этических комитетов.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>В Таиланде запустили сервис оплаты покупок за счет криптовалют</title>
+		<link>https://forklog.com/v-tailande-zapustili-servis-oplaty-pokupok-za-schet-kriptovalyut</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 11:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292817</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Thailand.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Thailand" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Thailand.webp" /></p>В Таиланде запустили приложение WORPT, позволяющее иностранным туристам конвертировать криптовалюту в баты и оплачивать покупки по QR-коду без местного банковского счета. Сервис работает в рамках пилотной программы TouristDigiPay. Разработчики рассчитывают привлечь 200 000 пользователей за первый год и обеспечить платежи на $440 млн за 18 месяцев.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>В Reuters нашли зависимость китайских ИИ-проектов от Nvidia</title>
+		<link>https://forklog.com/news/v-reuters-nashli-zavisimost-kitajskih-ii-proektov-ot-nvidia</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 10:00:47 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[NVIDIA]]></category>
+		<category><![CDATA[Китай]]></category>
+		<category><![CDATA[США]]></category>
+		<category><![CDATA[чипы]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292829</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Nvidia-1.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Nvidia" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Nvidia-1.webp" /></p>Журналисты Reuters обнаружили в Китае проекты вычислительной инфраструктуры общей стоимостью более 23 млрд юаней ($3,2 млрд), рассчитанные на использование передовых чипов Nvidia. К такому выводу агентство пришло, изучив свыше 150 документов о закупках оборудования, строительстве дата-центров и инвестициях.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Команда Osmosis восстановила работу после остановки блокчейна</title>
+		<link>https://forklog.com/komanda-osmosis-vosstanovila-rabotu-posle-ostanovki-blokchejna</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 10:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292819</guid>
+
+					<description><![CDATA[<p><img width="720" height="576" src="https://forklog.com/wp-content/uploads/osmosis-min_720.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="osmosis-min_720" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/osmosis-min_720.webp" /></p>Блокчейн Osmosis возобновил создание блоков после сбоя 12 ноября. Сеть остановилась на высоте #74 955 152, из-за чего пользователи столкнулись с задержками транзакций. Южнокорейские биржи Upbit и Bithumb приостановили ввод и вывод OSMO, сохранив возможность торговли токеном.
+
+Coinbase также сообщила о проблемах с переводами. Причина сбоя пока не установлена.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Глобальный сбой Microsoft 365 ударил по госструктурам, бизнесу и ИИ-компаниям</title>
+		<link>https://forklog.com/news/globalnyj-sboj-microsoft-365-udaril-po-gosstrukturam-biznesu-i-ii-kompaniyam</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 09:34:25 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Anthropic]]></category>
+		<category><![CDATA[Microsoft]]></category>
+		<category><![CDATA[OpenAI]]></category>
+		<category><![CDATA[Сбои и уязвимости]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292816</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Microsoft.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Microsoft" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Microsoft.webp" /></p>Масштабный сбой в работе Microsoft 365 нарушил доступ к Outlook, отдельным функциям Teams, Copilot и другим сервисам компании. Неполадки затронули пользователей по всему миру, включая государственные учреждения и ИИ-проекты OpenAI и Anthropic.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>BTCS продавала Ethereum с убытком для поддержания займов в Aave</title>
+		<link>https://forklog.com/news/btcs-prodavala-ethereum-s-ubytkom-dlya-podderzhaniya-zajmov-v-aave</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 09:03:27 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Aave]]></category>
+		<category><![CDATA[DeFi]]></category>
+		<category><![CDATA[Ethereum (ETH)]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292823</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Ethereum-ETH-Efir-2025.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Ethereum ETH Эфир 2025" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Ethereum-ETH-Efir-2025.webp" /></p>Американская публичная компания BTCS продавала Ethereum ниже цены приобретения, чтобы поддерживать достаточное обеспечение кредитов на DeFi-платформе Aave. На 9 ноября ее задолженность достигала $64,1 млн, а залог составлял 46 676 ETH стоимостью около $99,3 млн, сообщается в квартальном отчете по форме 10-Q.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Kalshi рассталась с Трампом-младшим из-за инвестиций в Polymarket</title>
+		<link>https://forklog.com/kalshi-rasstalas-s-trampom-mladshim-iz-za-investitsij-v-polymarket</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 09:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292812</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-c699a6135b7778c7-4213603715521737.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="prediction" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-c699a6135b7778c7-4213603715521737.webp" /></p>Платформа предсказаний Kalshi прекратила консультационное сотрудничество с Дональдом Трампом-младшим, занимавшим пост стратегического советника с января 2025 года. Причиной стало увеличение инвестиций его венчурной компании 1789 Capital в конкурента — Polymarket. Фирма возглавила раунд финансирования на $1 млрд, вложив около $300 млн. В Kalshi подчеркнули, что решение принято по взаимному согласию, и политические обстоятельства на него не повлияли.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>В Конгрессе США разошлись во мнениях о развитии ИИ-инфраструктуры</title>
+		<link>https://forklog.com/news/v-kongresse-ssha-razoshlis-vo-mneniyah-o-razvitii-ii-infrastruktury</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 08:25:41 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[дата-центры]]></category>
+		<category><![CDATA[Регулирование]]></category>
+		<category><![CDATA[США]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292814</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-3dc78beac3ddfc1f-770926811658278.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-3dc78beac3ddfc1f-770926811658278" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-3dc78beac3ddfc1f-770926811658278.webp" /></p>Американские законодатели предложили противоположные подходы к развитию инфраструктуры искусственного интеллекта. Сенатор-республиканец Джош Хоули призвал ввести общенациональный мораторий на строительство дата-центров, а Сенат продвинул законопроект об ускоренном согласовании энергетических и других крупных проектов.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Луизиана добилась временного запрета на работу рынков предсказаний</title>
+		<link>https://forklog.com/luiziana-dobilas-vremennogo-zapreta-na-rabotu-rynkov-predskazanij</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 07:50:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292810</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/rynki-predskazanij-prediction-markets.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="рынки предсказаний prediction markets" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/rynki-predskazanij-prediction-markets.webp" /></p>Генпрокурор Луизианы (США) Лиз Меррилл подала иск против Kalshi, Polymarket, Robinhood, Coinbase и других платформ, обвинив их в организации нелицензированных азартных игр. 12 ноября суд временно запретил ответчикам предлагать событийные контракты жителям штата без игорной лицензии. Компании настаивают, что их деятельность регулируется на федеральном уровне CFTC. Слушание по вопросу дальнейшего запрета назначено на 30 ноября.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Минюст США получил право на арест $1,2 млрд из украденных у Binance средств</title>
+		<link>https://forklog.com/news/minyust-ssha-poluchil-pravo-na-arest-1-2-mlrd-iz-ukradennyh-u-binance-sredstv</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 07:41:38 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Binance]]></category>
+		<category><![CDATA[Киберпреступления]]></category>
+		<category><![CDATA[Северная Корея (КНДР)]]></category>
+		<category><![CDATA[США]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292807</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-4b028d07a413a9bf-97571507307263.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="USA-BTC" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-4b028d07a413a9bf-97571507307263.webp" /></p>Министерство юстиции США (DOJ) получило разрешение суда на изъятие или блокировку криптоактивов на сумму более $1,2 млрд, похищенных при взломе Binance.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Трамп выдвинул преемника Хестер Пирс и новых кандидатов в CFTC</title>
+		<link>https://forklog.com/tramp-vydvinul-preemnika-hester-pirs-i-novyh-kandidatov-v-cftc</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 06:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292794</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-4359f42aa4bd9fa7-97581062492663.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="USA-capitol" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-4359f42aa4bd9fa7-97581062492663.webp" /></p>Президент США Дональд Трамп направил в Сенат четыре кандидатуры на посты комиссаров SEC и CFTC. Место покинувшей SEC Хестер Пирс предложено занять Стивену Левину, бывшему советнику Белого дома. Вторым кандидатом в SEC стала экс-комиссар CFTC Кристин Джонсон. В CFTC выдвинуты Нейтан Аноник и Мэттью Роуленд, ранее участвовавшие в работе над законопроектом CLARITY Act. Все назначения требуют одобрения Сената.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Биткоин впервые с августа упал ниже $70 000</title>
+		<link>https://forklog.com/news/bitkoin-vpervye-s-avgusta-upal-nizhe-70-000</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 05:57:57 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Glassnode]]></category>
+		<category><![CDATA[Ончейн-анализ]]></category>
+		<category><![CDATA[Цена биткоина]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=292796</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-d0ec48a8d390bf4a-7598005552236011.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="bitcoin" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-d0ec48a8d390bf4a-7598005552236011.webp" /></p>13 ноября цена цифрового золота впервые с августа опустилась ниже психологической отметки $70 000 на фоне массовых ликвидаций длинных позиций. За сутки актив подешевел на 6,7%.]]></description>
+		
+		
+		
+			</item>
+	</channel>
+</rss>
