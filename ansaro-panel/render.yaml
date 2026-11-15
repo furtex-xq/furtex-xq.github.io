@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: ansaro-panel
+    runtime: python
+    plan: free
+    rootDir: ansaro-panel
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips='*'
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: PANEL_PASSWORD
+        sync: false
+      - key: PANEL_API_KEY
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: TG_API_ID
+        sync: false
+      - key: TG_API_HASH
+        sync: false
+      - key: TG_SESSION
+        sync: false
