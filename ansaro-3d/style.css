@@ -323,3 +323,6 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
   .cl-acts { grid-template-columns: 1fr 1fr; } .cl-btn.main { grid-column: 1 / -1; }
   .dev b { font-size: 15px; }
 }
+.cl-quote { display: block; width: 100%; text-align: left; margin: -4px 0 16px; padding: 12px 14px; border-radius: 14px; border: 1px solid rgba(230, 180, 80, .25); background: rgba(230, 180, 80, .06); transition: border-color .3s, background .3s; }
+.cl-quote:hover { border-color: rgba(230, 180, 80, .55); background: rgba(230, 180, 80, .1); }
+.cl-quote .rv-stars { display: block; font-size: 15px; } .cl-quote q { display: block; margin-top: 4px; color: #ece6d8; font-size: 14px; font-style: italic; }
