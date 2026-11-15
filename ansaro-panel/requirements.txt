@@ -1,0 +1,5 @@
+fastapi==0.163.1
+uvicorn==0.54.0
+telethon==1.45.0
+itsdangerous==2.2.0
+python-multipart==0.0.33

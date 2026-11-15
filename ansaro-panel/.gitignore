@@ -1,0 +1,15 @@
+# секреты и сессии: никогда не коммитить
+.env
+.env.*
+*.session
+*.session-journal
+*session*.txt
+secrets*
+*.key
+*.pem
+*.db
+*.sqlite*
+__pycache__/
+*.pyc
+venv/
+.venv/
