@@ -19,9 +19,8 @@
    Если Blueprint не видит файл: New → Web Service, Root Directory `ansaro-panel`, Build `pip install -r requirements.txt`,
    Start `uvicorn app.main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips='*'`, план Free.
 3. Заполнить переменные:
-   - `PANEL_PASSWORD`: свой пароль от 10 символов.
    - `TG_API_ID`, `TG_API_HASH`: с https://my.telegram.org → API development tools (название приложения любое).
-   - `PANEL_API_KEY` и `SESSION_SECRET` Render создаст сам.
+   - `PANEL_PASSWORD`, `PANEL_API_KEY` и `SESSION_SECRET` Render создаст сам (пароль можно заменить своим, от 10 символов).
 4. Открыть адрес вида `https://ansaro-panel-xxxx.onrender.com`, войти паролем, ввести телефон и код из Telegram.
 5. Панель один раз покажет строку сессии. Вставить её в переменную `TG_SESSION` на Render (Environment → Save). Без этого после перезапуска придётся входить снова.
 

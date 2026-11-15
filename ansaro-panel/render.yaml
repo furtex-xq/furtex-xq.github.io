@@ -11,7 +11,7 @@ services:
       - key: PYTHON_VERSION
         value: "3.12.7"
       - key: PANEL_PASSWORD
-        sync: false
+        generateValue: true
       - key: PANEL_API_KEY
         generateValue: true
       - key: SESSION_SECRET
