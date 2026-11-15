@@ -6,12 +6,24 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-import { COLLECTIONS, MODELS, RENDERS, CATEGORIES } from './data.js?v=2';
+import { COLLECTIONS, MODELS, RENDERS, CATEGORIES, ORDERS } from './data.js?v=3';
+import { LANG, EN, setLang, t, tr, PRICES, STEPS, PAYMENT, CONTACTS, colName, catText, modelName, modelSub, modelDesc, rarity, renderName, nModels } from './lang.js?v=1';
 import { rigModel, animateRig } from './anim.js?v=3';
 import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
 import { studioEnvironment, upgradeMaterial, detailSpace, detailToView } from './look.js?v=6';
 
 const $ = s => document.querySelector(s);
+const esc = v => String(v).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+/* ================= язык ================= */
+document.documentElement.lang = LANG;
+document.title = t('title');
+document.querySelectorAll('[data-t]').forEach(e => { e.textContent = t(e.dataset.t); });
+document.querySelectorAll('[data-ta]').forEach(e => { e.setAttribute('aria-label', t(e.dataset.ta)); e.title = t(e.dataset.ta); });
+document.querySelectorAll('[data-lang]').forEach(b => {
+  b.classList.toggle('on', b.dataset.lang === LANG); b.setAttribute('aria-pressed', b.dataset.lang === LANG);
+  b.onclick = () => { if (b.dataset.lang !== LANG) setLang(b.dataset.lang); };
+});
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const mobile = () => innerWidth <= 760;
 const ease = { outBack: t => { const c = 1.5; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); }, inCubic: t => t * t * t, inOut: t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2 };
@@ -147,15 +159,16 @@ function load(id) {
     g.scene.traverse(o => {
       if (!o.isMesh) return;
       o.castShadow = true; o.receiveShadow = true;
-      const up = m => { const n = upgradeMaterial(m); if (n.transparent) { n.depthWrite = false; o.castShadow = false; } if (n.transmission > 0) o.castShadow = false; return n; };
-      o.material = Array.isArray(o.material) ? o.material.map(up) : up(o.material);
+      // палитровые модели (имя материала *_Mat) рисуем как есть: детализация шейдером портит их цвета
+      const up = m => { if (/_Mat(\.\d+)?$/.test(m.name || '')) { m.envMapIntensity = 0.8; return m; } const n = upgradeMaterial(m); if (n.transparent) { n.depthWrite = false; o.castShadow = false; } if (n.transmission > 0) o.castShadow = false; return n; };
+      if (!/[?&]raw/.test(location.search)) o.material = Array.isArray(o.material) ? o.material.map(up) : up(o.material);
     });
     return g.scene;
   }).catch(e => { cache.delete(id); throw e; }));
   return cache.get(id);
 }
 const HEIGHT = 2.15;
-function fit(src) {
+function fit(src, fitW = 1.85) {
   const obj = src.clone(true);
   // рамка по заметным деталям: мелкие улетевшие частицы не уменьшают модель
   const all = new THREE.Box3().setFromObject(obj), diag = all.getSize(new THREE.Vector3()).length();
@@ -163,7 +176,7 @@ function fit(src) {
   obj.traverse(o => { if (o.isMesh) { const b = new THREE.Box3().setFromObject(o); if (b.getSize(new THREE.Vector3()).length() > diag * 0.06) box.union(b); } });
   if (box.isEmpty()) box.copy(all);
   const size = box.getSize(new THREE.Vector3());
-  const s = Math.min(HEIGHT / Math.max(size.y, 1e-6), 1.85 / Math.max(size.x, size.z, 1e-6));
+  const s = Math.min(HEIGHT / Math.max(size.y, 1e-6), fitW / Math.max(size.x, size.z, 1e-6));
   obj.scale.setScalar(s);
   box.min.multiplyScalar(s); box.max.multiplyScalar(s);
   const c = box.getCenter(new THREE.Vector3());
@@ -202,21 +215,22 @@ const catsEl = $('#cats');
 catsEl.innerHTML = CATEGORIES.map(c => {
   const ms = MODELS.filter(m => c.cols.includes(m.col)), n = ms.length;
   const cover = n ? (MODELS.find(m => m.id === c.cover) || ms[0]) : null;
+  const tx = catText(c);
   return `<button class="cat" data-c="${c.id}" style="--c:${cover ? cover.accent : '#8a83a3'}" ${n ? '' : 'disabled'}>
-    <span class="n">${n ? n + ' ' + plural(n, 'модель', 'модели', 'моделей') : 'скоро'}</span>
+    <span class="n">${n ? nModels(n) : t('soon')}</span>
     <span class="pic">${cover ? `<img src="thumbs/${cover.id}.webp" alt="">` : SOON_ICON}</span>
-    <b>${c.name}</b><small>${c.note || ''}</small></button>`;
+    <b>${tx.name}</b><small>${tx.note || ''}</small></button>`;
 }).join('');
-function plural(n, a, b, c) { const d = n % 10, h = n % 100; return d === 1 && h !== 11 ? a : d >= 2 && d <= 4 && (h < 12 || h > 14) ? b : c; }
 catsEl.onclick = e => { const b = e.target.closest('.cat'); if (b && !b.disabled) openCategory(CATEGORIES.find(c => c.id === b.dataset.c)); };
 
 function openCategory(c, startId) {
   cat = c;
-  catModels = MODELS.filter(m => c.cols.includes(m.col));
+  catModels = c.ids ? c.ids.map(id => MODELS.find(m => m.id === id)).filter(Boolean) : MODELS.filter(m => c.cols.includes(m.col));
   filter = 'all'; list = catModels.slice();
-  const cols = c.cols.filter(k => catModels.some(m => m.col === k));
-  tabs.innerHTML = cols.length > 1 ? [['all', 'Все']].concat(cols.map(k => [k, COLLECTIONS[k] || k])).map(([k, v]) => `<button data-k="${k}" class="${k === 'all' ? 'on' : ''}">${v}</button>`).join('') : `<button class="on" data-k="all">${c.name}</button>`;
-  strip.innerHTML = catModels.map(m => `<button class="thumb" role="option" data-id="${m.id}" data-col="${m.col}" title="${m.name}"><img src="thumbs/${m.id}.webp" alt="${m.name}" loading="lazy" width="68" height="68"></button>`).join('');
+  const cols = c.ids ? [] : c.cols.filter(k => catModels.some(m => m.col === k));
+  const cname = c.ids ? c.name : catText(c).name;
+  tabs.innerHTML = cols.length > 1 ? [['all', t('all')]].concat(cols.map(k => [k, colName(k, COLLECTIONS)])).map(([k, v]) => `<button data-k="${k}" class="${k === 'all' ? 'on' : ''}">${esc(v)}</button>`).join('') : `<button class="on" data-k="all">${esc(cname)}</button>`;
+  strip.innerHTML = catModels.map(m => `<button class="thumb" role="option" data-id="${m.id}" data-col="${m.col}" title="${esc(modelName(m))}"><img src="thumbs/${m.id}.webp" alt="${esc(modelName(m))}" loading="lazy" width="68" height="68"></button>`).join('');
   const i = startId ? Math.max(0, list.findIndex(m => m.id === startId)) : 0;
   startShow();
   show(i, true);
@@ -234,12 +248,13 @@ function pad(n) { return String(n).padStart(2, '0'); }
 
 const info = $('#info');
 function writeInfo(m) {
-  $('#iCol').textContent = COLLECTIONS[m.col] || '';
-  $('#iRar').textContent = m.rarity || '';
+  $('#iCol').textContent = colName(m.col, COLLECTIONS);
+  $('#iRar').textContent = rarity(m) || '';
   $('#iRar').style.display = m.rarity ? '' : 'none';
-  $('#iName').textContent = m.name;
-  $('#iEn').textContent = m.en ? m.en.replace(/([a-z])([A-Z])/g, '$1 $2') : '';
-  $('#iDesc').textContent = m.desc || '';
+  $('#iName').textContent = modelName(m);
+  $('#iEn').textContent = modelSub(m);
+  $('#iEn').style.display = modelSub(m) ? '' : 'none';
+  $('#iDesc').textContent = modelDesc(m);
   $('#cNow').textContent = pad(idx + 1); $('#cAll').textContent = pad(list.length);
 }
 
@@ -266,7 +281,7 @@ async function show(i, force) {
   const wait = () => leaving ? new Promise(r => setTimeout(r, 40)).then(wait) : null;
   await wait();
   if (my !== token) return;
-  const g = fit(src); if (m.id === "treasurechest") g.rotation.y = 0; g.userData.t = 0; g.userData.base = g.rotation.y;
+  const g = fit(src, m.fitW); if (m.id === "treasurechest") g.rotation.y = 0; g.userData.t = 0; g.userData.base = g.rotation.y;
   // шейдеры компилируем заранее, чтобы смена модели не дёргалась
   try { await renderer.compileAsync(g, camera, scene); } catch (e) {}
   if (my !== token) return;
@@ -282,8 +297,9 @@ const next = () => show(idx + 1), prev = () => show(idx - 1);
 $('#next').onclick = () => { stopPlay(); next(); };
 $('#prev').onclick = () => { stopPlay(); prev(); };
 addEventListener('keydown', e => {
+  if (e.key === 'Escape' && $('#lightbox').hidden && openPanel) { closePanels(); return; }
   if (!$('#lightbox').hidden) { if (e.key === 'Escape') closeLB(); if (e.key === 'ArrowRight') lbStep(1); if (e.key === 'ArrowLeft') lbStep(-1); return; }
-  if (!$('#intro').classList.contains('gone')) return;
+  if (!$('#intro').classList.contains('gone') || openPanel) return;
   if (e.key === 'ArrowRight') { stopPlay(); next(); } if (e.key === 'ArrowLeft') { stopPlay(); prev(); }
 });
 
@@ -304,16 +320,106 @@ const hint = $('#hint');
 
 /* ---------- рендеры ---------- */
 const lb = $('#lightbox'), lbGrid = $('#lbGrid'), lbView = $('#lbView');
-let lbI = 0;
-lbGrid.innerHTML = RENDERS.map((r, i) => `<button data-i="${i}"><img src="renders/${r.id}-s.webp" alt="${r.name}" loading="lazy"><span>${r.name}</span></button>`).join('');
+let lbI = 0, lbList = [];
+const ALL_RENDERS = RENDERS.map(r => ({ id: r.id, name: renderName(r) }));
+function fillLB(items, title) {
+  lbList = items; $('#lbTitle').textContent = title || t('renders');
+  lbGrid.innerHTML = items.map((r, i) => `<button data-i="${i}"><img src="renders/${r.id}-s.webp" alt="${esc(r.name)}" loading="lazy"><span>${esc(r.name)}</span></button>`).join('');
+}
 lbGrid.onclick = e => { const b = e.target.closest('button'); if (b) openImg(+b.dataset.i); };
-function openImg(i) { lbI = (i + RENDERS.length) % RENDERS.length; const r = RENDERS[lbI]; $('#lbImg').src = `renders/${r.id}.webp`; $('#lbImg').alt = r.name; $('#lbCap').textContent = r.name; lbView.hidden = false; }
+function openImg(i) { lbI = (i + lbList.length) % lbList.length; const r = lbList[lbI]; $('#lbImg').src = `renders/${r.id}.webp`; $('#lbImg').alt = r.name; $('#lbCap').textContent = r.name; lbView.hidden = false; }
 function lbStep(d) { if (!lbView.hidden) openImg(lbI + d); }
 function closeLB() { if (!lbView.hidden) { lbView.hidden = true; return; } lb.hidden = true; }
-$('#bRenders').onclick = () => { stopPlay(); lb.hidden = false; };
+$('#bRenders').onclick = () => { stopPlay(); fillLB(ALL_RENDERS); lb.hidden = false; };
 $('#lbClose').onclick = () => { lbView.hidden = true; lb.hidden = true; };
 $('#lbPrev').onclick = () => lbStep(-1); $('#lbNext').onclick = () => lbStep(1);
 lbView.onclick = e => { if (e.target === lbView) lbView.hidden = true; };
+
+/* ---------- каталог заказов, заказ, цены ---------- */
+const panels = { orders: $('#pOrders'), order: $('#pOrder'), pricing: $('#pPricing') };
+let openPanel = null, panelFrom = null;
+function showPanel(k) {
+  stopPlay();
+  Object.entries(panels).forEach(([n, p]) => { p.hidden = n !== k; });
+  openPanel = k; panels[k].scrollTop = 0;
+}
+function closePanels() { Object.values(panels).forEach(p => { p.hidden = true; }); openPanel = null; }
+document.querySelectorAll('[data-close]').forEach(b => { b.onclick = closePanels; });
+Object.values(panels).forEach(p => p.addEventListener('click', e => { if (e.target === p) closePanels(); }));
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-open]'); if (!b) return;
+  if (b.dataset.open === 'orders') showPanel('orders');
+  if (b.dataset.open === 'pricing') showPanel('pricing');
+});
+
+const orderModels = o => (o.cols ? MODELS.filter(m => o.cols.includes(m.col)) : (o.models || []).map(id => MODELS.find(m => m.id === id)).filter(Boolean));
+const badge = o => `<span class="b-kind k-${o.kind}">${t('kind_' + o.kind)}</span><span class="b-st s-${o.status}">${t('st_' + o.status)}</span>`;
+$('#oGrid').innerHTML = ORDERS.map(o => `
+  <article class="o-card">
+    <button class="o-pic" data-order="${o.id}"><img src="renders/${o.cover}-s.webp" alt="" loading="lazy"><span class="o-badges">${badge(o)}</span></button>
+    <div class="o-body">
+      <h4>${esc(tr(o.title))}</h4>
+      <p>${esc(tr(o.short))}</p>
+      <div class="o-foot"><span class="o-n"><b>${o.count}</b> ${nModels(o.count).replace(/^\d+ /, '')}</span><button class="btn-small" data-order="${o.id}">${t('details')}</button></div>
+    </div>
+  </article>`).join('');
+$('#oGrid').onclick = e => { const b = e.target.closest('[data-order]'); if (b) openOrder(b.dataset.order); };
+$('#oBack').onclick = () => showPanel('orders');
+
+let curOrder = null;
+function openOrder(id) {
+  const o = ORDERS.find(x => x.id === id); if (!o) return;
+  curOrder = o;
+  const ms = orderModels(o);
+  const rs = o.renders.map(([rid, en, ru]) => ({ id: rid, name: EN ? en : ru }));
+  $('#oDetail').innerHTML = `
+    <div class="od-hero"><img src="renders/${o.cover}.webp" alt=""><div class="od-badges">${badge(o)}</div></div>
+    <div class="od-main">
+      <h3>${esc(tr(o.title))}</h3>
+      <p class="od-short">${esc(tr(o.short))}</p>
+      <dl class="od-facts">
+        <div><dt>${t('fType')}</dt><dd>${t('kind_' + o.kind)}</dd></div>
+        <div><dt>${t('fCount')}</dt><dd>${o.count}</dd></div>
+        <div><dt>${t('fStatus')}</dt><dd>${t('st_' + o.status)}</dd></div>
+        <div><dt>${t('fFormat')}</dt><dd>${esc(tr(o.format))}</dd></div>
+      </dl>
+      <h5>${t('ordered')}</h5>
+      <ul class="od-items">${tr(o.items).map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+      ${o.kind === 'client' ? `<p class="od-wm">${t('watermark')}</p>` : ''}
+      <button class="btn-primary sm" data-open="pricing">${t('orderSame')}</button>
+    </div>
+    ${ms.length ? `<section class="od-sec"><div class="od-sec-h"><h5>${t('models3d')} · ${ms.length}</h5><button class="btn-small" data-view="0">${t('view3d')}</button></div>
+      <div class="od-models">${ms.map((m, i) => `<button class="od-model" data-view="${i}" style="--c:${m.accent}"><img src="thumbs/${m.id}.webp" alt="" loading="lazy"><b>${esc(modelName(m))}</b><small>${esc(rarity(m) || '')}</small><span class="od-3d">3D</span></button>`).join('')}</div></section>` : ''}
+    <section class="od-sec"><div class="od-sec-h"><h5>${t('renders')} · ${rs.length}</h5>${ms.length ? '' : `<span class="muted">${t('rendersOnly')}</span>`}</div>
+      <div class="od-renders">${rs.map((r, i) => `<button data-r="${i}"><img src="renders/${r.id}-s.webp" alt="${esc(r.name)}" loading="lazy"><span>${esc(r.name)}</span></button>`).join('')}</div></section>`;
+  $('#oDetail').onclick = e => {
+    const v = e.target.closest('[data-view]');
+    if (v) { closePanels(); openCategory({ id: 'order', name: tr(o.title), ids: ms.map(m => m.id) }, ms[+v.dataset.view].id); return; }
+    const r = e.target.closest('[data-r]');
+    if (r) { fillLB(rs, tr(o.title)); lb.hidden = false; openImg(+r.dataset.r); }
+  };
+  showPanel('order');
+}
+
+$('#prBody').innerHTML = `
+  <div class="pr-cards">${PRICES.map(p => `<div class="pr-card"><b>${esc(tr(p.name))}</b><small>${esc(tr(p.note))}</small><div class="pr-price">${esc(tr(p.price))}<span>≈ ${p.robux}</span></div></div>`).join('')}</div>
+  <p class="pr-note">${t('prNote')}</p>
+  <div class="pr-cols">
+    <div><h5>${t('howTitle')}</h5><ol class="pr-steps">${STEPS.map(x => `<li>${esc(tr(x))}</li>`).join('')}</ol></div>
+    <div><h5>${t('pay')}</h5><p>${esc(tr(PAYMENT))}</p>
+      <h5>${t('contact')}</h5>
+      <div class="pr-contacts">${CONTACTS.map(c => c.href
+        ? `<a class="contact" href="${c.href}" target="_blank" rel="noopener"><small>${c.k}</small><b>${esc(c.v)}</b></a>`
+        : `<button class="contact" data-copy="${esc(c.v)}"><small>${c.k}</small><b>${esc(c.v)}</b><i>${t('copy')}</i></button>`).join('')}</div>
+    </div>
+  </div>`;
+$('#prBody').onclick = e => {
+  const b = e.target.closest('[data-copy]'); if (!b) return;
+  navigator.clipboard?.writeText(b.dataset.copy).then(() => { b.querySelector('i').textContent = t('copied'); setTimeout(() => { b.querySelector('i').textContent = t('copy'); }, 1600); }).catch(() => {});
+};
+if (/^#(orders|pricing)$/.test(location.hash)) showPanel(location.hash.slice(1));
+const fromOrder = location.hash.match(/^#order-(\w+)$/);
+if (fromOrder) openOrder(fromOrder[1]);
 
 /* ---------- камера под размер экрана ---------- */
 function frame() {
@@ -360,7 +466,7 @@ const fpsEl = /[?&]fps/.test(location.search) ? Object.assign(document.body.appe
 let fpsAcc = 0, fpsCnt = 0;
 function tick() {
   requestAnimationFrame(tick);
-  if (document.hidden || !lb.hidden) { clock.getDelta(); return; }
+  if (document.hidden || !lb.hidden || openPanel) { clock.getDelta(); return; }
   const menu = !$('#intro').classList.contains('gone');
   frameN++;
   if (menu && frameN % 2) return; // под меню хватает 30 кадров

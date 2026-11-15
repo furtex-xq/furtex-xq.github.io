@@ -1,19 +1,19 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ansaro — 3D-презентация</title>
-<meta name="description" content="Сайт-презентация 3D-моделей Ansaro для Roblox: яйца питомцев, зелья и сокровища в живом 3D.">
-<meta property="og:title" content="Ansaro — 3D-презентация">
-<meta property="og:description" content="Сайт-презентация 3D-моделей для Roblox в живом 3D.">
+<title>Ansaro — 3D models for Roblox</title>
+<meta name="description" content="Ansaro: cheap custom 3D models for Roblox from $10 / 500 Robux. Pet eggs, potions, props, buildings and vehicles in live 3D. Free mini test.">
+<meta property="og:title" content="Ansaro — 3D models for Roblox">
+<meta property="og:description" content="Custom 3D models for Roblox from $10. Live 3D showcase and order catalog.">
 <meta property="og:image" content="renders/g3_world.webp">
 <meta name="theme-color" content="#07060c">
 <link rel="icon" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js">
 <script type="importmap">
 { "imports": {
@@ -23,27 +23,33 @@
 </script>
 </head>
 <body>
-<canvas id="stage" aria-label="3D-сцена с моделью"></canvas>
+<canvas id="stage" aria-label="3D model viewer"></canvas>
 <div class="vignette" aria-hidden="true"></div>
 
 <!-- вступление -->
 <section id="intro" class="intro">
   <div class="intro-inner">
-    <p class="eyebrow">Сайт-презентация</p>
-    <h1><span>ANSARO</span><em>3D-модели для Roblox</em></h1>
-    <p class="lead">Модели в живом 3D: выбери категорию — каждую модель можно покрутить, приблизить и рассмотреть со всех сторон.</p>
+    <div class="intro-bar"><button class="icon-btn" data-open="orders" data-t="orders"></button><button class="icon-btn" data-open="pricing" data-t="pricing"></button><span class="lang" role="group" aria-label="Language"><button data-lang="en">EN</button><button data-lang="ru">RU</button></span></div>
+    <p class="eyebrow" data-t="eyebrow"></p>
+    <h1><span>ANSARO</span><em data-t="tagline"></em></h1>
+    <p class="lead" data-t="lead"></p>
+    <div class="cta"><button class="btn-primary" data-open="pricing" data-t="ctaPrice"></button><button class="btn-ghost" data-open="orders" data-t="ctaOrders"></button></div>
+    <p class="free"><span class="logo-dot"></span><span data-t="freeTest"></span></p>
     <div class="cats" id="cats"></div>
   </div>
 </section>
 
 <!-- интерфейс просмотра -->
 <header class="top">
-  <a class="brand" href="#" id="home"><span class="logo-dot"></span>ANSARO<small>3D-презентация</small></a>
-  <nav class="tabs" id="tabs" aria-label="Коллекции"></nav>
+  <a class="brand" href="#" id="home"><span class="logo-dot"></span>ANSARO<small data-t="brandSub"></small></a>
+  <nav class="tabs" id="tabs" aria-label="Collections"></nav>
   <div class="top-actions">
-    <button class="icon-btn" id="bCats" title="Категории">Категории</button>
-    <button class="icon-btn" id="bRenders" title="Рендеры">Рендеры</button>
-    <button class="icon-btn round" id="bFull" title="Во весь экран" aria-label="Во весь экран"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+    <button class="icon-btn" id="bCats" data-t="cats"></button>
+    <button class="icon-btn" data-open="orders" data-t="orders"></button>
+    <button class="icon-btn hide-s" id="bRenders" data-t="renders"></button>
+    <button class="icon-btn accent" data-open="pricing" data-t="pricing"></button>
+    <span class="lang" role="group" aria-label="Language"><button data-lang="en">EN</button><button data-lang="ru">RU</button></span>
+    <button class="icon-btn round hide-s" id="bFull" data-ta="full"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
   </div>
 </header>
 
@@ -57,25 +63,39 @@
 <div class="counter" id="counter"><b id="cNow">01</b><span>/</span><i id="cAll">42</i></div>
 
 <div class="controls">
-  <button class="nav-btn" id="prev" aria-label="Предыдущая модель"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
-  <button class="pill" id="bPlay" aria-pressed="false"><span class="dot"></span><span id="playTxt">Автопоказ</span></button>
-  <button class="pill on" id="bSpin" aria-pressed="true">Вращение</button>
-  <button class="nav-btn" id="next" aria-label="Следующая модель"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+  <button class="nav-btn" id="prev" aria-label="Previous model"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button class="pill" id="bPlay" aria-pressed="false"><span class="dot"></span><span id="playTxt" data-t="autoplay"></span></button>
+  <button class="pill on" id="bSpin" aria-pressed="true" data-t="spin"></button>
+  <button class="nav-btn" id="next" aria-label="Next model"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
 </div>
 
-<div class="strip-wrap"><div class="strip" id="strip" role="listbox" aria-label="Модели"></div></div>
+<div class="strip-wrap"><div class="strip" id="strip" role="listbox" aria-label="Models"></div></div>
 
-<div class="hint" id="hint">Крути мышкой или пальцем · колесо — приблизить · ← → — листать</div>
+<div class="hint" id="hint" data-t="hint"></div>
 <div class="loader" id="loader"><span></span></div>
 
 <!-- галерея рендеров -->
 <div class="lightbox" id="lightbox" hidden>
-  <div class="lb-head"><h3>Рендеры</h3><button class="icon-btn round" id="lbClose" aria-label="Закрыть"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="lb-head"><h3 id="lbTitle" data-t="renders"></h3><button class="icon-btn round" id="lbClose" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <div class="lb-grid" id="lbGrid"></div>
-  <div class="lb-view" id="lbView" hidden><img id="lbImg" alt=""><p id="lbCap"></p><button class="nav-btn" id="lbPrev" aria-label="Назад"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button class="nav-btn" id="lbNext" aria-label="Вперёд"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div>
+  <div class="lb-view" id="lbView" hidden><img id="lbImg" alt=""><p id="lbCap"></p><button class="nav-btn" id="lbPrev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button class="nav-btn" id="lbNext" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div>
 </div>
 
-<footer class="foot">Сайт-презентация 3D-моделей · Ansaro</footer>
-<script type="module" src="app.js?v=9"></script>
+<!-- каталог заказов, заказ, цены -->
+<div class="panel" id="pOrders" hidden>
+  <div class="p-head"><div><h3 data-t="ordTitle"></h3><p data-t="ordLead"></p></div><button class="icon-btn round" data-close data-ta="close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="o-grid" id="oGrid"></div>
+</div>
+<div class="panel" id="pOrder" hidden>
+  <div class="p-head"><button class="icon-btn" id="oBack"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg><span data-t="ordTitle"></span></button><button class="icon-btn round" data-close data-ta="close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="o-detail" id="oDetail"></div>
+</div>
+<div class="panel" id="pPricing" hidden>
+  <div class="p-head"><div><h3 data-t="prTitle"></h3><p data-t="prLead"></p></div><button class="icon-btn round" data-close data-ta="close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="pricing" id="prBody"></div>
+</div>
+
+<footer class="foot" data-t="foot"></footer>
+<script type="module" src="app.js?v=10"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 // Сайт-презентация Ansaro: данные моделей и цвет подсветки
-export const COLLECTIONS = {"legendary": "Легендарные яйца", "elemental": "Стихийные яйца", "nature": "Яйца природы", "wonder": "Чудо-яйца", "potions": "Зелья", "props": "Сокровища"};
+export const COLLECTIONS = {"legendary": "Легендарные яйца", "elemental": "Стихийные яйца", "nature": "Яйца природы", "wonder": "Чудо-яйца", "potions": "Зелья", "props": "Сокровища", "japan": "Локация «Сакура»"};
 export const MODELS = [
 {
 "id": "seraphimegg",
@@ -420,9 +420,15 @@ export const MODELS = [
 "desc": "Прозрачные кристаллы с подсветкой",
 "kb": 28,
 "accent": "#3fe4ff"
-}
+},
+{"id": "torii", "fitW": 2.4, "en": "Torii Gate", "name": "Ворота тории", "col": "japan", "rarity": "1 020 треуг.", "rarity_en": "1,020 tris", "desc": "Табличка под логотип отдельной деталью", "desc_en": "Sign plate for your logo as a separate part", "kb": 56, "accent": "#ff5a3f"},
+{"id": "stonelantern", "en": "Stone Lantern", "name": "Каменный фонарь", "col": "japan", "rarity": "280 треуг.", "rarity_en": "280 tris", "desc": "Светящаяся часть отдельно, под PointLight", "desc_en": "Glowing part is separate, ready for a PointLight", "kb": 25, "accent": "#ffcf6a"},
+{"id": "koibridge", "fitW": 3.3, "en": "Koi Bridge", "name": "Мост над прудом", "col": "japan", "rarity": "2 824 треуг.", "rarity_en": "2,824 tris", "desc": "Красный арочный мост с перилами", "desc_en": "Red arched bridge with railings", "kb": 195, "accent": "#ff4a3a"},
+{"id": "ansarooffice", "fitW": 2.5, "en": "Ansaro Office", "name": "Офис Ansaro", "col": "japan", "rarity": "1 788 треуг.", "rarity_en": "1,788 tris", "desc": "Японский дом: дверь, крыша и вывеска отдельными деталями", "desc_en": "Japanese house: door, roof and sign are separate parts", "kb": 110, "accent": "#ffb347"},
+{"id": "sakuratreelarge", "fitW": 2.6, "en": "Sakura Tree Large", "name": "Сакура большая", "col": "japan", "rarity": "2 958 треуг.", "rarity_en": "2,958 tris", "desc": "Цветущая крона с запечённой текстурой", "desc_en": "Blossoming canopy with a baked texture", "kb": 286, "accent": "#ff8fc8"},
+{"id": "sakuratreesmall", "fitW": 2.6, "en": "Sakura Tree Small", "name": "Сакура малая", "col": "japan", "rarity": "1 948 треуг.", "rarity_en": "1,948 tris", "desc": "Компактное дерево для аллей и дворов", "desc_en": "Compact tree for alleys and yards", "kb": 134, "accent": "#ff9fd2"}
 ];
-export const RENDERS = [{"id": "08_treasure_chest", "name": "Сундук с сокровищами", "w": 3840, "h": 2160}, {"id": "09_crystal_altar", "name": "Кристальный алтарь", "w": 3840, "h": 2160}, {"id": "10_potions", "name": "Стол алхимика", "w": 3840, "h": 2160}, {"id": "g3_world", "name": "Вся коллекция", "w": 1600, "h": 900}, {"id": "g1_eggs", "name": "Яйца питомцев", "w": 1600, "h": 900}, {"id": "g2_potions", "name": "Зелья", "w": 1600, "h": 900}, {"id": "g4_fire_ice", "name": "Огонь и лёд", "w": 1600, "h": 900}];
+export const RENDERS = [{"id": "08_treasure_chest", "en": "Treasure chest", "name": "Сундук с сокровищами", "w": 3840, "h": 2160}, {"id": "09_crystal_altar", "en": "Crystal altar", "name": "Кристальный алтарь", "w": 3840, "h": 2160}, {"id": "10_potions", "en": "Alchemist table", "name": "Стол алхимика", "w": 3840, "h": 2160}, {"id": "g3_world", "en": "Full collection", "name": "Вся коллекция", "w": 1600, "h": 900}, {"id": "g1_eggs", "en": "Pet eggs", "name": "Яйца питомцев", "w": 1600, "h": 900}, {"id": "g2_potions", "en": "Potions", "name": "Зелья", "w": 1600, "h": 900}, {"id": "g4_fire_ice", "en": "Fire and ice", "name": "Огонь и лёд", "w": 1600, "h": 900}];
 
 // Категории на стартовом экране. cols — какие коллекции входят; cover — модель для обложки.
 // Новая категория появится сама, как только в MODELS будут модели с её коллекциями.
@@ -430,5 +436,57 @@ export const CATEGORIES = [
   { id: 'eggs', name: 'Яйца питомцев', note: 'Подставки, анимации, эффекты', cols: ['legendary', 'elemental', 'nature', 'wonder'], cover: 'seraphimegg' },
   { id: 'potions', name: 'Зелья', note: 'Жидкость, пузыри, эффекты', cols: ['potions'], cover: 'healthpotion' },
   { id: 'transport', name: 'Транспорт', note: 'Машины, лодки, полёт', cols: ['transport'], cover: null },
+  { id: 'world', name: 'Здания и окружение', note: 'Ворота, мосты, деревья, дома', cols: ['japan'], cover: 'torii' },
   { id: 'props', name: 'Сокровища и предметы', note: 'Сундуки, алтари, декор', cols: ['props'], cover: 'treasurechest' },
+];
+
+// Каталог заказов. kind: client — заказ клиента (только рендеры с водяным знаком ANSARO), studio — наш проект, pack — набор моделей.
+// models — id из MODELS (их можно смотреть в 3D), renders — файлы из renders/ (o_*.webp + -s.webp).
+export const ORDERS = [
+  { id: 'sakura', kind: 'studio', status: 'done', count: 10, cover: 'o_torii',
+    title: { en: 'Sakura location for a Roblox place', ru: 'Локация «Сакура» для Roblox-плейса' },
+    short: { en: 'Japanese garden: torii gate, office, bridge, lanterns, sakura trees and booths.', ru: 'Японский сад: ворота тории, офис, мост, фонари, сакуры и киоски.' },
+    items: { en: ['Torii gate with a logo sign', 'Ansaro office building', 'Koi bridge', 'Stone lantern', 'Large and small sakura trees', 'Trade booth and calculator kiosk', 'Pond edge and bench'],
+             ru: ['Ворота тории с табличкой под логотип', 'Здание офиса Ansaro', 'Мост над прудом', 'Каменный фонарь', 'Большая и малая сакура', 'Торговый стенд и киоск-калькулятор', 'Берег пруда и скамейка'] },
+    format: { en: 'FBX with embedded textures, imported into Roblox Studio as MeshParts', ru: 'FBX со вшитыми текстурами, импорт в Roblox Studio как MeshPart' },
+    models: ['torii', 'ansarooffice', 'koibridge', 'stonelantern', 'sakuratreelarge', 'sakuratreesmall'],
+    renders: [['o_torii', 'Torii gate', 'Ворота тории'], ['o_torii_front', 'Torii gate, front', 'Ворота тории, спереди'], ['o_office', 'Ansaro office', 'Офис Ansaro'], ['o_office_front', 'Office, front', 'Офис, спереди'],
+      ['o_bridge', 'Koi bridge', 'Мост над прудом'], ['o_bridge_side', 'Bridge, side', 'Мост, сбоку'], ['o_lantern', 'Stone lantern', 'Каменный фонарь'], ['o_sakura_l', 'Large sakura', 'Большая сакура'], ['o_sakura_s', 'Small sakura', 'Малая сакура'],
+      ['o_booth', 'Trade booth', 'Торговый стенд'], ['o_kiosk', 'Calculator kiosk', 'Киоск-калькулятор'], ['o_pond', 'Pond edge', 'Берег пруда']] },
+  { id: 'mig15', kind: 'client', status: 'work', count: 1, cover: 'o_mig_hero',
+    title: { en: 'MiG-15bis jet for a flight game', ru: 'Самолёт МиГ-15бис для авиа-игры' },
+    short: { en: 'Realistic hard-surface jet with a detailed cockpit and every moving part separate.', ru: 'Реалистичный самолёт с детальной кабиной, все подвижные части отдельно.' },
+    items: { en: ['Realistic MiG-15bis at real scale next to an R15 character', 'Cockpit: stick, throttle, instruments, opening canopy', 'Landing gear: doors, struts, wheels', 'Flaps, ailerons, elevators, rudder, air brakes as separate MeshParts with pivots'],
+             ru: ['Реалистичный МиГ-15бис в реальном масштабе к персонажу R15', 'Кабина: ручка, РУД, приборы, открывающийся фонарь', 'Шасси: створки, стойки, колёса', 'Закрылки, элероны, рули высоты и направления, воздушные тормоза отдельными MeshPart с пивотами'] },
+    format: { en: 'Ready model in Roblox Studio, low triangle count', ru: 'Готовая модель в Roblox Studio, минимум треугольников' },
+    models: [],
+    renders: [['o_mig_hero', 'MiG-15bis', 'МиГ-15бис'], ['o_mig_34', 'As it looks in Roblox', 'Как в Roblox'], ['o_mig_rear', 'Rear view', 'Вид сзади'], ['o_mig_pit', 'Cockpit', 'Кабина']] },
+  { id: 'medkit', kind: 'client', status: 'done', count: 1, cover: 'o_medkit_34',
+    title: { en: 'First-aid kit for an open-world game', ru: 'Аптечка для игры с открытым миром' },
+    short: { en: 'Realistic pickup item, one MeshPart, about 1,000 triangles.', ru: 'Реалистичный подбираемый предмет, один MeshPart, около 1 000 треугольников.' },
+    items: { en: ['Red case with white crosses', 'Handle, latches, hinges and feet', 'Opening lid with an inside tray'], ru: ['Красный кейс с белыми крестами', 'Ручка, защёлки, петли и ножки', 'Открывающаяся крышка и отсек внутри'] },
+    format: { en: 'FBX, one MeshPart with texture', ru: 'FBX, один MeshPart с текстурой' },
+    models: [],
+    renders: [['o_medkit_34', 'First-aid kit', 'Аптечка'], ['o_medkit_open', 'Opened', 'Открытая'], ['o_medkit_top', 'Inside', 'Внутри'], ['o_medkit_back', 'Back', 'Сзади']] },
+  { id: 'eggs', kind: 'pack', status: 'done', count: 20, cover: 'g1_eggs',
+    title: { en: 'Pet eggs for a simulator', ru: 'Яйца питомцев для симулятора' },
+    short: { en: '20 animated eggs with stands and effects, from Rare to Secret.', ru: '20 анимированных яиц с подставками и эффектами, от редких до секретных.' },
+    items: { en: ['5 legendary, 5 elemental, 5 nature and 5 wonder eggs', 'Animated parts: wings, halos, portals, gears', 'Particles: embers, snow, petals, bubbles'], ru: ['5 легендарных, 5 стихийных, 5 природных и 5 чудо-яиц', 'Анимированные детали: крылья, нимбы, порталы, шестерёнки', 'Частицы: угольки, снег, лепестки, пузыри'] },
+    format: { en: 'Roblox Studio models with scripts', ru: 'Модели Roblox Studio со скриптами' },
+    cols: ['legendary', 'elemental', 'nature', 'wonder'],
+    renders: [['g1_eggs', 'Pet eggs', 'Яйца питомцев'], ['g4_fire_ice', 'Fire and ice', 'Огонь и лёд'], ['g3_world', 'Full collection', 'Вся коллекция']] },
+  { id: 'potions', kind: 'pack', status: 'done', count: 20, cover: 'g2_potions',
+    title: { en: 'Potion pack with effects', ru: 'Набор зелий с эффектами' },
+    short: { en: '20 potions with liquid and bubbles, each with a ready game effect.', ru: '20 зелий с жидкостью и пузырями, у каждого готовый игровой эффект.' },
+    items: { en: ['Healing, speed, high jump, invisibility', 'XP and coin potions that fire an event for your code', 'Common to Secret rarity'], ru: ['Лечение, скорость, высокий прыжок, невидимость', 'Зелья опыта и монет с событием для вашего кода', 'Редкость от обычной до секретной'] },
+    format: { en: 'Roblox Studio tools with scripts', ru: 'Инструменты Roblox Studio со скриптами' },
+    cols: ['potions'],
+    renders: [['g2_potions', 'Potions', 'Зелья'], ['10_potions', 'Alchemist table', 'Стол алхимика']] },
+  { id: 'treasure', kind: 'pack', status: 'done', count: 2, cover: '08_treasure_chest',
+    title: { en: 'Treasure chest and crystal altar', ru: 'Сундук с сокровищами и кристальный алтарь' },
+    short: { en: 'Two showcase props with gems, coins and glowing crystals.', ru: 'Два предмета для витрины: самоцветы, монеты и светящиеся кристаллы.' },
+    items: { en: ['Treasure chest with coins, crown and gems', 'Crystal altar with inner glow'], ru: ['Сундук с монетами, короной и самоцветами', 'Кристальный алтарь с подсветкой'] },
+    format: { en: 'Roblox Studio models', ru: 'Модели Roblox Studio' },
+    models: ['treasurechest', 'crystalaltar'],
+    renders: [['08_treasure_chest', 'Treasure chest', 'Сундук с сокровищами'], ['09_crystal_altar', 'Crystal altar', 'Кристальный алтарь']] },
 ];
