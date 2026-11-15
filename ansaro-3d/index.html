@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ansaro — 3D models for Roblox</title>
+<title>Ansaro Technologies — Roblox development</title>
 <meta name="description" content="Ansaro: cheap custom 3D models for Roblox from $10 / 500 Robux. Pet eggs, potions, props, buildings and vehicles in live 3D. Free mini test.">
-<meta property="og:title" content="Ansaro — 3D models for Roblox">
+<meta property="og:title" content="Ansaro Technologies — Roblox development">
 <meta property="og:description" content="Custom 3D models for Roblox from $10. Live 3D showcase and order catalog.">
-<meta property="og:image" content="renders/g3_world.webp">
-<meta name="theme-color" content="#07060c">
+<meta property="og:image" content="renders/o_dm_eggs.webp">
+<meta name="theme-color" content="#050505">
 <link rel="icon" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=7">
 <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js">
 <script type="importmap">
 { "imports": {
@@ -28,25 +28,27 @@
 
 <!-- вступление -->
 <section id="intro" class="intro">
+  <div class="intro-bg" aria-hidden="true"><i class="g1"></i><i class="g2"></i><i class="lines"></i></div>
   <div class="intro-inner">
-    <div class="intro-bar"><button class="icon-btn" data-open="orders" data-t="orders"></button><button class="icon-btn" data-open="pricing" data-t="pricing"></button><span class="lang" role="group" aria-label="Language"><button data-lang="en">EN</button><button data-lang="ru">RU</button></span></div>
+    <div class="intro-bar"><button class="icon-btn" data-open="pricing" data-t="pricing"></button><span class="lang" role="group" aria-label="Language"><button data-lang="en">EN</button><button data-lang="ru">RU</button></span></div>
     <p class="eyebrow" data-t="eyebrow"></p>
-    <h1><span>ANSARO</span><em data-t="tagline"></em></h1>
+    <h1><span>ANSARO</span><em>TECHNOLOGIES</em></h1>
+    <p class="dev"><span data-t="developer"></span> <b>nochevvsky</b></p>
     <p class="lead" data-t="lead"></p>
-    <div class="cta"><button class="btn-primary" data-open="pricing" data-t="ctaPrice"></button><button class="btn-ghost" data-open="orders" data-t="ctaOrders"></button></div>
+    <div class="cta"><button class="btn-primary" data-open="pricing" data-t="ctaPrice"></button></div>
     <p class="free"><span class="logo-dot"></span><span data-t="freeTest"></span></p>
-    <div class="cats" id="cats"></div>
+    <h2 class="sec-t"><span data-t="clientsTitle"></span></h2>
+    <div class="clients" id="clients"></div>
   </div>
 </section>
 
 <!-- интерфейс просмотра -->
 <header class="top">
-  <a class="brand" href="#" id="home"><span class="logo-dot"></span>ANSARO<small data-t="brandSub"></small></a>
+  <a class="brand" href="#" id="home"><span class="logo-dot"></span>ANSARO<small>TECHNOLOGIES</small></a>
   <nav class="tabs" id="tabs" aria-label="Collections"></nav>
   <div class="top-actions">
-    <button class="icon-btn" id="bCats" data-t="cats"></button>
-    <button class="icon-btn" data-open="orders" data-t="orders"></button>
-    <button class="icon-btn hide-s" id="bRenders" data-t="renders"></button>
+    <button class="icon-btn" id="bCats" data-t="clients"></button>
+    <button class="icon-btn" id="bOrder" data-t="order"></button>
     <button class="icon-btn accent" data-open="pricing" data-t="pricing"></button>
     <span class="lang" role="group" aria-label="Language"><button data-lang="en">EN</button><button data-lang="ru">RU</button></span>
     <button class="icon-btn round hide-s" id="bFull" data-ta="full"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
@@ -82,12 +84,12 @@
 </div>
 
 <!-- каталог заказов, заказ, цены -->
-<div class="panel" id="pOrders" hidden>
-  <div class="p-head"><div><h3 data-t="ordTitle"></h3><p data-t="ordLead"></p></div><button class="icon-btn round" data-close data-ta="close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-  <div class="o-grid" id="oGrid"></div>
+<div class="panel" id="pReview" hidden>
+  <div class="p-head"><div><h3 data-t="review"></h3></div><button class="icon-btn round" data-close data-ta="close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="review" id="rvBody"></div>
 </div>
 <div class="panel" id="pOrder" hidden>
-  <div class="p-head"><button class="icon-btn" id="oBack"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg><span data-t="ordTitle"></span></button><button class="icon-btn round" data-close data-ta="close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="p-head"><button class="icon-btn" id="oBack"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg><span data-t="clients"></span></button><button class="icon-btn round" data-close data-ta="close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <div class="o-detail" id="oDetail"></div>
 </div>
 <div class="panel" id="pPricing" hidden>
@@ -96,6 +98,6 @@
 </div>
 
 <footer class="foot" data-t="foot"></footer>
-<script type="module" src="app.js?v=11"></script>
+<script type="module" src="app.js?v=12"></script>
 </body>
 </html>

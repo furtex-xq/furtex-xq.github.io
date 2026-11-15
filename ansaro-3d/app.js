@@ -6,8 +6,9 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-import { COLLECTIONS, MODELS, RENDERS, CATEGORIES, ORDERS } from './data.js?v=4';
-import { LANG, EN, setLang, t, tr, PRICES, STEPS, PAYMENT, CONTACTS, colName, catText, modelName, modelSub, modelDesc, rarity, renderName, nModels } from './lang.js?v=2';
+import { COLLECTIONS, MODELS, CLIENTS } from './data.js?v=5';
+const CATEGORIES = CLIENTS;
+import { LANG, EN, setLang, t, tr, PRICES, STEPS, PAYMENT, CONTACTS, colName, catText, modelName, modelSub, modelDesc, rarity, renderName, nModels } from './lang.js?v=3';
 import { rigModel, animateRig } from './anim.js?v=3';
 import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
 import { studioEnvironment, upgradeMaterial, detailSpace, detailToView } from './look.js?v=6';
@@ -208,27 +209,37 @@ tabs.onclick = e => {
   show(0, true);
 };
 
-/* ---------- категории ---------- */
+/* ---------- клиенты: карточка = заказ, отзыв, каталог его моделей ---------- */
 const catOf = m => CATEGORIES.find(c => c.cols.includes(m.col)) || CATEGORIES[0];
-const SOON_ICON = '<svg viewBox="0 0 24 24"><path d="M3 16v-3l2-5h11l3 5h2v3h-2M3 16h2m4 0h6"/><circle cx="7" cy="16.5" r="2"/><circle cx="17" cy="16.5" r="2"/></svg>';
-const catsEl = $('#cats');
-catsEl.innerHTML = CATEGORIES.map(c => {
-  const ms = MODELS.filter(m => c.cols.includes(m.col)), n = ms.length;
-  const cover = n ? (MODELS.find(m => m.id === c.cover) || ms[0]) : null;
-  const tx = catText(c);
-  return `<button class="cat" data-c="${c.id}" style="--c:${cover ? cover.accent : '#8a83a3'}" ${n ? '' : 'disabled'}>
-    <span class="n">${n ? nModels(n) : t('soon')}</span>
-    <span class="pic">${cover ? `<img src="thumbs/${cover.id}.webp" alt="">` : SOON_ICON}</span>
-    <b>${tx.name}</b><small>${tx.note || ''}</small></button>`;
-}).join('');
-catsEl.onclick = e => { const b = e.target.closest('.cat'); if (b && !b.disabled) openCategory(CATEGORIES.find(c => c.id === b.dataset.c)); };
+const clientModels = c => MODELS.filter(m => c.cols.includes(m.col));
+$('#clients').innerHTML = CATEGORIES.map(c => `
+  <article class="client">
+    <button class="cl-pic" data-act="catalog" data-c="${c.id}"><img src="renders/${c.cover}-s.webp" alt="" loading="lazy"></button>
+    <div class="cl-body">
+      <div class="cl-top"><h3>${esc(c.name)}</h3><span class="cl-n"><b>${c.count}</b> ${nModels(c.count).replace(/^\d+ /, '')}</span></div>
+      <p>${esc(tr(c.order.short))}</p>
+      <div class="cl-acts">
+        <button class="cl-btn" data-act="order" data-c="${c.id}">${t('order')}</button>
+        <button class="cl-btn" data-act="review" data-c="${c.id}">${t('review')}</button>
+        <button class="cl-btn main" data-act="catalog" data-c="${c.id}">${t('catalog')}</button>
+      </div>
+    </div>
+  </article>`).join('');
+$('#clients').onclick = e => {
+  const b = e.target.closest('[data-act]'); if (!b) return;
+  const c = CATEGORIES.find(x => x.id === b.dataset.c);
+  if (b.dataset.act === 'catalog') openCategory(c);
+  if (b.dataset.act === 'order') openOrder(c.id);
+  if (b.dataset.act === 'review') openReview(c.id);
+};
 
 function openCategory(c, startId) {
   cat = c;
-  catModels = c.ids ? c.ids.map(id => MODELS.find(m => m.id === id)).filter(Boolean) : MODELS.filter(m => c.cols.includes(m.col));
+  closePanels();
+  catModels = clientModels(c);
   filter = 'all'; list = catModels.slice();
-  const cols = c.ids ? [] : c.cols.filter(k => catModels.some(m => m.col === k));
-  const cname = c.ids ? c.name : catText(c).name;
+  const cols = c.cols.filter(k => catModels.some(m => m.col === k));
+  const cname = c.name;
   tabs.innerHTML = cols.length > 1 ? [['all', t('all')]].concat(cols.map(k => [k, colName(k, COLLECTIONS)])).map(([k, v]) => `<button data-k="${k}" class="${k === 'all' ? 'on' : ''}">${esc(v)}</button>`).join('') : `<button class="on" data-k="all">${esc(cname)}</button>`;
   strip.innerHTML = catModels.map(m => `<button class="thumb" role="option" data-id="${m.id}" data-col="${m.col}" title="${esc(modelName(m))}"><img src="thumbs/${m.id}.webp" alt="${esc(modelName(m))}" loading="lazy" width="68" height="68"></button>`).join('');
   const i = startId ? Math.max(0, list.findIndex(m => m.id === startId)) : 0;
@@ -312,6 +323,7 @@ $('#bFull').onclick = () => { document.fullscreenElement ? document.exitFullscre
 function openPicker() { stopPlay(); history.replaceState(null, "", location.pathname + location.search); $("#intro").classList.remove("gone"); }
 $('#home').onclick = e => { e.preventDefault(); openPicker(); };
 $('#bCats').onclick = openPicker;
+$('#bOrder').onclick = () => { if (cat) openOrder(cat.id); };
 
 function startShow() { $('#intro').classList.add('gone'); }
 
@@ -321,7 +333,6 @@ const hint = $('#hint');
 /* ---------- рендеры ---------- */
 const lb = $('#lightbox'), lbGrid = $('#lbGrid'), lbView = $('#lbView');
 let lbI = 0, lbList = [];
-const ALL_RENDERS = RENDERS.map(r => ({ id: r.id, name: renderName(r) }));
 function fillLB(items, title) {
   lbList = items; $('#lbTitle').textContent = title || t('renders');
   lbGrid.innerHTML = items.map((r, i) => `<button data-i="${i}"><img src="renders/${r.id}-s.webp" alt="${esc(r.name)}" loading="lazy"><span>${esc(r.name)}</span></button>`).join('');
@@ -330,14 +341,14 @@ lbGrid.onclick = e => { const b = e.target.closest('button'); if (b) openImg(+b.
 function openImg(i) { lbI = (i + lbList.length) % lbList.length; const r = lbList[lbI]; $('#lbImg').src = `renders/${r.id}.webp`; $('#lbImg').alt = r.name; $('#lbCap').textContent = r.name; lbView.hidden = false; }
 function lbStep(d) { if (!lbView.hidden) openImg(lbI + d); }
 function closeLB() { if (!lbView.hidden) { lbView.hidden = true; return; } lb.hidden = true; }
-$('#bRenders').onclick = () => { stopPlay(); fillLB(ALL_RENDERS); lb.hidden = false; };
+
 $('#lbClose').onclick = () => { lbView.hidden = true; lb.hidden = true; };
 $('#lbPrev').onclick = () => lbStep(-1); $('#lbNext').onclick = () => lbStep(1);
 lbView.onclick = e => { if (e.target === lbView) lbView.hidden = true; };
 
-/* ---------- каталог заказов, заказ, цены ---------- */
-const panels = { orders: $('#pOrders'), order: $('#pOrder'), pricing: $('#pPricing') };
-let openPanel = null, panelFrom = null;
+/* ---------- заказ, отзыв, цены ---------- */
+const panels = { order: $('#pOrder'), review: $('#pReview'), pricing: $('#pPricing') };
+let openPanel = null;
 function showPanel(k) {
   stopPlay();
   Object.entries(panels).forEach(([n, p]) => { p.hidden = n !== k; });
@@ -348,58 +359,62 @@ document.querySelectorAll('[data-close]').forEach(b => { b.onclick = closePanels
 Object.values(panels).forEach(p => p.addEventListener('click', e => { if (e.target === p) closePanels(); }));
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-open]'); if (!b) return;
-  if (b.dataset.open === 'orders') showPanel('orders');
   if (b.dataset.open === 'pricing') showPanel('pricing');
 });
+$('#oBack').onclick = () => { closePanels(); openPicker(); };
 
-const orderModels = o => (o.cols ? MODELS.filter(m => o.cols.includes(m.col)) : (o.models || []).map(id => MODELS.find(m => m.id === id)).filter(Boolean));
-const badge = o => `<span class="b-kind k-${o.kind}">${t('kind_' + o.kind)}</span><span class="b-st s-${o.status}">${t('st_' + o.status)}</span>`;
-$('#oGrid').innerHTML = ORDERS.map(o => `
-  <article class="o-card">
-    <button class="o-pic" data-order="${o.id}"><img src="renders/${o.cover}-s.webp" alt="" loading="lazy"><span class="o-badges">${badge(o)}</span></button>
-    <div class="o-body">
-      <h4>${esc(tr(o.title))}</h4>
-      <p>${esc(tr(o.short))}</p>
-      <div class="o-foot"><span class="o-n"><b>${o.count}</b> ${nModels(o.count).replace(/^\d+ /, '')}${o.total ? ` · <em>${esc(o.total)}</em>` : ''}</span><button class="btn-small" data-order="${o.id}">${t('details')}</button></div>
-    </div>
-  </article>`).join('');
-$('#oGrid').onclick = e => { const b = e.target.closest('[data-order]'); if (b) openOrder(b.dataset.order); };
-$('#oBack').onclick = () => showPanel('orders');
-
-let curOrder = null;
 function openOrder(id) {
-  const o = ORDERS.find(x => x.id === id); if (!o) return;
-  curOrder = o;
-  const ms = orderModels(o);
+  const c = CATEGORIES.find(x => x.id === id); if (!c) return;
+  const o = c.order, ms = clientModels(c);
   const rs = o.renders.map(([rid, en, ru]) => ({ id: rid, name: EN ? en : ru }));
   $('#oDetail').innerHTML = `
-    <div class="od-hero"><img src="renders/${o.cover}.webp" alt=""><div class="od-badges">${badge(o)}</div></div>
+    <div class="od-hero"><img src="renders/${c.cover}.webp" alt=""></div>
     <div class="od-main">
+      <p class="od-client">${esc(c.name)}</p>
       <h3>${esc(tr(o.title))}</h3>
       <p class="od-short">${esc(tr(o.short))}</p>
       <dl class="od-facts">
-        <div><dt>${t('fType')}</dt><dd>${t('kind_' + o.kind)}</dd></div>
-        <div><dt>${t('fCount')}</dt><dd>${o.count}</dd></div>
+        <div><dt>${t('fCount')}</dt><dd>${c.count}</dd></div>
+        ${c.total ? `<div><dt>${t('fTotal')}</dt><dd>${esc(c.total)}</dd></div>` : ''}
         <div><dt>${t('fStatus')}</dt><dd>${t('st_' + o.status)}</dd></div>
         <div><dt>${t('fFormat')}</dt><dd>${esc(tr(o.format))}</dd></div>
-        ${o.total ? `<div><dt>${t('fTotal')}</dt><dd>${esc(o.total)}</dd></div>` : ''}
       </dl>
       <h5>${t('ordered')}</h5>
       <ul class="od-items">${tr(o.items).map(x => `<li>${esc(x)}</li>`).join('')}</ul>
-      ${o.kind === 'client' ? `<p class="od-wm">${t('watermark')}</p>` : ''}
-      <button class="btn-primary sm" data-open="pricing">${t('orderSame')}</button>
+      <div class="od-btns"><button class="btn-primary sm" data-view="0">${t('catalog')} · 3D</button><button class="btn-ghost sm" data-rv>${t('review')}</button></div>
     </div>
-    ${ms.length ? `<section class="od-sec"><div class="od-sec-h"><h5>${t('models3d')} · ${ms.length}</h5><button class="btn-small" data-view="0">${t('view3d')}</button></div>
-      <div class="od-models">${ms.map((m, i) => `<button class="od-model" data-view="${i}" style="--c:${m.accent}"><img src="thumbs/${m.id}.webp" alt="" loading="lazy"><b>${esc(modelName(m))}</b><small>${esc(rarity(m) || '')}</small><span class="od-3d">3D</span></button>`).join('')}</div></section>` : ''}
-    <section class="od-sec"><div class="od-sec-h"><h5>${t('renders')} · ${rs.length}</h5>${ms.length ? '' : `<span class="muted">${t('rendersOnly')}</span>`}</div>
+    ${ms.length ? `<section class="od-sec"><div class="od-sec-h"><h5>${t('models3d')} · ${ms.length}</h5></div>
+      <div class="od-models">${ms.map((m, i) => `<button class="od-model" data-view="${i}"><img src="thumbs/${m.id}.webp" alt="" loading="lazy"><b>${esc(modelName(m))}</b><small>${esc(rarity(m) || '')}</small><span class="od-3d">3D</span></button>`).join('')}</div></section>` : ''}
+    <section class="od-sec"><div class="od-sec-h"><h5>${t('renders')} · ${rs.length}</h5></div>
       <div class="od-renders">${rs.map((r, i) => `<button data-r="${i}"><img src="renders/${r.id}-s.webp" alt="${esc(r.name)}" loading="lazy"><span>${esc(r.name)}</span></button>`).join('')}</div></section>`;
   $('#oDetail').onclick = e => {
     const v = e.target.closest('[data-view]');
-    if (v) { closePanels(); openCategory({ id: 'order', name: tr(o.title), ids: ms.map(m => m.id) }, ms[+v.dataset.view].id); return; }
+    if (v) { openCategory(c, ms[+v.dataset.view].id); return; }
+    if (e.target.closest('[data-rv]')) { openReview(c.id); return; }
     const r = e.target.closest('[data-r]');
     if (r) { fillLB(rs, tr(o.title)); lb.hidden = false; openImg(+r.dataset.r); }
   };
   showPanel('order');
+}
+
+function openReview(id) {
+  const c = CATEGORIES.find(x => x.id === id); if (!c) return;
+  const r = c.review;
+  $('#rvBody').innerHTML = r ? `
+    <figure class="rv-card">
+      <div class="rv-stars" aria-label="${r.stars || 5}/5">${'★'.repeat(r.stars || 5)}</div>
+      <blockquote>${esc(tr(r.text))}</blockquote>
+      ${r.orig && EN === false ? '' : ''}
+      <figcaption><b>${esc(c.name)}</b>${r.date ? ` · ${esc(r.date)}` : ''}</figcaption>
+      ${r.img ? `<img class="rv-shot" src="${r.img}" alt="">` : ''}
+    </figure>
+    <div class="od-btns"><button class="btn-primary sm" data-cat="${c.id}">${t('catalog')} · 3D</button><button class="btn-ghost sm" data-ord="${c.id}">${t('order')}</button></div>`
+    : `<p class="rv-soon">${t('reviewSoon')}</p><div class="od-btns"><button class="btn-primary sm" data-cat="${c.id}">${t('catalog')} · 3D</button><button class="btn-ghost sm" data-ord="${c.id}">${t('order')}</button></div>`;
+  $('#rvBody').onclick = e => {
+    if (e.target.closest('[data-cat]')) openCategory(c);
+    if (e.target.closest('[data-ord]')) openOrder(c.id);
+  };
+  showPanel('review');
 }
 
 $('#prBody').innerHTML = `
@@ -418,9 +433,9 @@ $('#prBody').onclick = e => {
   const b = e.target.closest('[data-copy]'); if (!b) return;
   navigator.clipboard?.writeText(b.dataset.copy).then(() => { b.querySelector('i').textContent = t('copied'); setTimeout(() => { b.querySelector('i').textContent = t('copy'); }, 1600); }).catch(() => {});
 };
-if (/^#(orders|pricing)$/.test(location.hash)) showPanel(location.hash.slice(1));
-const fromOrder = location.hash.match(/^#order-(\w+)$/);
-if (fromOrder) openOrder(fromOrder[1]);
+if (location.hash === '#pricing') showPanel('pricing');
+const fromLink = location.hash.match(/^#(order|review|catalog)-(\w+)$/);
+if (fromLink) ({ order: openOrder, review: openReview, catalog: id => { const c = CATEGORIES.find(x => x.id === id); if (c) openCategory(c); } })[fromLink[1]](fromLink[2]);
 
 /* ---------- камера под размер экрана ---------- */
 function frame() {
@@ -470,7 +485,7 @@ function tick() {
   if (document.hidden || !lb.hidden || openPanel) { clock.getDelta(); return; }
   const menu = !$('#intro').classList.contains('gone');
   frameN++;
-  if (menu && frameN % 2) return; // под меню хватает 30 кадров
+  if (menu) { clock.getDelta(); return; } // главная статичная, сцену не рисуем
   const dt = Math.min(clock.getDelta(), 0.05); time += dt;
   if (!menu) adapt(dt);
   if (fpsEl) { fpsAcc += dt; fpsCnt++; if (fpsAcc > 0.5) { fpsEl.textContent = Math.round(fpsCnt / fpsAcc) + ' fps · q' + tier; fpsAcc = 0; fpsCnt = 0; } }
@@ -515,10 +530,6 @@ function tick() {
 /* ---------- старт ---------- */
 const fromHash = MODELS.find(m => '#' + m.id === location.hash);
 if (fromHash) openCategory(catOf(fromHash), fromHash.id);
-else {
-  // за меню крутится обложка первой категории
-  cat = CATEGORIES[0]; catModels = MODELS.filter(m => cat.cols.includes(m.col)); list = catModels.slice();
-  show(Math.max(0, list.findIndex(m => m.id === cat.cover)), true);
-}
+// главная статичная: 3D грузится только при открытии каталога
 setTier(tier);
 tick();

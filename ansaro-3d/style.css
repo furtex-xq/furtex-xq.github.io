@@ -1,10 +1,12 @@
 :root {
-  --bg: #07060c;
+  --bg: #050505;
   --ink: #f4f1fa;
   --muted: #a39db3;
   --line: rgba(255, 255, 255, .1);
   --glass: rgba(18, 15, 28, .55);
-  --accent: #ffc24a;
+  --accent: #e6b450;
+  --gold: #e6b450;
+  --gold-2: #f7dc95;
   --font: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
   --display: "Unbounded", "Manrope", system-ui, sans-serif;
 }
@@ -20,16 +22,16 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 
 /* ---------- вступление ---------- */
 .intro { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 24px;
-  background: radial-gradient(80% 60% at 50% 40%, rgba(255, 194, 74, .10), transparent 70%), rgba(7, 6, 12, .8);
+  background: #050505;
   overflow-y: auto; transition: opacity .9s ease, visibility .9s; }
 .intro.gone { opacity: 0; visibility: hidden; }
 .intro-inner { max-width: 1040px; width: 100%; text-align: center; margin: auto; }
 .eyebrow { margin: 0 0 18px; color: var(--accent); letter-spacing: .32em; text-transform: uppercase; font-weight: 700; font-size: 12px; }
 .intro h1 { margin: 0; font-family: var(--display); line-height: .95; }
 .intro h1 span { display: block; font-size: clamp(56px, 13vw, 148px); font-weight: 800; letter-spacing: .02em;
-  background: linear-gradient(180deg, #fff 30%, #d9c9ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
-  filter: drop-shadow(0 8px 40px rgba(255, 194, 74, .25)); }
-.intro h1 em { display: block; margin-top: 14px; font-style: normal; font-weight: 500; font-size: clamp(16px, 2.6vw, 24px); letter-spacing: .06em; color: #e7e1f4; }
+  background: linear-gradient(180deg, #ffffff 35%, #f3e3b5 70%, #d9a744 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 10px 50px rgba(230, 180, 80, .22)); }
+.intro h1 em { display: block; margin-top: 16px; font-style: normal; font-weight: 700; font-size: clamp(15px, 2.4vw, 22px); letter-spacing: .62em; padding-left: .62em; color: var(--gold); }
 .lead { margin: 22px auto 22px; max-width: 520px; color: var(--muted); font-size: 16px; }
 .btn-primary { border: 0; border-radius: 999px; padding: 16px 28px; font-weight: 700; font-size: 16px; color: #16111f;
   background: linear-gradient(135deg, #ffe08a, #ffb83a); box-shadow: 0 10px 40px rgba(255, 184, 58, .35), inset 0 1px 0 rgba(255, 255, 255, .6);
@@ -262,3 +264,62 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
   .od-renders { grid-template-columns: repeat(2, 1fr); }
 }
 .o-n em { font-style: normal; color: var(--accent); font-weight: 700; }
+
+/* ---------- главная: статичный чёрно-золотой фон ---------- */
+.intro-bg { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+.intro-bg i { position: absolute; display: block; }
+.intro-bg .g1 { width: 120vmax; height: 120vmax; left: 50%; top: -62vmax; transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(230, 180, 80, .20), rgba(230, 180, 80, .06) 45%, transparent 72%); }
+.intro-bg .g2 { width: 90vmax; height: 60vmax; left: 50%; bottom: -38vmax; transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(255, 255, 255, .06), transparent 70%); }
+.intro-bg .lines { inset: 0; opacity: .5;
+  background: linear-gradient(115deg, transparent 0 46%, rgba(230, 180, 80, .16) 46.1%, transparent 46.4% 100%),
+              linear-gradient(115deg, transparent 0 58%, rgba(255, 255, 255, .06) 58.1%, transparent 58.3% 100%),
+              linear-gradient(65deg, transparent 0 30%, rgba(230, 180, 80, .08) 30.1%, transparent 30.3% 100%); }
+.intro-inner { position: relative; }
+.intro .eyebrow { color: var(--gold); }
+.dev { margin: 22px 0 0; color: #bdb6a6; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; }
+.dev b { color: #fff; letter-spacing: .04em; text-transform: none; font-size: 17px; margin-left: 6px; padding: 4px 12px; border: 1px solid rgba(230, 180, 80, .45); border-radius: 999px; background: rgba(230, 180, 80, .08); }
+.intro .lead { color: #b9b2a3; }
+.btn-primary { background: linear-gradient(135deg, #f7dc95, #d9a744); color: #120d02; box-shadow: 0 10px 40px rgba(230, 180, 80, .3), inset 0 1px 0 rgba(255, 255, 255, .6); }
+.btn-primary:hover { box-shadow: 0 16px 50px rgba(230, 180, 80, .42); }
+.btn-ghost.sm { padding: 11px 20px; font-size: 14px; }
+.sec-t { display: flex; align-items: center; gap: 18px; margin: 10px 0 22px; font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; color: #fff; }
+.sec-t::before, .sec-t::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(230, 180, 80, .55), transparent); }
+.clients { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 420px)); justify-content: center; gap: 20px; text-align: left; }
+.client { border-radius: 22px; overflow: hidden; background: linear-gradient(180deg, #121110, #0a0a09); border: 1px solid rgba(230, 180, 80, .22);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .5); transition: transform .45s cubic-bezier(.2, .8, .2, 1), border-color .45s, box-shadow .45s; animation: rise .8s cubic-bezier(.2, .8, .2, 1) both; }
+.client:hover { transform: translateY(-6px); border-color: rgba(230, 180, 80, .6); box-shadow: 0 28px 80px rgba(0, 0, 0, .6), 0 0 0 1px rgba(230, 180, 80, .2), 0 10px 50px rgba(230, 180, 80, .12); }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+.cl-pic { display: block; width: 100%; border: 0; padding: 0; aspect-ratio: 16 / 9; overflow: hidden; background: #000; position: relative; }
+.cl-pic img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .8s cubic-bezier(.2, .8, .2, 1), filter .8s; filter: saturate(.9); }
+.cl-pic::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(10, 10, 9, .9)); }
+.client:hover .cl-pic img { transform: scale(1.06); filter: saturate(1.05); }
+.cl-body { padding: 4px 20px 20px; }
+.cl-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.cl-top h3 { margin: 0; font-family: var(--display); font-size: 24px; color: #fff; }
+.cl-n { color: #bdb6a6; font-size: 14px; white-space: nowrap; } .cl-n b { color: var(--gold); font-family: var(--display); font-size: 22px; margin-right: 3px; }
+.cl-body p { margin: 8px 0 16px; color: #a9a294; font-size: 14px; }
+.cl-acts { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 8px; }
+.cl-btn { border: 1px solid rgba(255, 255, 255, .16); border-radius: 12px; padding: 11px 8px; font-size: 14px; font-weight: 700; background: rgba(255, 255, 255, .04); transition: background .3s, border-color .3s, color .3s; }
+.cl-btn:hover { border-color: rgba(230, 180, 80, .6); color: var(--gold-2); background: rgba(230, 180, 80, .08); }
+.cl-btn.main { border: 0; color: #120d02; background: linear-gradient(135deg, #f7dc95, #d9a744); }
+.cl-btn.main:hover { color: #120d02; filter: brightness(1.08); }
+.od-client { margin: 0 0 6px; color: var(--gold); font-weight: 800; letter-spacing: .2em; text-transform: uppercase; font-size: 12px; }
+.od-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.od-model { background: radial-gradient(70% 55% at 50% 38%, rgba(230, 180, 80, .16), rgba(255,255,255,.02)); }
+.od-model:hover { border-color: rgba(230, 180, 80, .55); }
+.review { max-width: 760px; margin: 0 auto; }
+.rv-card { margin: 0 0 22px; padding: 28px; border-radius: 22px; border: 1px solid rgba(230, 180, 80, .3); background: linear-gradient(180deg, #121110, #0a0a09); }
+.rv-stars { color: var(--gold); font-size: 22px; letter-spacing: .12em; }
+.rv-card blockquote { margin: 14px 0 18px; font-size: 19px; line-height: 1.55; color: #fff; white-space: pre-line; }
+.rv-card figcaption { color: #bdb6a6; } .rv-card figcaption b { color: var(--gold-2); }
+.rv-shot { display: block; max-width: 100%; margin-top: 18px; border-radius: 14px; border: 1px solid var(--line); }
+.rv-soon { color: #bdb6a6; font-size: 17px; margin: 0 0 22px; }
+.panel { background: rgba(5, 5, 5, .95); }
+.intro-bar .icon-btn, .intro-bar .lang { background: rgba(255, 255, 255, .04); }
+@media (max-width: 760px) {
+  .clients { grid-template-columns: 1fr; }
+  .cl-acts { grid-template-columns: 1fr 1fr; } .cl-btn.main { grid-column: 1 / -1; }
+  .dev b { font-size: 15px; }
+}

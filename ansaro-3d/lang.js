@@ -13,10 +13,18 @@ export function setLang(l) {
 /* ---------- тексты интерфейса ---------- */
 const UI = {
   title: ['Ansaro — 3D models for Roblox', 'Ansaro — 3D-модели для Roblox'],
-  eyebrow: ['Roblox 3D studio', 'Студия 3D для Roblox'],
+  eyebrow: ['Roblox development studio', 'Студия разработки для Roblox'],
+  developer: ['Developer', 'Разработчик'],
+  clientsTitle: ['Our clients', 'Наши клиенты'],
+  clients: ['Clients', 'Клиенты'],
+  order: ['Order', 'Заказ'],
+  review: ['Review', 'Отзыв'],
+  catalog: ['Catalog', 'Каталог'],
+  reviewSoon: ['The review will appear here soon.', 'Отзыв скоро появится здесь.'],
+  orderTotal: ['order', 'заказ'],
   tagline: ['3D models for Roblox', '3D-модели для Roblox'],
-  lead: ['Every model here is live 3D: rotate it, zoom in and check it from every side. Pick a category or open our order catalog.',
-         'Все модели в живом 3D: покрути, приблизь и рассмотри со всех сторон. Выбери категорию или открой каталог заказов.'],
+  lead: ['3D models, maps and scripts for Roblox games. Below are our clients: open an order, read the review and browse every model in live 3D.',
+         '3D-модели, карты и скрипты для игр Roblox. Ниже наши клиенты: открой заказ, почитай отзыв и посмотри каждую модель в живом 3D.'],
   ctaPrice: ['Order a model · from $10', 'Заказать модель · от $10'],
   ctaOrders: ['Order catalog', 'Каталог заказов'],
   freeTest: ['Free mini test before you pay', 'Бесплатный мини-тест до оплаты'],
@@ -87,7 +95,7 @@ export const CONTACTS = [
 ];
 
 /* ---------- данные моделей на английском ---------- */
-const COL_EN = { legendary: 'Legendary eggs', elemental: 'Elemental eggs', nature: 'Nature eggs', wonder: 'Wonder eggs', potions: 'Potions', props: 'Treasures', japan: 'Sakura location' };
+const COL_EN = { dm_eggs: 'Eggs + Halloween', dm_dumbbells: 'Dumbbells', dm_gym: 'Gym zones', dm_catapults: 'Catapults', legendary: 'Legendary eggs', elemental: 'Elemental eggs', nature: 'Nature eggs', wonder: 'Wonder eggs', potions: 'Potions', props: 'Treasures', japan: 'Sakura location' };
 const CAT_EN = {
   eggs: ['Pet eggs', 'Stands, animations, effects'], potions: ['Potions', 'Liquid, bubbles, effects'],
   transport: ['Vehicles', 'Cars, boats, planes'], props: ['Treasures & items', 'Chests, altars, decor'],
