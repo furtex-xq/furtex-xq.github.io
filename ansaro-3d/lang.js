@@ -49,6 +49,7 @@ const UI = {
   rendersOnly: ['Renders only', 'Только рендеры'],
   watermark: ['Client work: renders carry the ANSARO watermark, the model files belong to the client.',
               'Работа для клиента: рендеры с водяным знаком ANSARO, файлы модели принадлежат клиенту.'],
+  fTotal: ['Order total', 'Сумма заказа'],
   fType: ['Type', 'Тип'], fCount: ['Models', 'Моделей'], fStatus: ['Status', 'Статус'], fFormat: ['Delivered as', 'Формат'],
   orderSame: ['Order something similar', 'Заказать похожее'],
   // цены

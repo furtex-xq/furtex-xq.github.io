@@ -443,6 +443,14 @@ export const CATEGORIES = [
 // Каталог заказов. kind: client — заказ клиента (только рендеры с водяным знаком ANSARO), studio — наш проект, pack — набор моделей.
 // models — id из MODELS (их можно смотреть в 3D), renders — файлы из renders/ (o_*.webp + -s.webp).
 export const ORDERS = [
+  { id: 'gymsim', kind: 'client', status: 'done', count: 33, cover: 'o_dm_eggs', total: '18 500 R$',
+    title: { en: 'Gym simulator pack: eggs, dumbbells, gyms, catapults', ru: 'Набор для симулятора качалки: яйца, гантели, залы, катапульты' },
+    short: { en: '33 models for one client: pet eggs with a Halloween set, 15 dumbbell tiers, 3 gym zones and 8 catapults.', ru: '33 модели для одного клиента: яйца с хэллоуинским набором, 15 уровней гантелей, 3 зоны зала и 8 катапульт.' },
+    items: { en: ['7 eggs incl. Halloween pumpkin egg with bat and Pumpkin 60t on a stand · 4,800 R$ (≈686 R$ each)', '15 dumbbells from Tiny 2 kg to Reaper 100 t · 5,000 R$ (≈333 R$ each)', '3 gym zones: Starter, Pro, Elite · 4,200 R$ (1,400 R$ each)', '8 catapults from Wooden to Haunted · 4,500 R$ (≈563 R$ each)', 'Color and material setup scripts for Roblox Studio'],
+             ru: ['7 яиц, включая хэллоуинское яйцо-тыкву с летучей мышью и Pumpkin 60t на подставке · 4 800 R$ (≈686 R$ за штуку)', '15 гантелей от Tiny 2 кг до Reaper 100 т · 5 000 R$ (≈333 R$ за штуку)', '3 зоны зала: Starter, Pro, Elite · 4 200 R$ (1 400 R$ за зону)', '8 катапульт от деревянной до Haunted · 4 500 R$ (≈563 R$ за штуку)', 'Скрипты покраски и материалов для Roblox Studio'] },
+    format: { en: 'FBX + Luau setup scripts for Roblox Studio', ru: 'FBX + скрипты настройки на Luau для Roblox Studio' },
+    models: [],
+    renders: [['o_dm_eggs', 'Egg collection', 'Коллекция яиц'], ['o_dm_golden', 'Golden egg', 'Золотое яйцо'], ['o_dm_halloween', 'Halloween pack', 'Хэллоуинский набор'], ['o_dm_db_gems', 'Gem dumbbells', 'Гантели с камнями'], ['o_dm_db_myth', 'Mythic dumbbells', 'Мифические гантели'], ['o_dm_gym', 'Gym zones', 'Зоны зала'], ['o_dm_cat_cls', 'Classic catapults', 'Классические катапульты'], ['o_dm_cat_leg', 'Legendary catapults', 'Легендарные катапульты']] },
   { id: 'sakura', kind: 'studio', status: 'done', count: 10, cover: 'o_torii',
     title: { en: 'Sakura location for a Roblox place', ru: 'Локация «Сакура» для Roblox-плейса' },
     short: { en: 'Japanese garden: torii gate, office, bridge, lanterns, sakura trees and booths.', ru: 'Японский сад: ворота тории, офис, мост, фонари, сакуры и киоски.' },

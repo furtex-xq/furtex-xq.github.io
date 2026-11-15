@@ -261,3 +261,4 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
   .od-models { grid-template-columns: repeat(2, 1fr); }
   .od-renders { grid-template-columns: repeat(2, 1fr); }
 }
+.o-n em { font-style: normal; color: var(--accent); font-weight: 700; }

@@ -6,8 +6,8 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-import { COLLECTIONS, MODELS, RENDERS, CATEGORIES, ORDERS } from './data.js?v=3';
-import { LANG, EN, setLang, t, tr, PRICES, STEPS, PAYMENT, CONTACTS, colName, catText, modelName, modelSub, modelDesc, rarity, renderName, nModels } from './lang.js?v=1';
+import { COLLECTIONS, MODELS, RENDERS, CATEGORIES, ORDERS } from './data.js?v=4';
+import { LANG, EN, setLang, t, tr, PRICES, STEPS, PAYMENT, CONTACTS, colName, catText, modelName, modelSub, modelDesc, rarity, renderName, nModels } from './lang.js?v=2';
 import { rigModel, animateRig } from './anim.js?v=3';
 import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
 import { studioEnvironment, upgradeMaterial, detailSpace, detailToView } from './look.js?v=6';
@@ -360,7 +360,7 @@ $('#oGrid').innerHTML = ORDERS.map(o => `
     <div class="o-body">
       <h4>${esc(tr(o.title))}</h4>
       <p>${esc(tr(o.short))}</p>
-      <div class="o-foot"><span class="o-n"><b>${o.count}</b> ${nModels(o.count).replace(/^\d+ /, '')}</span><button class="btn-small" data-order="${o.id}">${t('details')}</button></div>
+      <div class="o-foot"><span class="o-n"><b>${o.count}</b> ${nModels(o.count).replace(/^\d+ /, '')}${o.total ? ` · <em>${esc(o.total)}</em>` : ''}</span><button class="btn-small" data-order="${o.id}">${t('details')}</button></div>
     </div>
   </article>`).join('');
 $('#oGrid').onclick = e => { const b = e.target.closest('[data-order]'); if (b) openOrder(b.dataset.order); };
@@ -382,6 +382,7 @@ function openOrder(id) {
         <div><dt>${t('fCount')}</dt><dd>${o.count}</dd></div>
         <div><dt>${t('fStatus')}</dt><dd>${t('st_' + o.status)}</dd></div>
         <div><dt>${t('fFormat')}</dt><dd>${esc(tr(o.format))}</dd></div>
+        ${o.total ? `<div><dt>${t('fTotal')}</dt><dd>${esc(o.total)}</dd></div>` : ''}
       </dl>
       <h5>${t('ordered')}</h5>
       <ul class="od-items">${tr(o.items).map(x => `<li>${esc(x)}</li>`).join('')}</ul>
