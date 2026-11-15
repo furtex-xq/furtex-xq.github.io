@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="style.css?v=4">
 <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js">
 <script type="importmap">
 { "imports": {
@@ -31,9 +31,8 @@
   <div class="intro-inner">
     <p class="eyebrow">Сайт-презентация</p>
     <h1><span>ANSARO</span><em>3D-модели для Roblox</em></h1>
-    <p class="lead">42 модели в живом 3D: яйца питомцев, зелья и сокровища. Каждую можно покрутить, приблизить и рассмотреть со всех сторон.</p>
-    <button id="start" class="btn-primary">Смотреть коллекцию <span aria-hidden="true">→</span></button>
-    <div class="intro-stats"><div><b>42</b><span>модели</span></div><div><b>6</b><span>коллекций</span></div><div><b>3D</b><span>в браузере</span></div></div>
+    <p class="lead">Модели в живом 3D: выбери категорию — каждую модель можно покрутить, приблизить и рассмотреть со всех сторон.</p>
+    <div class="cats" id="cats"></div>
   </div>
 </section>
 
@@ -42,6 +41,7 @@
   <a class="brand" href="#" id="home"><span class="logo-dot"></span>ANSARO<small>3D-презентация</small></a>
   <nav class="tabs" id="tabs" aria-label="Коллекции"></nav>
   <div class="top-actions">
+    <button class="icon-btn" id="bCats" title="Категории">Категории</button>
     <button class="icon-btn" id="bRenders" title="Рендеры">Рендеры</button>
     <button class="icon-btn round" id="bFull" title="Во весь экран" aria-label="Во весь экран"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
   </div>
@@ -76,6 +76,6 @@
 </div>
 
 <footer class="foot">Сайт-презентация 3D-моделей · Ansaro</footer>
-<script type="module" src="app.js?v=8"></script>
+<script type="module" src="app.js?v=9"></script>
 </body>
 </html>

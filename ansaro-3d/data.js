@@ -423,3 +423,12 @@ export const MODELS = [
 }
 ];
 export const RENDERS = [{"id": "08_treasure_chest", "name": "Сундук с сокровищами", "w": 3840, "h": 2160}, {"id": "09_crystal_altar", "name": "Кристальный алтарь", "w": 3840, "h": 2160}, {"id": "10_potions", "name": "Стол алхимика", "w": 3840, "h": 2160}, {"id": "g3_world", "name": "Вся коллекция", "w": 1600, "h": 900}, {"id": "g1_eggs", "name": "Яйца питомцев", "w": 1600, "h": 900}, {"id": "g2_potions", "name": "Зелья", "w": 1600, "h": 900}, {"id": "g4_fire_ice", "name": "Огонь и лёд", "w": 1600, "h": 900}];
+
+// Категории на стартовом экране. cols — какие коллекции входят; cover — модель для обложки.
+// Новая категория появится сама, как только в MODELS будут модели с её коллекциями.
+export const CATEGORIES = [
+  { id: 'eggs', name: 'Яйца питомцев', note: 'Подставки, анимации, эффекты', cols: ['legendary', 'elemental', 'nature', 'wonder'], cover: 'seraphimegg' },
+  { id: 'potions', name: 'Зелья', note: 'Жидкость, пузыри, эффекты', cols: ['potions'], cover: 'healthpotion' },
+  { id: 'transport', name: 'Транспорт', note: 'Машины, лодки, полёт', cols: ['transport'], cover: null },
+  { id: 'props', name: 'Сокровища и предметы', note: 'Сундуки, алтари, декор', cols: ['props'], cover: 'treasurechest' },
+];

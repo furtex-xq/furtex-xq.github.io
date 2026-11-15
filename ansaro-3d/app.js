@@ -1,13 +1,12 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-import { COLLECTIONS, MODELS, RENDERS } from './data.js?v=1';
+import { COLLECTIONS, MODELS, RENDERS, CATEGORIES } from './data.js?v=2';
 import { rigModel, animateRig } from './anim.js?v=3';
 import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
 import { studioEnvironment, upgradeMaterial, detailSpace, detailToView } from './look.js?v=6';
@@ -20,7 +19,9 @@ const ease = { outBack: t => { const c = 1.5; return 1 + (c + 1) * Math.pow(t - 
 /* ================= рендерер и сцена ================= */
 const canvas = $('#stage');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
-const DPR = () => Math.min(devicePixelRatio, mobile() ? 1.6 : 2);
+/* качество подстраивается под устройство: 2 — всё, 1 — без AO, 0 — экономный */
+let tier = /[?&]q=(\d)/.test(location.search) ? +location.search.match(/[?&]q=(\d)/)[1] : (mobile() ? 1 : 2);
+const DPR = () => Math.min(devicePixelRatio, [1, mobile() ? 1.5 : 1.5, 2][tier]);
 renderer.setPixelRatio(DPR());
 renderer.setSize(innerWidth, innerHeight);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -28,6 +29,7 @@ renderer.toneMapping = THREE.AgXToneMapping;
 renderer.toneMappingExposure = 0.95;
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.shadowMap.autoUpdate = false; // тень обновляем через кадр
 
 const scene = new THREE.Scene();
 const pmrem = new THREE.PMREMGenerator(renderer);
@@ -96,7 +98,7 @@ pool.rotation.x = -Math.PI / 2; pool.position.y = -0.095; scene.add(pool);
 /* свет: ключевой, контровые цвета модели, заполняющий */
 const key = new THREE.DirectionalLight(0xfff3e6, 1.6);
 key.position.set(-3.5, 6.5, 4.5); key.castShadow = true;
-key.shadow.mapSize.set(2048, 2048); key.shadow.radius = 6; key.shadow.bias = -0.0004; key.shadow.normalBias = 0.02;
+key.shadow.mapSize.set(tier === 2 ? 2048 : 1024, tier === 2 ? 2048 : 1024); key.shadow.radius = 6; key.shadow.bias = -0.0004; key.shadow.normalBias = 0.02;
 Object.assign(key.shadow.camera, { left: -3, right: 3, top: 4, bottom: -2, near: 1, far: 20 });
 scene.add(key);
 const rimL = new THREE.SpotLight(accent, 34, 18, 0.55, 0.8, 1.6); rimL.position.set(-4.5, 3.6, -4); rimL.target.position.set(0, 1.1, 0); scene.add(rimL, rimL.target);
@@ -105,7 +107,7 @@ const top = new THREE.SpotLight(0xffffff, 16, 14, 0.42, 0.9, 1.5); top.position.
 const fill = new THREE.DirectionalLight(0x9fb4ff, 0.35); fill.position.set(4, 2, 5); scene.add(fill);
 
 /* пылинки в цвете модели */
-const DUST = mobile() ? 140 : 260;
+const DUST = mobile() ? 90 : 200;
 const dustGeo = new THREE.BufferGeometry();
 const dpos = new Float32Array(DUST * 3), dspd = new Float32Array(DUST);
 for (let i = 0; i < DUST; i++) {
@@ -123,14 +125,16 @@ composer.setPixelRatio(DPR());
 composer.addPass(new RenderPass(scene, camera));
 /* мягкие тени в щелях и углублениях (только на компьютере) */
 let gtao = null;
-if (!mobile() && !/[?&]noao/.test(location.search)) {
+if (tier === 2 && !/[?&]noao/.test(location.search)) {
   gtao = new GTAOPass(scene, camera, innerWidth, innerHeight);
   gtao.blendIntensity = 0.85;
-  gtao.updateGtaoMaterial({ radius: 0.18, distanceExponent: 1.5, thickness: 1.2, scale: 1.0, samples: 12 });
-  gtao.updatePdMaterial({ lumaPhi: 10, depthPhi: 2, normalPhi: 3, radius: 6, rings: 2, samples: 12 });
+  gtao.updateGtaoMaterial({ radius: 0.18, distanceExponent: 1.5, thickness: 1.2, scale: 1.0, samples: 8 });
+  gtao.updatePdMaterial({ lumaPhi: 10, depthPhi: 2, normalPhi: 3, radius: 6, rings: 2, samples: 8 });
   composer.addPass(gtao);
 }
 const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.42, 0.45, 1.25);
+// свечение считаем в половинном разрешении — на вид то же, а в 4 раза дешевле
+const bloomSize = bloom.setSize.bind(bloom); bloom.setSize = (w, h) => bloomSize(Math.ceil(w / 2), Math.ceil(h / 2));
 composer.addPass(bloom);
 composer.addPass(new OutputPass());
 
@@ -172,6 +176,8 @@ function fit(src) {
 
 /* ================= состояние и интерфейс ================= */
 let filter = 'all';
+let cat = null;
+let catModels = MODELS.slice();
 let list = MODELS.slice();
 let idx = 0;
 let current = null, leaving = null;
@@ -179,19 +185,42 @@ let spin = true, play = false, playT = 0, interacted = false;
 const PLAY_SEC = 6.5;
 
 const tabs = $('#tabs');
-const tabDefs = [['all', 'Все']].concat(Object.entries(COLLECTIONS));
-tabs.innerHTML = tabDefs.map(([k, v]) => `<button data-k="${k}" class="${k === 'all' ? 'on' : ''}">${v}</button>`).join('');
+const strip = $('#strip');
 tabs.onclick = e => {
   const b = e.target.closest('button'); if (!b) return;
   filter = b.dataset.k;
   tabs.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
-  list = filter === 'all' ? MODELS.slice() : MODELS.filter(m => m.col === filter);
+  list = filter === 'all' ? catModels.slice() : catModels.filter(m => m.col === filter);
   strip.querySelectorAll('.thumb').forEach(t => t.classList.toggle('hide', filter !== 'all' && t.dataset.col !== filter));
   show(0, true);
 };
 
-const strip = $('#strip');
-strip.innerHTML = MODELS.map(m => `<button class="thumb" role="option" data-id="${m.id}" data-col="${m.col}" title="${m.name}"><img src="thumbs/${m.id}.webp" alt="${m.name}" loading="lazy" width="68" height="68"></button>`).join('');
+/* ---------- категории ---------- */
+const catOf = m => CATEGORIES.find(c => c.cols.includes(m.col)) || CATEGORIES[0];
+const SOON_ICON = '<svg viewBox="0 0 24 24"><path d="M3 16v-3l2-5h11l3 5h2v3h-2M3 16h2m4 0h6"/><circle cx="7" cy="16.5" r="2"/><circle cx="17" cy="16.5" r="2"/></svg>';
+const catsEl = $('#cats');
+catsEl.innerHTML = CATEGORIES.map(c => {
+  const ms = MODELS.filter(m => c.cols.includes(m.col)), n = ms.length;
+  const cover = n ? (MODELS.find(m => m.id === c.cover) || ms[0]) : null;
+  return `<button class="cat" data-c="${c.id}" style="--c:${cover ? cover.accent : '#8a83a3'}" ${n ? '' : 'disabled'}>
+    <span class="n">${n ? n + ' ' + plural(n, 'модель', 'модели', 'моделей') : 'скоро'}</span>
+    <span class="pic">${cover ? `<img src="thumbs/${cover.id}.webp" alt="">` : SOON_ICON}</span>
+    <b>${c.name}</b><small>${c.note || ''}</small></button>`;
+}).join('');
+function plural(n, a, b, c) { const d = n % 10, h = n % 100; return d === 1 && h !== 11 ? a : d >= 2 && d <= 4 && (h < 12 || h > 14) ? b : c; }
+catsEl.onclick = e => { const b = e.target.closest('.cat'); if (b && !b.disabled) openCategory(CATEGORIES.find(c => c.id === b.dataset.c)); };
+
+function openCategory(c, startId) {
+  cat = c;
+  catModels = MODELS.filter(m => c.cols.includes(m.col));
+  filter = 'all'; list = catModels.slice();
+  const cols = c.cols.filter(k => catModels.some(m => m.col === k));
+  tabs.innerHTML = cols.length > 1 ? [['all', 'Все']].concat(cols.map(k => [k, COLLECTIONS[k] || k])).map(([k, v]) => `<button data-k="${k}" class="${k === 'all' ? 'on' : ''}">${v}</button>`).join('') : `<button class="on" data-k="all">${c.name}</button>`;
+  strip.innerHTML = catModels.map(m => `<button class="thumb" role="option" data-id="${m.id}" data-col="${m.col}" title="${m.name}"><img src="thumbs/${m.id}.webp" alt="${m.name}" loading="lazy" width="68" height="68"></button>`).join('');
+  const i = startId ? Math.max(0, list.findIndex(m => m.id === startId)) : 0;
+  startShow();
+  show(i, true);
+}
 strip.onclick = e => {
   const b = e.target.closest('.thumb'); if (!b) return;
   const i = list.findIndex(m => m.id === b.dataset.id); if (i >= 0) { stopPlay(); show(i); }
@@ -222,7 +251,7 @@ async function show(i, force) {
   idx = i;
   const m = list[idx];
   const my = ++token;
-  location.replace('#' + m.id);
+  if ($('#intro').classList.contains('gone')) location.replace('#' + m.id);
   strip.querySelectorAll('.thumb').forEach(t => {
     const on = t.dataset.id === m.id; t.classList.toggle('on', on);
     if (on) t.scrollIntoView({ inline: 'center', block: 'nearest', behavior: REDUCED ? 'auto' : 'smooth' });
@@ -237,8 +266,12 @@ async function show(i, force) {
   const wait = () => leaving ? new Promise(r => setTimeout(r, 40)).then(wait) : null;
   await wait();
   if (my !== token) return;
-  const g = fit(src); if (m.id === "treasurechest") g.rotation.y = 0; g.scale.setScalar(0.001); g.userData.t = 0; g.userData.base = g.rotation.y;
-  scene.add(g); current = g;
+  const g = fit(src); if (m.id === "treasurechest") g.rotation.y = 0; g.userData.t = 0; g.userData.base = g.rotation.y;
+  // шейдеры компилируем заранее, чтобы смена модели не дёргалась
+  try { await renderer.compileAsync(g, camera, scene); } catch (e) {}
+  if (my !== token) return;
+  g.scale.setScalar(0.001);
+  scene.add(g); current = g; shadowDirty = 2;
   setAccent(m.accent || '#ffc24a');
   writeInfo(m); info.classList.remove('out');
   playT = 0;
@@ -250,8 +283,8 @@ $('#next').onclick = () => { stopPlay(); next(); };
 $('#prev').onclick = () => { stopPlay(); prev(); };
 addEventListener('keydown', e => {
   if (!$('#lightbox').hidden) { if (e.key === 'Escape') closeLB(); if (e.key === 'ArrowRight') lbStep(1); if (e.key === 'ArrowLeft') lbStep(-1); return; }
+  if (!$('#intro').classList.contains('gone')) return;
   if (e.key === 'ArrowRight') { stopPlay(); next(); } if (e.key === 'ArrowLeft') { stopPlay(); prev(); }
-  if (e.key === ' ' && !$('#intro').classList.contains('gone')) { e.preventDefault(); startShow(); }
 });
 
 const bSpin = $('#bSpin'), bPlay = $('#bPlay');
@@ -260,10 +293,11 @@ function stopPlay() { play = false; bPlay.classList.remove('on'); bPlay.setAttri
 bPlay.onclick = () => { play = !play; playT = 0; bPlay.classList.toggle('on', play); bPlay.setAttribute('aria-pressed', play); };
 
 $('#bFull').onclick = () => { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.(); };
-$('#home').onclick = e => { e.preventDefault(); $('#intro').classList.remove('gone'); };
+function openPicker() { stopPlay(); history.replaceState(null, "", location.pathname + location.search); $("#intro").classList.remove("gone"); }
+$('#home').onclick = e => { e.preventDefault(); openPicker(); };
+$('#bCats').onclick = openPicker;
 
 function startShow() { $('#intro').classList.add('gone'); }
-$('#start').onclick = startShow;
 
 const hint = $('#hint');
 ['pointerdown', 'wheel'].forEach(ev => canvas.addEventListener(ev, () => { if (!interacted) { interacted = true; setTimeout(() => hint.classList.add('gone'), 1200); } stopPlay(); }, { passive: true }));
@@ -302,9 +336,37 @@ addEventListener('resize', () => {
 /* ---------- цикл ---------- */
 const clock = new THREE.Clock();
 const _dS = new THREE.Matrix4(), _dV = new THREE.Matrix4(), _dI = new THREE.Matrix4();
-let time = 0;
+let time = 0, frameN = 0, shadowDirty = 2;
+let perfT = 0, perfN = 0, perfWait = 2.5;
+function adapt(dt) {
+  // через пару секунд после старта меряем кадр и при тормозах снижаем качество
+  if (tier === 0 || /[?&]q=/.test(location.search) || document.hidden) return;
+  if (perfWait > 0) { perfWait -= dt; return; }
+  perfT += dt; perfN++;
+  if (perfT < 2) return;
+  const fps = perfN / perfT; perfT = 0; perfN = 0;
+  if (fps < 40) setTier(tier - 1);
+}
+function setTier(t) {
+  tier = Math.max(0, t);
+  if (gtao && tier < 2) gtao.enabled = false;
+  bloom.enabled = tier > 0;
+  if (tier < 2) { key.shadow.mapSize.set(1024, 1024); key.shadow.map?.dispose(); key.shadow.map = null; shadowDirty = 2; }
+  renderer.setPixelRatio(DPR()); composer.setPixelRatio(DPR()); composer.setSize(innerWidth, innerHeight);
+  perfWait = 1.5;
+  if (fpsEl) fpsEl.dataset.tier = tier;
+}
+const fpsEl = /[?&]fps/.test(location.search) ? Object.assign(document.body.appendChild(document.createElement('div')), { style: 'position:fixed;left:8px;bottom:8px;z-index:99;font:12px monospace;color:#9f9;background:#000a;padding:4px 6px;border-radius:6px' }) : null;
+let fpsAcc = 0, fpsCnt = 0;
 function tick() {
+  requestAnimationFrame(tick);
+  if (document.hidden || !lb.hidden) { clock.getDelta(); return; }
+  const menu = !$('#intro').classList.contains('gone');
+  frameN++;
+  if (menu && frameN % 2) return; // под меню хватает 30 кадров
   const dt = Math.min(clock.getDelta(), 0.05); time += dt;
+  if (!menu) adapt(dt);
+  if (fpsEl) { fpsAcc += dt; fpsCnt++; if (fpsAcc > 0.5) { fpsEl.textContent = Math.round(fpsCnt / fpsAcc) + ' fps · q' + tier; fpsAcc = 0; fpsCnt = 0; } }
   accent.lerp(accentTarget, 1 - Math.pow(0.02, dt));
   halo.material.color.copy(accent); pool.material.color.copy(accent); dust.material.color.copy(accent);
   rimL.color.copy(accent); rimR.color.copy(accent); ringMat.emissive.copy(accent);
@@ -339,12 +401,17 @@ function tick() {
   camera.updateMatrixWorld();
   _dV.copy(camera.matrixWorldInverse).multiply(_dI.copy(detailSpace.value).invert());
   detailToView.value.setFromMatrix4(_dV);
+  if (shadowDirty > 0 || frameN % 2 === 0) { renderer.shadowMap.needsUpdate = true; if (shadowDirty > 0) shadowDirty--; }
   composer.render();
-  requestAnimationFrame(tick);
 }
 
 /* ---------- старт ---------- */
-const fromHash = MODELS.findIndex(m => '#' + m.id === location.hash);
-show(fromHash >= 0 ? fromHash : 0, true);
-if (fromHash >= 0) startShow();
+const fromHash = MODELS.find(m => '#' + m.id === location.hash);
+if (fromHash) openCategory(catOf(fromHash), fromHash.id);
+else {
+  // за меню крутится обложка первой категории
+  cat = CATEGORIES[0]; catModels = MODELS.filter(m => cat.cols.includes(m.col)); list = catModels.slice();
+  show(Math.max(0, list.findIndex(m => m.id === cat.cover)), true);
+}
+setTier(tier);
 tick();
