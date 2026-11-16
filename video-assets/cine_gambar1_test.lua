@@ -138,7 +138,7 @@ local function noise(t,s) return math.noise(t,s or 0,0.5) end
 local NPCS={}
 local npcDefs={
  {kind="walk",x0=-30,x1=20,z=-1.2,speed=3.2,phase=0,shirt=Color3.fromRGB(240,200,60),legs=Color3.fromRGB(40,40,90),face="guy_shy"},
- {kind="walk",x0=25,x1=-25,z=-3.2,speed=2.6,phase=4,shirt=Color3.fromRGB(80,160,230),legs=Color3.fromRGB(60,60,60),face="girl_neutral"},
+ {kind="walk",x0=25,x1=-25,z=-3.2,speed=2.6,phase=12,shirt=Color3.fromRGB(80,160,230),legs=Color3.fromRGB(60,60,60),face="girl_neutral"},
  {kind="walk",x0=-26,x1=12,z=7.5,speed=2.9,phase=9,shirt=Color3.fromRGB(200,80,200),legs=Color3.fromRGB(30,30,35),face="guy_talk"},
  {kind="chat",x=13,z=9.8,face2=-1,shirt=Color3.fromRGB(250,130,60),legs=Color3.fromRGB(70,90,160),face="girl_talk"},
  {kind="chat",x=10.6,z=9.8,face2=1,shirt=Color3.fromRGB(110,200,140),legs=Color3.fromRGB(40,40,45),face="guy_talk"},
@@ -226,7 +226,7 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     bouquetFront(guy)
     face(guy, blinking(T,0.5) and "guy_blink" or (talk and "guy_scared_talk" or "guy_nervous"))
     if T>5.4 then gq={la={0,0,-4},ra={150,0,30+math.sin(T*12)*25},neck={0,0,math.sin(T*4)*10}} gFace="girl_talk" end
-    cam.FieldOfView=58 cam.CFrame=look(Vector3.new(x+5.5,4.3,8.6),Vector3.new(x+0.6,3.4,1),0)*shake(0.6,T)
+    local mid=(x+4)/2 cam.FieldOfView=62 cam.CFrame=look(Vector3.new(mid+1.6,4.2,9.8),Vector3.new(mid-0.2,3.0,1),0)*shake(0.6,T)
   elseif T<8.0 then
     -- S5 stumble, windmill arms, fall, bounce
     local u=T-6.5
