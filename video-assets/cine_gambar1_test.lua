@@ -236,7 +236,7 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     gFace=u>0.4 and "girl_gasp" or gFace
     local imp=(u>0.42 and u<0.9) and (0.9-u)*14 or 0
     cam.FieldOfView=55
-    cam.CFrame=look(Vector3.new(1.4,3.2,13.5),Vector3.new(2,1.6,1),-8)*shake(imp,T)
+    cam.CFrame=look(Vector3.new(0.6,3.4,10.2),Vector3.new(2.2,1.3,1),-8)*shake(imp,T)
   elseif T<9.0 then
     -- S6 crush shocked: hands to mouth, step back, head shake
     local u=T-8
