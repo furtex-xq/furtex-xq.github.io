@@ -417,6 +417,41 @@ local CAPS={{2.6,4.4,"METAL = UNBREAKABLE"},{4.5,5.0,"FIND THE WEAK POINT..."},{
 local HITS={T_GRATE,T_CRACK,T_BREAK,T_LAND,T_DOOR,T_K1,T_K2}
 local function remap(t) local acc=0 for _,h in HITS do local rh=h+acc if t>rh then if t<rh+0.07 then return h end acc+=0.07 end end return t-acc end
 
+-- ===== sound (game SFX only, no music) =====
+local SS=game:GetService("SoundService")
+local SFX={clang="rbxassetid://9119072660",clang2="rbxassetid://9116524438",rock="rbxassetid://9118608146",rockbreak="rbxassetid://9118588165",
+  gratefall="rbxassetid://9116536883",wood="rbxassetid://9120801590",woodcrash="rbxassetid://9120957493",bonk="rbxassetid://121281067238166",
+  coins="rbxassetid://71081254550638",creak="rbxassetid://9120826936",step="rbxasset://sounds/action_footsteps_plastic.mp3",swish="rbxasset://sounds/swordslash.wav",
+  unsheath="rbxasset://sounds/unsheath.wav",land="rbxasset://sounds/action_jump_land.mp3"}
+local sndFolder=Instance.new("Folder") sndFolder.Name="BTWSounds" sndFolder.Parent=SS
+local SBASE={} for k,id in SFX do local so=Instance.new("Sound") so.Name=k so.SoundId=id so.Parent=sndFolder SBASE[k]=so end
+task.spawn(function() pcall(function() game:GetService("ContentProvider"):PreloadAsync(sndFolder:GetChildren()) end) end)
+local function play(k,vol,pitch,from) local b=SBASE[k] if not b then return end local so=b:Clone() so.Volume=vol or 0.6 so.PlaybackSpeed=pitch or 1
+  if from then so.TimePosition=from end so.Parent=sndFolder so:Play() if k=="step" then task.delay(0.2,function() so:Stop() so:Destroy() end) end so.Ended:Once(function() so:Destroy() end) task.delay(6,function() if so.Parent then so:Destroy() end end) end
+local CUES={}
+local function cue(t,k,v,p,f) table.insert(CUES,{t,k,v,p,f}) end
+for _,w in {{0.05,2.3},{3.4,4.3},{7.0,8.0},{9.0,9.9},{12.95,13.75}} do local i=0 for t=w[1],w[2],0.21 do i+=1 cue(t,"step",0.35,0.95+(i%3)*0.06) end end
+for _,h in {T_GRATE,T_CRACK,T_BREAK,T_DOOR,T_K1,T_K2} do cue(h-0.16,"swish",0.35,0.8) end
+cue(T_GRATE,"clang",1.0,0.95) cue(T_GRATE+0.03,"clang2",0.5,1.1)
+cue(T_CRACK,"rock",1.0,0.9) cue(T_CRACK+0.05,"creak",0.35,0.7)
+cue(T_BREAK,"rockbreak",1.0,0.85) cue(T_BREAK+0.02,"rock",0.7,0.7)
+cue(T_BREAK+0.1,"clang2",0.45,0.75)
+cue(T_LAND,"gratefall",1.0,0.8) cue(T_LAND+0.02,"rockbreak",0.6,0.7)
+cue(T_DOOR,"wood",1.0,0.95) cue(T_DOOR+0.04,"woodcrash",0.6,1.0)
+cue(9.75,"unsheath",0.5,1.0)
+cue(T_K1,"bonk",0.9,1.0) cue(T_K1+0.01,"clang",0.5,1.25) cue(12.3,"land",0.6,0.8) cue(12.31,"clang2",0.35,1.2)
+cue(T_K2,"bonk",0.9,1.12) cue(T_K2+0.01,"clang",0.5,1.35) cue(13.86,"land",0.4,0.8) cue(13.87,"clang2",0.25,1.2)
+cue(T_OPEN,"creak",0.7,0.6)
+cue(T_GOLD,"coins",1.0,1.0)
+table.sort(CUES,function(a,b) return a[1]<b[1] end)
+local lastT=-1
+local function updSound(T,frozen)
+  if frozen then lastT=T return end
+  if T<lastT-1 then lastT=-1 end
+  for _,c in CUES do if c[1]>lastT and c[1]<=T then play(c[2],c[3],c[4],c[5]) end end
+  lastT=T
+end
+
 -- ===== animation =====
 local function swing(T,th,base,impact,recoil)
   local d=T-th
@@ -510,6 +545,7 @@ RS:BindToRenderStep("BTW",Enum.RenderPriority.Camera.Value+1,function()
   if raw<0 then black.Visible=true return end
   raw=raw%LOOP
   local T=remap(raw) local fz=workspace:GetAttribute("CineFreeze") if fz then T=fz end
+  updSound(T,fz~=nil)
   if T>END then black.Visible=true bang.Text="" cap.Text="" title.Text="" return end
   black.Visible=T<0.08
   -- world state
