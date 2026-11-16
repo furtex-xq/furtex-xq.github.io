@@ -535,7 +535,7 @@ RS:BindToRenderStep("BTW",Enum.RenderPriority.Camera.Value+1,function()
   -- camera
   local cf local fov=55
   if T<2.3 then local u=T/2.3 cf=look(V(-26,30,58):Lerp(V(-14,21,44),ease(u)),V(-8,2,16):Lerp(V(0,3,9),ease(u)))
-  elseif T<3.6 then local u=(T-2.3)/1.3 cf=look(V(-10,6.5,19.5):Lerp(V(-9,6,19),u),V(0.3,3.3,16.6)) fov=lerp(60,54,u)
+  elseif T<3.6 then local u=(T-2.3)/1.3 cf=look(V(-9.5,5.6,16.4):Lerp(V(-8.8,5.3,16.6),u),V(0,3.1,17.6)) fov=lerp(58,52,u)
   elseif T<7.6 then local u=(T-3.6)/4 local k=ease((T-T_BREAK)/0.6) cf=look(V(-3,10,30):Lerp(V(-1,9,29),u):Lerp(V(-2,14,34),k),V(5,3,16):Lerp(V(3,2.5,17),u):Lerp(V(2,1.2,18),k)) fov=lerp(58,52,u)
   elseif T<9.6 then local u=(T-7.6)/2 cf=look(V(6,7.5,26):Lerp(V(4.5,7,24),u),V(0,3,13)) fov=55
   elseif T<13.0 then local u=(T-9.6)/3.4 cf=look(V(lerp(-6,6,u),30,21),V(0,1,-1)) fov=58
