@@ -77,12 +77,12 @@ local CX,CZ=-36,3
 do
   local cf=Instance.new("Model") cf.Name="OpenCoffin" cf.Parent=workspace
   local WOOD=Color3.fromRGB(70,40,25) local SAT=Color3.fromRGB(245,240,235)
-  P("Bottom",Vector3.new(7,0.4,2.8),WOOD,cf).CFrame=CFrame.new(CX,0.3,CZ)
-  P("Satin",Vector3.new(6.6,0.2,2.4),SAT,cf).CFrame=CFrame.new(CX,0.6,CZ)
-  P("SideA",Vector3.new(7,1.6,0.25),WOOD,cf).CFrame=CFrame.new(CX,1.2,CZ-1.4)
-  P("SideB",Vector3.new(7,1.6,0.25),WOOD,cf).CFrame=CFrame.new(CX,1.2,CZ+1.4)
-  P("EndA",Vector3.new(0.25,1.6,2.8),WOOD,cf).CFrame=CFrame.new(CX-3.5,1.2,CZ)
-  P("EndB",Vector3.new(0.25,1.6,2.8),WOOD,cf).CFrame=CFrame.new(CX+3.5,1.2,CZ)
+  P("Bottom",Vector3.new(7,0.4,4.8),WOOD,cf).CFrame=CFrame.new(CX,0.3,CZ)
+  P("Satin",Vector3.new(6.6,0.2,4.4),SAT,cf).CFrame=CFrame.new(CX,0.6,CZ)
+  P("SideA",Vector3.new(7,1.6,0.25),WOOD,cf).CFrame=CFrame.new(CX,1.2,CZ-2.4)
+  P("SideB",Vector3.new(7,1.6,0.25),WOOD,cf).CFrame=CFrame.new(CX,1.2,CZ+2.4)
+  P("EndA",Vector3.new(0.25,1.6,4.8),WOOD,cf).CFrame=CFrame.new(CX-3.5,1.2,CZ)
+  P("EndB",Vector3.new(0.25,1.6,4.8),WOOD,cf).CFrame=CFrame.new(CX+3.5,1.2,CZ)
   P("Pillow",Vector3.new(1,0.4,1.8),SAT,cf).CFrame=CFrame.new(CX-2.7,0.85,CZ)
   for i=-1,1 do local fl=sc.Bouquet:Clone() fl.Parent=cf fl:PivotTo(CFrame.new(CX+4.4,0.8,CZ+i*1.6)*A(0,i*40,20)) end
   local lid=sc.Coffin:Clone() lid.Parent=cf lid:PivotTo(CFrame.new(CX,4.5,-4.2)*A(0,90,0)*A(70,0,0))
@@ -98,7 +98,7 @@ local lbl=Instance.new("TextLabel") lbl.BackgroundTransparency=1 lbl.AnchorPoint
 lbl.Font=Enum.Font.GothamBlack lbl.TextScaled=true lbl.TextColor3=Color3.new(1,1,1) lbl.Text="" lbl.Parent=gui
 local st=Instance.new("UIStroke") st.Thickness=5 st.Color=Color3.new(0,0,0) st.Parent=lbl
 local tsc=Instance.new("UITextSizeConstraint") tsc.MaxTextSize=64 tsc.Parent=lbl
-local WORDS={{0.15,"I'M"},{0.45,"THE"},{0.7,"SHYEST"},{1.6,"PERSON"},{2.15,"EVER"},{3.0,"WHEN"},{3.25,"I"},{3.45,"SEE"},{3.75,"MY"},{3.95,"CRUSH"},{4.55,"I"},{4.7,"TRIED"},{5.0,"TO"},{5.2,"GIVE"},{5.45,"HER"},{5.7,"FLOWERS"},{6.5,"AND"},{6.75,"TRIPPED"},{8.05,"OH"},{8.35,"MY..."},{9.15,"R.I.P."},{9.7,"🥀"}}
+local WORDS={{0.15,"I'M"},{0.45,"THE"},{0.7,"SHYEST"},{1.6,"PERSON"},{2.15,"EVER"},{3.0,"WHEN"},{3.25,"I"},{3.45,"SEE"},{3.75,"MY"},{3.95,"CRUSH"},{4.55,"I"},{4.7,"TRIED"},{5.0,"TO"},{5.2,"GIVE"},{5.45,"HER"},{5.7,"FLOWERS"},{6.5,"AND"},{6.75,"TRIPPED"},{8.05,"OH"},{8.35,"MY..."},{9.15,"R.I.P."}}
 local function word(t) local w="" for _,x in WORDS do if t>=x[1] then w=x[2] end end return w end
 local function lerp(a,b,t) return a+(b-a)*math.clamp(t,0,1) end
 local function ease(t) t=math.clamp(t,0,1) return t*t*(3-2*t) end
