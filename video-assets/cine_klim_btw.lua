@@ -442,6 +442,7 @@ local function thiefUpdate(T)
     local d=T-T_GRATE local back=d>0 and math.sin(clamp01(d/0.5)*math.pi/2)*0.8 or 0 pos=pos+V(0,0,back)
     q={la={swing(T,T_GRATE,20,90,true)*0.6,0,-10},ra={swing(T,T_GRATE,150,90,true),0,6},neck={0,d>0.15 and math.sin(d*25)*10*math.max(0,1-d) or 0,0}}
     lean=swingLean(T,T_GRATE) if d>0 and d<0.9 then lean=8*(1-d/0.9) face="o" end
+    if d>0.1 then local yaw=math.rad(180*ease((d-0.1)/0.3)+math.sin(d*9)*15*clamp01((d-0.4)*3)) dir=V(-math.sin(yaw),0,-math.cos(yaw)) end
   elseif T<4.5 then local a,b=V(-1.2,0,19.4),V(10.3,0,16)
     pos,dir=path(T,3.4,4.3,a,b) q=runQ(T*15,40) bob=math.abs(math.sin(T*15))*0.3 lean=-8 if T>4.3 then dir=V(-1,0,0) q={la={10,0,-5},ra={150,0,8}} bob=0 lean=0 end
   elseif T<7.0 then pos=V(10.3,0,16) dir=V(-1,0,0)
@@ -535,7 +536,7 @@ RS:BindToRenderStep("BTW",Enum.RenderPriority.Camera.Value+1,function()
   -- camera
   local cf local fov=55
   if T<2.3 then local u=T/2.3 cf=look(V(-26,30,58):Lerp(V(-14,21,44),ease(u)),V(-8,2,16):Lerp(V(0,3,9),ease(u)))
-  elseif T<3.6 then local u=(T-2.3)/1.3 cf=look(V(3.2,11.8,12.4):Lerp(V(2.6,11,13),u),V(-0.8,2.4,18.9)) fov=lerp(58,50,u)
+  elseif T<3.6 then local u=(T-2.3)/1.3 cf=look(V(7,8.5,28):Lerp(V(4.5,7,26),u),V(-0.6,3.4,17.5)) fov=lerp(55,46,u)
   elseif T<7.6 then local u=(T-3.6)/4 local k=ease((T-T_BREAK)/0.6) cf=look(V(-3,10,30):Lerp(V(-1,9,29),u):Lerp(V(-2,14,34),k),V(5,3,16):Lerp(V(3,2.5,17),u):Lerp(V(2,1.2,18),k)) fov=lerp(58,52,u)
   elseif T<9.6 then local u=(T-7.6)/2 cf=look(V(6,7.5,26):Lerp(V(4.5,7,24),u),V(0,3,13)) fov=55
   elseif T<13.0 then local u=(T-9.6)/3.4 cf=look(V(lerp(-6,6,u),30,21),V(0,1,-1)) fov=58
