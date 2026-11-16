@@ -226,7 +226,7 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     bouquetFront(guy)
     face(guy, blinking(T,0.5) and "guy_blink" or (talk and "guy_scared_talk" or "guy_nervous"))
     if T>5.4 then gq={la={0,0,-4},ra={150,0,30+math.sin(T*12)*25},neck={0,0,math.sin(T*4)*10}} gFace="girl_talk" end
-    local mid=(x+4)/2 cam.FieldOfView=62 cam.CFrame=look(Vector3.new(mid+1.6,4.2,9.8),Vector3.new(mid-0.2,3.0,1),0)*shake(0.6,T)
+    local mid=(x+4)/2 cam.FieldOfView=76 cam.CFrame=look(Vector3.new(mid+3.5,4.4,10),Vector3.new(mid+0.3,3.0,1),0)*shake(0.6,T)
   elseif T<8.0 then
     -- S5 stumble, windmill arms, fall, bounce
     local u=T-6.5
@@ -237,7 +237,7 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     local root=feet*A(stumble-87*fall,0,0)*CFrame.new(0,3,0)+Vector3.new(0,0.5*fall+bounce,0)
     local wm=u<0.55 and u*1400 or 0
     local flail=u<0.9 and math.sin(T*30)*20 or 0
-    pose(guy,root,{la={lerp(80,150,fall)+math.sin(math.rad(wm))*60,0,lerp(18,-45,fall)-flail},ra={lerp(80,150,fall)+math.cos(math.rad(wm))*60,0,lerp(-18,45,fall)+flail},rl={-25*fall+flail,0,0},ll={10*fall-flail,0,0},neck={-25*fall,0,flail*0.5}})
+    pose(guy,root,{la={lerp(80,100,fall)+math.sin(math.rad(wm))*60,0,lerp(18,-80,fall)-flail},ra={lerp(80,100,fall)+math.cos(math.rad(wm))*60,0,lerp(-18,80,fall)+flail},rl={-25*fall+flail,0,0},ll={10*fall-flail,0,0},neck={-25*fall,0,flail*0.5}})
     face(guy, u<0.55 and "guy_panic" or "guy_shock")
     local k=math.clamp(u/0.7,0,1)
     bouquet:PivotTo(CFrame.new(lerp(0.5,7.4,ease(k)),lerp(3,0.7,k)+math.sin(k*math.pi)*2.5,1.4)*A(u*500,u*200,0))
@@ -253,7 +253,7 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     local u=T-8
     local feet=CFrame.lookAt(Vector3.new(-1.5,FLOOR,1),Vector3.new(1,FLOOR,1))
     local tw=math.sin(T*25)*6
-    pose(guy,feet*A(-87,0,0)*CFrame.new(0,3,0)+Vector3.new(0,0.5,0),{la={150,0,-45+tw},ra={150,0,45-tw},rl={tw,0,0},neck={-25,0,0}})
+    pose(guy,feet*A(-87,0,0)*CFrame.new(0,3,0)+Vector3.new(0,0.5,0),{la={100,0,-80+tw},ra={100,0,80-tw},rl={tw,0,0},neck={-25,0,0}})
     bouquet:PivotTo(CFrame.new(7.4,0.7,1.4)*A(0,40,80))
     girlRoot=standCF(5.2+u*0.4,1,NX)*A(-6,0,0)
     gq={la={120,0,-28},ra={120,0,28},neck={8,math.sin(T*14)*14,0}}
