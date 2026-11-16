@@ -237,23 +237,23 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     local root=feet*A(stumble-87*fall,0,0)*CFrame.new(0,3,0)+Vector3.new(0,0.5*fall+bounce,0)
     local wm=u<0.55 and u*1400 or 0
     local flail=u<0.9 and math.sin(T*30)*20 or 0
-    pose(guy,root,{la={lerp(80,170,fall)+math.sin(math.rad(wm))*60,0,-15-flail},ra={lerp(80,170,fall)+math.cos(math.rad(wm))*60,0,15+flail},rl={-25*fall+flail,0,0},ll={10*fall-flail,0,0},neck={-25*fall,0,flail*0.5}})
+    pose(guy,root,{la={lerp(80,150,fall)+math.sin(math.rad(wm))*60,0,lerp(18,-45,fall)-flail},ra={lerp(80,150,fall)+math.cos(math.rad(wm))*60,0,lerp(-18,45,fall)+flail},rl={-25*fall+flail,0,0},ll={10*fall-flail,0,0},neck={-25*fall,0,flail*0.5}})
     face(guy, u<0.55 and "guy_panic" or "guy_shock")
     local k=math.clamp(u/0.7,0,1)
     bouquet:PivotTo(CFrame.new(lerp(0.5,7.4,ease(k)),lerp(3,0.7,k)+math.sin(k*math.pi)*2.5,1.4)*A(u*500,u*200,0))
     local step=ease((u-0.4)/0.3)
     girlRoot=standCF(4+step*1.2,1,NX)*A(-6*step,0,0)
-    gq={la={105*step,0,-45*step},ra={105*step,0,45*step},neck={10*step,0,0}}
+    gq={la={70*step,0,-65*step},ra={70*step,0,65*step},neck={12*step,0,0}}
     gFace=u>0.4 and "girl_gasp" or gFace
     local imp=(u>0.42 and u<0.9) and (0.9-u)*14 or 0
     cam.FieldOfView=55
-    cam.FieldOfView=68 cam.CFrame=look(Vector3.new(-1.2,4.8,10.3),Vector3.new(2.0,1.0,1),-8)*shake(imp,T)
+    cam.FieldOfView=68 cam.CFrame=look(Vector3.new(-0.4,5.0,10.4),Vector3.new(2.4,1.6,1),-8)*shake(imp,T)
   elseif T<9.0 then
     -- S6 crush shocked: hands to mouth, step back, head shake
     local u=T-8
     local feet=CFrame.lookAt(Vector3.new(-1.5,FLOOR,1),Vector3.new(1,FLOOR,1))
     local tw=math.sin(T*25)*6
-    pose(guy,feet*A(-87,0,0)*CFrame.new(0,3,0)+Vector3.new(0,0.5,0),{la={170,0,-15+tw},ra={170,0,15-tw},rl={tw,0,0},neck={-25,0,0}})
+    pose(guy,feet*A(-87,0,0)*CFrame.new(0,3,0)+Vector3.new(0,0.5,0),{la={150,0,-45+tw},ra={150,0,45-tw},rl={tw,0,0},neck={-25,0,0}})
     bouquet:PivotTo(CFrame.new(7.4,0.7,1.4)*A(0,40,80))
     girlRoot=standCF(5.2+u*0.4,1,NX)*A(-6,0,0)
     gq={la={120,0,-28},ra={120,0,28},neck={8,math.sin(T*14)*14,0}}
