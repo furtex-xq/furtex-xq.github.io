@@ -123,6 +123,36 @@ local function talking(T) -- mouth open flag during subtitle words
 end
 local function blinking(T,off) local p=(T+off)%2.3 return p<0.12 end
 local function noise(t,s) return math.noise(t,s or 0,0.5) end
+
+-- background students (walkers + chatting pairs)
+local NPCS={}
+local npcDefs={
+ {kind="walk",x0=-30,x1=20,z=8.5,speed=3.2,phase=0,shirt=Color3.fromRGB(240,200,60),legs=Color3.fromRGB(40,40,90),face="guy_shy"},
+ {kind="walk",x0=25,x1=-25,z=6.5,speed=2.6,phase=4,shirt=Color3.fromRGB(80,160,230),legs=Color3.fromRGB(60,60,60),face="girl_neutral"},
+ {kind="walk",x0=-40,x1=10,z=-2.2,speed=2.9,phase=9,shirt=Color3.fromRGB(200,80,200),legs=Color3.fromRGB(30,30,35),face="guy_talk"},
+ {kind="chat",x=13,z=9.8,face2=-1,shirt=Color3.fromRGB(250,130,60),legs=Color3.fromRGB(70,90,160),face="girl_talk"},
+ {kind="chat",x=10.6,z=9.8,face2=1,shirt=Color3.fromRGB(110,200,140),legs=Color3.fromRGB(40,40,45),face="guy_talk"},
+ {kind="chat",x=-14,z=-2.6,face2=1,shirt=Color3.fromRGB(230,90,90),legs=Color3.fromRGB(50,50,60),face="girl_neutral"},
+ {kind="chat",x=-11.6,z=-2.6,face2=-1,shirt=Color3.fromRGB(90,90,220),legs=Color3.fromRGB(30,30,30),face="guy_shy"},
+}
+for i,d in npcDefs do local r=rig("NPC"..i,d.shirt,d.legs) d.r=r face(r,d.face) table.insert(NPCS,d) end
+local function updateNPCs(T)
+  for i,d in NPCS do
+    local r=d.r
+    if d.kind=="walk" then
+      local len=math.abs(d.x1-d.x0) local dir=(d.x1>d.x0) and 1 or -1
+      local x=d.x0+dir*(((T+d.phase)*d.speed)%len)
+      local ph=(T+d.phase)*9 local s=math.sin(ph)*35
+      local root=standCF(x,d.z,Vector3.new(dir,0,0))+Vector3.new(0,math.abs(math.sin(ph))*0.15,0)
+      pose(r,root,{la={-s*0.8,0,-4},ra={s*0.8,0,4},ll={s,0,0},rl={-s,0,0},neck={0,math.sin(T*1.7+i)*15,0}})
+    else
+      local g=math.sin(T*3+i*2)
+      local root=standCF(d.x,d.z,Vector3.new(d.face2,0,0))*A(0,g*6,0)
+      pose(r,root,{la={0,0,-4},ra={40+g*40,0,15},neck={g*6,0,g*8}})
+      face(r, ((T+i)%2.4<0.12) and (d.face:find("girl") and "girl_blink" or "guy_blink") or (math.floor((T+i)*7)%3==0 and d.face or (d.face:find("girl") and "girl_talk" or "guy_talk")))
+    end
+  end
+end
 local LOOP=12.6
 local t0=os.clock()+2
 RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
@@ -132,6 +162,7 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
   T=T%LOOP local fz=workspace:GetAttribute("CineFreeze") if fz then T=fz end
   if T>10.6 then black.Visible=true lbl.Text="" return end
   black.Visible=false lbl.Text=word(T)
+  updateNPCs(T)
   -- word pop (scale bounce)
   local wstart=0 for _,x in WORDS do if T>=x[1] then wstart=x[1] end end
   local pop=1+0.25*math.max(0,1-(T-wstart)/0.12) lbl.Size=UDim2.fromScale(0.4*pop,0.11*pop)
