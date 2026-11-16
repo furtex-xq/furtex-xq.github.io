@@ -24,7 +24,7 @@ for _,d in workspace:GetDescendants() do if d:IsA("SpawnLocation") then d.Transp
 -- look
 Lighting.ClockTime=14.2 Lighting.Brightness=3 Lighting.OutdoorAmbient=C3(150,150,165) Lighting.GeographicLatitude=30
 pcall(function() Lighting.EnvironmentDiffuseScale=1 Lighting.EnvironmentSpecularScale=0.6 end)
-local cc=Instance.new("ColorCorrectionEffect") cc.Saturation=0.28 cc.Contrast=0.1 cc.Brightness=0.02 cc.Parent=Lighting
+local cc=Instance.new("ColorCorrectionEffect") cc.Saturation=0.28 cc.Contrast=0.1 cc.Brightness=0 cc.Parent=Lighting
 local atm=Lighting:FindFirstChildOfClass("Atmosphere") if atm then atm.Density=0.25 atm.Haze=0.6 end
 
 -- ===== world =====
@@ -55,7 +55,7 @@ for i=1,90 do local x,z=rng:NextNumber(-50,50),rng:NextNumber(-40,55)
   if math.abs(x)>16 or math.abs(z)>17 then if math.abs(x)>9 or z<14 or z>30 then
     P("Flower",V(0.5,0.5,0.5),CFrame.new(x,0.25,z),FC[rng:NextInteger(1,4)],M.SmoothPlastic,nil,Enum.PartType.Ball) end end end
 for _,h in {{-120,-160,90},{-20,-190,110},{90,-170,100},{180,-120,90},{-190,-90,80}} do
-  P("Hill",V(h[3]*1.6,h[3],h[3]*1.2),CFrame.new(h[1],-h[3]*0.18,h[2]),C3(80,175,70),M.Grass,nil,Enum.PartType.Ball) end
+  local hl=P("Hill",V(h[3]*1.6,h[3],h[3]*1.2),CFrame.new(h[1],-h[3]*0.22,h[2]-60),C3(120,205,95),M.SmoothPlastic,nil,Enum.PartType.Ball) hl.CastShadow=false end
 for _,c in {{-40,60,-120},{30,70,-140},{90,55,-90},{-100,65,-60}} do
   for k=0,3 do P("Cloud",V(14-k,9-k,12-k),CFrame.new(c[1]+k*7,c[2]+(k%2)*2,c[3]+k),C3(255,255,255),M.SmoothPlastic,nil,Enum.PartType.Ball) end end
 
@@ -69,7 +69,7 @@ stone(V(7,WH-6.5,2),CFrame.new(0,6.5+(WH-6.5)/2,FRONT))
 stone(V(26,WH,2),CFrame.new(0,WH/2,-FRONT))
 stone(V(2,WH,26),CFrame.new(-FRONT,WH/2,0))
 stone(V(2,WH,26),CFrame.new(FRONT,WH/2,0))
-P("Courtyard",V(24,0.1,24),CFrame.new(0,0.05,0),C3(170,150,120),M.Sand)
+P("Courtyard",V(24,0.1,24),CFrame.new(0,0.05,0),C3(150,128,95),M.Sand)
 for i=-3,3 do
   for _,s in {{V(i*3,WH+0.75,FRONT),V(1.6,1.5,2.2)},{V(i*3,WH+0.75,-FRONT),V(1.6,1.5,2.2)},{V(FRONT,WH+0.75,i*3),V(2.2,1.5,1.6)},{V(-FRONT,WH+0.75,i*3),V(2.2,1.5,1.6)}} do
     stone(s[2],CFrame.new(s[1])) end end
@@ -103,7 +103,7 @@ local cracks={}
 do local segs={{V(0.92,5.2,0.2),V(0.92,4.5,-0.1),A(0,0,25)},{V(0.92,4.5,-0.1),V(0.92,3.6,0.25),A(0,0,-30)},{V(0.92,3.6,0.25),V(0.92,2.6,-0.15),A(0,0,20)},
   {V(0.92,4.3,0.1),V(0.92,4.0,0.6),A(0,0,0)},{V(0.6,4.4,0.92),V(0.1,3.6,0.92),A(0,0,0)},{V(0.1,3.6,0.92),V(-0.4,3.0,0.92),A(0,0,0)}}
   for _,s in segs do local a=pillarR.CFrame*CFrame.new(s[1]-V(0,3.6,0)) local b=pillarR.CFrame*CFrame.new(s[2]-V(0,3.6,0))
-    local m=(a.Position+b.Position)/2 local c=P("Crack",V(0.12,0.12,(a.Position-b.Position).Magnitude+0.1),CFrame.lookAt(m,b.Position),C3(35,35,40),M.SmoothPlastic)
+    local m=(a.Position+b.Position)/2 local c=P("Crack",V(0.22,0.22,(a.Position-b.Position).Magnitude+0.1),CFrame.lookAt(m,b.Position),C3(35,35,40),M.SmoothPlastic)
     c.Transparency=1 table.insert(cracks,c) end
 end
 local METAL=C3(70,72,80)
@@ -123,7 +123,7 @@ P("ChestBand",V(7.05,0.3,4.05),CFrame.new(0,0.3,CHZ),C3(240,190,40),M.Metal)
 local goldPile={}
 table.insert(goldPile,P("GoldPile",V(6.4,0.5,3.4),CFrame.new(0,2.85,CHZ),C3(255,205,40),M.SmoothPlastic))
 for i=1,9 do table.insert(goldPile,P("GoldBump",V(1.4,0.9,1.4),CFrame.new(-2.6+((i-1)%5)*1.3,3.05,CHZ-0.9+math.floor((i-1)/5)*1.6),C3(255,215,60),M.SmoothPlastic,nil,Enum.PartType.Ball)) end
-for _,g in goldPile do g.Reflectance=0.15 end
+for _,g in goldPile do g.Reflectance=0.03 g.Color=C3(240,185,30) end
 local chestLight=Instance.new("PointLight") chestLight.Color=C3(255,210,80) chestLight.Range=14 chestLight.Brightness=0 chestLight.Parent=goldPile[1]
 local LHINGE=CFrame.new(0,3,CHZ-2)
 local lid={}
@@ -224,7 +224,7 @@ local function sparks(t0,pos,n,col)
 end
 local function dust(t0,pos,n,spread,size)
   for i=1,n do local s=size or 2.2 local p=P("Dust",V(s,s,s),nil,C3(215,205,185),M.SmoothPlastic,nil,Enum.PartType.Ball) p.CastShadow=false
-    fx({p=p,t0=t0,life=0.9,fade=true,tr=0.25,p0=pos+V(frng:NextNumber(-spread,spread),frng:NextNumber(0,1),frng:NextNumber(-spread,spread)),v=V(frng:NextNumber(-5,5),frng:NextNumber(1,4),frng:NextNumber(-5,5)),w=V(0,0,0),g=0,grow=1.4,size=V(s,s,s)}) end
+    fx({p=p,t0=t0,life=0.75,fade=true,tr=0.45,p0=pos+V(frng:NextNumber(-spread,spread),frng:NextNumber(0,1),frng:NextNumber(-spread,spread)),v=V(frng:NextNumber(-5,5),frng:NextNumber(1,4),frng:NextNumber(-5,5)),w=V(0,0,0),g=0,grow=0.9,size=V(s,s,s)}) end
 end
 -- timeline (seconds, after hit-stop remap)
 local T_GRATE=2.55 local T_CRACK=5.0 local T_BREAK=6.2 local T_LAND=6.78 local T_DOOR=8.6 local T_K1=11.0 local T_K2=12.5 local T_OPEN=14.0 local T_GOLD=14.45
@@ -232,8 +232,8 @@ sparks(T_GRATE,V(0,3.2,PZ+0.3),16)
 sparks(T_CRACK,V(5.7,3.4,PZ),8,C3(230,230,230)) dust(T_CRACK,V(5.8,3.4,PZ),3,0.4,1.2)
 for i=1,14 do local sz=frng:NextNumber(0.6,1.2) local p=P("Chunk",V(sz,sz*0.8,sz),nil,STONE_D,M.Cobblestone)
   fx({p=p,t0=T_BREAK,ground=true,half=sz*0.4,p0=V(4.8+frng:NextNumber(-0.6,0.6),frng:NextNumber(0.6,6.8),PZ+frng:NextNumber(-0.6,0.6)),v=V(frng:NextNumber(-12,-2),frng:NextNumber(6,18),frng:NextNumber(-3,9)),w=V(frng:NextNumber(-500,500),frng:NextNumber(-500,500),frng:NextNumber(-500,500))}) end
-dust(T_BREAK,V(4.8,3,PZ),7,1.2,2.5)
-dust(T_LAND,V(0,0.6,PZ+5),12,4.5,3)
+dust(T_BREAK,V(4.8,3,PZ),5,1.0,1.5)
+dust(T_LAND,V(0,0.4,PZ+4),9,4.5,1.4)
 for i,pl in planks do local pr=fx({p=pl.p,t0=T_DOOR,ground=true,half=0.25,p0=pl.cf.Position,v=V((i-3)*3+frng:NextNumber(-2,2),frng:NextNumber(6,12),-frng:NextNumber(14,22)),w=V(frng:NextNumber(-400,-150),frng:NextNumber(-200,200),frng:NextNumber(-90,90)),r0=CFrame.identity})
   pl.fx=pr end
 dust(T_DOOR,V(0,2.5,12.6),6,2,2)
@@ -257,9 +257,9 @@ local function mk(font,col,stroke,pos,sizeY)
 end
 local bang=mk(Enum.Font.LuckiestGuy,C3(255,225,60),4,UDim2.fromScale(0.5,0.22),0.16)
 local cap=mk(Enum.Font.GothamBlack,Color3.new(1,1,1),3,UDim2.fromScale(0.5,0.86),0.065)
-local title=mk(Enum.Font.LuckiestGuy,C3(255,215,50),6,UDim2.fromScale(0.5,0.42),0.2)
+local title=mk(Enum.Font.LuckiestGuy,C3(255,215,50),6,UDim2.fromScale(0.5,0.17),0.2)
 local BANGS={{T_GRATE,"CLANG!",C3(200,220,255)},{T_CRACK,"CRACK!",C3(255,225,60)},{T_BREAK,"BOOM!",C3(255,140,50)},{T_LAND,"CRASH!",C3(255,90,70)},{T_DOOR,"SMASH!",C3(255,180,60)},{T_K1,"BONK!",C3(255,225,60)},{T_K2,"BONK!",C3(120,230,255)},{T_GOLD,"GOLD!",C3(255,215,50)}}
-local CAPS={{2.6,4.4,"METAL = UNBREAKABLE"},{4.5,6.15,"FIND THE WEAK POINT..."},{6.2,7.6,"STONE BREAKS!"},{8.6,9.8,"WOOD BREAKS TOO!"}}
+local CAPS={{2.6,4.4,"METAL = UNBREAKABLE"},{4.5,5.0,"FIND THE WEAK POINT..."},{5.0,6.15,"STONE CRACKS..."},{6.2,7.6,"STONE BREAKS!"},{8.6,9.8,"WOOD BREAKS TOO!"}}
 local HITS={T_GRATE,T_CRACK,T_BREAK,T_LAND,T_DOOR,T_K1,T_K2}
 local function remap(t) local acc=0 for _,h in HITS do local rh=h+acc if t>rh then if t<rh+0.07 then return h end acc+=0.07 end end return t-acc end
 
@@ -288,19 +288,19 @@ local function thiefUpdate(T)
     local d=T-T_GRATE local back=d>0 and math.sin(clamp01(d/0.5)*math.pi/2)*0.8 or 0 pos=pos+V(0,0,back)
     q={la={swing(T,T_GRATE,20,90,true)*0.6,0,-10},ra={swing(T,T_GRATE,150,90,true),0,6},neck={0,d>0.15 and math.sin(d*25)*10*math.max(0,1-d) or 0,0}}
     lean=swingLean(T,T_GRATE) if d>0 and d<0.9 then lean=8*(1-d/0.9) face="o" end
-  elseif T<4.5 then local a,b=V(-1.2,0,19.4),V(9.5,0,16)
+  elseif T<4.5 then local a,b=V(-1.2,0,19.4),V(10.3,0,16)
     pos,dir=path(T,3.4,4.3,a,b) q=runQ(T*15,40) bob=math.abs(math.sin(T*15))*0.3 lean=-8 if T>4.3 then dir=V(-1,0,0) q={la={10,0,-5},ra={150,0,8}} bob=0 lean=0 end
-  elseif T<7.0 then pos=V(9.5,0,16) dir=V(-1,0,0)
+  elseif T<7.0 then pos=V(10.3,0,16) dir=V(-1,0,0)
     q={la={swing(T,T_CRACK,20,95)*0.5+swing(T,T_BREAK,20,95)*0.5-10,0,-10},ra={math.min(swing(T,T_CRACK,150,95),swing(T,T_BREAK,150,95)),0,6},neck={0,0,0}}
     lean=swingLean(T,T_CRACK)+swingLean(T,T_BREAK) if T>T_LAND-0.2 and T<T_LAND+0.5 then face="o" end
-  elseif T<8.2 then pos,dir=path(T,7.0,8.0,V(9.5,0,16),V(-1.2,0,16.5)) if T>8.0 then dir=V(0,0,-1) end q=runQ(T*13,35) bob=math.abs(math.sin(T*13))*0.25
+  elseif T<8.2 then pos,dir=path(T,7.0,8.0,V(10.3,0,16),V(-1.2,0,16.5)) if T>8.0 then dir=V(0,0,-1) end q=runQ(T*13,35) bob=math.abs(math.sin(T*13))*0.25
     if T>8.0 then q={la={10,0,-5},ra={150,0,8}} bob=0 end
   elseif T<9.0 then pos=V(-1.2,0,16.5) dir=V(0,0,-1) q={la={20,0,-10},ra={swing(T,T_DOOR,150,92),0,6}} lean=swingLean(T,T_DOOR)
-  elseif T<10.0 then pos,dir=path(T,9.0,9.9,V(-1.2,0,16.5),V(0,0,7.3)) q=runQ(T*15,42) bob=math.abs(math.sin(T*15))*0.3 lean=-8 if T>9.9 then dir=V(0,0,-1) q={la={10,0,-5},ra={150,0,8}} bob=0 lean=0 end
-  elseif T<12.95 then pos=V(0,0,7.3) dir=V(0,0,-1)
+  elseif T<10.0 then pos,dir=path(T,9.0,9.9,V(-1.2,0,16.5),V(0,0,3.5)) q=runQ(T*15,42) bob=math.abs(math.sin(T*15))*0.3 lean=-8 if T>9.9 then dir=V(0,0,-1) q={la={10,0,-5},ra={150,0,8}} bob=0 lean=0 end
+  elseif T<12.95 then pos=V(0,0,3.5) dir=V(0,0,-1)
     q={la={25,0,-12},ra={math.min(swing(T,T_K1,150,88),swing(T,T_K2,150,88)),0,6},neck={0,0,0}} lean=swingLean(T,T_K1)+swingLean(T,T_K2)
     if T<10.6 then q.neck={0,math.sin(T*6)*20,0} end
-  elseif T<13.8 then pos,dir=path(T,12.95,13.75,V(0,0,7.3),V(0,0,-3.6)) q=runQ(T*15,42) bob=math.abs(math.sin(T*15))*0.3 lean=-8 dir=V(0,0,-1)
+  elseif T<13.8 then pos,dir=path(T,12.95,13.75,V(0,0,3.5),V(0,0,-3.6)) q=runQ(T*15,42) bob=math.abs(math.sin(T*15))*0.3 lean=-8 dir=V(0,0,-1)
   elseif T<14.6 then pos=V(0,0,-3.6) dir=V(0,0,-1) local u=clamp01((T-13.8)/0.35) q={la={lerp(10,120,u),0,-10},ra={150,0,8},neck={-10*u,0,0}} if T>T_GOLD then face="o" q.neck={20,0,0} end
   else pos=V(0,0,-3.6) local u=clamp01((T-14.6)/0.5) dir=V(math.sin(u*2.2),0,-math.cos(u*2.2))
     local j=math.max(0,math.sin((T-14.6)*7))  bob=j*1.6
@@ -314,7 +314,7 @@ local function thiefUpdate(T)
 end
 local function knightUpdate(k,T,home,hit,runFrom,runTo,flyV,spinSign,seed)
   local t0=hit-1.1
-  if T<t0 then local look=(T>9.6) and (V(0,0,7.3)-home) or V(0,0,1)
+  if T<t0 then local look=(T>9.6) and (V(0,0,3.5)-home) or V(0,0,1)
     pose(k,at(home+V(0,2,0),look),{la={30,0,-8},ra={55+math.sin(T*2+seed)*6,0,8},neck={0,math.sin(T*1.5+seed)*12,0}})
   elseif T<hit then local u=clamp01((T-t0)/0.95) local p=home:Lerp(runTo,u) local s=math.sin(T*15)*40
     pose(k,at(p+V(0,2+math.abs(math.sin(T*15))*0.3,0),runTo-home)*A(-10,0,0),{la={40,0,-8},ra={lerp(60,160,u),0,8},ll={-s,0,0},rl={s,0,0}})
@@ -351,10 +351,10 @@ RS:BindToRenderStep("BTW",Enum.RenderPriority.Camera.Value+1,function()
   for _,pl in planks do if T<T_DOOR then pl.p.CFrame=pl.cf pl.p.Transparency=0 end for k,b in pl.b do b.CFrame=pl.p.CFrame*pl.rel[k] end end
   local la=0 if T>T_OPEN then la=-lerp(0,118,ease((T-T_OPEN)/0.45)) if T>T_OPEN+0.45 then la=-118+math.sin((T-T_OPEN-0.45)*12)*4*math.exp(-(T-T_OPEN-0.45)*4) end end
   for _,l in lid do l.p.CFrame=LHINGE*A(la,0,0)*l.rel end
-  chestLight.Brightness=T>T_OPEN and lerp(0,4,(T-T_OPEN)/0.4) or 0
+  chestLight.Brightness=T>T_OPEN and lerp(0,1.5,(T-T_OPEN)/0.4) or 0
   thiefUpdate(T)
-  knightUpdate(K1,T,V(-5,0,2),T_K1,nil,V(1.25,0,3.5),V(-16,38,-6),1,1)
-  knightUpdate(K2,T,V(5,0,-1),T_K2,nil,V(1.25,0,3.5),V(16,40,-8),-1,2)
+  knightUpdate(K1,T,V(-5,0,2),T_K1,nil,V(1.25,0,-0.3),V(-16,38,-4),1,1)
+  knightUpdate(K2,T,V(5,0,-1),T_K2,nil,V(1.25,0,-0.3),V(16,40,-4),-1,2)
   -- text
   local bt,bw,bc=-9,"",nil for _,b in BANGS do if T>=b[1] then bt,bw,bc=b[1],b[2],b[3] end end
   local bd=T-bt if bd<0.75 then bang.Text=bw bang.TextColor3=bc local s=1+0.45*math.max(0,1-bd/0.12) bang.Size=UDim2.fromScale(0.6*s,0.16*s) bang.Rotation=math.sin(bt*7)*8 bang.TextTransparency=bd>0.6 and (bd-0.6)/0.15 or 0 else bang.Text="" end
@@ -365,11 +365,11 @@ RS:BindToRenderStep("BTW",Enum.RenderPriority.Camera.Value+1,function()
   local cf local fov=55
   if T<2.3 then local u=T/2.3 cf=look(V(-26,30,58):Lerp(V(-14,21,44),ease(u)),V(-8,2,16):Lerp(V(0,3,9),ease(u)))
   elseif T<3.6 then local u=(T-2.3)/1.3 cf=look(V(8,9,28):Lerp(V(6.5,8,26),u),V(0,3.4,15)) fov=lerp(55,48,u)
-  elseif T<7.6 then local u=(T-3.6)/4 cf=look(V(-3,10,30):Lerp(V(-1,9,29),u),V(5,3,16):Lerp(V(3,2.5,17),u)) fov=lerp(58,52,u)
+  elseif T<7.6 then local u=(T-3.6)/4 local k=ease((T-T_BREAK)/0.6) cf=look(V(-3,10,30):Lerp(V(-1,9,29),u):Lerp(V(-2,14,34),k),V(5,3,16):Lerp(V(3,2.5,17),u):Lerp(V(2,1.2,18),k)) fov=lerp(58,52,u)
   elseif T<9.6 then local u=(T-7.6)/2 cf=look(V(6,7.5,26):Lerp(V(4.5,7,24),u),V(0,3,13)) fov=55
-  elseif T<13.0 then local u=(T-9.6)/3.4 cf=look(V(lerp(-6,6,u),25,25),V(0,1,1)) fov=60
-  elseif T<16.8 then local u=(T-13)/3.8 cf=look(V(7,10,5):Lerp(V(5,7.5,1.5),ease(u)),V(0,2.6,-6)) fov=55
-  else local u=(T-16.8)/2.4 cf=look(V(6,9,3):Lerp(V(-8,30,40),ease(u)),V(0,2.5,-5):Lerp(V(0,2,2),ease(u))) fov=lerp(55,60,u) end
+  elseif T<13.0 then local u=(T-9.6)/3.4 cf=look(V(lerp(-6,6,u),30,21),V(0,1,-1)) fov=58
+  elseif T<16.8 then local u=(T-13)/3.8 cf=look(V(7,10,5):Lerp(V(5.8,8.6,2.6),ease(u)),V(0,2.6,-6)) fov=55
+  else local u=(T-16.8)/2.4 cf=look(V(6,9,3):Lerp(V(-5,42,28),ease(u)),V(0,2.5,-5):Lerp(V(0,1,-3),ease(u))) fov=lerp(55,60,u) end
   local sa=shakeAmt(T) cf=cf*CFrame.Angles(math.rad(sa*math.noise(T*30,1)*3),math.rad(sa*math.noise(T*30,2)*3),math.rad(sa*math.noise(T*30,3)*2))
   cam.CFrame=cf cam.FieldOfView=fov
 end)
