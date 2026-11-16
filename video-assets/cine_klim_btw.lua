@@ -248,7 +248,7 @@ local function rig(o)
   r.LL=P("LLeg",V(0.75,1.2,0.75),nil,o.leg,o.lmat,m) r.RL=P("RLeg",V(0.75,1.2,0.75),nil,o.leg,o.lmat,m)
   return r
 end
-local function ex(r,bone,size,rel,col,mat,shape) local p=P("X",size,nil,col,mat,r.m,shape) local e={p=p,bone=bone,rel=rel} table.insert(r.ex,e) return p,e end
+local function ex(r,bone,size,rel,col,mat,shape) local p=P("X",size,nil,col,mat,r.m,shape) local e={p=p,bone=bone,rel=rel} table.insert(r.ex,e) r.last=e return p end
 local function pose(r,root,q)
   q=q or {}
   local function g(k) local v=q[k] if not v then return CFrame.identity end return A(v[1],v[2],v[3]) end
@@ -270,7 +270,7 @@ local thief=rig({name="Thief",torso=HOOD,head=SKIN,arm=HOOD,leg=C3(45,45,60)})
 ex(thief,"H",V(1.96,0.55,1.86),CFrame.new(0,0.12,0),C3(40,30,55))                -- mask band
 local whites={} for _,sx in {-1,1} do table.insert(whites,(ex(thief,"H",V(0.42,0.32,0.06),CFrame.new(sx*0.42,0.13,-0.94),C3(255,255,255)))) end
 local pupils={} for _,sx in {-1,1} do table.insert(pupils,ex(thief,"H",V(0.16,0.22,0.06),CFrame.new(sx*0.36,0.11,-0.98),C3(20,20,20))) end
-local brows={} for _,sx in {-1,1} do local _,e=ex(thief,"H",V(0.55,0.13,0.06),CFrame.new(sx*0.42,0.52,-0.93)*A(0,0,sx*18),C3(40,30,30)) e.sx=sx table.insert(brows,e) end
+local brows={} for _,sx in {-1,1} do ex(thief,"H",V(0.55,0.13,0.06),CFrame.new(sx*0.42,0.52,-0.93)*A(0,0,sx*18),C3(40,30,30)) local e=thief.last e.sx=sx table.insert(brows,e) end
 local grin={ex(thief,"H",V(0.8,0.14,0.06),CFrame.new(0.05,-0.45,-0.92)*A(0,0,-6),C3(40,20,20)),ex(thief,"H",V(0.5,0.12,0.07),CFrame.new(0.05,-0.36,-0.925),C3(255,255,255))}
 local mouthO={ex(thief,"H",V(0.4,0.42,0.06),CFrame.new(0,-0.45,-0.92),C3(60,20,20))}
 ex(thief,"H",V(2.0,0.55,1.95),CFrame.new(0,0.92,0),C3(40,30,55))                -- beanie
@@ -290,11 +290,11 @@ local sack={ex(thief,"LA",V(2,2,2),CFrame.new(0,-2.3,0),C3(170,125,70),M.Fabric,
 ex(thief,"H",V(0.3,0.26,0.22),CFrame.new(0,-0.17,-0.99),C3(232,180,140))      -- nose
 for _,b in {"LL","RL"} do ex(thief,b,V(0.85,0.42,1.05),CFrame.new(0,-1.05,-0.12),C3(70,45,30)) end -- boots
 ex(thief,"T",V(1.95,0.38,1.2),CFrame.new(0,0.72,0),C3(220,45,55),M.Fabric)    -- scarf
-local _,scarfTail=ex(thief,"T",V(0.5,1.2,0.12),CFrame.new(),C3(210,40,50),M.Fabric)
+ex(thief,"T",V(0.5,1.2,0.12),CFrame.new(),C3(210,40,50),M.Fabric) local scarfTail=thief.last
 ex(thief,"T",V(1.2,1.25,0.55),CFrame.new(0,0.05,0.82),C3(120,80,45),M.Fabric)  -- backpack
 ex(thief,"T",V(1.25,0.45,0.6),CFrame.new(0,0.55,0.84),C3(100,65,38),M.Fabric)
 ex(thief,"T",V(0.9,0.45,0.1),CFrame.new(0,-0.2,-0.58),C3(70,45,105))          -- pocket
-local ghosts={} for k,dl in {14,28,42} do local g,e=ex(thief,"RA",V(1.2,1.2,1.9),A(dl,0,0)*CFrame.new(0,-3.9,0),C3(220,225,240),M.Neon) g.CastShadow=false e.tr=0.45+k*0.15 table.insert(ghosts,g) end
+local ghosts={} for k,dl in {14,28,42} do local g=ex(thief,"RA",V(1.2,1.2,1.9),A(dl,0,0)*CFrame.new(0,-3.9,0),C3(220,225,240),M.Neon) g.CastShadow=false table.insert(ghosts,g) end
 local dizzy={} for i=1,3 do local d=P("Star",V(0.35,0.35,0.35),nil,C3(255,230,60),M.Neon) d.CastShadow=false table.insert(dizzy,d) end
 -- knights
 local function knight(name,plume)
