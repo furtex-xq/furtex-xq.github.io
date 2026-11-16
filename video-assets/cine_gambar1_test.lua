@@ -84,7 +84,7 @@ do
   P("EndA",Vector3.new(0.25,1.6,2.8),WOOD,cf).CFrame=CFrame.new(CX-3.5,1.2,CZ)
   P("EndB",Vector3.new(0.25,1.6,2.8),WOOD,cf).CFrame=CFrame.new(CX+3.5,1.2,CZ)
   P("Pillow",Vector3.new(1,0.4,1.8),SAT,cf).CFrame=CFrame.new(CX-2.7,0.85,CZ)
-  for i=-1,1 do local fl=sc.Bouquet:Clone() fl.Parent=cf fl:PivotTo(CFrame.new(CX+i*2.4,0.8,CZ-2.3)*A(0,i*40,20)) end
+  for i=-1,1 do local fl=sc.Bouquet:Clone() fl.Parent=cf fl:PivotTo(CFrame.new(CX+4.4,0.8,CZ+i*1.6)*A(0,i*40,20)) end
   local lid=sc.Coffin:Clone() lid.Parent=cf lid:PivotTo(CFrame.new(CX,4.5,-4.2)*A(0,90,0)*A(70,0,0))
 end
 -- end walls
@@ -115,7 +115,7 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
   cam.CameraType=Enum.CameraType.Scriptable
   local T=os.clock()-t0
   if T<0 then black.Visible=true lbl.Text="" return end
-  T=T%LOOP
+  T=T%LOOP local fz=workspace:GetAttribute("CineFreeze") if fz then T=fz end
   if T>10.6 then black.Visible=true lbl.Text="" return end
   black.Visible=false lbl.Text=word(T)
   cam.FieldOfView=60
@@ -169,10 +169,10 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     local u=(T-9)/1.6
     local pos=Vector3.new(CX+0.3,1.25,CZ)
     local root=CFrame.lookAt(pos,pos+Vector3.yAxis,-PX)
-    pose(guy,root,{la={110,0,-35},ra={110,0,35}}) face(guy,"guy_dead")
-    bouquet:PivotTo(root*CFrame.new(0,0.2,-1.0)*A(-90,0,0))
+    pose(guy,root,{la={25,0,-8},ra={25,0,8}}) face(guy,"guy_dead")
+    bouquet:PivotTo(root*CFrame.new(0,-1.6,-0.9)*A(-90,0,0))
     cam.FieldOfView=55
-    cam.CFrame=look(Vector3.new(CX+0.3,lerp(16,10,ease(u)),CZ+0.01),Vector3.new(CX+0.3,1,CZ),0)
+    cam.CFrame=CFrame.lookAt(Vector3.new(CX+0.3,lerp(16,10.5,ease(u)),CZ),Vector3.new(CX+0.3,1,CZ),-PX)
     cam.FieldOfView=lerp(50,45,u)
   end
 end)
