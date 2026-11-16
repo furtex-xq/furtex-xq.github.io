@@ -26,15 +26,20 @@ local cam=workspace.CurrentCamera
 local sc=game.ReplicatedStorage:WaitForChild("Scene") task.wait(1)
 local bouquet=sc.Bouquet:Clone() bouquet.Parent=workspace bouquet:ScaleTo(bouquet:GetScale()*0.7)
 -- faces
-local N=128 local IMG={}
+local N=128 local IMG={} local IMGOBJ={}
 for name,data in FACES do
   local buf=buffer.create(N*N*4) local o=0
   for item in string.gmatch(data,"[^,]+") do
     local ci,cnt=string.match(item,"(%d+):(%d+)") local c=PAL[tonumber(ci)+1]
     for _=1,tonumber(cnt) do buffer.writeu8(buf,o,c[1]) buffer.writeu8(buf,o+1,c[2]) buffer.writeu8(buf,o+2,c[3]) buffer.writeu8(buf,o+3,c[4]) o+=4 end
   end
-  local ok,img=pcall(function() return AS:CreateEditableImage({Size=Vector2.new(N,N)}) end)
-  if ok and img then img:WritePixelsBuffer(Vector2.zero,Vector2.new(N,N),buf) IMG[name]=Content.fromObject(img) else warn("EditableImage fail",img) end
+  local img
+  for try=1,5 do
+    local ok,res=pcall(function() return AS:CreateEditableImage({Size=Vector2.new(N,N)}) end)
+    if ok and res then img=res break end
+    warn("EditableImage retry",name,res) task.wait(0.2)
+  end
+  if img then img:WritePixelsBuffer(Vector2.zero,Vector2.new(N,N),buf) IMGOBJ[name]=img IMG[name]=Content.fromObject(img) else warn("EditableImage FAIL",name) end
 end
 -- rigs
 local SKIN=Color3.fromRGB(234,184,146)
@@ -45,7 +50,8 @@ local function rig(name,torsoCol,legCol)
   local r={model=m}
   r.T=P("Torso",Vector3.new(2,2,1),torsoCol,m)
   r.H=P("Head",Vector3.new(2,1,1),SKIN,m) local mesh=Instance.new("SpecialMesh") mesh.MeshType=Enum.MeshType.Head mesh.Scale=Vector3.new(1.25,1.25,1.25) mesh.Parent=r.H
-  r.face=Instance.new("Decal") r.face.Face=Enum.NormalId.Front r.face.Parent=r.H
+  r.decals={}
+  for fname,c in IMG do local d=Instance.new("Decal") d.Name="F_"..fname d.Face=Enum.NormalId.Front d.TextureContent=c d.Transparency=1 d.Parent=r.H r.decals[fname]=d end
   r.LA=P("LArm",Vector3.new(1,2,1),SKIN,m) r.RA=P("RArm",Vector3.new(1,2,1),SKIN,m)
   r.LL=P("LLeg",Vector3.new(1,2,1),legCol,m) r.RL=P("RLeg",Vector3.new(1,2,1),legCol,m)
   r.extra={}
@@ -78,7 +84,11 @@ do
   table.insert(girl.extra,{p=back,rel=CFrame.new(0,-0.45,0.55)})
 end
 local curF={}
-local function face(r,name) if curF[r]==name then return end curF[r]=name if IMG[name] then r.face.TextureContent=IMG[name] end end
+local function face(r,name)
+  local d=r.decals[name] if not d then return end
+  if curF[r]~=name then local old=curF[r] and r.decals[curF[r]] if old then old.Transparency=1 end d.Transparency=0 curF[r]=name end
+  if d.TextureContent.Object==nil and IMG[name] then d.TextureContent=IMG[name] end -- self-heal
+end
 -- open coffin built from parts (lid = mesh coffin leaning)
 local CX,CZ=-36,3
 do
@@ -145,6 +155,7 @@ local function updateNPCs(T)
       local ph=(T+d.phase)*9 local s=math.sin(ph)*35
       local root=standCF(x,d.z,Vector3.new(dir,0,0))+Vector3.new(0,math.abs(math.sin(ph))*0.15,0)
       pose(r,root,{la={-s*0.8,0,-4},ra={s*0.8,0,4},ll={s,0,0},rl={-s,0,0},neck={0,math.sin(T*1.7+i)*15,0}})
+      face(r, ((T+i*0.7)%2.6<0.12) and (d.face:find("girl") and "girl_blink" or "guy_blink") or d.face)
     else
       local g=math.sin(T*3+i*2)
       local root=standCF(d.x,d.z,Vector3.new(d.face2,0,0))*A(0,g*6,0)
