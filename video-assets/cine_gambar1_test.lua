@@ -143,7 +143,7 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     local s=math.sin(T*11)*30
     local root=standCF(x,1,PX)+Vector3.new(0,math.abs(math.sin(T*11))*0.12,0)
     pose(guy,root,{la=HOLD.la,ra=HOLD.ra,ll={s,0,0},rl={-s,0,0}}) bouquetFront(guy) face(guy,"guy_nervous")
-    cam.CFrame=look(Vector3.new(x-3.5,4.2,8.5),Vector3.new(x+3,2.6,1),0)
+    cam.CFrame=look(Vector3.new(x-5,4.6,12),Vector3.new(x+2.5,2.6,1),0)
   elseif T<8.0 then
     local u=T-6.5
     local fall=ease(u/0.45)
@@ -155,7 +155,7 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     bouquet:PivotTo(CFrame.new(lerp(1.5,6.8,ease(k)),lerp(3,0.7,k)+math.sin(k*math.pi)*2.5,1.4)*A(u*500,u*200,0))
     local imp=(u>0.42 and u<0.9) and (0.9-u)*14 or 0
     cam.FieldOfView=55
-    cam.CFrame=look(Vector3.new(1.6,2.4,10.5),Vector3.new(1.8,1.3,1),-8)*shake(imp,T)
+    cam.CFrame=look(Vector3.new(1.4,3.2,13.5),Vector3.new(2,1.6,1),-8)*shake(imp,T)
   elseif T<9.0 then
     local u=T-8
     local feet=CFrame.lookAt(Vector3.new(0,FLOOR,1),Vector3.new(1,FLOOR,1))
