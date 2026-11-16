@@ -73,7 +73,7 @@ end
 local curF={}
 local function face(r,name) if curF[r]==name then return end curF[r]=name if IMG[name] then r.face.TextureContent=IMG[name] end end
 -- open coffin built from parts (lid = mesh coffin leaning)
-local CX,CZ=-26,3
+local CX,CZ=-36,3
 do
   local cf=Instance.new("Model") cf.Name="OpenCoffin" cf.Parent=workspace
   local WOOD=Color3.fromRGB(70,40,25) local SAT=Color3.fromRGB(245,240,235)
@@ -92,6 +92,7 @@ for _,x in {-45,45} do P("EndWall",Vector3.new(1,18,20),Color3.fromRGB(235,230,2
 -- subtitles
 local pg=Players.LocalPlayer:WaitForChild("PlayerGui")
 local gui=Instance.new("ScreenGui") gui.Name="Subs" gui.IgnoreGuiInset=true gui.ResetOnSpawn=false gui.DisplayOrder=10 gui.Parent=pg
+for _,ax in {0,1} do local sb=Instance.new("Frame") sb.Name="SideBar" sb.BackgroundColor3=Color3.new(0,0,0) sb.BorderSizePixel=0 sb.AnchorPoint=Vector2.new(ax,0) sb.Position=UDim2.fromScale(ax,0) sb.Parent=gui local function fit() local v=workspace.CurrentCamera.ViewportSize sb.Size=UDim2.fromOffset(math.max(0,(v.X-v.Y*9/16)/2),v.Y) end fit() workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(fit) end
 local black=Instance.new("Frame") black.Size=UDim2.fromScale(1,1) black.BackgroundColor3=Color3.new(0,0,0) black.BorderSizePixel=0 black.Parent=gui
 local lbl=Instance.new("TextLabel") lbl.BackgroundTransparency=1 lbl.AnchorPoint=Vector2.new(0.5,0.5) lbl.Position=UDim2.fromScale(0.5,0.68) lbl.Size=UDim2.fromScale(0.4,0.11)
 lbl.Font=Enum.Font.GothamBlack lbl.TextScaled=true lbl.TextColor3=Color3.new(1,1,1) lbl.Text="" lbl.Parent=gui
@@ -124,7 +125,7 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     pose(guy,standCF(-4,1,PX),HOLD) bouquetFront(guy) face(guy,"guy_scared")
     local hp=guy.H.Position
     cam.FieldOfView=50
-    cam.CFrame=look(hp+Vector3.new(2.6-T*0.4,0.25,0.5),hp,-28+T*6)*shake(4*(1.5-T),T)
+    cam.CFrame=look(hp+Vector3.new(3.6-T*0.5,0.4,1.2),hp+Vector3.new(0,-0.15,0),-24+T*6)*shake(4*(1.5-T),T)
   elseif T<3.0 then
     local u=(T-1.5)/1.5
     pose(guy,standCF(-4,1,PX),{la=HOLD.la,ra=HOLD.ra,neck={-12,0,10}}) bouquetFront(guy) face(guy,"guy_shy")
@@ -142,7 +143,7 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     local s=math.sin(T*11)*30
     local root=standCF(x,1,PX)+Vector3.new(0,math.abs(math.sin(T*11))*0.12,0)
     pose(guy,root,{la=HOLD.la,ra=HOLD.ra,ll={s,0,0},rl={-s,0,0}}) bouquetFront(guy) face(guy,"guy_nervous")
-    cam.CFrame=look(Vector3.new(x+1.6,3.8,10),Vector3.new(x+1.8,2.6,1),0)
+    cam.CFrame=look(Vector3.new(x-3.5,4.2,8.5),Vector3.new(x+3,2.6,1),0)
   elseif T<8.0 then
     local u=T-6.5
     local fall=ease(u/0.45)
@@ -154,7 +155,7 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     bouquet:PivotTo(CFrame.new(lerp(1.5,6.8,ease(k)),lerp(3,0.7,k)+math.sin(k*math.pi)*2.5,1.4)*A(u*500,u*200,0))
     local imp=(u>0.42 and u<0.9) and (0.9-u)*14 or 0
     cam.FieldOfView=55
-    cam.CFrame=look(Vector3.new(-3.5,1.1,6.5),Vector3.new(1.6,1.2,1),-10)*shake(imp,T)
+    cam.CFrame=look(Vector3.new(1.6,2.4,10.5),Vector3.new(1.8,1.3,1),-8)*shake(imp,T)
   elseif T<9.0 then
     local u=T-8
     local feet=CFrame.lookAt(Vector3.new(0,FLOOR,1),Vector3.new(1,FLOOR,1))
@@ -171,6 +172,7 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     pose(guy,root,{la={110,0,-35},ra={110,0,35}}) face(guy,"guy_dead")
     bouquet:PivotTo(root*CFrame.new(0,0.2,-1.0)*A(-90,0,0))
     cam.FieldOfView=55
-    cam.CFrame=look(Vector3.new(CX+lerp(2.2,1.2,u),lerp(12,7.5,ease(u)),CZ+0.01),Vector3.new(CX+0.6,1,CZ),90)
+    cam.CFrame=look(Vector3.new(CX+0.3,lerp(16,10,ease(u)),CZ+0.01),Vector3.new(CX+0.3,1,CZ),0)
+    cam.FieldOfView=lerp(50,45,u)
   end
 end)
