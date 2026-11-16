@@ -244,8 +244,11 @@ local function rig(o)
   local r={m=m,ex={}}
   r.T=P("Torso",V(1.8,1.6,1.1),nil,o.torso,o.tmat,m)
   r.H=P("Head",V(1.9,1.8,1.8),nil,o.head,o.hmat,m)
-  r.LA=P("LArm",V(0.65,1.5,0.65),nil,o.arm,o.amat,m) r.RA=P("RArm",V(0.65,1.5,0.65),nil,o.arm,o.amat,m)
-  r.LL=P("LLeg",V(0.75,1.2,0.75),nil,o.leg,o.lmat,m) r.RL=P("RLeg",V(0.75,1.2,0.75),nil,o.leg,o.lmat,m)
+  r.LA=P("LArm",V(0.65,0.8,0.65),nil,o.arm,o.amat,m) r.RA=P("RArm",V(0.65,0.8,0.65),nil,o.arm,o.amat,m)
+  r.LL=P("LLeg",V(0.75,0.66,0.75),nil,o.leg,o.lmat,m) r.RL=P("RLeg",V(0.75,0.66,0.75),nil,o.leg,o.lmat,m)
+  r.lower={}
+  for _,d in {{"FL",V(0.63,0.78,0.63),o.arm,o.amat,-1.025},{"FR",V(0.63,0.78,0.63),o.arm,o.amat,-1.025},{"SL",V(0.73,0.64,0.73),o.leg,o.lmat,-0.9},{"SR",V(0.73,0.64,0.73),o.leg,o.lmat,-0.9}} do
+    local lp=P("Lower"..d[1],d[2],nil,d[3],d[4],m) table.insert(r.lower,{p=lp,bone=d[1],rel=CFrame.new(0,d[5],0)}) end
   return r
 end
 local function ex(r,bone,size,rel,col,mat,shape) local p=P("X",size,nil,col,mat,r.m,shape) local e={p=p,bone=bone,rel=rel} table.insert(r.ex,e) r.last=e return p end
@@ -257,9 +260,13 @@ local function pose(r,root,q)
   F.H=root*CFrame.new(0,0.8,0)*g("neck")*CFrame.new(0,0.9,0)
   F.LA=root*CFrame.new(-1.23,0.55,0)*g("la") F.RA=root*CFrame.new(1.23,0.55,0)*g("ra")
   F.LL=root*CFrame.new(-0.42,-0.8,0)*g("ll") F.RL=root*CFrame.new(0.42,-0.8,0)*g("rl")
+  local function bend(fr,y,ang) return fr*CFrame.new(0,y,0)*A(ang,0,0)*CFrame.new(0,-y,0) end
+  F.FL=bend(F.LA,-0.65,q.el or 0) F.FR=bend(F.RA,-0.65,q.er or 0)
+  F.SL=bend(F.LL,-0.6,-(q.kl or 0)) F.SR=bend(F.RL,-0.6,-(q.kr or 0))
   r.T.CFrame=F.T r.H.CFrame=F.H
-  r.LA.CFrame=F.LA*CFrame.new(0,-0.65,0) r.RA.CFrame=F.RA*CFrame.new(0,-0.65,0)
-  r.LL.CFrame=F.LL*CFrame.new(0,-0.6,0) r.RL.CFrame=F.RL*CFrame.new(0,-0.6,0)
+  r.LA.CFrame=F.LA*CFrame.new(0,-0.27,0) r.RA.CFrame=F.RA*CFrame.new(0,-0.27,0)
+  r.LL.CFrame=F.LL*CFrame.new(0,-0.31,0) r.RL.CFrame=F.RL*CFrame.new(0,-0.31,0)
+  if r.lower then for _,e in r.lower do e.p.CFrame=F[e.bone]*e.rel end end
   for _,e in r.ex do e.p.CFrame=F[e.bone]*e.rel end
   r.F=F
 end
@@ -382,11 +389,17 @@ for _,h in {T_K1,T_K2} do sparks(h,V(1.25,4.2,-0.3),14,C3(255,235,90)) burst(h,V
 for i,h in {T_K1,T_K2} do local sg=i==1 and -1 or 1 local b=P("FlySword",V(0.18,2.8,0.45),nil,C3(220,225,235),M.Metal)
   fx({p=b,t0=h,ground=true,half=0.22,p0=V(1.6,3,-0.3),v=V(sg*5,20,6),w=V(800,0,300),r0=A(0,0,90)}) end
 local rays={} for i=1,5 do local r=P("Ray",V(0.5,9,0.5),nil,C3(255,225,110),M.Neon) r.CastShadow=false r.Transparency=1 table.insert(rays,r) end
+-- motion profile: accelerate, cruise, decelerate (s=progress 0..1, v=relative speed 0..1)
+local function trap(t,D,ta,td) t=math.clamp(t,0,D) local vm=1/(D-ta/2-td/2)
+  if t<ta then return 0.5*vm*t*t/ta, t/ta
+  elseif t<D-td then return vm*(ta/2+(t-ta)),1
+  else local r=D-t return 1-0.5*vm*r*r/td, r/td end end
+local function segPos(T,t0,t1,a,b,ta,td) local s,v=trap(T-t0,t1-t0,ta or 0.22,td or 0.28) return a:Lerp(b,s),v,s*(b-a).Magnitude end
 -- footstep puffs
 local puffs={} for i=1,8 do local p=P("Puff",V(1,1,1),nil,C3(225,215,195),M.SmoothPlastic,nil,Enum.PartType.Ball) p.CastShadow=false p.Transparency=1 table.insert(puffs,p) end
 local function runPos(t)
   local segs={{0,2.3,V(-22,0,34),V(-1.2,0,18.6)},{3.4,4.3,V(-1.2,0,19.4),V(10.3,0,16)},{7.0,8.0,V(10.3,0,16),V(-1.2,0,16.5)},{9.0,9.9,V(-1.2,0,16.5),V(0,0,3.5)},{12.95,13.75,V(0,0,3.5),V(0,0,-3.6)}}
-  for _,s in segs do if t>=s[1] and t<=s[2] then return s[3]:Lerp(s[4],(t-s[1])/(s[2]-s[1])) end end
+  for _,s in segs do if t>=s[1] and t<=s[2] then return (segPos(t,s[1],s[2],s[3],s[4])) end end
 end
 local function updPuffs(T)
   for j,p in puffs do local k=math.floor(T/0.18)-(j-1) local ts=k*0.18 local age=T-ts local pos=runPos(ts)
@@ -452,6 +465,9 @@ local function updSound(T,frozen)
   lastT=T
 end
 
+for _,r in {thief,K1,K2} do for _,e in r.ex do local y=e.rel.Position.Y
+  if (e.bone=="LA" or e.bone=="RA") and y<-0.7 then e.bone=(e.bone=="LA") and "FL" or "FR"
+  elseif (e.bone=="LL" or e.bone=="RL") and y<-0.62 then e.bone=(e.bone=="LL") and "SL" or "SR" end end end
 -- ===== animation =====
 local function swing(T,th,base,impact,recoil)
   local d=T-th
@@ -466,35 +482,67 @@ end
 local function swingLean(T,th) local d=T-th if d<-0.42 or d>0.55 then return 0 end if d<-0.12 then return lerp(0,10,(d+0.42)/0.3) end if d<0.22 then return -18 end return lerp(-18,0,(d-0.22)/0.33) end
 local function at(pos,dir) return CFrame.lookAt(pos,pos+V(dir.X,0,dir.Z)) end
 local RUNPH=0
-local function runQ(ph,amp,ra) local s=math.sin(ph)*amp return {la={s*0.9,0,-5},ra={ra or 150,0,8},ll={-s,0,0},rl={s,0,0},neck={-6,0,0}} end
+-- gait: phase comes from distance travelled so feet don't slide; knees bend on the swing leg, arms counter-swing, torso counter-twists
+local function gait(phi,spd,carry)
+  local legA=lerp(22,48,spd) local sL=math.sin(phi) local cL=math.cos(phi)
+  local kneeBase=lerp(6,18,spd) local kneeSw=lerp(30,80,spd)
+  local q={ll={legA*sL,0,0},rl={-legA*sL,0,0},kl=kneeBase+kneeSw*math.max(0,cL)^1.4,kr=kneeBase+kneeSw*math.max(0,-cL)^1.4}
+  local armA=lerp(18,50,spd)
+  q.la={-armA*sL+lerp(4,12,spd),0,-6} q.el=lerp(12,75,spd)+10*math.max(0,-sL)
+  if carry then q.ra={carry+6*sL,0,8} q.er=0 else q.ra={armA*sL+lerp(4,12,spd),0,6} q.er=lerp(12,75,spd)+10*math.max(0,sL) end
+  local twist=lerp(4,9,spd)*sL
+  q.neck={lerp(-2,-8,spd),-twist*0.8,0}
+  return q,lerp(0.05,0.32,spd)*math.abs(math.sin(phi)),twist
+end
+local function runQ(ph,amp,ra) local q=gait(ph,1,ra or 150) return q end
+local function standQ(T,seed,carry) local br=math.sin(T*2.4+(seed or 0))
+  return {la={8+br*2,0,-6},ra={carry or (8-br*2),0,6},ll={7,0,-2},rl={-5,0,2},kl=8,kr=6,el=12,er=carry and 0 or 12,neck={br*1.5,0,0}},0.03*br end
 local function path(T,t0,t1,a,b) local u=clamp01((T-t0)/(t1-t0)) return a:Lerp(b,u),(b-a).Unit end
 local function onGrate(p,T) if T>T_LAND and math.abs(p.X)<5.8 and p.Z>PZ and p.Z<PZ+7.8 then return 0.45 end return 0 end
 local function thiefUpdate(T)
   local pos,dir,q,lean,bob=V(-22,0,34),V(0.74,0,-0.67),nil,0,0
   local face="grin"
-  if T<2.3 then pos,dir=path(T,0,2.3,V(-22,0,34),V(-1.2,0,18.6)) q=runQ(T*15,45) bob=math.abs(math.sin(T*15))*0.35 lean=-10
+  if T<2.3 then local pp,v,dist=segPos(T,0,2.3,V(-22,0,34),V(-1.2,0,18.6)) pos=pp dir=(V(-1.2,0,18.6)-V(-22,0,34)).Unit local spd=math.clamp(v*1.15,0.25,1)
+    local q2,bb,tw=gait(dist*math.pi/1.85,spd,150) q=q2 bob=bb*v lean=-11*v+8*math.max(0,(T-2.3+0.28)/0.28)*(1-v) dir=(CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*dir) 
   elseif T<3.4 then pos=V(-1.2,0,18.6) dir=V(0,0,-1)
     local d=T-T_GRATE local back=d>0 and math.sin(clamp01(d/0.5)*math.pi/2)*0.8 or 0 pos=pos+V(0,0,back)
     q={la={swing(T,T_GRATE,20,90,true)*0.6,0,-10},ra={swing(T,T_GRATE,150,90,true),0,6},neck={0,d>0.15 and math.sin(d*25)*10*math.max(0,1-d) or 0,0}}
     lean=swingLean(T,T_GRATE) if d>0 and d<0.9 then lean=8*(1-d/0.9) face="o" end
     if d>0.1 then local yaw=math.rad(180*ease((d-0.1)/0.3)+math.sin(d*9)*15*clamp01((d-0.4)*3)) dir=V(-math.sin(yaw),0,-math.cos(yaw)) end
   elseif T<4.5 then local a,b=V(-1.2,0,19.4),V(10.3,0,16)
-    pos,dir=path(T,3.4,4.3,a,b) q=runQ(T*15,40) bob=math.abs(math.sin(T*15))*0.3 lean=-8 if T>4.3 then dir=V(-1,0,0) q={la={10,0,-5},ra={150,0,8}} bob=0 lean=0 end
+    local pp,v,dist=segPos(T,3.4,4.3,a,b) pos=pp dir=(b-a).Unit local spd=math.clamp(v*1.15,0.25,1)
+    local q2,bb,tw=gait(dist*math.pi/1.85,spd,150) q=q2 bob=bb*v lean=-11*v+8*math.max(0,(T-4.3+0.28)/0.28)*(1-v) dir=(CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*dir) 
+    if T>4.3 then local u=ease((T-4.3)/0.2) dir=V(-1,0,0) q,bob=standQ(T,1,150) lean=4*math.sin(clamp01((T-4.3)/0.25)*math.pi) end
   elseif T<7.0 then pos=V(10.3,0,16) dir=V(-1,0,0)
     q={la={swing(T,T_CRACK,20,95)*0.5+swing(T,T_BREAK,20,95)*0.5-10,0,-10},ra={math.min(swing(T,T_CRACK,150,95),swing(T,T_BREAK,150,95)),0,6},neck={0,0,0}}
     lean=swingLean(T,T_CRACK)+swingLean(T,T_BREAK) if T>T_LAND-0.2 and T<T_LAND+0.5 then face="o" end
-  elseif T<8.2 then pos,dir=path(T,7.0,8.0,V(10.3,0,16),V(-1.2,0,16.5)) if T>8.0 then dir=V(0,0,-1) end q=runQ(T*13,35) bob=math.abs(math.sin(T*13))*0.25
-    if T>8.0 then q={la={10,0,-5},ra={150,0,8}} bob=0 end
+  elseif T<8.2 then local pp,v,dist=segPos(T,7.0,8.0,V(10.3,0,16),V(-1.2,0,16.5)) pos=pp dir=(V(-1.2,0,16.5)-V(10.3,0,16)).Unit local spd=math.clamp(v*1.15,0.25,1)
+    local q2,bb,tw=gait(dist*math.pi/1.85,spd,150) q=q2 bob=bb*v lean=-11*v+8*math.max(0,(T-8.0+0.28)/0.28)*(1-v) dir=(CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*dir) 
+    if T>8.0 then dir=V(-1,0,0):Lerp(V(0,0,-1),ease((T-8.0)/0.18)).Unit q,bob=standQ(T,2,150) lean=4*math.sin(clamp01((T-8.0)/0.2)*math.pi) end
   elseif T<9.0 then pos=V(-1.2,0,16.5) dir=V(0,0,-1) q={la={20,0,-10},ra={swing(T,T_DOOR,150,92),0,6}} lean=swingLean(T,T_DOOR)
-  elseif T<10.0 then pos,dir=path(T,9.0,9.9,V(-1.2,0,16.5),V(0,0,3.5)) q=runQ(T*15,42) bob=math.abs(math.sin(T*15))*0.3 lean=-8 if T>9.9 then dir=V(0,0,-1) q={la={10,0,-5},ra={150,0,8}} bob=0 lean=0 end
+  elseif T<10.0 then local pp,v,dist=segPos(T,9.0,9.9,V(-1.2,0,16.5),V(0,0,3.5)) pos=pp dir=(V(0,0,3.5)-V(-1.2,0,16.5)).Unit local spd=math.clamp(v*1.15,0.25,1)
+    local q2,bb,tw=gait(dist*math.pi/1.85,spd,150) q=q2 bob=bb*v lean=-11*v+8*math.max(0,(T-9.9+0.28)/0.28)*(1-v) dir=(CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*dir)  if T>9.9 then dir=V(0,0,-1) q,bob=standQ(T,3,150) lean=4*math.sin(clamp01((T-9.9)/0.2)*math.pi) end
   elseif T<12.95 then pos=V(0,0,3.5) dir=V(0,0,-1)
     q={la={25,0,-12},ra={math.min(swing(T,T_K1,150,88),swing(T,T_K2,150,88)),0,6},neck={0,0,0}} lean=swingLean(T,T_K1)+swingLean(T,T_K2)
     if T<10.6 then q.neck={0,math.sin(T*6)*20,0} end
-  elseif T<13.8 then pos,dir=path(T,12.95,13.75,V(0,0,3.5),V(0,0,-3.6)) q=runQ(T*15,42) bob=math.abs(math.sin(T*15))*0.3 lean=-8 dir=V(0,0,-1)
+  elseif T<13.8 then local pp,v,dist=segPos(T,12.95,13.75,V(0,0,3.5),V(0,0,-3.6)) pos=pp dir=(V(0,0,-3.6)-V(0,0,3.5)).Unit local spd=math.clamp(v*1.15,0.25,1)
+    local q2,bb,tw=gait(dist*math.pi/1.85,spd,150) q=q2 bob=bb*v lean=-11*v+8*math.max(0,(T-13.75+0.28)/0.28)*(1-v) dir=(CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*dir) 
   elseif T<14.6 then pos=V(0,0,-3.6) dir=V(0,0,-1) local u=clamp01((T-13.8)/0.35) q={la={lerp(10,120,u),0,-10},ra={150,0,8},neck={-10*u,0,0}} if T>T_GOLD then face="o" q.neck={20,0,0} end
   else pos=V(0,0,-3.6) local u=clamp01((T-14.6)/0.5) dir=V(math.sin(u*2.2),0,-math.cos(u*2.2))
     local j=math.max(0,math.sin((T-14.6)*7))  bob=j*1.6
-    q={la={175,0,-8+math.sin(T*7)*6},ra={170,0,10},ll={-20*j,0,0},rl={20*j,0,0},neck={-8,0,math.sin(T*3.5)*8}} lean=0
+    local gnd=math.max(0,-math.sin((T-14.6)*7))
+    q={la={175,0,-8+math.sin(T*7)*6},ra={170,0,10},ll={12-20*j+30*gnd,0,-3},rl={-10+20*j+30*gnd,0,3},kl=25*j+55*gnd,kr=30*j+55*gnd,el=20,er=15,neck={-8,0,math.sin(T*3.5)*8}} lean=0 bob=bob-0.45*gnd
+  end
+  -- weight: planted stance, knees absorb each impact, breathing when still
+  if not q.ll then
+    local crouch=0 local wind=0
+    for _,h in {T_GRATE,T_CRACK,T_BREAK,T_DOOR,T_K1,T_K2} do local d=T-h
+      if d>-0.42 and d<-0.05 then wind=math.max(wind,math.sin(clamp01((d+0.42)/0.37)*math.pi)) end
+      if d>=-0.05 and d<0.6 then crouch=math.max(crouch,math.exp(-math.max(0,d)*5)) end end
+    if T>13.8 and T<14.6 then crouch=math.max(crouch,0.6*clamp01((T-13.8)/0.3)) end
+    q.ll={16+10*crouch,0,-3} q.rl={-14+6*crouch,0,3} q.kl=8+38*crouch-4*wind q.kr=12+30*crouch-4*wind
+    q.el=q.el or 10 q.er=q.er or 0
+    bob=bob-0.42*crouch+0.08*wind+0.03*math.sin(T*2.4)
   end
   pos=pos+V(0,onGrate(pos,T),0)
   local effort=false local smash=false
@@ -522,16 +570,23 @@ local function knightUpdate(k,T,home,hit,runFrom,runTo,flyV,spinSign,seed)
   for _,s in k.sword do s.Transparency=(T>=hit) and 1 or 0 end
   for _,a in k.alert do a.Transparency=(T>9.75 and T<10.6) and 0 or 1 end
   if T<t0 then local look=(T>9.6) and (V(0,0,3.5)-home) or V(0,0,1)
-    pose(k,at(home+V(0,2,0),look),{la={30,0,-8},ra={55+math.sin(T*2+seed)*6,0,8},neck={0,math.sin(T*1.5+seed)*12,0}})
-  elseif T<hit then local u=clamp01((T-t0)/0.95) local p=home:Lerp(runTo,u) local s=math.sin(T*15)*40
-    pose(k,at(p+V(0,2+math.abs(math.sin(T*15))*0.3,0),runTo-home)*A(-10,0,0),{la={40,0,-8},ra={lerp(60,160,u),0,8},ll={-s,0,0},rl={s,0,0}})
+    local br=math.sin(T*2.2+seed*1.7) local hop=0 if T>9.75 and T<10.15 then hop=math.sin((T-9.75)/0.4*math.pi)*0.45 end
+    local tense=clamp01((T-9.75)/0.3)
+    pose(k,at(home+V(0,2+0.03*br+hop-0.12*tense,0),look),{la={30+10*tense,0,-8},ra={55+math.sin(T*2+seed)*6+25*tense,0,8},el=25+15*tense,er=20,
+      ll={10+6*tense,0,-3},rl={-8-6*tense,0,3},kl=8+14*tense,kr=8+14*tense,neck={br*1.5,math.sin(T*1.5+seed)*12*(1-tense),0}})
+  elseif T<hit then local u=clamp01((T-t0)/0.95) local p,v,dist=segPos(T,t0,t0+0.95,home,runTo,0.3,0.05)
+    local q,bb,tw=gait(dist*math.pi/1.7,math.clamp(v,0.3,1),nil)
+    q.ra={lerp(60,160,u),0,8} q.er=lerp(20,0,u) q.la={45+q.la[1]*0.3,0,-8} q.el=35
+    pose(k,at(p+V(0,2+bb*v,0),runTo-home)*CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*A(-12*v,0,0),q)
   else local d=T-hit local g=60 local p0=runTo+V(0,2,0)
     local p=p0+flyV*d+V(0,-0.5*g*d*d,0)
     local tl=(flyV.Y+math.sqrt(flyV.Y^2+2*g*(p0.Y-0.7)))/g
     local rot
     if d<tl then rot=A(-d*720,0,spinSign*d*360)
-      pose(k,CFrame.new(p)*rot,{la={150+math.sin(d*30)*30,0,-40},ra={150-math.sin(d*30)*30,0,40},ll={math.sin(d*25)*40,0,0},rl={-math.sin(d*25)*40,0,0}})
-    else local lp=p0+flyV*tl+V(0,-0.5*g*tl*tl,0) pose(k,CFrame.new(lp.X,0.7,lp.Z)*A(-90,0,0),{la={160,0,-30},ra={160,0,30}}) end
+      pose(k,CFrame.new(p)*rot,{la={150+math.sin(d*30)*30,0,-40},ra={150-math.sin(d*30)*30,0,40},el=30+math.sin(d*22)*30,er=30-math.sin(d*22)*30,
+        ll={math.sin(d*25)*40,0,0},rl={-math.sin(d*25)*40,0,0},kl=35+math.sin(d*25)*30,kr=35-math.sin(d*25)*30})
+    else local lp=p0+flyV*tl+V(0,-0.5*g*tl*tl,0) local b=d-tl local bounce=math.abs(math.sin(b*14))*0.5*math.exp(-b*7)
+      pose(k,CFrame.new(lp.X,0.7+bounce,lp.Z)*A(-90,0,0),{la={160,0,-30},ra={160,0,30},el=15,er=15,ll={8,0,-6},rl={-4,0,6},kl=20,kr=10}) end
   end
 end
 local function shakeAmt(T) local s=0 for _,h in {{T_GRATE,0.5},{T_CRACK,0.4},{T_BREAK,1},{T_LAND,1.4},{T_DOOR,0.8},{T_K1,0.7},{T_K2,0.7},{T_GOLD,0.4}} do local d=T-h[1] if d>0 and d<0.6 then s+=h[2]*math.exp(-d*8) end end return s end
