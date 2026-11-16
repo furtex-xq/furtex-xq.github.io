@@ -24,7 +24,7 @@ pcall(function() SG:SetCoreGuiEnabled(Enum.CoreGuiType.All,false) end)
 pcall(function() SG:SetCore("TopbarEnabled",false) end)
 local cam=workspace.CurrentCamera
 local sc=game.ReplicatedStorage:WaitForChild("Scene") task.wait(1)
-local bouquet=sc.Bouquet:Clone() bouquet.Parent=workspace
+local bouquet=sc.Bouquet:Clone() bouquet.Parent=workspace bouquet:ScaleTo(bouquet:GetScale()*0.7)
 -- faces
 local N=128 local IMG={}
 for name,data in FACES do
@@ -115,7 +115,7 @@ local FLOOR=0.1
 local function standCF(x,z,dir) local p=Vector3.new(x,FLOOR+3,z) return CFrame.lookAt(p,p+dir) end
 local PX=Vector3.new(1,0,0) local NX=Vector3.new(-1,0,0)
 local HOLD={la={80,0,-25},ra={80,0,25}}
-local function bouquetFront(r) bouquet:PivotTo(r.T.CFrame*CFrame.new(0,-0.1,-1.9)*A(-70,0,0)) end
+local function bouquetFront(r) bouquet:PivotTo(r.T.CFrame*CFrame.new(0,-0.5,-1.6)*A(-70,0,0)) end
 
 local function talking(T) -- mouth open flag during subtitle words
   for k,x in WORDS do local nx=WORDS[k+1] local e=nx and nx[1] or x[1]+0.5 if T>=x[1] and T<math.min(e,x[1]+0.5) then return math.floor((T-x[1])/0.11)%2==0 end end
@@ -236,7 +236,7 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     gFace=u>0.4 and "girl_gasp" or gFace
     local imp=(u>0.42 and u<0.9) and (0.9-u)*14 or 0
     cam.FieldOfView=55
-    cam.CFrame=look(Vector3.new(0.6,3.4,10.2),Vector3.new(2.2,1.3,1),-8)*shake(imp,T)
+    cam.FieldOfView=68 cam.CFrame=look(Vector3.new(-0.5,4.8,10.3),Vector3.new(2.6,1.0,1),-8)*shake(imp,T)
   elseif T<9.0 then
     -- S6 crush shocked: hands to mouth, step back, head shake
     local u=T-8
