@@ -494,6 +494,9 @@ local function gait(phi,spd,carry)
   q.neck={lerp(-2,-8,spd),-twist*0.8,0}
   return q,lerp(0.05,0.32,spd)*math.abs(math.sin(phi)),twist
 end
+-- how much lower the hips must sit so the lowest foot still touches the ground (knees bent shorten the leg)
+local function legDrop(q) local best=0 for _,k in {{"ll","kl"},{"rl","kr"}} do local th=math.rad(q[k[1]] and q[k[1]][1] or 0) local kn=math.rad(q[k[2]] or 0)
+  best=math.max(best,0.6*math.cos(th)+0.6*math.cos(th-kn)) end return 1.2-best end
 local function runQ(ph,amp,ra) local q=gait(ph,1,ra or 150) return q end
 local function standQ(T,seed,carry) local br=math.sin(T*2.4+(seed or 0))
   return {la={8+br*2,0,-6},ra={carry or (8-br*2),0,6},ll={7,0,-2},rl={-5,0,2},kl=8,kr=6,el=12,er=carry and 0 or 12,neck={br*1.5,0,0}},0.03*br end
@@ -531,7 +534,7 @@ local function thiefUpdate(T)
   else pos=V(0,0,-3.6) local u=clamp01((T-14.6)/0.5) dir=V(math.sin(u*2.2),0,-math.cos(u*2.2))
     local j=math.max(0,math.sin((T-14.6)*7))  bob=j*1.6
     local gnd=math.max(0,-math.sin((T-14.6)*7))
-    q={la={175,0,-8+math.sin(T*7)*6},ra={170,0,10},ll={12-20*j+30*gnd,0,-3},rl={-10+20*j+30*gnd,0,3},kl=25*j+55*gnd,kr=30*j+55*gnd,el=20,er=15,neck={-8,0,math.sin(T*3.5)*8}} lean=0 bob=bob-0.45*gnd
+    q={la={175,0,-8+math.sin(T*7)*6},ra={170,0,10},ll={12-20*j+30*gnd,0,-3},rl={-10+20*j+30*gnd,0,3},kl=25*j+55*gnd,kr=30*j+55*gnd,el=20,er=15,neck={-8,0,math.sin(T*3.5)*8}} lean=0
   end
   -- weight: planted stance, knees absorb each impact, breathing when still
   if not q.ll then
@@ -542,7 +545,7 @@ local function thiefUpdate(T)
     if T>13.8 and T<14.6 then crouch=math.max(crouch,0.6*clamp01((T-13.8)/0.3)) end
     q.ll={16+10*crouch,0,-3} q.rl={-14+6*crouch,0,3} q.kl=8+38*crouch-4*wind q.kr=12+30*crouch-4*wind
     q.el=q.el or 10 q.er=q.er or 0
-    bob=bob-0.42*crouch+0.08*wind+0.03*math.sin(T*2.4)
+    bob=bob+0.08*wind+0.03*math.sin(T*2.4)
   end
   pos=pos+V(0,onGrate(pos,T),0)
   local effort=false local smash=false
@@ -555,7 +558,8 @@ local function thiefUpdate(T)
     else e.rel=CFrame.new(sx*0.42,0.52,-0.93)*A(0,0,sx*18) end end
   local spd=(bob>0) and 1 or 0.3
   scarfTail.rel=CFrame.new(0.45,0.62,0.62)*A(25+spd*45+math.sin(T*(8+spd*14))*12*spd+8,0,-10)*CFrame.new(0,-0.55,0)
-  pose(thief,at(pos+V(0,2+bob,0),dir)*A(lean,0,0),q)
+  local air=(T>14.6) and math.max(0,math.sin((T-14.6)*7))*1.6 or 0
+  pose(thief,at(pos+V(0,2+bob-legDrop(q)*(air>0.05 and 0 or 1),0),dir)*A(lean,0,0),q)
   setVis(grin,face~="o") setVis(mouthO,face=="o")
   local blink=((T+0.3)%2.6)<0.1 and face~="o"
   for _,w in whites do w.Size=(blink and V(0.42,0.05,0.06)) or (face=="effort" and V(0.42,0.14,0.06)) or (face=="o" and V(0.46,0.4,0.06)) or V(0.42,0.32,0.06) end
@@ -572,12 +576,13 @@ local function knightUpdate(k,T,home,hit,runFrom,runTo,flyV,spinSign,seed)
   if T<t0 then local look=(T>9.6) and (V(0,0,3.5)-home) or V(0,0,1)
     local br=math.sin(T*2.2+seed*1.7) local hop=0 if T>9.75 and T<10.15 then hop=math.sin((T-9.75)/0.4*math.pi)*0.45 end
     local tense=clamp01((T-9.75)/0.3)
-    pose(k,at(home+V(0,2+0.03*br+hop-0.12*tense,0),look),{la={30+10*tense,0,-8},ra={55+math.sin(T*2+seed)*6+25*tense,0,8},el=25+15*tense,er=20,
-      ll={10+6*tense,0,-3},rl={-8-6*tense,0,3},kl=8+14*tense,kr=8+14*tense,neck={br*1.5,math.sin(T*1.5+seed)*12*(1-tense),0}})
+    local kq={la={30+10*tense,0,-8},ra={55+math.sin(T*2+seed)*6+25*tense,0,8},el=25+15*tense,er=20,
+      ll={10+6*tense,0,-3},rl={-8-6*tense,0,3},kl=8+14*tense,kr=8+14*tense,neck={br*1.5,math.sin(T*1.5+seed)*12*(1-tense),0}}
+    pose(k,at(home+V(0,2+0.03*br+hop-legDrop(kq),0),look),kq)
   elseif T<hit then local u=clamp01((T-t0)/0.95) local p,v,dist=segPos(T,t0,t0+0.95,home,runTo,0.3,0.05)
     local q,bb,tw=gait(dist*math.pi/1.7,math.clamp(v,0.3,1),nil)
     q.ra={lerp(60,160,u),0,8} q.er=lerp(20,0,u) q.la={45+q.la[1]*0.3,0,-8} q.el=35
-    pose(k,at(p+V(0,2+bb*v,0),runTo-home)*CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*A(-12*v,0,0),q)
+    pose(k,at(p+V(0,2+bb*v-legDrop(q)*0.7,0),runTo-home)*CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*A(-12*v,0,0),q)
   else local d=T-hit local g=60 local p0=runTo+V(0,2,0)
     local p=p0+flyV*d+V(0,-0.5*g*d*d,0)
     local tl=(flyV.Y+math.sqrt(flyV.Y^2+2*g*(p0.Y-0.7)))/g
