@@ -55,7 +55,7 @@ for i=1,90 do local x,z=rng:NextNumber(-50,50),rng:NextNumber(-40,55)
   if math.abs(x)>16 or math.abs(z)>17 then if math.abs(x)>9 or z<14 or z>30 then
     P("Flower",V(0.5,0.5,0.5),CFrame.new(x,0.25,z),FC[rng:NextInteger(1,4)],M.SmoothPlastic,nil,Enum.PartType.Ball) end end end
 for _,h in {{-120,-160,90},{-20,-190,110},{90,-170,100},{180,-120,90},{-190,-90,80}} do
-  local hl=P("Hill",V(h[3]*1.6,h[3],h[3]*1.2),CFrame.new(h[1],-h[3]*0.22,h[2]-60),C3(120,205,95),M.SmoothPlastic,nil,Enum.PartType.Ball) hl.CastShadow=false end
+  local hl=P("Hill",V(h[3]*1.6,h[3],h[3]*1.2),CFrame.new(h[1],-h[3]*0.22,h[2]-60),C3(95,185,75),M.Grass,nil,Enum.PartType.Ball) hl.CastShadow=false end
 local CLOUDS={}
 for _,c in {{-40,60,-120},{30,70,-140},{90,55,-90},{-100,65,-60}} do
   for k=0,3 do local cp=P("Cloud",V(14-k,9-k,12-k),CFrame.new(c[1]+k*7,c[2]+(k%2)*2,c[3]+k),C3(255,255,255),M.SmoothPlastic,nil,Enum.PartType.Ball) cp.CastShadow=false table.insert(CLOUDS,{p=cp,cf=cp.CFrame}) end end
@@ -141,8 +141,8 @@ for _,t in {{-11.9,-4,1},{11.9,-4,-1}} do P("ITorch",V(0.3,1,0.3),CFrame.new(t[1
 
 -- ===== environment detail =====
 -- fence along the path
-do local a,b=V(-27,0,37),V(-8,0,21.5) local n=8 local prev
-  for i=0,n do local p=a:Lerp(b,i/n)+V(2.8,0,2.8)
+do local a,b=V(-26,0,40),V(-6,0,23.8) local n=8 local prev
+  for i=0,n do local p=a:Lerp(b,i/n)+V(2.3,0,2.85)
     P("FencePost",V(0.4,2.2,0.4),CFrame.new(p+V(0,1.1,0)),C3(150,105,60),M.Wood)
     if prev then for _,y in {0.8,1.6} do local m=(p+prev)/2+V(0,y,0) P("FenceRail",V(0.18,0.25,(p-prev).Magnitude),CFrame.lookAt(m,p+V(0,y,0)),C3(170,120,70),M.Wood) end end
     prev=p end
@@ -157,7 +157,7 @@ do local base=V(-15.5,0,23)
 end
 -- pond
 do local c=V(-30,0,12)
-  P("Pond",V(0.12,15,11),CFrame.new(c+V(0,0.06,0))*A(0,0,90),C3(70,165,225),M.SmoothPlastic,nil,Enum.PartType.Cylinder).Reflectance=0.25
+  P("Pond",V(0.12,15,11),CFrame.new(c+V(0,0.06,0))*A(0,0,90),C3(60,140,200),M.SmoothPlastic,nil,Enum.PartType.Cylinder).Reflectance=0.2
   for i=0,13 do local a=i/14*math.pi*2 local s=drng:NextNumber(1,1.6) P("PondRock",V(s*1.3,s*0.7,s),CFrame.new(c+V(math.cos(a)*7.6,0.2,math.sin(a)*5.6)),C3(150,150,155),M.Slate,nil,Enum.PartType.Ball) end
   for _,l in {{-2,1},{1.5,-1.5},{2.5,2}} do P("Lily",V(0.1,1.6,1.6),CFrame.new(c+V(l[1],0.14,l[2]))*A(0,0,90),C3(70,170,70),M.SmoothPlastic,nil,Enum.PartType.Cylinder) end
 end
@@ -316,10 +316,7 @@ local function knight(name,plume)
   ex(k,"T",V(0.35,0.3,0.1),CFrame.new(0,-0.62,-0.6),C3(220,180,50),M.Metal)
   for _,b in {"LL","RL"} do ex(k,b,V(0.85,0.45,1),CFrame.new(0,-1.05,-0.08),C3(60,60,68),M.Metal) end
   for _,sx in {-1,1} do ex(k,"H",V(0.24,0.12,0.06),CFrame.new(sx*0.33,0.12,-0.97),C3(255,255,255),M.Neon) end
-  local bb=Instance.new("BillboardGui") bb.Size=UDim2.fromScale(2,2.6) bb.StudsOffset=Vector3.new(0,2.4,0) bb.AlwaysOnTop=true bb.Parent=k.H
-  local tl=Instance.new("TextLabel") tl.Size=UDim2.fromScale(1,1) tl.BackgroundTransparency=1 tl.Text="!" tl.Font=Enum.Font.LuckiestGuy tl.TextScaled=true tl.TextColor3=C3(255,60,50) tl.Parent=bb
-  local st=Instance.new("UIStroke") st.Thickness=3 st.Parent=tl
-  k.alert=bb
+  k.alert={ex(k,"H",V(0.4,1.1,0.4),CFrame.new(0,2.6,0),C3(255,50,40),M.Neon),ex(k,"H",V(0.4,0.4,0.4),CFrame.new(0,1.75,0),C3(255,50,40),M.Neon)}
   return k
 end
 local K1=knight("Knight1",C3(220,40,40)) local K2=knight("Knight2",C3(40,170,220))
@@ -487,7 +484,7 @@ end
 local function knightUpdate(k,T,home,hit,runFrom,runTo,flyV,spinSign,seed)
   local t0=hit-1.1
   for _,s in k.sword do s.Transparency=(T>=hit) and 1 or 0 end
-  k.alert.Enabled=(T>9.75 and T<10.6)
+  for _,a in k.alert do a.Transparency=(T>9.75 and T<10.6) and 0 or 1 end
   if T<t0 then local look=(T>9.6) and (V(0,0,3.5)-home) or V(0,0,1)
     pose(k,at(home+V(0,2,0),look),{la={30,0,-8},ra={55+math.sin(T*2+seed)*6,0,8},neck={0,math.sin(T*1.5+seed)*12,0}})
   elseif T<hit then local u=clamp01((T-t0)/0.95) local p=home:Lerp(runTo,u) local s=math.sin(T*15)*40
@@ -538,7 +535,7 @@ RS:BindToRenderStep("BTW",Enum.RenderPriority.Camera.Value+1,function()
   -- camera
   local cf local fov=55
   if T<2.3 then local u=T/2.3 cf=look(V(-26,30,58):Lerp(V(-14,21,44),ease(u)),V(-8,2,16):Lerp(V(0,3,9),ease(u)))
-  elseif T<3.6 then local u=(T-2.3)/1.3 cf=look(V(8,9,28):Lerp(V(6.5,8,26),u),V(0,3.4,15)) fov=lerp(55,48,u)
+  elseif T<3.6 then local u=(T-2.3)/1.3 cf=look(V(-7.5,6.5,15.8):Lerp(V(-6.5,6,16.4),u),V(0.2,3.4,16.6)) fov=lerp(62,56,u)
   elseif T<7.6 then local u=(T-3.6)/4 local k=ease((T-T_BREAK)/0.6) cf=look(V(-3,10,30):Lerp(V(-1,9,29),u):Lerp(V(-2,14,34),k),V(5,3,16):Lerp(V(3,2.5,17),u):Lerp(V(2,1.2,18),k)) fov=lerp(58,52,u)
   elseif T<9.6 then local u=(T-7.6)/2 cf=look(V(6,7.5,26):Lerp(V(4.5,7,24),u),V(0,3,13)) fov=55
   elseif T<13.0 then local u=(T-9.6)/3.4 cf=look(V(lerp(-6,6,u),30,21),V(0,1,-1)) fov=58
