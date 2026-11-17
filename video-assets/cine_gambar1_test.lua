@@ -52,8 +52,8 @@ local function rig(name,torsoCol,legCol)
   r.H=P("Head",Vector3.new(2,1,1),SKIN,m) local mesh=Instance.new("SpecialMesh") mesh.MeshType=Enum.MeshType.Head mesh.Scale=Vector3.new(1.25,1.25,1.25) mesh.Parent=r.H
   r.decals={}
   for fname,c in IMG do local d=Instance.new("Decal") d.Name="F_"..fname d.Face=Enum.NormalId.Front d.TextureContent=c d.Transparency=1 d.Parent=r.H r.decals[fname]=d end
-  r.LA=P("LArm",Vector3.new(1,2,1),SKIN,m) r.RA=P("RArm",Vector3.new(1,2,1),SKIN,m)
-  r.LL=P("LLeg",Vector3.new(1,2,1),legCol,m) r.RL=P("RLeg",Vector3.new(1,2,1),legCol,m)
+  r.LA=P("LArm",Vector3.new(0.92,2,0.92),SKIN,m) r.RA=P("RArm",Vector3.new(0.92,2,0.92),SKIN,m)
+  r.LL=P("LLeg",Vector3.new(0.92,2,0.92),legCol,m) r.RL=P("RLeg",Vector3.new(0.92,2,0.92),legCol,m)
   r.extra={}
   return r
 end
@@ -94,18 +94,18 @@ local CX,CZ=-36,3
 do
   local cf=Instance.new("Model") cf.Name="OpenCoffin" cf.Parent=workspace
   local WOOD=Color3.fromRGB(70,40,25) local SAT=Color3.fromRGB(245,240,235)
-  P("Bottom",Vector3.new(7,0.4,4.8),WOOD,cf).CFrame=CFrame.new(CX,0.3,CZ)
+  P("Bottom",Vector3.new(7.45,0.4,5.25),WOOD,cf).CFrame=CFrame.new(CX,0.3,CZ)
   P("Satin",Vector3.new(6.6,0.2,4.4),SAT,cf).CFrame=CFrame.new(CX,0.6,CZ)
-  P("SideA",Vector3.new(7,1.6,0.25),WOOD,cf).CFrame=CFrame.new(CX,1.2,CZ-2.4)
-  P("SideB",Vector3.new(7,1.6,0.25),WOOD,cf).CFrame=CFrame.new(CX,1.2,CZ+2.4)
-  P("EndA",Vector3.new(0.25,1.6,4.8),WOOD,cf).CFrame=CFrame.new(CX-3.5,1.2,CZ)
-  P("EndB",Vector3.new(0.25,1.6,4.8),WOOD,cf).CFrame=CFrame.new(CX+3.5,1.2,CZ)
+  P("SideA",Vector3.new(7.25,1.6,0.25),WOOD,cf).CFrame=CFrame.new(CX,1.3,CZ-2.4)
+  P("SideB",Vector3.new(7.25,1.6,0.25),WOOD,cf).CFrame=CFrame.new(CX,1.3,CZ+2.4)
+  P("EndA",Vector3.new(0.25,1.6,4.55),WOOD,cf).CFrame=CFrame.new(CX-3.5,1.3,CZ)
+  P("EndB",Vector3.new(0.25,1.6,4.55),WOOD,cf).CFrame=CFrame.new(CX+3.5,1.3,CZ)
   P("Pillow",Vector3.new(1,0.4,1.8),SAT,cf).CFrame=CFrame.new(CX-2.7,0.85,CZ)
   for i=-1,1 do local fl=sc.Bouquet:Clone() fl.Parent=cf fl:PivotTo(CFrame.new(CX+5.3,0.8,CZ+i*1.6)*A(0,i*40,20)) end
   local lid=sc.Coffin:Clone() lid.Parent=cf lid:PivotTo(CFrame.new(CX,4.5,-4.2)*A(0,90,0)*A(70,0,0))
 end
 -- end walls
-for _,x in {-45,45} do P("EndWall",Vector3.new(1,18,20),Color3.fromRGB(235,230,215),workspace).CFrame=CFrame.new(x,9,3) end
+for _,x in {-45,45} do P("EndWall",Vector3.new(1,18,20.3),Color3.fromRGB(235,230,215),workspace).CFrame=CFrame.new(x,9,3) end
 -- subtitles
 local pg=Players.LocalPlayer:WaitForChild("PlayerGui")
 local gui=Instance.new("ScreenGui") gui.Name="Subs" gui.IgnoreGuiInset=true gui.ResetOnSpawn=false gui.DisplayOrder=10 gui.Parent=pg
@@ -143,8 +143,8 @@ local npcDefs={
  {kind="walk",x0=-30,x1=20,z=-1.2,speed=3.2,phase=0,shirt=Color3.fromRGB(240,200,60),legs=Color3.fromRGB(40,40,90),face="guy_shy"},
  {kind="walk",x0=25,x1=-25,z=-3.2,speed=2.6,phase=12,shirt=Color3.fromRGB(80,160,230),legs=Color3.fromRGB(60,60,60),face="girl_neutral"},
  {kind="walk",x0=-26,x1=12,z=7.5,speed=2.9,phase=9,shirt=Color3.fromRGB(200,80,200),legs=Color3.fromRGB(30,30,35),face="guy_talk"},
- {kind="chat",x=13,z=9.8,face2=-1,shirt=Color3.fromRGB(250,130,60),legs=Color3.fromRGB(70,90,160),face="girl_talk"},
- {kind="chat",x=10.6,z=9.8,face2=1,shirt=Color3.fromRGB(110,200,140),legs=Color3.fromRGB(40,40,45),face="guy_talk"},
+ {kind="chat",x=13,z=9.1,face2=-1,shirt=Color3.fromRGB(250,130,60),legs=Color3.fromRGB(70,90,160),face="girl_talk"},
+ {kind="chat",x=10.6,z=9.1,face2=1,shirt=Color3.fromRGB(110,200,140),legs=Color3.fromRGB(40,40,45),face="guy_talk"},
  {kind="chat",x=-14,z=-2.6,face2=1,shirt=Color3.fromRGB(230,90,90),legs=Color3.fromRGB(50,50,60),face="girl_neutral"},
  {kind="chat",x=-11.6,z=-2.6,face2=-1,shirt=Color3.fromRGB(90,90,220),legs=Color3.fromRGB(30,30,30),face="guy_shy"},
 }

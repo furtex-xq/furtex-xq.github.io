@@ -85,9 +85,9 @@ for _,sx in {-1,1} do for _,sz in {-1,1} do
 end end
 -- inner decor: barrels, torches, banners
 for _,b in {{-9,-9},{-10.5,-7.6},{9,-9.5}} do P("Barrel",V(2,1.6,1.6),CFrame.new(b[1],1,b[2])*A(0,0,90),C3(140,95,55),M.Wood,nil,Enum.PartType.Cylinder) end
-for _,x in {-6,6} do P("Banner",V(2,4,0.1),CFrame.new(x,5,-11.95),C3(40,80,200),M.Fabric) P("BannerMark",V(0.8,0.8,0.12),CFrame.new(x,5.4,-11.9),C3(255,210,40),M.SmoothPlastic) end
-for _,x in {-4.6,4.6} do P("Torch",V(0.3,1.2,0.3),CFrame.new(x,5,14.15),C3(90,60,40),M.Wood)
-  local f=P("Fire",V(0.6,0.8,0.6),CFrame.new(x,5.9,14.15),C3(255,150,30),M.Neon,nil,Enum.PartType.Ball) local l=Instance.new("PointLight") l.Color=C3(255,170,60) l.Range=8 l.Brightness=1.5 l.Parent=f end
+for _,x in {-6,6} do P("Banner",V(2,4,0.1),CFrame.new(x,5,-11.72),C3(40,80,200),M.Fabric) P("BannerMark",V(0.8,0.8,0.12),CFrame.new(x,5.4,-11.62),C3(255,210,40),M.SmoothPlastic) end
+for _,x in {-4.6,4.6} do P("Torch",V(0.3,1.2,0.3),CFrame.new(x,5,14.42),C3(90,60,40),M.Wood)
+  local f=P("Fire",V(0.6,0.8,0.6),CFrame.new(x,5.9,14.42),C3(255,150,30),M.Neon,nil,Enum.PartType.Ball) local l=Instance.new("PointLight") l.Color=C3(255,170,60) l.Range=8 l.Brightness=1.5 l.Parent=f end
 
 -- ===== castle detail =====
 local drng=Random.new(21)
@@ -235,7 +235,7 @@ local cracks={}
 do local segs={{V(0.92,5.2,0.2),V(0.92,4.5,-0.1),A(0,0,25)},{V(0.92,4.5,-0.1),V(0.92,3.6,0.25),A(0,0,-30)},{V(0.92,3.6,0.25),V(0.92,2.6,-0.15),A(0,0,20)},
   {V(0.92,4.3,0.1),V(0.92,4.0,0.6),A(0,0,0)},{V(0.6,4.4,0.92),V(0.1,3.6,0.92),A(0,0,0)},{V(0.1,3.6,0.92),V(-0.4,3.0,0.92),A(0,0,0)},{V(0.7,5.8,0.93),V(0.2,5.0,0.93)},{V(0.2,5.0,0.93),V(0.5,4.2,0.93)},{V(0.5,4.2,0.93),V(-0.1,3.3,0.93)},{V(-0.1,3.3,0.93),V(0.3,2.3,0.93)},{V(0.2,5.0,0.93),V(-0.55,4.7,0.93)},{V(-0.1,3.3,0.93),V(-0.65,2.8,0.93)},{V(-0.93,5.2,0.6),V(-0.93,4.3,0.1)},{V(-0.93,4.3,0.1),V(-0.93,3.4,0.5)},{V(-0.93,3.4,0.5),V(-0.93,2.6,0)}}
   for _,s in segs do local a=pillarR.CFrame*CFrame.new(s[1]-V(0,3.6,0)) local b=pillarR.CFrame*CFrame.new(s[2]-V(0,3.6,0))
-    local m=(a.Position+b.Position)/2 local c=P("Crack",V(0.22,0.22,(a.Position-b.Position).Magnitude+0.1),CFrame.lookAt(m,b.Position),C3(35,35,40),M.SmoothPlastic)
+    local m=(a.Position+b.Position)/2 local cw=0.2+(#cracks%2)*0.1 local c=P("Crack",V(cw,cw,(a.Position-b.Position).Magnitude+0.1),CFrame.lookAt(m,b.Position),C3(35,35,40),M.SmoothPlastic)
     c.Transparency=1 table.insert(cracks,c) end
 end
 local METAL=C3(70,72,80)
@@ -274,7 +274,7 @@ local function rig(o)
   r.LA=P("LArm",V(0.65,0.8,0.65),nil,o.arm,o.amat,m) r.RA=P("RArm",V(0.65,0.8,0.65),nil,o.arm,o.amat,m)
   r.LL=P("LLeg",V(0.75,0.66,0.75),nil,o.leg,o.lmat,m) r.RL=P("RLeg",V(0.75,0.66,0.75),nil,o.leg,o.lmat,m)
   r.lower={}
-  for _,d in {{"FL",V(0.63,0.78,0.63),o.arm,o.amat,-1.025},{"FR",V(0.63,0.78,0.63),o.arm,o.amat,-1.025},{"SL",V(0.73,0.64,0.73),o.leg,o.lmat,-0.9},{"SR",V(0.73,0.64,0.73),o.leg,o.lmat,-0.9}} do
+  for _,d in {{"FL",V(0.58,0.78,0.58),o.arm,o.amat,-1.025},{"FR",V(0.58,0.78,0.58),o.arm,o.amat,-1.025},{"SL",V(0.68,0.64,0.68),o.leg,o.lmat,-0.9},{"SR",V(0.68,0.64,0.68),o.leg,o.lmat,-0.9}} do
     local lp=P("Lower"..d[1],d[2],nil,d[3],d[4],m) table.insert(r.lower,{p=lp,bone=d[1],rel=CFrame.new(0,d[5],0)}) end
   return r
 end
@@ -356,6 +356,17 @@ local function knight(name,plume)
 end
 local K1=knight("Knight1",C3(220,40,40)) local K2=knight("Knight2",C3(40,170,220))
 
+-- ground height under a point: courtyard sand / dirt path sit above the grass
+local function groundY(x,z)
+  if math.abs(x)<12 and math.abs(z)<12 then return 0.1 end
+  if math.abs(x)<7.2 and z>14 and z<23.5 then return 0.12 end
+  return 0.02
+end
+local GRATE_T=0.6 local T_LAND_G=6.78 local PZ_G=14.9
+local function onGrateY(x,z,T)
+  if T>T_LAND_G and math.abs(x)<5.8 and z>PZ_G-0.8 and z<PZ_G+7.8 then return GRATE_T*clamp01((T-T_LAND_G)/0.05) end
+  return 0
+end
 -- ===== FX (deterministic ballistic debris) =====
 local FX={}
 local function fx(e) e.g=e.g or 70 e.half=e.half or 0.3 e.p.Transparency=1 table.insert(FX,e) return e end
@@ -363,19 +374,35 @@ local function updFX(T)
   for _,e in FX do local d=T-e.t0
     if d<0 or (e.life and d>e.life) then e.p.Transparency=1 else
       local pos=e.p0+e.v*d+V(0,-0.5*e.g*d*d,0) local rot=e.w*d
-      if e.ground and pos.Y<e.half then
-        local a=-0.5*e.g local b=e.v.Y local c=e.p0.Y-e.half local disc=math.max(0,b*b-4*a*c)
+      local rotCF=A(rot.X,rot.Y,rot.Z)*(e.r0 or CFrame.identity)
+      local gl=groundY(pos.X,pos.Z)
+      if e.ground and pos.Y<e.half+gl then
+        local a=-0.5*e.g local b=e.v.Y local c=e.p0.Y-(e.half+gl) local disc=math.max(0,b*b-4*a*c)
         local tl=(-b-math.sqrt(disc))/(2*a) local lp=e.p0+e.v*tl+V(0,-0.5*e.g*tl*tl,0)
         local s=(1-math.exp(-(d-tl)*5))/5*0.35
-        pos=V(lp.X+e.v.X*s,e.half,lp.Z+e.v.Z*s) rot=e.w*tl+e.w*s*0.3
+        local rx,rz=lp.X+e.v.X*s,lp.Z+e.v.Z*s
+        -- settle flat on the ground (no half-buried coins/chunks), riding up onto the fallen grate
+        local lift=onGrateY(rx,rz,T)
+        pos=V(rx,e.half+groundY(rx,rz)+lift,rz)
+        local r1=e.w*tl+e.w*s*0.3
+        local landCF=A(r1.X,r1.Y,r1.Z)*(e.r0 or CFrame.identity)
+        local restCF=A(0,e.yaw or (e.w.Y*tl)%360,0)*(e.rest or e.r0 or CFrame.identity)
+        rotCF=landCF:Lerp(restCF,ease(clamp01((d-tl)/0.14)))
       end
-      local cf=CFrame.new(pos)*A(rot.X,rot.Y,rot.Z)*(e.r0 or CFrame.identity)
+      local cf=CFrame.new(pos)*rotCF
       e.p.CFrame=cf
       local tr=e.tr or 0 if e.life and e.fade then tr=lerp(tr,1,d/e.life) end e.p.Transparency=tr
       if e.grow then e.p.Size=e.size*(1+d*e.grow) end if e.growV then e.p.Size=e.size+e.growV*d end
     end end
 end
 local frng=Random.new(11)
+-- where a ballistic piece will touch down, and re-aim it to a chosen spot (keeps debris out of walls, props and the thief's path)
+local function landAt(e) local h=math.max(0,e.p0.Y-e.half-0.1) local tl=(e.v.Y+math.sqrt(e.v.Y^2+2*e.g*h))/e.g return e.p0.X+e.v.X*tl,e.p0.Z+e.v.Z*tl,tl end
+local function aim(e,x,z,tl) e.v=V((x-e.p0.X)/tl,e.v.Y,(z-e.p0.Z)/tl) end
+local jr=Random.new(5)
+local function rubble(e) local lx,lz,tl=landAt(e) local tx=math.clamp(lx+jr:NextNumber(-0.6,0.6),1.7,5.5) local tz=math.clamp(lz+jr:NextNumber(-0.6,0.6),12.0,15.6)
+  if tz<15.0 then tx=math.min(tx,2.7) end if tx~=lx or tz~=lz then aim(e,tx,tz,tl) end return e end
+local function chips(e) local lx,lz,tl=landAt(e) aim(e,math.clamp(lx+jr:NextNumber(-0.5,0.5),6.0,7.6),math.clamp(lz+jr:NextNumber(-0.5,0.5),14.6,16.0),tl) return e end
 local function sparks(t0,pos,n,col)
   for i=1,n do local p=P("Spark",V(0.25,0.25,0.25),nil,col or C3(255,230,80),M.Neon)
     fx({p=p,t0=t0,life=0.35,fade=true,p0=pos,v=V(frng:NextNumber(-14,14),frng:NextNumber(4,16),frng:NextNumber(-2,12)),w=V(0,0,0),g=40}) end
@@ -389,15 +416,18 @@ local T_GRATE=2.55 local T_CRACK=5.0 local T_BREAK=6.2 local T_LAND=6.78 local T
 sparks(T_GRATE,V(0,3.2,PZ+0.3),28)
 sparks(T_CRACK,V(5.7,3.4,PZ),8,C3(230,230,230)) dust(T_CRACK,V(5.8,3.4,PZ),3,0.4,1.2)
 for i=1,14 do local sz=frng:NextNumber(0.6,1.2) local p=P("Chunk",V(sz,sz*0.8,sz),nil,STONE_D,M.Cobblestone)
-  fx({p=p,t0=T_BREAK,ground=true,half=sz*0.4,p0=V(4.8+frng:NextNumber(-0.6,0.6),frng:NextNumber(0.6,6.8),PZ+frng:NextNumber(-0.6,0.6)),v=V(frng:NextNumber(-12,-2),frng:NextNumber(6,18),frng:NextNumber(-3,9)),w=V(frng:NextNumber(-500,500),frng:NextNumber(-500,500),frng:NextNumber(-500,500))}) end
+  rubble(fx({p=p,t0=T_BREAK,ground=true,half=sz*0.4,p0=V(4.8+frng:NextNumber(-0.6,0.6),frng:NextNumber(0.6,6.8),PZ+frng:NextNumber(-0.6,0.6)),v=V(frng:NextNumber(-3,-1.5),frng:NextNumber(6,18),frng:NextNumber(-4,0)),w=V(frng:NextNumber(-500,500),frng:NextNumber(-500,500),frng:NextNumber(-500,500))})) end
 dust(T_BREAK,V(4.8,3,PZ),5,1.0,1.5)
 dust(T_LAND,V(0,0.4,PZ+4),9,4.5,1.4)
-for i,pl in planks do local pr=fx({p=pl.p,t0=T_DOOR,ground=true,half=0.25,p0=pl.cf.Position,v=V((i-3)*3+frng:NextNumber(-2,2),frng:NextNumber(6,12),-frng:NextNumber(14,22)),w=V(frng:NextNumber(-400,-150),frng:NextNumber(-200,200),frng:NextNumber(-90,90)),r0=CFrame.identity})
+for i,pl in planks do local pr=fx({p=pl.p,t0=T_DOOR,ground=true,half=0.25,rest=A(-90,0,0),p0=pl.cf.Position,v=V(({-6,-4,3.9,4.2,4.6})[i]+frng:NextNumber(-0.2,0.2),frng:NextNumber(8,10),-frng:NextNumber(11,12)),yaw=0,w=V(frng:NextNumber(-400,-150),frng:NextNumber(-200,200),frng:NextNumber(-90,90)),r0=CFrame.identity})
   pl.fx=pr end
 dust(T_DOOR,V(0,2.5,12.6),6,2,2)
 local coins={}
 for i=1,46 do local p=P("Coin",V(0.18,0.9,0.9),nil,C3(255,205,40),M.SmoothPlastic,nil,Enum.PartType.Cylinder) p.Reflectance=0.2
-  fx({p=p,t0=T_GOLD+frng:NextNumber(0,0.5),ground=true,half=0.09,p0=V(frng:NextNumber(-2.5,2.5),3.3,CHZ+frng:NextNumber(-1,1)),v=V(frng:NextNumber(-9,9),frng:NextNumber(18,30),frng:NextNumber(-4,12)),w=V(frng:NextNumber(-700,700),frng:NextNumber(-700,700),0),g=60}) end
+  local e=fx({p=p,t0=T_GOLD+frng:NextNumber(0,0.5),ground=true,half=0.09,rest=A(0,0,90),p0=V(frng:NextNumber(-2.5,2.5),3.3,CHZ+frng:NextNumber(-1,1)),v=V(frng:NextNumber(-9,9),frng:NextNumber(18,30),frng:NextNumber(-4,12)),w=V(frng:NextNumber(-700,700),frng:NextNumber(-700,700),0),g=60})
+  local lx,lz,tl=landAt(e) local tx,tz=math.clamp(lx,-6.2,6.2),math.clamp(lz,-5.0,2.0)
+  if math.abs(tx)<1.6 and tz>-4.8 and tz<-1.4 then tx=(tx>=0 and 1 or -1)*1.9 end
+  aim(e,tx,tz,tl) end
 for i=1,12 do local p=P("Glint",V(0.3,0.3,0.3),nil,C3(255,250,180),M.Neon) fx({p=p,t0=T_GOLD+i*0.12,life=0.6,fade=true,p0=V(frng:NextNumber(-3,3),3.5,CHZ+frng:NextNumber(-1.5,1.5)),v=V(0,frng:NextNumber(3,6),0),w=V(0,0,0),g=0}) end
 
 -- extra FX: flashes, rings, pebbles, splinters, knight stars, flying swords, god rays
@@ -408,14 +438,15 @@ local function ring(t0,pos,s) local p=P("Ring",V(0.25,s,s),nil,C3(220,210,190),M
 burst(T_GRATE,V(0,3.2,PZ+0.4),0.6) burst(T_CRACK,V(5.8,3.4,PZ),0.5) burst(T_BREAK,V(5.6,3.4,PZ),0.8) burst(T_DOOR,V(0,3,12.9),0.7)
 ring(T_LAND,V(0,0.15,PZ+3.8),3) ring(T_BREAK,V(4.8,0.15,PZ),1.5)
 for i=1,10 do local s=frng:NextNumber(0.2,0.4) local p=P("Pebble",V(s,s,s),nil,STONE_D,M.Slate)
-  fx({p=p,t0=T_CRACK+frng:NextNumber(0,0.1),ground=true,half=s/2,p0=V(5.75,frng:NextNumber(3,4.4),PZ+frng:NextNumber(-0.5,0.5)),v=V(frng:NextNumber(0,4),frng:NextNumber(0,5),frng:NextNumber(-2,2)),w=V(300,200,100)}) end
+  chips(fx({p=p,t0=T_CRACK+frng:NextNumber(0,0.1),ground=true,half=s/2,p0=V(5.75,frng:NextNumber(3,4.4),PZ+frng:NextNumber(-0.5,0.5)),v=V(frng:NextNumber(-3,1),frng:NextNumber(0,5),frng:NextNumber(-2,0.5)),w=V(300,200,100)})) end
 for i=1,22 do local s=frng:NextNumber(0.25,0.5) local p=P("Pebble",V(s,s,s),nil,STONE:Lerp(STONE_D,frng:NextNumber()),M.Slate)
-  fx({p=p,t0=T_BREAK,ground=true,half=s/2,p0=V(4.8+frng:NextNumber(-0.7,0.7),frng:NextNumber(1,6.5),PZ+frng:NextNumber(-0.7,0.7)),v=V(frng:NextNumber(-16,4),frng:NextNumber(4,20),frng:NextNumber(-6,12)),w=V(frng:NextNumber(-600,600),frng:NextNumber(-600,600),0)}) end
+  rubble(fx({p=p,t0=T_BREAK,ground=true,half=s/2,p0=V(4.8+frng:NextNumber(-0.7,0.7),frng:NextNumber(1,6.5),PZ+frng:NextNumber(-0.7,0.7)),v=V(frng:NextNumber(-5,3),frng:NextNumber(4,20),frng:NextNumber(-6,1)),w=V(frng:NextNumber(-600,600),frng:NextNumber(-600,600),0)})) end
 for i=1,18 do local p=P("Splinter",V(0.14,0.14,frng:NextNumber(0.5,1.1)),nil,C3(185,130,75),M.Wood)
-  fx({p=p,t0=T_DOOR,ground=true,half=0.08,p0=V(frng:NextNumber(-3,3),frng:NextNumber(1,6),12.6),v=V(frng:NextNumber(-10,10),frng:NextNumber(4,14),frng:NextNumber(-20,6)),w=V(frng:NextNumber(-900,900),frng:NextNumber(-900,900),frng:NextNumber(-900,900))}) end
+  local e=fx({p=p,t0=T_DOOR,ground=true,half=0.08,p0=V(frng:NextNumber(-3,3),frng:NextNumber(1,6),12.6),v=V(frng:NextNumber(-10,10),frng:NextNumber(4,14),frng:NextNumber(-20,6)),w=V(frng:NextNumber(-900,900),frng:NextNumber(-900,900),frng:NextNumber(-900,900))})
+  local lx,lz,tl=landAt(e) local tx,tz=math.clamp(lx,-8,8),math.clamp(lz,-4.5,9.6) if math.abs(tx)<1.7 then tx=(tx>=0 and 1 or -1)*jr:NextNumber(1.9,5.5) end aim(e,tx,jr:NextNumber(-0.3,0.3)+tz,tl) end
 for _,h in {T_K1,T_K2} do sparks(h,V(1.25,4.2,-0.3),14,C3(255,235,90)) burst(h,V(1.25,4,-0.3),0.6) end
 for i,h in {T_K1,T_K2} do local sg=i==1 and -1 or 1 local b=P("FlySword",V(0.18,2.8,0.45),nil,C3(220,225,235),M.Metal)
-  fx({p=b,t0=h,ground=true,half=0.22,p0=V(1.6,3,-0.3),v=V(sg*5,20,6),w=V(800,0,300),r0=A(0,0,90)}) end
+  fx({p=b,t0=h,ground=true,half=0.1,yaw=90,p0=V(1.6,3,-0.3),v=V(sg*8,20,-6),w=V(800,0,300),r0=A(0,0,90)}) end
 local rays={} for i=1,5 do local r=P("Ray",V(0.5,9,0.5),nil,C3(255,225,110),M.Neon) r.CastShadow=false r.Transparency=1 table.insert(rays,r) end
 -- motion profile: accelerate, cruise, decelerate (s=progress 0..1, v=relative speed 0..1)
 local function trap(t,D,ta,td) t=math.clamp(t,0,D) local vm=1/(D-ta/2-td/2)
@@ -426,7 +457,7 @@ local function segPos(T,t0,t1,a,b,ta,td) local s,v=trap(T-t0,t1-t0,ta or 0.22,td
 -- footstep puffs
 local puffs={} for i=1,8 do local p=P("Puff",V(1,1,1),nil,C3(225,215,195),M.SmoothPlastic,nil,Enum.PartType.Ball) p.CastShadow=false p.Transparency=1 table.insert(puffs,p) end
 local function runPos(t)
-  local segs={{0,2.3,V(-22,0,34),V(-1.2,0,18.6)},{3.4,4.3,V(-1.2,0,19.4),V(10.3,0,16)},{7.0,8.0,V(10.3,0,16),V(-1.2,0,16.5)},{9.0,9.9,V(-1.2,0,16.5),V(0,0,3.5)},{12.95,13.75,V(0,0,3.5),V(0,0,-3.6)}}
+  local segs={{0,2.3,V(-22,0,34),V(-1.2,0,18.6)},{3.4,4.3,V(-1.2,0,19.4),V(9.85,0,17.48)},{7.0,8.0,V(9.85,0,17.48),V(-1.2,0,17.3)},{9.0,9.9,V(-1.2,0,17.3),V(0,0,3.5)},{12.95,13.75,V(0,0,3.5),V(0,0,-3.6)}}
   for _,s in segs do if t>=s[1] and t<=s[2] then return (segPos(t,s[1],s[2],s[3],s[4])) end end
 end
 local function updPuffs(T)
@@ -446,8 +477,17 @@ if workspace:GetAttribute("CineVertical") then
   for _,ax in {0,1} do local sb=Instance.new("Frame") sb.BackgroundColor3=Color3.new(0,0,0) sb.BorderSizePixel=0 sb.AnchorPoint=Vector2.new(ax,0) sb.Position=UDim2.fromScale(ax,0) sb.ZIndex=5 sb.Parent=gui
     local function fit() local v=cam.ViewportSize sb.Size=UDim2.fromOffset(math.max(0,(v.X-v.Y*9/16)/2),v.Y) end fit() cam:GetPropertyChangedSignal("ViewportSize"):Connect(fit) end
 end
+-- native 16:9 stage: text lives inside it, black bars outside it, FOV widened so the 16:9 area keeps the planned framing
+local stage=Instance.new("Frame") stage.BackgroundTransparency=1 stage.AnchorPoint=Vector2.new(0.5,0.5) stage.Position=UDim2.fromScale(0.5,0.5) stage.Size=UDim2.fromScale(1,1) stage.Parent=gui
+local FOVK=1
+if not workspace:GetAttribute("CineVertical") then
+  local bars={} for _,ay in {0,1} do local b=Instance.new("Frame") b.BackgroundColor3=Color3.new(0,0,0) b.BorderSizePixel=0 b.AnchorPoint=Vector2.new(0,ay) b.Position=UDim2.fromScale(0,ay) b.ZIndex=5 b.Parent=gui table.insert(bars,b) end
+  local function fit() local v=cam.ViewportSize local h=math.min(v.Y,v.X*9/16) stage.Size=UDim2.fromOffset(h*16/9,h) FOVK=v.Y/h
+    for _,b in bars do b.Size=UDim2.fromOffset(v.X,math.floor((v.Y-h)/2)) end end
+  fit() cam:GetPropertyChangedSignal("ViewportSize"):Connect(fit)
+end
 local function mk(font,col,stroke,pos,sizeY)
-  local l=Instance.new("TextLabel") l.BackgroundTransparency=1 l.AnchorPoint=Vector2.new(0.5,0.5) l.Position=pos l.Size=UDim2.fromScale(0.6,sizeY) l.Font=font l.TextScaled=true l.TextColor3=col l.Text="" l.ZIndex=3 l.Parent=gui
+  local l=Instance.new("TextLabel") l.BackgroundTransparency=1 l.AnchorPoint=Vector2.new(0.5,0.5) l.Position=pos l.Size=UDim2.fromScale(0.6,sizeY) l.Font=font l.TextScaled=true l.TextColor3=col l.Text="" l.ZIndex=3 l.Parent=stage
   local s=Instance.new("UIStroke") s.Thickness=stroke s.Color=Color3.new(0,0,0) s.Parent=l return l
 end
 local bang=mk(Enum.Font.LuckiestGuy,C3(255,225,60),4,UDim2.fromScale(0.5,0.22),0.16)
@@ -529,9 +569,10 @@ local function runQ(ph,amp,ra) local q=gait(ph,1,ra or 150) return q end
 local function standQ(T,seed,carry) local br=math.sin(T*2.4+(seed or 0))
   return {la={8+br*2,0,-6},ra={carry or (8-br*2),0,6},ll={7,0,-2},rl={-5,0,2},kl=8,kr=6,el=12,er=carry and 0 or 12,neck={br*1.5,0,0}},0.03*br end
 local function path(T,t0,t1,a,b) local u=clamp01((T-t0)/(t1-t0)) return a:Lerp(b,u),(b-a).Unit end
-local function onGrate(p,T) if T>T_LAND and math.abs(p.X)<5.8 and p.Z>PZ and p.Z<PZ+7.8 then return 0.45 end return 0 end
+local function onGrate(p,T) if T>T_LAND and math.abs(p.X)<5.8 and p.Z>PZ-0.8 and p.Z<PZ+7.8 then return 0.6 end return 0 end
 -- both hands on the hammer handle while swinging (left hand reaches across to the grip)
 local function twoHand(q) local a=q.ra[1] q.ra={a,0,-6} q.la={a-6,0,40} q.el=22 q.er=0 return q end
+local PDIR=V(-0.966,0,-0.259)
 local function thiefUpdate(T)
   local pos,dir,q,lean,bob=V(-22,0,34),V(0.74,0,-0.67),nil,0,0
   local face="grin"
@@ -545,30 +586,30 @@ local function thiefUpdate(T)
       q.la={35+math.sin(d*38)*28*k,0,-18+math.sin(d*31)*10*k} q.el=60+math.sin(d*45)*25*k
       q.ra={q.ra[1]+math.sin(d*60)*9*k,0,6} lean=lean+math.sin(d*70)*3*k end
     if d>0.1 then local yaw=math.rad(180*ease((d-0.1)/0.3)+math.sin(d*9)*15*clamp01((d-0.4)*3)) dir=V(-math.sin(yaw),0,-math.cos(yaw)) end
-  elseif T<4.5 then local a,b=V(-1.2,0,19.4),V(10.3,0,16)
+  elseif T<4.5 then local a,b=V(-1.2,0,19.4),V(9.85,0,17.48)
     local pp,v,dist=segPos(T,3.4,4.3,a,b) pos=pp dir=(b-a).Unit local spd=math.clamp(v*1.15,0.25,1)
     local q2,bb,tw=gait(dist*math.pi/1.85,spd,150) q=q2 bob=bb*v lean=-11*v+8*math.max(0,(T-4.3+0.28)/0.28)*(1-v) dir=(CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*dir) 
-    if T>4.3 then local u=ease((T-4.3)/0.2) dir=V(-1,0,0) q,bob=standQ(T,1,150) lean=4*math.sin(clamp01((T-4.3)/0.25)*math.pi) end
-  elseif T<7.0 then pos=V(10.3,0,16) dir=V(-1,0,0)
+    if T>4.3 then local u=ease((T-4.3)/0.2) dir=PDIR q,bob=standQ(T,1,150) lean=4*math.sin(clamp01((T-4.3)/0.25)*math.pi) end
+  elseif T<7.0 then pos=V(9.85,0,17.48) dir=PDIR
     q=twoHand({ra={math.min(swing(T,T_CRACK,150,95),swing(T,T_BREAK,150,95)),0,6},neck={0,0,0}})
     if T>T_LAND-0.15 and T<T_LAND+0.6 then local d=T-T_LAND q.neck={-12,math.sin(d*20)*6,0} q.la={60,0,-35} q.el=80 end
     lean=swingLean(T,T_CRACK)+swingLean(T,T_BREAK) if T>T_LAND-0.2 and T<T_LAND+0.5 then face="o" end
-  elseif T<8.2 then local pp,v,dist=segPos(T,7.0,8.0,V(10.3,0,16),V(-1.2,0,16.5)) pos=pp dir=(V(-1.2,0,16.5)-V(10.3,0,16)).Unit local spd=math.clamp(v*1.15,0.25,1)
-    local q2,bb,tw=gait(dist*math.pi/1.85,spd,150) q=q2 bob=bb*v lean=-11*v+8*math.max(0,(T-8.0+0.28)/0.28)*(1-v) dir=(CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*dir) 
-    if T>8.0 then dir=V(-1,0,0):Lerp(V(0,0,-1),ease((T-8.0)/0.18)).Unit q,bob=standQ(T,2,150) lean=4*math.sin(clamp01((T-8.0)/0.2)*math.pi) end
-  elseif T<9.0 then pos=V(-1.2,0,16.5) dir=V(0,0,-1) q=twoHand({ra={swing(T,T_DOOR,150,92),0,6}}) lean=swingLean(T,T_DOOR)
-  elseif T<10.0 then local pp,v,dist=segPos(T,9.0,9.9,V(-1.2,0,16.5),V(0,0,3.5)) pos=pp dir=(V(0,0,3.5)-V(-1.2,0,16.5)).Unit local spd=math.clamp(v*1.15,0.25,1)
-    local q2,bb,tw=gait(dist*math.pi/1.85,spd,150) q=q2 bob=bb*v lean=-11*v+8*math.max(0,(T-9.9+0.28)/0.28)*(1-v) dir=(CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*dir)  if T>9.9 then dir=V(0,0,-1) q,bob=standQ(T,3,150) lean=4*math.sin(clamp01((T-9.9)/0.2)*math.pi) end
+  elseif T<8.2 then local pp,v,dist=segPos(T,7.0,8.0,V(9.85,0,17.48),V(-1.2,0,17.3)) pos=pp dir=(V(-1.2,0,17.3)-V(9.85,0,17.48)).Unit local spd=math.clamp(v*1.15,0.25,1)
+    local q2,bb,tw=gait(dist*math.pi/1.85,spd,lerp(150,175,clamp01((T-7.0)/0.15))) q=q2 bob=bb*v lean=-11*v+8*math.max(0,(T-8.0+0.28)/0.28)*(1-v) dir=(CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*dir) 
+    if T>8.0 then dir=V(-1,0,0):Lerp(V(0,0,-1),ease((T-8.0)/0.18)).Unit q,bob=standQ(T,2,lerp(175,150,ease(clamp01((T-8.0)/0.3)))) lean=4*math.sin(clamp01((T-8.0)/0.2)*math.pi) end
+  elseif T<9.0 then pos=V(-1.2,0,17.3) dir=V(0,0,-1) q=twoHand({ra={swing(T,T_DOOR,150,82),0,6}}) lean=swingLean(T,T_DOOR)
+  elseif T<10.0 then local pp,v,dist=segPos(T,9.0,9.9,V(-1.2,0,17.3),V(0,0,3.5)) pos=pp dir=(V(0,0,3.5)-V(-1.2,0,17.3)).Unit local spd=math.clamp(v*1.15,0.25,1)
+    local q2,bb,tw=gait(dist*math.pi/1.85,spd,lerp(150,105,clamp01((T-9.0)/0.15))+45*clamp01((T-9.6)/0.3)) q=q2 bob=bb*v lean=-11*v+8*math.max(0,(T-9.9+0.28)/0.28)*(1-v) dir=(CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*dir)  if T>9.9 then dir=V(0,0,-1) q,bob=standQ(T,3,150) lean=4*math.sin(clamp01((T-9.9)/0.2)*math.pi) end
   elseif T<12.95 then pos=V(0,0,3.5) dir=V(0,0,-1)
     q=twoHand({ra={math.min(swing(T,T_K1,150,88),swing(T,T_K2,150,88)),0,6},neck={0,0,0}}) lean=swingLean(T,T_K1)+swingLean(T,T_K2)
     if T<10.6 then q.neck={0,math.sin(T*6)*20,0} q.ra={150,0,8} q.la={25,0,-12} q.el=20 end
   elseif T<13.8 then local pp,v,dist=segPos(T,12.95,13.75,V(0,0,3.5),V(0,0,-3.6)) pos=pp dir=(V(0,0,-3.6)-V(0,0,3.5)).Unit local spd=math.clamp(v*1.15,0.25,1)
     local q2,bb,tw=gait(dist*math.pi/1.85,spd,150) q=q2 bob=bb*v lean=-11*v+8*math.max(0,(T-13.75+0.28)/0.28)*(1-v) dir=(CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*dir) 
   elseif T<14.6 then pos=V(0,0,-3.6) dir=V(0,0,-1) local k=ease(clamp01((T-13.75)/0.25)) local u=clamp01((T-13.95)/0.35)
-    q={la={lerp(15,125,u),0,lerp(-8,18,k)},ra={lerp(150,95,k),0,lerp(8,-14,k)},el=lerp(10,35,k)*(1-u)+5,er=0,neck={-14*k,0,0},
+    q={la={lerp(15,125,u),0,lerp(-8,18,k)},ra={lerp(150,165,k),0,lerp(8,14,k)},el=lerp(10,35,k)*(1-u)+5,er=0,neck={-14*k,0,0},
       ll={lerp(14,72,k),0,-4},rl={lerp(-12,-6,k),0,4},kl=lerp(8,95,k),kr=lerp(10,105,k)} lean=-16*k*(1-u*0.6)
-    if T>T_GOLD then local g=T-T_GOLD face="o" q.neck={22,0,0} lean=lerp(lean,9,ease(clamp01(g/0.15))) q.la={125,0,30} q.ra={110,0,-20} end
-  else pos=V(0,0,-3.6) local u=clamp01((T-14.6)/0.5) dir=V(math.sin(u*2.2),0,-math.cos(u*2.2))
+    if T>T_GOLD then local g=T-T_GOLD face="o" q.neck={22,0,0} lean=lerp(lean,9,ease(clamp01(g/0.15))) q.la={125,0,30} q.ra={170,0,14} end
+  else local u=clamp01((T-14.6)/0.5) pos=V(0,0,-3.6+0.6*ease(u)) dir=V(math.sin(u*2.2),0,-math.cos(u*2.2))
     local j=math.max(0,math.sin((T-14.6)*7))  bob=j*1.6
     local gnd=math.max(0,-math.sin((T-14.6)*7))
     q={la={175,0,-8+math.sin(T*7)*6},ra={170,0,10},ll={12-20*j+30*gnd,0,-3},rl={-10+20*j+30*gnd,0,3},kl=25*j+55*gnd,kr=30*j+55*gnd,el=20,er=15,neck={-8,0,math.sin(T*3.5)*8}} lean=0
@@ -640,6 +681,65 @@ end
 local function shakeAmt(T) local s=0 for _,h in {{T_GRATE,0.5},{T_CRACK,0.4},{T_BREAK,1},{T_LAND,1.4},{T_DOOR,0.8},{T_K1,0.7},{T_K2,0.7},{T_GOLD,0.4}} do local d=T-h[1] if d>0 and d<0.6 then s+=h[2]*math.exp(-d*8) end end return s end
 local function look(p,t) return CFrame.lookAt(p,t) end
 
+-- deZFight: finds visible same-facing coplanar overlapping faces of block parts (z-fighting = flickering textures)
+-- and grows the smaller part slightly along that axis so one face clearly wins. Returns number of fixes.
+-- opts.skip(part)->bool excludes parts; opts.pairSkip(a,b)->bool excludes pairs; opts.dry=true only reports.
+local function deZFight(root,opts)
+  opts=opts or {}
+  local EPS,GROW=0.04,0.1
+  local parts={}
+  for _,d in root:GetDescendants() do
+    if d:IsA("Part") and d.Shape==Enum.PartType.Block and d.Transparency<0.95 and d.Size.Magnitude<300 and not (opts.skip and opts.skip(d)) then table.insert(parts,d) end
+  end
+  local function axes(p) local c=p.CFrame return {c.RightVector,c.UpVector,c.LookVector},{p.Size.X/2,p.Size.Y/2,p.Size.Z/2} end
+  local report={} local fixes=0
+  for pass=1,16 do
+    local changed=0
+    for i=1,#parts do local a=parts[i] local ra=a.Size.Magnitude/2
+      for j=i+1,#parts do local b=parts[j]
+        if (a.Position-b.Position).Magnitude<ra+b.Size.Magnitude/2 and not (opts.pairSkip and opts.pairSkip(a,b)) then
+          local A_,ha=axes(a) local B_,hb=axes(b) local done=false
+          for ka=1,3 do if done then break end for kb=1,3 do if done then break end
+            local d=A_[ka]:Dot(B_[kb])
+            if math.abs(d)>0.999 then
+              for _,sa in {1,-1} do if done then break end
+                local n=A_[ka]*sa
+                if n.Y>-0.9 then
+                  local sb=(d>0) and sa or -sa
+                  local fa=a.Position+n*ha[ka] local fb=b.Position+B_[kb]*sb*hb[kb]
+                  local off=(fb-fa):Dot(n)
+                  if math.abs(off)<EPS then
+                    -- in-plane overlap of the two face rectangles
+                    local u1,v1=A_[ka%3+1],A_[(ka+1)%3+1] local hu,hv=ha[ka%3+1],ha[(ka+1)%3+1]
+                    local bu,bv=B_[kb%3+1],B_[(kb+1)%3+1] local hbu,hbv=hb[kb%3+1],hb[(kb+1)%3+1]
+                    local dd=fb-fa local mu,Mu,mv,Mv=math.huge,-math.huge,math.huge,-math.huge
+                    for _,s in {{1,1},{1,-1},{-1,1},{-1,-1}} do local p=dd+bu*hbu*s[1]+bv*hbv*s[2] local x,y=p:Dot(u1),p:Dot(v1)
+                      mu=math.min(mu,x) Mu=math.max(Mu,x) mv=math.min(mv,y) Mv=math.max(Mv,y) end
+                    local ox=math.min(Mu,hu)-math.max(mu,-hu) local oy=math.min(Mv,hv)-math.max(mv,-hv)
+                    if ox>0.03 and oy>0.03 then
+                      -- grow the smaller part on the conflicting axis
+                      local va=a.Size.X*a.Size.Y*a.Size.Z local vb=b.Size.X*b.Size.Y*b.Size.Z
+                      local g,k=b,kb if va<vb then g,k=a,ka end
+                      if opts.lock and opts.lock(g) then if g==a then g,k=b,kb else g,k=a,ka end end
+                      if not (opts.lock and opts.lock(g)) then
+                        if not opts.dry then local s=g.Size g.Size=s+(k==1 and Vector3.new(GROW,0,0) or k==2 and Vector3.new(0,GROW,0) or Vector3.new(0,0,GROW)) end
+                        table.insert(report,a:GetFullName().."|"..b:GetFullName()) changed+=1 fixes+=1 done=true
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end end
+        end
+      end
+    end
+    if changed==0 or opts.dry then break end
+  end
+  return fixes,report
+end
+local CORE={Torso=1,Head=1,LArm=1,RArm=1,LLeg=1,RLeg=1,LowerFL=1,LowerFR=1,LowerSL=1,LowerSR=1}
+local ZF_DONE=false
 local LOOP=20.2 local END=19.2
 local t0=os.clock()+2
 RS:BindToRenderStep("BTW",Enum.RenderPriority.Camera.Value+1,function()
@@ -656,7 +756,7 @@ RS:BindToRenderStep("BTW",Enum.RenderPriority.Camera.Value+1,function()
   pillarR.Transparency=T<T_BREAK and 0 or 1
   local th=0 if T>T_BREAK+0.05 then local d=T-(T_BREAK+0.05) th=math.min(90,90*(d/0.53)^2) if d>0.53 then local b=d-0.53 th=90-math.abs(math.sin(b*14))*6*math.exp(-b*6) end end
   local tilt=(T>T_BREAK) and math.min(1,(T-T_BREAK)/0.15)*6 or 0
-  for _,g in grate do g.p.CFrame=HINGE*A(th,0,-tilt*(1-th/90))*g.rel end
+  for _,g in grate do g.p.CFrame=CFrame.new(0,0.16*th/90,0)*HINGE*A(th,0,-tilt*(1-th/90))*g.rel end
   for _,pl in planks do if T<T_DOOR then pl.p.CFrame=pl.cf pl.p.Transparency=0 end for k,b in pl.b do b.CFrame=pl.p.CFrame*pl.rel[k] b.Transparency=0 end end
   updFX(T) updAmbient(T) updPuffs(T) updRays(T)
   for _,pl in planks do if T<T_DOOR then pl.p.CFrame=pl.cf pl.p.Transparency=0 end for k,b in pl.b do b.CFrame=pl.p.CFrame*pl.rel[k] end end
@@ -664,8 +764,12 @@ RS:BindToRenderStep("BTW",Enum.RenderPriority.Camera.Value+1,function()
   for _,l in lid do l.p.CFrame=LHINGE*A(la,0,0)*l.rel end
   chestLight.Brightness=T>T_OPEN and lerp(0,1.5,(T-T_OPEN)/0.4) or 0
   thiefUpdate(T)
-  knightUpdate(K1,T,V(-5,0,2),T_K1,nil,V(1.25,0,-0.3),V(-16,38,-4),1,1)
+  knightUpdate(K1,T,V(-5,0,2),T_K1,nil,V(1.25,0,-0.3),V(-16,38,5),1,1)
   knightUpdate(K2,T,V(5,0,-1),T_K2,nil,V(1.25,0,-0.3),V(16,40,-4),-1,2)
+  if not ZF_DONE then ZF_DONE=true
+    -- one pass over the posed scene: separate every pair of coplanar faces so nothing flickers
+    deZFight(W,{pairSkip=function(x,y) return x.Parent==y.Parent and x.Parent~=W and CORE[x.Name] and CORE[y.Name] end})
+  end
   -- text
   local bt,bw,bc=-9,"",nil for _,b in BANGS do if T>=b[1] then bt,bw,bc=b[1],b[2],b[3] end end
   local bd=T-bt if bd<0.75 then bang.Text=bw bang.TextColor3=bc local s=1+0.45*math.max(0,1-bd/0.12) bang.Size=UDim2.fromScale(0.6*s,0.16*s) bang.Rotation=math.sin(bt*7)*8 bang.TextTransparency=bd>0.6 and (bd-0.6)/0.15 or 0 else bang.Text="" end
@@ -682,5 +786,5 @@ RS:BindToRenderStep("BTW",Enum.RenderPriority.Camera.Value+1,function()
   elseif T<16.8 then local u=(T-13)/3.8 cf=look(V(7,10,5):Lerp(V(5.8,8.6,2.6),ease(u)),V(0,2.6,-6)) fov=55
   else local u=(T-16.8)/2.4 cf=look(V(6,9,3):Lerp(V(-5,42,28),ease(u)),V(0,2.5,-5):Lerp(V(0,1,-3),ease(u))) fov=lerp(55,60,u) end
   local sa=shakeAmt(T) cf=cf*CFrame.Angles(math.rad(sa*math.noise(T*30,1)*3),math.rad(sa*math.noise(T*30,2)*3),math.rad(sa*math.noise(T*30,3)*2))
-  cam.CFrame=cf cam.FieldOfView=fov
+  cam.CFrame=cf cam.FieldOfView=math.deg(2*math.atan(math.tan(math.rad(fov)/2)*FOVK))
 end)
