@@ -326,3 +326,5 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .cl-quote { display: block; width: 100%; text-align: left; margin: -4px 0 16px; padding: 12px 14px; border-radius: 14px; border: 1px solid rgba(230, 180, 80, .25); background: rgba(230, 180, 80, .06); transition: border-color .3s, background .3s; }
 .cl-quote:hover { border-color: rgba(230, 180, 80, .55); background: rgba(230, 180, 80, .1); }
 .cl-quote .rv-stars { display: block; font-size: 15px; } .cl-quote q { display: block; margin-top: 4px; color: #ece6d8; font-size: 14px; font-style: italic; }
+.cl-tag { position: absolute; left: 12px; top: 12px; z-index: 1; padding: 5px 10px; border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #f7dc95; background: rgba(0, 0, 0, .7); border: 1px solid rgba(230, 180, 80, .45); }
+.cl-n em { font-style: normal; color: var(--gold-2); font-weight: 700; }

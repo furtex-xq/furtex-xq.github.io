@@ -6,7 +6,7 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-import { COLLECTIONS, MODELS, CLIENTS } from './data.js?v=6';
+import { COLLECTIONS, MODELS, CLIENTS } from './data.js?v=7';
 const CATEGORIES = CLIENTS;
 import { LANG, EN, setLang, t, tr, PRICES, STEPS, PAYMENT, CONTACTS, colName, catText, modelName, modelSub, modelDesc, rarity, renderName, nModels } from './lang.js?v=3';
 import { rigModel, animateRig } from './anim.js?v=3';
@@ -212,11 +212,17 @@ tabs.onclick = e => {
 /* ---------- клиенты: карточка = заказ, отзыв, каталог его моделей ---------- */
 const catOf = m => CATEGORIES.find(c => c.cols.includes(m.col)) || CATEGORIES[0];
 const clientModels = c => MODELS.filter(m => c.cols.includes(m.col));
+const clientTitle = c => (c.unpaid ? (EN ? 'Order: ' : 'Заказ ') + c.name : c.name);
+const clientRenders = c => c.order.renders.map(([rid, en, ru]) => ({ id: rid, name: EN ? en : ru }));
+function openClientCatalog(c) {
+  if (clientModels(c).length) return openCategory(c);
+  closePanels(); fillLB(clientRenders(c), clientTitle(c)); lb.hidden = false;
+}
 $('#clients').innerHTML = CATEGORIES.map(c => `
   <article class="client">
-    <button class="cl-pic" data-act="catalog" data-c="${c.id}"><img src="renders/${c.cover}-s.webp" alt="" loading="lazy"></button>
+    <button class="cl-pic" data-act="catalog" data-c="${c.id}"><img src="renders/${c.cover}-s.webp" alt="" loading="lazy">${c.tag ? `<span class="cl-tag">${esc(tr(c.tag))}</span>` : ''}</button>
     <div class="cl-body">
-      <div class="cl-top"><h3>${esc(c.name)}</h3><span class="cl-n"><b>${c.count}</b> ${nModels(c.count).replace(/^\d+ /, '')}</span></div>
+      <div class="cl-top"><h3>${esc(clientTitle(c))}</h3><span class="cl-n"><b>${c.count}</b> ${nModels(c.count).replace(/^\d+ /, '')}${c.total ? ` · <em>${esc(c.total)}</em>` : ''}</span></div>
       <p>${esc(tr(c.order.short))}</p>
       ${c.review ? `<button class="cl-quote" data-act="review" data-c="${c.id}"><span class="rv-stars">${'★'.repeat(c.review.stars || 5)}</span><q>${esc(tr(c.review.text))}</q></button>` : ''}
       <div class="cl-acts">
@@ -229,7 +235,7 @@ $('#clients').innerHTML = CATEGORIES.map(c => `
 $('#clients').onclick = e => {
   const b = e.target.closest('[data-act]'); if (!b) return;
   const c = CATEGORIES.find(x => x.id === b.dataset.c);
-  if (b.dataset.act === 'catalog') openCategory(c);
+  if (b.dataset.act === 'catalog') openClientCatalog(c);
   if (b.dataset.act === 'order') openOrder(c.id);
   if (b.dataset.act === 'review') openReview(c.id);
 };
@@ -371,7 +377,7 @@ function openOrder(id) {
   $('#oDetail').innerHTML = `
     <div class="od-hero"><img src="renders/${c.cover}.webp" alt=""></div>
     <div class="od-main">
-      <p class="od-client">${esc(c.name)}</p>
+      <p class="od-client">${esc(clientTitle(c))}${c.tag ? ` · ${esc(tr(c.tag))}` : ''}</p>
       <h3>${esc(tr(o.title))}</h3>
       <p class="od-short">${esc(tr(o.short))}</p>
       <dl class="od-facts">
@@ -382,7 +388,7 @@ function openOrder(id) {
       </dl>
       <h5>${t('ordered')}</h5>
       <ul class="od-items">${tr(o.items).map(x => `<li>${esc(x)}</li>`).join('')}</ul>
-      <div class="od-btns"><button class="btn-primary sm" data-view="0">${t('catalog')} · 3D</button><button class="btn-ghost sm" data-rv>${t('review')}</button></div>
+      <div class="od-btns">${ms.length ? `<button class="btn-primary sm" data-view="0">${t('catalog')} · 3D</button>` : `<button class="btn-primary sm" data-r="0">${t('renders')}</button>`}<button class="btn-ghost sm" data-rv>${t('review')}</button></div>
     </div>
     ${ms.length ? `<section class="od-sec"><div class="od-sec-h"><h5>${t('models3d')} · ${ms.length}</h5></div>
       <div class="od-models">${ms.map((m, i) => `<button class="od-model" data-view="${i}"><img src="thumbs/${m.id}.webp" alt="" loading="lazy"><b>${esc(modelName(m))}</b><small>${esc(rarity(m) || '')}</small><span class="od-3d">3D</span></button>`).join('')}</div></section>` : ''}
@@ -411,7 +417,7 @@ function openReview(id) {
     <div class="od-btns"><button class="btn-primary sm" data-cat="${c.id}">${t('catalog')} · 3D</button><button class="btn-ghost sm" data-ord="${c.id}">${t('order')}</button></div>`
     : `<p class="rv-soon">${t('reviewSoon')}</p><div class="od-btns"><button class="btn-primary sm" data-cat="${c.id}">${t('catalog')} · 3D</button><button class="btn-ghost sm" data-ord="${c.id}">${t('order')}</button></div>`;
   $('#rvBody').onclick = e => {
-    if (e.target.closest('[data-cat]')) openCategory(c);
+    if (e.target.closest('[data-cat]')) openClientCatalog(c);
     if (e.target.closest('[data-ord]')) openOrder(c.id);
   };
   showPanel('review');
@@ -435,7 +441,7 @@ $('#prBody').onclick = e => {
 };
 if (location.hash === '#pricing') showPanel('pricing');
 const fromLink = location.hash.match(/^#(order|review|catalog)-(\w+)$/);
-if (fromLink) ({ order: openOrder, review: openReview, catalog: id => { const c = CATEGORIES.find(x => x.id === id); if (c) openCategory(c); } })[fromLink[1]](fromLink[2]);
+if (fromLink) ({ order: openOrder, review: openReview, catalog: id => { const c = CATEGORIES.find(x => x.id === id); if (c) openClientCatalog(c); } })[fromLink[1]](fromLink[2]);
 
 /* ---------- камера под размер экрана ---------- */
 function frame() {

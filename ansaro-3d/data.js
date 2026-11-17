@@ -50,4 +50,16 @@ export const CLIENTS = [
       format: { en: 'FBX + Luau setup scripts for Roblox Studio', ru: 'FBX + скрипты настройки на Luau для Roblox Studio' },
       renders: [['o_dm_eggs', 'Egg collection', 'Коллекция яиц'], ['o_dm_golden', 'Golden egg', 'Золотое яйцо'], ['o_dm_halloween', 'Halloween pack', 'Хэллоуинский набор'], ['o_dm_db_gems', 'Gem dumbbells', 'Гантели с камнями'], ['o_dm_db_myth', 'Mythic dumbbells', 'Мифические гантели'], ['o_dm_gym', 'Gym zones', 'Зоны зала'], ['o_dm_cat_cls', 'Classic catapults', 'Классические катапульты'], ['o_dm_cat_leg', 'Legendary catapults', 'Легендарные катапульты']],
     } },
+  { id: 'kartalow', name: 'kartalow', cols: [], count: 3, total: '500 R$', cover: 'o_kl_cover',
+    tag: { en: 'Average quality', ru: 'Среднее качество' }, unpaid: true,
+    review: null,
+    order: {
+      status: 'done',
+      title: { en: 'V loot case for a Tower Defense game: Standard, Silver, Gold', ru: 'Кейс V для Tower Defense: Standard, Silver, Gold' },
+      short: { en: 'Loot case with an opening lid and the client\'s V logo, in three versions.', ru: 'Лут-кейс с открывающейся крышкой и логотипом V клиента, в трёх версиях.' },
+      items: { en: ['One case model in 3 versions: Standard (blue V), Silver, Gold', 'Opening lid with a ready LidController script', 'Rank lights 1 / 2 / 3 that tell the versions apart', 'About 3,200 triangles, FBX with embedded colors', '500 R$ for all three versions'],
+               ru: ['Одна модель кейса в 3 версиях: Standard (синяя V), Silver, Gold', 'Открывающаяся крышка с готовым скриптом LidController', 'Огни рангов 1 / 2 / 3, по ним версии отличаются', 'Около 3 200 треугольников, FBX со вшитыми цветами', '500 R$ за все три версии'] },
+      format: { en: 'FBX ×3 + Luau setup script for Roblox Studio', ru: 'FBX ×3 + скрипт настройки на Luau для Roblox Studio' },
+      renders: [['o_kl_lineup', 'All three versions', 'Все три версии'], ['o_kl_std', 'Standard', 'Standard'], ['o_kl_std_open', 'Standard, open', 'Standard, открыт'], ['o_kl_std_back', 'Standard, back', 'Standard, сзади'], ['o_kl_silver', 'Silver', 'Silver'], ['o_kl_silver_open', 'Silver, open', 'Silver, открыт'], ['o_kl_gold', 'Gold', 'Gold'], ['o_kl_gold_open', 'Gold, open', 'Gold, открыт'], ['o_kl_roblox', 'Approximate look in Roblox', 'Примерно как в Roblox']],
+    } },
 ];
