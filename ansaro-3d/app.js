@@ -6,7 +6,7 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-import { COLLECTIONS, MODELS, CLIENTS } from './data.js?v=7';
+import { COLLECTIONS, MODELS, CLIENTS } from './data.js?v=8';
 const CATEGORIES = CLIENTS;
 import { LANG, EN, setLang, t, tr, PRICES, STEPS, PAYMENT, CONTACTS, colName, catText, modelName, modelSub, modelDesc, rarity, renderName, nModels } from './lang.js?v=3';
 import { rigModel, animateRig } from './anim.js?v=3';
@@ -411,11 +411,11 @@ function openReview(id) {
     <figure class="rv-card">
       <div class="rv-stars" aria-label="${r.stars || 5}/5">${'★'.repeat(r.stars || 5)}</div>
       <blockquote>${esc(tr(r.text))}</blockquote>
-      <figcaption><b>${esc(c.name)}</b>${r.date ? ` · ${esc(r.date)}` : ''}</figcaption>
+      <figcaption><b>${esc(c.name)}</b>${r.date ? ` · ${esc(r.date)}` : ''}${r.via ? ` · ${esc(r.via)}` : ''}</figcaption>
       ${r.img ? `<img class="rv-shot" src="${r.img}" alt="">` : ''}
     </figure>
-    <div class="od-btns"><button class="btn-primary sm" data-cat="${c.id}">${t('catalog')} · 3D</button><button class="btn-ghost sm" data-ord="${c.id}">${t('order')}</button></div>`
-    : `<p class="rv-soon">${t('reviewSoon')}</p><div class="od-btns"><button class="btn-primary sm" data-cat="${c.id}">${t('catalog')} · 3D</button><button class="btn-ghost sm" data-ord="${c.id}">${t('order')}</button></div>`;
+    <div class="od-btns"><button class="btn-primary sm" data-cat="${c.id}">${clientModels(c).length ? t('catalog') + ' · 3D' : t('renders')}</button><button class="btn-ghost sm" data-ord="${c.id}">${t('order')}</button></div>`
+    : `<p class="rv-soon">${t('reviewSoon')}</p><div class="od-btns"><button class="btn-primary sm" data-cat="${c.id}">${clientModels(c).length ? t('catalog') + ' · 3D' : t('renders')}</button><button class="btn-ghost sm" data-ord="${c.id}">${t('order')}</button></div>`;
   $('#rvBody').onclick = e => {
     if (e.target.closest('[data-cat]')) openClientCatalog(c);
     if (e.target.closest('[data-ord]')) openOrder(c.id);

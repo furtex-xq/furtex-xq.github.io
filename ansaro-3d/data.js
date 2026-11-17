@@ -52,7 +52,8 @@ export const CLIENTS = [
     } },
   { id: 'kartalow', name: 'kartalow', cols: [], count: 3, total: '500 R$', cover: 'o_kl_cover',
     tag: { en: 'Average quality', ru: 'Среднее качество' }, unpaid: true,
-    review: null,
+    review: { stars: 5, date: '17.11.2026', via: 'Roblox',
+      text: { en: 'Excellent! It should always be like this, I will definitely order again.', ru: 'Отлично! Так бы всегда, обязательно закажу ещё.' } },
     order: {
       status: 'done',
       title: { en: 'V loot case for a Tower Defense game: Standard, Silver, Gold', ru: 'Кейс V для Tower Defense: Standard, Silver, Gold' },
