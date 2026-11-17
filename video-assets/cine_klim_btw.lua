@@ -166,6 +166,33 @@ P("Haystack",V(3.4,4,4),CFrame.new(24,1.7,24)*A(0,0,90),C3(225,195,90),M.Fabric,
 P("HayTop",V(3.6,2.4,3.6),CFrame.new(24,3.6,24),C3(230,200,95),M.Fabric,nil,Enum.PartType.Ball)
 P("OBarrel",V(2,1.6,1.6),CFrame.new(-7,1,17.5)*A(0,0,90),C3(140,95,55),M.Wood,nil,Enum.PartType.Cylinder)
 P("OCrate",V(1.6,1.6,1.6),CFrame.new(-8.6,0.8,16.4)*A(0,25,0),C3(170,120,65),M.WoodPlanks)
+-- training dummy in the courtyard
+do local b=V(-7.5,0,-3.5)
+  P("DummyPole",V(0.35,4.2,0.35),CFrame.new(b+V(0,2.1,0)),C3(120,80,45),M.Wood)
+  P("DummyArms",V(3,0.3,0.3),CFrame.new(b+V(0,3.1,0)),C3(120,80,45),M.Wood)
+  P("DummyBody",V(1.5,1.9,1.1),CFrame.new(b+V(0,2.9,0)),C3(215,185,120),M.Fabric)
+  P("DummyHead",V(1.15,1.15,1.15),CFrame.new(b+V(0,4.35,0)),C3(215,185,120),M.Fabric,nil,Enum.PartType.Ball)
+  P("DummyRope",V(1.55,0.12,1.15),CFrame.new(b+V(0,2.4,0)),C3(140,100,60),M.Fabric)
+  P("DummyTarget",V(0.08,0.8,0.8),CFrame.new(b+V(0,3,-0.58))*A(0,90,0),C3(200,50,50),M.SmoothPlastic,nil,Enum.PartType.Cylinder)
+  P("DummyBase",V(1.6,0.25,1.6),CFrame.new(b+V(0,0.12,0)),C3(100,70,40),M.Wood) end
+-- stone well outside
+do local c=V(-20,0,-2)
+  for i=0,11 do local a=i/12*math.pi*2 P("WellStone",V(1.1,1.4,0.7),CFrame.new(c+V(math.cos(a)*1.9,0.7,math.sin(a)*1.9))*CFrame.Angles(0,-a+math.pi/2,0),C3(150,150,155),M.Slate) end
+  P("WellWater",V(0.1,3.2,3.2),CFrame.new(c+V(0,1.0,0))*A(0,0,90),C3(50,110,170),M.SmoothPlastic,nil,Enum.PartType.Cylinder)
+  for _,sx in {-1,1} do P("WellPost",V(0.3,3.6,0.3),CFrame.new(c+V(sx*1.9,2.6,0)),C3(115,75,40),M.Wood) end
+  P("WellBeam",V(4.2,0.3,0.3),CFrame.new(c+V(0,4.3,0)),C3(115,75,40),M.Wood)
+  P("WellRoofL",V(4.6,0.2,1.8),CFrame.new(c+V(0,4.9,-0.7))*A(35,0,0),C3(170,60,45),M.WoodPlanks)
+  P("WellRoofR",V(4.6,0.2,1.8),CFrame.new(c+V(0,4.9,0.7))*A(-35,0,0),C3(170,60,45),M.WoodPlanks)
+  P("WellRope",V(0.08,1.8,0.08),CFrame.new(c+V(0,3.4,0)),C3(200,180,130),M.Fabric)
+  P("WellBucket",V(0.7,0.6,0.7),CFrame.new(c+V(0,2.3,0)),C3(130,85,45),M.Wood,nil,Enum.PartType.Cylinder) end
+-- hay cart near the haystack
+do local cf=CFrame.new(16,0,27)*A(0,25,0)
+  P("CartBed",V(3.4,0.35,2.2),cf*CFrame.new(0,1.35,0),C3(150,100,55),M.WoodPlanks)
+  for _,sz in {-1,1} do P("CartSide",V(3.4,0.7,0.2),cf*CFrame.new(0,1.85,sz*1.0),C3(135,90,50),M.WoodPlanks)
+    P("CartWheel",V(0.25,1.6,1.6),cf*CFrame.new(0.4,0.8,sz*1.25)*A(0,90,0)*A(0,0,90),C3(95,62,35),M.Wood,nil,Enum.PartType.Cylinder) end
+  P("CartHay",V(3,1,1.8),cf*CFrame.new(0,2.2,0),C3(230,200,95),M.Fabric)
+  P("CartHandle",V(2.6,0.18,0.18),cf*CFrame.new(-2.9,1.2,0.6)*A(0,0,12),C3(120,80,45),M.Wood)
+  P("CartHandle",V(2.6,0.18,0.18),cf*CFrame.new(-2.9,1.2,-0.6)*A(0,0,12),C3(120,80,45),M.Wood) end
 -- grass tufts
 for i=1,140 do local x,z=drng:NextNumber(-55,55),drng:NextNumber(-45,55)
   if math.abs(x)>15.5 or math.abs(z)>15.5 then if not (z>15 and z<24 and math.abs(x)<7) then
@@ -302,6 +329,7 @@ ex(thief,"T",V(1.2,1.25,0.55),CFrame.new(0,0.05,0.82),C3(120,80,45),M.Fabric)  -
 ex(thief,"T",V(1.25,0.45,0.6),CFrame.new(0,0.55,0.84),C3(100,65,38),M.Fabric)
 ex(thief,"T",V(0.9,0.45,0.1),CFrame.new(0,-0.2,-0.58),C3(70,45,105))          -- pocket
 local ghosts={} for k,dl in {14,28,42} do local g=ex(thief,"RA",V(1.2,1.2,1.9),A(dl,0,0)*CFrame.new(0,-3.9,0),C3(220,225,240),M.Neon) g.CastShadow=false table.insert(ghosts,g) end
+local sweat={} for i=1,3 do local d=P("Sweat",V(0.22,0.32,0.22),nil,C3(150,210,255),M.Glass,nil,Enum.PartType.Ball) d.Transparency=1 d.CastShadow=false table.insert(sweat,d) end
 local dizzy={} for i=1,3 do local d=P("Star",V(0.35,0.35,0.35),nil,C3(255,230,60),M.Neon) d.CastShadow=false table.insert(dizzy,d) end
 -- knights
 local function knight(name,plume)
@@ -502,6 +530,8 @@ local function standQ(T,seed,carry) local br=math.sin(T*2.4+(seed or 0))
   return {la={8+br*2,0,-6},ra={carry or (8-br*2),0,6},ll={7,0,-2},rl={-5,0,2},kl=8,kr=6,el=12,er=carry and 0 or 12,neck={br*1.5,0,0}},0.03*br end
 local function path(T,t0,t1,a,b) local u=clamp01((T-t0)/(t1-t0)) return a:Lerp(b,u),(b-a).Unit end
 local function onGrate(p,T) if T>T_LAND and math.abs(p.X)<5.8 and p.Z>PZ and p.Z<PZ+7.8 then return 0.45 end return 0 end
+-- both hands on the hammer handle while swinging (left hand reaches across to the grip)
+local function twoHand(q) local a=q.ra[1] q.ra={a,0,-6} q.la={a-6,0,40} q.el=22 q.er=0 return q end
 local function thiefUpdate(T)
   local pos,dir,q,lean,bob=V(-22,0,34),V(0.74,0,-0.67),nil,0,0
   local face="grin"
@@ -509,28 +539,35 @@ local function thiefUpdate(T)
     local q2,bb,tw=gait(dist*math.pi/1.85,spd,150) q=q2 bob=bb*v lean=-11*v+8*math.max(0,(T-2.3+0.28)/0.28)*(1-v) dir=(CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*dir) 
   elseif T<3.4 then pos=V(-1.2,0,18.6) dir=V(0,0,-1)
     local d=T-T_GRATE local back=d>0 and math.sin(clamp01(d/0.5)*math.pi/2)*0.8 or 0 pos=pos+V(0,0,back)
-    q={la={swing(T,T_GRATE,20,90,true)*0.6,0,-10},ra={swing(T,T_GRATE,150,90,true),0,6},neck={0,d>0.15 and math.sin(d*25)*10*math.max(0,1-d) or 0,0}}
+    q=twoHand({ra={swing(T,T_GRATE,150,90,true),0,6},neck={0,d>0.15 and math.sin(d*25)*10*math.max(0,1-d) or 0,0}})
     lean=swingLean(T,T_GRATE) if d>0 and d<0.9 then lean=8*(1-d/0.9) face="o" end
+    if d>0.05 then local k=math.exp(-(d-0.05)*2.2)
+      q.la={35+math.sin(d*38)*28*k,0,-18+math.sin(d*31)*10*k} q.el=60+math.sin(d*45)*25*k
+      q.ra={q.ra[1]+math.sin(d*60)*9*k,0,6} lean=lean+math.sin(d*70)*3*k end
     if d>0.1 then local yaw=math.rad(180*ease((d-0.1)/0.3)+math.sin(d*9)*15*clamp01((d-0.4)*3)) dir=V(-math.sin(yaw),0,-math.cos(yaw)) end
   elseif T<4.5 then local a,b=V(-1.2,0,19.4),V(10.3,0,16)
     local pp,v,dist=segPos(T,3.4,4.3,a,b) pos=pp dir=(b-a).Unit local spd=math.clamp(v*1.15,0.25,1)
     local q2,bb,tw=gait(dist*math.pi/1.85,spd,150) q=q2 bob=bb*v lean=-11*v+8*math.max(0,(T-4.3+0.28)/0.28)*(1-v) dir=(CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*dir) 
     if T>4.3 then local u=ease((T-4.3)/0.2) dir=V(-1,0,0) q,bob=standQ(T,1,150) lean=4*math.sin(clamp01((T-4.3)/0.25)*math.pi) end
   elseif T<7.0 then pos=V(10.3,0,16) dir=V(-1,0,0)
-    q={la={swing(T,T_CRACK,20,95)*0.5+swing(T,T_BREAK,20,95)*0.5-10,0,-10},ra={math.min(swing(T,T_CRACK,150,95),swing(T,T_BREAK,150,95)),0,6},neck={0,0,0}}
+    q=twoHand({ra={math.min(swing(T,T_CRACK,150,95),swing(T,T_BREAK,150,95)),0,6},neck={0,0,0}})
+    if T>T_LAND-0.15 and T<T_LAND+0.6 then local d=T-T_LAND q.neck={-12,math.sin(d*20)*6,0} q.la={60,0,-35} q.el=80 end
     lean=swingLean(T,T_CRACK)+swingLean(T,T_BREAK) if T>T_LAND-0.2 and T<T_LAND+0.5 then face="o" end
   elseif T<8.2 then local pp,v,dist=segPos(T,7.0,8.0,V(10.3,0,16),V(-1.2,0,16.5)) pos=pp dir=(V(-1.2,0,16.5)-V(10.3,0,16)).Unit local spd=math.clamp(v*1.15,0.25,1)
     local q2,bb,tw=gait(dist*math.pi/1.85,spd,150) q=q2 bob=bb*v lean=-11*v+8*math.max(0,(T-8.0+0.28)/0.28)*(1-v) dir=(CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*dir) 
     if T>8.0 then dir=V(-1,0,0):Lerp(V(0,0,-1),ease((T-8.0)/0.18)).Unit q,bob=standQ(T,2,150) lean=4*math.sin(clamp01((T-8.0)/0.2)*math.pi) end
-  elseif T<9.0 then pos=V(-1.2,0,16.5) dir=V(0,0,-1) q={la={20,0,-10},ra={swing(T,T_DOOR,150,92),0,6}} lean=swingLean(T,T_DOOR)
+  elseif T<9.0 then pos=V(-1.2,0,16.5) dir=V(0,0,-1) q=twoHand({ra={swing(T,T_DOOR,150,92),0,6}}) lean=swingLean(T,T_DOOR)
   elseif T<10.0 then local pp,v,dist=segPos(T,9.0,9.9,V(-1.2,0,16.5),V(0,0,3.5)) pos=pp dir=(V(0,0,3.5)-V(-1.2,0,16.5)).Unit local spd=math.clamp(v*1.15,0.25,1)
     local q2,bb,tw=gait(dist*math.pi/1.85,spd,150) q=q2 bob=bb*v lean=-11*v+8*math.max(0,(T-9.9+0.28)/0.28)*(1-v) dir=(CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*dir)  if T>9.9 then dir=V(0,0,-1) q,bob=standQ(T,3,150) lean=4*math.sin(clamp01((T-9.9)/0.2)*math.pi) end
   elseif T<12.95 then pos=V(0,0,3.5) dir=V(0,0,-1)
-    q={la={25,0,-12},ra={math.min(swing(T,T_K1,150,88),swing(T,T_K2,150,88)),0,6},neck={0,0,0}} lean=swingLean(T,T_K1)+swingLean(T,T_K2)
-    if T<10.6 then q.neck={0,math.sin(T*6)*20,0} end
+    q=twoHand({ra={math.min(swing(T,T_K1,150,88),swing(T,T_K2,150,88)),0,6},neck={0,0,0}}) lean=swingLean(T,T_K1)+swingLean(T,T_K2)
+    if T<10.6 then q.neck={0,math.sin(T*6)*20,0} q.ra={150,0,8} q.la={25,0,-12} q.el=20 end
   elseif T<13.8 then local pp,v,dist=segPos(T,12.95,13.75,V(0,0,3.5),V(0,0,-3.6)) pos=pp dir=(V(0,0,-3.6)-V(0,0,3.5)).Unit local spd=math.clamp(v*1.15,0.25,1)
     local q2,bb,tw=gait(dist*math.pi/1.85,spd,150) q=q2 bob=bb*v lean=-11*v+8*math.max(0,(T-13.75+0.28)/0.28)*(1-v) dir=(CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*dir) 
-  elseif T<14.6 then pos=V(0,0,-3.6) dir=V(0,0,-1) local u=clamp01((T-13.8)/0.35) q={la={lerp(10,120,u),0,-10},ra={150,0,8},neck={-10*u,0,0}} if T>T_GOLD then face="o" q.neck={20,0,0} end
+  elseif T<14.6 then pos=V(0,0,-3.6) dir=V(0,0,-1) local k=ease(clamp01((T-13.75)/0.25)) local u=clamp01((T-13.95)/0.35)
+    q={la={lerp(15,125,u),0,lerp(-8,18,k)},ra={lerp(150,95,k),0,lerp(8,-14,k)},el=lerp(10,35,k)*(1-u)+5,er=0,neck={-14*k,0,0},
+      ll={lerp(14,72,k),0,-4},rl={lerp(-12,-6,k),0,4},kl=lerp(8,95,k),kr=lerp(10,105,k)} lean=-16*k*(1-u*0.6)
+    if T>T_GOLD then local g=T-T_GOLD face="o" q.neck={22,0,0} lean=lerp(lean,9,ease(clamp01(g/0.15))) q.la={125,0,30} q.ra={110,0,-20} end
   else pos=V(0,0,-3.6) local u=clamp01((T-14.6)/0.5) dir=V(math.sin(u*2.2),0,-math.cos(u*2.2))
     local j=math.max(0,math.sin((T-14.6)*7))  bob=j*1.6
     local gnd=math.max(0,-math.sin((T-14.6)*7))
@@ -568,6 +605,10 @@ local function thiefUpdate(T)
   local dz=T>T_GRATE+0.1 and T<3.6
   for i,d in dizzy do if dz then local a=T*9+i*2.09 d.CFrame=CFrame.new(thief.H.Position+V(math.cos(a)*1.1,1.4+math.sin(T*6+i)*0.1,math.sin(a)*1.1))*A(0,T*300,45) d.Transparency=0 else d.Transparency=1 end end
   setVis(sack,T>14.75)
+  -- sweat drops fly off the head on each hard swing
+  local hs=nil for _,h in {T_CRACK,T_BREAK,T_DOOR,T_K1,T_K2} do local d=T-h if d>-0.05 and d<0.45 then hs=d end end
+  for i,sd in sweat do if hs then local t=hs+0.05 local sx=(i-2)*1.1 local hp=thief.H.Position
+      sd.CFrame=CFrame.new(hp+V(sx*0.6+sx*2.2*t,1.0+3.2*t-9*t*t,0.3*i*t)) sd.Transparency=0.15+t*1.4 else sd.Transparency=1 end end
 end
 local function knightUpdate(k,T,home,hit,runFrom,runTo,flyV,spinSign,seed)
   local t0=hit-1.1
@@ -582,13 +623,15 @@ local function knightUpdate(k,T,home,hit,runFrom,runTo,flyV,spinSign,seed)
   elseif T<hit then local u=clamp01((T-t0)/0.95) local p,v,dist=segPos(T,t0,t0+0.95,home,runTo,0.3,0.05)
     local q,bb,tw=gait(dist*math.pi/1.7,math.clamp(v,0.3,1),nil)
     q.ra={lerp(60,160,u),0,8} q.er=lerp(20,0,u) q.la={45+q.la[1]*0.3,0,-8} q.el=35
+    if seed==2 and T>hit-0.4 then local b=ease(clamp01((T-hit+0.4)/0.2)) q.la={lerp(q.la[1],105,b),0,lerp(-8,22,b)} q.el=lerp(35,70,b) q.neck={-8*b,0,0} end
+    if seed==1 and T>hit-0.3 then local c=ease(clamp01((T-hit+0.3)/0.25)) q.ra={lerp(160,185,c),0,8} q.neck={-10*c,0,0} end
     pose(k,at(p+V(0,2+bb*v-legDrop(q)*0.7,0),runTo-home)*CFrame.fromAxisAngle(Vector3.yAxis,math.rad(tw))*A(-12*v,0,0),q)
   else local d=T-hit local g=60 local p0=runTo+V(0,2,0)
     local p=p0+flyV*d+V(0,-0.5*g*d*d,0)
     local tl=(flyV.Y+math.sqrt(flyV.Y^2+2*g*(p0.Y-0.7)))/g
     local rot
     if d<tl then rot=A(-d*720,0,spinSign*d*360)
-      pose(k,CFrame.new(p)*rot,{la={150+math.sin(d*30)*30,0,-40},ra={150-math.sin(d*30)*30,0,40},el=30+math.sin(d*22)*30,er=30-math.sin(d*22)*30,
+      pose(k,CFrame.new(p)*rot,{neck={35*math.exp(-d*3),0,0},la={150+math.sin(d*30)*30,0,-40},ra={150-math.sin(d*30)*30,0,40},el=30+math.sin(d*22)*30,er=30-math.sin(d*22)*30,
         ll={math.sin(d*25)*40,0,0},rl={-math.sin(d*25)*40,0,0},kl=35+math.sin(d*25)*30,kr=35-math.sin(d*25)*30})
     else local lp=p0+flyV*tl+V(0,-0.5*g*tl*tl,0) local b=d-tl local bounce=math.abs(math.sin(b*14))*0.5*math.exp(-b*7)
       pose(k,CFrame.new(lp.X,0.7+bounce,lp.Z)*A(-90,0,0),{la={160,0,-30},ra={160,0,30},el=15,er=15,ll={8,0,-6},rl={-4,0,6},kl=20,kr=10}) end
