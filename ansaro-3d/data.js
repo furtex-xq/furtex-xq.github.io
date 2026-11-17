@@ -39,6 +39,7 @@ export const MODELS = [
 
 export const CLIENTS = [
   { id: 'deppmaster', name: 'DeppMaster', cols: ['dm_eggs', 'dm_dumbbells', 'dm_gym', 'dm_catapults'], count: 33, total: '18 500 R$', cover: 'o_dm_eggs',
+    tag: { en: 'Top quality', ru: 'Высшее качество' },
     review: { stars: 5, date: '15.11.2026', img: 'renders/rv_deppmaster.webp',
       text: { en: '5 stars, everything is high-quality and beautiful, and most importantly fast. Great 👍', ru: '5 звезд все качественно и красиво а главное быстро во👍' } },
     order: {

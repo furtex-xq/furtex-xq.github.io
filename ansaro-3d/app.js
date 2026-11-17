@@ -6,7 +6,7 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-import { COLLECTIONS, MODELS, CLIENTS } from './data.js?v=8';
+import { COLLECTIONS, MODELS, CLIENTS } from './data.js?v=9';
 const CATEGORIES = CLIENTS;
 import { LANG, EN, setLang, t, tr, PRICES, STEPS, PAYMENT, CONTACTS, colName, catText, modelName, modelSub, modelDesc, rarity, renderName, nModels } from './lang.js?v=3';
 import { rigModel, animateRig } from './anim.js?v=3';
