@@ -64,4 +64,15 @@ export const CLIENTS = [
       format: { en: 'FBX ×3 + Luau setup script for Roblox Studio', ru: 'FBX ×3 + скрипт настройки на Luau для Roblox Studio' },
       renders: [['o_kl_lineup', 'All three versions', 'Все три версии'], ['o_kl_std', 'Standard', 'Standard'], ['o_kl_std_open', 'Standard, open', 'Standard, открыт'], ['o_kl_std_back', 'Standard, back', 'Standard, сзади'], ['o_kl_silver', 'Silver', 'Silver'], ['o_kl_silver_open', 'Silver, open', 'Silver, открыт'], ['o_kl_gold', 'Gold', 'Gold'], ['o_kl_gold_open', 'Gold, open', 'Gold, открыт'], ['o_kl_roblox', 'Approximate look in Roblox', 'Примерно как в Roblox']],
     } },
+  { id: 'hampter', name: 'Hampter_hd', cols: [], count: 1, total: '5 000 R$', cover: 'o_mg_cover', unpaid: true,
+    review: null,
+    order: {
+      status: 'done',
+      title: { en: 'MiG-15bis jet for a flight game', ru: 'Самолёт МиГ-15бис для авиа-игры' },
+      short: { en: 'Realistic jet with a detailed cockpit and every moving part separate, in silver and carbon.', ru: 'Реалистичный самолёт с детальной кабиной, все подвижные части отдельно, в серебре и карбоне.' },
+      items: { en: ['Realistic MiG-15bis at real scale next to an R15 character', 'Detailed cockpit: stick, throttle, instruments, opening canopy', 'Landing gear: doors, struts, wheels', 'Flaps, ailerons, elevators, rudder and air brakes as separate MeshParts with pivots', 'Two paint schemes: polished silver with red nose and tail, matte carbon with white', 'About 13,500 triangles, ready in Roblox Studio'],
+               ru: ['Реалистичный МиГ-15бис в реальном масштабе к персонажу R15', 'Детальная кабина: ручка, РУД, приборы, открывающийся фонарь', 'Шасси: створки, стойки, колёса', 'Закрылки, элероны, рули высоты и направления, воздушные тормоза отдельными MeshPart с пивотами', 'Две окраски: полированное серебро с красным носом и хвостом, матовый карбон с белым', 'Около 13 500 треугольников, готово в Roblox Studio'] },
+      format: { en: 'Ready model for Roblox Studio (FBX, MeshParts with pivots)', ru: 'Готовая модель для Roblox Studio (FBX, MeshPart с пивотами)' },
+      renders: [['o_mg_silver', 'Silver', 'Серебро'], ['o_mg_carbon', 'Carbon and white', 'Карбон и белый'], ['o_mg_sunset', 'Sunset', 'На закате'], ['o_mg_cockpit', 'Cockpit', 'Кабина'], ['o_mg_canopy', 'Canopy, silver', 'Фонарь, серебро'], ['o_mg_canopy_c', 'Canopy, carbon', 'Фонарь, карбон'], ['o_mg_rb_silver', 'Look in Roblox, silver', 'Как в Roblox, серебро'], ['o_mg_rb_carbon', 'Look in Roblox, carbon', 'Как в Roblox, карбон']],
+    } },
 ];
