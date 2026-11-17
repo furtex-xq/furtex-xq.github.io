@@ -124,8 +124,11 @@ local function look(pos,target,roll) return CFrame.lookAt(pos,target)*CFrame.Ang
 local FLOOR=0.1
 local function standCF(x,z,dir) local p=Vector3.new(x,FLOOR+3,z) return CFrame.lookAt(p,p+dir) end
 local PX=Vector3.new(1,0,0) local NX=Vector3.new(-1,0,0)
-local HOLD={la={80,0,18},ra={80,0,-18}}
-local function bouquetFront(r) bouquet:PivotTo(r.T.CFrame*CFrame.new(0,-0.1,-1.9)*A(-70,0,0)) end
+local HOLD={la={80,0,30},ra={80,0,-30}}
+local function bouquetFront(r) -- held between both hands at chest height, tilted toward the girl
+  local hl=r.LA.CFrame*CFrame.new(0,-1.0,0) local hr=r.RA.CFrame*CFrame.new(0,-1.0,0)
+  local mid=(hl.Position+hr.Position)/2
+  bouquet:PivotTo(CFrame.new(mid+r.T.CFrame.UpVector*0.35)*(r.T.CFrame-r.T.CFrame.Position)*A(-15,0,0)) end
 
 local function talking(T) -- mouth open flag during subtitle words
   for k,x in WORDS do local nx=WORDS[k+1] local e=nx and nx[1] or x[1]+0.5 if T>=x[1] and T<math.min(e,x[1]+0.5) then return math.floor((T-x[1])/0.11)%2==0 end end
@@ -151,10 +154,10 @@ local function updateNPCs(T)
     local r=d.r
     if d.kind=="walk" then
       local len=math.abs(d.x1-d.x0) local dir=(d.x1>d.x0) and 1 or -1
-      local x=d.x0+dir*(((T+d.phase)*d.speed)%len)
-      local ph=(T+d.phase)*9 local s=math.sin(ph)*35
-      local root=standCF(x,d.z,Vector3.new(dir,0,0))+Vector3.new(0,math.abs(math.sin(ph))*0.15,0)
-      pose(r,root,{la={-s*0.8,0,-4},ra={s*0.8,0,4},ll={s,0,0},rl={-s,0,0},neck={0,math.sin(T*1.7+i)*15,0}})
+      local dist=(T+d.phase)*d.speed local x=d.x0+dir*(dist%len)
+      local STEP=1.7 local ph=dist*math.pi/STEP local legA=math.deg(math.asin(STEP/4)) local s=math.sin(ph)*legA
+      local root=standCF(x,d.z,Vector3.new(dir,0,0))*A(-3,math.sin(ph)*5,math.sin(ph)*2)+Vector3.new(0,math.abs(math.sin(ph))*0.1-0.05,0)
+      pose(r,root,{la={-s*0.75,0,-3},ra={s*0.75,0,3},ll={s,0,0},rl={-s,0,0},neck={0,math.sin(T*1.7+i)*15-math.sin(ph)*4,0}})
       face(r, ((T+i*0.7)%2.6<0.12) and (d.face:find("girl") and "girl_blink" or "guy_blink") or d.face)
     else
       local g=math.sin(T*3+i*2)
@@ -188,7 +191,7 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     -- S1 hook: trembling close-up
     local tr=noise(T*25,1)*4
     local root=standCF(-4,1,PX)*A(0,0,tr)
-    pose(guy,root,{la={80+noise(T*30,2)*10,0,18},ra={80+noise(T*30,3)*10,0,-18},neck={noise(T*20,4)*8,noise(T*18,5)*10,noise(T*22,6)*6}})
+    pose(guy,root,{la={80+noise(T*30,2)*6,0,30},ra={80+noise(T*30,3)*6,0,-30},neck={noise(T*20,4)*8,noise(T*18,5)*10,noise(T*22,6)*6}})
     bouquetFront(guy)
     face(guy, blinking(T,1.0) and "guy_blink" or (talk and "guy_scared_talk" or "guy_scared"))
     local hp=guy.H.Position
@@ -199,7 +202,7 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     local u=(T-1.5)/1.5
     local sw=math.sin(T*4.5)
     local root=standCF(-4,1,PX)*A(0,sw*12,sw*4)
-    pose(guy,root,{la={75+sw*8,0,18},ra={75-sw*8,0,-18},neck={-12,sw*-10,10+sw*8},rl={math.max(0,math.sin(T*6))*35,0,0}})
+    pose(guy,root,{la={76+sw*3,0,30},ra={76+sw*3,0,-30},neck={-12,sw*-10,10+sw*8},rl={math.max(0,math.sin(T*3))*14,0,math.max(0,math.sin(T*3))*-6}})
     bouquetFront(guy)
     face(guy, blinking(T,0.2) and "guy_blink" or (talk and "guy_talk" or "guy_shy"))
     local hp=guy.H.Position
@@ -219,10 +222,13 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
   elseif T<6.5 then
     -- S4 nervous walk with big bounce; girl waves
     local u=(T-4.5)/2
-    local x=lerp(-4,-1.5,u)
-    local ph=T*11 local s=math.sin(ph)*38
-    local root=standCF(x,1,PX)*A(-8,math.sin(ph)*6,math.sin(ph)*4)+Vector3.new(0,math.abs(math.sin(ph))*0.3,0)
-    pose(guy,root,{la={80+math.sin(ph)*12,0,18},ra={80-math.sin(ph)*12,0,-18},ll={s,0,0},rl={-s,0,0},neck={math.sin(ph*2)*6,math.sin(T*3)*10,0}})
+    local pr=ease(u)*0.85+u*0.15 -- starts slow, ends slow
+    local dist=2.5*pr local x=-4+dist
+    local STEP=0.62 local ph=dist*math.pi/STEP -- one leg swing per 0.62 studs: feet stay planted
+    local legA=math.deg(math.asin(STEP/4)) local s=math.sin(ph)*legA
+    local root=standCF(x,1,PX)*A(-4,math.sin(ph)*4,math.sin(ph)*3)+Vector3.new(0,math.abs(math.sin(ph))*0.07-0.02,0)
+    local tr=noise(T*28,7)*3
+    pose(guy,root,{la={80+tr,0,30},ra={80-tr,0,-30},ll={s,0,0},rl={-s,0,0},neck={math.sin(ph)*3-4,math.sin(T*3)*10,-math.sin(ph)*3}})
     bouquetFront(guy)
     face(guy, blinking(T,0.5) and "guy_blink" or (talk and "guy_scared_talk" or "guy_nervous"))
     if T>5.4 then gq={la={0,0,-4},ra={150,0,30+math.sin(T*12)*25},neck={0,0,math.sin(T*4)*10}} gFace="girl_talk" end
@@ -268,8 +274,8 @@ RS:BindToRenderStep("Cine",Enum.RenderPriority.Camera.Value+1,function()
     local pos=Vector3.new(CX+0.3,1.25,CZ)
     local root=CFrame.lookAt(pos,pos+Vector3.yAxis,-PX)
     local tw=(u>0.55 and u<0.75) and math.sin(T*40)*8 or 0
-    pose(guy,root,{la={25,0,-8},ra={25+tw,0,8},neck={0,0,tw*0.5}}) face(guy,"guy_dead")
-    bouquet:PivotTo(root*CFrame.new(0,-1.6,-0.9)*A(-90,0,0))
+    pose(guy,root,{la={45,0,55},ra={45+tw,0,-55},neck={0,0,tw*0.5}}) face(guy,"guy_dead")
+    bouquet:PivotTo(root*CFrame.new(0,0.15,-1.15)*A(-90,0,0))
     cam.FieldOfView=55
     cam.CFrame=CFrame.lookAt(Vector3.new(CX+0.3,lerp(16,8.5,ease(u)),CZ),Vector3.new(CX+0.3,1,CZ),-PX)*CFrame.Angles(0,0,math.rad(math.sin(T*1.5)*3))
   end
