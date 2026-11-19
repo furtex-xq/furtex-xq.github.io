@@ -76,7 +76,7 @@ export const CLIENTS = [
       renders: [['o_mg_silver', 'Silver', 'Серебро'], ['o_mg_carbon', 'Carbon and white', 'Карбон и белый'], ['o_mg_sunset', 'Sunset', 'На закате'], ['o_mg_cockpit', 'Cockpit', 'Кабина'], ['o_mg_canopy', 'Canopy, silver', 'Фонарь, серебро'], ['o_mg_canopy_c', 'Canopy, carbon', 'Фонарь, карбон'], ['o_mg_rb_silver', 'Look in Roblox, silver', 'Как в Roblox, серебро'], ['o_mg_rb_carbon', 'Look in Roblox, carbon', 'Как в Roblox, карбон']],
     } },
   { id: 's1lvesterr', name: 'S1LvESteRr', cols: [], count: 2, total: '2 915 R$', cover: 'o_sv_cover', unpaid: true,
-    review: { date: '17.11.2026', via: 'Telegram', text: { en: 'THIS IS REALLY COOL', ru: 'ЭТО ОЧЕНЬ КРУТО' } },
+    review: { stars: 5, date: '17.11.2026', via: 'Telegram', text: { en: 'THIS IS REALLY COOL', ru: 'ЭТО ОЧЕНЬ КРУТО' } },
     order: {
       status: 'done',
       title: { en: 'Two blocky R6 characters: Elliot and Mister Stavka', ru: 'Два блочных персонажа R6: Эллиот и Мистер Ставка' },
