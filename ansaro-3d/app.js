@@ -6,7 +6,7 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-import { COLLECTIONS, MODELS, CLIENTS } from './data.js?v=11';
+import { COLLECTIONS, MODELS, CLIENTS } from './data.js?v=12';
 const CATEGORIES = CLIENTS;
 import { LANG, EN, setLang, t, tr, PRICES, STEPS, PAYMENT, CONTACTS, colName, catText, modelName, modelSub, modelDesc, rarity, renderName, nModels } from './lang.js?v=3';
 import { rigModel, animateRig } from './anim.js?v=3';
@@ -224,7 +224,7 @@ $('#clients').innerHTML = CATEGORIES.map(c => `
     <div class="cl-body">
       <div class="cl-top"><h3>${esc(clientTitle(c))}</h3><span class="cl-n"><b>${c.count}</b> ${nModels(c.count).replace(/^\d+ /, '')}${c.total ? ` · <em>${esc(c.total)}</em>` : ''}</span></div>
       <p>${esc(tr(c.order.short))}</p>
-      ${c.review ? `<button class="cl-quote" data-act="review" data-c="${c.id}"><span class="rv-stars">${'★'.repeat(c.review.stars || 5)}</span><q>${esc(tr(c.review.text))}</q></button>` : ''}
+      ${c.review ? `<button class="cl-quote" data-act="review" data-c="${c.id}">${c.review.stars ? `<span class="rv-stars">${'★'.repeat(c.review.stars)}</span>` : ''}<q>${esc(tr(c.review.text))}</q></button>` : ''}
       <div class="cl-acts">
         <button class="cl-btn" data-act="order" data-c="${c.id}">${t('order')}</button>
         <button class="cl-btn" data-act="review" data-c="${c.id}">${t('review')}</button>
@@ -409,7 +409,7 @@ function openReview(id) {
   const r = c.review;
   $('#rvBody').innerHTML = r ? `
     <figure class="rv-card">
-      <div class="rv-stars" aria-label="${r.stars || 5}/5">${'★'.repeat(r.stars || 5)}</div>
+      ${r.stars ? `<div class="rv-stars" aria-label="${r.stars}/5">${'★'.repeat(r.stars)}</div>` : ''}
       <blockquote>${esc(tr(r.text))}</blockquote>
       <figcaption><b>${esc(c.name)}</b>${r.date ? ` · ${esc(r.date)}` : ''}${r.via ? ` · ${esc(r.via)}` : ''}</figcaption>
       ${r.img ? `<img class="rv-shot" src="${r.img}" alt="">` : ''}
