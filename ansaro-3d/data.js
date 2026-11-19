@@ -75,4 +75,16 @@ export const CLIENTS = [
       format: { en: 'Ready model for Roblox Studio (FBX, MeshParts with pivots)', ru: 'Готовая модель для Roblox Studio (FBX, MeshPart с пивотами)' },
       renders: [['o_mg_silver', 'Silver', 'Серебро'], ['o_mg_carbon', 'Carbon and white', 'Карбон и белый'], ['o_mg_sunset', 'Sunset', 'На закате'], ['o_mg_cockpit', 'Cockpit', 'Кабина'], ['o_mg_canopy', 'Canopy, silver', 'Фонарь, серебро'], ['o_mg_canopy_c', 'Canopy, carbon', 'Фонарь, карбон'], ['o_mg_rb_silver', 'Look in Roblox, silver', 'Как в Roblox, серебро'], ['o_mg_rb_carbon', 'Look in Roblox, carbon', 'Как в Roblox, карбон']],
     } },
+  { id: 's1lvesterr', name: 'S1LvESteRr', cols: [], count: 2, total: '2 915 R$', cover: 'o_sv_cover', unpaid: true,
+    review: null,
+    order: {
+      status: 'done',
+      title: { en: 'Two blocky R6 characters: Elliot and Mister Stavka', ru: 'Два блочных персонажа R6: Эллиот и Мистер Ставка' },
+      short: { en: 'Characters drawn by the client, turned into rigged R6 models with animations and accessories.', ru: 'Персонажи по рисункам клиента, собранные в R6-модели с ригом, анимациями и аксессуарами.' },
+      items: { en: ['Elliot: pizza delivery guy with a cap, goggles and a stack of pizza boxes', 'Mister Stavka: hat with a feather, poker-chip face emblem, purple jacket with a teal web pattern, fur boa', 'Accessories from the client drawings: pistol and a blue suitcase, welded to the hands', 'R6 rig with Motor6Ds, standard R6 animations also work', 'Animations: idle, run and shoot', 'Colours are easy to change through a palette texture'],
+               ru: ['Эллиот: доставщик пиццы с кепкой, очками и стопкой коробок', 'Мистер Ставка: шляпа с пером, эмблема-фишка на лице, фиолетовый пиджак с бирюзовым узором-паутиной, меховой шарф', 'Аксессуары по рисункам клиента: пистолет и синий чемодан, приварены к рукам', 'Риг R6 на Motor6D, стандартные R6-анимации тоже работают', 'Анимации: стойка, бег и стрельба', 'Цвета легко меняются через текстуру-палитру'] },
+      format: { en: 'Ready characters for Roblox Studio (FBX + rig and animation script)', ru: 'Готовые персонажи для Roblox Studio (FBX + скрипт рига и анимаций)' },
+      renders: [['o_sv_el_hero', 'Elliot', 'Эллиот'], ['o_sv_el_front', 'Elliot, front', 'Эллиот спереди'], ['o_sv_el_back', 'Elliot, back', 'Эллиот сзади'], ['o_sv_el_head', 'Elliot, close-up', 'Эллиот крупно'],
+        ['o_sv_ms_hero', 'Mister Stavka', 'Мистер Ставка'], ['o_sv_ms_front', 'Mister Stavka, front', 'Мистер Ставка спереди'], ['o_sv_ms_left', 'Mister Stavka, left', 'Мистер Ставка слева'], ['o_sv_ms_back', 'Mister Stavka, back', 'Мистер Ставка сзади'], ['o_sv_ms_head', 'Mister Stavka, close-up', 'Мистер Ставка крупно']],
+    } },
 ];
