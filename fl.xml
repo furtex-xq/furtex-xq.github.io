@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>ForkLog</title>
+	<atom:link href="https://forklog.com/feed" rel="self" type="application/rss+xml" />
+	<link>https://forklog.com</link>
+	<description>Интернет-журнал о биткоине, криптовалютах и децентрализации</description>
+	<lastBuildDate>Sat, 21 Nov 2026 09:49:08 +0000</lastBuildDate>
+	<language>ru-RU</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+
+<image>
+	<url>https://forklog.com/wp-content/uploads/FL_favicon-150x150.png</url>
+	<title>ForkLog</title>
+	<link>https://forklog.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Strategy оценила чистый резерв в $35 млрд и заявила об отсутствии BTC в залоге</title>
+		<link>https://forklog.com/strategy-otsenila-chistyj-rezerv-v-35-mlrd-i-zayavila-ob-otsutstvii-btc-v-zaloge</link>
+		
+		<dc:creator><![CDATA[ForkLog]]></dc:creator>
+		<pubDate>Sat, 21 Nov 2026 11:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293313</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Strategy-2025.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Strategy 2025" decoding="async" fetchpriority="high" srcset="" data-src="https://forklog.com/wp-content/uploads/Strategy-2025.webp" /></p>Strategy заявила, что ее чистый резерв (Net Reserve) составляет $35 млрд, а все принадлежащие ей биткоины свободны от залоговых обязательств. Компания напомнила, что на медвежьем рынке 2022 года показатель был отрицательным, а треть ее BTC находилась в залоге.
+
+Net Reserve — расчетный показатель, который учитывает стоимость биткоинов и долларовых активов за вычетом предусмотренных методикой долгов и требований по привилегированным акциям. Это оценка остаточной стоимости резервов, а не сумма свободных средствна счетах.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Предложение токена Sonic оказалось на 48% выше заявленного при запуске</title>
+		<link>https://forklog.com/predlozhenie-tokena-sonic-okazalos-na-48-vyshe-zayavlennogo-pri-zapuske</link>
+		
+		<dc:creator><![CDATA[ForkLog]]></dc:creator>
+		<pubDate>Sat, 21 Nov 2026 09:39:47 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293311</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/crypto-downturn-token-collapse-token-crash.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="crypto downturn token collapse token crash" decoding="async" srcset="" data-src="https://forklog.com/wp-content/uploads/crypto-downturn-token-collapse-token-crash.webp" /></p>Аудит Ledgity выявил, что общее предложение токена S сети Sonic составляет 4,7 млрд — на 48% больше заявленных при запуске 3,175 млрд. То есть сейчас в блокчейне учитывается примерно на 1,53 млрд токенов больше, чем предусматривалось изначально.
+
+Значительную часть расхождения команда проекта связала со старыми монетами FTM в Ethereum, которые не заблокировали и не сожгли при запуске Fantom Opera. Впоследствии их принимали для конвертации в S по курсу 1:1. Sonic Labs продолжает расследование, готовит удаление функции ручной эмиссии и планирует сжечь 91,7 млн S из нераспределенного аирдропа.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Обернутый Monero на Hyperliquid обвалился на 99,8%</title>
+		<link>https://forklog.com/news/obernutyj-monero-na-hyperliquid-obvalilsya-na-99-8</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Sat, 21 Nov 2026 08:32:16 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Monero (XMR)]]></category>
+		<category><![CDATA[Киберпреступления]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293306</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/monero-monero.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="monero монеро" decoding="async" srcset="" data-src="https://forklog.com/wp-content/uploads/monero-monero.webp" /></p>20 ноября обернутый Monero (XMR1) на Hyperliquid подешевел примерно с $500 до $1 за полчаса — на 99,8%.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Что скрывается за рекордным IPO Anthropic?</title>
+		<link>https://forklog.com/news/chto-skryvaetsya-za-rekordnym-ipo-anthropic</link>
+		
+		<dc:creator><![CDATA[Лена Джесс]]></dc:creator>
+		<pubDate>Sat, 21 Nov 2026 08:01:33 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[подкаст]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293303</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-2a318a61361e1869-626140406431403.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-2a318a61361e1869-626140406431403" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-2a318a61361e1869-626140406431403.webp" /></p>Текстовая версия свежей "Деконструкции".]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Утечка API-ключей у Lighter и Aster, выход из-под контроля ИИ-агентов Gemini 4 Argon и другие события кибербезопасности</title>
+		<link>https://forklog.com/news/utechka-api-klyuchej-u-lighter-i-aster-vyhod-iz-pod-kontrolya-ii-agentov-gemini-4-argon-i-drugie-sobytiya-kiberbezopasnosti</link>
+		
+		<dc:creator><![CDATA[Сергей Голубенко]]></dc:creator>
+		<pubDate>Sat, 21 Nov 2026 04:00:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Дайджест кибербезопасности]]></category>
+		<category><![CDATA[Дайджесты]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293299</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-52f243d6e686792d-112229584305073.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="security_2026_3" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-52f243d6e686792d-112229584305073.webp" /></p>Мы собрали наиболее важные новости из мира кибербезопасности за неделю.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Сериал Netflix о FTX раскритиковали за образы Бэнкмана-Фрида и CZ </title>
+		<link>https://forklog.com/news/serial-netflix-o-ftx-raskritikovali-za-obrazy-benkmana-frida-i-cz</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 16:07:36 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[FTX]]></category>
+		<category><![CDATA[Netflix]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293290</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Ftx-min-1.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Ftx-min" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Ftx-min-1.webp" /></p>Драма «Альтруисты» (The Altruists) от Netflix смещает акцент с мошенничества основателя FTX Сэма Бэнкмана-Фрида на его отношения с Кэролайн Эллисон и представляет его в сочувственном свете. Такую оценку дал журналист Bloomberg Бен Вайс, освещавший судебный процесс над предпринимателем.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>В QCP назвали условия для устойчивого восстановления биткоина</title>
+		<link>https://forklog.com/news/v-qcp-nazvali-usloviya-dlya-ustojchivogo-vosstanovleniya-bitkoina</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 14:40:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Анализ рынка]]></category>
+		<category><![CDATA[Биткоин]]></category>
+		<category><![CDATA[Мнения]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293285</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/bitcoin-Novosti-bitkoina-tsena-bitkoina.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="bitcoin btc новости цена биткоина" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/bitcoin-Novosti-bitkoina-tsena-bitkoina.webp" /></p>Первой криптовалюте для восстановления нужны стабилизация технологических акций, снижение волатильности процентных ставок и возвращение институционального капитала. Об этом говорится в обзоре QCP.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Сенат США одобрил запрет ставок на войну и смерть</title>
+		<link>https://forklog.com/news/senat-ssha-odobril-zapret-stavok-na-vojnu-i-smert</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 13:25:49 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Регулирование]]></category>
+		<category><![CDATA[рынки предсказаний]]></category>
+		<category><![CDATA[США]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293283</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/rynki-predskazanij-prediction-markets.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="рынки предсказаний prediction markets" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/rynki-predskazanij-prediction-markets.webp" /></p>19 ноября Сенат США принял законопроект DEATH BETS Act, предусматривающий запрет контрактов на рынках прогнозов, связанных с войной, терроризмом, политическими убийствами и смертью людей.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Ledger выявила кошельки с вредоносными имплантами в Берлине</title>
+		<link>https://forklog.com/ledger-vyyavila-koshelki-s-vredonosnymi-implantami-v-berline</link>
+		
+		<dc:creator><![CDATA[ForkLog]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 12:30:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293279</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-65e7f664ba40cf38-1025312090716208.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="кошелек wallet уязвимость" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-65e7f664ba40cf38-1025312090716208.webp" /></p>Компания Ledger обнаружила в Берлине свои аппаратные кошельки со встроенными вредоносными компонентами. Ранее такие устройства выявляли в Юго-Восточной Азии. Производитель также расследует сообщения о двух аналогичных случаях в Дубае.
+
+По заявлению Ledger, уязвимостей в защищенном чипе и операционной системе нет. Владельцам подозрительных кошельков рекомендовали прекратить их использование, обратиться в поддержку и перевести средства на новый кошелек с новой сид-фразой, созданный на устройстве с официального сайта.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Kalshi проиграла апелляцию по делу о спортивных ставках в Мэриленде</title>
+		<link>https://forklog.com/kalshi-proigrala-apellyatsiyu-po-delu-o-sportivnyh-stavkah-v-merilende</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 12:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293251</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-c699a6135b7778c7-4213603715521737.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="prediction" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-c699a6135b7778c7-4213603715521737.webp" /></p>Федеральный апелляционный суд США отклонил требование Kalshi временно запретить властям Мэриленда применять к платформе законы об азартных играх. Решение принято двумя голосами против одного. 
+
+Штат считает спортивные контракты Kalshi ставками, требующими лицензии. Компания настаивает на исключительной юрисдикции CFTC. Решение не завершает основной спор, а противоречивая практика апелляционных судов повышает вероятность рассмотрения вопроса Верховным судом.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Институционалы нарастили позиции в биткоин-фондах до рекорда</title>
+		<link>https://forklog.com/news/institutsionaly-narastili-pozitsii-v-bitkoin-fondah-do-rekorda</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 11:33:32 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[ETF]]></category>
+		<category><![CDATA[Биткоин]]></category>
+		<category><![CDATA[Институционалы и киты]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293272</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Bitkoin-luchshee-sredstvo-sberezheniya.-Bitcoin-is-the-best-investment-2.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Биткоин лучшее средство сбережения. Bitcoin is the best investment" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Bitkoin-luchshee-sredstvo-sberezheniya.-Bitcoin-is-the-best-investment-2.webp" /></p>По итогам III квартала вложения институциональных управляющих в американские спотовые биткоин-ETP достигли рекордного объема в 356 491 BTC ($29,78 млрд), говорится в исследовании Galaxy Research.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Исследователь представил анализ постквантовой подписи SHRINCS для биткоина</title>
+		<link>https://forklog.com/news/issledovatel-predstavil-analiz-postkvantovoj-podpisi-shrincs-dlya-bitkoina</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 11:20:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Биткоин]]></category>
+		<category><![CDATA[квантовая угроза]]></category>
+		<category><![CDATA[кванты]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293270</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Ekspertnoe_mnenie_Mixer.Money_pro_kvantovye_kompyutery_i_bitkoin_quantum_computers.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Экспертное_мнение_Mixer.Money_про_квантовые_компьютеры_и_биткоин_quantum_computers" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Ekspertnoe_mnenie_Mixer.Money_pro_kvantovye_kompyutery_i_bitkoin_quantum_computers.webp" /></p>Исследователь Blockstream Михаил Кудинов опубликовал анализ безопасности SHRINCS — предложенной для биткоина схемы цифровой подписи, рассчитанной на защиту от будущих квантовых атак. Ее разработка ведется при участии директора по исследованиям Blockstream Йонаса Ника и других криптографов, сообщает Decrypt.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Техдиректор Ledger покинет компанию после девяти лет работы</title>
+		<link>https://forklog.com/tehdirektor-ledger-pokinet-kompaniyu-posle-devyati-let-raboty</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 11:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293242</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/ledger_wallet-min.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="ledger_wallet-min" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/ledger_wallet-min.webp" /></p>Технический директор Ledger Шарль Гийме объявил об уходе из компании в конце 2026 года. Он присоединился к производителю аппаратных криптокошельков в 2017 году и основал лабораторию безопасности Donjon.
+
+По словам топ-менеджера, передача обязанностей готовилась несколько месяцев. Гийме намерен заняться новым проектом в сфере кибербезопасности.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Квантовый процессор Google превысил предел классических стратегий</title>
+		<link>https://forklog.com/news/kvantovyj-protsessor-google-prevysil-predel-klassicheskih-strategij</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 10:15:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Google]]></category>
+		<category><![CDATA[кванты]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293265</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/quantum-computers-kvantovye-kompyutery-2.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="quantum computers квантовые компьютеры 2" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/quantum-computers-kvantovye-kompyutery-2.webp" /></p>Исследователи Google Quantum AI продемонстрировали преимущество квантового процессора Willow над классическими стратегиями в нескольких экспериментальных задачах. В игре «магический квадрат» процессор выиграл 98,3% раундов при классическом пределе 88,9%, свидетельствует публикация в Science.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>СМИ: Apple разрабатывает ИИ-агента для управления Mac</title>
+		<link>https://forklog.com/smi-apple-razrabatyvaet-ii-agenta-dlya-upravleniya-mac</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 10:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293241</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/apple-1.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="apple" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/apple-1.webp" /></p>Apple может выпустить собственного ИИ-агента для управления компьютером, сообщает Bloomberg. Вакансия компании предусматривает создание системы, способной работать с приложениями, сайтами, командной строкой и программным кодом.
+
+По данным агентства, разработка находится на ранней стадии, запуск рассматривается не ранее конца 2027 года. Одновременно Apple готовит дополнительные ограничения на предоставление сторонним агентам полного доступа к Mac.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Экс-глава SEC предрек рецессию из-за ИИ-пузыря до выборов 2028 года</title>
+		<link>https://forklog.com/news/ai/eks-glava-sec-predrek-retsessiyu-iz-za-ii-puzyrya-do-vyborov-2028-goda</link>
+		
+		<dc:creator><![CDATA[Василий Смирнов]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 09:51:33 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[SEC]]></category>
+		<category><![CDATA[Гэри Генслер]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[Мнения]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293264</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Garry-Gensler-min.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Garry Gensler-min" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Garry-Gensler-min.webp" /></p>Инвестиционный бум в ИИ уже превратился в пузырь, схлопывание которого может вызвать рецессию в США до президентских выборов в ноябре 2028 года. Такое мнение высказал бывший председатель SEC Гэри Генслер в интервью CNN.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>IOSCO призвала финсектор ускорить защиту от квантовых угроз</title>
+		<link>https://forklog.com/iosco-prizvala-finsektor-uskorit-zashhitu-ot-kvantovyh-ugroz</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 09:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293240</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-29715ebd78f42d7d-1549631580775977.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="quantum-computers_2_09" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-29715ebd78f42d7d-1549631580775977.webp" /></p>Международная организация комиссий по ценным бумагам (IOSCO) предупредила о недостаточной готовности финансового сектора к квантовым атакам. Там считают, что мощные квантовые компьютеры в будущем смогут взламывать используемую криптографию, угрожая платежам, цифровым подписям и блокчейнам.
+
+В IOSCO призвали компании начать переход на постквантовые алгоритмы, поскольку обновление инфраструктуры может занять годы. Срок появления такой угрозы остается неопределенным.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>СМИ: Moonshot AI отказалась от аренды чипов Nvidia на $150 млн</title>
+		<link>https://forklog.com/news/ai/smi-moonshot-ai-otkazalas-ot-arendy-chipov-nvidia-na-150-mln</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 08:48:07 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Moonshot]]></category>
+		<category><![CDATA[NVIDIA]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293260</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-efa78327981fb9a3-210064694164343.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="nvidia_2026_nov" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-efa78327981fb9a3-210064694164343.webp" /></p>Китайская Moonshot AI, разработчик семейства ИИ-моделей Kimi, отказалась от сделки на $150 млн по аренде вычислительных мощностей с ускорителями Nvidia Blackwell Ultra B300 в Индонезии. Решение последовало за ужесточением американских ограничений на удаленный доступ китайских компаний к передовым процессорам, сообщает The Information со ссылкой на двух осведомленных собеседников.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Разработчики Ethereum перенесли Glamsterdam на 2027 год</title>
+		<link>https://forklog.com/news/razrabotchiki-ethereum-perenesli-glamsterdam-na-2027-god</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 08:38:20 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Ethereum (ETH)]]></category>
+		<category><![CDATA[хардфорки]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293258</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Ethereum-ETH-Efir-2025.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Ethereum ETH Эфир 2025" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Ethereum-ETH-Efir-2025.webp" /></p>Разработчики Ethereum отложили запуск обновления Glamsterdam, ранее запланированного на декабрь 2026 года. Теперь его ожидают не раньше второй половины января, наиболее вероятный срок — конец января или начало февраля 2027-го, сообщает CoinDesk.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Биткоин опустился к $59 000 на фоне распродажи акций</title>
+		<link>https://forklog.com/news/bitkoin-vnov-opustilsya-k-61-000-na-fone-rasprodazhi-aktsij</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 08:05:10 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Анализ рынка]]></category>
+		<category><![CDATA[Биткоин]]></category>
+		<category><![CDATA[Цена биткоина]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293250</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/neubeditelnaya-dinamika-bitkoina-spustya-god-posle-halvinga-bitcoin-dinamics-halving.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="bitcoin price btc цена биткоина" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/neubeditelnaya-dinamika-bitkoina-spustya-god-posle-halvinga-bitcoin-dinamics-halving.webp" /></p>Биткоин снизился до $61 220 на бирже Coinbase на фоне распродажи американских технологических акций, падения золота и ожиданий дальнейшего повышения ставки ФРС.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Google научила Gemini управлять приложениями на Mac</title>
+		<link>https://forklog.com/google-nauchila-gemini-upravlyat-prilozheniyami-na-mac</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 08:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293239</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-96cee554c0f4cb63-523267232587610.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="google 2026" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-96cee554c0f4cb63-523267232587610.webp" /></p>Google добавила в Gemini для macOS функцию управления компьютером. ИИ-агент может самостоятельно работать с файлами, приложениями и сайтами: нажимать кнопки, заполнять формы и выполнять многоэтапные задачи.
+
+Действия происходят в отдельном окне, а пользователь контролирует доступ и подтверждает важные операции. Функция пока доступна в США на английском языке подписчикам Google AI Plus, Pro и Ultra.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Anthropic провела рекордное IPO на $81,3 млрд</title>
+		<link>https://forklog.com/news/ai/anthropic-provela-rekordnoe-ipo-na-81-3-mlrd</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 06:49:14 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Anthropic]]></category>
+		<category><![CDATA[IPO]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[Фондовый рынок]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293233</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/ii-startap-Anthropic-AI.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="ии-стартап Anthropic AI" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/ii-startap-Anthropic-AI.webp" /></p>19 ноября Anthropic начала торговаться на Nasdaq под тикером ANT после крупнейшего IPO в истории. Общий объем предложения составил $81,3 млрд, следует из окончательного проспекта компании.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Власти Орегона потребовали от OpenAI более $2 млрд по иску о защите детей</title>
+		<link>https://forklog.com/vlasti-oregona-potrebovali-ot-openai-bolee-2-mlrd-po-isku-o-zashhite-detej</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Thu, 19 Nov 2026 16:30:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293207</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/chat-bot-ChatGPT-ot-OpenAI.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Чат-бот ChatGPT от OpenAI" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/chat-bot-ChatGPT-ot-OpenAI.webp" /></p>Генеральный прокурор штата Орегон Дэн Рэйфилд подал иск к OpenAI на $2,035 млрд. Власти обвинили разработчика ChatGPT в недостаточной защите несовершеннолетних и введении пользователей в заблуждение относительно безопасности чат-бота. По мнению прокуратуры, особенности работы сервиса могут способствовать формированию эмоциональной зависимости у детей. Иск также предусматривает требования об изменении практик компании.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Крупнейшие школьные округа США задумались об отказе от Google из-за ИИ</title>
+		<link>https://forklog.com/krupnejshie-shkolnye-okruga-ssha-zadumalis-ob-otkaze-ot-google-iz-za-ii</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Thu, 19 Nov 2026 15:30:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293205</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-96cee554c0f4cb63-523267232587610.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="google 2026" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-96cee554c0f4cb63-523267232587610.webp" /></p>Школьные округа Нью-Йорка, Лос-Анджелеса и Чикаго рассматривают альтернативы Google Search, пишет The New York Times. Причиной стало отсутствие возможности полностью отключить генеративный ИИ в поисковике. С начала 2027 года Google позволит образовательным учреждениям самостоятельно включать поиск и отдельные сервисы Gemini, но ИИ-функции останутся частью Search. Власти Чикаго подтвердили готовность рассмотреть другие поисковые системы.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>H100 рассмотрит выкуп до 10% акций за счет биткоин-активов</title>
+		<link>https://forklog.com/h100-rassmotrit-vykup-do-10-aktsij-za-schet-bitkoin-aktivov</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Thu, 19 Nov 2026 14:30:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293203</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/bitcoin-Novosti-bitkoina-tsena-bitkoina.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="bitcoin btc новости цена биткоина" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/bitcoin-Novosti-bitkoina-tsena-bitkoina.webp" /></p>Шведская H100 Group планирует использовать часть биткоин-резервов для финансирования обратного выкупа акций. Совет директоров запросит соответствующие полномочия на внеочередном собрании акционеров 7 декабря. Согласно уведомлению, доля выкупленных бумаг на балансе компании не должна превышать 10%. По состоянию на 30 сентября H100 владела 3476,8 BTC.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>The New Yorker рассказал о планах буддийской общины создать «просветленный» ИИ</title>
+		<link>https://forklog.com/news/ai/the-new-yorker-rasskazal-o-planah-buddijskoj-obshhiny-sozdat-prosvetlennyj-ii</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Thu, 19 Nov 2026 14:25:26 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[религия]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293231</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/AI-agents-II-agenty-2.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="AI-agents ИИ агенты 2" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/AI-agents-II-agenty-2.webp" /></p>Буддийская община MAPLE в Вермонте (США) разработала закрытое учение об искусственном интеллекте. По данным The New Yorker, организация также планировала создать «просветленный» ИИ и стать духовным центром для технологической индустрии.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Максимальное ускорение</title>
+		<link>https://forklog.com/exclusive/ai/maksimalnoe-uskorenie</link>
+		
+		<dc:creator><![CDATA[Алекс Кондратюк]]></dc:creator>
+		<pubDate>Thu, 19 Nov 2026 13:50:42 +0000</pubDate>
+				<category><![CDATA[Лонгриды]]></category>
+		<category><![CDATA[Anthropic]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[общество]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293218</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-d842627614c8ac74-474268768127364.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-d842627614c8ac74-474268768127364" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-d842627614c8ac74-474268768127364.webp" /></p>ИИ разгоняет сам себя. Что это значит для рынка труда?]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>В Китае 151 человекоподобный робот установил рекорд Гиннесса по танцам</title>
+		<link>https://forklog.com/v-kitae-151-chelovekopodobnyj-robot-ustanovil-rekord-ginnessa-po-tantsam</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Thu, 19 Nov 2026 13:30:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293197</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/roboty-igrayut-v-futbol-robots-playing-football.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="роботы играют в футбол robots playing football" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/roboty-igrayut-v-futbol-robots-playing-football.webp" /></p>17 ноября в Шэньчжэне 151 робот одновременно исполнил танец, сообщает Gasgoo. Представитель Книги рекордов Гиннесса подтвердил достижение, превысившее предыдущий результат в 110 машин. В выступлении участвовали 20 полноразмерных T800 компании EngineAI, которая продемонстрировала технологию синхронного управления группой роботов. Мероприятие прошло в преддверии саммита АТЭС.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Мошенники использовали релиз GTA VI для кражи криптовалют</title>
+		<link>https://forklog.com/news/moshenniki-ispolzovali-reliz-gta-vi-dlya-krazhi-kriptovalyut</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Thu, 19 Nov 2026 13:00:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Аирдропы]]></category>
+		<category><![CDATA[мошенники]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293209</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/SCAM-2.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="SCAM 2" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/SCAM-2.webp" /></p>На фоне ожидания релиза GTA VI злоумышленники несколько месяцев создавали фальшивые сайты для предзаказа, продвигали аирдропы и выпускали тематические токены. С июля по ноябрь специалисты Blockaid выявили в Solana более 20 000 таких активов, свыше 8800 из которых получили отметки о мошенничестве, рисках или спаме.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Через протокол Sky прошли $518 млн подозрительных транзакций. Под угрозой — резервы стейблкоинов</title>
+		<link>https://forklog.com/news/cherez-protokol-sky-proshli-518-mln-podozritelnyh-tranzaktsij-pod-ugrozoj-rezervy-stejblkoinov</link>
+		
+		<dc:creator><![CDATA[Роман Петров]]></dc:creator>
+		<pubDate>Thu, 19 Nov 2026 12:45:50 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[DAI]]></category>
+		<category><![CDATA[DeFi]]></category>
+		<category><![CDATA[MakerDAO (MKR)]]></category>
+		<category><![CDATA[Киберпреступления]]></category>
+		<category><![CDATA[Стейблкоины]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293213</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-61f088341e37636e-3696109586455160.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="stablecoin" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-61f088341e37636e-3696109586455160.webp" /></p>Через механизм обмена стейблкоинов Peg Stability Module (PSM) протокола Sky прошли транзакции на $518 млн, связанные с кошельками хакеров и других участников незаконных операций. Из этой суммы $101,9 млн аналитики отнесли к северокорейским структурам, пишет CoinDesk со ссылкой на отчет Inca Digital.]]></description>
+		
+		
+		
+			</item>
+	</channel>
+</rss>
