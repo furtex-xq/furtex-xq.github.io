@@ -389,6 +389,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radiu
   .map td.coins::after{content:" монет";color:var(--smoke);font-size:11px}
   .map select{width:100%}
 }
+@media (max-width:760px){.lib{scroll-snap-type:x mandatory;scroll-padding:0 16px;-webkit-mask:linear-gradient(90deg,#000 85%,transparent);mask:linear-gradient(90deg,#000 85%,transparent)}.lib .game{scroll-snap-align:start}}
+.lib .game{min-height:60px}
 </style>
 
 </head>
@@ -607,6 +609,7 @@ function renderLib(){
     return head+`<button class="game" data-id="${g.id}" aria-current="${g.id===cur}"><span class="ico">${g.icon}</span><span><b>${esc(g.name)}</b>${g.isNew?`<span class="tag beta">новая</span>`:""}</span></button>`}).join("");
   $("#lib").querySelectorAll(".game,.lib-group").forEach((b,i)=>b.style.setProperty("--i",i));
   $("#lib").querySelectorAll(".game").forEach(b=>b.onclick=()=>switchGame(b.dataset.id));
+  const act=$("#lib").querySelector('.game[aria-current="true"]');if(act&&matchMedia("(max-width:760px)").matches){const l=$("#lib");l.scrollTo({left:act.offsetLeft-l.offsetLeft-8,behavior:REDUCED?"auto":"smooth"})}
 }
 function gameParams(g,c,src){
   const p=[["src",src]]; if(user) p.push(["user",user.replace(/^@/,"")]);
