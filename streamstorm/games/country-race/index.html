@@ -16,6 +16,145 @@
   .ok{background:#164a2a}.bad{background:#5a1a1a}.wait{background:#4a3c12}
   #panel small{color:#aaa;display:block;margin-top:6px;line-height:1.35}
 </style>
+<script id="modes" data-game="country-race">
+/* ===================== РЕЖИМЫ StreamStorm: выбор категории до эфира (?mode=) =====================
+   Лаунчер добавляет &mode=<id>. Режим только подставляет состав команд (параметры teams / a,b),
+   поэтому правила игры не меняются. Явные teams=, a=, b= в ссылке важнее режима. */
+(function(){
+  const GAME=(document.currentScript&&document.currentScript.dataset.game)||"";
+  const MODES={
+    "lava-rising":  {countries:{teams:"KZ,UZ,PL,DE,TR,BR"}, duel:{teams:"KZ,UZ"}, colors:{teams:"RED,BLU,GRN,YEL"}},
+    "country-race": {countries:{}, duel:{teams:"KZ,UZ"}, colors:{teams:"RED,BLU,GRN,YEL"}},
+    "tower":        {countries:{}, duel:{teams:"KZ,PL"}, colors:{teams:"RED,BLU,GRN,YEL"}},
+    "paint-map":    {countries:{}, duel:{teams:"KZ,PL"}, colors:{teams:"RED,BLU,GRN,YEL"}},
+    "chat-football":{duel:{}, colors:{a:"RED",b:"BLU"}},
+    "duel-fans":    {duel:{}, colors:{a:"RED",b:"BLU"}},
+    "duel-space":   {duel:{}, colors:{a:"RED",b:"BLU"}},
+    "duel-summit":  {duel:{}, colors:{a:"RED",b:"BLU"}},
+    "duel-trade":   {duel:{}, colors:{a:"RED",b:"BLU"}},
+  };
+  const q=new URLSearchParams(location.search), id=(q.get("mode")||"").toLowerCase(), m=MODES[GAME]&&MODES[GAME][id];
+  window.SS_MODE=m?id:null;
+  if(!m) return;
+  let ch=false; for(const k in m){ if(!q.has(k)){ q.set(k,m[k]); ch=true; } }
+  if(ch) try{ history.replaceState(null,"",location.pathname+"?"+q.toString()+location.hash); }catch(e){}
+  // режим «Цвета»: подсказки «напиши страну» → «напиши цвет» во всех надписях холста (с кэшем, без затрат на кадр)
+  if(id==="colors"){ const R=[[/(свою|другую|твою) страну/g,"$1 команду"],[/твоя страна/g,"твоя команда"],[/страну/g,"цвет"],[/Страну/g,"Цвет"],[/СТРАНУ/g,"ЦВЕТ"],[/название, флаг или номер/g,"цвет или номер"],[/ГОНКА СТРАН/g,"ГОНКА КОМАНД"]];
+    const cache=new Map(); const fx=t=>{ if(typeof t!=="string"||!/тран|ТРАН|флаг/.test(t)) return t; let r=cache.get(t); if(r===undefined){ r=t; for(const [a,b] of R) r=r.replace(a,b); if(cache.size>500) cache.clear(); cache.set(t,r); } return r; };
+    const P=CanvasRenderingContext2D.prototype; for(const fn of ["fillText","strokeText","measureText"]){ const o=P[fn]; P[fn]=function(t,...a){ return o.call(this,fx(t),...a); }; } }
+})();
+</script>
+<script id="tex">
+"use strict";
+/* ===================== ТЕКСТУРЫ StreamStorm: процедурные материалы и «настоящие» предметы =====================
+   Всё рисуется кодом один раз в маленькие бесшовные плитки 256×256 (без файлов картинок), дальше — заливка узором.
+   TEX.over(ctx,"stone",x,y,w,h,a)  — наложить материал на прямоугольник (a — сила)
+   TEX.path(ctx,"stone",a)          — наложить материал на текущий путь (после beginPath/rr/arc)
+   TEX.ball(ctx,x,y,r,rot)          — футбольный мяч (панели, швы, объём, блик)
+   TEX.sphere(ctx,x,y,r,c1,c2)      — объёмный шар
+   TEX.pillar(ctx,x,y,w,h,tint)     — каменная колонна из блоков
+   TEX.slab(ctx,x,y,w,h,c)          — плита-платформа: камень/металл, фаска, заклёпки, тень
+   TEX.shade(c,k)                   — светлее (k>0) / темнее (k<0) цвет #rrggbb */
+(function(){
+  const S=256, cache={}, pats=new WeakMap();
+  function rnd(seed){ let s=seed>>>0||1; return ()=>((s=(s*1664525+1013904223)>>>0)/4294967296); }
+  function mk(){ const c=document.createElement("canvas"); c.width=S; c.height=S; return c; }
+  // рисуем элемент с переносом через края, чтобы плитка была бесшовной
+  function wrap(fn,x,y,m){ for(const dx of [0,-S,S]) for(const dy of [0,-S,S]) if((dx===0||x+dx>-m&&x+dx<S+m)&&(dy===0||y+dy>-m&&y+dy<S+m)) fn(x+dx,y+dy); }
+  const MAKERS={
+    noise(k,r){ for(let i=0;i<5200;i++){ const v=r(); k.fillStyle=v<.5?`rgba(0,0,0,${.10+r()*.2})`:`rgba(255,255,255,${.06+r()*.14})`; k.fillRect(r()*S|0,r()*S|0,1+(r()<.15),1+(r()<.15)); } },
+    grass(k,r){ k.lineCap="round"; for(let i=0;i<1700;i++){ const x=r()*S, y=r()*S, h=5+r()*9, lean=(r()-.5)*5, d=r();
+        k.strokeStyle=d<.55?`rgba(0,40,0,${.16+r()*.22})`:`rgba(190,255,150,${.10+r()*.16})`; k.lineWidth=1+r()*1.2;
+        wrap((X,Y)=>{ k.beginPath(); k.moveTo(X,Y); k.quadraticCurveTo(X+lean*.3,Y-h*.6,X+lean,Y-h); k.stroke(); },x,y,16); } },
+    asphalt(k,r){ for(let i=0;i<9000;i++){ const v=r(); k.fillStyle=v<.6?`rgba(0,0,0,${.15+r()*.25})`:`rgba(255,255,255,${.05+r()*.16})`; const s=r()<.08?2.5:1.2; k.fillRect(r()*S,r()*S,s,s); }
+        for(let i=0;i<6;i++){ k.strokeStyle="rgba(0,0,0,.18)"; k.lineWidth=1; let x=r()*S,y=r()*S; k.beginPath(); k.moveTo(x,y); for(let j=0;j<6;j++){ x+=(r()-.5)*30; y+=(r()-.5)*30; k.lineTo(x,y); } k.stroke(); } },
+    stone(k,r){ for(let i=0;i<70;i++){ const x=r()*S,y=r()*S,R=14+r()*34, d=r()<.5; wrap((X,Y)=>{ const g=k.createRadialGradient(X,Y,0,X,Y,R); g.addColorStop(0,d?"rgba(0,0,0,.16)":"rgba(255,255,255,.10)"); g.addColorStop(1,"rgba(0,0,0,0)"); k.fillStyle=g; k.fillRect(X-R,Y-R,R*2,R*2); },x,y,R); }
+        MAKERS.noise(k,r); k.lineWidth=1.2; for(let i=0;i<9;i++){ let x=r()*S,y=r()*S; k.strokeStyle="rgba(0,0,0,.28)"; k.beginPath(); k.moveTo(x,y); for(let j=0;j<5;j++){ x+=(r()-.5)*36; y+=(r()-.5)*36; k.lineTo(x,y); } k.stroke(); } },
+    brick(k,r){ const bw=64,bh=32; MAKERS.stone(k,r); for(let row=0;row<S/bh;row++){ const off=row%2?bw/2:0; for(let c=-1;c<S/bw+1;c++){ const x=c*bw+off,y=row*bh;
+        k.fillStyle=`rgba(${r()<.5?"0,0,0":"255,255,255"},${r()*.12})`; k.fillRect(x+2,y+2,bw-4,bh-4);
+        k.fillStyle="rgba(255,255,255,.10)"; k.fillRect(x+2,y+2,bw-4,2); k.fillStyle="rgba(0,0,0,.22)"; k.fillRect(x+2,y+bh-4,bw-4,2); }
+        k.fillStyle="rgba(0,0,0,.45)"; k.fillRect(0,row*bh,S,2); for(let c=-1;c<S/bw+1;c++) k.fillRect(c*bw+off,row*bh,2,bh); } },
+    metal(k,r){ for(let i=0;i<420;i++){ const y=r()*S, a=r()*.10; k.fillStyle=r()<.5?`rgba(255,255,255,${a})`:`rgba(0,0,0,${a*1.4})`; k.fillRect(0,y,S,.6+r()*1.4); }
+        for(let i=0;i<1200;i++){ k.fillStyle=`rgba(0,0,0,${r()*.12})`; k.fillRect(r()*S,r()*S,1,1); } },
+    wood(k,r){ for(let i=0;i<46;i++){ const y0=r()*S, amp=2+r()*5, ph=r()*6, a=.08+r()*.18; k.strokeStyle=r()<.6?`rgba(60,25,0,${a})`:`rgba(255,220,170,${a*.7})`; k.lineWidth=.8+r()*2;
+        wrap((X,Y)=>{ k.beginPath(); for(let x=0;x<=S;x+=8){ const y=Y+Math.sin(x/S*Math.PI*2*2+ph)*amp; x?k.lineTo(x,y):k.moveTo(x,y); } k.stroke(); },0,y0,10); }
+        for(let i=0;i<5;i++){ const x=r()*S,y=r()*S; wrap((X,Y)=>{ k.strokeStyle="rgba(60,25,0,.3)"; k.lineWidth=1.5; k.beginPath(); k.ellipse(X,Y,10,4,0,0,Math.PI*2); k.stroke(); k.beginPath(); k.ellipse(X,Y,4,1.5,0,0,Math.PI*2); k.stroke(); },x,y,12); } },
+    velvet(k,r){ for(let i=0;i<S;i+=3){ k.fillStyle=`rgba(0,0,0,${.06+r()*.06})`; k.fillRect(0,i,S,1); k.fillRect(i,0,1,S); } for(let i=0;i<40;i++){ const x=r()*S,y=r()*S,R=20+r()*40; wrap((X,Y)=>{ const g=k.createRadialGradient(X,Y,0,X,Y,R); g.addColorStop(0,"rgba(255,255,255,.07)"); g.addColorStop(1,"rgba(255,255,255,0)"); k.fillStyle=g; k.fillRect(X-R,Y-R,R*2,R*2); },x,y,R); } },
+    concrete(k,r){ MAKERS.noise(k,r); for(let i=0;i<260;i++){ const x=r()*S,y=r()*S,R=.8+r()*2.2; k.fillStyle=`rgba(0,0,0,${.2+r()*.25})`; k.beginPath(); k.arc(x,y,R,0,Math.PI*2); k.fill(); }
+        for(let i=0;i<30;i++){ const x=r()*S,y=r()*S,R=20+r()*40; wrap((X,Y)=>{ const g=k.createRadialGradient(X,Y,0,X,Y,R); g.addColorStop(0,`rgba(0,0,0,${r()*.08})`); g.addColorStop(1,"rgba(0,0,0,0)"); k.fillStyle=g; k.fillRect(X-R,Y-R,R*2,R*2); },x,y,R); } },
+    rock(k,r){ MAKERS.stone(k,r); for(let i=0;i<14;i++){ const y0=r()*S, a=.10+r()*.18; k.strokeStyle=`rgba(0,0,0,${a})`; k.lineWidth=1+r()*3; wrap((X,Y)=>{ k.beginPath(); for(let x=0;x<=S;x+=16){ const y=Y+Math.sin(x/S*Math.PI*2+y0)*6+(r()-.5)*3; x?k.lineTo(x,y):k.moveTo(x,y); } k.stroke(); },0,y0,10); } },
+    crust(k,r){ // корка остывающей лавы: тёмные плиты и светящиеся трещины
+      for(let i=0;i<46;i++){ const x=r()*S,y=r()*S,R=16+r()*26; wrap((X,Y)=>{ k.fillStyle=`rgba(40,8,0,${.25+r()*.25})`; k.beginPath(); for(let j=0;j<7;j++){ const a=j/7*Math.PI*2, rr=R*(.7+r()*.3); j?k.lineTo(X+Math.cos(a)*rr,Y+Math.sin(a)*rr):k.moveTo(X+Math.cos(a)*rr,Y+Math.sin(a)*rr); } k.closePath(); k.fill(); },x,y,R); }
+      MAKERS.noise(k,r); },
+    paper(k,r){ for(let i=0;i<3000;i++){ k.fillStyle=`rgba(${r()<.5?"0,0,0":"255,255,255"},${r()*.06})`; k.fillRect(r()*S,r()*S,2,2); } for(let i=0;i<80;i++){ k.strokeStyle=`rgba(0,0,0,${r()*.06})`; k.beginPath(); const x=r()*S,y=r()*S; k.moveTo(x,y); k.lineTo(x+(r()-.5)*40,y+(r()-.5)*40); k.stroke(); } },
+    carbon(k,r){ for(let y=0;y<S;y+=8) for(let x=0;x<S;x+=8){ const d=((x+y)/8)%2; const g=k.createLinearGradient(x,y,x+8,y+8); g.addColorStop(0,d?"rgba(255,255,255,.07)":"rgba(0,0,0,.18)"); g.addColorStop(1,d?"rgba(0,0,0,.18)":"rgba(255,255,255,.07)"); k.fillStyle=g; k.fillRect(x,y,8,8); } },
+    stars(k,r){ for(let i=0;i<220;i++){ const a=r(), R=a<.9?.6+r()*.8:1.4+r()*1.1; k.fillStyle=`rgba(255,255,255,${.25+r()*.6})`; k.beginPath(); k.arc(r()*S,r()*S,R,0,Math.PI*2); k.fill(); } },
+  };
+  function tile(name){ if(cache[name]) return cache[name]; const c=mk(), k=c.getContext("2d"); let h=0; for(const ch of name) h=(h*31+ch.charCodeAt(0))|0; (MAKERS[name]||MAKERS.noise)(k,rnd(h)); return cache[name]=c; }
+  function pat(ctx,name){ let m=pats.get(ctx); if(!m){ m={}; pats.set(ctx,m); } return m[name]||(m[name]=ctx.createPattern(tile(name),"repeat")); }
+  // кэш готовых слоёв: материал заранее «запечён» в холст нужного размера, в кадре — один drawImage
+  const lay=new Map();
+  function cached(key,w,h,fn){ let c=lay.get(key); if(!c){ c=document.createElement("canvas"); c.width=Math.max(1,Math.ceil(w)); c.height=Math.max(1,Math.ceil(h)); fn(c.getContext("2d"),c.width,c.height); lay.set(key,c); if(lay.size>160) lay.delete(lay.keys().next().value); } return c; }
+  // размер слоя округляем вверх до 256, чтобы растущие объекты (башня, лава) не создавали холст каждый кадр
+  function over(ctx,name,x,y,w,h,a=1,scale=1){ if(w<1||h<1) return; w=Math.ceil(w); h=Math.ceil(h); const cw=Math.ceil(w/256)*256, ch=Math.ceil(h/256)*256;
+    const c=cached("o|"+name+"|"+cw+"|"+ch+"|"+scale,cw,ch,(k)=>{ k.fillStyle=k.createPattern(tile(name),"repeat"); if(scale!==1) k.scale(scale,scale); k.fillRect(0,0,cw/scale,ch/scale); });
+    const ga=ctx.globalAlpha; ctx.globalAlpha=ga*a; ctx.drawImage(c,0,0,w,h,x,y,w,h); ctx.globalAlpha=ga; }
+  function path(ctx,name,a=1,ox=0,oy=0,scale=1){ ctx.save(); ctx.globalAlpha*=a; const p=pat(ctx,name); if(p.setTransform&&typeof DOMMatrix!=="undefined") p.setTransform(new DOMMatrix([scale,0,0,scale,ox,oy])); ctx.fillStyle=p; ctx.fill(); if(p.setTransform&&typeof DOMMatrix!=="undefined") p.setTransform(new DOMMatrix()); ctx.restore(); }
+  function shade(c,k){ const m=/^#?([0-9a-f]{6})$/i.exec(String(c||"")); if(!m) return c; const n=parseInt(m[1],16); let r=n>>16,g=n>>8&255,b=n&255;
+    if(k>0){ r+=(255-r)*k; g+=(255-g)*k; b+=(255-b)*k; } else { r*=1+k; g*=1+k; b*=1+k; } return `rgb(${r|0},${g|0},${b|0})`; }
+  function rrp(ctx,x,y,w,h,r){ r=Math.max(0,Math.min(r,w/2,h/2)); ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+
+  // ---- футбольный мяч: белые шестиугольники, чёрные пятиугольники, швы, объём (рисуется в кэш по углу поворота)
+  const ballCache={};
+  function ballSprite(rotStep){ const key=rotStep; if(ballCache[key]) return ballCache[key]; const R=64, c=document.createElement("canvas"); c.width=c.height=R*2+8; const k=c.getContext("2d"); k.translate(R+4,R+4);
+    k.save(); k.beginPath(); k.arc(0,0,R,0,Math.PI*2); k.clip(); k.fillStyle="#f4f6fa"; k.fillRect(-R,-R,R*2,R*2);
+    k.rotate(rotStep*Math.PI*2/24);
+    const pent=(x,y,s,rot)=>{ k.beginPath(); for(let i=0;i<5;i++){ const a=rot+i*Math.PI*2/5-Math.PI/2; const px=x+Math.cos(a)*s, py=y+Math.sin(a)*s; i?k.lineTo(px,py):k.moveTo(px,py); } k.closePath(); };
+    // центральный пятиугольник и 5 вокруг (сжатые к краю — эффект сферы)
+    k.fillStyle="#16181d"; pent(0,0,R*.30,0); k.fill();
+    k.strokeStyle="rgba(40,44,55,.55)"; k.lineWidth=2.2;
+    for(let i=0;i<5;i++){ const a=i*Math.PI*2/5-Math.PI/2; // шов от вершины центрального к краю
+      const vx=Math.cos(a)*R*.30, vy=Math.sin(a)*R*.30; k.beginPath(); k.moveTo(vx,vy); k.lineTo(Math.cos(a)*R*.62,Math.sin(a)*R*.62); k.stroke();
+      const b=a+Math.PI/5, d=R*.92; k.save(); k.translate(Math.cos(b)*d,Math.sin(b)*d); k.rotate(b+Math.PI/2); k.scale(1,.55); k.fillStyle="#16181d"; pent(0,0,R*.32,Math.PI); k.fill(); k.restore();
+      k.beginPath(); k.moveTo(Math.cos(a)*R*.62,Math.sin(a)*R*.62); k.lineTo(Math.cos(a-Math.PI/5)*R*.70,Math.sin(a-Math.PI/5)*R*.70); k.moveTo(Math.cos(a)*R*.62,Math.sin(a)*R*.62); k.lineTo(Math.cos(a+Math.PI/5)*R*.70,Math.sin(a+Math.PI/5)*R*.70); k.stroke(); }
+    k.restore();
+    // объём: тень снизу-справа, блик сверху-слева, обод
+    const sh=k.createRadialGradient(-R*.35,-R*.4,R*.1,0,0,R); sh.addColorStop(0,"rgba(255,255,255,0)"); sh.addColorStop(.65,"rgba(0,0,0,.05)"); sh.addColorStop(1,"rgba(0,0,30,.45)");
+    k.fillStyle=sh; k.beginPath(); k.arc(0,0,R,0,Math.PI*2); k.fill();
+    const hl=k.createRadialGradient(-R*.38,-R*.42,0,-R*.38,-R*.42,R*.42); hl.addColorStop(0,"rgba(255,255,255,.85)"); hl.addColorStop(1,"rgba(255,255,255,0)"); k.fillStyle=hl; k.beginPath(); k.arc(0,0,R,0,Math.PI*2); k.fill();
+    k.strokeStyle="rgba(0,0,0,.55)"; k.lineWidth=3; k.beginPath(); k.arc(0,0,R-1,0,Math.PI*2); k.stroke();
+    return ballCache[key]=c; }
+  function ball(ctx,x,y,r,rot=0){ const step=((Math.round(rot/(Math.PI*2/24))%24)+24)%24, c=ballSprite(step), s=r/64; ctx.drawImage(c,x-(c.width/2)*s,y-(c.height/2)*s,c.width*s,c.height*s); }
+
+  function sphere(ctx,x,y,r,c1,c2){ const g=ctx.createRadialGradient(x-r*.35,y-r*.4,r*.08,x,y,r); g.addColorStop(0,shade(c1,.55)); g.addColorStop(.55,c1); g.addColorStop(1,c2||shade(c1,-.55));
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill(); }
+
+  // ---- каменная колонна: блоки с растворными швами, объём по бокам
+  function pillar(ctx,x,y,w,h,tint){ if(h<=0||w<=0) return; w=Math.round(w); const SH=2000, c=cached("p|"+w+"|"+tint,w,SH,(k)=>pillarRaw(k,0,0,w,SH,tint));
+    h=Math.min(h,SH); ctx.drawImage(c,0,SH-h,w,h,x,y,w,h); }
+  function pillarRaw(ctx,x,y,w,h,tint){ ctx.save(); ctx.beginPath(); ctx.rect(x,y,w,h); ctx.clip();
+    const g=ctx.createLinearGradient(x,0,x+w,0); g.addColorStop(0,shade(tint||"#6b6f7a",-.45)); g.addColorStop(.35,shade(tint||"#6b6f7a",.12)); g.addColorStop(.7,tint||"#6b6f7a"); g.addColorStop(1,shade(tint||"#6b6f7a",-.55));
+    ctx.fillStyle=g; ctx.fillRect(x,y,w,h);
+    ctx.beginPath(); ctx.rect(x,y,w,h); path(ctx,"stone",.9,x,y);
+    const bh=34; for(let yy=y+h; yy>y-bh; yy-=bh){ const row=Math.round((y+h-yy)/bh), off=row%2?w/2:w/4;
+      ctx.fillStyle="rgba(0,0,0,.42)"; ctx.fillRect(x,yy-2,w,3); ctx.fillStyle="rgba(255,255,255,.10)"; ctx.fillRect(x,yy+1,w,1.5);
+      for(let xx=x+off%(w/2); xx<x+w; xx+=w/2){ ctx.fillStyle="rgba(0,0,0,.35)"; ctx.fillRect(xx,yy-bh,2.5,bh); } }
+    ctx.restore(); }
+
+  // ---- плита-платформа: верх с бликом, фаска, торец, заклёпки, тень вниз
+  function slab(ctx,x,y,w,h,c,opt={}){ w=Math.round(w); h=Math.round(h); const P=12, sp=cached("s|"+w+"|"+h+"|"+c+"|"+(opt.mat||"")+"|"+(opt.rivets!==false),w+P*2,h+P*2,(k)=>slabRaw(k,P,P,w,h,c,opt)); ctx.drawImage(sp,x-P,y-P); }
+  function slabRaw(ctx,x,y,w,h,c,opt){ const top=Math.max(6,h*.32), mat=opt.mat||"metal";
+    ctx.save(); ctx.fillStyle="rgba(0,0,0,.35)"; rrp(ctx,x+4,y+6,w,h,8); ctx.fill();
+    const g=ctx.createLinearGradient(0,y,0,y+h); g.addColorStop(0,shade(c,.35)); g.addColorStop(.32,shade(c,.12)); g.addColorStop(.36,shade(c,-.18)); g.addColorStop(1,shade(c,-.5));
+    ctx.fillStyle=g; rrp(ctx,x,y,w,h,8); ctx.fill(); rrp(ctx,x,y,w,h,8); path(ctx,mat,.9,x,y);
+    ctx.fillStyle="rgba(255,255,255,.35)"; rrp(ctx,x+5,y+2,w-10,3,2); ctx.fill();
+    ctx.strokeStyle="rgba(0,0,0,.35)"; ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(x+4,y+top); ctx.lineTo(x+w-4,y+top); ctx.stroke();
+    if(opt.rivets!==false&&w>60){ for(const rx of [x+12,x+w-12]){ const ry=y+top+(h-top)/2; ctx.fillStyle=shade(c,-.6); ctx.beginPath(); ctx.arc(rx,ry,3.5,0,Math.PI*2); ctx.fill(); ctx.fillStyle="rgba(255,255,255,.55)"; ctx.beginPath(); ctx.arc(rx-1,ry-1,1.4,0,Math.PI*2); ctx.fill(); } }
+    ctx.strokeStyle="rgba(0,0,0,.5)"; ctx.lineWidth=2; rrp(ctx,x,y,w,h,8); ctx.stroke(); ctx.restore(); }
+
+  window.TEX={tile,pat,over,path,cached,ball,sphere,pillar,slab,shade,rr:rrp};
+})();
+</script>
 </head>
 <body>
 <canvas id="game" width="1080" height="1920"></canvas>
@@ -46,6 +185,10 @@ const CONFIG = {
   safe: {top: 150, right: 110},
 };
 const COUNTRIES = {
+  RED:{n:"Красные", c:"#ef4444", a:["красные","красный","красная","red","кр"], f:["team","#dc2626"]},
+  BLU:{n:"Синие", c:"#3b82f6", a:["синие","синий","синяя","blue","син"], f:["team","#2563eb"]},
+  GRN:{n:"Зелёные", c:"#22c55e", a:["зелёные","зеленые","зелёный","зеленый","green","зел"], f:["team","#16a34a"]},
+  YEL:{n:"Жёлтые", c:"#facc15", a:["жёлтые","желтые","жёлтый","желтый","yellow","жел"], f:["team","#eab308"]},
   UA:{n:"Украина",  c:"#ffd400", a:["украина","україна","ukraine","укр","ua"], f:["h","#0057B7","#FFD700"]},
   RU:{n:"Россия",   c:"#3b7bff", a:["россия","russia","рф","ru","рос"], f:["h","#fff","#0039A6","#D52B1E"]},
   KZ:{n:"Казахстан",c:"#00c8e0", a:["казахстан","kazakhstan","kz","каз","қазақстан"], f:["kz"]},
@@ -74,6 +217,8 @@ function drawFlag(g,code,x,y,w,h,gray){
   const S=(c)=>gray?"#555":c;
   const stripes=(dir,cols)=>cols.forEach((c,i)=>{g.fillStyle=S(c); dir==="h"? g.fillRect(x,y+h*i/cols.length,w,h/cols.length+1): g.fillRect(x+w*i/cols.length,y,w/cols.length+1,h);});
   switch(f[0]){
+    case "team": { g.fillStyle=S(f[1]);g.fillRect(x,y,w,h);g.fillStyle="rgba(255,255,255,.22)";g.beginPath();g.moveTo(x,y+h);g.lineTo(x+w*.45,y);g.lineTo(x+w*.7,y);g.lineTo(x+w*.25,y+h);g.fill();
+      const cx=x+w/2,cy=y+h/2,R=h*.32;g.fillStyle=S("#fff");g.beginPath();for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,r=i%2?R*.45:R;g.lineTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r);}g.closePath();g.fill(); break; }
     case "h": case "v": stripes(f[0],f.slice(1)); break;
     case "kz": g.fillStyle=S("#00AFCA");g.fillRect(x,y,w,h);g.fillStyle=S("#FEC50C");circle(g,x+w*.5,y+h*.45,h*.2);g.fill();g.fillRect(x+w*.3,y+h*.72,w*.4,h*.06);break;
     case "kz2": g.fillStyle=S("#E8112D");g.fillRect(x,y,w,h);g.fillStyle=S("#FFEF00");circle(g,x+w*.5,y+h*.5,h*.26);g.fill();g.fillStyle=S("#E8112D");circle(g,x+w*.5,y+h*.5,h*.13);g.fill();break;
@@ -241,11 +386,14 @@ function gameDraw(){
   // прожекторы стадиона
   for(const lx of [120,PW-80]){ const g=ctx.createRadialGradient(lx,420,10,lx,420,420); g.addColorStop(0,"rgba(255,240,200,.22)"); g.addColorStop(1,"rgba(255,240,200,0)"); ctx.fillStyle=g; ctx.fillRect(lx-420,0,840,900); }
   // трава и бордюры
-  ctx.fillStyle="#0f3d22"; ctx.fillRect(0,LANE0-46,W,36); ctx.fillRect(0,LANE0+LANES+10,W,40);
+  ctx.fillStyle="#1d5a30"; ctx.fillRect(0,LANE0-46,W,36); ctx.fillRect(0,LANE0+LANES+10,W,40);
+  if(window.TEX){ const go=-(time*420)%256; TEX.over(ctx,"grass",go,LANE0-46,W+256,36,.9); TEX.over(ctx,"grass",go,LANE0+LANES+10,W+256,40,.9); }
   const kerb=(y)=>{ const o=(time*260)%60; for(let x=-60+(-o);x<W;x+=60){ ctx.fillStyle="#e23b3b"; ctx.fillRect(x,y,30,12); ctx.fillStyle="#f4f4f4"; ctx.fillRect(x+30,y,30,12); } };
   // асфальт
   const as=ctx.createLinearGradient(0,LANE0,0,LANE0+LANES); as.addColorStop(0,"#30353f"); as.addColorStop(.5,"#272b33"); as.addColorStop(1,"#30353f");
-  ctx.fillStyle=as; ctx.fillRect(0,LANE0-10,W,LANES+20); kerb(LANE0-22); kerb(LANE0+LANES+10);
+  if(!window.TEX){ ctx.fillStyle=as; ctx.fillRect(0,LANE0-10,W,LANES+20); }
+  if(window.TEX){ const ao=-(time*420)%256; ctx.drawImage(TEX.cached("race_asph|"+LANES,W+256,LANES+20,(k)=>{ k.translate(0,-(LANE0-10)); k.fillStyle=as; k.fillRect(0,LANE0-10,W+256,LANES+20); TEX.over(k,"asphalt",0,LANE0-10,W+256,LANES+20,1); }),ao,LANE0-10); ctx.fillStyle="rgba(0,0,0,.10)"; for(const c of cars){ const y=laneY(c.i)+LANES/cars.length*.5; ctx.fillRect(0,y-16,W,6); ctx.fillRect(0,y+10,W,6); } }
+  kerb(LANE0-22); kerb(LANE0+LANES+10);
   ctx.fillStyle="rgba(255,255,255,.035)"; for(let i=0;i<40;i++){ const x=((i*211)-time*420)%W; ctx.fillRect((x+W)%W,LANE0+(i*97)%LANES,60,2); }
   cars.forEach(c=>{ const y=laneY(c.i), h=LANES/cars.length; ctx.strokeStyle="rgba(255,255,255,.22)"; ctx.setLineDash([36,28]); ctx.lineDashOffset=-time*420; ctx.lineWidth=3;
     ctx.beginPath(); ctx.moveTo(0,y+h/2); ctx.lineTo(W,y+h/2); ctx.stroke(); ctx.setLineDash([]); });
@@ -310,6 +458,33 @@ window.STAGE={cut:1125, cta:"НАПИШИ СТРАНУ В ЧАТ|🎁 1 моне
   const base=document.getElementById("game"); if(!base) return;
   const S=Object.assign({cut:1100,cta:"НАПИШИ В ЧАТ, ЗА КОГО ТЫ",ticker:[],colors:["#F5C542","#10B981","#38BDF8","#F43F5E"],feed:true},window.STAGE||{});
   const W=1080, H=1920, CX=505, SRC0=100, F0=200, Y0=1020, AH=H-Y0;
+  // ---- настоящие картинки подарков TikTok: URL приходит в живом событии (giftPictureUrl), запоминаем по названию.
+  //      В файлы игр арт не кладём; без URL (демо, офлайн) остаются эмодзи.
+  const GP=window.SSGifts=window.SSGifts||(function(){ const LS="ss_giftpics_v1"; let m={}; try{ m=JSON.parse(localStorage.getItem(LS)||"{}")||{}; }catch(e){}
+    const ims={}, subs=[]; let tmr=0;
+    const fire=()=>{ clearTimeout(tmr); tmr=setTimeout(()=>subs.forEach(f=>{ try{f();}catch(e){} }),120); };
+    function img(u){ if(!u) return null; let i=ims[u]; if(!i){ i=ims[u]=new Image(); i.decoding="async"; i.onload=fire;
+      i.onerror=()=>{ let ch=false; for(const k in m) if(m[k].u===u){ delete m[k]; ch=true; } if(ch){ try{ localStorage.setItem(LS,JSON.stringify(m)); }catch(e){} fire(); } }; // битый URL забываем
+      i.src=u; } return i; }
+    const ok=i=>!!(i&&i.complete&&i.naturalWidth);
+    function put(name,coins,url){ if(!name||!url||!/^https?:\/\//.test(String(url))) return; const k=String(name).slice(0,16), o=m[k], c=Math.max(0,+coins||0)||(o&&o.c)||0;
+      if(o&&o.u===url&&o.c===c) return; m[k]={u:String(url),c,t:Date.now()};
+      const ks=Object.keys(m); if(ks.length>80){ ks.sort((a,b)=>m[a].t-m[b].t).slice(0,ks.length-80).forEach(x=>delete m[x]); }
+      try{ localStorage.setItem(LS,JSON.stringify(m)); }catch(e){} img(url); fire(); }
+    const get=name=>{ const o=m[String(name||"").slice(0,16)]; return o?o.u:null; };
+    // самый дешёвый известный подарок яруса: 1–9 (обычно Роза), 10–99, 100+
+    function tier(t){ let best=null; for(const k in m){ const o=m[k]; if(!o.c) continue; const inT=t==="small"?o.c<10:t==="mid"?o.c>=10&&o.c<100:o.c>=100; if(inT&&(!best||o.c<best.c)) best=o; } return best?best.u:null; }
+    for(const t of ["small","mid","big"]) img(tier(t));
+    return {put,get,tier,img,ok,on:f=>subs.push(f)};
+  })();
+  const EMO_TIER={"🌹":"small","🎁":"small","💎":"mid","🚀":"big"};
+  // строка, где эмодзи ярусов заменены картинками подарков (если картинка уже загружена)
+  function richParts(s){ return String(s).split(/(🌹|🎁|💎|🚀)/u).filter(Boolean).map(t=>{ const im=EMO_TIER[t]&&GP.img(GP.tier(EMO_TIER[t])); return GP.ok(im)?{im}:{t}; }); }
+  function richW(k,parts,size){ let w=0; for(const p of parts) w+=p.im?size*1.25:k.measureText(p.t).width; return w; }
+  function richDraw(k,parts,x,y,size,c,w=800,al="center",stroke=true){ k.font=`${w} ${size}px ${F}`; k.textBaseline="middle"; k.textAlign="left"; k.lineJoin="round";
+    let cx=al==="center"?x-richW(k,parts,size)/2:x;
+    for(const p of parts){ if(p.im){ const d=size*1.15; k.drawImage(p.im,cx+size*.05,y-d/2-1,d,d); cx+=size*1.25; }
+      else { if(stroke){ k.lineWidth=Math.max(4,size/6); k.strokeStyle="rgba(0,0,0,.75)"; k.strokeText(p.t,cx,y); } k.fillStyle=c; k.fillText(p.t,cx,y); cx+=k.measureText(p.t).width; } } }
   // во время экрана победы показываем кадр игры целиком (до endCut), иначе — поле до cut
   const isEnd=S.isEnd||(()=>{ try{ return phase==="end"||phase==="matchEnd"; }catch(e){ return false; } }), END_CUT=S.endCut||1420;
   let CUT=S.cut, K=1, DX=0, endMode=false; function geo(){ CUT=endMode?END_CUT:S.cut; K=(Y0-F0)/(CUT-SRC0); DX=(W-W*K)/2; } geo();
@@ -380,15 +555,17 @@ window.STAGE={cut:1125, cta:"НАПИШИ СТРАНУ В ЧАТ|🎁 1 моне
   }
   // ---- крупный призыв (выше линии чата): команда + цены подарков
   const cta=String(typeof S.cta==="function"?S.cta():S.cta).split("|"), BW=930, BH=124, ctaC=mk(BW+60,BH+60);
-  { const k=ctaC.getContext("2d"); k.translate(30+BW/2,30+BH/2); k.shadowColor="rgba(245,197,66,.55)"; k.shadowBlur=22;
+  function buildCta(){ const k=ctaC.getContext("2d"); k.setTransform(1,0,0,1,0,0); k.clearRect(0,0,ctaC.width,ctaC.height); k.translate(30+BW/2,30+BH/2); k.shadowColor="rgba(245,197,66,.55)"; k.shadowBlur=22;
     const bg=k.createLinearGradient(0,-BH/2,0,BH/2); bg.addColorStop(0,"#16284A"); bg.addColorStop(1,"#0A1428"); k.fillStyle=bg; rr(k,-BW/2,-BH/2,BW,BH,30); k.fill(); k.shadowBlur=0;
     const bd=k.createLinearGradient(-BW/2,0,BW/2,0); bd.addColorStop(0,"#B8860B"); bd.addColorStop(.5,"#FFF3C4"); bd.addColorStop(1,"#B8860B"); k.strokeStyle=bd; k.lineWidth=6; rr(k,-BW/2,-BH/2,BW,BH,30); k.stroke();
     const f1=fitFont(k,"💬 "+cta[0],58,BW-50); text(k,"💬 "+cta[0],0,cta[1]?-22:2,f1,"#fff");
-    if(cta[1]){ const f2=fitFont(k,cta[1],36,BW-40,800); text(k,cta[1],0,36,f2,GOLD_HI,"center",800); } }
+    if(cta[1]){ const parts=richParts(cta[1]); let f2=36; k.font=`800 ${f2}px ${F}`; while(f2>14&&richW(k,parts,f2)>BW-40){ f2--; k.font=`800 ${f2}px ${F}`; } richDraw(k,parts,0,36,f2,GOLD_HI); } }
+  buildCta();
   const CTA_Y=Y0+66;
-  let tick=null; { const items=(typeof S.ticker==="function"?S.ticker():S.ticker); const s=items.join("     ✦     ")+"     ✦     ";
-    const k0=mk(10,10).getContext("2d"); k0.font=`800 36px ${F}`; const w=Math.ceil(k0.measureText(s).width)+4, c=mk(w,56), k=c.getContext("2d");
-    k.font=`800 36px ${F}`; k.textBaseline="middle"; k.lineJoin="round"; k.lineWidth=6; k.strokeStyle="rgba(0,0,0,.7)"; k.strokeText(s,2,29); k.fillStyle=GOLD_HI; k.fillText(s,2,29); tick={c,w}; }
+  let tick=null; function buildTick(){ const items=(typeof S.ticker==="function"?S.ticker():S.ticker); const s=items.join("     ✦     ")+"     ✦     ";
+    const parts=richParts(s), k0=mk(10,10).getContext("2d"); k0.font=`800 36px ${F}`; const w=Math.ceil(richW(k0,parts,36))+4, c=mk(w,56), k=c.getContext("2d");
+    k.lineWidth=6; richDraw(k,parts,2,29,36,GOLD_HI,800,"left"); tick={c,w}; }
+  buildTick(); GP.on(()=>{ buildCta(); buildTick(); });
 
   let last=performance.now(), T=0, fr=0, acc=0;
   function step(now){
@@ -435,7 +612,9 @@ window.GIFT_FX_TARGET=id=>{ const c=carBy(members.get(id)); return c?{x:X0+(X1-X
   function img(url){ if(!url) return null; if(imgs.has(url)) return imgs.get(url); const im=new Image(); im.src=url; imgs.set(url,im); return im; }
   function target(uid){ let t=null; try{ t=window.GIFT_FX_TARGET&&window.GIFT_FX_TARGET(uid); }catch(e){} if(!t) t={x:540,y:330,color:"#ffd23f"};
     if(window.STAGE_MAP){ const m=window.STAGE_MAP(t.x,t.y); return {x:m.x,y:Math.min(window.STAGE_Y0-30,m.y),color:t.color}; } return t; }
-  const waitQ=[]; // подарки, пришедшие во время баннера игры: эффект покажем сразу после него
+  const waitQ=[], bigQ=[]; // bigQ: крупные подарки ждут, пока на экране уже 2 большие карточки
+  const bigsOn=()=>cards.filter(c=>c.tier==="big"&&c.st<2).length;
+  // подарки, пришедшие во время баннера игры: эффект покажем сразу после него
   // пока на экране баннер игры («МАТЧ НАЧАЛСЯ», «ПЕРЕВОРОТ!»…), карточки его не закрывают
   function bannerOn(){ try{ return typeof banner!=="undefined"&&!!banner; }catch(e){ return false; } }
   function add(u,unit,count,name,pic){
@@ -449,7 +628,8 @@ window.GIFT_FX_TARGET=id=>{ const c=carBy(members.get(id)); return c?{x:X0+(X1-X
     if(tier!=="big"&&(lane>=(tier==="small"?3:4)||rate.length>10)){ // поток: без карточек, только вспышка и +X // поток мелких подарков: без карточки, сразу вспышка и «+X» у своей команды
       const tg=target(u.id); rings.push({x:tg.x,y:tg.y,r:10,max:tier==="mid"?160:90,c:tg.color||T.c1,life:1}); pops.push({x:tg.x+(Math.random()-.5)*60,y:tg.y-40,text:`+${coins} 💰`,c:"#fff",size:38,life:1.1}); return; }
     const big=tier==="big";
-    if(big&&cards.filter(c=>c.tier==="big"&&c.st<2).length>=2){ const tg=target(u.id); rings.push({x:tg.x,y:tg.y,r:10,max:300,c:tg.color||T.c1,life:1}); pops.push({x:tg.x,y:tg.y-40,text:`+${coins} 💰`,c:"#ffe27a",size:64,life:1.3}); flash=Math.max(flash,.6); return; }
+    if(big&&bigsOn()>=2&&bigQ.length<12){ bigQ.push([u,unit,count,name,pic]); return; }
+    if(big&&bigsOn()>=2){ const tg=target(u.id); rings.push({x:tg.x,y:tg.y,r:10,max:300,c:tg.color||T.c1,life:1}); pops.push({x:tg.x,y:tg.y-40,text:`+${coins} 💰`,c:"#ffe27a",size:64,life:1.3}); flash=Math.max(flash,.6); return; }
     // свободный слот (2×2 сетка), чтобы карточки не лезли друг на друга; большая — отдельно сверху
     const used=new Set(cards.filter(c=>c.st===0&&c.slot!=null).map(c=>c.slot)); let slot=0; while(used.has(slot)&&slot<3) slot++;
     const bigUsed=cards.some(c=>c.st===0&&c.tier==="big");
@@ -462,14 +642,17 @@ window.GIFT_FX_TARGET=id=>{ const c=carBy(members.get(id)); return c?{x:X0+(X1-X
   const pics=new Map(), avs=new Map();
   if(typeof window.handleRaw==="function"){ const oh=window.handleRaw; window.handleRaw=function(msg){
     try{ const d=(msg&&msg.data)||{}, uu=d.user||{}; const id=String(d.uniqueId||d.userId||uu.uniqueId||"");
-      if(id){ const av=d.profilePictureUrl||uu.profilePictureUrl; if(av) avs.set(id,av); const pic=d.giftPictureUrl||(d.giftDetails&&d.giftDetails.giftImage&&d.giftDetails.giftImage.giftPictureUrl); if(pic) pics.set(id+"|"+String(d.giftName||"").slice(0,16),pic); } }catch(e){}
+      if(id){ const av=d.profilePictureUrl||uu.profilePictureUrl; if(av) avs.set(id,av); const pic=d.giftPictureUrl||(d.giftDetails&&d.giftDetails.giftImage&&d.giftDetails.giftImage.giftPictureUrl); if(pic) pics.set(id+"|"+String(d.giftName||"").slice(0,16),pic); }
+      // запоминаем картинку подарка по названию (TikFinity: giftPictureUrl; лаунчер: gift.image/picture)
+      const G=window.SSGifts, lg=(msg&&msg.gift)||{}, pu=d.giftPictureUrl||(d.giftDetails&&d.giftDetails.giftImage&&d.giftDetails.giftImage.giftPictureUrl)||lg.image||lg.picture||lg.giftPictureUrl||lg.pictureUrl;
+      if(G&&pu) G.put(d.giftName||lg.name, d.diamondCount||lg.coins||lg.diamondCount, pu); }catch(e){}
     return oh.apply(this,arguments); }; }
   if(typeof window.onGift!=="function") return;
   const og=window.onGift; window.onGift=function(u,unit,count,name){
     const r=og.apply(this,arguments);
     if(window.__giftReplay) return r; // повтор подарков с экрана победы — карточка уже была
     try{ const nm=String(name||"подарок").slice(0,16), id=String(u&&u.id||"anon"), n=Math.max(1,+count||1);
-      add({id,name:String(u&&u.name||"Зритель").slice(0,20),avatar:(u&&u.avatar)||avs.get(id)||null},Math.max(1,+unit||1),n,nm,pics.get(id+"|"+nm)||null); }catch(e){}
+      add({id,name:String(u&&u.name||"Зритель").slice(0,20),avatar:(u&&u.avatar)||avs.get(id)||null},Math.max(1,+unit||1),n,nm,pics.get(id+"|"+nm)||(window.SSGifts&&window.SSGifts.get(nm))||null); }catch(e){}
     return r; };
   function rr(x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();}
   function text(s,x,y,size,c,al="center",w=900){ g.font=`${w} ${size}px ${F}`; g.textAlign=al; g.textBaseline="middle"; g.lineWidth=Math.max(4,size/6); g.strokeStyle="rgba(0,0,0,.85)"; g.lineJoin="round"; g.strokeText(s,x,y); g.fillStyle=c; g.fillText(s,x,y); }
@@ -508,6 +691,7 @@ window.GIFT_FX_TARGET=id=>{ const c=carBy(members.get(id)); return c?{x:X0+(X1-X
   }
   function step(now){
     if(waitQ.length&&!bannerOn()) for(let n=0;n<3&&waitQ.length;n++) add(...waitQ.shift());
+    if(bigQ.length&&!bannerOn()&&bigsOn()<2) add(...bigQ.shift());
     const dt=Math.min(.05,(now-last)/1000); last=now;
     if(base.style.width!==lastW){ lastW=base.style.width; fx.style.width=base.style.width; fx.style.height=base.style.height; }
     for(const c of cards){ c.bump=Math.max(0,c.bump-dt*4); c.t+=dt;
@@ -593,7 +777,7 @@ window.SSLicense=SSLicense;
   }
   /* нет связи с сервером ключей -> метку не показываем (платный стример не должен видеть DEMO), повтор через 60 с */
   var tm=0;
-  function run(){ clearTimeout(tm); SSLicense.check(key,GAME).then(function(r){ window.SS_LICENSE=r;
+  function run(){ clearTimeout(tm); SSLicense.check(key||"SS-0000-0000-0000-0000",GAME).then(function(r){ window.SS_LICENSE=r;
       var net=r.reason==="offline_no_cache"||r.reason==="rate_limited";
       if(!net) show(!r.ok&&r.reason!=="not_configured");
       tm=setTimeout(run,net?60*1000:30*60*1000); })

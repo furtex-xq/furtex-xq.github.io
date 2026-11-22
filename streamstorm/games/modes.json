@@ -1,0 +1,132 @@
+{
+ "param": "mode",
+ "modes": {
+  "countries": {
+   "title": "🌍 Страны",
+   "desc": "Зрители пишут страну в чат и играют за неё. Несколько стран сразу."
+  },
+  "duel": {
+   "title": "⚔️ Страна против страны",
+   "desc": "Только две страны — крупно, напряжённо, легко болеть."
+  },
+  "colors": {
+   "title": "🎨 Команды по цветам",
+   "desc": "Без стран: Красные, Синие, Зелёные, Жёлтые. Пиши цвет или номер."
+  },
+  "ffa": {
+   "title": "👑 Все против всех",
+   "desc": "Каждый зритель сам за себя: личный рейтинг, один победитель."
+  },
+  "coop": {
+   "title": "🤝 Все вместе",
+   "desc": "Весь чат — одна команда против игры."
+  },
+  "signs": {
+   "title": "✨ Знаки зодиака",
+   "desc": "Зрители играют за свой знак зодиака."
+  },
+  "elements": {
+   "title": "🔥 Стихии",
+   "desc": "Четыре стихии: огонь, вода, лес, молния."
+  }
+ },
+ "games": {
+  "lava-rising": {
+   "modes": [
+    "countries",
+    "duel",
+    "colors"
+   ],
+   "default": "countries"
+  },
+  "country-race": {
+   "modes": [
+    "countries",
+    "duel",
+    "colors"
+   ],
+   "default": "countries"
+  },
+  "tower": {
+   "modes": [
+    "countries",
+    "duel",
+    "colors"
+   ],
+   "default": "countries"
+  },
+  "paint-map": {
+   "modes": [
+    "countries",
+    "duel",
+    "colors"
+   ],
+   "default": "countries"
+  },
+  "chat-football": {
+   "modes": [
+    "duel",
+    "colors"
+   ],
+   "default": "duel"
+  },
+  "duel-fans": {
+   "modes": [
+    "duel",
+    "colors"
+   ],
+   "default": "duel"
+  },
+  "duel-space": {
+   "modes": [
+    "duel",
+    "colors"
+   ],
+   "default": "duel"
+  },
+  "duel-summit": {
+   "modes": [
+    "duel",
+    "colors"
+   ],
+   "default": "duel"
+  },
+  "duel-trade": {
+   "modes": [
+    "duel",
+    "colors"
+   ],
+   "default": "duel"
+  },
+  "tug-of-war": {
+   "modes": [
+    "colors"
+   ],
+   "default": "colors"
+  },
+  "throne": {
+   "modes": [
+    "ffa"
+   ],
+   "default": "ffa"
+  },
+  "zodiac-duel": {
+   "modes": [
+    "signs"
+   ],
+   "default": "signs"
+  },
+  "boss-fight": {
+   "modes": [
+    "coop"
+   ],
+   "default": "coop"
+  },
+  "hot-bomb": {
+   "modes": [
+    "elements"
+   ],
+   "default": "elements"
+  }
+ }
+}

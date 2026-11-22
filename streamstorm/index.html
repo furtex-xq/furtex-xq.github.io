@@ -369,6 +369,19 @@ dialog.pay[open]{animation:mg-enter var(--dur) var(--ease-out)}
 .spin{flex:none;width:16px;height:16px;border-radius:50%;border:2px solid var(--edge);border-top-color:var(--gold);animation:mg-spinr 0.9s linear infinite;margin-top:2px}
 @keyframes mg-spinr{to{transform:rotate(360deg)}}
 .pay-err{color:var(--bad);margin:12px 0 0}
+
+.modes{display:grid;gap:10px;margin-top:4px}.modes h3{margin:0}.modes .muted{margin:0}
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px}
+.mode{background:var(--ash);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;gap:4px}
+.mode b{font:700 16px var(--body)}.mode span{color:var(--mist);font-size:14px;line-height:1.45}
+
+@media (max-width:480px){
+  nav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;max-width:100%}
+  nav::-webkit-scrollbar{display:none}
+  nav a{font-size:13px;padding:8px 10px;white-space:nowrap;flex:none}
+}
+.panel-toggle{position:absolute;right:10px;top:10px;z-index:3;font:700 13px var(--body);color:var(--white);background:#0A1428d9;border:1px solid var(--edge);border-radius:999px;padding:8px 12px;cursor:pointer;backdrop-filter:blur(6px)}
+.stage{position:relative}
 .pay-sum{margin:0}
 .nets{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:6px}
 .net{display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left;background:var(--navy-2);color:var(--white);border:1px solid var(--edge);border-radius:12px;padding:9px 11px;font:600 14px var(--body);cursor:pointer;transition:border-color var(--dur-fast),transform var(--dur-fast) var(--ease-out)}
@@ -507,6 +520,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
     </table></div>
   </div>
 
+  <div class="modes" data-reveal><h3>Режимы игры</h3><p class="muted">Выбираешь в лаунчере перед эфиром.</p><div class="mode-grid"><div class="mode"><b>🌍 Страны</b><span>Зрители пишут страну в чат и играют за неё. Несколько стран сразу.</span></div><div class="mode"><b>⚔️ Страна против страны</b><span>Только две страны — крупно, напряжённо, легко болеть.</span></div><div class="mode"><b>🎨 Команды по цветам</b><span>Без стран: Красные, Синие, Зелёные, Жёлтые. Пиши цвет или номер.</span></div></div></div>
   <div class="dl" data-reveal>
     <div class="row" style="justify-content:space-between"><h2>Запустить в эфире</h2><span class="price-tag"><b>$1.99</b> / месяц</span></div>
     <p class="muted">Нужна только бесплатная программа TikFinity. От нас ничего ставить не надо: игра открывается в браузере, а лаунчер выдаёт готовую ссылку для OBS или LIVE Studio.</p>
@@ -538,6 +552,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
     <h2>Что делают зрители</h2>
     <div class="tbl" data-reveal><table><thead><tr><th>Действие</th><th>Что происходит на экране</th></tr></thead><tbody><tr><td>🎁 1 монета</td><td>1 удар по королю. Если ты король, +1 к силе трона</td></tr><tr><td>❤️ 50 лайков</td><td>1 удар, или +1 к трону, если лайкает король</td></tr><tr><td>➕ Подписка</td><td>Удар силой 5</td></tr><tr><td>👑 Трон свободен</td><td>Садится первый, кто подарит подарок</td></tr><tr><td>⏳ Со временем</td><td>Трон ржавеет, король должен его поддерживать</td></tr></tbody></table></div>
   </div>
+  <div class="modes" data-reveal><h3>Режим игры</h3><div class="mode-grid"><div class="mode"><b>👑 Все против всех</b><span>Каждый зритель сам за себя: личный рейтинг, один победитель.</span></div></div></div>
   <div class="dl" data-reveal>
     <div class="row" style="justify-content:space-between"><h2>Запустить в эфире</h2><span class="price-tag"><b>$1.99</b> / месяц</span></div>
     <p class="muted">Нужна только бесплатная программа TikFinity. От нас ничего ставить не надо: игра открывается в браузере, а лаунчер выдаёт готовую ссылку для OBS или LIVE Studio.</p>
@@ -569,6 +584,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
     <h2>Что делают зрители</h2>
     <div class="tbl" data-reveal><table><thead><tr><th>Действие</th><th>Что происходит на экране</th></tr></thead><tbody><tr><td>💬 «красные» / «синие» или 1 / 2</td><td>Выбор команды. Без выбора сажает в меньшую</td></tr><tr><td>🎁 1 монета</td><td>1 шаг. Один подарок двигает не больше чем на 30%</td></tr><tr><td>⚓ Подарок 100+</td><td>Якорь: 5 секунд рывки соперников вдвое слабее</td></tr><tr><td>❤️ 15 лайков</td><td>1 шаг</td></tr><tr><td>➕ Подписка</td><td>5 шагов</td></tr><tr><td>🪢 Канат</td><td>Сам ползёт к центру, тянуть надо всё время</td></tr></tbody></table></div>
   </div>
+  <div class="modes" data-reveal><h3>Режим игры</h3><div class="mode-grid"><div class="mode"><b>🎨 Команды по цветам</b><span>Без стран: Красные, Синие, Зелёные, Жёлтые. Пиши цвет или номер.</span></div></div></div>
   <div class="dl" data-reveal>
     <div class="row" style="justify-content:space-between"><h2>Запустить в эфире</h2><span class="price-tag"><b>$1.99</b> / месяц</span></div>
     <p class="muted">Нужна только бесплатная программа TikFinity. От нас ничего ставить не надо: игра открывается в браузере, а лаунчер выдаёт готовую ссылку для OBS или LIVE Studio.</p>
@@ -600,6 +616,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
     <h2>Что делают зрители</h2>
     <div class="tbl" data-reveal><table><thead><tr><th>Действие</th><th>Что происходит на экране</th></tr></thead><tbody><tr><td>💬 «огонь», «вода», «лес», «молния»</td><td>Выбор команды. Можно номер 1–4 или эмодзи</td></tr><tr><td>🎁 1 монета</td><td>1 сила броска. Считаются подарки только той команды, у которой бомба</td></tr><tr><td>🚀 Подарок 100+</td><td>Мгновенный бросок</td></tr><tr><td>❤️ 60 лайков</td><td>1 сила</td></tr><tr><td>➕ Подписка</td><td>3 силы</td></tr><tr><td>💣 Не успели</td><td>Взрыв, команда теряет жизнь. Бомба тяжелеет, фитиль короче</td></tr></tbody></table></div>
   </div>
+  <div class="modes" data-reveal><h3>Режим игры</h3><div class="mode-grid"><div class="mode"><b>🔥 Стихии</b><span>Четыре стихии: огонь, вода, лес, молния.</span></div></div></div>
   <div class="dl" data-reveal>
     <div class="row" style="justify-content:space-between"><h2>Запустить в эфире</h2><span class="price-tag"><b>$1.99</b> / месяц</span></div>
     <p class="muted">Нужна только бесплатная программа TikFinity. От нас ничего ставить не надо: игра открывается в браузере, а лаунчер выдаёт готовую ссылку для OBS или LIVE Studio.</p>
@@ -631,6 +648,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
     <h2>Что делают зрители</h2>
     <div class="tbl" data-reveal><table><thead><tr><th>Действие</th><th>Что происходит на экране</th></tr></thead><tbody><tr><td>💬 «овен», «лев», ♓…</td><td>Вступить за свой знак</td></tr><tr><td>🎁 1 монета</td><td>1 урон сфере соперника</td></tr><tr><td>❤️ 50 лайков</td><td>1 урон</td></tr><tr><td>➕ Подписка</td><td>5 урона</td></tr><tr><td>🛡 Подарки ждущих знаков</td><td>Копят щит на их следующую дуэль</td></tr><tr><td>🏆 Победа</td><td>Чемпион остаётся, против него выходит знак с самым большим числом болельщиков</td></tr></tbody></table></div>
   </div>
+  <div class="modes" data-reveal><h3>Режим игры</h3><div class="mode-grid"><div class="mode"><b>✨ Знаки зодиака</b><span>Зрители играют за свой знак зодиака.</span></div></div></div>
   <div class="dl" data-reveal>
     <div class="row" style="justify-content:space-between"><h2>Запустить в эфире</h2><span class="price-tag"><b>$1.99</b> / месяц</span></div>
     <p class="muted">Нужна только бесплатная программа TikFinity. От нас ничего ставить не надо: игра открывается в браузере, а лаунчер выдаёт готовую ссылку для OBS или LIVE Studio.</p>
@@ -662,6 +680,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
     <h2>Что делают зрители</h2>
     <div class="tbl" data-reveal><table><thead><tr><th>Действие</th><th>Что происходит на экране</th></tr></thead><tbody><tr><td>💬 Страна, флаг или 1–4</td><td>Вступить в команду</td></tr><tr><td>🎁 1 монета</td><td>1 краска. Краска сама закрашивает соседние клетки</td></tr><tr><td>🚀 Подарок 100+</td><td>Ещё и делает краску на краю стойче</td></tr><tr><td>❤️ 25 лайков</td><td>1 краска</td></tr><tr><td>➕ Подписка</td><td>5 краски</td></tr><tr><td>🏆 Конец раунда</td><td>Побеждает цвет, которым закрашено больше всего карты</td></tr></tbody></table></div>
   </div>
+  <div class="modes" data-reveal><h3>Режимы игры</h3><p class="muted">Выбираешь в лаунчере перед эфиром.</p><div class="mode-grid"><div class="mode"><b>🌍 Страны</b><span>Зрители пишут страну в чат и играют за неё. Несколько стран сразу.</span></div><div class="mode"><b>⚔️ Страна против страны</b><span>Только две страны — крупно, напряжённо, легко болеть.</span></div><div class="mode"><b>🎨 Команды по цветам</b><span>Без стран: Красные, Синие, Зелёные, Жёлтые. Пиши цвет или номер.</span></div></div></div>
   <div class="dl" data-reveal>
     <div class="row" style="justify-content:space-between"><h2>Запустить в эфире</h2><span class="price-tag"><b>$1.99</b> / месяц</span></div>
     <p class="muted">Нужна только бесплатная программа TikFinity. От нас ничего ставить не надо: игра открывается в браузере, а лаунчер выдаёт готовую ссылку для OBS или LIVE Studio.</p>
@@ -695,6 +714,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
     <h2>Что делают зрители</h2>
     <div class="tbl" data-reveal><table><thead><tr><th>Действие</th><th>Что происходит на экране</th></tr></thead><tbody><tr><td>💬 Страна, флаг или 1–4</td><td>Вступить в команду</td></tr><tr><td>🎁 3 монеты</td><td>1 этаж</td></tr><tr><td>⚓ Подарок 10–99</td><td>Якорь: башня целиком переживёт следующую бурю</td></tr><tr><td>🏗 Подарок 100+</td><td>Подъёмный кран: сразу +10 этажей, но не больше 30% высоты лидера</td></tr><tr><td>❤️ 20 лайков</td><td>Как 1 монета</td></tr><tr><td>🌪 Буря</td><td>Сносит 15% этажей у башен без якоря</td></tr></tbody></table></div>
   </div>
+  <div class="modes" data-reveal><h3>Режимы игры</h3><p class="muted">Выбираешь в лаунчере перед эфиром.</p><div class="mode-grid"><div class="mode"><b>🌍 Страны</b><span>Зрители пишут страну в чат и играют за неё. Несколько стран сразу.</span></div><div class="mode"><b>⚔️ Страна против страны</b><span>Только две страны — крупно, напряжённо, легко болеть.</span></div><div class="mode"><b>🎨 Команды по цветам</b><span>Без стран: Красные, Синие, Зелёные, Жёлтые. Пиши цвет или номер.</span></div></div></div>
   <div class="dl" data-reveal>
     <div class="row" style="justify-content:space-between"><h2>Запустить в эфире</h2><span class="price-tag"><b>$1.99</b> / месяц</span></div>
     <p class="muted">Нужна только бесплатная программа TikFinity. От нас ничего ставить не надо: игра открывается в браузере, а лаунчер выдаёт готовую ссылку для OBS или LIVE Studio.</p>
@@ -726,6 +746,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
     <h2>Что делают зрители</h2>
     <div class="tbl" data-reveal><table><thead><tr><th>Действие</th><th>Что происходит на экране</th></tr></thead><tbody><tr><td>🎁 1 монета</td><td>1 урон боссу</td></tr><tr><td>💎 Подарок 10–99</td><td>Крит ×1,5</td></tr><tr><td>🚀 Подарок 100+</td><td>Ульта ×2, босс оглушён на 6 секунд</td></tr><tr><td>❤️ 10 лайков</td><td>1 щит. Без щита атака босса лечит его на 10%</td></tr><tr><td>➕ Подписка</td><td>10 щита</td></tr><tr><td>🏆 Победа</td><td>Следующий уровень сильнее, уровень сохраняется между эфирами. В конце топ-3 героев</td></tr></tbody></table></div>
   </div>
+  <div class="modes" data-reveal><h3>Режим игры</h3><div class="mode-grid"><div class="mode"><b>🤝 Все вместе</b><span>Весь чат — одна команда против игры.</span></div></div></div>
   <div class="dl" data-reveal>
     <div class="row" style="justify-content:space-between"><h2>Запустить в эфире</h2><span class="price-tag"><b>$1.99</b> / месяц</span></div>
     <p class="muted">Нужна только бесплатная программа TikFinity. От нас ничего ставить не надо: игра открывается в браузере, а лаунчер выдаёт готовую ссылку для OBS или LIVE Studio.</p>
@@ -757,6 +778,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
     <h2>Что делают зрители</h2>
     <div class="tbl" data-reveal><table><thead><tr><th>Действие</th><th>Что происходит на экране</th></tr></thead><tbody><tr><td>💬 Страна</td><td>Выбор команды</td></tr><tr><td>🎁 Монеты</td><td>Удар по мячу к воротам соперника, один подарок не дальше четверти поля</td></tr><tr><td>💎 Подарок 10–99</td><td>Точный пас ×1,5</td></tr><tr><td>🚀 Подарок 100+</td><td>Мощный удар</td></tr><tr><td>⚽ Гол</td><td>Мяч в центр, короткая разводка</td></tr><tr><td>🏳 Свои страны</td><td>Задаются в ссылке: <code>?a=BR&amp;b=ES</code></td></tr></tbody></table></div>
   </div>
+  <div class="modes" data-reveal><h3>Режимы игры</h3><p class="muted">Выбираешь в лаунчере перед эфиром.</p><div class="mode-grid"><div class="mode"><b>⚔️ Страна против страны</b><span>Только две страны — крупно, напряжённо, легко болеть.</span></div><div class="mode"><b>🎨 Команды по цветам</b><span>Без стран: Красные, Синие, Зелёные, Жёлтые. Пиши цвет или номер.</span></div></div></div>
   <div class="dl" data-reveal>
     <div class="row" style="justify-content:space-between"><h2>Запустить в эфире</h2><span class="price-tag"><b>$1.99</b> / месяц</span></div>
     <p class="muted">Нужна только бесплатная программа TikFinity. От нас ничего ставить не надо: игра открывается в браузере, а лаунчер выдаёт готовую ссылку для OBS или LIVE Studio.</p>
@@ -788,6 +810,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
     <h2>Что делают зрители</h2>
     <div class="tbl" data-reveal><table><thead><tr><th>Действие</th><th>Что происходит на экране</th></tr></thead><tbody><tr><td>💬 Страна, флаг или 1–8</td><td>Вступить в команду. Без выбора сажает в самую маленькую</td></tr><tr><td>🎁 1 монета</td><td>+4 метра, один подарок не больше 20% трассы</td></tr><tr><td>🚀 Подарок 100+</td><td>Турбо ×2 на 5 секунд</td></tr><tr><td>❤️ 10 лайков</td><td>1 метр</td></tr><tr><td>➕ Подписка</td><td>20 метров</td></tr><tr><td>🏁 Финиш</td><td>Первый на финише или дальше всех через 3 минуты</td></tr></tbody></table></div>
   </div>
+  <div class="modes" data-reveal><h3>Режимы игры</h3><p class="muted">Выбираешь в лаунчере перед эфиром.</p><div class="mode-grid"><div class="mode"><b>🌍 Страны</b><span>Зрители пишут страну в чат и играют за неё. Несколько стран сразу.</span></div><div class="mode"><b>⚔️ Страна против страны</b><span>Только две страны — крупно, напряжённо, легко болеть.</span></div><div class="mode"><b>🎨 Команды по цветам</b><span>Без стран: Красные, Синие, Зелёные, Жёлтые. Пиши цвет или номер.</span></div></div></div>
   <div class="dl" data-reveal>
     <div class="row" style="justify-content:space-between"><h2>Запустить в эфире</h2><span class="price-tag"><b>$1.99</b> / месяц</span></div>
     <p class="muted">Нужна только бесплатная программа TikFinity. От нас ничего ставить не надо: игра открывается в браузере, а лаунчер выдаёт готовую ссылку для OBS или LIVE Studio.</p>
@@ -819,6 +842,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
     <h2>Что делают зрители</h2>
     <div class="tbl" data-reveal><table><thead><tr><th>Действие</th><th>Что происходит на экране</th></tr></thead><tbody><tr><td>🎁 Монеты</td><td>Ракета своей страны летит выше</td></tr><tr><td>💎 Подарок 10–99</td><td>Ускоритель ×1,5</td></tr><tr><td>🚀 Подарок 100+</td><td>Вторая ступень ×2</td></tr><tr><td>💬 Страна, флаг, «1» или «2»</td><td>Выбор команды. Кто не выбрал, попадает в меньшую</td></tr><tr><td>❤️ 20 лайков</td><td>Как 1 монета</td></tr><tr><td>➕ Подписка</td><td>5 монет</td></tr><tr><td>🌕 Победа</td><td>Первая ракета на Луне или выше всех к концу</td></tr></tbody></table></div>
   </div>
+  <div class="modes" data-reveal><h3>Режимы игры</h3><p class="muted">Выбираешь в лаунчере перед эфиром.</p><div class="mode-grid"><div class="mode"><b>⚔️ Страна против страны</b><span>Только две страны — крупно, напряжённо, легко болеть.</span></div><div class="mode"><b>🎨 Команды по цветам</b><span>Без стран: Красные, Синие, Зелёные, Жёлтые. Пиши цвет или номер.</span></div></div></div>
   <div class="dl" data-reveal>
     <div class="row" style="justify-content:space-between"><h2>Запустить в эфире</h2><span class="price-tag"><b>$1.99</b> / месяц</span></div>
     <p class="muted">Нужна только бесплатная программа TikFinity. От нас ничего ставить не надо: игра открывается в браузере, а лаунчер выдаёт готовую ссылку для OBS или LIVE Studio.</p>
@@ -850,6 +874,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
     <h2>Что делают зрители</h2>
     <div class="tbl" data-reveal><table><thead><tr><th>Действие</th><th>Что происходит на экране</th></tr></thead><tbody><tr><td>🎁 Монеты</td><td>Индекс своей страны растёт</td></tr><tr><td>💎 Подарок 10–99</td><td>Контракт: +2 к доходу в секунду на 15 секунд</td></tr><tr><td>🚀 Подарок 100+</td><td>Пошлина: рост соперника ×0,7 на 8 секунд</td></tr><tr><td>💬 Страна, флаг, «1» или «2»</td><td>Выбор команды. Кто не выбрал, попадает в меньшую</td></tr><tr><td>❤️ 20 лайков</td><td>Как 1 монета</td></tr><tr><td>➕ Подписка</td><td>5 монет</td></tr></tbody></table></div>
   </div>
+  <div class="modes" data-reveal><h3>Режимы игры</h3><p class="muted">Выбираешь в лаунчере перед эфиром.</p><div class="mode-grid"><div class="mode"><b>⚔️ Страна против страны</b><span>Только две страны — крупно, напряжённо, легко болеть.</span></div><div class="mode"><b>🎨 Команды по цветам</b><span>Без стран: Красные, Синие, Зелёные, Жёлтые. Пиши цвет или номер.</span></div></div></div>
   <div class="dl" data-reveal>
     <div class="row" style="justify-content:space-between"><h2>Запустить в эфире</h2><span class="price-tag"><b>$1.99</b> / месяц</span></div>
     <p class="muted">Нужна только бесплатная программа TikFinity. От нас ничего ставить не надо: игра открывается в браузере, а лаунчер выдаёт готовую ссылку для OBS или LIVE Studio.</p>
@@ -881,6 +906,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
     <h2>Что делают зрители</h2>
     <div class="tbl" data-reveal><table><thead><tr><th>Действие</th><th>Что происходит на экране</th></tr></thead><tbody><tr><td>🧭 Темы</td><td>Экономика, наука, спорт, культура, экология</td></tr><tr><td>🎁 Монеты</td><td>Очки в текущей теме. Кто больше подарил, берёт тему</td></tr><tr><td>💎 / 🚀 Крупные подарки</td><td>Особые эффекты внутри темы</td></tr><tr><td>💬 Страна, флаг, «1» или «2»</td><td>Выбор команды. Кто не выбрал, попадает в меньшую</td></tr><tr><td>❤️ 20 лайков</td><td>Как 1 монета</td></tr><tr><td>➕ Подписка</td><td>5 монет</td></tr></tbody></table></div>
   </div>
+  <div class="modes" data-reveal><h3>Режимы игры</h3><p class="muted">Выбираешь в лаунчере перед эфиром.</p><div class="mode-grid"><div class="mode"><b>⚔️ Страна против страны</b><span>Только две страны — крупно, напряжённо, легко болеть.</span></div><div class="mode"><b>🎨 Команды по цветам</b><span>Без стран: Красные, Синие, Зелёные, Жёлтые. Пиши цвет или номер.</span></div></div></div>
   <div class="dl" data-reveal>
     <div class="row" style="justify-content:space-between"><h2>Запустить в эфире</h2><span class="price-tag"><b>$1.99</b> / месяц</span></div>
     <p class="muted">Нужна только бесплатная программа TikFinity. От нас ничего ставить не надо: игра открывается в браузере, а лаунчер выдаёт готовую ссылку для OBS или LIVE Studio.</p>
@@ -911,6 +937,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
     <h2>Что делают зрители</h2>
     <div class="tbl" data-reveal><table><thead><tr><th>Действие</th><th>Что происходит на экране</th></tr></thead><tbody><tr><td>🎁 Монеты</td><td>Очки поддержки своей стране</td></tr><tr><td>📣 Камбэк</td><td>Каждые 40 секунд на 12 секунд подарки отстающей страны ×1,5</td></tr><tr><td>🏆 Победа</td><td>Больше очков поддержки к концу раунда</td></tr><tr><td>💬 Страна, флаг, «1» или «2»</td><td>Выбор команды. Кто не выбрал, попадает в меньшую</td></tr><tr><td>❤️ 20 лайков</td><td>Как 1 монета</td></tr><tr><td>➕ Подписка</td><td>5 монет</td></tr></tbody></table></div>
   </div>
+  <div class="modes" data-reveal><h3>Режимы игры</h3><p class="muted">Выбираешь в лаунчере перед эфиром.</p><div class="mode-grid"><div class="mode"><b>⚔️ Страна против страны</b><span>Только две страны — крупно, напряжённо, легко болеть.</span></div><div class="mode"><b>🎨 Команды по цветам</b><span>Без стран: Красные, Синие, Зелёные, Жёлтые. Пиши цвет или номер.</span></div></div></div>
   <div class="dl" data-reveal>
     <div class="row" style="justify-content:space-between"><h2>Запустить в эфире</h2><span class="price-tag"><b>$1.99</b> / месяц</span></div>
     <p class="muted">Нужна только бесплатная программа TikFinity. От нас ничего ставить не надо: игра открывается в браузере, а лаунчер выдаёт готовую ссылку для OBS или LIVE Studio.</p>
@@ -1119,7 +1146,7 @@ document.querySelectorAll("[data-copybtn]").forEach(function(btn){btn.addEventLi
 var FX=window.MagmaFX;
 FX.embers(document.getElementById("heroEmbers"));FX.storm(document.querySelector(".hero-band"));
 FX.spotlight(document);FX.tilt(document);FX.countUp(document);
-function movePill(pill,el,pad){if(!pill||!el)return;pill.style.width=el.offsetWidth+"px";pill.style.transform="translateX("+(el.offsetLeft-(pad||0))+"px)";pill.style.opacity=1}
+function movePill(pill,el,pad){if(!pill||!el)return;pill.style.width=el.offsetWidth+"px";pill.style.height=el.offsetHeight+"px";pill.style.transform="translate("+(el.offsetLeft-(pad||0))+"px,"+el.offsetTop+"px)";pill.style.opacity=1}
 function navPill(){var a=document.querySelector('nav a[aria-current="page"]'),p=document.querySelector(".nav-pill");if(!a){p.style.opacity=0;return}movePill(p,a)}
 function tabPill(){movePill(document.querySelector(".tab-pill"),document.querySelector('.tabs button[aria-selected="true"]'))}
 addEventListener("resize",function(){navPill();tabPill()});
@@ -1200,6 +1227,15 @@ if(PAY.url&&PAY.anon){
   document.querySelectorAll(".buy-on").forEach(function(e){e.hidden=false});
   document.querySelectorAll(".buy-off").forEach(function(e){e.hidden=true});
 }
+/* phones: start the demo with the host panel folded, with a toggle outside the game frame */
+function foldPanels(){if(innerWidth>700)return;document.querySelectorAll(".stage iframe").forEach(function(f){
+  function apply(){try{var d=f.contentDocument,pn=d&&d.getElementById("panel");if(!pn||pn.dataset.ssFold)return;pn.dataset.ssFold=1;
+    if(pn.style.display==="none")return;pn.style.display="none";
+    var b=f.parentNode.querySelector(".panel-toggle");if(!b){b=document.createElement("button");b.type="button";b.className="panel-toggle";f.parentNode.appendChild(b)}
+    b.textContent="🎛 Пульт ведущего";
+    b.onclick=function(){var hid=pn.style.display==="none";pn.style.display=hid?"":"none";b.textContent=hid?"✕ Скрыть пульт":"🎛 Пульт ведущего"}}catch(e){}}
+  if(f.contentDocument&&f.contentDocument.readyState==="complete")apply();f.addEventListener("load",apply)})}
+foldPanels();
 addEventListener("hashchange",route); route();
 if(document.fonts)document.fonts.ready.then(function(){navPill();tabPill()});
 })();

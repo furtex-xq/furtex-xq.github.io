@@ -400,6 +400,17 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radiu
 .lic.pop{animation:licpop 420ms var(--ease-spring)}
 @keyframes licpop{from{transform:scale(.97);opacity:.4}}
 #lkey{font-family:var(--mono);letter-spacing:.04em}
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.mode{position:relative;text-align:left;display:flex;flex-direction:column;gap:4px;padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--basalt);cursor:pointer;transition:transform var(--dur) var(--ease-spring),border-color var(--dur),box-shadow var(--dur),background var(--dur)}
+.mode b{font-size:14.5px;padding-right:26px}
+.mode span{font-size:12.5px;color:var(--smoke);line-height:1.4}
+.mode:hover{transform:translateY(-3px);border-color:#3B5488}
+.mode[aria-checked="true"]{border-color:var(--magma);background:linear-gradient(160deg,rgba(245,197,66,.14),rgba(10,20,40,.9));box-shadow:0 10px 28px -14px rgba(245,197,66,.7)}
+.mode[aria-checked="true"]::after{content:"✓";position:absolute;top:10px;right:12px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;color:var(--basalt);background:var(--magma);animation:grow var(--dur) var(--ease-spring)}
+.mode.pick{animation:licpop 420ms var(--ease-spring)}
+.modes.single .mode{cursor:default}
+.modes.single .mode:hover{transform:none}
+.mode-only{font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#34D399;margin-top:2px}
 </style>
 
 </head>
@@ -444,7 +455,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radiu
      SSLicense.check(key, gameId) -> Promise<{ok, scope, expires_at, reason, offline}>
      SSLicense.saved()            -> last key the user entered ("" if none)
    gameId = game folder id (e.g. "lava-rising"); a key with scope "all" fits every game.
-   reason: not_found | revoked | wrong_game | expired | no_key | not_configured | offline_no_cache
+   reason: not_found | revoked | wrong_game | expired | rate_limited | no_key | not_configured | offline_no_cache
    If the network is down, a cached OK result is trusted until its expires_at (offline:true). */
 (function(){
 var CFG={ url:"https://bxkdvddbjusbcjnzktry.supabase.co", anon:"sb_publishable_loLJqmab1TolWXLIdIrgHA_AlyghDQF" };          /* fill: "https://XXXX.supabase.co", "eyJ..." (anon public key) */
@@ -473,7 +484,7 @@ var SSLicense={
   daysLeft:function(res){return res&&res.expires_at?Math.max(0,Math.ceil((new Date(res.expires_at)-new Date())/864e5)):0},
   message:function(res){if(res.ok)return "Ключ активен ещё "+SSLicense.daysLeft(res)+" дн."+(res.offline?" (офлайн)":"");
     return {not_found:"Ключ не найден",revoked:"Ключ отключён",wrong_game:"Ключ для другого режима",expired:"Срок ключа закончился",
-      no_key:"Введите ключ",not_configured:"Проверка ключей ещё не настроена",offline_no_cache:"Нет связи с сервером ключей"}[res.reason]||"Ошибка проверки"}
+      no_key:"Введите ключ",not_configured:"Проверка ключей ещё не настроена",offline_no_cache:"Нет связи с сервером ключей",rate_limited:"Слишком много проверок, подождите минуту"}[res.reason]||"Ошибка проверки"}
 };
 window.SSLicense=SSLicense;
 })();
@@ -584,12 +595,12 @@ const DUEL={duo:true,actions:[...SMB,NONE],defaults:byCoins(g=>[TIER(g.coins),g.
 const GAMES=[
   {id:"lava",path:"lava-rising",group:"Битвы стран",name:"Лава поднимается",icon:"🌋",
    blurb:"Битва стран над лавой. Зрители пишут в чат страну или флаг и попадают в её команду. Подарки поднимают платформу своей страны, а лава съедает отстающих.",
-   teams:{min:2,max:8,def:"KZ,UZ,PL,DE,TR,BR,US,IT"},join:true,round:120,likesLabel:"Лайки поднимают свою страну",
-   actions:[{id:"platform",name:"Поднять свою страну",unit:"м"},{id:"shield",name:"Щит своей стране",unit:"сек"},{id:"cool",name:"Заморозить лаву",unit:"сек"},{id:"meteor",name:"Метеор по лидеру-сопернику",unit:"м"},NONE],
+   teams:{min:2,max:8,def:"KZ,UZ,PL,DE,TR,BR,US,IT"},join:true,round:120,likesLabel:"Лайки поднимают свою команду",
+   actions:[{id:"platform",name:"Поднять свою команду",unit:"м"},{id:"shield",name:"Щит своей команде",unit:"сек"},{id:"cool",name:"Заморозить лаву",unit:"сек"},{id:"meteor",name:"Метеор по лидеру-сопернику",unit:"м"},NONE],
    defaults:{5655:["platform",1],5269:["platform",1],5487:["platform",3],5879:["shield",5],6064:["cool",5],6267:["meteor",10],5765:["platform",60]}},
   {id:"race",path:"country-race",group:"Битвы стран",name:"Гонка стран",icon:"🏁",
    blurb:"До 8 стран мчатся к финишу. Каждый подарок толкает машину своей страны вперёд, крупные включают турбо.",
-   teams:{min:2,max:8,def:"KZ,UZ,PL,DE,TR,BR,US,IT"},round:120,likesLabel:"Лайки двигают свою страну",
+   teams:{min:2,max:8,def:"KZ,UZ,PL,DE,TR,BR,US,IT"},round:120,likesLabel:"Лайки двигают свою команду",
    actions:[{id:"boost",name:"Вперёд на N метров",unit:"м"},{id:"turbo",name:"Турбо ×1.5",unit:"сек"},NONE],
    defaults:byCoins(g=>g.coins>=100?["turbo",Math.min(10,Math.round(g.coins/100)+2)]:["boost",g.coins])},
   {id:"paint",isNew:true,path:"paint-map",group:"Битвы стран",name:"Цветная карта",icon:"🎨",
@@ -635,6 +646,10 @@ const GAMES=[
 ];
 // UA и RU никогда не играют вместе
 const noClash=list=>list.includes("UA")?list.filter(x=>x!=="RU"):list;
+// Режимы: копия /mnt/project-files/games/modes.json (источник правды у Мастерской игр)
+const MODES={"param":"mode","modes":{"countries":{"title":"🌍 Страны","desc":"Зрители пишут страну в чат и играют за неё. Несколько стран сразу."},"duel":{"title":"⚔️ Страна против страны","desc":"Только две страны — крупно, напряжённо, легко болеть."},"colors":{"title":"🎨 Команды по цветам","desc":"Без стран: Красные, Синие, Зелёные, Жёлтые. Пиши цвет или номер."},"ffa":{"title":"👑 Все против всех","desc":"Каждый зритель сам за себя: личный рейтинг, один победитель."},"coop":{"title":"🤝 Все вместе","desc":"Весь чат — одна команда против игры."},"signs":{"title":"✨ Знаки зодиака","desc":"Зрители играют за свой знак зодиака."},"elements":{"title":"🔥 Стихии","desc":"Четыре стихии: огонь, вода, лес, молния."}},"games":{"lava-rising":{"modes":["countries","duel","colors"],"default":"countries"},"country-race":{"modes":["countries","duel","colors"],"default":"countries"},"tower":{"modes":["countries","duel","colors"],"default":"countries"},"paint-map":{"modes":["countries","duel","colors"],"default":"countries"},"chat-football":{"modes":["duel","colors"],"default":"duel"},"duel-fans":{"modes":["duel","colors"],"default":"duel"},"duel-space":{"modes":["duel","colors"],"default":"duel"},"duel-summit":{"modes":["duel","colors"],"default":"duel"},"duel-trade":{"modes":["duel","colors"],"default":"duel"},"tug-of-war":{"modes":["colors"],"default":"colors"},"throne":{"modes":["ffa"],"default":"ffa"},"zodiac-duel":{"modes":["signs"],"default":"signs"},"boss-fight":{"modes":["coop"],"default":"coop"},"hot-bomb":{"modes":["elements"],"default":"elements"}}};
+function modesOf(g){const e=MODES.games[g.path];return e?e.modes:[]}
+function modeOf(g,c){const ms=modesOf(g);return ms.includes(c.mode)?c.mode:(MODES.games[g.path]||{}).default||ms[0]||""}
 const COUNTRIES="UA RU KZ BY UZ PL DE TR US BR FR IT ES GE AM AZ MD KG TJ IN".split(" ");
 // Где лежат игры. На своём хостинге (GitHub Pages / домен) лаунчер живёт в <base>/launcher/, игры в <base>/games/<папка>/.
 const PUBLIC_BASE="https://furtex-xq.github.io/streamstorm/"; // запасной адрес, когда лаунчер открыт не с хостинга (файл, превью в Claude)
@@ -666,8 +681,10 @@ function renderLib(){
 }
 function gameParams(g,c,src){
   const p=[["src",src]]; if(user) p.push(["user",user.replace(/^@/,"")]);
-  if(g.teams) p.push(["teams",c.teams]);
-  if(g.duo){p.push(["a",c.a]);p.push(["b",c.b])}
+  const md=modeOf(g,c); if(md) p.push(["mode",md]);
+  if(g.teams&&md==="countries") p.push(["teams",c.teams]);
+  if(g.teams&&md==="duel") p.push(["teams",c.a+","+c.b]);
+  if(g.duo&&md!=="colors"){p.push(["a",c.a]);p.push(["b",c.b])}
   if(g.sides){p.push(["left",c.left]);p.push(["right",c.right])}
   if(g.lives) p.push(["lives",c.lives]);
   if(g.round) p.push(["round",c.round]);
@@ -690,11 +707,14 @@ function renderMain(){
   if(g.lives) extra.push(`<label class="field"><span>Жизней у команды: <b id="livesV">${c.lives}</b></span><input type="range" id="lives" min="1" max="9" step="1" value="${c.lives}"></label>`);
   if(g.join) extra.push(`<label class="field"><span>Команда, чтобы войти в игру</span><input type="text" id="joinCmd" value="${esc(c.joinCmd)}"></label>`);
   extra.push(`<label class="field" style="flex:0 1 auto"><span>${esc(g.likesLabel||"Лайки участвуют в игре")}</span><select id="likes"><option value="1" ${c.likes?"selected":""}>Да</option><option value="0" ${!c.likes?"selected":""}>Нет</option></select></label>`);
+  const md=modeOf(g,c),ms=modesOf(g);
+  const modeUI=ms.length?`<div class="modes ${ms.length===1?"single":""}" role="radiogroup" aria-label="Режим игры">${ms.map(id=>{const m=MODES.modes[id]||{title:id,desc:""};return `<button class="mode" role="radio" data-mode="${id}" aria-checked="${id===md}"><b>${esc(m.title)}</b><span>${esc(m.desc)}</span>${ms.length===1?`<i class="mode-only">единственный режим этой игры</i>`:""}</button>`}).join("")}</div>`:"";
   let teamsUI="";
-  if(g.teams) teamsUI=`<div class="row"><label class="field"><span>Страны-команды (коды через запятую, ${g.teams.min}–${g.teams.max})</span><input type="text" id="teams" value="${esc(c.teams)}" placeholder="${g.teams.def}"></label></div>
+  if(g.teams&&md==="countries") teamsUI=`<div class="row"><label class="field"><span>Страны-команды (коды через запятую, ${g.teams.min}–${g.teams.max})</span><input type="text" id="teams" value="${esc(c.teams)}" placeholder="${g.teams.def}"></label></div>
     <p class="hint">Зритель пишет в чат название страны или флаг и попадает в её команду. Кто не выбрал, попадает в самую маленькую команду.</p>`;
-  if(g.duo) teamsUI=`<div class="row"><label class="field"><span>Страна 1</span><select id="ca">${CC_OPTS(c.a)}</select></label><label class="field"><span>Страна 2</span><select id="cb">${CC_OPTS(c.b)}</select></label></div>
+  if((g.duo||g.teams)&&md==="duel") teamsUI=`<div class="row"><label class="field"><span>Страна 1</span><select id="ca">${CC_OPTS(c.a)}</select></label><label class="field"><span>Страна 2</span><select id="cb">${CC_OPTS(c.b)}</select></label></div>
     <p class="hint">Дружеское соперничество: зритель пишет страну, флаг или «1» / «2». Без политики и оскорблений, за это TikTok банит эфир.</p>`;
+  if(md==="colors"&&!g.sides) teamsUI=`<p class="hint">🔴 Красные · 🔵 Синие · 🟢 Зелёные · 🟡 Жёлтые. Зритель пишет в чат цвет или номер команды. Без стран, подходит любому стриму.</p>`;
   if(g.sides) teamsUI=`<div class="row"><label class="field"><span>Левая команда</span><input type="text" id="left" value="${esc(c.left)}"></label><label class="field"><span>Правая команда</span><input type="text" id="right" value="${esc(c.right)}"></label></div>`;
   $("#main").innerHTML=`
   <div class="hero"><span class="label">${esc(g.group)} · 9:16 · 1080×1920</span><h2>${g.icon} ${esc(g.name)}</h2><p>${esc(g.blurb)}</p></div>
@@ -712,7 +732,8 @@ function renderMain(){
     <p class="hint">Нужна только бесплатная программа <a href="https://tikfinity.zerody.one/" target="_blank" rel="noopener">TikFinity</a>: она должна быть запущена на этом же компьютере во время эфира. От нас ничего ставить не нужно, игра открывается в браузере. Превью справа работает с ботами и в эфир не попадает.</p>
   </section>
 
-  <section class="step" aria-labelledby="s2"><div class="step-h"><span class="n">2</span><h3 id="s2">Команды и подарки</h3></div>
+  <section class="step" aria-labelledby="s2"><div class="step-h"><span class="n">2</span><h3 id="s2">Режим, команды и подарки</h3></div>
+    ${modeUI}
     ${teamsUI}
     <div class="map-wrap"><table class="map"><thead><tr><th>Подарок</th><th>Монеты</th><th>Действие в игре</th><th>Сила</th></tr></thead><tbody>
     ${GIFTS.map(gf=>{const m=c.map[gf.id]||["none",0];const a=g.actions.find(x=>x.id===m[0]);return `<tr><td data-l="Подарок"><span class="gift"><i>${gf.icon}</i>${esc(gf.name)}</span></td><td class="coins" data-l="Монеты">${gf.coins}</td>
@@ -791,6 +812,7 @@ function bindMain(g,c){
     if(el.dataset.k==="act"){m[0]=el.value; c.map[id]=m; upd(); renderMain(); return}
     m[1]=Math.max(0,+el.value||0); c.map[id]=m; upd();
   });
+  $("#main").querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>{if(b.dataset.mode===modeOf(g,c))return;c.mode=b.dataset.mode;saveCfg(g,c);renderMain();renderTestBtns();loadPreview(g,c,200);const nb=$("#main").querySelector(`[data-mode="${c.mode}"]`);if(nb){nb.classList.add("pick");nb.focus({preventScroll:true})}});
   const on=(id,ev,fn)=>{const el=document.getElementById(id);if(el)el[ev]=fn};
   on("round","oninput",e=>{c.round=+e.target.value;$("#roundV").textContent=c.round;upd()});
   on("lives","oninput",e=>{c.lives=+e.target.value;$("#livesV").textContent=c.lives;upd()});
@@ -846,11 +868,11 @@ const fakeUser=()=>{const n=rnd(NAMES);return {id:n,name:n}};
 function renderTestBtns(){
   const g=GAMES.find(x=>x.id===cur); if(!g){$("#testBtns").innerHTML="";return}
   const c=cfg(g);
-  const teams=g.teams?c.teams.split(","):g.duo?[c.a,c.b]:[];
+  const md=modeOf(g,c);const teams=md==="colors"||md===""?[]:md==="duel"?[c.a,c.b]:g.teams?c.teams.split(","):[];
   $("#testBtns").innerHTML=GIFTS.filter(gf=>(c.map[gf.id]||["none"])[0]!=="none").map(gf=>`<button data-tg="${gf.id}">${gf.icon} ${esc(gf.name)}</button>`).join("")
    +`<button data-tl>❤ 20 лайков</button>`+(g.join?`<button data-tc="${esc(c.joinCmd)}">💬 ${esc(c.joinCmd)}</button>`:"")
    +teams.map(cc=>`<button data-tc="${FLAG(cc)}">💬 ${FLAG(cc)}</button>`).join("")
-   +(g.sides?`<button data-tc="1">💬 1</button><button data-tc="2">💬 2</button>`:"");
+   +(g.sides?`<button data-tc="1">💬 1</button><button data-tc="2">💬 2</button>`:"")+(md==="colors"&&!g.sides?`<button data-tc="красные">💬 🔴</button><button data-tc="синие">💬 🔵</button>`:"");
   $("#testBtns").querySelectorAll("[data-tg]").forEach(b=>b.onclick=()=>{const gf=GIFTS.find(x=>x.id==b.dataset.tg);flyEmoji(b,gf.icon);dispatch({type:"gift",user:fakeUser(),gift:{id:gf.id,name:gf.name,coins:gf.coins,count:1}})});
   $("#testBtns").querySelector("[data-tl]").onclick=e=>(flyEmoji(e.currentTarget,"❤️"),dispatch)({type:"like",user:fakeUser(),likes:20});
   $("#testBtns").querySelectorAll("[data-tc]").forEach(b=>b.onclick=()=>dispatch({type:"comment",user:fakeUser(),text:b.dataset.tc}));
