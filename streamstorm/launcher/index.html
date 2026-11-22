@@ -391,6 +391,15 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radiu
 }
 @media (max-width:760px){.lib{scroll-snap-type:x mandatory;scroll-padding:0 16px;-webkit-mask:linear-gradient(90deg,#000 85%,transparent);mask:linear-gradient(90deg,#000 85%,transparent)}.lib .game{scroll-snap-align:start}}
 .lib .game{min-height:60px}
+.lic{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--smoke);padding:9px 12px;border-radius:10px;background:var(--basalt);border:1px solid var(--line)}
+.lic a{color:var(--magma)}
+.lic b.ok{color:var(--ok)} .lic b.bad{color:var(--bad)}
+.lic-dot{width:8px;height:8px;border-radius:50%;background:var(--smoke);flex:0 0 auto}
+.lic-dot.ok{background:var(--ok);box-shadow:0 0 8px var(--ok)} .lic-dot.bad{background:var(--bad)}
+.lic-dot.wait{background:var(--magma);animation:mg-ping 1s var(--ease-out) infinite}
+.lic.pop{animation:licpop 420ms var(--ease-spring)}
+@keyframes licpop{from{transform:scale(.97);opacity:.4}}
+#lkey{font-family:var(--mono);letter-spacing:.04em}
 </style>
 
 </head>
@@ -428,6 +437,49 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radiu
 </div>
 <div class="toast" id="toast" role="status"></div>
 
+<script>
+/* ===== shared: /mnt/project-files/licenses/license-client.js (inlined) ===== */
+/* StreamStorm license client. Public file: holds only the Supabase URL and the PUBLIC anon key.
+   Usage:
+     SSLicense.check(key, gameId) -> Promise<{ok, scope, expires_at, reason, offline}>
+     SSLicense.saved()            -> last key the user entered ("" if none)
+   gameId = game folder id (e.g. "lava-rising"); a key with scope "all" fits every game.
+   reason: not_found | revoked | wrong_game | expired | no_key | not_configured | offline_no_cache
+   If the network is down, a cached OK result is trusted until its expires_at (offline:true). */
+(function(){
+var CFG={ url:"", anon:"" };          /* fill: "https://XXXX.supabase.co", "eyJ..." (anon public key) */
+var LS="ss_license_v1";
+function norm(k){return String(k||"").toUpperCase().replace(/[^A-Z0-9]/g,"").replace(/^SS/,"").replace(/(.{4})(?=.)/g,"$1-").replace(/^/,"SS-")}
+function load(){try{return JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){return{}}}
+function save(o){try{localStorage.setItem(LS,JSON.stringify(o))}catch(e){}}
+function cached(key,game){var c=load(),r=c.res&&c.res[key];if(!r||!r.ok)return null;
+  if(game&&r.scope!=="all"&&r.scope!==game)return null;
+  if(new Date(r.expires_at)<new Date())return null;return Object.assign({},r,{offline:true})}
+var SSLicense={
+  config:function(url,anon){CFG.url=String(url||"").replace(/\/+$/,"");CFG.anon=anon||""},
+  normalize:norm,
+  saved:function(){return load().key||""},
+  check:function(key,game){
+    if(!key)return Promise.resolve({ok:false,reason:"no_key"});
+    key=norm(key);if(!CFG.url||!CFG.anon)return Promise.resolve({ok:false,reason:"not_configured"});
+    var c=load();c.key=key;save(c);
+    return fetch(CFG.url+"/rest/v1/rpc/check_license",{method:"POST",
+      headers:{"Content-Type":"application/json",apikey:CFG.anon,Authorization:"Bearer "+CFG.anon},
+      body:JSON.stringify({p_key:key,p_game:game||null})})
+    .then(function(r){if(!r.ok)throw new Error("http "+r.status);return r.json()})
+    .then(function(res){var c=load();c.res=c.res||{};if(res.ok)c.res[key]=res;else delete c.res[key];save(c);return res})
+    .catch(function(){return cached(key,game)||{ok:false,reason:"offline_no_cache"}});
+  },
+  daysLeft:function(res){return res&&res.expires_at?Math.max(0,Math.ceil((new Date(res.expires_at)-new Date())/864e5)):0},
+  message:function(res){if(res.ok)return "Ключ активен ещё "+SSLicense.daysLeft(res)+" дн."+(res.offline?" (офлайн)":"");
+    return {not_found:"Ключ не найден",revoked:"Ключ отключён",wrong_game:"Ключ для другого режима",expired:"Срок ключа закончился",
+      no_key:"Введите ключ",not_configured:"Проверка ключей ещё не настроена",offline_no_cache:"Нет связи с сервером ключей"}[res.reason]||"Ошибка проверки"}
+};
+window.SSLicense=SSLicense;
+})();
+
+/* ===== end license-client ===== */
+</script>
 <script>
 /* ===== shared: /mnt/project-files/design/magma-fx.js (inlined) ===== */
 /* STREAMSTORM FX (was MAGMA FX): shared motion helpers for the StreamStorm site and launcher.
@@ -593,6 +645,7 @@ const PREVIEW_BASE=HOSTED?GAME_HOST:location.protocol==="file:"?"../games/":"gam
 // ---------- state ----------
 const store={get(k,d){try{const v=localStorage.getItem("ml:"+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem("ml:"+k,JSON.stringify(v))}catch(e){}}};
 let cur=store.get("game","lava");
+let lkey=(window.SSLicense&&SSLicense.saved())||store.get("lkey","");let lres=null,lTimer=0;
 let source="tikfinity"; // ссылка для OBS всегда для живого эфира; демо только в превью
 let user=store.get("user","");
 let obsApp="obs";
@@ -624,7 +677,7 @@ function gameParams(g,c,src){
   p.push(["obs",1]);
   return p.map(([k,v])=>k+"="+encodeURIComponent(v).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%21/g,"!")).join("&");
 }
-function overlayURL(g,c){return GAME_HOST+g.path+"/?"+gameParams(g,c,source)}
+function overlayURL(g,c){return GAME_HOST+g.path+"/?"+gameParams(g,c,source)+(lkey?"&key="+encodeURIComponent(lkey):"")}
 function previewURL(g,c){return PREVIEW_BASE+g.path+"/index.html?"+gameParams(g,c,"demo")}
 const CC_OPTS=sel=>COUNTRIES.map(cc=>`<option value="${cc}" ${cc===sel?"selected":""}>${FLAG(cc)} ${cc}</option>`).join("");
 function renderMain(){
@@ -651,6 +704,10 @@ function renderMain(){
       <label class="field"><span>Ваш ник в TikTok</span><input type="text" id="user" placeholder="@nickname" value="${esc(user)}" autocomplete="off"></label>
       <button class="btn" id="testConn">Проверить связь</button>
     </div>
+    <div class="row">
+      <label class="field"><span>Ключ доступа</span><input type="text" id="lkey" placeholder="SS-XXXX-XXXX-XXXX-XXXX" value="${esc(lkey)}" autocomplete="off" spellcheck="false"></label>
+    </div>
+    <div class="lic" id="lstat" aria-live="polite">${licText(g)}</div>
     <div class="status ${wsState==="ok"?"ok":wsState==="bad"?"bad":""}" id="connStatus">${connText()}</div>
     <p class="hint">Нужна только бесплатная программа <a href="https://tikfinity.zerody.one/" target="_blank" rel="noopener">TikFinity</a>: она должна быть запущена на этом же компьютере во время эфира. От нас ничего ставить не нужно, игра открывается в браузере. Превью справа работает с ботами и в эфир не попадает.</p>
   </section>
@@ -686,11 +743,27 @@ function renderMain(){
   </section>`;
   bindMain(g,c);
   loadPreview(g,c);
+  if(renderMain.last!==g.id){renderMain.last=g.id;checkLicense(g)}
 }
 let pvTimer=0,pvLast="";
 function loadPreview(g,c,delay){clearTimeout(pvTimer);pvTimer=setTimeout(()=>{const u=previewURL(g,c);if(u!==pvLast){pvLast=u;$("#pv").src=u;const sc=$("#screen");sc.classList.remove("swap");void sc.offsetWidth;sc.classList.add("swap")}},delay||0)}
 function fitPreview(){const ph=$("#phone");$("#pv").style.transform=`scale(${ph.clientWidth/1080})`}
 new ResizeObserver(fitPreview).observe(document.getElementById("phone"));
+
+// ---------- license keys ----------
+function licConfigured(){return !!(window.SSLicense)&&lres&&lres.reason!=="not_configured"}
+function licText(g){
+  if(!lkey) return `<span class="lic-dot"></span>Введите ключ, чтобы играть в эфире. Превью работает и без ключа. <a href="${PUBLIC_BASE}#pricing" target="_blank" rel="noopener">Где взять ключ</a>`;
+  if(!lres) return `<span class="lic-dot wait"></span>Проверяю ключ…`;
+  if(lres.reason==="not_configured") return `<span class="lic-dot"></span>Проверка ключей скоро. Ключ уже добавлен в ссылку для OBS.`;
+  const cls=lres.ok?"ok":"bad";
+  return `<span class="lic-dot ${cls}"></span><b class="${cls}">${esc(SSLicense.message(lres))}</b>${lres.ok&&lres.scope==="all"?" · все режимы":lres.ok?"":""}`;
+}
+function checkLicense(g,delay){
+  clearTimeout(lTimer);lres=null;const el=document.getElementById("lstat");if(el)el.innerHTML=licText(g);
+  if(!lkey||!window.SSLicense) return;
+  lTimer=setTimeout(()=>{const k=lkey;SSLicense.check(k,g.path).then(r=>{if(k!==lkey)return;lres=r;const el=document.getElementById("lstat");if(el){el.innerHTML=licText(g);el.classList.remove("pop");void el.offsetWidth;el.classList.add("pop")}})},delay||0);
+}
 function connText(){
   if(wsState==="ok") return "● TikFinity на связи, события идут";
   if(wsState==="wait") return "… Ищу TikFinity на этом компьютере";
@@ -709,6 +782,8 @@ function bindMain(g,c){
   $("#main").querySelectorAll("[data-app]").forEach(b=>b.onclick=()=>slide(b,()=>{obsApp=b.dataset.app;renderMain()}));
   $("#main").querySelectorAll(".seg").forEach(seg=>{const i=[...seg.children].findIndex(x=>x.getAttribute("aria-pressed")==="true");seg.style.setProperty("--si",Math.max(0,i))});
   $("#main").querySelectorAll("input[type=range]").forEach(r=>{const f=()=>r.style.setProperty("--p",((r.value-r.min)/(r.max-r.min)*100)+"%");f();r.addEventListener("input",f)});
+  $("#lkey").oninput=e=>{const v=e.target.value.trim();lkey=v?(window.SSLicense?SSLicense.normalize(v):v):"";store.set("lkey",lkey);$("#url").textContent=overlayURL(g,c);checkLicense(g,700)};
+  $("#lkey").onblur=e=>{if(lkey&&e.target.value!==lkey)e.target.value=lkey};
   $("#user").oninput=e=>{user=e.target.value.trim();store.set("user",user);saveCfg(g,c);$("#url").textContent=overlayURL(g,c);renderPill()};
   $("#testConn").onclick=()=>{if(source==="demo"){source="tikfinity";store.set("source",source)}openWS();renderMain();renderPill()};
   $("#main").querySelectorAll("[data-gift]").forEach(el=>el.onchange=el.oninput=()=>{
