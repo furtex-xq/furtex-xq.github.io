@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Битва зодиаков — TikTok LIVE игра</title>
+<style>
+  html,body{margin:0;height:100%;background:#07050c;overflow:hidden;font-family:"Segoe UI",system-ui,sans-serif}
+  #game{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:block}
+  #panel{position:fixed;right:8px;top:8px;width:250px;background:rgba(18,14,26,.94);color:#eee;font-size:13px;padding:10px;border-radius:12px;z-index:5;box-shadow:0 6px 24px #0008;max-height:96vh;overflow:auto}
+  #panel h3{margin:0 0 6px;font-size:15px}
+  #panel button{margin:2px 0;width:100%;padding:7px 6px;border:0;border-radius:8px;background:#2e2640;color:#fff;font-size:13px;cursor:pointer;text-align:left}
+  #panel button:hover{background:#463a62}
+  #panel .row{display:flex;gap:4px}#panel .row button{flex:1;text-align:center}
+  #status{padding:6px 8px;border-radius:8px;margin:4px 0 8px;font-weight:600}
+  .ok{background:#164a2a}.bad{background:#5a1a1a}.wait{background:#4a3c12}
+  #panel small{color:#aaa;display:block;margin-top:6px;line-height:1.35}
+</style>
+</head>
+<body>
+<canvas id="game" width="1080" height="1920"></canvas>
+<div id="panel">
+  <h3>♈ Пульт ведущего <small style="display:inline">(H — скрыть)</small></h3>
+  <div id="status" class="wait">⏳</div>
+  <div class="row"><button data-a="A1">◀ 🌹 1</button><button data-a="B1">🌹 1 ▶</button></div>
+  <div class="row"><button data-a="A30">◀ 💎 30</button><button data-a="B30">💎 30 ▶</button></div>
+  <div class="row"><button data-a="A199">◀ 🚀 199</button><button data-a="B199">🚀 199 ▶</button></div>
+  <div class="row"><button data-a="Alike">◀ ❤️</button><button data-a="Blike">❤️ ▶</button></div>
+  <button data-a="wait">⏳ подарок от ждущего знака</button>
+  <button data-a="bots" id="botsBtn">🤖 Демо-боты</button>
+  <button data-a="restart">🔄 Новый турнир</button>
+  <small>Клавиши: Q/W/E подарки левому · I/O/P правому · B боты · R рестарт · H пульт</small>
+</div>
+<script>
+"use strict";
+/* ===================== НАСТРОЙКИ ===================== */
+const CONFIG = {
+  wsUrl: "ws://localhost:21213/",
+  hp: 300,               // здоровье знака в дуэли
+  coinDamage: 1,         // 1 монета = 1 урон
+  likesPerDamage: 50,
+  waitBankMax: 150,      // подарки ждущих знаков копятся в щит (не больше N) на их следующую дуэль
+  duelSeconds: 75,       // если время вышло — побеждает тот, у кого больше HP
+  pauseSeconds: 5,
+  safe: {top: 150, right: 110},
+};
+const SIGNS = [
+  {k:"aries",n:"ОВЕН",s:"♈",c:"#ff5a4f",w:["овен","aries"]}, {k:"taurus",n:"ТЕЛЕЦ",s:"♉",c:"#3fd16b",w:["телец","taurus"]},
+  {k:"gemini",n:"БЛИЗНЕЦЫ",s:"♊",c:"#ffd23f",w:["близнецы","близнец","gemini"]}, {k:"cancer",n:"РАК",s:"♋",c:"#9fd8ff",w:["рак","cancer"]},
+  {k:"leo",n:"ЛЕВ",s:"♌",c:"#ff9d2e",w:["лев","leo"]}, {k:"virgo",n:"ДЕВА",s:"♍",c:"#c9a0ff",w:["дева","virgo"]},
+  {k:"libra",n:"ВЕСЫ",s:"♎",c:"#ff8ad8",w:["весы","libra"]}, {k:"scorpio",n:"СКОРПИОН",s:"♏",c:"#e0344f",w:["скорпион","scorpio"]},
+  {k:"sagittarius",n:"СТРЕЛЕЦ",s:"♐",c:"#a86bff",w:["стрелец","sagittarius"]}, {k:"capricorn",n:"КОЗЕРОГ",s:"♑",c:"#8aa0b8",w:["козерог","capricorn"]},
+  {k:"aquarius",n:"ВОДОЛЕЙ",s:"♒",c:"#36c8ff",w:["водолей","aquarius"]}, {k:"pisces",n:"РЫБЫ",s:"♓",c:"#4fe0c8",w:["рыбы","рыба","pisces"]},
+];
+const Q=new URLSearchParams(location.search);
+if(Q.get("ws")) CONFIG.wsUrl=Q.get("ws");
+if(Q.get("round")) CONFIG.duelSeconds=Math.max(20,+Q.get("round")||75);
+const SRC=(Q.get("src")||"demo").toLowerCase();
+const STREAMER=(Q.get("user")||"").replace(/^@/,"").slice(0,30);
+const LIKES_ON=Q.get("likes")!=="0";
+// map=giftId:action:power — damage (урон N) · heal (лечение своему знаку N) · none
+const GIFT_MAP=new Map();
+(Q.get("map")||"").split(",").forEach(x=>{const [id,a,p]=x.split(":"); if(id&&a) GIFT_MAP.set(String(id).trim(),{action:a.trim().toLowerCase(),power:+p||0});});
+const OBS=Q.get("obs")==="1";
+if(OBS||!!window.obsstudio||(Q.has("src")&&Q.get("panel")!=="1")) document.getElementById("panel").style.display="none";
+
+const cv=document.getElementById("game"), ctx=cv.getContext("2d");
+const W=1080,H=1920, PW=W-CONFIG.safe.right, CX=PW/2+20;
+const FONT='"Segoe UI","Arial Black",system-ui,sans-serif';
+const POS=[[CX-240,740],[CX+240,740]];
+
+/* ===================== Состояние ===================== */
+let duel=null;   // {a,b,hp:[..],max:[..]}
+let phase="pause", phaseT=2, time=0, shake=0;
+let members=new Map(), bank=new Map(), streak=new Map(), bestStreak={k:null,n:0};
+let shots=[], parts=[], floaters=[], feed=[], banner=null, lastWinner=null, champion=null;
+const streaks=new Map(), likeBank=new Map();
+let botsOn=SRC==="demo"||Q.get("demo")==="1";
+const S=k=>SIGNS.find(s=>s.k===k);
+const cnt=k=>[...members.values()].filter(v=>v===k).length;
+
+function findSign(text){ const t=" "+String(text).toLowerCase().replace(/[!?.,]/g," ")+" ";
+  for(const s of SIGNS){ if(String(text).includes(s.s)) return s.k; for(const w of s.w) if(t.includes(" "+w+" ")) return s.k; } return null; }
+function nextDuel(){
+  // чемпион остаётся; соперник — знак с наибольшим числом зрителей (потом с наибольшим запасом), кроме чемпиона
+  const order=[...SIGNS].sort((x,y)=>cnt(y.k)-cnt(x.k)||(bank.get(y.k)||0)-(bank.get(x.k)||0)||SIGNS.indexOf(x)-SIGNS.indexOf(y));
+  let a=champion||order[0].k; let b=order.find(s=>s.k!==a).k;
+  const hp=[CONFIG.hp+(bank.get(a)||0),CONFIG.hp+(bank.get(b)||0)]; bank.set(a,0); bank.set(b,0);
+  duel={a,b,hp:[...hp],max:[...hp]}; phase="duel"; phaseT=CONFIG.duelSeconds; shots=[];
+  showBanner(`${S(a).s} ${S(a).n}  VS  ${S(b).n} ${S(b).s}`,"Дарите подарки за свой знак!","#ffd23f");
+}
+function finishDuel(w){
+  // снаряды в полёте не пропадают: их урон уходит в щит знака на следующую дуэль
+  for(const s of shots){ const k=s.from===0?duel.a:duel.b; bank.set(k,Math.min(CONFIG.waitBankMax,(bank.get(k)||0)+s.dmg)); } shots=[];
+  const win=w===0?duel.a:duel.b, lose=w===0?duel.b:duel.a;
+  champion=win; lastWinner=win; streak.set(win,(streak.get(win)||0)+1); streak.set(lose,0);
+  if(streak.get(win)>bestStreak.n) bestStreak={k:win,n:streak.get(win)};
+  shake=1; burst(POS[1-w][0],POS[1-w][1],S(lose).c,120);
+  showBanner(`🏆 ${S(win).n} ПОБЕЖДАЕТ`,`серия побед: ${streak.get(win)} · следующий соперник через ${CONFIG.pauseSeconds} с`,S(win).c);
+  phase="pause"; phaseT=CONFIG.pauseSeconds;
+}
+function side(k){ return !duel?-1: k===duel.a?0: k===duel.b?1: -1; }
+function hit(u,k,dmg,label){
+  const sd=side(k); if(sd<0||phase!=="duel") return;
+  shots.push({from:sd,dmg,name:u.name,t:0,y:(Math.random()-.5)*200});
+  if(dmg>=10) addFeed(`☄️ ${u.name} (${S(k).n}): ${label} → ${Math.round(dmg)} урона`,S(k).c);
+}
+function heal(u,k,p,label){ const sd=side(k); if(sd<0||phase!=="duel") return; duel.hp[sd]=Math.min(duel.max[sd]+200,duel.hp[sd]+p); duel.max[sd]=Math.max(duel.max[sd],duel.hp[sd]);
+  floaters.push({x:POS[sd][0],y:POS[sd][1]-200,text:`+${Math.round(p)} 💚`,c:"#7dffb0",life:1.4}); }
+function toBank(u,k,p){ const v=Math.min(CONFIG.waitBankMax,(bank.get(k)||0)+p); bank.set(k,v); addFeed(`⏳ ${u.name}: +${Math.round(p)} в щит ${S(k).n} на следующую дуэль`,S(k).c); }
+function signOf(u){ return members.get(u.id)||null; }
+
+/* ===================== События ===================== */
+function onComment(u,text){ const k=findSign(text); if(!k) return; if(members.get(u.id)!==k){ members.set(u.id,k); addFeed(`${u.name} за ${S(k).s} ${S(k).n}`,S(k).c);} }
+function autoSign(u){ // без знака — болеешь за того, кто сейчас проигрывает (или за знак с меньшим числом зрителей)
+  let k; if(duel&&phase==="duel") k=duel.hp[0]/duel.max[0]<=duel.hp[1]/duel.max[1]?duel.a:duel.b; else k=[...SIGNS].sort((x,y)=>cnt(x.k)-cnt(y.k))[0].k;
+  members.set(u.id,k); addFeed(`${u.name}, ты за ${S(k).s} ${S(k).n} — напиши свой знак, чтобы сменить`,S(k).c); return k; }
+function onGift(u,unit,count,name,giftId){
+  const k=signOf(u)||autoSign(u);
+  const coins=unit*count; const mp=giftId!=null&&GIFT_MAP.get(String(giftId));
+  if(side(k)<0||phase!=="duel"){ toBank(u,k,mp?mp.power*count:coins); return; }
+  if(mp){ if(mp.action==="none") return; if(mp.action==="heal") return heal(u,k,mp.power*count,name); return hit(u,k,mp.power*count,name); }
+  hit(u,k,coins*CONFIG.coinDamage,`${name}×${count}`);
+}
+function onLike(u,n){ if(!LIKES_ON) return; const k=signOf(u)||(phase==="duel"?autoSign(u):null); if(!k||side(k)<0||phase!=="duel") return;
+  const b=(likeBank.get(u.id)||0)+n, p=Math.floor(b/CONFIG.likesPerDamage); likeBank.set(u.id,b%CONFIG.likesPerDamage); if(p) hit(u,k,p,"лайки");
+  if(Math.random()<.3) parts.push({x:POS[side(k)][0]+(Math.random()-.5)*200,y:1150,vx:0,vy:-220,life:1.2,emo:"❤️",size:30}); }
+function onFollow(u){ const k=signOf(u); if(k) { if(side(k)>=0&&phase==="duel") hit(u,k,5,"подписка"); else toBank(u,k,5); } }
+
+/* ===================== Подключение ===================== */
+let ws=null, wsState="wait";
+function setStatus(s,t){ wsState=s; const el=document.getElementById("status"); el.className=s; el.textContent=t; }
+function connect(){ try{ws=new WebSocket(CONFIG.wsUrl);}catch(e){setStatus("bad","❌ Неверный адрес");return;}
+  setStatus("wait","⏳ Подключение к "+CONFIG.wsUrl); ws.onopen=()=>setStatus("ok","🟢 Эфир подключён");
+  ws.onmessage=e=>{try{handleRaw(JSON.parse(e.data));}catch(_){}}; ws.onclose=()=>{setStatus("bad","🔴 Нет связи — переподключаюсь…");setTimeout(connect,3000);}; ws.onerror=()=>{try{ws.close();}catch(_){}}; }
+function handleRaw(msg){
+  if(msg.type&&msg.user&&!msg.data){ const u=msg.user, base={uniqueId:u.id,nickname:u.name};
+    if(msg.type==="gift") msg={event:"gift",data:{...base,giftId:msg.gift?.id,giftName:msg.gift?.name,diamondCount:msg.gift?.coins,repeatCount:msg.gift?.count,giftType:0}};
+    else if(msg.type==="like") msg={event:"like",data:{...base,likeCount:msg.likes}};
+    else if(msg.type==="comment") msg={event:"chat",data:{...base,comment:msg.text}};
+    else msg={event:msg.type,data:base}; }
+  const ev=String(msg.event||msg.type||"").toLowerCase(), d=msg.data||msg, uu=d.user||{};
+  const u={id:String(d.uniqueId||d.userId||uu.uniqueId||"anon"), name:String(d.nickname||uu.nickname||d.uniqueId||"Зритель").slice(0,22)};
+  switch(ev){
+    case "chat": case "comment": onComment(u,d.comment||""); break;
+    case "like": onLike(u,Math.min(200,+d.likeCount||1)); break;
+    case "follow": onFollow(u); break;
+    case "gift": { const unit=+(d.diamondCount||1), name=String(d.giftName||"подарок").slice(0,20), rc=+(d.repeatCount||1);
+      if(+d.giftType===1){ const key=u.id+"|"+(d.giftId||name), prev=streaks.get(key)||0, delta=(prev>0&&rc>=prev)?rc-prev:rc;
+        if(d.repeatEnd) streaks.delete(key); else streaks.set(key,rc); if(delta>0) onGift(u,unit,delta,name,d.giftId); }
+      else onGift(u,unit,rc,name,d.giftId); }
+  }
+}
+
+/* ===================== Обновление ===================== */
+function update(dt){
+  phaseT-=dt;
+  if(phase==="pause"&&phaseT<=0) nextDuel();
+  else if(phase==="duel"){
+    for(const s of shots){ s.t+=dt/0.6; if(s.t>=1&&!s.done){ s.done=true; const tg=1-s.from; duel.hp[tg]-=s.dmg; shake=Math.min(1,shake+s.dmg/120);
+      floaters.push({x:POS[tg][0]+(Math.random()-.5)*80,y:POS[tg][1]-160,text:`-${Math.round(s.dmg)}`,c:"#ff6b6b",life:1.2}); if(floaters.length>25) floaters.shift();
+      burst(POS[tg][0],POS[tg][1]+s.y*.5,"#ffd27a",Math.min(40,6+s.dmg/3)); } }
+    shots=shots.filter(s=>!s.done);
+    if(duel.hp[0]<=0||duel.hp[1]<=0) finishDuel(duel.hp[0]>0?0:1);
+    else if(phaseT<=0) finishDuel(duel.hp[0]/duel.max[0]>=duel.hp[1]/duel.max[1]?0:1);
+  }
+  shake=Math.max(0,shake-dt*2);
+  for(const p of parts){p.life-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;if(p.g)p.vy+=p.g*dt;} parts=parts.filter(p=>p.life>0); if(parts.length>500) parts.splice(0,parts.length-500);
+  floaters.forEach(f=>{f.life-=dt;f.y-=60*dt;}); floaters=floaters.filter(f=>f.life>0);
+  feed.forEach(f=>f.life-=dt); feed=feed.filter(f=>f.life>0);
+  if(banner){banner.life-=dt; if(banner.life<=0) banner=null;}
+  if(botsOn) runBots(dt);
+}
+
+/* ===================== Отрисовка ===================== */
+function txt(s,x,y,size,c,align="center",w=900,stroke=true){ ctx.font=`${w} ${size}px ${FONT}`; ctx.textAlign=align; ctx.textBaseline="middle";
+  if(stroke){ctx.lineWidth=Math.max(4,size/6);ctx.strokeStyle="rgba(0,0,0,.85)";ctx.lineJoin="round";ctx.strokeText(s,x,y);} ctx.fillStyle=c; ctx.fillText(s,x,y); }
+function fit(s,x,y,size,maxW,c){ ctx.font=`900 ${size}px ${FONT}`; while(size>14&&ctx.measureText(s).width>maxW){size--;ctx.font=`900 ${size}px ${FONT}`;} txt(s,x,y,size,c); }
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+function orb(x,y,sg,r,hpK){
+  const g=ctx.createRadialGradient(x-r*.3,y-r*.3,r*.1,x,y,r); g.addColorStop(0,"#fff"); g.addColorStop(.25,sg.c); g.addColorStop(1,"#0a0614");
+  ctx.shadowColor=sg.c; ctx.shadowBlur=60; ctx.fillStyle=g; ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill(); ctx.shadowBlur=0;
+  ctx.strokeStyle=sg.c; ctx.lineWidth=4; ctx.beginPath(); ctx.ellipse(x,y,r*1.35,r*.35,-.3,0,Math.PI*2); ctx.stroke();
+  // символ знака рисуем текстом с моно-шрифтом (не эмодзи), чтобы цвет был свой
+  ctx.font=`900 ${r*.9}px "Segoe UI Symbol","DejaVu Sans",${FONT}`; ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.fillStyle="rgba(0,0,0,.55)"; ctx.fillText(sg.s+"︎",x+4,y+6); ctx.fillStyle="#fff"; ctx.fillText(sg.s+"︎",x,y);
+  if(hpK!=null&&hpK<.3){ ctx.strokeStyle="rgba(0,0,0,.6)"; ctx.lineWidth=5; ctx.beginPath(); ctx.moveTo(x-r*.5,y-r*.6); ctx.lineTo(x-r*.1,y-r*.1); ctx.lineTo(x-r*.3,y+r*.3); ctx.stroke(); }
+}
+function draw(){
+  ctx.save(); if(shake>0) ctx.translate((Math.random()-.5)*28*shake,(Math.random()-.5)*28*shake);
+  const bg=ctx.createLinearGradient(0,0,0,H); bg.addColorStop(0,"#050318"); bg.addColorStop(.5,"#160b33"); bg.addColorStop(1,"#03020a"); ctx.fillStyle=bg; ctx.fillRect(-40,-40,W+80,H+80);
+  for(let i=0;i<120;i++){ ctx.fillStyle=`rgba(255,255,255,${.25+.35*Math.abs(Math.sin(time*.8+i*1.7))})`; ctx.fillRect((i*211)%W,(i*137+i*i)%H,2+(i%3),2+(i%3)); }
+  if(duel){
+    const a=S(duel.a), b=S(duel.b);
+    [a,b].forEach((sg,i)=>{ const [x,y]=POS[i]; const k=Math.max(0,duel.hp[i]/duel.max[i]); orb(x,y+Math.sin(time*1.5+i*2)*10,sg,150,phase==="duel"?k:null);
+      fit(sg.n,x,y+190,50,380,sg.c); txt(`👥 ${cnt(sg.k)}`,x,y+236,26,"#ddd","center",700);
+      if(streak.get(sg.k)) txt(`🔥 серия ${streak.get(sg.k)}`,x,y-210,30,"#ffb02e","center",800);
+      const bw=360, bx=x-bw/2, by=y+262; ctx.fillStyle="rgba(0,0,0,.6)"; rr(bx,by,bw,36,18); ctx.fill();
+      ctx.fillStyle=k<.25?"#ff4040":sg.c; rr(bx+4,by+4,(bw-8)*k,28,14); ctx.fill(); txt(Math.max(0,Math.ceil(duel.hp[i]))+"",x,by+18,24,"#fff"); });
+    txt("VS",CX,750,80,"#fff");
+    for(const s of shots){ const [x0,y0]=POS[s.from], [x1,y1]=POS[1-s.from]; const k=s.t; const x=x0+(x1-x0)*k, y=y0+(y1-y0)*k+s.y*Math.sin(k*Math.PI);
+      const sz=Math.min(90,30+s.dmg); const c=S(s.from===0?duel.a:duel.b).c;
+      for(let i=0;i<5;i++){ ctx.fillStyle=c; ctx.globalAlpha=.6-i*.1; ctx.beginPath(); ctx.arc(x-(x1-x0)*.03*i,y,sz*.4-i*3,0,Math.PI*2); ctx.fill(); } ctx.globalAlpha=1;
+      if(s.dmg>=10) fit(s.name,x,y-sz*.6,24,260,"#fff"); }
+  }
+  for(const p of parts){ ctx.globalAlpha=Math.max(0,Math.min(1,p.life)); if(p.emo) txt(p.emo,p.x,p.y,p.size,"#fff","center",400,false); else {ctx.fillStyle=p.c;ctx.fillRect(p.x,p.y,p.size,p.size);} } ctx.globalAlpha=1;
+  for(const f of floaters){ ctx.globalAlpha=Math.min(1,f.life); txt(f.text,f.x,f.y,50,f.c); } ctx.globalAlpha=1;
+  ctx.restore(); drawHud();
+}
+function drawHud(){
+  const top=CONFIG.safe.top;
+  if(STREAMER) txt("@"+STREAMER,40,top-30,24,"rgba(255,255,255,.6)","left",700,false);
+  if(SRC!=="demo"&&wsState!=="ok") txt(wsState==="bad"?"🔴 нет связи":"⏳",PW-60,top-30,22,"#f88","center",700);
+  txt("✨ БИТВА ЗОДИАКОВ",CX,top+40,64,"#c9a0ff");
+  txt(phase==="duel"?`⏱ ${Math.max(0,Math.ceil(phaseT))} с`:`следующая дуэль через ${Math.max(0,Math.ceil(phaseT))}`,CX,top+100,34,"#fff");
+  // очередь знаков
+  const q=[...SIGNS].filter(s=>!duel||side(s.k)<0).sort((x,y)=>cnt(y.k)-cnt(x.k)||(bank.get(y.k)||0)-(bank.get(x.k)||0)).slice(0,3);
+  ctx.fillStyle="rgba(0,0,0,.45)"; rr(40,top+140,PW-40,96,18); ctx.fill();
+  txt("Следующие претенденты:",CX,top+166,24,"#bbb","center",700);
+  q.forEach((s,i)=>{ const x=CX-260+i*260; fit(`${s.n} 👥${cnt(s.k)}${bank.get(s.k)?" 🛡"+Math.round(bank.get(s.k)):""}`,x,top+206,24,245,s.c); });
+  if(bestStreak.k) txt(`🏆 Рекорд серии: ${S(bestStreak.k).n} — ${bestStreak.n}`,CX,top+272,28,"#ffd23f","center",800);
+  // правила
+  ctx.fillStyle="rgba(0,0,0,.45)"; rr(40,1060,PW-40,86,18); ctx.fill();
+  fit("💬 Напиши свой знак зодиака (овен, лев, рыбы…)",CX,1083,25,PW-80,"#fff");
+  fit("🎁 1 монета = 1 урон · ждёшь очереди — подарки копят щит",CX,1122,24,PW-80,"#ffd98a");
+  feed.forEach((f,i)=>{ ctx.globalAlpha=Math.min(1,f.life); fit(f.text,CX,1190+i*38,27,PW-120,f.c); }); ctx.globalAlpha=1;
+  if(banner){ const a=Math.min(1,banner.life*2), s=1+Math.max(0,banner.life-2.4)*1.2; ctx.save(); ctx.globalAlpha=a; ctx.translate(CX,520); ctx.scale(s,s);
+    ctx.fillStyle="rgba(0,0,0,.78)"; rr(-440,-80,880,160,30); ctx.fill(); fit(banner.title,0,-26,58,840,banner.c); fit(banner.sub,0,40,30,840,"#fff"); ctx.restore(); }
+}
+function showBanner(title,sub,c){ banner={title,sub,c,life:3}; }
+function addFeed(text,c){ feed.unshift({text,c,life:6}); if(feed.length>3) feed.pop(); }
+function burst(x,y,c,n){ for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,s=150+Math.random()*500; parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-150,life:.8+Math.random()*.6,c,size:4+Math.random()*8,g:700});} }
+
+/* ===================== Боты и пульт ===================== */
+const BOTN=["Саня_228","katya.love","Мурат","DimonPro","Олежка","айгерим","Vlad_TT","Настя","Бека","Lena_K","Тимур","Ярик","ZhanaR","Макс","Polina","Арман","Dasha","Kostya","Аня","Mira"];
+const bots=BOTN.map((n,i)=>({id:"bot"+i,name:n,act:Math.random()*3}));
+function runBots(dt){ for(const b of bots){ b.act-=dt; if(b.act>0) continue; b.act=1+Math.random()*3; const u={id:b.id,name:b.name};
+  if(!members.has(u.id)){ onComment(u,SIGNS[Math.floor(Math.random()*6)].w[0]); continue; } const r=Math.random();
+  if(r<.5) onLike(u,20+Math.floor(Math.random()*40)); else if(r<.9) onGift(u,1,1+Math.floor(Math.random()*4),"Роза"); else if(r<.985) onGift(u,5,1,"Пончик"); else onGift(u,199,1,"Ракета"); } }
+function tU(sd){ const k=sd===0?duel.a:duel.b; const u={id:"test_"+k,name:"Тест-"+S(k).n.toLowerCase()}; members.set(u.id,k); return u; }
+function act(a){
+  if(/^[AB]\d+$/.test(a)&&duel) onGift(tU(a[0]==="A"?0:1),+a.slice(1),1,{1:"Роза",30:"Кристалл",199:"Ракета"}[a.slice(1)]||"подарок");
+  else if(/^[AB]like$/.test(a)&&duel) onLike(tU(a[0]==="A"?0:1),100);
+  else if(a==="wait"){ const s=SIGNS.find(s=>side(s.k)<0); const u={id:"test_w",name:"Тест-ждущий"}; members.set(u.id,s.k); onGift(u,30,1,"Кристалл"); }
+  else if(a==="bots") botsOn=!botsOn; else if(a==="restart"){ champion=null; streak.clear(); bestStreak={k:null,n:0}; bank.clear(); phase="pause"; phaseT=1; }
+  document.getElementById("botsBtn").textContent="🤖 Демо-боты: "+(botsOn?"вкл":"выкл"); }
+document.getElementById("panel").addEventListener("click",e=>{const b=e.target.closest("button"); if(b) act(b.dataset.a);});
+addEventListener("keydown",e=>{ const k=e.key.toLowerCase(); const m={q:"A1",w:"A30",e:"A199",i:"B1",o:"B30",p:"B199",й:"A1",ц:"A30",у:"A199",ш:"B1",щ:"B30",з:"B199",b:"bots",и:"bots",r:"restart",к:"restart"};
+  if(m[k]) act(m[k]); else if(k==="h"||k==="р"){ const p=document.getElementById("panel"); p.style.display=p.style.display==="none"?"":"none"; } });
+
+function resize(){ const s=Math.min(innerWidth/W,innerHeight/H); cv.style.width=W*s+"px"; cv.style.height=H*s+"px"; }
+addEventListener("resize",resize); resize();
+if(SRC==="demo") setStatus("wait","🤖 Демо-режим (без эфира)"); else connect(); act("noop");
+let last=performance.now();
+function loop(now){ const dt=Math.min(.05,(now-last)/1000); last=now; time+=dt; update(dt); draw(); requestAnimationFrame(loop); }
+requestAnimationFrame(loop);
+window.__game={get duel(){return duel},get phase(){return phase},handleRaw,act};
+window.addEventListener("message",e=>{ if(e.data&&e.data.source==="magma-launcher"&&e.data.event){ try{ handleRaw(e.data.event); }catch(_){} } }); // GAME-CONTRACT §6
+</script>
+<script id="giftfx">
+"use strict";
+window.GIFT_FX_TARGET=id=>{ const k=members.get(id); if(!k) return null; const sd=side(k); return sd>=0?{x:POS[1-sd][0],y:POS[1-sd][1],color:S(k).c}:{x:CX,y:CONFIG.safe.top+206,color:S(k).c}; };
+/* ===================== ЭФФЕКТ ПОДАРКА: видно, кто подарил, что и куда это пошло ===================== */
+(function(){
+  const base=document.getElementById("game"); if(!base) return;
+  let g;
+  const fx=document.createElement("canvas"); fx.width=810; fx.height=1440; // 0.75 разрешения: в 4/3 дешевле, на стриме 720p разницы не видно fx.id="giftfx";
+  fx.style.cssText="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:3";
+  document.body.appendChild(fx); g=fx.getContext("2d");
+  const F='"Segoe UI","Arial Black",system-ui,sans-serif';
+  const TIERS={ small:{c1:"#ff7eb3",c2:"#ff4f8b",hold:.55,scale:1,emo:"🌹",parts:14},
+                mid:{c1:"#7fd8ff",c2:"#3b7bff",hold:.95,scale:1.1,emo:"💎",parts:40},
+                big:{c1:"#ffe27a",c2:"#ff8a00",hold:1.7,scale:1.7,emo:"🚀",parts:110} };
+  const tierOf=u=>u>=100?"big":u>=10?"mid":"small";
+  let cards=[], sparks=[], rings=[], pops=[], flash=0, last=performance.now();
+  const imgs=new Map(), rate=[];
+  function img(url){ if(!url) return null; if(imgs.has(url)) return imgs.get(url); const im=new Image(); im.src=url; imgs.set(url,im); return im; }
+  function target(uid){ try{ const t=window.GIFT_FX_TARGET&&window.GIFT_FX_TARGET(uid); if(t) return t; }catch(e){} return {x:540,y:330,color:"#ffd23f"}; }
+  function add(u,unit,count,name,pic){
+    const tier=tierOf(unit), coins=unit*count, key=u.id+"|"+name, now=performance.now();
+    // комбо: тот же зритель и тот же подарок подряд — одна карточка, счётчик ×N растёт
+    const ex=cards.find(c=>c.key===key&&c.st<2&&now-c.born<2500);
+    if(ex){ ex.count+=count; ex.coins+=coins; ex.bump=1; ex.dirty=true; ex.t=Math.min(ex.t,.3); return; }
+    const T=TIERS[tier]; const lane=cards.filter(c=>c.st<2&&c.tier!=="big").length;
+    rate.push(now); while(rate.length&&now-rate[0]>1000) rate.shift();
+    if(tier!=="big"&&(lane>=(tier==="small"?3:4)||rate.length>10)){ // поток: без карточек, только вспышка и +X // поток мелких подарков: без карточки, сразу вспышка и «+X» у своей команды
+      const tg=target(u.id); rings.push({x:tg.x,y:tg.y,r:10,max:tier==="mid"?160:90,c:tg.color||T.c1,life:1}); pops.push({x:tg.x+(Math.random()-.5)*60,y:tg.y-40,text:`+${coins} 💰`,c:"#fff",size:38,life:1.1}); return; }
+    const big=tier==="big";
+    if(big&&cards.filter(c=>c.tier==="big"&&c.st<2).length>=2){ const tg=target(u.id); rings.push({x:tg.x,y:tg.y,r:10,max:300,c:tg.color||T.c1,life:1}); pops.push({x:tg.x,y:tg.y-40,text:`+${coins} 💰`,c:"#ffe27a",size:64,life:1.3}); flash=Math.max(flash,.6); return; }
+    // свободный слот (2×2 сетка), чтобы карточки не лезли друг на друга; большая — отдельно сверху
+    const used=new Set(cards.filter(c=>c.st===0&&c.slot!=null).map(c=>c.slot)); let slot=0; while(used.has(slot)&&slot<3) slot++;
+    const bigUsed=cards.some(c=>c.st===0&&c.tier==="big");
+    cards.push({key,u,name,pic,tier,T,count,coins,born:now,st:0,t:0,bump:0,slot:big?null:slot,
+      x:big?520:265+((slot%2)*470), y:big?(bigUsed?1060:880):680+Math.floor(slot/2)*130, s:0});
+    if(cards.length>10) cards.splice(0,cards.length-10);
+    if(big) flash=1;
+  }
+  // перехватываем события, не меняя логику игры: картинки/аватары — из сырых событий, сам подарок — из onGift игры
+  const pics=new Map(), avs=new Map();
+  if(typeof window.handleRaw==="function"){ const oh=window.handleRaw; window.handleRaw=function(msg){
+    try{ const d=(msg&&msg.data)||{}, uu=d.user||{}; const id=String(d.uniqueId||d.userId||uu.uniqueId||"");
+      if(id){ const av=d.profilePictureUrl||uu.profilePictureUrl; if(av) avs.set(id,av); const pic=d.giftPictureUrl||(d.giftDetails&&d.giftDetails.giftImage&&d.giftDetails.giftImage.giftPictureUrl); if(pic) pics.set(id+"|"+String(d.giftName||"").slice(0,16),pic); } }catch(e){}
+    return oh.apply(this,arguments); }; }
+  if(typeof window.onGift!=="function") return;
+  const og=window.onGift; window.onGift=function(u,unit,count,name){
+    const r=og.apply(this,arguments);
+    if(window.__giftReplay) return r; // повтор подарков с экрана победы — карточка уже была
+    try{ const nm=String(name||"подарок").slice(0,16), id=String(u&&u.id||"anon"), n=Math.max(1,+count||1);
+      add({id,name:String(u&&u.name||"Зритель").slice(0,20),avatar:(u&&u.avatar)||avs.get(id)||null},Math.max(1,+unit||1),n,nm,pics.get(id+"|"+nm)||null); }catch(e){}
+    return r; };
+  function rr(x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();}
+  function text(s,x,y,size,c,al="center",w=900){ g.font=`${w} ${size}px ${F}`; g.textAlign=al; g.textBaseline="middle"; g.lineWidth=Math.max(4,size/6); g.strokeStyle="rgba(0,0,0,.85)"; g.lineJoin="round"; g.strokeText(s,x,y); g.fillStyle=c; g.fillText(s,x,y); }
+  function fitW(s,size,maxW){ g.font=`900 ${size}px ${F}`; while(size>12&&g.measureText(s).width>maxW){ size--; g.font=`900 ${size}px ${F}`; } return size; }
+  // карточка рисуется один раз в отдельный холст (и заново только при комбо или когда загрузилась картинка)
+  const CW=420, CH=110, PAD=40;
+  function ready(im){ return !!(im&&im.complete&&im.naturalWidth); }
+  function renderCard(c){
+    const T=c.T, cv=c.cv||(c.cv=document.createElement("canvas")); cv.width=CW+PAD*2; cv.height=CH+PAD*2; const q=cv.getContext("2d");
+    const G=g; g=q; g.save(); g.translate(PAD+CW/2,PAD+CH/2);
+    if(c.tier!=="small"){ g.shadowColor=T.c1; g.shadowBlur=c.tier==="big"?36:22; }
+    const gr=g.createLinearGradient(-CW/2,0,CW/2,0); gr.addColorStop(0,T.c2); gr.addColorStop(1,T.c1);
+    g.fillStyle=gr; rr(-CW/2,-CH/2,CW,CH,CH/2); g.fill(); g.shadowBlur=0;
+    g.lineWidth=5; g.strokeStyle="rgba(255,255,255,.9)"; rr(-CW/2,-CH/2,CW,CH,CH/2); g.stroke();
+    const ax=-CW/2+CH/2, R=42, av=img(c.u.avatar); g.save(); g.beginPath(); g.arc(ax,0,R,0,Math.PI*2); g.clip();
+    if(ready(av)) g.drawImage(av,ax-R,-R,R*2,R*2); else { let hh=0; for(const ch of c.u.name) hh=(hh*31+ch.charCodeAt(0))|0; g.fillStyle=`hsl(${Math.abs(hh)%360},60%,42%)`; g.fillRect(ax-R,-R,R*2,R*2); text(([...c.u.name][0]||"?").toUpperCase(),ax,3,44,"#fff"); }
+    g.restore(); g.lineWidth=5; g.strokeStyle="#fff"; g.beginPath(); g.arc(ax,0,R,0,Math.PI*2); g.stroke();
+    const nx=ax+R+12, tw=CW-CH-100;
+    text(c.u.name,nx,-21,fitW(c.u.name,34,tw),"#fff","left");
+    const gl=c.name+(c.count>1?` ×${c.count}`:""); text(gl,nx,22,fitW(gl,28,tw),"#fff","left",800);
+    const gx=CW/2-54, pic=img(c.pic);
+    if(ready(pic)) g.drawImage(pic,gx-42,-42,84,84); else { g.font=`400 64px ${F}`; g.textAlign="center"; g.textBaseline="middle"; g.fillText(T.emo,gx,3); }
+    if(c.count>1) text("×"+c.count,CW/2-6,-CH/2+6,40,"#ffe600");
+    g.restore(); g=G;
+    c.dirty=false; c.imgsOk=ready(av)||!c.u.avatar; c.picOk=ready(pic)||!c.pic;
+  }
+  const flashCv=document.createElement("canvas"); flashCv.width=270; flashCv.height=480;
+  { const fg=flashCv.getContext("2d"), gr=fg.createRadialGradient(135,190,12,135,190,225); gr.addColorStop(0,"rgba(255,220,120,.45)"); gr.addColorStop(1,"rgba(255,140,0,0)"); fg.fillStyle=gr; fg.fillRect(0,0,270,480); }
+  // «+X» рисуем один раз в маленький холст, дальше только drawImage
+  function popCv(p){ const tmp=g, c=document.createElement("canvas"); g=c.getContext("2d"); g.font=`900 ${p.size}px ${F}`; const w=Math.ceil(g.measureText(p.text).width)+p.size; c.width=w; c.height=Math.ceil(p.size*1.6); g=c.getContext("2d"); text(p.text,w/2,c.height/2,p.size,p.c); g=tmp; p.cv=c; }
+  let idle=false, lastW="";
+  function drawCard(c){
+    if(!c.cv||c.dirty||(!c.imgsOk&&ready(img(c.u.avatar)))||(!c.picOk&&ready(img(c.pic)))) renderCard(c);
+    const sc=c.s*(1+c.bump*.12)*c.T.scale; if(sc<=0) return;
+    g.save(); g.translate(c.x,c.y); g.scale(sc,sc); g.drawImage(c.cv,-(CW/2+PAD),-(CH/2+PAD)); g.restore();
+  }
+  function step(now){
+    const dt=Math.min(.05,(now-last)/1000); last=now;
+    if(base.style.width!==lastW){ lastW=base.style.width; fx.style.width=base.style.width; fx.style.height=base.style.height; }
+    for(const c of cards){ c.bump=Math.max(0,c.bump-dt*4); c.t+=dt;
+      if(c.st===0){ c.s=Math.min(1,c.t/.18)*(1+Math.sin(Math.min(1,c.t/.3)*Math.PI)*.18); if(c.t>=c.T.hold+.2){ c.st=1; c.t=0; const tg=target(c.u.id); c.tx=tg.x; c.ty=tg.y; c.tc=tg.color||c.T.c1; c.sx=c.x; c.sy=c.y; } }
+      else if(c.st===1){ const k=Math.min(1,c.t/.55), e=k*k*(3-2*k); c.x=c.sx+(c.tx-c.sx)*e; c.y=c.sy+(c.ty-c.sy)*e-Math.sin(k*Math.PI)*120; c.s=1-.75*e;
+        if(sparks.length<120) for(let i=0;i<(c.tier==="big"?4:2);i++) sparks.push({x:c.x+(Math.random()-.5)*30,y:c.y+(Math.random()-.5)*30,vx:(Math.random()-.5)*80,vy:(Math.random()-.5)*80,life:.5,c:c.T.c1,r:3+Math.random()*4});
+        if(k>=1){ c.st=2; const n=c.T.parts; for(let i=0;i<n&&sparks.length<160;i++){ const a=Math.random()*Math.PI*2, sp=120+Math.random()*(c.tier==="big"?700:380); sparks.push({x:c.tx,y:c.ty,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:.7+Math.random()*.5,c:Math.random()<.5?c.tc:c.T.c1,r:3+Math.random()*(c.tier==="big"?9:5),gr:500}); }
+          rings.push({x:c.tx,y:c.ty,r:10,max:c.tier==="big"?420:c.tier==="mid"?220:110,c:c.tc,life:1});
+          pops.push({x:c.tx,y:c.ty-40,text:`+${c.coins} 💰`,c:"#fff",size:c.tier==="big"?72:c.tier==="mid"?56:42,life:1.3}); } } }
+    cards=cards.filter(c=>c.st<2);
+    for(const p of sparks){ p.life-=dt; p.x+=p.vx*dt; p.y+=p.vy*dt; if(p.gr) p.vy+=p.gr*dt; } sparks=sparks.filter(p=>p.life>0);
+    for(const r of rings){ r.life-=dt*1.6; r.r+=(r.max-r.r)*Math.min(1,dt*7); } rings=rings.filter(r=>r.life>0);
+    for(const p of pops){ p.life-=dt; p.y-=70*dt; } pops=pops.filter(p=>p.life>0); if(pops.length>20) pops.splice(0,pops.length-20);
+    flash=Math.max(0,flash-dt*2);
+    const active=flash>0||cards.length||sparks.length||rings.length||pops.length;
+    if(!active){ if(!idle){ g.clearRect(0,0,1080,1920); idle=true; } requestAnimationFrame(step); return; } idle=false;
+    g.setTransform(.75,0,0,.75,0,0); g.clearRect(0,0,1080,1920);
+    if(flash>0){ g.globalAlpha=flash; g.drawImage(flashCv,0,0,1080,1920); g.globalAlpha=1; }
+    for(const r of rings){ g.globalAlpha=Math.max(0,r.life); g.strokeStyle=r.c; g.lineWidth=10*r.life+2; g.beginPath(); g.arc(r.x,r.y,r.r,0,Math.PI*2); g.stroke(); } g.globalAlpha=1;
+    for(const p of sparks){ g.globalAlpha=Math.max(0,Math.min(1,p.life*1.5)); g.fillStyle=p.c; g.fillRect(p.x-p.r,p.y-p.r,p.r*2,p.r*2); } g.globalAlpha=1;
+    for(const c of cards) if(c.tier!=="big") drawCard(c);
+    for(const c of cards) if(c.tier==="big") drawCard(c); // большие всегда поверх
+    for(const p of pops){ g.globalAlpha=Math.min(1,p.life*1.5); const s=1+Math.max(0,p.life-1)*1.5; if(!p.cv) popCv(p); const w=p.cv.width*s, h=p.cv.height*s; g.drawImage(p.cv,p.x-w/2,p.y-h/2,w,h); } g.globalAlpha=1;
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Битва болельщиков — TikTok LIVE игра</title>
+<style>
+  html,body{margin:0;height:100%;background:#07050c;overflow:hidden;font-family:"Segoe UI",system-ui,sans-serif}
+  #game{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:block}
+  #panel{position:fixed;right:8px;top:8px;width:250px;background:rgba(18,14,26,.94);color:#eee;font-size:13px;padding:10px;border-radius:12px;z-index:5;box-shadow:0 6px 24px #0008;max-height:96vh;overflow:auto}
+  #panel h3{margin:0 0 6px;font-size:15px}
+  #panel button{margin:2px 0;width:100%;padding:7px 6px;border:0;border-radius:8px;background:#2e2640;color:#fff;font-size:13px;cursor:pointer;text-align:left}
+  #panel button:hover{background:#463a62}
+  #panel .row{display:flex;gap:4px}#panel .row button{flex:1;text-align:center}
+  #status{padding:6px 8px;border-radius:8px;margin:4px 0 8px;font-weight:600}
+  .ok{background:#164a2a}.bad{background:#5a1a1a}.wait{background:#4a3c12}
+  #panel small{color:#aaa;display:block;margin-top:6px;line-height:1.35}
+</style>
+</head>
+<body>
+<canvas id="game" width="1080" height="1920"></canvas>
+<div id="panel">
+  <h3>📣 Пульт ведущего <small style="display:inline">(H — скрыть)</small></h3>
+  <div id="status" class="wait">⏳</div>
+<div class="row"><button data-a="A1">◀ 🌹 1</button><button data-a="B1">🌹 1 ▶</button></div>
+  <div class="row"><button data-a="A30">◀ 💎 30</button><button data-a="B30">💎 30 ▶</button></div>
+  <div class="row"><button data-a="A199">◀ 🚀 199</button><button data-a="B199">🚀 199 ▶</button></div>
+  <div class="row"><button data-a="Alike">◀ ❤️</button><button data-a="Blike">❤️ ▶</button></div>
+  <button data-a="restart">🔄 Новый раунд</button>
+  <button data-a="bots" id="botsBtn">🤖 Демо-боты</button>
+  <small>Q/W/E подарки левой · I/O/P правой · R рестарт · B боты · H пульт</small>
+</div>
+<script>
+"use strict";
+
+const CONFIG = {
+  wsUrl: "ws://localhost:21213/",
+  a: "UA", b: "KZ",          // страны (или ?a=..&b=..)
+  roundSeconds: 120,
+  endSeconds: 10,
+  votesPerCoin: 10,          // 1 монета = 10 очков поддержки
+  debateEvery: 40, debateLen: 12, debateBonus: 1.5,   // «камбэк»: отстающая страна получает ×1.5
+  safe: {top: 150, right: 110},
+};
+const COUNTRIES = {
+  UA:{n:"Украина",  c:"#ffd400", a:["украина","україна","ukraine","укр","ua"], f:["h","#0057B7","#FFD700"]},
+  RU:{n:"Россия",   c:"#3b7bff", a:["россия","russia","рф","ru","рос"], f:["h","#fff","#0039A6","#D52B1E"]},
+  KZ:{n:"Казахстан",c:"#00c8e0", a:["казахстан","kazakhstan","kz","каз","қазақстан"], f:["kz"]},
+  BY:{n:"Беларусь", c:"#e8434f", a:["беларусь","belarus","by","бел","білорусь","беларусі"], f:["by"]},
+  UZ:{n:"Узбекистан",c:"#25c25a",a:["узбекистан","uzbekistan","uz","узб","o'zbekiston","ozbekiston"], f:["uz"]},
+  PL:{n:"Польша",   c:"#ff4b6b", a:["польша","polska","poland","pl","польща"], f:["h","#fff","#DC143C"]},
+  DE:{n:"Германия", c:"#ffcc00", a:["германия","germany","deutschland","de","німеччина"], f:["h","#111","#DD0000","#FFCE00"]},
+  TR:{n:"Турция",   c:"#ff3b3b", a:["турция","turkey","türkiye","turkiye","tr"], f:["tr"]},
+  US:{n:"США",      c:"#6aa0ff", a:["сша","usa","америка","america","us"], f:["us"]},
+  BR:{n:"Бразилия", c:"#2fd16b", a:["бразилия","brasil","brazil","br"], f:["br"]},
+  FR:{n:"Франция",  c:"#4a7dff", a:["франция","france","fr"], f:["v","#0055A4","#fff","#EF4135"]},
+  IT:{n:"Италия",   c:"#2fbf5b", a:["италия","italia","italy","it"], f:["v","#009246","#fff","#CE2B37"]},
+  ES:{n:"Испания",  c:"#ffb400", a:["испания","españa","espana","spain","es"], f:["es"]},
+  GE:{n:"Грузия",   c:"#ff5050", a:["грузия","georgia","საქართველო","ge"], f:["ge"]},
+  AM:{n:"Армения",  c:"#ff8a1f", a:["армения","armenia","hayastan","am"], f:["h","#D90012","#0033A0","#F2A800"]},
+  AZ:{n:"Азербайджан",c:"#29b6f6",a:["азербайджан","azerbaijan","azərbaycan","az"], f:["h","#0092BC","#E4002B","#00AF66"]},
+  MD:{n:"Молдова",  c:"#ffd23f", a:["молдова","moldova","md"], f:["v","#0046AE","#FFD200","#CC092F"]},
+  KG:{n:"Кыргызстан",c:"#ff4040",a:["кыргызстан","киргизия","kyrgyzstan","kg"], f:["kz2"]},
+  TJ:{n:"Таджикистан",c:"#ff6b6b",a:["таджикистан","tajikistan","tj"], f:["h","#CC0000","#fff","#006600"]},
+  IN:{n:"Индия",    c:"#ff9933", a:["индия","india","in"], f:["in"]},
+};
+function flagEmoji(code){return String.fromCodePoint(...[...code].map(ch=>0x1F1E6+ch.charCodeAt(0)-65));}
+
+function drawFlag(g,code,x,y,w,h,gray){
+  const f=COUNTRIES[code].f; g.save(); g.beginPath(); roundRect(g,x,y,w,h,8); g.clip();
+  const S=(c)=>gray?"#555":c;
+  const stripes=(dir,cols)=>cols.forEach((c,i)=>{g.fillStyle=S(c); dir==="h"? g.fillRect(x,y+h*i/cols.length,w,h/cols.length+1): g.fillRect(x+w*i/cols.length,y,w/cols.length+1,h);});
+  switch(f[0]){
+    case "h": case "v": stripes(f[0],f.slice(1)); break;
+    case "kz": g.fillStyle=S("#00AFCA");g.fillRect(x,y,w,h);g.fillStyle=S("#FEC50C");circle(g,x+w*.5,y+h*.45,h*.2);g.fill();g.fillRect(x+w*.3,y+h*.72,w*.4,h*.06);break;
+    case "kz2": g.fillStyle=S("#E8112D");g.fillRect(x,y,w,h);g.fillStyle=S("#FFEF00");circle(g,x+w*.5,y+h*.5,h*.26);g.fill();g.fillStyle=S("#E8112D");circle(g,x+w*.5,y+h*.5,h*.13);g.fill();break;
+    case "by": g.fillStyle=S("#C8313E");g.fillRect(x,y,w,h);g.fillStyle=S("#4AA657");g.fillRect(x,y+h*.66,w,h*.34);g.fillStyle=S("#fff");g.fillRect(x,y,w*.1,h);g.fillStyle=S("#C8313E");for(let i=0;i<6;i++)g.fillRect(x+w*.03,y+h*(i/6)+h*.04,w*.04,h*.08);break;
+    case "uz": stripes("h",["#0099B5","#fff","#1EB53A"]);g.fillStyle=S("#CE1126");g.fillRect(x,y+h*.32,w,h*.03);g.fillRect(x,y+h*.65,w,h*.03);g.fillStyle=S("#fff");circle(g,x+w*.16,y+h*.16,h*.11);g.fill();g.fillStyle=S("#0099B5");circle(g,x+w*.2,y+h*.16,h*.1);g.fill();break;
+    case "tr": g.fillStyle=S("#E30A17");g.fillRect(x,y,w,h);g.fillStyle=S("#fff");circle(g,x+w*.4,y+h*.5,h*.27);g.fill();g.fillStyle=S("#E30A17");circle(g,x+w*.45,y+h*.5,h*.22);g.fill();g.fillStyle=S("#fff");star(g,x+w*.62,y+h*.5,h*.12);break;
+    case "us": for(let i=0;i<13;i++){g.fillStyle=S(i%2?"#fff":"#B22234");g.fillRect(x,y+h*i/13,w,h/13+1);} g.fillStyle=S("#3C3B6E");g.fillRect(x,y,w*.42,h*.54);g.fillStyle=S("#fff");for(let r=0;r<4;r++)for(let c=0;c<5;c++){circle(g,x+w*.05+c*w*.08,y+h*.07+r*h*.12,1.8);g.fill();}break;
+    case "br": g.fillStyle=S("#009C3B");g.fillRect(x,y,w,h);g.fillStyle=S("#FFDF00");g.beginPath();g.moveTo(x+w*.5,y+h*.1);g.lineTo(x+w*.92,y+h*.5);g.lineTo(x+w*.5,y+h*.9);g.lineTo(x+w*.08,y+h*.5);g.fill();g.fillStyle=S("#002776");circle(g,x+w*.5,y+h*.5,h*.22);g.fill();break;
+    case "es": g.fillStyle=S("#AA151B");g.fillRect(x,y,w,h);g.fillStyle=S("#F1BF00");g.fillRect(x,y+h*.25,w,h*.5);break;
+    case "ge": g.fillStyle=S("#fff");g.fillRect(x,y,w,h);g.fillStyle=S("#E8112D");g.fillRect(x+w*.44,y,w*.12,h);g.fillRect(x,y+h*.42,w,h*.16);break;
+    case "in": stripes("h",["#FF9933","#fff","#138808"]);g.strokeStyle=S("#000080");g.lineWidth=2;circle(g,x+w*.5,y+h*.5,h*.12);g.stroke();break;
+  }
+  g.restore();
+  g.lineWidth=3; g.strokeStyle="rgba(0,0,0,.55)"; g.beginPath(); roundRect(g,x,y,w,h,8); g.stroke();
+}
+function circle(g,x,y,r){g.beginPath();g.arc(x,y,r,0,Math.PI*2);}
+function star(g,x,y,r){g.beginPath();for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,rr=i%2?r*.45:r;g.lineTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr);}g.closePath();g.fill();}
+function roundRect(g,x,y,w,h,r){g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();}
+
+
+/* ===================== ОБЩЕЕ ЯДРО (подключение, события, эффекты) ===================== */
+const Q=new URLSearchParams(location.search);
+if(Q.get("ws")) CONFIG.wsUrl=Q.get("ws");
+if(Q.get("round")&&CONFIG.roundSeconds) CONFIG.roundSeconds=Math.max(20,+Q.get("round")||CONFIG.roundSeconds);
+const SRC=(Q.get("src")||"demo").toLowerCase();
+const STREAMER=(Q.get("user")||"").replace(/^@/,"").slice(0,30);
+const LIKES_ON=Q.get("likes")!=="0";
+const JOIN_CMD=(Q.get("join")||"!join").trim().toLowerCase();
+const GIFT_MAP=new Map();   // map=giftId:action:power
+(Q.get("map")||"").split(",").forEach(x=>{const [id,a,p]=x.split(":"); if(id&&a) GIFT_MAP.set(String(id).trim(),{action:a.trim().toLowerCase(),power:+p||0});});
+const OBS=Q.get("obs")==="1";
+if(OBS||!!window.obsstudio||(Q.has("src")&&Q.get("panel")!=="1")) document.getElementById("panel").style.display="none";
+const cv=document.getElementById("game"), ctx=cv.getContext("2d");
+const W=1080,H=1920, PW=W-CONFIG.safe.right, CX=PW/2+20, TOP=CONFIG.safe.top, CHAT_Y=1150; // ниже CHAT_Y у зрителей чат TikTok
+const FONT='"Segoe UI","Arial Black",system-ui,sans-serif';
+let time=0, shake=0, flash=0, parts=[], floaters=[], feed=[], banner=null;
+let botsOn=SRC==="demo"||Q.get("demo")==="1";
+const streaks=new Map(), likeBanks=new Map(), avatars=new Map();
+
+let ws=null, wsState="wait";
+function setStatus(s,t){ wsState=s; const el=document.getElementById("status"); el.className=s; el.textContent=t; }
+function connect(){ try{ws=new WebSocket(CONFIG.wsUrl);}catch(e){setStatus("bad","❌ Неверный адрес");return;}
+  setStatus("wait","⏳ Подключение к "+CONFIG.wsUrl); ws.onopen=()=>setStatus("ok","🟢 Эфир подключён");
+  ws.onmessage=e=>{try{handleRaw(JSON.parse(e.data));}catch(_){}}; ws.onclose=()=>{setStatus("bad","🔴 Нет связи — переподключаюсь…");setTimeout(connect,3000);}; ws.onerror=()=>{try{ws.close();}catch(_){}}; }
+function handleRaw(msg){
+  if(msg.type&&msg.user&&!msg.data){ const u=msg.user, base={uniqueId:u.id,nickname:u.name};   // формат лаунчера
+    if(msg.type==="gift") msg={event:"gift",data:{...base,giftId:msg.gift?.id,giftName:msg.gift?.name,diamondCount:msg.gift?.coins,repeatCount:msg.gift?.count,giftType:0}};
+    else if(msg.type==="like") msg={event:"like",data:{...base,likeCount:msg.likes}};
+    else if(msg.type==="comment") msg={event:"chat",data:{...base,comment:msg.text}};
+    else msg={event:msg.type,data:base}; }
+  const ev=String(msg.event||msg.type||"").toLowerCase(), d=msg.data||msg, uu=d.user||{};
+  const u={id:String(d.uniqueId||d.userId||uu.uniqueId||"anon"), name:String(d.nickname||uu.nickname||d.uniqueId||"Зритель").slice(0,22), avatar:d.profilePictureUrl||uu.profilePictureUrl||null};
+  switch(ev){
+    case "chat": case "comment": onComment(u,String(d.comment||"")); break;
+    case "like": if(LIKES_ON) onLike(u,Math.max(1,Math.min(200,+d.likeCount||1))); break;
+    case "follow": onFollow(u); break;
+    case "gift": { const unit=+(d.diamondCount||1), name=String(d.giftName||"подарок").slice(0,20), rc=+(d.repeatCount||1);
+      if(+d.giftType===1){ const key=u.id+"|"+(d.giftId||name), prev=streaks.get(key)||0, delta=(prev>0&&rc>=prev)?rc-prev:rc;
+        if(d.repeatEnd) streaks.delete(key); else streaks.set(key,rc); if(delta>0) onGift(u,unit,delta,name,d.giftId); }
+      else onGift(u,unit,rc,name,d.giftId); }
+  }
+}
+/* лайки копятся у каждого зрителя: каждые N лайков = 1 очко */
+function likePoints(u,n,per){ const b=(likeBanks.get(u.id)||0)+n, p=Math.floor(b/per); likeBanks.set(u.id,b%per); return p; }
+function mapped(giftId){ return giftId!=null?GIFT_MAP.get(String(giftId)):null; }
+
+function txt(s,x,y,size,c,align="center",w=900,stroke=true){ ctx.font=`${w} ${size}px ${FONT}`; ctx.textAlign=align; ctx.textBaseline="middle";
+  if(stroke){ctx.lineWidth=Math.max(4,size/6);ctx.strokeStyle="rgba(0,0,0,.85)";ctx.lineJoin="round";ctx.strokeText(s,x,y);} ctx.fillStyle=c; ctx.fillText(s,x,y); }
+function fit(s,x,y,size,maxW,c,align="center"){ ctx.font=`900 ${size}px ${FONT}`; while(size>12&&ctx.measureText(s).width>maxW){size--;ctx.font=`900 ${size}px ${FONT}`;} txt(s,x,y,size,c,align); }
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+function avatarImg(url){ if(!url) return null; if(avatars.has(url)) return avatars.get(url); const im=new Image(); im.src=url; avatars.set(url,im); return im; }
+function avatar(name,url,x,y,r,ring){ ctx.save(); ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); const im=avatarImg(url);
+  if(im&&im.complete&&im.naturalWidth){ctx.clip();ctx.drawImage(im,x-r,y-r,r*2,r*2);ctx.restore();}
+  else { let h=0; for(const ch of name) h=(h*31+ch.charCodeAt(0))|0; ctx.fillStyle=`hsl(${Math.abs(h)%360},60%,45%)`; ctx.fill(); ctx.restore(); txt(([...name][0]||"?").toUpperCase(),x,y+2,r*1.1,"#fff","center",900,false); }
+  if(ring){ ctx.lineWidth=Math.max(3,r*.14); ctx.strokeStyle=ring; ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.stroke(); } }
+const fmt=s=>{s=Math.max(0,Math.ceil(s));return Math.floor(s/60)+":"+String(s%60).padStart(2,"0");};
+function showBanner(title,sub,c){ banner={title,sub,c,life:2.8}; }
+function addFeed(text,c){ feed.unshift({text,c,life:6}); if(feed.length>3) feed.pop(); }
+function burst(x,y,c,n){ for(let i=0;i<n&&parts.length<600;i++){const a=Math.random()*Math.PI*2,s=150+Math.random()*500; parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-200,life:.8+Math.random()*.6,c,size:5+Math.random()*8,g:900});} }
+function emo(x,y,e,size=32){ if(parts.length<600) parts.push({x,y,vx:(Math.random()-.5)*40,vy:-200,life:1.2,emo:e,size}); }
+function floater(x,y,text,c="#fff",size=48){ floaters.push({x,y,text,c,size,life:1.4}); if(floaters.length>25) floaters.shift(); }
+function updateFx(dt){
+  shake=Math.max(0,shake-dt*2); flash=Math.max(0,flash-dt*2.5);
+  for(const p of parts){p.life-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;if(p.g)p.vy+=p.g*dt;} parts=parts.filter(p=>p.life>0);
+  floaters.forEach(f=>{f.life-=dt;f.y-=60*dt;}); floaters=floaters.filter(f=>f.life>0);
+  feed.forEach(f=>f.life-=dt); feed=feed.filter(f=>f.life>0);
+  if(banner){banner.life-=dt; if(banner.life<=0) banner=null;}
+}
+function drawFx(){
+  for(const p of parts){ ctx.globalAlpha=Math.max(0,Math.min(1,p.life)); if(p.emo) txt(p.emo,p.x,p.y,p.size,"#fff","center",400,false); else {ctx.fillStyle=p.c;ctx.fillRect(p.x,p.y,p.size,p.size);} }
+  ctx.globalAlpha=1; for(const f of floaters){ ctx.globalAlpha=Math.min(1,f.life); txt(f.text,f.x,f.y,f.size,f.c); } ctx.globalAlpha=1;
+  if(flash>0){ ctx.fillStyle=`rgba(255,255,255,${flash*.35})`; ctx.fillRect(-40,-40,W+80,H+80); }
+}
+function drawHeader(title,color,sub){
+  if(STREAMER) txt("@"+STREAMER,40,TOP-30,24,"rgba(255,255,255,.6)","left",700,false);
+  if(SRC!=="demo"&&wsState!=="ok") txt(wsState==="bad"?"🔴 нет связи":"⏳",PW-60,TOP-30,22,"#f88","center",700);
+  fit(title,CX,TOP+40,64,PW-60,color); if(sub) txt(sub,CX,TOP+100,34,"#fff");
+}
+function drawRules(y,l1,l2){ ctx.fillStyle="rgba(0,0,0,.5)"; rr(40,y,PW-40,100,18); ctx.fill(); fit(l1,CX,y+28,26,PW-80,"#fff"); fit(l2,CX,y+72,25,PW-80,"#ffd98a"); }
+function drawFeed(y,gap=36){ feed.forEach((f,i)=>{ ctx.globalAlpha=Math.min(1,f.life); fit(f.text,CX,y+i*gap,26,PW-120,f.c); }); ctx.globalAlpha=1; }
+function drawBanner(y){ if(!banner) return; const a=Math.min(1,banner.life*2), s=1+Math.max(0,banner.life-2.4)*1.2; ctx.save(); ctx.globalAlpha=a; ctx.translate(CX,y); ctx.scale(s,s);
+  ctx.fillStyle="rgba(0,0,0,.78)"; rr(-440,-80,880,160,30); ctx.fill(); fit(banner.title,0,-26,60,840,banner.c); fit(banner.sub,0,40,32,840,"#fff"); ctx.restore(); }
+function dim(){ ctx.fillStyle="rgba(0,0,0,.8)"; ctx.fillRect(0,0,W,H); }
+function topList(map,n){ return [...map.values()].sort((a,b)=>b.pts-a.pts).slice(0,n); }
+function credit(map,u,pts,extra){ let c=map.get(u.id); if(!c){c={name:u.name,avatar:u.avatar,pts:0,...(extra||{})};map.set(u.id,c);} c.name=u.name; if(u.avatar)c.avatar=u.avatar; c.pts+=pts; return c; }
+const BOTN=["Саня_228","katya.love","Мурат","DimonPro","Олежка","айгерим","Vlad_TT","Настя","Бека","Lena_K","Тимур","Ярик","ZhanaR","Макс","Polina","Арман","Dasha","Kostya","Аня","Mira"];
+const bots=BOTN.map((n,i)=>({id:"bot"+i,name:n,act:Math.random()*3}));
+function eachBot(dt,fn){ for(const b of bots){ b.act-=dt; if(b.act>0) continue; b.act=.8+Math.random()*2.8; fn({id:b.id,name:b.name},Math.random(),b); } }
+function wirePanel(act,keys){
+  const btn=document.getElementById("botsBtn"); const upd=()=>btn&&(btn.textContent="🤖 Демо-боты: "+(botsOn?"вкл":"выкл"));
+  const run=a=>{ if(a==="bots") botsOn=!botsOn; else act(a); upd(); };
+  document.getElementById("panel").addEventListener("click",e=>{const b=e.target.closest("button"); if(b) run(b.dataset.a);});
+  addEventListener("keydown",e=>{ const k=e.key.toLowerCase(); if(keys[k]) run(keys[k]); else if(k==="b"||k==="и") run("bots");
+    else if(k==="h"||k==="р"){ const p=document.getElementById("panel"); p.style.display=p.style.display==="none"?"":"none"; } });
+  upd();
+}
+function start(){
+  const resize=()=>{ const s=Math.min(innerWidth/W,innerHeight/H); cv.style.width=W*s+"px"; cv.style.height=H*s+"px"; };
+  addEventListener("resize",resize); resize();
+  if(SRC==="demo") setStatus("wait","🤖 Демо-режим (без эфира)"); else connect();
+  let last=performance.now();
+  const loop=now=>{ const dt=Math.min(.05,(now-last)/1000); last=now; time+=dt; gameUpdate(dt); if(botsOn) runBots(dt); updateFx(dt);
+    ctx.save(); if(shake>0) ctx.translate((Math.random()-.5)*28*shake,(Math.random()-.5)*28*shake); gameDraw(); drawFx(); ctx.restore(); gameHud(); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+}
+window.addEventListener("message",e=>{ if(e.data&&e.data.source==="magma-launcher"&&e.data.event){ try{ handleRaw(e.data.event); }catch(_){} } }); // GAME-CONTRACT §6
+
+/* ===================== ДУЭЛЬ ДВУХ СТРАН (общие правила для всех дуэлей) ===================== */
+// Единые правила: страна выбирается в чате (название, флаг или ровно «1»/«2»), иначе — в меньшую команду.
+// Подарки: 1–9 монет — малый, 10–99 — средний, 100+ — большой. Лайки: 20 = 1 монета. Подписка = 5 монет.
+// Подарки во время экрана победы не теряются — засчитываются в начале следующего раунда.
+CONFIG.a=(Q.get("a")||CONFIG.a).toUpperCase(); CONFIG.b=(Q.get("b")||CONFIG.b).toUpperCase();
+if(!COUNTRIES[CONFIG.a]) CONFIG.a="UA"; if(!COUNTRIES[CONFIG.b]||CONFIG.b===CONFIG.a) CONFIG.b=CONFIG.a==="KZ"?"UA":"KZ";
+const TIER=(unit)=>unit>=100?"big":unit>=10?"mid":"small";
+let sides=[], members=new Map(), fans=new Map(), phase="play", phaseT=0, roundN=0, winnerSide=-1, pendingG=[];
+function makeSides(){ sides=[CONFIG.a,CONFIG.b].map((code,i)=>({i,code,name:COUNTRIES[code].n,color:COUNTRIES[code].c,score:0})); }
+function sideOf(u){ if(members.has(u.id)) return members.get(u.id);
+  const c0=[...members.values()].filter(v=>v===0).length, c1=members.size-c0, s=c0<=c1?0:1; members.set(u.id,s);
+  addFeed(`${u.name} → ${sides[s].name} (напиши страну, чтобы сменить)`,sides[s].color); return s; }
+function duelComment(u,text){ const ex=text.trim(); let s=-1;
+  if(ex==="1"||ex==="2") s=+ex-1; else { const t=" "+text.toLowerCase().replace(/[!?.,;:()"'«»]/g," ")+" ";
+    sides.forEach(sd=>{ if(s<0&&(text.includes(flagEmoji(sd.code))||COUNTRIES[sd.code].a.some(al=>t.includes(" "+al+" ")))) s=sd.i; }); }
+  if(s<0){ if(ex.toLowerCase().startsWith(JOIN_CMD)) sideOf(u); return; }
+  if(members.get(u.id)!==s){ members.set(u.id,s); addFeed(`${u.name} за ${sides[s].name}`,sides[s].color); } }
+function onComment(u,text){ duelComment(u,text); }
+function onGift(u,unit,count,name,giftId){
+  if(phase!=="play"){ if(pendingG.length<200) pendingG.push([u,unit,count,name,giftId]); return; }
+  const s=sideOf(u); credit(fans,u,unit*count,{s}); const mp=mapped(giftId);
+  if(mp){ if(mp.action==="none") return; return modeGift(s,u,mp.power,count,name,mp.action); }
+  modeGift(s,u,unit,count,name,TIER(unit));
+}
+function onLike(u,n){ if(phase!=="play") return; const s=sideOf(u); const p=likePoints(u,n,20); if(p){ credit(fans,u,p,{s}); modeGift(s,u,1,p,"лайки","small"); }
+  if(Math.random()<.25) emo(s===0?CX-240:CX+240,CHAT_Y-60,"❤️",30); }
+function onFollow(u){ if(phase!=="play") return; const s=sideOf(u); modeGift(s,u,5,1,"подписка","small"); }
+function newDuelRound(){ roundN++; phase="play"; phaseT=CONFIG.roundSeconds; winnerSide=-1; fans=new Map(); sides.forEach(s=>s.score=0); modeReset();
+  const q=pendingG; pendingG=[]; window.__giftReplay=true; try{ q.forEach(a=>onGift(...a)); }finally{ window.__giftReplay=false; }; }
+function finishDuel(w){ if(phase!=="play") return; winnerSide=w; phase="end"; phaseT=CONFIG.endSeconds; shake=1; burst(CX,700,sides[w]?sides[w].color:"#fff",120);
+  try{ const k=GAME_ID+"_wins", o=JSON.parse(localStorage.getItem(k)||"{}"); if(sides[w]){ o[sides[w].code]=(o[sides[w].code]||0)+1; localStorage.setItem(k,JSON.stringify(o)); } }catch(e){} }
+function winsOf(code){ try{ return (JSON.parse(localStorage.getItem(GAME_ID+"_wins")||"{}")[code])||0; }catch(e){ return 0; } }
+function duelTick(dt){ phaseT-=dt; if(phase==="end"&&phaseT<=0) newDuelRound(); }
+/* шапка: флаги, названия, счёт */
+function drawVersus(y,left,right){ const A=sides[0],B=sides[1];
+  ctx.fillStyle="rgba(0,0,0,.5)"; rr(40,y,PW-40,150,24); ctx.fill();
+  drawFlag(ctx,A.code,70,y+20,120,78,false); drawFlag(ctx,B.code,PW-150,y+20,120,78,false);
+  fit(A.name,130,y+120,28,200,A.color); fit(B.name,PW-90,y+120,28,200,B.color);
+  fit(left,CX-150,y+60,52,240,"#fff"); txt("VS",CX,y+60,40,"#ffd23f"); fit(right,CX+150,y+60,52,240,"#fff");
+  const n0=[...members.values()].filter(v=>v===0).length; txt(`👥 ${n0}   ·   🏆 ${winsOf(A.code)} : ${winsOf(B.code)}   ·   👥 ${members.size-n0}`,CX,y+120,24,"#ddd","center",700); }
+function drawDuelEnd(title,scoreText){ dim(); if(winnerSide<0){ txt("НИЧЬЯ 🤝",CX,800,90,"#ffd23f"); txt(`Новый раунд через ${Math.ceil(phaseT)}…`,CX,950,36,"#ccc"); return; }
+  const w=sides[winnerSide]; fit(title,CX,480,66,PW-60,"#ffd23f"); drawFlag(ctx,w.code,CX-200,560,400,256,false); fit(w.name.toUpperCase(),CX,900,100,860,w.color);
+  if(scoreText) fit(scoreText,CX,990,40,PW-80,"#fff");
+  const top=[...fans.values()].filter(f=>f.s===winnerSide).sort((a,b)=>b.pts-a.pts).slice(0,3);
+  if(top.length){ txt("⭐ Герои раунда",CX,1080,40,"#ffb02e"); top.forEach((f,i)=>{ avatar(f.name,f.avatar,CX-320,1150+i*62,24,w.color); txt(`${["🥇","🥈","🥉"][i]} ${f.name.slice(0,18)}`,CX-280,1150+i*62,34,"#fff","left",800); txt(Math.round(f.pts)+" 💰",CX+320,1150+i*62,34,"#ffd23f","right",800); }); }
+  txt(`Новый раунд через ${Math.ceil(phaseT)}…`,CX,1380,34,"#ccc"); }
+function duelBots(dt){ eachBot(dt,(u,r)=>{ if(!members.has(u.id)){ onComment(u,Math.random()<.5?"1":"2"); return; }
+  if(r<.55) onLike(u,15+Math.floor(Math.random()*40)); else if(r<.92) onGift(u,1,1+Math.floor(Math.random()*3),"Роза"); else if(r<.99) onGift(u,Math.random()<.5?5:30,1,"Пончик"); else onGift(u,199,1,"Ракета"); }); }
+function tSide(s){ const u={id:"t_"+s,name:"Тест-"+sides[s].name}; members.set(u.id,s); return u; }
+function duelAct(a){ const s=a[0]==="A"?0:1;
+  if(/^[AB]\d+$/.test(a)) onGift(tSide(s),+a.slice(1),1,{1:"Роза",30:"Кристалл",199:"Ракета"}[a.slice(1)]||"подарок");
+  else if(/^[AB]like$/.test(a)) onLike(tSide(s),200); else if(a==="restart"){ phase="end"; phaseT=0; } }
+const DUEL_KEYS={q:"A1",w:"A30",e:"A199",i:"B1",o:"B30",p:"B199",й:"A1",ц:"A30",у:"A199",ш:"B1",щ:"B30",з:"B199",r:"restart",к:"restart"};
+const DUEL_BUTTONS=1;
+function runBots(dt){ if(phase==="play") duelBots(dt); }
+
+/* ===================== ИГРА ===================== */
+const GAME_ID="fans";
+let fly=[], debate=0, nextDebate=0, posters=[[],[]];
+function modeReset(){ fly=[]; debate=0; nextDebate=CONFIG.debateEvery; posters=[[],[]]; showBanner("📣 БИТВА БОЛЕЛЬЩИКОВ!","Поддержи свою страну подарками","#ffd23f"); }
+function trailing(){ return sides[0].score===sides[1].score?-1:(sides[0].score<sides[1].score?0:1); }
+function modeGift(s,u,unit,count,name,kind){
+  let votes=unit*count*CONFIG.votesPerCoin; if(debate>0&&trailing()===s) votes=Math.round(votes*CONFIG.debateBonus);
+  if(kind==="votes"||kind==="small"||kind==="mid"||kind==="big") sides[s].score+=votes;
+  for(let i=0;i<Math.min(8,1+Math.floor(votes/30));i++) fly.push({s,t:-i*.08,x:s===0?CX-240+(Math.random()-.5)*300:CX+240+(Math.random()-.5)*300});
+  if(kind==="mid"){ posters[s].push({name:u.name,t:0}); if(posters[s].length>4) posters[s].shift(); addFeed(`🚩 ${u.name}: ${name} — фан-баннер за ${sides[s].name} +${votes}`,sides[s].color); }
+  else if(kind==="big"){ shake=.6; showBanner(`🥁 ФАН-ЗОНА! ${u.name}`,`${name}: +${votes} очков для «${sides[s].name}»`,sides[s].color); burst(s===0?CX-240:CX+240,820,sides[s].color,60); }
+  else if(votes>=50) floater(s===0?CX-240:CX+240,560,`+${votes}`,sides[s].color,40);
+}
+function gameUpdate(dt){ duelTick(dt); if(phase!=="play") return;
+  nextDebate-=dt; if(nextDebate<=0){ debate=CONFIG.debateLen; nextDebate=CONFIG.debateEvery; const t=trailing(); showBanner("🔥 КАМБЭК!",t<0?"Ничья — всё решат подарки":`${sides[t].name}: подарки ×${CONFIG.debateBonus} ${CONFIG.debateLen} с`,"#ff8ad8"); }
+  debate=Math.max(0,debate-dt);
+  for(const f of fly) f.t+=dt*1.6; fly=fly.filter(f=>f.t<1); if(fly.length>120) fly.splice(0,fly.length-120);
+  if(phaseT<=0) finishDuel(sides[0].score===sides[1].score?-1:(sides[0].score>sides[1].score?0:1));
+}
+function gameDraw(){
+  const bg=ctx.createLinearGradient(0,0,0,H); bg.addColorStop(0,"#101a34"); bg.addColorStop(1,"#1d0f2a"); ctx.fillStyle=bg; ctx.fillRect(-40,-40,W+80,H+80);
+  // зал: флажки-гирлянды
+  for(let i=0;i<14;i++){ const x=40+i*(PW-40)/13, y=470+Math.sin(i*.9)*10; ctx.fillStyle=i%2?sides[0].color:sides[1].color; ctx.beginPath(); ctx.moveTo(x-18,y); ctx.lineTo(x+18,y); ctx.lineTo(x,y+34); ctx.fill(); }
+  const tot=Math.max(1,sides[0].score+sides[1].score);
+  sides.forEach((sd,i)=>{ const x=i===0?CX-240:CX+240, y=600, w=260, h=400, k=sd.score/tot;
+    // трибуна-шкала
+    ctx.fillStyle="rgba(255,255,255,.08)"; rr(x-w/2,y,w,h,24); ctx.fill(); ctx.strokeStyle="rgba(255,255,255,.5)"; ctx.lineWidth=5; rr(x-w/2,y,w,h,24); ctx.stroke();
+    const fh=(h-20)*Math.min(1,k*1.4+ (sd.score?0.05:0)); ctx.fillStyle=sd.color; ctx.globalAlpha=.85; rr(x-w/2+10,y+h-10-fh,w-20,fh,16); ctx.fill(); ctx.globalAlpha=1;
+    for(let r=0;r<fh/26;r++) for(let c=0;c<4;c++){ ctx.fillStyle="rgba(255,255,255,.45)"; ctx.beginPath(); ctx.arc(x-w/2+40+c*56+(r%2)*10,y+h-24-r*26,10,0,Math.PI*2); ctx.fill(); }
+    
+    fit(`${Math.round(k*100)}%`,x,y+h/2,90,w-20,"#fff");
+    posters[i].forEach((p,j)=>{ const px=i===0?62:PW-48, py=600+j*100; ctx.fillStyle=sd.color; rr(px-50,py-40,100,80,10); ctx.fill(); txt("🚩",px,py-12,30,"#fff","center",400,false); fit(p.name,px,py+22,16,92,"#fff"); });
+  });
+  for(const f of fly){ if(f.t<0) continue; const tx=f.s===0?CX-240:CX+240; const x=f.x+(tx-f.x)*f.t, y=CHAT_Y-20+(620-(CHAT_Y-20))*f.t-Math.sin(f.t*Math.PI)*120;
+    txt("❤️",x,y,30,"#fff","center",400,false); }
+}
+function gameHud(){
+  drawHeader("📣 БИТВА БОЛЕЛЬЩИКОВ","#ffd23f",phase==="play"?`Раунд ${roundN} · ⏱ ${fmt(phaseT)}`+(debate>0?` · 🔥 КАМБЭК ${Math.ceil(debate)}`:` · камбэк через ${Math.ceil(nextDebate)}`):" ");
+  drawVersus(TOP+140,sides[0].score.toLocaleString("ru-RU"),sides[1].score.toLocaleString("ru-RU"));
+  drawRules(1060,"💬 Напиши страну или «1» / «2» — и поддержи её подарками",`🎁 1 монета = ${CONFIG.votesPerCoin} очков · 💎 10+ фан-баннер · 🚀 100+ фан-зона · 🔥 камбэк: отстающим ×${CONFIG.debateBonus}`);
+  drawFeed(1200);
+  if(phase==="play") drawBanner(560);
+  if(phase==="end") drawDuelEnd("📣 САМЫЕ ГРОМКИЕ БОЛЕЛЬЩИКИ",`${sides[0].score.toLocaleString("ru-RU")} : ${sides[1].score.toLocaleString("ru-RU")} очков`);
+}
+makeSides(); newDuelRound(); wirePanel(duelAct,DUEL_KEYS); start();
+window.__game={get sides(){return sides},get phase(){return phase},handleRaw,act:duelAct};
+
+</script>
+<script id="giftfx">
+"use strict";
+window.GIFT_FX_TARGET=id=>{ const s=members.get(id); if(s==null) return null; return {x:s===0?CX-240:CX+240,y:760,color:sides[s].color}; };
+/* ===================== ЭФФЕКТ ПОДАРКА: видно, кто подарил, что и куда это пошло ===================== */
+(function(){
+  const base=document.getElementById("game"); if(!base) return;
+  let g;
+  const fx=document.createElement("canvas"); fx.width=810; fx.height=1440; // 0.75 разрешения: в 4/3 дешевле, на стриме 720p разницы не видно fx.id="giftfx";
+  fx.style.cssText="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:3";
+  document.body.appendChild(fx); g=fx.getContext("2d");
+  const F='"Segoe UI","Arial Black",system-ui,sans-serif';
+  const TIERS={ small:{c1:"#ff7eb3",c2:"#ff4f8b",hold:.55,scale:1,emo:"🌹",parts:14},
+                mid:{c1:"#7fd8ff",c2:"#3b7bff",hold:.95,scale:1.1,emo:"💎",parts:40},
+                big:{c1:"#ffe27a",c2:"#ff8a00",hold:1.7,scale:1.7,emo:"🚀",parts:110} };
+  const tierOf=u=>u>=100?"big":u>=10?"mid":"small";
+  let cards=[], sparks=[], rings=[], pops=[], flash=0, last=performance.now();
+  const imgs=new Map(), rate=[];
+  function img(url){ if(!url) return null; if(imgs.has(url)) return imgs.get(url); const im=new Image(); im.src=url; imgs.set(url,im); return im; }
+  function target(uid){ try{ const t=window.GIFT_FX_TARGET&&window.GIFT_FX_TARGET(uid); if(t) return t; }catch(e){} return {x:540,y:330,color:"#ffd23f"}; }
+  function add(u,unit,count,name,pic){
+    const tier=tierOf(unit), coins=unit*count, key=u.id+"|"+name, now=performance.now();
+    // комбо: тот же зритель и тот же подарок подряд — одна карточка, счётчик ×N растёт
+    const ex=cards.find(c=>c.key===key&&c.st<2&&now-c.born<2500);
+    if(ex){ ex.count+=count; ex.coins+=coins; ex.bump=1; ex.dirty=true; ex.t=Math.min(ex.t,.3); return; }
+    const T=TIERS[tier]; const lane=cards.filter(c=>c.st<2&&c.tier!=="big").length;
+    rate.push(now); while(rate.length&&now-rate[0]>1000) rate.shift();
+    if(tier!=="big"&&(lane>=(tier==="small"?3:4)||rate.length>10)){ // поток: без карточек, только вспышка и +X // поток мелких подарков: без карточки, сразу вспышка и «+X» у своей команды
+      const tg=target(u.id); rings.push({x:tg.x,y:tg.y,r:10,max:tier==="mid"?160:90,c:tg.color||T.c1,life:1}); pops.push({x:tg.x+(Math.random()-.5)*60,y:tg.y-40,text:`+${coins} 💰`,c:"#fff",size:38,life:1.1}); return; }
+    const big=tier==="big";
+    if(big&&cards.filter(c=>c.tier==="big"&&c.st<2).length>=2){ const tg=target(u.id); rings.push({x:tg.x,y:tg.y,r:10,max:300,c:tg.color||T.c1,life:1}); pops.push({x:tg.x,y:tg.y-40,text:`+${coins} 💰`,c:"#ffe27a",size:64,life:1.3}); flash=Math.max(flash,.6); return; }
+    // свободный слот (2×2 сетка), чтобы карточки не лезли друг на друга; большая — отдельно сверху
+    const used=new Set(cards.filter(c=>c.st===0&&c.slot!=null).map(c=>c.slot)); let slot=0; while(used.has(slot)&&slot<3) slot++;
+    const bigUsed=cards.some(c=>c.st===0&&c.tier==="big");
+    cards.push({key,u,name,pic,tier,T,count,coins,born:now,st:0,t:0,bump:0,slot:big?null:slot,
+      x:big?520:265+((slot%2)*470), y:big?(bigUsed?1060:880):680+Math.floor(slot/2)*130, s:0});
+    if(cards.length>10) cards.splice(0,cards.length-10);
+    if(big) flash=1;
+  }
+  // перехватываем события, не меняя логику игры: картинки/аватары — из сырых событий, сам подарок — из onGift игры
+  const pics=new Map(), avs=new Map();
+  if(typeof window.handleRaw==="function"){ const oh=window.handleRaw; window.handleRaw=function(msg){
+    try{ const d=(msg&&msg.data)||{}, uu=d.user||{}; const id=String(d.uniqueId||d.userId||uu.uniqueId||"");
+      if(id){ const av=d.profilePictureUrl||uu.profilePictureUrl; if(av) avs.set(id,av); const pic=d.giftPictureUrl||(d.giftDetails&&d.giftDetails.giftImage&&d.giftDetails.giftImage.giftPictureUrl); if(pic) pics.set(id+"|"+String(d.giftName||"").slice(0,16),pic); } }catch(e){}
+    return oh.apply(this,arguments); }; }
+  if(typeof window.onGift!=="function") return;
+  const og=window.onGift; window.onGift=function(u,unit,count,name){
+    const r=og.apply(this,arguments);
+    if(window.__giftReplay) return r; // повтор подарков с экрана победы — карточка уже была
+    try{ const nm=String(name||"подарок").slice(0,16), id=String(u&&u.id||"anon"), n=Math.max(1,+count||1);
+      add({id,name:String(u&&u.name||"Зритель").slice(0,20),avatar:(u&&u.avatar)||avs.get(id)||null},Math.max(1,+unit||1),n,nm,pics.get(id+"|"+nm)||null); }catch(e){}
+    return r; };
+  function rr(x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();}
+  function text(s,x,y,size,c,al="center",w=900){ g.font=`${w} ${size}px ${F}`; g.textAlign=al; g.textBaseline="middle"; g.lineWidth=Math.max(4,size/6); g.strokeStyle="rgba(0,0,0,.85)"; g.lineJoin="round"; g.strokeText(s,x,y); g.fillStyle=c; g.fillText(s,x,y); }
+  function fitW(s,size,maxW){ g.font=`900 ${size}px ${F}`; while(size>12&&g.measureText(s).width>maxW){ size--; g.font=`900 ${size}px ${F}`; } return size; }
+  // карточка рисуется один раз в отдельный холст (и заново только при комбо или когда загрузилась картинка)
+  const CW=420, CH=110, PAD=40;
+  function ready(im){ return !!(im&&im.complete&&im.naturalWidth); }
+  function renderCard(c){
+    const T=c.T, cv=c.cv||(c.cv=document.createElement("canvas")); cv.width=CW+PAD*2; cv.height=CH+PAD*2; const q=cv.getContext("2d");
+    const G=g; g=q; g.save(); g.translate(PAD+CW/2,PAD+CH/2);
+    if(c.tier!=="small"){ g.shadowColor=T.c1; g.shadowBlur=c.tier==="big"?36:22; }
+    const gr=g.createLinearGradient(-CW/2,0,CW/2,0); gr.addColorStop(0,T.c2); gr.addColorStop(1,T.c1);
+    g.fillStyle=gr; rr(-CW/2,-CH/2,CW,CH,CH/2); g.fill(); g.shadowBlur=0;
+    g.lineWidth=5; g.strokeStyle="rgba(255,255,255,.9)"; rr(-CW/2,-CH/2,CW,CH,CH/2); g.stroke();
+    const ax=-CW/2+CH/2, R=42, av=img(c.u.avatar); g.save(); g.beginPath(); g.arc(ax,0,R,0,Math.PI*2); g.clip();
+    if(ready(av)) g.drawImage(av,ax-R,-R,R*2,R*2); else { let hh=0; for(const ch of c.u.name) hh=(hh*31+ch.charCodeAt(0))|0; g.fillStyle=`hsl(${Math.abs(hh)%360},60%,42%)`; g.fillRect(ax-R,-R,R*2,R*2); text(([...c.u.name][0]||"?").toUpperCase(),ax,3,44,"#fff"); }
+    g.restore(); g.lineWidth=5; g.strokeStyle="#fff"; g.beginPath(); g.arc(ax,0,R,0,Math.PI*2); g.stroke();
+    const nx=ax+R+12, tw=CW-CH-100;
+    text(c.u.name,nx,-21,fitW(c.u.name,34,tw),"#fff","left");
+    const gl=c.name+(c.count>1?` ×${c.count}`:""); text(gl,nx,22,fitW(gl,28,tw),"#fff","left",800);
+    const gx=CW/2-54, pic=img(c.pic);
+    if(ready(pic)) g.drawImage(pic,gx-42,-42,84,84); else { g.font=`400 64px ${F}`; g.textAlign="center"; g.textBaseline="middle"; g.fillText(T.emo,gx,3); }
+    if(c.count>1) text("×"+c.count,CW/2-6,-CH/2+6,40,"#ffe600");
+    g.restore(); g=G;
+    c.dirty=false; c.imgsOk=ready(av)||!c.u.avatar; c.picOk=ready(pic)||!c.pic;
+  }
+  const flashCv=document.createElement("canvas"); flashCv.width=270; flashCv.height=480;
+  { const fg=flashCv.getContext("2d"), gr=fg.createRadialGradient(135,190,12,135,190,225); gr.addColorStop(0,"rgba(255,220,120,.45)"); gr.addColorStop(1,"rgba(255,140,0,0)"); fg.fillStyle=gr; fg.fillRect(0,0,270,480); }
+  // «+X» рисуем один раз в маленький холст, дальше только drawImage
+  function popCv(p){ const tmp=g, c=document.createElement("canvas"); g=c.getContext("2d"); g.font=`900 ${p.size}px ${F}`; const w=Math.ceil(g.measureText(p.text).width)+p.size; c.width=w; c.height=Math.ceil(p.size*1.6); g=c.getContext("2d"); text(p.text,w/2,c.height/2,p.size,p.c); g=tmp; p.cv=c; }
+  let idle=false, lastW="";
+  function drawCard(c){
+    if(!c.cv||c.dirty||(!c.imgsOk&&ready(img(c.u.avatar)))||(!c.picOk&&ready(img(c.pic)))) renderCard(c);
+    const sc=c.s*(1+c.bump*.12)*c.T.scale; if(sc<=0) return;
+    g.save(); g.translate(c.x,c.y); g.scale(sc,sc); g.drawImage(c.cv,-(CW/2+PAD),-(CH/2+PAD)); g.restore();
+  }
+  function step(now){
+    const dt=Math.min(.05,(now-last)/1000); last=now;
+    if(base.style.width!==lastW){ lastW=base.style.width; fx.style.width=base.style.width; fx.style.height=base.style.height; }
+    for(const c of cards){ c.bump=Math.max(0,c.bump-dt*4); c.t+=dt;
+      if(c.st===0){ c.s=Math.min(1,c.t/.18)*(1+Math.sin(Math.min(1,c.t/.3)*Math.PI)*.18); if(c.t>=c.T.hold+.2){ c.st=1; c.t=0; const tg=target(c.u.id); c.tx=tg.x; c.ty=tg.y; c.tc=tg.color||c.T.c1; c.sx=c.x; c.sy=c.y; } }
+      else if(c.st===1){ const k=Math.min(1,c.t/.55), e=k*k*(3-2*k); c.x=c.sx+(c.tx-c.sx)*e; c.y=c.sy+(c.ty-c.sy)*e-Math.sin(k*Math.PI)*120; c.s=1-.75*e;
+        if(sparks.length<120) for(let i=0;i<(c.tier==="big"?4:2);i++) sparks.push({x:c.x+(Math.random()-.5)*30,y:c.y+(Math.random()-.5)*30,vx:(Math.random()-.5)*80,vy:(Math.random()-.5)*80,life:.5,c:c.T.c1,r:3+Math.random()*4});
+        if(k>=1){ c.st=2; const n=c.T.parts; for(let i=0;i<n&&sparks.length<160;i++){ const a=Math.random()*Math.PI*2, sp=120+Math.random()*(c.tier==="big"?700:380); sparks.push({x:c.tx,y:c.ty,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:.7+Math.random()*.5,c:Math.random()<.5?c.tc:c.T.c1,r:3+Math.random()*(c.tier==="big"?9:5),gr:500}); }
+          rings.push({x:c.tx,y:c.ty,r:10,max:c.tier==="big"?420:c.tier==="mid"?220:110,c:c.tc,life:1});
+          pops.push({x:c.tx,y:c.ty-40,text:`+${c.coins} 💰`,c:"#fff",size:c.tier==="big"?72:c.tier==="mid"?56:42,life:1.3}); } } }
+    cards=cards.filter(c=>c.st<2);
+    for(const p of sparks){ p.life-=dt; p.x+=p.vx*dt; p.y+=p.vy*dt; if(p.gr) p.vy+=p.gr*dt; } sparks=sparks.filter(p=>p.life>0);
+    for(const r of rings){ r.life-=dt*1.6; r.r+=(r.max-r.r)*Math.min(1,dt*7); } rings=rings.filter(r=>r.life>0);
+    for(const p of pops){ p.life-=dt; p.y-=70*dt; } pops=pops.filter(p=>p.life>0); if(pops.length>20) pops.splice(0,pops.length-20);
+    flash=Math.max(0,flash-dt*2);
+    const active=flash>0||cards.length||sparks.length||rings.length||pops.length;
+    if(!active){ if(!idle){ g.clearRect(0,0,1080,1920); idle=true; } requestAnimationFrame(step); return; } idle=false;
+    g.setTransform(.75,0,0,.75,0,0); g.clearRect(0,0,1080,1920);
+    if(flash>0){ g.globalAlpha=flash; g.drawImage(flashCv,0,0,1080,1920); g.globalAlpha=1; }
+    for(const r of rings){ g.globalAlpha=Math.max(0,r.life); g.strokeStyle=r.c; g.lineWidth=10*r.life+2; g.beginPath(); g.arc(r.x,r.y,r.r,0,Math.PI*2); g.stroke(); } g.globalAlpha=1;
+    for(const p of sparks){ g.globalAlpha=Math.max(0,Math.min(1,p.life*1.5)); g.fillStyle=p.c; g.fillRect(p.x-p.r,p.y-p.r,p.r*2,p.r*2); } g.globalAlpha=1;
+    for(const c of cards) if(c.tier!=="big") drawCard(c);
+    for(const c of cards) if(c.tier==="big") drawCard(c); // большие всегда поверх
+    for(const p of pops){ g.globalAlpha=Math.min(1,p.life*1.5); const s=1+Math.max(0,p.life-1)*1.5; if(!p.cv) popCv(p); const w=p.cv.width*s, h=p.cv.height*s; g.drawImage(p.cv,p.x-w/2,p.y-h/2,w,h); } g.globalAlpha=1;
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+})();
+</script>
+</body>
+</html>
