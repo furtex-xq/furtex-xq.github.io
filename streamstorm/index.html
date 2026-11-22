@@ -349,6 +349,27 @@ tbody tr:hover{background:#F5C5420d}
 @keyframes toast-in{from{opacity:0;transform:translate(-50%,20px) scale(.9)}}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media (max-width:900px){.hero-band{padding-block:40px 24px}.stats{gap:20px}}
+
+/* ---------- pay modal ---------- */
+dialog.pay{width:min(520px,calc(100vw - 32px));background:var(--panel);color:var(--white);border:1px solid var(--edge);border-radius:22px;padding:26px 22px 22px;box-shadow:0 30px 80px -20px #000}
+dialog.pay::backdrop{background:#07101Fcc;backdrop-filter:blur(4px)}
+dialog.pay[open]{animation:mg-enter var(--dur) var(--ease-out)}
+.pay h3{margin:0 0 14px;font:700 22px var(--display)}
+.pay-step{display:grid;gap:12px}.pay-step[hidden]{display:none}
+.pay-x{position:absolute;top:10px;right:10px}.pay-x button{background:none;border:0;color:var(--mist);font-size:20px;cursor:pointer;padding:6px}
+.pay-l{display:grid;gap:6px;color:var(--mist);font-size:14px}
+.pay select{background:var(--navy-2);color:var(--white);border:1px solid var(--edge);border-radius:12px;padding:12px;font:inherit}
+.pay-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;background:var(--navy-2);border:1px solid var(--edge);border-radius:14px;padding:12px}
+.pay-row span{grid-column:1/-1;color:var(--mist);font-size:13px}
+.pay .mono{font-family:var(--mono);overflow-wrap:anywhere;font-size:16px}.pay .key{color:var(--gold);font-size:18px}
+#pay-amt{color:var(--gold);font-size:22px}
+.btn.sm{padding:8px 12px;font-size:13px}
+.pay-warn{margin:0;font-size:14px;color:#fde68a;background:#F5C54214;border:1px solid #F5C54244;border-radius:12px;padding:10px 12px}
+.pay-wait{margin:0;color:var(--mist);font-size:14px;display:flex;gap:10px;align-items:flex-start}
+.spin{flex:none;width:16px;height:16px;border-radius:50%;border:2px solid var(--edge);border-top-color:var(--gold);animation:mg-spinr 0.9s linear infinite;margin-top:2px}
+@keyframes mg-spinr{to{transform:rotate(360deg)}}
+.pay-err{color:var(--bad);margin:12px 0 0}
+.pay-sum{margin:0}
 </style>
 </head>
 <body>
@@ -484,7 +505,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a class="btn mg-btn ghost buy" data-buy="lava-rising" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/lava-rising/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оформление через Telegram: напиши, какой режим нужен, и получишь доступ.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оплата в USDT (TRC20), ключ выдаётся автоматически через пару минут после перевода.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -515,7 +536,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a class="btn mg-btn ghost buy" data-buy="throne" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/throne/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оформление через Telegram: напиши, какой режим нужен, и получишь доступ.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оплата в USDT (TRC20), ключ выдаётся автоматически через пару минут после перевода.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -546,7 +567,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a class="btn mg-btn ghost buy" data-buy="tug-of-war" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/tug-of-war/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оформление через Telegram: напиши, какой режим нужен, и получишь доступ.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оплата в USDT (TRC20), ключ выдаётся автоматически через пару минут после перевода.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -577,7 +598,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a class="btn mg-btn ghost buy" data-buy="hot-bomb" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/hot-bomb/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оформление через Telegram: напиши, какой режим нужен, и получишь доступ.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оплата в USDT (TRC20), ключ выдаётся автоматически через пару минут после перевода.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -608,7 +629,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a class="btn mg-btn ghost buy" data-buy="zodiac-duel" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/zodiac-duel/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оформление через Telegram: напиши, какой режим нужен, и получишь доступ.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оплата в USDT (TRC20), ключ выдаётся автоматически через пару минут после перевода.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -639,7 +660,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a class="btn mg-btn ghost buy" data-buy="paint-map" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/paint-map/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оформление через Telegram: напиши, какой режим нужен, и получишь доступ.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оплата в USDT (TRC20), ключ выдаётся автоматически через пару минут после перевода.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -672,7 +693,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a class="btn mg-btn ghost buy" data-buy="tower" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/tower/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оформление через Telegram: напиши, какой режим нужен, и получишь доступ.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оплата в USDT (TRC20), ключ выдаётся автоматически через пару минут после перевода.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -703,7 +724,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a class="btn mg-btn ghost buy" data-buy="boss-fight" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/boss-fight/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оформление через Telegram: напиши, какой режим нужен, и получишь доступ.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оплата в USDT (TRC20), ключ выдаётся автоматически через пару минут после перевода.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -734,7 +755,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a class="btn mg-btn ghost buy" data-buy="chat-football" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/chat-football/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оформление через Telegram: напиши, какой режим нужен, и получишь доступ.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оплата в USDT (TRC20), ключ выдаётся автоматически через пару минут после перевода.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -765,7 +786,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a class="btn mg-btn ghost buy" data-buy="country-race" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/country-race/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оформление через Telegram: напиши, какой режим нужен, и получишь доступ.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оплата в USDT (TRC20), ключ выдаётся автоматически через пару минут после перевода.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -796,7 +817,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a class="btn mg-btn ghost buy" data-buy="duel-space" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/duel-space/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оформление через Telegram: напиши, какой режим нужен, и получишь доступ.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оплата в USDT (TRC20), ключ выдаётся автоматически через пару минут после перевода.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -827,7 +848,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a class="btn mg-btn ghost buy" data-buy="duel-trade" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/duel-trade/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оформление через Telegram: напиши, какой режим нужен, и получишь доступ.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оплата в USDT (TRC20), ключ выдаётся автоматически через пару минут после перевода.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -858,7 +879,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a class="btn mg-btn ghost buy" data-buy="duel-summit" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/duel-summit/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оформление через Telegram: напиши, какой режим нужен, и получишь доступ.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оплата в USDT (TRC20), ключ выдаётся автоматически через пару минут после перевода.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 <section class="view" id="v-fans" hidden>
@@ -888,7 +909,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a class="btn mg-btn ghost buy" data-buy="duel-fans" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/duel-fans/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оформление через Telegram: напиши, какой режим нужен, и получишь доступ.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 14 режимов за $29.99 в месяц. Оплата в USDT (TRC20), ключ выдаётся автоматически через пару минут после перевода.</span><span class="buy-off">Или все 14 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -927,13 +948,38 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   </div>
   <div class="plans">
     <div class="plan mg-card" data-reveal><span class="badge">Демо</span><div class="price">$0</div><ul><li>Все 14 режимов с ботами</li><li>Пульт ведущего и все механики</li><li>Чтобы понять, что подойдёт твоему эфиру</li></ul><a class="btn mg-btn ghost" href="#catalog">Выбрать игру</a></div>
-    <div class="plan mg-card" data-reveal style="--i:1"><span class="badge live">Один режим</span><div class="price">$1.99 <small>в месяц</small></div><ul><li>Любая одна игра в настоящем эфире</li><li>Свои подарки, страны и длина раунда</li><li>Все обновления этой игры</li></ul><a class="btn mg-btn ghost buy" data-buy="один режим" href="#" hidden>💳 Оформить $1.99/мес</a><a class="btn mg-btn ghost" href="launcher/">⚡ Открыть лаунчер</a></div>
-    <div class="plan pick mg-card mg-ring" data-reveal style="--i:2"><span class="badge gold">Выгодно</span><div class="price">$29.99 <small>в месяц</small></div><ul><li>Все 14 режимов</li><li>Новые игры сразу после выхода</li><li>Меняй игры хоть каждый раунд</li></ul><a class="btn mg-btn hot buy" data-buy="все режимы" href="#" hidden>💳 Оформить $29.99/мес</a><a class="btn mg-btn ghost" href="launcher/">⚡ Открыть лаунчер</a></div>
+    <div class="plan mg-card" data-reveal style="--i:1"><span class="badge live">Один режим</span><div class="price">$1.99 <small>в месяц</small></div><ul><li>Любая одна игра в настоящем эфире</li><li>Свои подарки, страны и длина раунда</li><li>Все обновления этой игры</li></ul><a class="btn mg-btn ghost buy" data-buy="pick" href="#" hidden>💳 Оформить $1.99/мес</a><a class="btn mg-btn ghost" href="launcher/">⚡ Открыть лаунчер</a></div>
+    <div class="plan pick mg-card mg-ring" data-reveal style="--i:2"><span class="badge gold">Выгодно</span><div class="price">$29.99 <small>в месяц</small></div><ul><li>Все 14 режимов</li><li>Новые игры сразу после выхода</li><li>Меняй игры хоть каждый раунд</li></ul><a class="btn mg-btn hot buy" data-buy="all" href="#" hidden>💳 Оформить $29.99/мес</a><a class="btn mg-btn ghost" href="launcher/">⚡ Открыть лаунчер</a></div>
   </div>
-  <p class="note"><span class="buy-on" hidden>Подписка оформляется через Telegram <b class="buy-handle"></b>: напиши, какой режим или тариф нужен, и мы выдадим доступ. Демо всех режимов бесплатное.</span><span class="buy-off">Оплату подписки сейчас подключаем. Пока все режимы можно бесплатно запускать в демо.</span></p>
+  <p class="note"><span class="buy-on" hidden>Оплата в USDT (сеть TRON, TRC20). Ключ на 30 дней появляется на сайте автоматически, отсчёт идёт с первого запуска. Демо всех режимов бесплатное.</span><span class="buy-off">Оплату подписки сейчас подключаем. Пока все режимы можно бесплатно запускать в демо.</span></p>
 </section>
 
 </main>
+<dialog id="pay" class="pay">
+  <form method="dialog" class="pay-x"><button aria-label="Закрыть">✕</button></form>
+  <div class="pay-step" data-step="1">
+    <h3>💳 Оформить доступ</h3>
+    <label class="pay-l">Тариф<select id="pay-scope"></select></label>
+    <p class="pay-sum">К оплате: <b id="pay-price">$1.99</b> в USDT · 30 дней</p>
+    <button class="btn mg-btn hot" id="pay-go" type="button">Получить реквизиты</button>
+    <p class="fine">Оплата в USDT, сеть TRON (TRC20). Срок 30 дней начинается с первого запуска ключа.</p>
+  </div>
+  <div class="pay-step" data-step="2" hidden>
+    <h3>Переведи ровно эту сумму</h3>
+    <div class="pay-row"><span>Сумма USDT</span><b id="pay-amt" class="mono"></b><button type="button" class="btn mg-btn ghost sm" data-copy="pay-amt">Копировать</button></div>
+    <div class="pay-row"><span>Адрес (TRON, TRC20)</span><b id="pay-addr" class="mono"></b><button type="button" class="btn mg-btn ghost sm" data-copy="pay-addr">Копировать</button></div>
+    <p class="pay-warn">⚠️ Сумма должна прийти <b>точно до тысячных</b>: по ней мы узнаём твой платёж. Если платишь с биржи, учти её комиссию, чтобы на адрес пришло ровно столько. Только USDT в сети TRON.</p>
+    <p class="pay-wait"><span class="spin"></span> Ждём перевод… Обычно 1–3 минуты после отправки. Эту страницу можно закрыть: заказ сохранится в этом браузере.</p>
+  </div>
+  <div class="pay-step" data-step="3" hidden>
+    <h3>✅ Оплата получена</h3>
+    <p>Твой ключ:</p>
+    <div class="pay-row"><b id="pay-key" class="mono key"></b><button type="button" class="btn mg-btn ghost sm" data-copy="pay-key">Копировать</button></div>
+    <p class="fine">Сохрани ключ. Вставь его в лаунчере в поле «Ключ доступа».</p>
+    <a class="btn mg-btn hot" href="launcher/">⚡ Открыть лаунчер</a>
+  </div>
+  <p class="pay-err" id="pay-err" hidden></p>
+</dialog>
 <footer><div class="wrap"><span>© 2026 StreamStorm · интерактивные игры для TikTok LIVE</span><span>Не связан с TikTok</span></div></footer>
 <div class="toast" id="toast" hidden></div>
 
@@ -1064,14 +1110,36 @@ addEventListener("resize",function(){navPill();tabPill()});
 var bar=document.querySelector("header.bar");
 addEventListener("scroll",function(){bar.classList.toggle("scrolled",scrollY>20)},{passive:true});
 
-/* ---------- buy (no payment provider yet: contact link) ---------- */
-var BUY_URL="";      /* e.g. "https://t.me/USERNAME"; empty = hide buy buttons */
-var BUY_HANDLE="";
-if(BUY_URL){
-  document.querySelectorAll(".buy").forEach(function(a){a.href=BUY_URL;a.target="_blank";a.rel="noopener";a.hidden=false});
+/* ---------- buy: USDT TRC20 with automatic key (needs Supabase; empty = buy buttons hidden) ---------- */
+var PAY={url:"",anon:""};   /* same Supabase URL + anon key as licenses/license-client.js */
+var PAY_GAMES=[["lava-rising","Лава"],["throne","Трон"],["tug-of-war","Перетягивание"],["hot-bomb","Горячая бомба"],["zodiac-duel","Дуэль знаков"],["paint-map","Цветная карта"],["tower","Башня"],["boss-fight","Босс"],["chat-football","Футбол чата"],["country-race","Гонка стран"],["duel-space","Космос"],["duel-trade","Торговля"],["duel-summit","Вершина"],["duel-fans","Битва болельщиков"]];
+if(PAY.url&&PAY.anon){
+  var dlg=document.getElementById("pay"),$p=function(i){return document.getElementById(i)},poll=0,LSO="ss_order_v1";
+  var sel=$p("pay-scope");
+  sel.innerHTML='<option value="all">⭐ Все режимы — $29.99 / мес</option>'+PAY_GAMES.map(function(g){return '<option value="'+g[0]+'">'+g[1]+' — $1.99 / мес</option>'}).join("");
+  sel.onchange=function(){$p("pay-price").textContent=sel.value==="all"?"$29.99":"$1.99"};
+  function rpc(fn,body){return fetch(PAY.url.replace(/\/+$/,"")+"/rest/v1/rpc/"+fn,{method:"POST",headers:{"Content-Type":"application/json",apikey:PAY.anon,Authorization:"Bearer "+PAY.anon},body:JSON.stringify(body)}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})}
+  function step(n){[].forEach.call(dlg.querySelectorAll(".pay-step"),function(e){e.hidden=e.dataset.step!=String(n)});$p("pay-err").hidden=true}
+  function err(t){$p("pay-err").textContent=t;$p("pay-err").hidden=false}
+  function lsGet(){try{return JSON.parse(localStorage.getItem(LSO)||"null")}catch(e){return null}}
+  function lsSet(o){try{o?localStorage.setItem(LSO,JSON.stringify(o)):localStorage.removeItem(LSO)}catch(e){}}
+  function showOrder(o){$p("pay-amt").textContent=o.amount;$p("pay-addr").textContent=o.wallet;step(2);watch(o.id)}
+  function watch(id){clearInterval(poll);var f=function(){rpc("order_status",{p_id:id}).then(function(r){
+      if(r.ok&&r.status==="paid"&&r.key){clearInterval(poll);$p("pay-key").textContent=r.key;step(3);var o=lsGet();if(o){o.key=r.key;lsSet(o)}}
+      else if(!r.ok){clearInterval(poll);lsSet(null);step(1)}}).catch(function(){})};f();poll=setInterval(f,8000)}
+  function open(scope){var o=lsGet();
+    if(o&&!o.key&&Date.now()-o.t<864e5&&(!scope||scope===o.scope||scope==="pick")){dlg.showModal();showOrder(o);return}
+    if(o&&o.key&&Date.now()-o.t<36e5){dlg.showModal();$p("pay-key").textContent=o.key;step(3);return}
+    if(scope&&scope!=="pick")sel.value=scope;sel.onchange();step(1);dlg.showModal()}
+  $p("pay-go").onclick=function(){var b=this;b.disabled=true;rpc("create_order",{p_scope:sel.value}).then(function(r){b.disabled=false;
+      if(!r.ok){err(r.reason==="rate_limited"?"Слишком много попыток, подожди минуту.":"Не получилось создать заказ, попробуй ещё раз.");return}
+      var o={id:r.id,amount:r.amount,wallet:r.wallet,scope:sel.value,t:Date.now()};lsSet(o);showOrder(o)})
+    .catch(function(){b.disabled=false;err("Нет связи с сервером оплаты, попробуй ещё раз.")})};
+  dlg.addEventListener("click",function(e){var c=e.target.closest("[data-copy]");if(!c)return;navigator.clipboard.writeText($p(c.dataset.copy).textContent).then(function(){var t=c.textContent;c.textContent="✓ Скопировано";setTimeout(function(){c.textContent=t},1400)})});
+  dlg.addEventListener("close",function(){clearInterval(poll)});
+  document.querySelectorAll(".buy").forEach(function(a){a.hidden=false;a.addEventListener("click",function(e){e.preventDefault();open(a.dataset.buy)})});
   document.querySelectorAll(".buy-on").forEach(function(e){e.hidden=false});
   document.querySelectorAll(".buy-off").forEach(function(e){e.hidden=true});
-  document.querySelectorAll(".buy-handle").forEach(function(e){e.textContent=BUY_HANDLE});
 }
 addEventListener("hashchange",route); route();
 if(document.fonts)document.fonts.ready.then(function(){navPill();tabPill()});

@@ -560,7 +560,7 @@ window.GIFT_FX_TARGET=id=>{ const s=members.get(id); if(s==null) return null; re
      SSLicense.check(key, gameId) -> Promise<{ok, scope, expires_at, reason, offline}>
      SSLicense.saved()            -> last key the user entered ("" if none)
    gameId = game folder id (e.g. "lava-rising"); a key with scope "all" fits every game.
-   reason: not_found | revoked | wrong_game | expired | no_key | not_configured | offline_no_cache
+   reason: not_found | revoked | wrong_game | expired | rate_limited | no_key | not_configured | offline_no_cache
    If the network is down, a cached OK result is trusted until its expires_at (offline:true). */
 (function(){
 var CFG={ url:"", anon:"" };          /* fill: "https://XXXX.supabase.co", "eyJ..." (anon public key) */
@@ -589,7 +589,7 @@ var SSLicense={
   daysLeft:function(res){return res&&res.expires_at?Math.max(0,Math.ceil((new Date(res.expires_at)-new Date())/864e5)):0},
   message:function(res){if(res.ok)return "Ключ активен ещё "+SSLicense.daysLeft(res)+" дн."+(res.offline?" (офлайн)":"");
     return {not_found:"Ключ не найден",revoked:"Ключ отключён",wrong_game:"Ключ для другого режима",expired:"Срок ключа закончился",
-      no_key:"Введите ключ",not_configured:"Проверка ключей ещё не настроена",offline_no_cache:"Нет связи с сервером ключей"}[res.reason]||"Ошибка проверки"}
+      no_key:"Введите ключ",not_configured:"Проверка ключей ещё не настроена",offline_no_cache:"Нет связи с сервером ключей",rate_limited:"Слишком много проверок, подождите минуту"}[res.reason]||"Ошибка проверки"}
 };
 window.SSLicense=SSLicense;
 })();
@@ -612,7 +612,7 @@ window.SSLicense=SSLicense;
   /* нет связи с сервером ключей -> метку не показываем (платный стример не должен видеть DEMO), повтор через 60 с */
   var tm=0;
   function run(){ clearTimeout(tm); SSLicense.check(key,GAME).then(function(r){ window.SS_LICENSE=r;
-      var net=r.reason==="offline_no_cache";
+      var net=r.reason==="offline_no_cache"||r.reason==="rate_limited";
       if(!net) show(!r.ok&&r.reason!=="not_configured");
       tm=setTimeout(run,net?60*1000:30*60*1000); })
     .catch(function(){ tm=setTimeout(run,60*1000); }); }
