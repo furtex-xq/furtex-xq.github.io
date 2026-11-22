@@ -309,8 +309,12 @@ window.STAGE={cut:1125, cta:"НАПИШИ СТРАНУ В ЧАТ|🎁 1 моне
 (function(){
   const base=document.getElementById("game"); if(!base) return;
   const S=Object.assign({cut:1100,cta:"НАПИШИ В ЧАТ, ЗА КОГО ТЫ",ticker:[],colors:["#F5C542","#10B981","#38BDF8","#F43F5E"],feed:true},window.STAGE||{});
-  const W=1080, H=1920, CX=505, SRC0=100, F0=200, Y0=1020, CUT=S.cut, K=(Y0-F0)/(CUT-SRC0), DX=(W-W*K)/2, AH=H-Y0;
+  const W=1080, H=1920, CX=505, SRC0=100, F0=200, Y0=1020, AH=H-Y0;
+  // во время экрана победы показываем кадр игры целиком (до endCut), иначе — поле до cut
+  const isEnd=S.isEnd||(()=>{ try{ return phase==="end"||phase==="matchEnd"; }catch(e){ return false; } }), END_CUT=S.endCut||1420;
+  let CUT=S.cut, K=1, DX=0, endMode=false; function geo(){ CUT=endMode?END_CUT:S.cut; K=(Y0-F0)/(CUT-SRC0); DX=(W-W*K)/2; } geo();
   const map=(x,y)=>({x:DX+x*K, y:F0+(y-SRC0)*K});
+  base.style.transition="transform .35s ease, clip-path .35s ease";
   window.STAGE_MAP=map; window.STAGE_Y0=Y0; window.STAGE_K=K;
   const F='"Segoe UI","Arial Black",system-ui,sans-serif';
   // два холста: рамка вокруг игры (обновляется редко) и низ (арена, призыв)
@@ -389,6 +393,7 @@ window.STAGE={cut:1125, cta:"НАПИШИ СТРАНУ В ЧАТ|🎁 1 моне
   let last=performance.now(), T=0, fr=0, acc=0;
   function step(now){
     const dt=Math.min(.05,(now-last)/1000); last=now; T+=dt; acc+=dt; hype=Math.max(0,hype-dt*.35); fr++;
+    { const e=!!isEnd(); if(e!==endMode){ endMode=e; geo(); place(); fr=0; } }
     if(base.style.width!==lastW) place();
     // поля вокруг игры: продолжаем цвета краёв игрового кадра (редко — это дёшево)
     if(fr%15===1){ gb.drawImage(base,0,SRC0,W,2,0,0,W,F0+2);
@@ -449,7 +454,7 @@ window.GIFT_FX_TARGET=id=>{ const c=carBy(members.get(id)); return c?{x:X0+(X1-X
     const used=new Set(cards.filter(c=>c.st===0&&c.slot!=null).map(c=>c.slot)); let slot=0; while(used.has(slot)&&slot<3) slot++;
     const bigUsed=cards.some(c=>c.st===0&&c.tier==="big");
     cards.push({key,u,name,pic,tier,T,count,coins,born:now,st:0,t:0,bump:0,slot:big?null:slot,
-      x:big?505:265+((slot%2)*470), y:big?(bigUsed?545:400):680+Math.floor(slot/2)*130, s:0}); // большая — под шапкой и сразу летит к цели
+      x:big?505:265+((slot%2)*470), y:big?(((window.STAGE&&window.STAGE.bigY)||[400,545])[bigUsed?1:0]):680+Math.floor(slot/2)*130, s:0}); // большая — под шапкой и сразу летит к цели
     if(cards.length>10) cards.splice(0,cards.length-10);
     if(big) flash=1;
   }
@@ -529,6 +534,71 @@ window.GIFT_FX_TARGET=id=>{ const c=carBy(members.get(id)); return c?{x:X0+(X1-X
     if(MERGED) g.restore(); else requestAnimationFrame(step);
   }
   if(MERGED) window.__fxStep=step; else requestAnimationFrame(step);
+})();
+</script>
+<script id="license" data-game="country-race">
+/* StreamStorm license client. Public file: holds only the Supabase URL and the PUBLIC anon key.
+   Usage:
+     SSLicense.check(key, gameId) -> Promise<{ok, scope, expires_at, reason, offline}>
+     SSLicense.saved()            -> last key the user entered ("" if none)
+   gameId = game folder id (e.g. "lava-rising"); a key with scope "all" fits every game.
+   reason: not_found | revoked | wrong_game | expired | no_key | not_configured | offline_no_cache
+   If the network is down, a cached OK result is trusted until its expires_at (offline:true). */
+(function(){
+var CFG={ url:"", anon:"" };          /* fill: "https://XXXX.supabase.co", "eyJ..." (anon public key) */
+var LS="ss_license_v1";
+function norm(k){return String(k||"").toUpperCase().replace(/[^A-Z0-9]/g,"").replace(/^SS/,"").replace(/(.{4})(?=.)/g,"$1-").replace(/^/,"SS-")}
+function load(){try{return JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){return{}}}
+function save(o){try{localStorage.setItem(LS,JSON.stringify(o))}catch(e){}}
+function cached(key,game){var c=load(),r=c.res&&c.res[key];if(!r||!r.ok)return null;
+  if(game&&r.scope!=="all"&&r.scope!==game)return null;
+  if(new Date(r.expires_at)<new Date())return null;return Object.assign({},r,{offline:true})}
+var SSLicense={
+  config:function(url,anon){CFG.url=String(url||"").replace(/\/+$/,"");CFG.anon=anon||""},
+  normalize:norm,
+  saved:function(){return load().key||""},
+  check:function(key,game){
+    if(!key)return Promise.resolve({ok:false,reason:"no_key"});
+    key=norm(key);if(!CFG.url||!CFG.anon)return Promise.resolve({ok:false,reason:"not_configured"});
+    var c=load();c.key=key;save(c);
+    return fetch(CFG.url+"/rest/v1/rpc/check_license",{method:"POST",
+      headers:{"Content-Type":"application/json",apikey:CFG.anon,Authorization:"Bearer "+CFG.anon},
+      body:JSON.stringify({p_key:key,p_game:game||null})})
+    .then(function(r){if(!r.ok)throw new Error("http "+r.status);return r.json()})
+    .then(function(res){var c=load();c.res=c.res||{};if(res.ok)c.res[key]=res;else delete c.res[key];save(c);return res})
+    .catch(function(){return cached(key,game)||{ok:false,reason:"offline_no_cache"}});
+  },
+  daysLeft:function(res){return res&&res.expires_at?Math.max(0,Math.ceil((new Date(res.expires_at)-new Date())/864e5)):0},
+  message:function(res){if(res.ok)return "Ключ активен ещё "+SSLicense.daysLeft(res)+" дн."+(res.offline?" (офлайн)":"");
+    return {not_found:"Ключ не найден",revoked:"Ключ отключён",wrong_game:"Ключ для другого режима",expired:"Срок ключа закончился",
+      no_key:"Введите ключ",not_configured:"Проверка ключей ещё не настроена",offline_no_cache:"Нет связи с сервером ключей"}[res.reason]||"Ошибка проверки"}
+};
+window.SSLicense=SSLicense;
+})();
+/* StreamStorm: проверка ключа в игре. Только при src=tikfinity; демо не трогаем.
+   Ключ не активен -> маленькая метка «DEMO · StreamStorm» в углу, игра работает.
+   Проверка не настроена (нет URL Supabase) -> ничего не показываем. */
+(function(){
+  var GAME=document.currentScript&&document.currentScript.dataset.game||"";
+  var q=new URLSearchParams(location.search);
+  if((q.get("src")||"demo").toLowerCase()!=="tikfinity"||!window.SSLicense) return;
+  var key=q.get("key")||SSLicense.saved(), mark=null;
+  function place(){ if(!mark) return; var k=Math.min(innerWidth/1080,innerHeight/1920), r={left:(innerWidth-1080*k)/2, top:(innerHeight-1920*k)/2}; mark.style.left=(r.left+24*k)+"px"; mark.style.top=(r.top+968*k)+"px"; mark.style.fontSize=Math.max(9,22*k)+"px"; }
+  function show(on){
+    if(on&&!mark){ mark=document.createElement("div"); mark.id="ss-demo"; mark.textContent="DEMO · StreamStorm";
+      mark.style.cssText="position:fixed;z-index:9999;pointer-events:none;font:800 26px system-ui,sans-serif;letter-spacing:.06em;color:#F5C542;"+
+        "background:rgba(10,20,40,.72);border:1px solid rgba(245,197,66,.55);border-radius:999px;padding:.3em .8em;opacity:.85;";
+      document.body.appendChild(mark); place(); addEventListener("resize",place); }
+    else if(!on&&mark){ mark.remove(); mark=null; }
+  }
+  /* нет связи с сервером ключей -> метку не показываем (платный стример не должен видеть DEMO), повтор через 60 с */
+  var tm=0;
+  function run(){ clearTimeout(tm); SSLicense.check(key,GAME).then(function(r){ window.SS_LICENSE=r;
+      var net=r.reason==="offline_no_cache";
+      if(!net) show(!r.ok&&r.reason!=="not_configured");
+      tm=setTimeout(run,net?60*1000:30*60*1000); })
+    .catch(function(){ tm=setTimeout(run,60*1000); }); }
+  run();
 })();
 </script>
 </body>
