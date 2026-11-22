@@ -328,6 +328,31 @@ window.STAGE={cut:1110, endCut:1340, cta:"ДАРИ ПОДАРОК — СВЕРГ
   const base=document.getElementById("game"); if(!base) return;
   const S=Object.assign({cut:1100,cta:"НАПИШИ В ЧАТ, ЗА КОГО ТЫ",ticker:[],colors:["#F5C542","#10B981","#38BDF8","#F43F5E"],feed:true},window.STAGE||{});
   const W=1080, H=1920, CX=505, SRC0=100, F0=200, Y0=1020, AH=H-Y0;
+  // ---- настоящие картинки подарков TikTok: URL приходит в живом событии (giftPictureUrl), запоминаем по названию.
+  //      В файлы игр арт не кладём; без URL (демо, офлайн) остаются эмодзи.
+  const GP=window.SSGifts=window.SSGifts||(function(){ const LS="ss_giftpics_v1"; let m={}; try{ m=JSON.parse(localStorage.getItem(LS)||"{}")||{}; }catch(e){}
+    const ims={}, subs=[]; let tmr=0;
+    const fire=()=>{ clearTimeout(tmr); tmr=setTimeout(()=>subs.forEach(f=>{ try{f();}catch(e){} }),120); };
+    function img(u){ if(!u) return null; let i=ims[u]; if(!i){ i=ims[u]=new Image(); i.decoding="async"; i.onload=fire; i.src=u; } return i; }
+    const ok=i=>!!(i&&i.complete&&i.naturalWidth);
+    function put(name,coins,url){ if(!name||!url||!/^https?:\/\//.test(String(url))) return; const k=String(name).slice(0,16), o=m[k], c=Math.max(0,+coins||0)||(o&&o.c)||0;
+      if(o&&o.u===url&&o.c===c) return; m[k]={u:String(url),c,t:Date.now()};
+      const ks=Object.keys(m); if(ks.length>80){ ks.sort((a,b)=>m[a].t-m[b].t).slice(0,ks.length-80).forEach(x=>delete m[x]); }
+      try{ localStorage.setItem(LS,JSON.stringify(m)); }catch(e){} img(url); fire(); }
+    const get=name=>{ const o=m[String(name||"").slice(0,16)]; return o?o.u:null; };
+    // самый дешёвый известный подарок яруса: 1–9 (обычно Роза), 10–99, 100+
+    function tier(t){ let best=null; for(const k in m){ const o=m[k]; if(!o.c) continue; const inT=t==="small"?o.c<10:t==="mid"?o.c>=10&&o.c<100:o.c>=100; if(inT&&(!best||o.c<best.c)) best=o; } return best?best.u:null; }
+    for(const t of ["small","mid","big"]) img(tier(t));
+    return {put,get,tier,img,ok,on:f=>subs.push(f)};
+  })();
+  const EMO_TIER={"🌹":"small","🎁":"small","💎":"mid","🚀":"big"};
+  // строка, где эмодзи ярусов заменены картинками подарков (если картинка уже загружена)
+  function richParts(s){ return String(s).split(/(🌹|🎁|💎|🚀)/u).filter(Boolean).map(t=>{ const im=EMO_TIER[t]&&GP.img(GP.tier(EMO_TIER[t])); return GP.ok(im)?{im}:{t}; }); }
+  function richW(k,parts,size){ let w=0; for(const p of parts) w+=p.im?size*1.25:k.measureText(p.t).width; return w; }
+  function richDraw(k,parts,x,y,size,c,w=800,al="center",stroke=true){ k.font=`${w} ${size}px ${F}`; k.textBaseline="middle"; k.textAlign="left"; k.lineJoin="round";
+    let cx=al==="center"?x-richW(k,parts,size)/2:x;
+    for(const p of parts){ if(p.im){ const d=size*1.15; k.drawImage(p.im,cx+size*.05,y-d/2-1,d,d); cx+=size*1.25; }
+      else { if(stroke){ k.lineWidth=Math.max(4,size/6); k.strokeStyle="rgba(0,0,0,.75)"; k.strokeText(p.t,cx,y); } k.fillStyle=c; k.fillText(p.t,cx,y); cx+=k.measureText(p.t).width; } } }
   // во время экрана победы показываем кадр игры целиком (до endCut), иначе — поле до cut
   const isEnd=S.isEnd||(()=>{ try{ return phase==="end"||phase==="matchEnd"; }catch(e){ return false; } }), END_CUT=S.endCut||1420;
   let CUT=S.cut, K=1, DX=0, endMode=false; function geo(){ CUT=endMode?END_CUT:S.cut; K=(Y0-F0)/(CUT-SRC0); DX=(W-W*K)/2; } geo();
@@ -398,15 +423,17 @@ window.STAGE={cut:1110, endCut:1340, cta:"ДАРИ ПОДАРОК — СВЕРГ
   }
   // ---- крупный призыв (выше линии чата): команда + цены подарков
   const cta=String(typeof S.cta==="function"?S.cta():S.cta).split("|"), BW=930, BH=124, ctaC=mk(BW+60,BH+60);
-  { const k=ctaC.getContext("2d"); k.translate(30+BW/2,30+BH/2); k.shadowColor="rgba(245,197,66,.55)"; k.shadowBlur=22;
+  function buildCta(){ const k=ctaC.getContext("2d"); k.setTransform(1,0,0,1,0,0); k.clearRect(0,0,ctaC.width,ctaC.height); k.translate(30+BW/2,30+BH/2); k.shadowColor="rgba(245,197,66,.55)"; k.shadowBlur=22;
     const bg=k.createLinearGradient(0,-BH/2,0,BH/2); bg.addColorStop(0,"#16284A"); bg.addColorStop(1,"#0A1428"); k.fillStyle=bg; rr(k,-BW/2,-BH/2,BW,BH,30); k.fill(); k.shadowBlur=0;
     const bd=k.createLinearGradient(-BW/2,0,BW/2,0); bd.addColorStop(0,"#B8860B"); bd.addColorStop(.5,"#FFF3C4"); bd.addColorStop(1,"#B8860B"); k.strokeStyle=bd; k.lineWidth=6; rr(k,-BW/2,-BH/2,BW,BH,30); k.stroke();
     const f1=fitFont(k,"💬 "+cta[0],58,BW-50); text(k,"💬 "+cta[0],0,cta[1]?-22:2,f1,"#fff");
-    if(cta[1]){ const f2=fitFont(k,cta[1],36,BW-40,800); text(k,cta[1],0,36,f2,GOLD_HI,"center",800); } }
+    if(cta[1]){ const parts=richParts(cta[1]); let f2=36; k.font=`800 ${f2}px ${F}`; while(f2>14&&richW(k,parts,f2)>BW-40){ f2--; k.font=`800 ${f2}px ${F}`; } richDraw(k,parts,0,36,f2,GOLD_HI); } }
+  buildCta();
   const CTA_Y=Y0+66;
-  let tick=null; { const items=(typeof S.ticker==="function"?S.ticker():S.ticker); const s=items.join("     ✦     ")+"     ✦     ";
-    const k0=mk(10,10).getContext("2d"); k0.font=`800 36px ${F}`; const w=Math.ceil(k0.measureText(s).width)+4, c=mk(w,56), k=c.getContext("2d");
-    k.font=`800 36px ${F}`; k.textBaseline="middle"; k.lineJoin="round"; k.lineWidth=6; k.strokeStyle="rgba(0,0,0,.7)"; k.strokeText(s,2,29); k.fillStyle=GOLD_HI; k.fillText(s,2,29); tick={c,w}; }
+  let tick=null; function buildTick(){ const items=(typeof S.ticker==="function"?S.ticker():S.ticker); const s=items.join("     ✦     ")+"     ✦     ";
+    const parts=richParts(s), k0=mk(10,10).getContext("2d"); k0.font=`800 36px ${F}`; const w=Math.ceil(richW(k0,parts,36))+4, c=mk(w,56), k=c.getContext("2d");
+    k.lineWidth=6; richDraw(k,parts,2,29,36,GOLD_HI,800,"left"); tick={c,w}; }
+  buildTick(); GP.on(()=>{ buildCta(); buildTick(); });
 
   let last=performance.now(), T=0, fr=0, acc=0;
   function step(now){
@@ -480,14 +507,17 @@ window.GIFT_FX_TARGET=id=>({x:CX,y:760,color:"#ffd23f"});
   const pics=new Map(), avs=new Map();
   if(typeof window.handleRaw==="function"){ const oh=window.handleRaw; window.handleRaw=function(msg){
     try{ const d=(msg&&msg.data)||{}, uu=d.user||{}; const id=String(d.uniqueId||d.userId||uu.uniqueId||"");
-      if(id){ const av=d.profilePictureUrl||uu.profilePictureUrl; if(av) avs.set(id,av); const pic=d.giftPictureUrl||(d.giftDetails&&d.giftDetails.giftImage&&d.giftDetails.giftImage.giftPictureUrl); if(pic) pics.set(id+"|"+String(d.giftName||"").slice(0,16),pic); } }catch(e){}
+      if(id){ const av=d.profilePictureUrl||uu.profilePictureUrl; if(av) avs.set(id,av); const pic=d.giftPictureUrl||(d.giftDetails&&d.giftDetails.giftImage&&d.giftDetails.giftImage.giftPictureUrl); if(pic) pics.set(id+"|"+String(d.giftName||"").slice(0,16),pic); }
+      // запоминаем картинку подарка по названию (TikFinity: giftPictureUrl; лаунчер: gift.image/picture)
+      const G=window.SSGifts, lg=(msg&&msg.gift)||{}, pu=d.giftPictureUrl||(d.giftDetails&&d.giftDetails.giftImage&&d.giftDetails.giftImage.giftPictureUrl)||lg.image||lg.picture||lg.giftPictureUrl||lg.pictureUrl;
+      if(G&&pu) G.put(d.giftName||lg.name, d.diamondCount||lg.coins||lg.diamondCount, pu); }catch(e){}
     return oh.apply(this,arguments); }; }
   if(typeof window.onGift!=="function") return;
   const og=window.onGift; window.onGift=function(u,unit,count,name){
     const r=og.apply(this,arguments);
     if(window.__giftReplay) return r; // повтор подарков с экрана победы — карточка уже была
     try{ const nm=String(name||"подарок").slice(0,16), id=String(u&&u.id||"anon"), n=Math.max(1,+count||1);
-      add({id,name:String(u&&u.name||"Зритель").slice(0,20),avatar:(u&&u.avatar)||avs.get(id)||null},Math.max(1,+unit||1),n,nm,pics.get(id+"|"+nm)||null); }catch(e){}
+      add({id,name:String(u&&u.name||"Зритель").slice(0,20),avatar:(u&&u.avatar)||avs.get(id)||null},Math.max(1,+unit||1),n,nm,pics.get(id+"|"+nm)||(window.SSGifts&&window.SSGifts.get(nm))||null); }catch(e){}
     return r; };
   function rr(x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();}
   function text(s,x,y,size,c,al="center",w=900){ g.font=`${w} ${size}px ${F}`; g.textAlign=al; g.textBaseline="middle"; g.lineWidth=Math.max(4,size/6); g.strokeStyle="rgba(0,0,0,.85)"; g.lineJoin="round"; g.strokeText(s,x,y); g.fillStyle=c; g.fillText(s,x,y); }
@@ -563,7 +593,7 @@ window.GIFT_FX_TARGET=id=>({x:CX,y:760,color:"#ffd23f"});
    reason: not_found | revoked | wrong_game | expired | rate_limited | no_key | not_configured | offline_no_cache
    If the network is down, a cached OK result is trusted until its expires_at (offline:true). */
 (function(){
-var CFG={ url:"", anon:"" };          /* fill: "https://XXXX.supabase.co", "eyJ..." (anon public key) */
+var CFG={ url:"https://bxkdvddbjusbcjnzktry.supabase.co", anon:"sb_publishable_loLJqmab1TolWXLIdIrgHA_AlyghDQF" };          /* fill: "https://XXXX.supabase.co", "eyJ..." (anon public key) */
 var LS="ss_license_v1";
 function norm(k){return String(k||"").toUpperCase().replace(/[^A-Z0-9]/g,"").replace(/^SS/,"").replace(/(.{4})(?=.)/g,"$1-").replace(/^/,"SS-")}
 function load(){try{return JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){return{}}}

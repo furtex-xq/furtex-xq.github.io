@@ -553,7 +553,7 @@ window.GIFT_FX_TARGET=id=>{ const s=members.get(id); if(s==null) return null; re
    reason: not_found | revoked | wrong_game | expired | rate_limited | no_key | not_configured | offline_no_cache
    If the network is down, a cached OK result is trusted until its expires_at (offline:true). */
 (function(){
-var CFG={ url:"", anon:"" };          /* fill: "https://XXXX.supabase.co", "eyJ..." (anon public key) */
+var CFG={ url:"https://bxkdvddbjusbcjnzktry.supabase.co", anon:"sb_publishable_loLJqmab1TolWXLIdIrgHA_AlyghDQF" };          /* fill: "https://XXXX.supabase.co", "eyJ..." (anon public key) */
 var LS="ss_license_v1";
 function norm(k){return String(k||"").toUpperCase().replace(/[^A-Z0-9]/g,"").replace(/^SS/,"").replace(/(.{4})(?=.)/g,"$1-").replace(/^/,"SS-")}
 function load(){try{return JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){return{}}}

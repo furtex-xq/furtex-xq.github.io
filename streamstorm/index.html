@@ -1127,7 +1127,7 @@ var bar=document.querySelector("header.bar");
 addEventListener("scroll",function(){bar.classList.toggle("scrolled",scrollY>20)},{passive:true});
 
 /* ---------- buy: USDT TRC20 with automatic key (needs Supabase; empty = buy buttons hidden) ---------- */
-var PAY={url:"",anon:""};   /* same Supabase URL + anon key as licenses/license-client.js */
+var PAY={url:"https://bxkdvddbjusbcjnzktry.supabase.co",anon:"sb_publishable_loLJqmab1TolWXLIdIrgHA_AlyghDQF"};   /* same Supabase URL + anon key as licenses/license-client.js */
 var PAY_GAMES=[["lava-rising","Лава"],["throne","Трон"],["tug-of-war","Перетягивание"],["hot-bomb","Горячая бомба"],["zodiac-duel","Дуэль знаков"],["paint-map","Цветная карта"],["tower","Башня"],["boss-fight","Босс"],["chat-football","Футбол чата"],["country-race","Гонка стран"],["duel-space","Космос"],["duel-trade","Торговля"],["duel-summit","Вершина"],["duel-fans","Битва болельщиков"]];
 /* wallets checked by checksum (Davyd, Trust Wallet). stable = pay the USD amount in USDT/USDC; cg = CoinGecko id for coins */
 var EVM="0x6040df67a217F57aC3C78157eCE2C98E543a8b3D";
