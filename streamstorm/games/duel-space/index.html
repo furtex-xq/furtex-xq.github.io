@@ -320,19 +320,15 @@ window.addEventListener("message",e=>{ if(e.data&&e.data.source==="magma-launche
 </script>
 <script id="stage">
 "use strict";
-window.STAGE={bigY:[580,720], cut:1055, cta:"НАПИШИ «1» ИЛИ «2»|🎁 1 монета = 3 км · 💎 10+ ускоритель · 🚀 100+ ступень ×2", ticker:["🎁 1 монета = 3 км топлива","💎 10+ = ускоритель ×1.5","🚀 100+ = вторая ступень ×2","🌕 первая на Луне — победа"], colors:["#38BDF8","#F5C542","#a78bfa","#10B981"]};
+window.STAGE={cut:1055, cta:"НАПИШИ «1» ИЛИ «2»|🎁 1 монета = 3 км · 💎 10+ ускоритель · 🚀 100+ ступень ×2", ticker:["🎁 1 монета = 3 км топлива","💎 10+ = ускоритель ×1.5","🚀 100+ = вторая ступень ×2","🌕 первая на Луне — победа"], colors:["#38BDF8","#F5C542","#a78bfa","#10B981"]};
 /* ===================== СЦЕНА StreamStorm: безопасные зоны TikTok, крупный призыв, бегущая строка, живая арена =====================
    Игровой холст не копируется: его масштабирует и обрезает CSS (дёшево, на видеокарте).
    Кусок игры [SRC0..cut] показывается в кадре [F0..Y0]: шапка ниже панели TikTok, поле целиком выше чата. */
 (function(){
   const base=document.getElementById("game"); if(!base) return;
   const S=Object.assign({cut:1100,cta:"НАПИШИ В ЧАТ, ЗА КОГО ТЫ",ticker:[],colors:["#F5C542","#10B981","#38BDF8","#F43F5E"],feed:true},window.STAGE||{});
-  const W=1080, H=1920, CX=505, SRC0=100, F0=200, Y0=1020, AH=H-Y0;
-  // во время экрана победы показываем кадр игры целиком (до endCut), иначе — поле до cut
-  const isEnd=S.isEnd||(()=>{ try{ return phase==="end"||phase==="matchEnd"; }catch(e){ return false; } }), END_CUT=S.endCut||1420;
-  let CUT=S.cut, K=1, DX=0, endMode=false; function geo(){ CUT=endMode?END_CUT:S.cut; K=(Y0-F0)/(CUT-SRC0); DX=(W-W*K)/2; } geo();
+  const W=1080, H=1920, CX=505, SRC0=100, F0=200, Y0=1020, CUT=S.cut, K=(Y0-F0)/(CUT-SRC0), DX=(W-W*K)/2, AH=H-Y0;
   const map=(x,y)=>({x:DX+x*K, y:F0+(y-SRC0)*K});
-  base.style.transition="transform .35s ease, clip-path .35s ease";
   window.STAGE_MAP=map; window.STAGE_Y0=Y0; window.STAGE_K=K;
   const F='"Segoe UI","Arial Black",system-ui,sans-serif';
   // два холста: рамка вокруг игры (обновляется редко) и низ (арена, призыв)
@@ -411,7 +407,6 @@ window.STAGE={bigY:[580,720], cut:1055, cta:"НАПИШИ «1» ИЛИ «2»|�
   let last=performance.now(), T=0, fr=0, acc=0;
   function step(now){
     const dt=Math.min(.05,(now-last)/1000); last=now; T+=dt; acc+=dt; hype=Math.max(0,hype-dt*.35); fr++;
-    { const e=!!isEnd(); if(e!==endMode){ endMode=e; geo(); place(); fr=0; } }
     if(base.style.width!==lastW) place();
     // поля вокруг игры: продолжаем цвета краёв игрового кадра (редко — это дёшево)
     if(fr%15===1){ gb.drawImage(base,0,SRC0,W,2,0,0,W,F0+2);
@@ -472,7 +467,7 @@ window.GIFT_FX_TARGET=id=>{ const s=members.get(id); if(s==null) return null; re
     const used=new Set(cards.filter(c=>c.st===0&&c.slot!=null).map(c=>c.slot)); let slot=0; while(used.has(slot)&&slot<3) slot++;
     const bigUsed=cards.some(c=>c.st===0&&c.tier==="big");
     cards.push({key,u,name,pic,tier,T,count,coins,born:now,st:0,t:0,bump:0,slot:big?null:slot,
-      x:big?505:265+((slot%2)*470), y:big?(((window.STAGE&&window.STAGE.bigY)||[400,545])[bigUsed?1:0]):680+Math.floor(slot/2)*130, s:0}); // большая — под шапкой и сразу летит к цели
+      x:big?505:265+((slot%2)*470), y:big?(bigUsed?545:400):680+Math.floor(slot/2)*130, s:0}); // большая — под шапкой и сразу летит к цели
     if(cards.length>10) cards.splice(0,cards.length-10);
     if(big) flash=1;
   }
