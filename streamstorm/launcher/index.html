@@ -546,6 +546,9 @@ footer{border-top:1px solid var(--stroke);color:var(--text-3)}
 .how div::after{display:none}
 .how div::before{font:600 12px var(--body);letter-spacing:0;text-transform:none;color:var(--gold-hi)}
 .card.feature{border-color:rgba(245,197,66,.35);background:linear-gradient(120deg,rgba(245,197,66,.1),rgba(255,255,255,.03) 60%)}
+/* demo stage: frame the 9:16 game, no black side bars */
+.stage{background:radial-gradient(50% 70% at 50% 45%,rgba(245,197,66,.16),transparent 70%),radial-gradient(40% 60% at 20% 80%,rgba(16,185,129,.12),transparent 70%),radial-gradient(40% 60% at 80% 20%,rgba(56,104,190,.22),transparent 70%),#081226}
+.stage iframe{inset:0 auto auto 50%;width:auto;height:100%;aspect-ratio:9/16;max-width:100%;transform:translateX(-50%);border-left:1px solid var(--stroke);border-right:1px solid var(--stroke);box-shadow:0 0 60px -10px rgba(0,0,0,.8)}
 
 /* ===== end ss-premium ===== */
 </style>
