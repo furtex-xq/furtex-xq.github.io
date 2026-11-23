@@ -481,7 +481,7 @@ function person(x,y,c,lean,name,url){ // игрок, тянущий канат: 
 
 function draw(){
   ctx.save(); if(shake>0) ctx.translate((Math.random()-.5)*26*shake,(Math.random()-.5)*26*shake);
-  const sky=ctx.createLinearGradient(0,0,0,H); sky.addColorStop(0,"#0d1630"); sky.addColorStop(.5,"#2b2350"); sky.addColorStop(1,"#05030a"); ctx.fillStyle=sky; ctx.fillRect(-40,-40,W+80,H+80);
+  ctx.drawImage(TEX.cached("tug_sky",W+80,H+80,(k)=>{ const sky=k.createLinearGradient(0,40,0,H+40); sky.addColorStop(0,"#0d1630"); sky.addColorStop(.5,"#2b2350"); sky.addColorStop(1,"#05030a"); k.fillStyle=sky; k.fillRect(0,0,W+80,H+80); }),-40,-40);   // запечено
   for(let i=0;i<60;i++){ ctx.fillStyle=`rgba(255,255,255,${.3+.3*Math.sin(time+i)})`; ctx.fillRect((i*173)%W,(i*97)%700+120,3,3); }
   // луна и горы вдали
   const mg=ctx.createRadialGradient(780,740,10,780,740,140); mg.addColorStop(0,"rgba(255,250,230,.95)"); mg.addColorStop(.35,"rgba(255,240,200,.25)"); mg.addColorStop(1,"rgba(255,240,200,0)"); ctx.fillStyle=mg; ctx.fillRect(640,600,280,280);
@@ -489,7 +489,7 @@ function draw(){
   ctx.fillStyle="#241a3d"; ctx.beginPath(); ctx.moveTo(0,RY+60); for(let i=0;i<=12;i++) ctx.lineTo(i*W/12,RY-150-((i*53)%5)*34-(i%2)*60); ctx.lineTo(W,RY+60); ctx.fill();
   ctx.fillStyle="#1a1330"; ctx.beginPath(); ctx.moveTo(0,RY+60); for(let i=0;i<=9;i++) ctx.lineTo(i*W/9,RY-60-((i*37)%4)*30); ctx.lineTo(W,RY+60); ctx.fill();
   // пропасть с туманом
-  const ab=ctx.createLinearGradient(0,RY+60,0,H); ab.addColorStop(0,"#1a1230"); ab.addColorStop(1,"#000"); ctx.fillStyle=ab; ctx.fillRect(0,RY+60,W,H);
+  ctx.drawImage(TEX.cached("tug_abyss|"+RY,W,H-RY-60,(k)=>{ const ab=k.createLinearGradient(0,0,0,H-RY-60); ab.addColorStop(0,"#1a1230"); ab.addColorStop(1,"#000"); k.fillStyle=ab; k.fillRect(0,0,W,H); }),0,RY+60);   // запечено
   for(let i=0;i<8;i++){ ctx.fillStyle=`rgba(160,140,220,${.06})`; ctx.beginPath(); ctx.ellipse((i*190+time*25)%(W+300)-150,RY+260+i*60,260,50,0,0,Math.PI*2); ctx.fill(); }
   // утёсы
   const cliff=(x0,x1,dir)=>{ ctx.fillStyle="#3a2d48"; ctx.beginPath(); ctx.moveTo(x0,RY+60); ctx.lineTo(x1,RY+60); ctx.lineTo(x1-dir*40,RY+300); ctx.lineTo(x1-dir*10,RY+520); ctx.lineTo(x1-dir*70,H); ctx.lineTo(x0,H); ctx.fill(); if(window.TEX){ TEX.path(ctx,"rock",1); const sh=ctx.createLinearGradient(x0,0,x1,0); sh.addColorStop(0,"rgba(0,0,0,.35)"); sh.addColorStop(1,"rgba(255,255,255,.04)"); ctx.fillStyle=sh; ctx.fill(); }

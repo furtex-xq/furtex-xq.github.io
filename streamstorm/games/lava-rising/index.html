@@ -655,8 +655,7 @@ function draw(){
   if(lava.shake>0) ctx.translate((Math.random()-.5)*24*lava.shake,(Math.random()-.5)*24*lava.shake);
   // фон
   {
-    const bg=ctx.createLinearGradient(0,0,0,H); bg.addColorStop(0,"#120816"); bg.addColorStop(.55,"#2a0c10"); bg.addColorStop(1,"#4a1206");
-    ctx.fillStyle=bg; ctx.fillRect(-30,-30,W+60,H+60);
+    ctx.drawImage(TEX.cached("lava_bg",W+60,H+60,(k)=>{ const bg=k.createLinearGradient(0,30,0,H+30); bg.addColorStop(0,"#120816"); bg.addColorStop(.55,"#2a0c10"); bg.addColorStop(1,"#4a1206"); k.fillStyle=bg; k.fillRect(0,0,W+60,H+60); }),-30,-30);   // запечено
     ctx.fillStyle="#1b0a0e"; ctx.beginPath(); ctx.moveTo(0,1100);
     for(let x=0;x<=W;x+=60) ctx.lineTo(x,1000-Math.abs(Math.sin(x*.004+1))*260-(x>380&&x<700?180-Math.abs(x-540)*1.1:0));
     ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.fill();

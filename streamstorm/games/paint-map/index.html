@@ -536,7 +536,7 @@ function gameUpdate(dt){ phaseT-=dt;
   } else if(phaseT<=0) newMap();
 }
 function gameDraw(){
-  const bg=ctx.createLinearGradient(0,0,0,H); bg.addColorStop(0,"#0b1e33"); bg.addColorStop(1,"#06121e"); ctx.fillStyle=bg; ctx.fillRect(-40,-40,W+80,H+80);
+  ctx.drawImage(TEX.cached("pm_bg",W+80,H+80,(k)=>{ const bg=k.createLinearGradient(0,40,0,H+40); bg.addColorStop(0,"#0b1e33"); bg.addColorStop(1,"#06121e"); k.fillStyle=bg; k.fillRect(0,0,W+80,H+80); }),-40,-40);   // запечено
   // море
   const sea=ctx.createLinearGradient(0,GY-14,0,GY+R*CS+14); sea.addColorStop(0,"#1a5a8a"); sea.addColorStop(1,"#0d3456"); ctx.fillStyle=sea; rr(GX-14,GY-14,C*CS+28,R*CS+28,24); ctx.fill();
   ctx.save(); rr(GX-14,GY-14,C*CS+28,R*CS+28,24); ctx.clip(); ctx.strokeStyle="rgba(255,255,255,.10)"; ctx.lineWidth=3;
