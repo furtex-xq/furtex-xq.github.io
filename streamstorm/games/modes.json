@@ -127,6 +127,28 @@
     "elements"
    ],
    "default": "elements"
+  },
+  "duel-snow": {
+   "modes": [
+    "duel",
+    "colors"
+   ],
+   "default": "duel"
+  },
+  "balloon-race": {
+   "modes": [
+    "countries",
+    "duel",
+    "colors"
+   ],
+   "default": "countries"
+  },
+  "duel-energy": {
+   "modes": [
+    "duel",
+    "colors"
+   ],
+   "default": "duel"
   }
  }
 }

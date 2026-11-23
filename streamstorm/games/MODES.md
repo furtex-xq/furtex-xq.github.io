@@ -32,6 +32,9 @@
 | zodiac-duel (Битва зодиаков) | signs |
 | boss-fight (Битва с боссом) | coop |
 | hot-bomb (Горячая бомба) | elements |
+| duel-snow (Снежный ком) | duel (по умолчанию), colors |
+| balloon-race (Шары стран) | countries (по умолчанию), duel, colors |
+| duel-energy (Энергошар) | duel (по умолчанию), colors |
 
 ## Как это работает
 - `<script id="modes">` в `<head>` каждой игры подставляет состав команд до старта игры (через `history.replaceState`), правила не меняются.
