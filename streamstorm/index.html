@@ -528,6 +528,9 @@ footer{border-top:1px solid var(--stroke);color:var(--text-3)}
 .how div::after{display:none}
 .how div::before{font:600 12px var(--body);letter-spacing:0;text-transform:none;color:var(--gold-hi)}
 .card.feature{border-color:rgba(245,197,66,.35);background:linear-gradient(120deg,rgba(245,197,66,.1),rgba(255,255,255,.03) 60%)}
+/* demo stage: frame the 9:16 game, no black side bars */
+.stage{background:radial-gradient(50% 70% at 50% 45%,rgba(245,197,66,.16),transparent 70%),radial-gradient(40% 60% at 20% 80%,rgba(16,185,129,.12),transparent 70%),radial-gradient(40% 60% at 80% 20%,rgba(56,104,190,.22),transparent 70%),#081226}
+.stage iframe{inset:0 auto auto 50%;width:auto;height:100%;aspect-ratio:9/16;max-width:100%;transform:translateX(-50%);border-left:1px solid var(--stroke);border-right:1px solid var(--stroke);box-shadow:0 0 60px -10px rgba(0,0,0,.8)}
 </style>
 </head>
 <body>
@@ -1652,7 +1655,7 @@ if(PAY.url&&PAY.anon){
   function open(scope){var o=lsGet();
     if(o&&!o.key&&Date.now()-o.t<3*864e5&&(!scope||scope===o.scope||scope==="pick")){dlg.showModal();showOrder(o);return}
     if(o&&o.key&&Date.now()-o.t<864e5){dlg.showModal();$p("pay-key").textContent=o.key;step(3);return}
-    if(scope&&scope!=="pick")sel.value=scope;sel.onchange();pickNet(net);step(1);dlg.showModal()}
+    if(scope==="pick"){if(sel.value==="all")sel.value=PAY_GAMES[0][0]}else if(scope)sel.value=scope;sel.onchange();pickNet(net);step(1);dlg.showModal()}
   $p("pay-go").onclick=function(){var b=this;b.disabled=true;rpc("create_order",{p_scope:sel.value,p_network:net.id}).then(function(r){b.disabled=false;
       if(!r.ok){err(r.reason==="rate_limited"?"Слишком много попыток, подожди минуту.":"Не получилось создать заказ, попробуй ещё раз.");return}
       var o={id:r.id,amount:r.amount,usd:r.usd,net:net.id,scope:sel.value,t:Date.now()};lsSet(o);showOrder(o)})
@@ -1664,7 +1667,7 @@ if(PAY.url&&PAY.anon){
   document.querySelectorAll(".buy-off").forEach(function(e){e.hidden=true});
 }
 /* phones: start the demo with the host panel folded, with a toggle outside the game frame */
-function foldPanels(){if(innerWidth>700)return;document.querySelectorAll(".stage iframe").forEach(function(f){
+function foldPanels(){document.querySelectorAll(".stage iframe").forEach(function(f){
   function apply(){try{var d=f.contentDocument,pn=d&&d.getElementById("panel");if(!pn||pn.dataset.ssFold)return;pn.dataset.ssFold=1;
     if(pn.style.display==="none")return;pn.style.display="none";
     var b=f.parentNode.querySelector(".panel-toggle");if(!b){b=document.createElement("button");b.type="button";b.className="panel-toggle";f.parentNode.appendChild(b)}
