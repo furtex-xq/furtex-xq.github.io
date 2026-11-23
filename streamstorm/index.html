@@ -9,7 +9,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
-<link rel="stylesheet" id="ss-premium-font" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&display=swap">
+<link rel="stylesheet" id="ss-premium-font" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap">
 <style>
 /* ==========================================================================
    STREAMSTORM STYLE «Чемпион»: shared look for the StreamStorm site and launcher.
@@ -531,6 +531,117 @@ footer{border-top:1px solid var(--stroke);color:var(--text-3)}
 /* demo stage: frame the 9:16 game, no black side bars */
 .stage{background:radial-gradient(50% 70% at 50% 45%,rgba(245,197,66,.16),transparent 70%),radial-gradient(40% 60% at 20% 80%,rgba(16,185,129,.12),transparent 70%),radial-gradient(40% 60% at 80% 20%,rgba(56,104,190,.22),transparent 70%),#081226}
 .stage iframe{inset:0 auto auto 50%;width:auto;height:100%;aspect-ratio:9/16;max-width:100%;transform:translateX(-50%);border-left:1px solid var(--stroke);border-right:1px solid var(--stroke);box-shadow:0 0 60px -10px rgba(0,0,0,.8)}
+
+/* ==========================================================================
+   ANSARO LAYER (v2, 2026-11-23): Davyd's own site style (furtex-xq.github.io).
+   Unbounded (display) + Manrope (body), deep violet night, aurora + dot grid,
+   rainbow accent (cyan → violet → pink → amber), rounded glass, shine buttons.
+   Overrides the Champion palette via variables. Fonts: Unbounded 500/700/800,
+   Manrope 400–800 (Google Fonts).
+   ========================================================================== */
+:root{
+  --display:"Unbounded","Manrope",system-ui,sans-serif; --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --navy:#0a0718; --navy-2:#07050f; --panel:#141030; --panel-2:#1c1642; --edge:#2b2456;
+  --white:#f5f3ff; --mist:#a9a3c9; --text-2:#dcd8f2; --text-3:#a9a3c9;
+  --gold:#a78bfa; --gold-hi:#c4b5fd; --gold-deep:#7c3aed; --on-gold:#ffffff;
+  --emerald:#34d399; --sky:#22d3ee; --amber:#fbbf24; --pink:#ec4899;
+  --rainbow:linear-gradient(100deg,#22d3ee,#8b5cf6 35%,#ec4899 65%,#fbbf24);
+  --glass:rgba(255,255,255,.045); --glass-2:rgba(255,255,255,.08); --glass-3:rgba(255,255,255,.12);
+  --stroke:rgba(255,255,255,.09); --stroke-2:rgba(255,255,255,.16);
+}
+html{background:#0a0718}
+body{background:transparent!important;font-family:var(--body);letter-spacing:0}
+html::before{content:"";position:fixed;left:0;top:0;width:100%;height:120vh;z-index:-2;pointer-events:none;opacity:.55;
+  background:radial-gradient(46vmax 46vmax at 0% 0%,rgba(124,58,237,.95),transparent 70%),
+    radial-gradient(40vmax 40vmax at 100% 14%,rgba(219,39,119,.8),transparent 70%),
+    radial-gradient(44vmax 44vmax at 45% 78%,rgba(8,145,178,.7),transparent 70%),
+    radial-gradient(34vmax 34vmax at 96% 100%,rgba(245,158,11,.55),transparent 70%)}
+html::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:28px 28px;
+  -webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 75%)}
+body::before{background:#0a0718}
+::selection{background:rgba(139,92,246,.45)}
+:focus-visible{box-shadow:0 0 0 3px rgba(167,139,250,.55)!important}
+
+/* type */
+h1,h2,h3,.logo,.price,.stats b{font-family:var(--display);letter-spacing:-.025em}
+h1{font-weight:800;line-height:1.08;word-spacing:0}
+h2,h3{font-weight:700}
+.hero h1{font-size:clamp(34px,5.6vw,70px);line-height:1.08;letter-spacing:-.025em}
+.mg-molten,.grad{background:var(--rainbow);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:ss-shift 8s linear infinite}
+@keyframes ss-shift{to{background-position:200% center}}
+.eyebrow{font:600 13px/1 var(--body);color:var(--text);background:var(--glass);border:1px solid var(--stroke-2);padding:7px 16px 7px 10px}
+.mg-pulse{background:var(--emerald)!important;box-shadow:0 0 10px var(--emerald)}
+.lead,.muted{color:var(--text-2)}
+
+/* header: floating rounded glass bar */
+header.bar,header.bar.scrolled{background:transparent;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;padding:12px 0}
+header.bar>.wrap{background:rgba(16,12,36,.6);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--stroke);border-radius:20px;padding:10px 10px 10px 18px}
+header.bar.scrolled>.wrap{background:rgba(16,12,36,.92);box-shadow:0 18px 40px -24px rgba(0,0,0,.8)}
+.logo{font-weight:700;font-size:16px;letter-spacing:-.02em}
+.logo i{background:var(--rainbow);border-radius:10px;box-shadow:0 6px 20px -6px #8b5cf6}
+.logo i svg path{fill:#fff}
+.logo b{color:inherit;background:var(--rainbow);-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{background:transparent;border:0;padding:0}
+nav a{font:600 14px var(--body);color:var(--mist);border-radius:12px}
+.nav-pill{background:var(--glass-2);box-shadow:none;border-radius:12px}
+nav a.nav-cta{background:#f5f3ff;color:#0a0718!important;font-weight:800;margin-left:4px}
+
+/* buttons */
+.btn,.mg-btn{border-radius:18px;font:800 15px var(--body);letter-spacing:0;padding:15px 24px}
+.btn.hot,.mg-btn.hot{background:var(--rainbow);background-size:200% auto;color:#fff;border:0;position:relative;overflow:hidden;
+  box-shadow:0 14px 40px -12px #8b5cf6;transition:transform .25s,box-shadow .25s,background-position .4s}
+.btn.hot:hover,.mg-btn.hot:hover{background-position:right center;transform:translateY(-2px);filter:none;box-shadow:0 22px 50px -14px #8b5cf6}
+.btn.hot:active,.mg-btn.hot:active{transform:scale(.98);box-shadow:0 8px 20px -10px #8b5cf6}
+.mg-btn.hot::after,.btn.hot::after{content:"";position:absolute;top:0;left:0;width:40%;height:100%;opacity:1;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);
+  transform:translateX(-160%) skewX(-20deg);animation:ss-shine 3.6s ease-in-out infinite;pointer-events:none}
+@keyframes ss-shine{0%,60%{transform:translateX(-160%) skewX(-20deg)}100%{transform:translateX(330%) skewX(-20deg)}}
+.btn.ghost,.mg-btn.ghost,.mg-btn:not(.hot){background:var(--glass);border:1px solid var(--stroke-2);border-radius:18px}
+.btn.ghost:hover,.mg-btn:not(.hot):hover{background:var(--glass-2);transform:translateY(-2px)}
+
+/* surfaces */
+.card,.plan,.dl,.step,details,.mode,.tbl,.specs,.controls .gift,.urlbox,.how div,.pay-row,.net{
+  background:linear-gradient(160deg,rgba(22,17,48,.82),rgba(12,9,28,.9));border:1px solid var(--stroke);box-shadow:none}
+.card,.plan,.dl,.step{border-radius:24px}
+.card:hover,.plan:hover,.step:hover{border-color:rgba(139,92,246,.45);box-shadow:0 24px 50px -24px rgba(139,92,246,.75);transform:translateY(-4px)}
+.mg-card::before{background:radial-gradient(520px circle at var(--mx,50%) var(--my,50%),rgba(139,92,246,.14),transparent 45%)}
+.card.feature{border-color:rgba(139,92,246,.4);background:linear-gradient(120deg,rgba(124,58,237,.22),rgba(219,39,119,.1) 45%,rgba(12,9,28,.9) 75%)}
+.plan.pick{border-color:rgba(167,139,250,.55);background:linear-gradient(160deg,rgba(124,58,237,.25),rgba(12,9,28,.92) 60%);box-shadow:0 24px 60px -24px rgba(139,92,246,.8)}
+.specs div{background:rgba(12,9,28,.85)}
+.stage{background:radial-gradient(50% 70% at 50% 45%,rgba(139,92,246,.22),transparent 70%),radial-gradient(40% 60% at 15% 85%,rgba(8,145,178,.2),transparent 70%),radial-gradient(40% 60% at 85% 15%,rgba(219,39,119,.2),transparent 70%),#0c0920}
+dialog.pay{background:rgba(18,13,40,.88)}
+.pay select,.pay input,select,.field{background:rgba(10,7,24,.7)}
+
+/* chips */
+.badge{font:700 11.5px/1 var(--body);background:var(--glass);border-color:var(--stroke-2);color:#d6d1f0}
+.badge.live{background:rgba(52,211,153,.12);border-color:rgba(52,211,153,.35);color:#6ee7b7}
+.badge.gold{background:rgba(139,92,246,.16);border-color:rgba(167,139,250,.45);color:var(--gold-hi)}
+.tag{font:600 12.5px var(--body);color:#d6d1f0;background:var(--glass);border:1px solid var(--stroke-2);border-radius:99px}
+.tag.ok{color:#a7f3d0;border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.08)}
+.how div::before{font:800 12px var(--body);letter-spacing:.12em;text-transform:uppercase;background:var(--rainbow);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats b{background:var(--rainbow);-webkit-background-clip:text;background-clip:text;color:transparent}
+.phone{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 40px 90px -30px rgba(0,0,0,.9),0 0 90px -20px rgba(139,92,246,.45)}
+.mg-embers{opacity:.25;filter:hue-rotate(220deg)}
+footer{border-top:1px solid var(--stroke);color:var(--mist)}
+@media (max-width:560px){header.bar>.wrap{padding:8px 8px 8px 12px;border-radius:18px}}
+/* marquee (running line), Ansaro look; generic .marquee for the launcher too */
+.marquee-row{background:var(--glass);border-block:1px solid var(--stroke)}
+.marquee-row .mg-marquee > div span{font:500 15px var(--display);color:var(--mist);letter-spacing:0;padding-block:18px}
+.marquee-row .mg-marquee > div span::before{content:"✦";margin-right:28px;background:var(--rainbow);-webkit-background-clip:text;background-clip:text;color:transparent}
+.marquee{overflow:hidden;border-block:1px solid var(--stroke);background:var(--glass);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marquee>div{display:flex;gap:44px;width:max-content;padding:18px 0;animation:ss-mq 40s linear infinite;font:500 15px var(--display);color:var(--mist);white-space:nowrap}
+.marquee span::before{content:"✦";margin-right:44px;background:var(--rainbow);-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes ss-mq{to{transform:translateX(-50%)}}
+.kicker{display:inline-block;font:800 12.5px var(--body);letter-spacing:.14em;text-transform:uppercase;background:var(--rainbow);-webkit-background-clip:text;background-clip:text;color:transparent}
+@media (prefers-reduced-motion:reduce){.mg-molten,.grad,.marquee>div,.btn.hot::after,.mg-btn.hot::after{animation:none}}
+.hero-band::after{display:none}
+.hero-band::before{background:conic-gradient(from 200deg at 70% 0,transparent,rgba(139,92,246,.1) 20deg,transparent 40deg,rgba(34,211,238,.08) 70deg,transparent 90deg)}
+.net[aria-pressed="true"]{background:rgba(139,92,246,.14);border-color:rgba(167,139,250,.7);box-shadow:0 0 0 1px rgba(167,139,250,.7) inset}
+.mg-card:hover{border-color:rgba(139,92,246,.45);box-shadow:0 24px 50px -24px rgba(139,92,246,.75)}
+.phone-wrap::before{background:radial-gradient(closest-side,rgba(139,92,246,.45),rgba(236,72,153,.15) 55%,transparent)}
+.stage:hover{border-color:rgba(139,92,246,.45);box-shadow:0 30px 80px -30px rgba(139,92,246,.6)}
+tbody tr:hover{background:rgba(139,92,246,.06)}
+.logo i{animation:none}
+.hero-band .mg-embers{-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent);mask-image:linear-gradient(180deg,#000 55%,transparent)}
 </style>
 </head>
 <body>
