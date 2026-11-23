@@ -9,6 +9,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" id="ss-premium-font" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&display=swap">
 <style>
 /* ==========================================================================
    STREAMSTORM STYLE «Чемпион»: shared look for the StreamStorm site and launcher.
@@ -394,6 +395,140 @@ dialog.pay[open]{animation:mg-enter var(--dur) var(--ease-out)}
 .pay-manual{display:grid;gap:10px}.pay-manual[hidden]{display:none}
 dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
 </style>
+<style id="ss-premium">
+/* ==========================================================================
+   STREAMSTORM PREMIUM LAYER (v1, 2026-11-23)
+   Spirit: Apple / Linear / Discord / Arc. Glass and blur, soft layered shadows,
+   clean Inter type with tight tracking, pill controls, calm motion.
+   Palette stays Champion (navy, gold, emerald, white). Load AFTER magma-style.css
+   and the page's own CSS. Fonts: Inter + Inter Tight (Google Fonts).
+   Shared by the site and the launcher: keep them in sync.
+   ========================================================================== */
+:root{
+  --display:"Inter Tight","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --glass:rgba(255,255,255,.045); --glass-2:rgba(255,255,255,.075); --glass-3:rgba(255,255,255,.11);
+  --stroke:rgba(255,255,255,.085); --stroke-2:rgba(255,255,255,.16);
+  --text-2:rgba(248,250,252,.72); --text-3:rgba(248,250,252,.52);
+  --sh-1:inset 0 1px 0 rgba(255,255,255,.06),0 1px 2px rgba(0,0,0,.25),0 10px 28px -14px rgba(0,0,0,.65);
+  --sh-2:inset 0 1px 0 rgba(255,255,255,.09),0 2px 4px rgba(0,0,0,.2),0 28px 64px -26px rgba(0,0,0,.75);
+  --r-lg:24px; --r-md:16px; --r-sm:12px;
+  --ease-premium:cubic-bezier(.2,.8,.2,1);
+}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{font-family:var(--body);letter-spacing:-.011em;
+  background:
+    radial-gradient(900px 520px at 85% -8%,rgba(56,104,190,.28),transparent 62%),
+    radial-gradient(700px 480px at -8% 22%,rgba(16,185,129,.12),transparent 60%),
+    radial-gradient(800px 600px at 50% 120%,rgba(245,197,66,.08),transparent 60%),
+    var(--navy) fixed}
+::selection{background:rgba(245,197,66,.35);color:#fff}
+:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(245,197,66,.45)!important;border-radius:12px}
+
+/* type */
+h1,h2,h3,.logo,.price,.stats b{font-family:var(--display);letter-spacing:-.022em}
+h1{font-weight:750;line-height:1}
+h2{font-weight:700;letter-spacing:-.02em}
+h3{font-weight:650;letter-spacing:-.02em}
+.hero h1{font-size:clamp(44px,7.2vw,96px);line-height:.98;font-weight:800;letter-spacing:-.028em}
+h1{word-spacing:.04em}
+.price small{font:500 14px var(--body);letter-spacing:0;color:var(--text-3);margin-left:4px}
+.lead,.muted{color:var(--text-2)}
+.eyebrow{font:600 13px/1 var(--body);letter-spacing:0;text-transform:none;color:var(--gold-hi);
+  display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;justify-self:start;
+  background:var(--glass);border:1px solid var(--stroke);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.dl .eyebrow,.plan .eyebrow{padding:6px 10px}
+.mg-molten{animation-duration:9s}
+
+/* header: frosted bar + segmented nav */
+header.bar,header.bar.scrolled{background:rgba(8,16,32,.58);-webkit-backdrop-filter:saturate(180%) blur(22px);backdrop-filter:saturate(180%) blur(22px);
+  border-bottom:1px solid var(--stroke);box-shadow:none}
+header.bar.scrolled{background:rgba(8,16,32,.78);box-shadow:0 12px 32px -22px rgba(0,0,0,.9)}
+.logo{font-weight:800;font-size:19px;letter-spacing:-.03em}
+.logo i{border-radius:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 6px 18px -6px rgba(245,197,66,.7)}
+nav{background:var(--glass);border:1px solid var(--stroke);border-radius:999px;padding:4px;gap:2px}
+nav a{font:500 14px var(--body);letter-spacing:-.01em;color:var(--text-2);padding:7px 14px}
+nav a:hover{color:#fff}
+nav a[aria-current="page"]{color:#fff}
+.nav-pill{background:var(--glass-3);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 1px 3px rgba(0,0,0,.35)}
+nav a.nav-cta{color:var(--gold-hi)}
+
+/* buttons: pills */
+.btn,.mg-btn{border-radius:999px;font:600 15px var(--body);letter-spacing:-.01em;padding:13px 22px;
+  transition:transform var(--dur) var(--ease-premium),box-shadow var(--dur) var(--ease-premium),background var(--dur),border-color var(--dur),filter var(--dur)}
+.btn.hot,.mg-btn.hot{background:linear-gradient(180deg,#FFE08A,#F5C542 60%,#EDB42A);color:#0A1428;border:0;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 1px 2px rgba(0,0,0,.25),0 12px 30px -12px rgba(245,197,66,.7)}
+.btn.hot:hover,.mg-btn.hot:hover{filter:brightness(1.05);transform:translateY(-1px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 2px 4px rgba(0,0,0,.25),0 18px 40px -14px rgba(245,197,66,.8)}
+.btn.hot:active,.mg-btn.hot:active{transform:scale(.98);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 6px 16px -10px rgba(245,197,66,.7)}
+.mg-btn.hot::after{opacity:.5}
+.btn.ghost,.mg-btn.ghost,.mg-btn:not(.hot){background:var(--glass-2);color:#fff;border:1px solid var(--stroke);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.btn.ghost:hover,.mg-btn:not(.hot):hover{background:var(--glass-3);border-color:var(--stroke-2);transform:translateY(-1px)}
+
+/* surfaces: glass cards */
+.card,.plan,.dl,.step,details,.mode,.tbl,.specs,.controls .gift,.urlbox,.how div,.pay-row,.net{
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.022));
+  border:1px solid var(--stroke);box-shadow:var(--sh-1)}
+.card,.plan,.dl,.step{border-radius:var(--r-lg);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+details,.mode,.tbl{border-radius:var(--r-md)}
+.card,.plan,.step,.mode{transition:transform .5s var(--ease-premium),border-color var(--dur),box-shadow .5s var(--ease-premium),background var(--dur)}
+.card:hover,.plan:hover,.step:hover{transform:translateY(-4px);border-color:var(--stroke-2);box-shadow:var(--sh-2)}
+.mg-card:hover{border-color:var(--stroke-2)}
+.mg-card::before{background:radial-gradient(520px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.07),transparent 45%)}
+.plan.pick{border-color:rgba(245,197,66,.45);background:linear-gradient(180deg,rgba(245,197,66,.12),rgba(255,255,255,.03) 55%);box-shadow:var(--sh-2)}
+.specs{border-radius:var(--r-md);overflow:hidden;gap:1px;background:var(--stroke)}
+.specs div{background:rgba(10,20,40,.72)}
+.specs dt{color:var(--text-3);font-size:13px}
+.how div{border-radius:var(--r-md);padding:18px;border-top:1px solid var(--stroke)}
+th{color:var(--text-3);font-weight:600}
+td,th{border-color:var(--stroke)!important}
+details summary{font-weight:600}
+details[open]{border-color:var(--stroke-2)}
+.thumb{border-radius:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+
+/* chips */
+.badge{font:600 11.5px/1 var(--body);letter-spacing:0;text-transform:none;border-radius:999px;padding:6px 10px;
+  background:var(--glass-2);border:1px solid var(--stroke);color:var(--text-2)}
+.badge.live{background:rgba(16,185,129,.14);border-color:rgba(16,185,129,.35);color:#6EE7B7;padding-left:20px}
+.badge.gold{background:rgba(245,197,66,.14);border-color:rgba(245,197,66,.4);color:var(--gold-hi)}
+.tag{font:500 12px var(--body);letter-spacing:0;background:var(--glass);border:1px solid var(--stroke);color:var(--text-2);padding:4px 10px}
+.tag.ok{color:#A7F3D0;border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.08)}
+.price-tag b{font-family:var(--display)}
+
+/* hero */
+.stats b{font-weight:750}
+.stats span{font:500 13px var(--body)!important;letter-spacing:0!important;text-transform:none!important;color:var(--text-3)}
+.mg-embers{opacity:.4}
+.hero-band::before{opacity:.55}
+.phone{border-radius:46px;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 90px -30px rgba(0,0,0,.9),0 0 80px -20px rgba(245,197,66,.25)}
+
+/* game stage */
+.stage{border-radius:28px;border:1px solid var(--stroke);box-shadow:var(--sh-2)}
+.panel-toggle{border-radius:999px;background:rgba(8,16,32,.6);border:1px solid var(--stroke-2);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+
+/* dialog */
+dialog.pay{background:rgba(14,26,50,.82);-webkit-backdrop-filter:saturate(160%) blur(28px);backdrop-filter:saturate(160%) blur(28px);
+  border:1px solid var(--stroke-2);border-radius:28px;box-shadow:0 40px 120px -30px rgba(0,0,0,.9)}
+dialog.pay::backdrop{background:rgba(4,8,18,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.net{border-radius:14px}
+.net[aria-pressed="true"]{background:rgba(245,197,66,.1);border-color:rgba(245,197,66,.6);box-shadow:0 0 0 1px rgba(245,197,66,.6) inset}
+.pay select,.pay input,select,.field{border-radius:12px;border:1px solid var(--stroke-2);background:rgba(4,10,22,.6)}
+
+footer{border-top:1px solid var(--stroke);color:var(--text-3)}
+@media (prefers-reduced-motion:reduce){.card:hover,.plan:hover,.step:hover{transform:none}}
+@media (max-width:480px){
+  nav{padding:3px}
+  nav a{font-size:13.5px;padding:7px 10px}
+  .eyebrow{font-size:12px;padding:7px 12px}
+}
+.badge.live::before{background:#34D399;box-shadow:0 0 8px #34D399}
+.card.wide .tags{grid-column:2}
+.how div{border-top:1px solid var(--stroke)!important}
+.how div::after{display:none}
+.how div::before{font:600 12px var(--body);letter-spacing:0;text-transform:none;color:var(--gold-hi)}
+.card.feature{border-color:rgba(245,197,66,.35);background:linear-gradient(120deg,rgba(245,197,66,.1),rgba(255,255,255,.03) 60%)}
+</style>
 </head>
 <body>
 
@@ -424,7 +559,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
         <a class="btn mg-btn ghost" href="launcher/">⚡ Открыть лаунчер</a>
       </div>
       <div class="stats">
-        <div><b data-count="22">22</b><span>режимов в каталоге</span></div>
+        <div><b data-count="23">23</b><span>режимов в каталоге</span></div>
         <div><b>1080×1920</b><span>вертикальный оверлей</span></div>
         <div><b>$1.99</b><span>в месяц за режим</span></div>
       </div>
@@ -435,7 +570,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
   <div class="marquee-row"><div class="mg-marquee"><div><span><i>🌋</i>Лава поднимается</span><span><i>👑</i>Трон королевства</span><span><i>🪢</i>Перетягивание</span><span><i>💣</i>Горячая бомба</span><span><i>✨</i>Битва зодиаков</span><span><i>🎨</i>Цветная карта</span><span><i>🗼</i>Башня до неба</span><span><i>👹</i>Битва с боссом</span><span><i>⚽</i>Чат-футбол</span><span><i>🏁</i>Гонка стран</span><span><i>🚀</i>Космическая гонка</span><span><i>📈</i>Торговая битва</span><span><i>🤝</i>Саммит</span><span><i>📣</i>Битва болельщиков</span><span><i>🌋</i>Лава поднимается</span><span><i>👑</i>Трон королевства</span><span><i>🪢</i>Перетягивание</span><span><i>💣</i>Горячая бомба</span><span><i>✨</i>Битва зодиаков</span><span><i>🎨</i>Цветная карта</span><span><i>🗼</i>Башня до неба</span><span><i>👹</i>Битва с боссом</span><span><i>⚽</i>Чат-футбол</span><span><i>🏁</i>Гонка стран</span><span><i>🚀</i>Космическая гонка</span><span><i>📈</i>Торговая битва</span><span><i>🤝</i>Саммит</span><span><i>📣</i>Битва болельщиков</span></div></div></div>
 
   <div style="display:grid;gap:18px">
-    <div class="row" data-reveal style="justify-content:space-between"><h2>Каталог игр</h2><span class="muted">22 игр доступны</span></div>
+    <div class="row" data-reveal style="justify-content:space-between"><h2>Каталог игр</h2><span class="muted">23 игр доступны</span></div>
     <div class="grid">
       <a class="card mg-card feature mg-ring" data-reveal style="--i:0" href="#lava">
         <div class="thumb"><span class="emo">🌋</span></div>
@@ -467,7 +602,8 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="card mg-card" data-reveal style="--i:0" href="#gvb"><div class="thumb fire"><span class="emo">💪</span></div><span class="badge live">Новая</span><h3>Девушки против парней</h3><p class="sm">Две команды толкают стену навстречу друг другу. Чат делится на девушек и парней.</p><div class="tags"><span class="tag ok">2 команды</span><span class="tag ok">90 сек</span></div></a>
       <a class="card mg-card" data-reveal style="--i:2" href="#garden"><div class="thumb land"><span class="emo">🌱</span></div><span class="badge live">Новая</span><h3>Сад против зрителей</h3><p class="sm">Весь чат подарками призывает монстров, а сад стримера защищается. 10 монстров, от слизня до дракона.</p><div class="tags"><span class="tag ok">Чат против стримера</span><span class="tag ok">150 сек</span></div></a>
       <a class="card mg-card" data-reveal style="--i:0" href="#blades"><div class="thumb star"><span class="emo">🪚</span></div><span class="badge live">Новая</span><h3>Арена лезвий</h3><p class="sm">Каждый, кто пишет в чат, выходит на арену своей аватаркой. Последний оставшийся побеждает.</p><div class="tags"><span class="tag ok">Все против всех</span><span class="tag ok">120 сек</span></div></a>
-      <a class="card mg-card wide" data-reveal style="--i:1" href="#car"><div class="thumb track"><span class="emo">🚗</span></div><span class="badge live">Новая</span><h3>Машина на подарках</h3><p class="sm">Весь чат вместе заправляет джип подарками. Цель — побить рекорд дня по дальности.</p><div class="tags"><span class="tag ok">Все вместе</span><span class="tag ok">Рекорд дня</span></div></a>
+      <a class="card mg-card" data-reveal style="--i:1" href="#car"><div class="thumb track"><span class="emo">🚗</span></div><span class="badge live">Новая</span><h3>Машина на подарках</h3><p class="sm">Весь чат вместе заправляет джип подарками. Цель — побить рекорд дня по дальности.</p><div class="tags"><span class="tag ok">Все вместе</span><span class="tag ok">Рекорд дня</span></div></a>
+      <a class="card mg-card wide" data-reveal style="--i:2" href="#hoh"><div class="thumb track"><span class="emo">🏃</span></div><span class="badge live">Новая</span><h3>Помоги или помешай</h3><p class="sm">Чат делится на тех, кто помогает раннеру добежать, и тех, кто ставит ему препятствия.</p><div class="tags"><span class="tag ok">2 команды</span><span class="tag ok">~110 сек</span></div></a>
 </div>
   </div>
 
@@ -485,7 +621,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
     <details data-reveal><summary>Не забанит ли TikTok за такие игры?</summary><p>Игра просто показывает картинку поверх эфира и реагирует на реальные лайки, комментарии и подарки твоих зрителей, как обычные виджеты TikFinity. Она ничего не накручивает и не пишет в чат. Правила сообщества TikTok для самого эфира, конечно, никто не отменял.</p></details>
     <details data-reveal><summary>Можно ли запустить игру с телефона?</summary><p>Для эфира нужен компьютер с TikTok LIVE Studio или OBS, потому что игра добавляется как источник «Браузер». Посмотреть демо можно и с телефона.</p></details>
     <details data-reveal><summary>Что нужно установить?</summary><p>Только бесплатную программу TikFinity, она передаёт игре события эфира. Сами игры и лаунчер открываются в браузере.</p></details>
-    <details data-reveal><summary>Сколько стоит?</summary><p>$1.99 в месяц за один режим или $29.99 в месяц за все 22. Демо всех игр бесплатное.</p></details>
+    <details data-reveal><summary>Сколько стоит?</summary><p>$1.99 в месяц за один режим или $29.99 в месяц за все 23. Демо всех игр бесплатное.</p></details>
   </div>
 </section>
 
@@ -537,7 +673,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="lava-rising" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/lava-rising/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -569,7 +705,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="throne" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/throne/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -601,7 +737,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="tug-of-war" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/tug-of-war/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -633,7 +769,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="hot-bomb" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/hot-bomb/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -665,7 +801,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="zodiac-duel" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/zodiac-duel/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -697,7 +833,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="paint-map" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/paint-map/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -731,7 +867,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="tower" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/tower/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -763,7 +899,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="boss-fight" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/boss-fight/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -795,7 +931,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="chat-football" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/chat-football/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -827,7 +963,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="country-race" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/country-race/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -859,7 +995,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="duel-space" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/duel-space/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -891,7 +1027,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="duel-trade" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/duel-trade/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -923,7 +1059,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="duel-summit" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/duel-summit/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 <section class="view" id="v-fans" hidden>
@@ -954,7 +1090,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="duel-fans" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/duel-fans/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -986,7 +1122,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="duel-snow" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/duel-snow/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -1018,7 +1154,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="balloon-race" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/balloon-race/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -1050,7 +1186,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="duel-energy" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/duel-energy/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -1082,7 +1218,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="horse-race" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/horse-race/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -1114,7 +1250,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="girls-vs-boys" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/girls-vs-boys/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -1146,7 +1282,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="garden-defense" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/garden-defense/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -1178,7 +1314,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="blade-arena" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/blade-arena/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
 
@@ -1210,9 +1346,42 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
       <a class="btn mg-btn ghost buy" data-buy="gift-car" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
       <a class="btn mg-btn ghost" href="games/gift-car/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
     </div>
-    <p class="fine"><span class="buy-on" hidden>Или все 22 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 22 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
   </div>
 </section>
+
+<section class="view" id="v-hoh" hidden>
+  <div style="display:grid;gap:12px">
+    <p class="eyebrow">Игра №20</p>
+    <h1>Помоги или помешай</h1>
+    <p class="muted" style="max-width:62ch;font-size:18px">Фраза для эфира: «Поможете добежать или помешаете?» Ниже работает настоящая игра в демо-режиме.</p>
+  </div>
+  <div class="game">
+    <div class="stage"><iframe src="games/help-or-hinder/index.html" title="Игра «Помоги или помешай», демо-режим" loading="lazy"></iframe></div>
+    <div class="controls">
+      <h3>Это настоящая игра</h3>
+      <p class="muted" style="font-size:15px">В окне игры есть пульт ведущего: дари подарки сам, как будто ты зритель. H прячет пульт.</p>
+      <a class="btn mg-btn ghost" href="games/help-or-hinder/index.html" target="_blank" rel="noopener">⛶ Открыть игру на весь экран</a>
+    </div>
+  </div>
+  <dl class="specs" data-reveal><div><dt>Команды</dt><dd>помочь и помешать</dd></div><div><dt>Забег</dt><dd>2000 м, ~110 сек</dd></div><div><dt>Старт</dt><dd>5 сердец</dd></div><div><dt>Формат</dt><dd>1080×1920</dd></div></dl>
+  <div style="display:grid;gap:16px">
+    <h2>Что делают зрители</h2>
+    <div class="tbl" data-reveal><table><thead><tr><th>Действие</th><th>Что происходит на экране</th></tr></thead><tbody><tr><td>💬 «помочь» / «помешать»</td><td>Зритель выбирает команду</td></tr><tr><td>😇 Монеты помощников</td><td>+10 энергии за монету, щит, сердце, крылья</td></tr><tr><td>😈 Монеты вредителей</td><td>Камни, брёвна, пчёлы и стена на пути</td></tr><tr><td>❤️ Лайки</td><td>Поровну обеим командам</td></tr><tr><td>🏁 Победа помощников</td><td>Раннер добежал до финиша</td></tr><tr><td>💥 Победа вредителей</td><td>У раннера кончились сердца</td></tr></tbody></table></div>
+  </div>
+  
+  <div class="dl" data-reveal>
+    <div class="row" style="justify-content:space-between"><h2>Запустить в эфире</h2><span class="price-tag"><b>$1.99</b> / месяц</span></div>
+    <p class="muted">Нужна только бесплатная программа TikFinity. От нас ничего ставить не надо: игра открывается в браузере, а лаунчер выдаёт готовую ссылку для OBS или LIVE Studio.</p>
+    <div class="row">
+      <a class="btn mg-btn hot" href="launcher/?game=help-or-hinder">⚡ Подключить через лаунчер</a>
+      <a class="btn mg-btn ghost buy" data-buy="help-or-hinder" href="#pricing" hidden>💳 Оформить за $1.99/мес</a>
+      <a class="btn mg-btn ghost" href="games/help-or-hinder/index.html" target="_blank" rel="noopener">▶ Играть демо</a>
+    </div>
+    <p class="fine"><span class="buy-on" hidden>Или все 23 режимов за $29.99 в месяц. Оплата криптой: USDT, USDC, BTC, TON и другие. За USDT в сети TRON ключ приходит автоматически.</span><span class="buy-off">Или все 23 режимов за $29.99 в месяц. Оплату подписки подключаем, а демо со всеми механиками работает бесплатно уже сейчас.</span></p>
+  </div>
+</section>
+
 
 
 
@@ -1222,7 +1391,7 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
   <div style="display:grid;gap:12px">
     <p class="eyebrow">Подключение</p>
     <h1>В эфир за 2 минуты</h1>
-    <p class="muted" style="max-width:60ch;font-size:18px">Все 22 игр подключаются одинаково. Нужна только бесплатная программа TikFinity, от нас ничего ставить не надо.</p>
+    <p class="muted" style="max-width:60ch;font-size:18px">Все 23 игр подключаются одинаково. Нужна только бесплатная программа TikFinity, от нас ничего ставить не надо.</p>
   </div>
   <div class="tabs" role="tablist"><span class="tab-pill" aria-hidden="true"></span>
     <button role="tab" aria-selected="true" data-tab="studio" id="tab-studio" type="button">TikTok LIVE Studio</button>
@@ -1251,9 +1420,9 @@ dialog.pay{max-height:calc(100dvh - 32px);overflow:auto}
     <p class="muted" style="max-width:60ch;font-size:18px">Помесячная подписка без долгих обязательств. Каждую игру можно сначала бесплатно погонять в демо.</p>
   </div>
   <div class="plans">
-    <div class="plan mg-card" data-reveal><span class="badge">Демо</span><div class="price">$0</div><ul><li>Все 22 режимов с ботами</li><li>Пульт ведущего и все механики</li><li>Чтобы понять, что подойдёт твоему эфиру</li></ul><a class="btn mg-btn ghost" href="#catalog">Выбрать игру</a></div>
+    <div class="plan mg-card" data-reveal><span class="badge">Демо</span><div class="price">$0</div><ul><li>Все 23 режимов с ботами</li><li>Пульт ведущего и все механики</li><li>Чтобы понять, что подойдёт твоему эфиру</li></ul><a class="btn mg-btn ghost" href="#catalog">Выбрать игру</a></div>
     <div class="plan mg-card" data-reveal style="--i:1"><span class="badge live">Один режим</span><div class="price">$1.99 <small>в месяц</small></div><ul><li>Любая одна игра в настоящем эфире</li><li>Свои подарки, страны и длина раунда</li><li>Все обновления этой игры</li></ul><a class="btn mg-btn ghost buy" data-buy="pick" href="#" hidden>💳 Оформить $1.99/мес</a><a class="btn mg-btn ghost" href="launcher/">⚡ Открыть лаунчер</a></div>
-    <div class="plan pick mg-card mg-ring" data-reveal style="--i:2"><span class="badge gold">Выгодно</span><div class="price">$29.99 <small>в месяц</small></div><ul><li>Все 22 режимов</li><li>Новые игры сразу после выхода</li><li>Меняй игры хоть каждый раунд</li></ul><a class="btn mg-btn hot buy" data-buy="all" href="#" hidden>💳 Оформить $29.99/мес</a><a class="btn mg-btn ghost" href="launcher/">⚡ Открыть лаунчер</a></div>
+    <div class="plan pick mg-card mg-ring" data-reveal style="--i:2"><span class="badge gold">Выгодно</span><div class="price">$29.99 <small>в месяц</small></div><ul><li>Все 23 режимов</li><li>Новые игры сразу после выхода</li><li>Меняй игры хоть каждый раунд</li></ul><a class="btn mg-btn hot buy" data-buy="all" href="#" hidden>💳 Оформить $29.99/мес</a><a class="btn mg-btn ghost" href="launcher/">⚡ Открыть лаунчер</a></div>
   </div>
   <p class="note"><span class="buy-on" hidden>Оплата криптой: USDT, USDC, BTC, TON и ещё 20 сетей. За USDT в сети TRON ключ приходит автоматически. Срок 30 дней идёт с первого запуска ключа. Демо всех режимов бесплатное.</span><span class="buy-off">Оплату подписки сейчас подключаем. Пока все режимы можно бесплатно запускать в демо.</span></p>
 </section>
@@ -1380,7 +1549,7 @@ window.MagmaFX=MagmaFX; window.StormFX=MagmaFX;
 <script>
 (function(){
 /* ---------- routing ---------- */
-var views=["catalog","lava","throne","tug","bomb","zodiac","map","tower","boss","football","race","space","trade","summit","fans","snow","balloon","energy","horse","gvb","garden","blades","car","connect","pricing"];
+var views=["catalog","lava","throne","tug","bomb","zodiac","map","tower","boss","football","race","space","trade","summit","fans","snow","balloon","energy","horse","gvb","garden","blades","car","hoh","connect","pricing"];
 var first=true;
 function route(){
   if(!first&&document.startViewTransition&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.startViewTransition(doRoute)}else doRoute();
@@ -1422,7 +1591,7 @@ addEventListener("scroll",function(){bar.classList.toggle("scrolled",scrollY>20)
 
 /* ---------- buy: USDT TRC20 with automatic key (needs Supabase; empty = buy buttons hidden) ---------- */
 var PAY={url:"https://bxkdvddbjusbcjnzktry.supabase.co",anon:"sb_publishable_loLJqmab1TolWXLIdIrgHA_AlyghDQF"};   /* same Supabase URL + anon key as licenses/license-client.js */
-var PAY_GAMES=[["lava-rising","Лава"],["throne","Трон"],["tug-of-war","Перетягивание"],["hot-bomb","Горячая бомба"],["zodiac-duel","Дуэль знаков"],["paint-map","Цветная карта"],["tower","Башня"],["boss-fight","Босс"],["chat-football","Футбол чата"],["country-race","Гонка стран"],["duel-space","Космос"],["duel-trade","Торговля"],["duel-summit","Вершина"],["duel-fans","Битва болельщиков"],["duel-snow","Снежный ком"],["balloon-race","Шары стран"],["duel-energy","Энергошар"],["horse-race","Скачки стран"],["girls-vs-boys","Девушки против парней"],["garden-defense","Сад против зрителей"],["blade-arena","Арена лезвий"],["gift-car","Машина на подарках"]];
+var PAY_GAMES=[["lava-rising","Лава"],["throne","Трон"],["tug-of-war","Перетягивание"],["hot-bomb","Горячая бомба"],["zodiac-duel","Дуэль знаков"],["paint-map","Цветная карта"],["tower","Башня"],["boss-fight","Босс"],["chat-football","Футбол чата"],["country-race","Гонка стран"],["duel-space","Космос"],["duel-trade","Торговля"],["duel-summit","Вершина"],["duel-fans","Битва болельщиков"],["duel-snow","Снежный ком"],["balloon-race","Шары стран"],["duel-energy","Энергошар"],["horse-race","Скачки стран"],["girls-vs-boys","Девушки против парней"],["garden-defense","Сад против зрителей"],["blade-arena","Арена лезвий"],["gift-car","Машина на подарках"],["help-or-hinder","Помоги или помешай"]];
 /* wallets checked by checksum (Davyd, Trust Wallet). stable = pay the USD amount in USDT/USDC; cg = CoinGecko id for coins */
 var EVM="0x6040df67a217F57aC3C78157eCE2C98E543a8b3D";
 var PAY_NETS=[
