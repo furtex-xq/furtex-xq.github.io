@@ -653,10 +653,23 @@ const GAMES=[
    round:90,likesLabel:"Лайки наносят урон",
    actions:[{id:"damage",name:"Урон",unit:"ед"},{id:"heal",name:"Лечение своему знаку",unit:"ед"},NONE],
    defaults:byCoins(g=>[g.coins>=100?"heal":"damage",g.coins])},
+  {id:"blade",isNew:true,path:"blade-arena",group:"Каждый за себя",name:"Арена лезвий",icon:"🪚",
+   blurb:"Все против всех: любой комментарий выводит твою аватарку на арену с вращающейся пилой. Мелкие подарки лечат, средние качают лезвие, крупные дают ТИТАНА.",
+   note:"Каждый сам за себя. Чтобы войти, зрителю достаточно написать любой комментарий.",round:null,likesLabel:"Лайки дают здоровье",
+   actions:[{id:"heal",name:"Лечение",unit:"монет"},{id:"blade",name:"Лезвие +1 уровень",unit:"монет"},{id:"titan",name:"ТИТАН (щит и рост)",unit:"монет"},...SMB,NONE],
+   defaults:byCoins(g=>[g.coins>=100?"titan":g.coins>=10?"blade":"heal",g.coins])},
   {id:"boss",path:"boss-fight",group:"Все вместе",name:"Битва с боссом",icon:"👹",
    blurb:"Кооператив: весь чат бьёт одного босса. Щит спасает героев от его атак.",
    round:180,likesLabel:"Лайки бьют босса",
    actions:[...SMB,{id:"shield",name:"Щит героям",unit:"монет"},NONE],defaults:byCoins(g=>[TIER(g.coins),g.coins])},
+  {id:"garden",isNew:true,path:"garden-defense",group:"Все вместе",name:"Сад против зрителей",icon:"🌱",
+   blurb:"Весь чат против сада стримера. Подарки призывают монстров: от жука за розу до дракона за 1000 монет. Сад крепнет каждые 30 секунд.",
+   note:"Все зрители в одной команде против сада. Каждая монета превращается в монстра.",round:null,likesLabel:"Лайки призывают слизней",
+   actions:[...SMB,NONE],defaults:byCoins(g=>[TIER(g.coins),g.coins])},
+  {id:"car",isNew:true,path:"gift-car",group:"Все вместе",name:"Машина на подарках",icon:"🚗",
+   blurb:"Весь чат везёт джип по бесконечным холмам. Подарки — это бензин, средние включают нитро, крупные турбо-реактор. Рекорд дня на экране.",
+   note:"Кооператив: весь чат вместе едет как можно дальше и бьёт рекорд дня.",round:null,likesLabel:"Лайки дают бензин",
+   actions:[...SMB,NONE],defaults:byCoins(g=>[TIER(g.coins),g.coins])},
 ];
 // UA и RU никогда не играют вместе
 const noClash=list=>list.includes("UA")?list.filter(x=>x!=="RU"):list;
@@ -887,7 +900,7 @@ function renderTestBtns(){
   $("#testBtns").innerHTML=GIFTS.filter(gf=>(c.map[gf.id]||["none"])[0]!=="none").map(gf=>`<button data-tg="${gf.id}">${gf.icon} ${esc(gf.name)}</button>`).join("")
    +`<button data-tl>❤ 20 лайков</button>`+(g.join?`<button data-tc="${esc(c.joinCmd)}">💬 ${esc(c.joinCmd)}</button>`:"")
    +teams.map(cc=>`<button data-tc="${FLAG(cc)}">💬 ${FLAG(cc)}</button>`).join("")
-   +(g.sides?`<button data-tc="1">💬 1</button><button data-tc="2">💬 2</button>`:"")+(g.path==="girls-vs-boys"?`<button data-tc="девушки">💬 💗</button><button data-tc="парни">💬 💙</button>`:"")+(md==="colors"&&!g.sides?`<button data-tc="красные">💬 🔴</button><button data-tc="синие">💬 🔵</button>`:"");
+   +(g.sides?`<button data-tc="1">💬 1</button><button data-tc="2">💬 2</button>`:"")+(g.path==="blade-arena"?`<button data-tc="всем привет">💬 войти</button>`:"")+(g.path==="girls-vs-boys"?`<button data-tc="девушки">💬 💗</button><button data-tc="парни">💬 💙</button>`:"")+(md==="colors"&&!g.sides?`<button data-tc="красные">💬 🔴</button><button data-tc="синие">💬 🔵</button>`:"");
   $("#testBtns").querySelectorAll("[data-tg]").forEach(b=>b.onclick=()=>{const gf=GIFTS.find(x=>x.id==b.dataset.tg);flyEmoji(b,gf.icon);dispatch({type:"gift",user:fakeUser(),gift:{id:gf.id,name:gf.name,coins:gf.coins,count:1}})});
   $("#testBtns").querySelector("[data-tl]").onclick=e=>(flyEmoji(e.currentTarget,"❤️"),dispatch)({type:"like",user:fakeUser(),likes:20});
   $("#testBtns").querySelectorAll("[data-tc]").forEach(b=>b.onclick=()=>dispatch({type:"comment",user:fakeUser(),text:b.dataset.tc}));
