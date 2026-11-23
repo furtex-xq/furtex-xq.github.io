@@ -35,6 +35,8 @@
 | duel-snow (Снежный ком) | duel (по умолчанию), colors |
 | balloon-race (Шары стран) | countries (по умолчанию), duel, colors |
 | duel-energy (Энергошар) | duel (по умолчанию), colors |
+| horse-race (Скачки стран) | countries |
+| girls-vs-boys (Девушки против парней) | duel (команды фиксированы: девушки и парни) |
 
 ## Как это работает
 - `<script id="modes">` в `<head>` каждой игры подставляет состав команд до старта игры (через `history.replaceState`), правила не меняются.

@@ -603,6 +603,10 @@ const GAMES=[
    teams:{min:2,max:8,def:"KZ,UZ,PL,DE,TR,BR,US,IT"},round:120,likesLabel:"Лайки двигают свою команду",
    actions:[{id:"boost",name:"Вперёд на N метров",unit:"м"},{id:"turbo",name:"Турбо ×1.5",unit:"сек"},NONE],
    defaults:byCoins(g=>g.coins>=100?["turbo",Math.min(10,Math.round(g.coins/100)+2)]:["boost",g.coins])},
+  {id:"horses",isNew:true,path:"horse-race",group:"Битвы стран",name:"Скачки стран",icon:"🏇",
+   blurb:"До 8 стран, у каждой своя дорожка. Подарки разгоняют лошадь своей страны: средние дают шпоры ×2, крупные золотую подкову. Первая на 2000 м побеждает.",
+   teams:{min:2,max:8,def:"KZ,UZ,PL,DE,TR,BR,US,IT"},round:150,likesLabel:"Лайки разгоняют свою лошадь",
+   actions:[...SMB,NONE],defaults:byCoins(g=>[TIER(g.coins),g.coins])},
   {id:"balloon",isNew:true,path:"balloon-race",group:"Битвы стран",name:"Шары стран",icon:"🎈",
    blurb:"До 6 воздушных шаров стран летят в стратосферу. Подарки поднимают шар своей страны, гроза бьёт по лидеру, купол от неё защищает.",
    teams:{min:2,max:6,def:"KZ,UZ,PL,DE,TR,BR"},round:150,likesLabel:"Лайки поднимают свой шар",
@@ -616,6 +620,10 @@ const GAMES=[
    blurb:"2–4 страны строят башни наперегонки. Подарки добавляют этажи, крупные дают особые эффекты.",
    teams:{min:2,max:4,def:"KZ,PL,TR,BR"},round:150,likesLabel:"Лайки добавляют этажи",
    actions:[...SMB,NONE],defaults:byCoins(g=>[TIER(g.coins),g.coins])},
+  {id:"gvb",isNew:true,path:"girls-vs-boys",group:"Две команды",name:"Девушки против парней",icon:"💪",
+   blurb:"Две команды толкают кирпичную стену навстречу друг другу. Подарки дают силу толчка: средние второе дыхание ×2, крупные таран. Дожал стену до края, и победа.",
+   note:"💗 Девушки против 💙 парней. Зритель пишет в чат «девушки» или «парни» (или 1 / 2). Команды в этой игре постоянные.",
+   round:90,likesLabel:"Лайки дают силу толчка",actions:[...SMB,NONE],defaults:byCoins(g=>[TIER(g.coins),g.coins])},
   {id:"rope",path:"tug-of-war",group:"Две команды",name:"Перетягивание над пропастью",icon:"🪢",
    blurb:"Две команды тянут канат над пропастью. Подарки дают рывки, якорь ослабляет рывки соперника.",
    sides:{left:"Украина",right:"Казахстан"},round:120,likesLabel:"Лайки тоже тянут канат",
@@ -653,7 +661,7 @@ const GAMES=[
 // UA и RU никогда не играют вместе
 const noClash=list=>list.includes("UA")?list.filter(x=>x!=="RU"):list;
 // Режимы: копия /mnt/project-files/games/modes.json (источник правды у Мастерской игр)
-const MODES={"param":"mode","modes":{"countries":{"title":"🌍 Страны","desc":"Зрители пишут страну в чат и играют за неё. Несколько стран сразу."},"duel":{"title":"⚔️ Страна против страны","desc":"Только две страны — крупно, напряжённо, легко болеть."},"colors":{"title":"🎨 Команды по цветам","desc":"Без стран: Красные, Синие, Зелёные, Жёлтые. Пиши цвет или номер."},"ffa":{"title":"👑 Все против всех","desc":"Каждый зритель сам за себя: личный рейтинг, один победитель."},"coop":{"title":"🤝 Все вместе","desc":"Весь чат — одна команда против игры."},"signs":{"title":"✨ Знаки зодиака","desc":"Зрители играют за свой знак зодиака."},"elements":{"title":"🔥 Стихии","desc":"Четыре стихии: огонь, вода, лес, молния."}},"games":{"lava-rising":{"modes":["countries","duel","colors"],"default":"countries"},"country-race":{"modes":["countries","duel","colors"],"default":"countries"},"tower":{"modes":["countries","duel","colors"],"default":"countries"},"paint-map":{"modes":["countries","duel","colors"],"default":"countries"},"chat-football":{"modes":["duel","colors"],"default":"duel"},"duel-fans":{"modes":["duel","colors"],"default":"duel"},"duel-space":{"modes":["duel","colors"],"default":"duel"},"duel-summit":{"modes":["duel","colors"],"default":"duel"},"duel-trade":{"modes":["duel","colors"],"default":"duel"},"tug-of-war":{"modes":["colors"],"default":"colors"},"throne":{"modes":["ffa"],"default":"ffa"},"zodiac-duel":{"modes":["signs"],"default":"signs"},"boss-fight":{"modes":["coop"],"default":"coop"},"hot-bomb":{"modes":["elements"],"default":"elements"},"duel-snow":{"modes":["duel","colors"],"default":"duel"},"balloon-race":{"modes":["countries","duel","colors"],"default":"countries"},"duel-energy":{"modes":["duel","colors"],"default":"duel"}}};
+const MODES={"param":"mode","modes":{"countries":{"title":"🌍 Страны","desc":"Зрители пишут страну в чат и играют за неё. Несколько стран сразу."},"duel":{"title":"⚔️ Страна против страны","desc":"Только две страны — крупно, напряжённо, легко болеть."},"colors":{"title":"🎨 Команды по цветам","desc":"Без стран: Красные, Синие, Зелёные, Жёлтые. Пиши цвет или номер."},"ffa":{"title":"👑 Все против всех","desc":"Каждый зритель сам за себя: личный рейтинг, один победитель."},"coop":{"title":"🤝 Все вместе","desc":"Весь чат — одна команда против игры."},"signs":{"title":"✨ Знаки зодиака","desc":"Зрители играют за свой знак зодиака."},"elements":{"title":"🔥 Стихии","desc":"Четыре стихии: огонь, вода, лес, молния."}},"games":{"lava-rising":{"modes":["countries","duel","colors"],"default":"countries"},"country-race":{"modes":["countries","duel","colors"],"default":"countries"},"tower":{"modes":["countries","duel","colors"],"default":"countries"},"paint-map":{"modes":["countries","duel","colors"],"default":"countries"},"chat-football":{"modes":["duel","colors"],"default":"duel"},"duel-fans":{"modes":["duel","colors"],"default":"duel"},"duel-space":{"modes":["duel","colors"],"default":"duel"},"duel-summit":{"modes":["duel","colors"],"default":"duel"},"duel-trade":{"modes":["duel","colors"],"default":"duel"},"tug-of-war":{"modes":["colors"],"default":"colors"},"throne":{"modes":["ffa"],"default":"ffa"},"zodiac-duel":{"modes":["signs"],"default":"signs"},"boss-fight":{"modes":["coop"],"default":"coop"},"hot-bomb":{"modes":["elements"],"default":"elements"},"duel-snow":{"modes":["duel","colors"],"default":"duel"},"balloon-race":{"modes":["countries","duel","colors"],"default":"countries"},"duel-energy":{"modes":["duel","colors"],"default":"duel"},"horse-race":{"modes":["countries"],"default":"countries"},"girls-vs-boys":{"modes":["duel"],"default":"duel"}}};
 function modesOf(g){const e=MODES.games[g.path];return e?e.modes:[]}
 function modeOf(g,c){const ms=modesOf(g);return ms.includes(c.mode)?c.mode:(MODES.games[g.path]||{}).default||ms[0]||""}
 const COUNTRIES="UA RU KZ BY UZ PL DE TR US BR FR IT ES GE AM AZ MD KG TJ IN".split(" ");
@@ -720,6 +728,7 @@ function renderMain(){
     <p class="hint">Зритель пишет в чат название страны или флаг и попадает в её команду. Кто не выбрал, попадает в самую маленькую команду.</p>`;
   if((g.duo||g.teams)&&md==="duel") teamsUI=`<div class="row"><label class="field"><span>Страна 1</span><select id="ca">${CC_OPTS(c.a)}</select></label><label class="field"><span>Страна 2</span><select id="cb">${CC_OPTS(c.b)}</select></label></div>
     <p class="hint">Дружеское соперничество: зритель пишет страну, флаг или «1» / «2». Без политики и оскорблений, за это TikTok банит эфир.</p>`;
+  if(g.note) teamsUI=`<p class="hint">${esc(g.note)}</p>`;
   if(md==="colors"&&!g.sides) teamsUI=`<p class="hint">🔴 Красные · 🔵 Синие · 🟢 Зелёные · 🟡 Жёлтые. Зритель пишет в чат цвет или номер команды. Без стран, подходит любому стриму.</p>`;
   if(g.sides) teamsUI=`<div class="row"><label class="field"><span>Левая команда</span><input type="text" id="left" value="${esc(c.left)}"></label><label class="field"><span>Правая команда</span><input type="text" id="right" value="${esc(c.right)}"></label></div>`;
   $("#main").innerHTML=`
@@ -874,11 +883,11 @@ const fakeUser=()=>{const n=rnd(NAMES);return {id:n,name:n}};
 function renderTestBtns(){
   const g=GAMES.find(x=>x.id===cur); if(!g){$("#testBtns").innerHTML="";return}
   const c=cfg(g);
-  const md=modeOf(g,c);const teams=md==="colors"||md===""?[]:md==="duel"?[c.a,c.b]:g.teams?c.teams.split(","):[];
+  const md=modeOf(g,c);const teams=md==="colors"||md===""?[]:md==="duel"?(g.note?[]:[c.a,c.b]):g.teams?c.teams.split(","):[];
   $("#testBtns").innerHTML=GIFTS.filter(gf=>(c.map[gf.id]||["none"])[0]!=="none").map(gf=>`<button data-tg="${gf.id}">${gf.icon} ${esc(gf.name)}</button>`).join("")
    +`<button data-tl>❤ 20 лайков</button>`+(g.join?`<button data-tc="${esc(c.joinCmd)}">💬 ${esc(c.joinCmd)}</button>`:"")
    +teams.map(cc=>`<button data-tc="${FLAG(cc)}">💬 ${FLAG(cc)}</button>`).join("")
-   +(g.sides?`<button data-tc="1">💬 1</button><button data-tc="2">💬 2</button>`:"")+(md==="colors"&&!g.sides?`<button data-tc="красные">💬 🔴</button><button data-tc="синие">💬 🔵</button>`:"");
+   +(g.sides?`<button data-tc="1">💬 1</button><button data-tc="2">💬 2</button>`:"")+(g.path==="girls-vs-boys"?`<button data-tc="девушки">💬 💗</button><button data-tc="парни">💬 💙</button>`:"")+(md==="colors"&&!g.sides?`<button data-tc="красные">💬 🔴</button><button data-tc="синие">💬 🔵</button>`:"");
   $("#testBtns").querySelectorAll("[data-tg]").forEach(b=>b.onclick=()=>{const gf=GIFTS.find(x=>x.id==b.dataset.tg);flyEmoji(b,gf.icon);dispatch({type:"gift",user:fakeUser(),gift:{id:gf.id,name:gf.name,coins:gf.coins,count:1}})});
   $("#testBtns").querySelector("[data-tl]").onclick=e=>(flyEmoji(e.currentTarget,"❤️"),dispatch)({type:"like",user:fakeUser(),likes:20});
   $("#testBtns").querySelectorAll("[data-tc]").forEach(b=>b.onclick=()=>dispatch({type:"comment",user:fakeUser(),text:b.dataset.tc}));

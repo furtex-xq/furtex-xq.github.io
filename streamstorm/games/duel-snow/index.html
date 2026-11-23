@@ -33,6 +33,8 @@
     "duel-summit":  {duel:{}, colors:{a:"RED",b:"BLU"}},
     "duel-trade":   {duel:{}, colors:{a:"RED",b:"BLU"}},
     "duel-snow":    {duel:{}, colors:{a:"RED",b:"BLU"}},
+    "horse-race":   {countries:{}, duel:{teams:"KZ,UZ"}, colors:{teams:"RED,BLU,GRN,YEL"}},
+    "duel-energy":  {duel:{}, colors:{a:"RED",b:"BLU"}},
     "balloon-race": {countries:{}, duel:{teams:"KZ,UZ"}, colors:{teams:"RED,BLU,GRN,YEL"}},
   };
   const q=new URLSearchParams(location.search), id=(q.get("mode")||"").toLowerCase(), m=MODES[GAME]&&MODES[GAME][id];
@@ -192,6 +194,8 @@ const COUNTRIES = {
   RED:{n:"Красные", c:"#ef4444", a:["красные","красный","красная","red","кр"], f:["team","#dc2626"]},
   BLU:{n:"Синие", c:"#3b82f6", a:["синие","синий","синяя","blue","син"], f:["team","#2563eb"]},
   GRN:{n:"Зелёные", c:"#22c55e", a:["зелёные","зеленые","зелёный","зеленый","green","зел"], f:["team","#16a34a"]},
+  GIRL:{n:"Девушки", c:"#f472b6", a:["девушки","девушка","девочки","девочка","девчонки","женщины","girls","girl","women","ж","д"], f:["team","#db2777"]},
+  BOY:{n:"Парни", c:"#38bdf8", a:["парни","парень","мальчики","мальчик","пацаны","мужчины","boys","boy","men","м","п"], f:["team","#0284c7"]},
   YEL:{n:"Жёлтые", c:"#facc15", a:["жёлтые","желтые","жёлтый","желтый","yellow","жел"], f:["team","#eab308"]},
   UA:{n:"Украина",  c:"#ffd400", a:["украина","україна","ukraine","укр","ua"], f:["h","#0057B7","#FFD700"]},
   RU:{n:"Россия",   c:"#3b7bff", a:["россия","russia","рф","ru","рос"], f:["h","#fff","#0039A6","#D52B1E"]},
@@ -370,11 +374,11 @@ function duelComment(u,text){ const ex=text.trim(); let s=-1;
 function onComment(u,text){ duelComment(u,text); }
 function onGift(u,unit,count,name,giftId){
   if(phase!=="play"){ if(pendingG.length<200) pendingG.push([u,unit,count,name,giftId]); return; }
-  const s=sideOf(u); credit(fans,u,unit*count,{s}); const mp=mapped(giftId);
+  const s=sideOf(u); credit(fans,u,unit*count,{s}).s=s; const mp=mapped(giftId);
   if(mp){ if(mp.action==="none") return; return modeGift(s,u,mp.power,count,name,mp.action); }
   modeGift(s,u,unit,count,name,TIER(unit));
 }
-function onLike(u,n){ if(phase!=="play") return; const s=sideOf(u); const p=likePoints(u,n,20); if(p){ credit(fans,u,p,{s}); modeGift(s,u,1,p,"лайки","small"); }
+function onLike(u,n){ if(phase!=="play") return; const s=sideOf(u); const p=likePoints(u,n,20); if(p){ credit(fans,u,p,{s}).s=s; modeGift(s,u,1,p,"лайки","small"); }
   if(Math.random()<.25) emo(s===0?CX-240:CX+240,CHAT_Y-60,"❤️",30); }
 function onFollow(u){ if(phase!=="play") return; const s=sideOf(u); modeGift(s,u,5,1,"подписка","small"); }
 function newDuelRound(){ roundN++; phase="play"; phaseT=CONFIG.roundSeconds; winnerSide=-1; fans=new Map(); sides.forEach(s=>s.score=0); modeReset();
@@ -634,9 +638,10 @@ window.STAGE={bigY:[580,720], cut:1060, cta:"НАПИШИ «1» ИЛИ «2»|�
   buildCta();
   const CTA_Y=Y0+66;
   let tick=null; function buildTick(){ const items=(typeof S.ticker==="function"?S.ticker():S.ticker); const s=items.join("     ✦     ")+"     ✦     ";
-    const parts=richParts(s), k0=mk(10,10).getContext("2d"); k0.font=`800 36px ${F}`; const w=Math.ceil(richW(k0,parts,36))+4, c=mk(w,56), k=c.getContext("2d");
+    const parts=richParts(s), k0=mk(10,10).getContext("2d"); k0.font=`800 36px ${F}`; const w=Math.ceil(richW(k0,parts,36)*1.04)+40, c=mk(w,56), k=c.getContext("2d");
     k.lineWidth=6; richDraw(k,parts,2,29,36,GOLD_HI,800,"left"); tick={c,w}; }
   buildTick(); GP.on(()=>{ buildCta(); buildTick(); });
+  try{ document.fonts&&document.fonts.ready.then(()=>{ buildCta(); buildTick(); }); document.fonts&&document.fonts.addEventListener("loadingdone",()=>{ buildCta(); buildTick(); }); }catch(e){}
 
   let last=performance.now(), T=0, fr=0, acc=0;
   function step(now){
@@ -685,6 +690,7 @@ window.GIFT_FX_TARGET=id=>{ const s=members.get(id); if(s==null) return null; co
     if(window.STAGE_MAP){ const m=window.STAGE_MAP(t.x,t.y); return {x:m.x,y:Math.min(window.STAGE_Y0-30,m.y),color:t.color}; } return t; }
   const waitQ=[], bigQ=[]; // bigQ: крупные подарки ждут, пока на экране уже 2 большие карточки
   const bigsOn=()=>cards.filter(c=>c.tier==="big"&&c.st<2).length;
+  const ONLYBIG=()=>!!(window.STAGE&&window.STAGE.cards==="big"), BIGMAX=()=>ONLYBIG()?1:2; // cards:"big" — мелкие/средние только кольцом и +N у цели, крупные по одной
   // подарки, пришедшие во время баннера игры: эффект покажем сразу после него
   // пока на экране баннер игры («МАТЧ НАЧАЛСЯ», «ПЕРЕВОРОТ!»…), карточки его не закрывают
   function bannerOn(){ try{ return typeof banner!=="undefined"&&!!banner; }catch(e){ return false; } }
@@ -696,11 +702,11 @@ window.GIFT_FX_TARGET=id=>{ const s=members.get(id); if(s==null) return null; co
     if(ex){ ex.count+=count; ex.coins+=coins; ex.bump=1; ex.dirty=true; ex.t=Math.min(ex.t,.3); return; }
     const T=TIERS[tier]; const lane=cards.filter(c=>c.st<2&&c.tier!=="big").length;
     rate.push(now); while(rate.length&&now-rate[0]>1000) rate.shift();
-    if(tier!=="big"&&(lane>=(tier==="small"?3:4)||rate.length>10)){ // поток: без карточек, только вспышка и +X // поток мелких подарков: без карточки, сразу вспышка и «+X» у своей команды
+    if(tier!=="big"&&(ONLYBIG()||lane>=(tier==="small"?3:4)||rate.length>10)){ // поток: без карточек, только вспышка и +X // поток мелких подарков: без карточки, сразу вспышка и «+X» у своей команды
       const tg=target(u.id); rings.push({x:tg.x,y:tg.y,r:10,max:tier==="mid"?160:90,c:tg.color||T.c1,life:1}); pops.push({x:tg.x+(Math.random()-.5)*60,y:tg.y-40,text:`+${coins} 💰`,c:"#fff",size:38,life:1.1}); return; }
     const big=tier==="big";
-    if(big&&bigsOn()>=2&&bigQ.length<12){ bigQ.push([u,unit,count,name,pic]); return; }
-    if(big&&bigsOn()>=2){ const tg=target(u.id); rings.push({x:tg.x,y:tg.y,r:10,max:300,c:tg.color||T.c1,life:1}); pops.push({x:tg.x,y:tg.y-40,text:`+${coins} 💰`,c:"#ffe27a",size:64,life:1.3}); flash=Math.max(flash,.6); return; }
+    if(big&&bigsOn()>=BIGMAX()&&bigQ.length<12){ bigQ.push([u,unit,count,name,pic]); return; }
+    if(big&&bigsOn()>=BIGMAX()){ const tg=target(u.id); rings.push({x:tg.x,y:tg.y,r:10,max:300,c:tg.color||T.c1,life:1}); pops.push({x:tg.x,y:tg.y-40,text:`+${coins} 💰`,c:"#ffe27a",size:64,life:1.3}); flash=Math.max(flash,.6); return; }
     // свободный слот (2×2 сетка), чтобы карточки не лезли друг на друга; большая — отдельно сверху
     const used=new Set(cards.filter(c=>c.st===0&&c.slot!=null).map(c=>c.slot)); let slot=0; while(used.has(slot)&&slot<3) slot++;
     const bigUsed=cards.some(c=>c.st===0&&c.tier==="big");
@@ -762,7 +768,7 @@ window.GIFT_FX_TARGET=id=>{ const s=members.get(id); if(s==null) return null; co
   }
   function step(now){
     if(waitQ.length&&!bannerOn()) for(let n=0;n<3&&waitQ.length;n++) add(...waitQ.shift());
-    if(bigQ.length&&!bannerOn()&&bigsOn()<2) add(...bigQ.shift());
+    if(bigQ.length&&!bannerOn()&&bigsOn()<BIGMAX()) add(...bigQ.shift());
     const dt=Math.min(.05,(now-last)/1000); last=now;
     if(base.style.width!==lastW){ lastW=base.style.width; fx.style.width=base.style.width; fx.style.height=base.style.height; }
     for(const c of cards){ c.bump=Math.max(0,c.bump-dt*4); c.t+=dt;

@@ -649,9 +649,10 @@ window.STAGE={cards:"big", bigY:[580,700], cut:1100, cta:"НАПИШИ «1» И�
   buildCta();
   const CTA_Y=Y0+66;
   let tick=null; function buildTick(){ const items=(typeof S.ticker==="function"?S.ticker():S.ticker); const s=items.join("     ✦     ")+"     ✦     ";
-    const parts=richParts(s), k0=mk(10,10).getContext("2d"); k0.font=`800 36px ${F}`; const w=Math.ceil(richW(k0,parts,36))+4, c=mk(w,56), k=c.getContext("2d");
+    const parts=richParts(s), k0=mk(10,10).getContext("2d"); k0.font=`800 36px ${F}`; const w=Math.ceil(richW(k0,parts,36)*1.04)+40, c=mk(w,56), k=c.getContext("2d");
     k.lineWidth=6; richDraw(k,parts,2,29,36,GOLD_HI,800,"left"); tick={c,w}; }
   buildTick(); GP.on(()=>{ buildCta(); buildTick(); });
+  try{ document.fonts&&document.fonts.ready.then(()=>{ buildCta(); buildTick(); }); document.fonts&&document.fonts.addEventListener("loadingdone",()=>{ buildCta(); buildTick(); }); }catch(e){}
 
   let last=performance.now(), T=0, fr=0, acc=0;
   function step(now){

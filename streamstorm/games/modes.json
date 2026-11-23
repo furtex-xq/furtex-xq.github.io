@@ -149,6 +149,18 @@
     "colors"
    ],
    "default": "duel"
+  },
+  "horse-race": {
+   "modes": [
+    "countries"
+   ],
+   "default": "countries"
+  },
+  "girls-vs-boys": {
+   "modes": [
+    "duel"
+   ],
+   "default": "duel"
   }
  }
 }
