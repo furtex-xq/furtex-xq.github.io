@@ -69,9 +69,13 @@
     "gifts.freezeSeconds":"Заморозка лавы, сек",cols:"Колонок на карте",rows:"Рядов на карте",likesPerArmy:"Лайков на 1 армию",fortifyAmount:"Укрепление: сила",
     decayFlat:"Трон слабеет в секунду",likesPerCoin:"Лайков = 1 монета",likesPerStep:"Лайков на 1 шаг",anchorMax:"Якорь: максимум, сек",likesPerDamage:"Лайков на 1 урон",
     pauseSeconds:"Пауза между раундами, сек",hearts:"Сердца на старте",speed:"Скорость",energyPerCoin:"Энергия за монету",waveEvery:"Новая волна каждые, сек",houseHP:"HP домика",
+    "giftWindow.mode":"Окно подарков: right = справа внизу, over = поверх игры, off = выкл","giftWindow.size":"Окно подарков: размер, % (60–160)",
+    "giftWindow.x":"Окно подарков: сдвиг вправо (+) / влево (−), px","giftWindow.y":"Окно подарков: сдвиг вниз (+) / вверх (−), px","giftWindow.opacity":"Окно подарков: плотность фона, %",
     winsNeeded:"Побед до победы в матче",track:"Длина каната, шагов",coinPull:"Шагов за монету",drift:"Канат к центру, шаг/сек",anchorSeconds:"Якорь, сек"};
   let CFG=null;
-  window.SS_APPLY=function(C){ CFG=C; let src=""; try{ src=document.currentScript?document.currentScript.textContent:""; }catch(e){}
+  window.SS_APPLY=function(C){ CFG=C; window.SS_CFG=C; let src="";
+    // окно подарков (giftfx): общие для всех игр настройки, видны в лаунчере как параметры игры
+    try{ if(!C.giftWindow){ const qn=(k,d)=>num(Q.get(k),d); C.giftWindow={mode:(Q.get("gw")||"right").toLowerCase().slice(0,10),size:qn("gws",100),x:qn("gwx",0),y:qn("gwy",0),opacity:qn("gwo",88)}; } }catch(e){} try{ src=document.currentScript?document.currentScript.textContent:""; }catch(e){}
     const def=JSON.parse(JSON.stringify(C,(k,v)=>typeof v==="function"?undefined:v));
     for(const k in SET) setPath(C,k,SET[k]);
     const sc=schema(def,src); window.SS_SCHEMA=sc;
@@ -660,7 +664,7 @@ window.STAGE={cut:1055, endCut:1370, bigY:[560,700], cta:"ОГОНЬ · ВОДА
   const feed=[];
   function pushFeed(t,c,life){ const s=String(t), cv=mk(900,64), k=cv.getContext("2d"); const fs=fitFont(k,s,36,820,700); const tw=Math.min(880,k.measureText(s).width+56);
     k.fillStyle="rgba(14,26,52,.78)"; rr(k,450-tw/2,4,tw,56,28); k.fill(); k.strokeStyle="rgba(255,255,255,.14)"; k.lineWidth=2; k.stroke(); text(k,s,450,33,fs,c||"#fff","center",700);
-    feed.unshift({cv,life,born:performance.now()}); if(feed.length>3) feed.pop(); }
+    feed.unshift({cv,life,tw,born:performance.now()}); if(feed.length>3) feed.pop(); }
   if(S.feed&&typeof window.addFeed==="function"){ const of=window.addFeed; window.addFeed=function(t,c){ try{ pushFeed(t,c,6); }catch(e){} return of.apply(this,arguments); }; }
   window.STAGE_FEED=(t,c)=>{ if(S.feed) try{ pushFeed(t,c,5); }catch(e){} };
   let hype=0;
@@ -734,7 +738,9 @@ window.STAGE={cut:1055, endCut:1370, bigY:[560,700], cta:"ОГОНЬ · ВОДА
       const ty=Y0+190; g.fillStyle="rgba(14,26,52,.80)"; g.fillRect(0,ty-30,W,60); g.fillStyle="rgba(255,255,255,.10)"; g.fillRect(0,ty-30,W,1); g.fillStyle="rgba(245,197,66,.45)"; g.fillRect(0,ty+29,W,1);
       if(tick){ const off=(T*110)%tick.w; for(let x=-off;x<W;x+=tick.w) g.drawImage(tick.c,x,ty-28); }
       for(const f of feed) f.life-=el; while(feed.length&&feed[feed.length-1].life<=0) feed.pop();
-      feed.forEach((f,i)=>{ const k=Math.min(1,(now-f.born)/250), sc=1-i*.08; g.globalAlpha=Math.min(1,f.life)*k; const w=900*sc, h=60*sc; g.drawImage(f.cv,CX-w/2+(1-k)*-60,Y0+262+i*52-h/2,w,h); });
+      // окно подарков справа: ленту сдвигаем и при нужде сужаем, чтобы она не уходила под окно
+      const GR=window.SS_GWR, GX=GR&&GR.y<Y0+420&&GR.y+GR.h>Y0+230?GR.x-16:W-16;
+      feed.forEach((f,i)=>{ const k=Math.min(1,(now-f.born)/250), z=Math.min(1,(GX-16)/f.tw), sc=(1-i*.08)*z; g.globalAlpha=Math.min(1,f.life)*k; const w=900*sc, h=60*sc, cx=Math.max(16+f.tw*sc/2,Math.min(CX,GX-f.tw*sc/2)); g.drawImage(f.cv,cx-w/2+(1-k)*-60,Y0+262+i*52-h/2,w,h); });
       g.globalAlpha=1;
     }
     requestAnimationFrame(step);
@@ -773,6 +779,8 @@ window.GIFT_FX_TARGET=id=>{ const t=members.get(id); if(t==null||!BASES[t]) retu
   // пока на экране баннер игры («МАТЧ НАЧАЛСЯ», «ПЕРЕВОРОТ!»…), карточки его не закрывают
   function bannerOn(){ try{ return typeof banner!=="undefined"&&!!banner; }catch(e){ return false; } }
   function add(u,unit,count,name,pic){
+    if(gwM==="right"&&R) return gwAdd(u,unit,count,name,pic);
+    if(gwM==="off"){ const tg=target(u.id), T=TIERS[tierOf(unit)]; rings.push({x:tg.x,y:tg.y,r:10,max:120,c:tg.color||T.c1,life:1}); pops.push({x:tg.x,y:tg.y-40,text:`+${unit*count}`,c:"#fff",size:48,life:1.2,pic}); return; }
     if(bannerOn()){ if(waitQ.length<40) waitQ.push([u,unit,count,name,pic]); return; }
     const tier=tierOf(unit), coins=unit*count, key=u.id+"|"+name, now=performance.now();
     // комбо: тот же зритель и тот же подарок подряд — одна карточка, счётчик ×N растёт
@@ -851,11 +859,145 @@ window.GIFT_FX_TARGET=id=>{ const t=members.get(id); if(t==null||!BASES[t]) retu
     const sc=c.s*(1+c.bump*.12)*c.T.scale; if(sc<=0) return;
     g.save(); g.translate(c.x,c.y); g.scale(sc,sc); g.drawImage(c.cv,-(CW/2+PAD),-(CH/2+PAD)); g.restore();
   }
+  /* ===== ОКНО ПОДАРКОВ: своё место, где видно, как летит каждый подарок =====
+     Стоит справа внизу, там, где у TikTok LIVE пусто: правее комментариев, выше нижней панели, левее края,
+     который обрезают высокие телефоны (~100 px с каждого бока). Подарок взлетает в окне, показывает, кто и что подарил,
+     и улетает по дуге в игру к своей команде. Настройки: CONFIG.giftWindow (лаунчер: «Параметры этой игры»)
+     или ссылкой: gw=right|over|off, gws=размер %, gwx/gwy=сдвиг px, gwo=плотность фона %. */
+  const QS=new URLSearchParams(location.search);
+  const qn=(k,d)=>{ const v=parseFloat(QS.get(k)); return isFinite(v)?v:d; };
+  const GWD={mode:(QS.get("gw")||"right").toLowerCase(),size:qn("gws",100),x:qn("gwx",0),y:qn("gwy",0),opacity:qn("gwo",88)};
+  function gwCfg(){ const c=(window.SS_CFG&&window.SS_CFG.giftWindow)||GWD; let m=String(c.mode||"right").toLowerCase();
+    if(/^(off|none|0|false|нет|выкл)/.test(m)) m="off"; else if(/^(over|game|cards|поверх)/.test(m)) m="over"; else m="right"; return {m,c}; }
+  const GW_W=224, GW_H=500;               // размер окна при 100 % (в пикселях кадра 1080×1920)
+  const GW_RIGHT=968, GW_BOTTOM=1752;     // правый край (1080 − ~100 обрезки − отступ) и низ (над нижней панелью TikTok)
+  let gwSig="", gwM="right", R=null;
+  function gwSync(){ const {m,c}=gwCfg(); const sig=m+"|"+c.size+"|"+c.x+"|"+c.y+"|"+c.opacity; if(sig===gwSig) return; gwSig=sig; gwM=m;
+    if(m!=="right"){ R=null; window.SS_GWR=null; chromeDirty=true; return; }
+    const s=Math.max(.6,Math.min(1.6,(+c.size||100)/100)), w=Math.round(GW_W*s), h=Math.round(GW_H*s);
+    let x=GW_RIGHT-w+(+c.x||0), y=GW_BOTTOM-h+(+c.y||0); x=Math.max(0,Math.min(1080-w,x)); y=Math.max(0,Math.min(1920-h,y));
+    R={x,y,w,h,s,a:Math.max(.2,Math.min(1,(isFinite(+c.opacity)?+c.opacity:88)/100))}; window.SS_GWR=R; chromeDirty=true; }
+  const L2G=(lx,ly)=>({x:R.x+lx*R.s, y:R.y+ly*R.s});   // точка окна → точка кадра
+  const HERO={x:GW_W/2,y:158}, LAUNCH={x:GW_W/2,y:GW_H-26};
+  // отдельный холст для самого окна: рисуется только при изменениях, эффекты летают поверх в холсте giftfx
+  const win=document.createElement("canvas"); win.width=810; win.height=1440; win.id="giftwin";
+  win.style.cssText="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:3";
+  document.body.insertBefore(win,fx.parentNode===document.body?fx:null); const wg=win.getContext("2d");
+  let chromeDirty=true, chromeAt=0, hero=null; const heroQ=[], flights=[], hist=[];
+  const hexA=(h,a)=>{ const n=parseInt(String(h).slice(1),16); return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`; };
+  function imgL(u){ const im=img(u); if(im&&!im.__gw){ im.__gw=1; im.addEventListener("load",()=>{ chromeDirty=true; },{once:true}); } return im; }
+  // картинка подарка со свечением: рисуется один раз на картинку+ярус
+  const sprC=new Map();
+  function giftSpr(pic,tier){ const k=(pic||"")+"|"+tier, im=imgL(pic); let s=sprC.get(k); if(s&&(s.ok||!ready(im))) return s.cv;
+    const cv=s?s.cv:document.createElement("canvas"); cv.width=cv.height=180; const q=cv.getContext("2d"), T=TIERS[tier]; q.clearRect(0,0,180,180);
+    const gr=q.createRadialGradient(90,90,8,90,90,90); gr.addColorStop(0,hexA(T.c1,.6)); gr.addColorStop(.55,hexA(T.c2,.18)); gr.addColorStop(1,hexA(T.c2,0)); q.fillStyle=gr; q.fillRect(0,0,180,180);
+    if(ready(im)) q.drawImage(im,30,30,120,120); else { q.font=`400 92px ${F}`; q.textAlign="center"; q.textBaseline="middle"; q.fillText(T.emo,90,98); }
+    sprC.set(k,{cv,ok:ready(im)||!pic}); if(sprC.size>80) sprC.delete(sprC.keys().next().value); return cv; }
+  function avatar(k,u,x,y,r,col){ const av=imgL(u.avatar); k.save(); k.beginPath(); k.arc(x,y,r,0,Math.PI*2); k.clip();
+    if(ready(av)) k.drawImage(av,x-r,y-r,r*2,r*2); else { let hh=0; for(const ch of u.name) hh=(hh*31+ch.charCodeAt(0))|0; k.fillStyle=`hsl(${Math.abs(hh)%360},60%,42%)`; k.fillRect(x-r,y-r,r*2,r*2);
+      k.font=`900 ${Math.round(r*1.05)}px ${F}`; k.textAlign="center"; k.textBaseline="middle"; k.fillStyle="#fff"; k.fillText(([...u.name][0]||"?").toUpperCase(),x,y+1); }
+    k.restore(); k.lineWidth=2.5; k.strokeStyle=col; k.beginPath(); k.arc(x,y,r+1,0,Math.PI*2); k.stroke(); }
+  function fitK(k,s,size,maxW,w=900){ k.font=`${w} ${size}px ${F}`; while(size>11&&k.measureText(s).width>maxW){ size--; k.font=`${w} ${size}px ${F}`; } return size; }
+  function tk(k,s,x,y,size,c,al="center",w=900){ k.font=`${w} ${size}px ${F}`; k.textAlign=al; k.textBaseline="middle"; k.lineJoin="round"; k.lineWidth=Math.max(3,size/8); k.strokeStyle="rgba(6,12,28,.7)"; k.strokeText(s,x,y); k.fillStyle=c; k.fillText(s,x,y); }
+  function rrk(k,x,y,w,h,r){ k.beginPath(); k.moveTo(x+r,y); k.arcTo(x+w,y,x+w,y+h,r); k.arcTo(x+w,y+h,x,y+h,r); k.arcTo(x,y+h,x,y,r); k.arcTo(x,y,x+w,y,r); k.closePath(); }
+  const fmt=n=>n>=10000?(Math.round(n/100)/10)+"K":String(n);
+  // ---- само окно: стекло, заголовок, подсказка (пока нет подарка), последние подарки
+  function drawChrome(){ chromeDirty=false; wg.setTransform(1,0,0,1,0,0); wg.clearRect(0,0,win.width,win.height); if(!R){ win.style.display="none"; return; } win.style.display="";
+    const k=wg; k.setTransform(.75,0,0,.75,0,0); k.translate(R.x,R.y); k.scale(R.s,R.s); const W=GW_W, H=GW_H, a=R.a;
+    k.shadowColor="rgba(0,0,0,.5)"; k.shadowBlur=26; k.shadowOffsetY=8;
+    const bg=k.createLinearGradient(0,0,0,H); bg.addColorStop(0,`rgba(28,40,76,${a})`); bg.addColorStop(1,`rgba(8,14,32,${Math.min(1,a+.04)})`); k.fillStyle=bg; rrk(k,0,0,W,H,28); k.fill(); k.shadowBlur=0; k.shadowOffsetY=0;
+    k.save(); rrk(k,0,0,W,H,28); k.clip();
+    const gl=k.createRadialGradient(W/2,HERO.y,10,W/2,HERO.y,170); gl.addColorStop(0,"rgba(245,197,66,.16)"); gl.addColorStop(1,"rgba(245,197,66,0)"); k.fillStyle=gl; k.fillRect(0,0,W,H);
+    const hi=k.createLinearGradient(0,0,0,60); hi.addColorStop(0,"rgba(255,255,255,.14)"); hi.addColorStop(1,"rgba(255,255,255,0)"); k.fillStyle=hi; k.fillRect(0,0,W,60);
+    // дорожка взлёта: пунктир снизу к центру
+    k.strokeStyle="rgba(255,217,120,.18)"; k.lineWidth=3; k.setLineDash([4,12]); k.beginPath(); k.moveTo(W/2,LAUNCH.y); k.lineTo(W/2,HERO.y+80); k.stroke(); k.setLineDash([]);
+    k.restore();
+    k.lineWidth=2; k.strokeStyle="rgba(255,255,255,.2)"; rrk(k,2,2,W-4,H-4,26); k.stroke();
+    const bd=k.createLinearGradient(0,0,0,H); bd.addColorStop(0,"rgba(255,226,140,.95)"); bd.addColorStop(.5,"rgba(245,197,66,.35)"); bd.addColorStop(1,"rgba(255,226,140,.8)"); k.strokeStyle=bd; k.lineWidth=3; rrk(k,0,0,W,H,28); k.stroke();
+    // заголовок
+    k.fillStyle="#F43F5E"; k.beginPath(); k.arc(26,30,6,0,Math.PI*2); k.fill(); k.fillStyle="rgba(244,63,94,.3)"; k.beginPath(); k.arc(26,30,11,0,Math.PI*2); k.fill();
+    tk(k,"ПОДАРКИ",W/2+10,31,fitK(k,"ПОДАРКИ",26,W-70),"#FFD978","center",900);
+    k.fillStyle="rgba(255,255,255,.12)"; k.fillRect(16,56,W-32,2);
+    // подсказка, пока ничего не летит
+    if(!hero&&!heroQ.length){ const G=window.SSGifts; let x=W/2-64;
+      for(const t of ["small","mid","big"]){ const u=G&&G.tier(t); k.drawImage(giftSpr(u&&G.ok(G.img(u))?u:null,t),x-32,HERO.y-62,64,64); x+=64; }
+      tk(k,"Подари подарок —",W/2,HERO.y+18,fitK(k,"Подари подарок —",22,W-24,800),"#F8FAFC","center",800);
+      tk(k,"он прилетит в игру",W/2,HERO.y+46,fitK(k,"он прилетит в игру",22,W-24,800),"#F8FAFC","center",800);
+      tk(k,"👇",W/2,HERO.y+92,30,"#fff"); }
+    // последние подарки
+    const HY=318; k.fillStyle="rgba(255,255,255,.10)"; k.fillRect(16,HY-14,W-32,2);
+    tk(k,"ПОСЛЕДНИЕ",W/2,HY+4,15,"rgba(203,213,225,.85)","center",800);
+    hist.slice(0,4).forEach((h,i)=>{ const y=HY+38+i*42, T=TIERS[h.tier];
+      k.fillStyle=i===0?"rgba(255,255,255,.10)":"rgba(255,255,255,.05)"; rrk(k,8,y-19,W-16,38,19); k.fill();
+      avatar(k,h.u,28,y,15,T.c1);
+      const right=h.count>1?"×"+h.count:"+"+fmt(h.coins); k.font=`900 18px ${F}`; const rw=k.measureText(right).width;
+      tk(k,h.u.name,50,y,fitK(k,h.u.name,18,W-50-rw-56,800),"#fff","left",800);
+      k.drawImage(giftSpr(h.pic,h.tier),W-rw-58,y-21,42,42);
+      tk(k,right,W-16,y,18,T.c1,"right",900); });
+  }
+  function histPush(u,name,pic,tier,count,coins){ const key=u.id+"|"+name, now=performance.now(), h=hist[0];
+    if(h&&h.key===key&&now-h.t<4000){ h.count+=count; h.coins+=coins; h.t=now; } else { hist.unshift({key,u,name,pic,tier,count,coins,t:now}); if(hist.length>6) hist.pop(); }
+    imgL(u.avatar); chromeDirty=true; }
+  // ---- полёт: из окна по дуге к цели в игре
+  function fly(from,u,pic,tier,count,coins,sc){ if(flights.length>=18){ arrive({x:0,y:0},u,pic,tier,count,coins,target(u.id)); return; }
+    const tg=target(u.id); flights.push({x0:from.x,y0:from.y,tg,u,pic,tier,count,coins,t:0,dur:tier==="big"?.85:.7,s0:sc,s1:tier==="big"?.75:.5}); }
+  function arrive(f,u,pic,tier,count,coins,tg){ const T=TIERS[tier], c=tg.color||T.c1;
+    for(let i=0;i<T.parts&&sparks.length<160;i++){ const a=Math.random()*Math.PI*2, sp=120+Math.random()*(tier==="big"?700:380); sparks.push({x:tg.x,y:tg.y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:.7+Math.random()*.5,c:Math.random()<.5?c:T.c1,r:3+Math.random()*(tier==="big"?9:5),gr:500}); }
+    rings.push({x:tg.x,y:tg.y,r:10,max:tier==="big"?420:tier==="mid"?220:110,c,life:1});
+    pops.push({x:tg.x,y:tg.y-40,text:`+${coins}`,c:tier==="big"?"#ffe27a":"#fff",size:tier==="big"?72:tier==="mid"?56:44,life:1.3,pic});
+    if(tier==="big") flash=Math.max(flash,.7); }
+  function gwAdd(u,unit,count,name,pic){ const tier=tierOf(unit), coins=unit*count, key=u.id+"|"+name, now=performance.now();
+    histPush(u,name,pic,tier,count,coins);
+    if(hero&&hero.key===key&&hero.st<2){ hero.count+=count; hero.coins+=coins; hero.bump=1; hero.dirty=true; if(hero.st===1) hero.t=Math.min(hero.t,.15); return; }
+    const q=heroQ.find(h=>h.key===key); if(q){ q.count+=count; q.coins+=coins; return; }
+    rate.push(now); while(rate.length&&now-rate[0]>1000) rate.shift();
+    const busy=rate.length>6||heroQ.length>=3;
+    if((tier==="small"&&busy)||heroQ.length>=10||(tier==="mid"&&heroQ.length>=6)){ fly(L2G(LAUNCH.x,LAUNCH.y-40),u,pic,tier,count,coins,tier==="small"?.5:.65); return; }  // поток: сразу летит из окна, без остановки
+    const h={key,u,name,pic,tier,T:TIERS[tier],count,coins,st:0,t:0,bump:0,dirty:true};
+    if(tier==="big"){ let i=0; while(i<heroQ.length&&heroQ[i].tier==="big") i++; heroQ.splice(i,0,h); } else heroQ.push(h);
+    if(tier==="big") flash=Math.max(flash,.35); }
+  // подпись под подарком в окне (кэш, заново только при комбо)
+  function heroLabel(h){ const cv=h.cv||(h.cv=document.createElement("canvas")); cv.width=GW_W; cv.height=96; const k=cv.getContext("2d");
+    tk(k,h.u.name,GW_W/2,22,fitK(k,h.u.name,26,GW_W-24),"#fff","center",900);
+    const s2=h.name+(h.count>1?"  ×"+h.count:""); tk(k,s2,GW_W/2,54,fitK(k,s2,21,GW_W-24,800),h.T.c1,"center",800);
+    tk(k,"+"+fmt(h.coins),GW_W/2,82,fitK(k,"+"+fmt(h.coins),22,GW_W-24),"#FFD978","center",900); h.dirty=false; h.lblPic=ready(img(h.pic)); }
+  const HOLD={small:.75,mid:1.15,big:1.7};
+  function gwTick(dt){ gwSync(); if(gwM!=="right"){ if(hero||heroQ.length){ for(const h of [hero,...heroQ]) if(h) fly({x:540,y:900},h.u,h.pic,h.tier,h.count,h.coins,.6); hero=null; heroQ.length=0; } }
+    if(!hero&&heroQ.length&&R){ hero=heroQ.shift(); chromeDirty=true; }
+    if(hero){ const h=hero; h.t+=dt; h.bump=Math.max(0,h.bump-dt*4);
+      const hold=heroQ.length>2?.35:heroQ.length?HOLD[h.tier]*.6:HOLD[h.tier];
+      if(h.st===0&&h.t>=.32){ h.st=1; h.t=0; } else if(h.st===1&&h.t>=hold){ fly(L2G(HERO.x,HERO.y),h.u,h.pic,h.tier,h.count,h.coins,R?R.s:1); hero=null; if(!heroQ.length) chromeDirty=true; } }
+    for(const f of flights){ f.t+=dt;
+      if(f.t<f.dur&&sparks.length<150&&Math.random()<.7){ const p=flightPos(f); sparks.push({x:p.x+(Math.random()-.5)*24,y:p.y+(Math.random()-.5)*24,vx:(Math.random()-.5)*60,vy:(Math.random()-.5)*60+40,life:.45,c:TIERS[f.tier].c1,r:2+Math.random()*4}); }
+      if(f.t>=f.dur){ f.done=true; arrive(f,f.u,f.pic,f.tier,f.count,f.coins,f.tg); } }
+    for(let i=flights.length-1;i>=0;i--) if(flights[i].done) flights.splice(i,1);
+    const now=performance.now(); if(chromeDirty&&now-chromeAt>120){ chromeAt=now; drawChrome(); } }
+  function flightPos(f){ const k=Math.min(1,f.t/f.dur), e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2, x1=f.tg.x, y1=f.tg.y;
+    const cx=(f.x0+x1)/2-(x1<f.x0?60:-60), cy=Math.min(f.y0,y1)-220, m=1-e;
+    return {x:m*m*f.x0+2*m*e*cx+e*e*x1, y:m*m*f.y0+2*m*e*cy+e*e*y1, s:f.s0+(f.s1-f.s0)*e, k}; }
+  let rayA=0;
+  function gwDraw(dt){ rayA+=dt*.9;
+    if(hero&&R){ const h=hero, T=h.T; g.save(); g.translate(R.x,R.y); g.scale(R.s,R.s); rrk(g,3,60,GW_W-6,GW_H-63,24); g.clip();
+      // взлёт снизу окна в центр, потом пульс на месте
+      let x=HERO.x, y=HERO.y, s=1;
+      if(h.st===0){ const k=Math.min(1,h.t/.32), e=1-Math.pow(1-k,3); y=LAUNCH.y+(HERO.y-LAUNCH.y)*e; s=.45+.55*e;
+        for(let i=0;i<3;i++){ g.globalAlpha=.5*(1-k); g.fillStyle=T.c1; g.fillRect(x-4+(Math.random()-.5)*16,y+40+i*26,8,16); } g.globalAlpha=1; }
+      else s=1+Math.sin(Math.min(1,h.t/.35)*Math.PI)*.12+h.bump*.14;
+      // лучи за подарком
+      if(h.st===1){ g.save(); g.translate(x,y-20); g.rotate(rayA); g.globalAlpha=h.tier==="big"?.32:.2; g.fillStyle=T.c1; const n=h.tier==="big"?12:8, L=h.tier==="big"?150:118;
+        for(let i=0;i<n;i++){ g.rotate(Math.PI*2/n); g.beginPath(); g.moveTo(0,0); g.lineTo(-11,-L); g.lineTo(11,-L); g.closePath(); g.fill(); } g.restore(); g.globalAlpha=1; }
+      const d=(h.tier==="big"?170:150)*s; g.drawImage(giftSpr(h.pic,h.tier),x-d/2,y-20-d/2,d,d);
+      if(h.st===1){ if(!h.cv||h.dirty) heroLabel(h); const a=Math.min(1,h.t/.15); g.globalAlpha=a; g.drawImage(h.cv,0,HERO.y+46); g.globalAlpha=1; }
+      g.restore(); }
+    for(const f of flights){ const p=flightPos(f), d=150*p.s, sp=giftSpr(f.pic,f.tier); g.globalAlpha=p.k>.9?Math.max(.2,(1-p.k)*10):1; g.drawImage(sp,p.x-d/2,p.y-d/2,d,d); g.globalAlpha=1; } }
+  const gwBusy=()=>!!(hero||heroQ.length||flights.length);
+  gwSync();
   function step(now){
     if(waitQ.length&&!bannerOn()) for(let n=0;n<3&&waitQ.length;n++) add(...waitQ.shift());
     if(bigQ.length&&!bannerOn()&&bigsOn()<BIGMAX()) add(...bigQ.shift());
     const dt=Math.min(.05,(now-last)/1000); last=now;
-    if(base.style.width!==lastW){ lastW=base.style.width; fx.style.width=base.style.width; fx.style.height=base.style.height; }
+    if(base.style.width!==lastW){ lastW=base.style.width; fx.style.width=win.style.width=base.style.width; fx.style.height=win.style.height=base.style.height; }
+    gwTick(dt);
     for(const c of cards){ c.bump=Math.max(0,c.bump-dt*4); c.t+=dt;
       if(c.st===0){ c.s=Math.min(1,c.t/.18)*(1+Math.sin(Math.min(1,c.t/.3)*Math.PI)*.18); if(c.t>=c.T.hold+.2){ c.st=1; c.t=0; const tg=target(c.u.id); c.tx=tg.x; c.ty=tg.y; c.tc=tg.color||c.T.c1; c.sx=c.x; c.sy=c.y; } }
       else if(c.st===1){ const k=Math.min(1,c.t/.55), e=k*k*(3-2*k); c.x=c.sx+(c.tx-c.sx)*e; c.y=c.sy+(c.ty-c.sy)*e-Math.sin(k*Math.PI)*120; c.s=1-.75*e;
@@ -868,7 +1010,7 @@ window.GIFT_FX_TARGET=id=>{ const t=members.get(id); if(t==null||!BASES[t]) retu
     for(const r of rings){ r.life-=dt*1.6; r.r+=(r.max-r.r)*Math.min(1,dt*7); } rings=rings.filter(r=>r.life>0);
     for(const p of pops){ p.life-=dt; p.y-=70*dt; } pops=pops.filter(p=>p.life>0); if(pops.length>20) pops.splice(0,pops.length-20);
     flash=Math.max(0,flash-dt*2);
-    const active=flash>0||cards.length||sparks.length||rings.length||pops.length;
+    const active=flash>0||gwBusy()||cards.length||sparks.length||rings.length||pops.length;
     if(!active){ if(!MERGED){ if(!idle){ g.clearRect(0,0,1080,1920); idle=true; } requestAnimationFrame(step); } return; } idle=false;
     if(MERGED) g.save(); else { g.setTransform(.75,0,0,.75,0,0); g.clearRect(0,0,1080,1920); }
     if(flash>0){ g.globalAlpha=flash; g.drawImage(flashCv,0,0,1080,1920); g.globalAlpha=1; }
@@ -876,6 +1018,7 @@ window.GIFT_FX_TARGET=id=>{ const t=members.get(id); if(t==null||!BASES[t]) retu
     for(const p of sparks){ g.globalAlpha=Math.max(0,Math.min(1,p.life*1.5)); g.fillStyle=p.c; g.fillRect(p.x-p.r,p.y-p.r,p.r*2,p.r*2); } g.globalAlpha=1;
     for(const c of cards) if(c.tier!=="big") drawCard(c);
     for(const c of cards) if(c.tier==="big") drawCard(c); // большие всегда поверх
+    gwDraw(dt);
     for(const p of pops){ g.globalAlpha=Math.min(1,p.life*1.5); const s=1+Math.max(0,p.life-1)*1.5; if(!p.cv||(!p.picOk&&ready(img(p.pic)))) popCv(p); const w=p.cv.width*s, h=p.cv.height*s; g.drawImage(p.cv,p.x-w/2,p.y-h/2,w,h); } g.globalAlpha=1;
     if(MERGED) g.restore(); else requestAnimationFrame(step);
   }
