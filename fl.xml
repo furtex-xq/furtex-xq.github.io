@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>ForkLog</title>
+	<atom:link href="https://forklog.com/feed" rel="self" type="application/rss+xml" />
+	<link>https://forklog.com</link>
+	<description>Интернет-журнал о биткоине, криптовалютах и децентрализации</description>
+	<lastBuildDate>Sat, 28 Nov 2026 13:01:42 +0000</lastBuildDate>
+	<language>ru-RU</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+
+<image>
+	<url>https://forklog.com/wp-content/uploads/FL_favicon-150x150.png</url>
+	<title>ForkLog</title>
+	<link>https://forklog.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>ЕЦБ заявил о сопоставимом с США уровне использования ИИ европейскими работниками</title>
+		<link>https://forklog.com/news/ai/etsb-zayavil-o-sopostavimom-s-ssha-urovne-ispolzovaniya-ii-evropejskimi-rabotnikami</link>
+		
+		<dc:creator><![CDATA[Роман Петров]]></dc:creator>
+		<pubDate>Sat, 28 Nov 2026 13:01:41 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[ЕЦБ]]></category>
+		<category><![CDATA[ИИ]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[Исследования]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293798</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-529c23f1a674fb06-346486227836393.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="EU_flag_crypto" decoding="async" fetchpriority="high" srcset="" data-src="https://forklog.com/wp-content/uploads/img-529c23f1a674fb06-346486227836393.webp" /></p>В августе 44% работающих жителей еврозоны применяли искусственный интеллект на рабочем месте хотя бы раз в неделю. Уровень распространения технологии оказался сопоставим с США, свидетельствуют результаты ежемесячного опроса Consumer Expectations Survey Европейского центрального банка (ЕЦБ).]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>В Нидерландах потребовали запретить продажи умных очков Meta</title>
+		<link>https://forklog.com/v-niderlandah-potrebovali-zapretit-prodazhi-umnyh-ochkov-meta</link>
+		
+		<dc:creator><![CDATA[ForkLog]]></dc:creator>
+		<pubDate>Sat, 28 Nov 2026 12:15:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293795</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Meta-Facebook.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Meta Facebook" decoding="async" srcset="" data-src="https://forklog.com/wp-content/uploads/Meta-Facebook.webp" /></p>Две нидерландские организации обратились в суд Амстердама с требованием приостановить продажи умных очков Meta. Они считают, что устройства позволяют незаметно снимать окружающих и нарушают европейское законодательство о защите персональных данных.
+Истцы также требуют запретить использование записей для обучения ИИ и обязать Meta изменить уже проданные устройства. Компания отвергает обвинения. По ее словам, о съемке предупреждает световой индикатор на оправе, а полный запрет будет несоразмерной мерой.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Связанный с Трампом токен WLFI обвалился более чем на 50%</title>
+		<link>https://forklog.com/news/svyazannyj-s-trampom-token-wlfi-obvalilsya-bolee-chem-na-50</link>
+		
+		<dc:creator><![CDATA[Роман Петров]]></dc:creator>
+		<pubDate>Sat, 28 Nov 2026 11:12:51 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[World Liberty Financial (WLFI)]]></category>
+		<category><![CDATA[Джастин Сан]]></category>
+		<category><![CDATA[Дональд Трамп]]></category>
+		<category><![CDATA[токены]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293791</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/World-Liberty-Financial.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="World Liberty Financial" decoding="async" srcset="" data-src="https://forklog.com/wp-content/uploads/World-Liberty-Financial.webp" /></p>Нативный токен проекта World Liberty Financial (WLFI), связанного с семьей президента США Дональда Трампа, за сутки потерял более половины стоимости и обновил исторический минимум.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Разработчики Solana призвали срочно обновить ПО узлов сети</title>
+		<link>https://forklog.com/razrabotchiki-solana-prizvali-srochno-obnovit-po-uzlov-seti</link>
+		
+		<dc:creator><![CDATA[ForkLog]]></dc:creator>
+		<pubDate>Sat, 28 Nov 2026 10:20:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293788</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/SOLANA-2025.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="SOLANA 2025" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/SOLANA-2025.webp" /></p>Компания Anza, занимающаяся разработкой инфраструктуры Solana, призвала операторов нод основной сети немедленно установить обновление Agave v4.4.2.
+Патч затрагивает сетевую библиотеку QUIC. Разработчики не раскрыли подробности исправленной проблемы, но подчеркнули, что обновиться необходимо всем операторам узлов, в том числе не участвующим в стейкинге.
+При этом Anza сообщила, что сеть Solana продолжает работать в штатном режиме.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Какие требования к крипторынку ввели Украина, Россия и США?</title>
+		<link>https://forklog.com/news/kakie-trebovaniya-k-kriptorynku-vveli-ukraina-rossiya-i-ssha</link>
+		
+		<dc:creator><![CDATA[Лена Джесс]]></dc:creator>
+		<pubDate>Sat, 28 Nov 2026 09:24:09 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[подкаст]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293784</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-bd964f52c8160899-1236168495901885.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-bd964f52c8160899-1236168495901885" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-bd964f52c8160899-1236168495901885.webp" /></p>Текстовая версия свежей "Деконструкции".]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>В Малайзии запустят первый в мире шариатский спотовый биткоин-ETF</title>
+		<link>https://forklog.com/v-malajzii-zapustyat-pervyj-v-mire-shariatskij-spotovyj-bitkoin-etf</link>
+		
+		<dc:creator><![CDATA[ForkLog]]></dc:creator>
+		<pubDate>Sat, 28 Nov 2026 08:55:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293779</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/ETF_vs_price.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="ETF_vs_price" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/ETF_vs_price.webp" /></p>2 декабря на главной площадке малайзийской биржи Bursa Malaysia начнутся торги первым в мире спотовым биткоин-ETF, соответствующим нормам шариата. Об этом заявила управляющая фондом компания Halogen Capital.
+
+Halogen Shariah Bitcoin ETF будет отслеживать FTSE Bitcoin Index и инвестировать не менее 95% активов непосредственно в первую криптовалюту. Акциями фонда можно будет торговать в малайзийских ринггитах и долларах США. 
+
+Хранение биткоинов обеспечит BitGo, а соответствие исламским финансовым принципам будет контролировать консультант Amanie Advisors.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Что такое постквантовые сертификаты?</title>
+		<link>https://forklog.com/cryptorium/chto-takoe-postkvantovye-sertifikaty</link>
+		
+		<dc:creator><![CDATA[Елена Васильева]]></dc:creator>
+		<pubDate>Sat, 28 Nov 2026 08:34:54 +0000</pubDate>
+				<category><![CDATA[Крипториум]]></category>
+		<category><![CDATA[Крипториум: Технические основы]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293774</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-6f07c55d620f90a8-1233233011536258.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-6f07c55d620f90a8-1233233011536258" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-6f07c55d620f90a8-1233233011536258.webp" /></p>Как постквантовые сертификаты защитят HTTPS от квантового компьютера и когда браузеры перейдут на новый формат.
+]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>OpenAI обвинила Apple в краже коммерческих тайн и давлении на поставщиков</title>
+		<link>https://forklog.com/news/ai/openai-obvinila-apple-v-krazhe-kommercheskih-tajn-i-davlenii-na-postavshhikov</link>
+		
+		<dc:creator><![CDATA[Роман Петров]]></dc:creator>
+		<pubDate>Sat, 28 Nov 2026 08:13:35 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Apple]]></category>
+		<category><![CDATA[OpenAI]]></category>
+		<category><![CDATA[ИИ]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[Суды]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293775</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/court_generic-sud-sudebnye-razbiratelstva.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="court_generic, суд, судебные разбирательства" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/court_generic-sud-sudebnye-razbiratelstva.webp" /></p>OpenAI подала встречные претензии к Apple в федеральный суд Калифорнии, обвинив компанию в незаконном получении конфиденциальных сведений и попытках помешать развитию ее будущих ИИ-устройств. Об этом сообщает Reuters со ссылкой на судебные документы.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Квинтиллионы токенов ACE через мост Fusionist, утечка менеджера паролей 1Password и другие события кибербезопасности</title>
+		<link>https://forklog.com/news/kvintilliony-tokenov-ace-cherez-most-fusionist-utechka-menedzhera-parolej-1password-i-drugie-sobytiya-kiberbezopasnosti</link>
+		
+		<dc:creator><![CDATA[Сергей Голубенко]]></dc:creator>
+		<pubDate>Sat, 28 Nov 2026 04:00:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Дайджест кибербезопасности]]></category>
+		<category><![CDATA[Дайджесты]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293765</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-b92d684f91b380b4-112202657609480.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="security_2026_1" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-b92d684f91b380b4-112202657609480.webp" /></p>Мы собрали наиболее важные новости из мира кибербезопасности за неделю.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>На Blockchain Life 2026 обсудят альтсезон и ИИ-агентов</title>
+		<link>https://forklog.com/news/na-blockchain-life-2026-obsudyat-altsezon-i-ii-agentov</link>
+		
+		<dc:creator><![CDATA[ForkLog]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 16:45:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Дубай]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293766</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-0fa95d146b93c3f6-813473072352719.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-0fa95d146b93c3f6-813473072352719" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-0fa95d146b93c3f6-813473072352719.webp" /></p>1–2 декабря в Дубае на площадке Festival Arena пройдет Blockchain Life 2026, одно из последних крупных криптособытий года. Более 200 спикеров разберут перспективы крипторынка, стратегии крупного капитала и роль новых технологий в финансах.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Польша заключила контракт с Palantir на поставку военного ПО на базе ИИ</title>
+		<link>https://forklog.com/news/ai/polsha-zaklyuchila-kontrakt-s-palantir-na-postavku-voennogo-po-na-baze-ii</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 16:00:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[palantir]]></category>
+		<category><![CDATA[военные]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[Польша]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293752</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/primenenie-ii-v-vojne-AI-in-war.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="применение ии в войне AI in war" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/primenenie-ii-v-vojne-AI-in-war.webp" /></p>27 ноября Министерство национальной обороны Польши заключило соглашение с местным подразделением американской компании Palantir Technologies о поставке программного обеспечения на базе искусственного интеллекта для поддержки принятия военных решений. Об этом сообщает CyberDefence24.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Сложность майнинга биткоина выросла на 7,61%</title>
+		<link>https://forklog.com/slozhnost-majninga-bitkoina-vyrosla-na-7-61</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 15:10:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293741</guid>
+
+					<description><![CDATA[<p><img width="720" height="576" src="https://forklog.com/wp-content/uploads/btcdiffup.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="btcdiffup" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/btcdiffup.webp" /></p>В результате очередного перерасчета на высоте блока 977 760 сложность добычи первой криптовалюты увеличилась на 7,61%, до 145,09 Т. Это второе по величине повышение с начала 2026 года, которое частично нивелировало снижение на 9,13%, зафиксированное 14 ноября.
+
+Показатель остается примерно на 7% ниже исторического максимума в 155,97 Т, достигнутого 29 октября 2025 года.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Сторонника токенизации банковских депозитов выдвинули на пост главы ЕЦБ</title>
+		<link>https://forklog.com/news/storonnika-tokenizatsii-bankovskih-depozitov-vydvinuli-na-post-glavy-etsb</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 14:55:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Европа]]></category>
+		<category><![CDATA[ЕЦБ]]></category>
+		<category><![CDATA[Токенизация активов]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293743</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-529c23f1a674fb06-346486227836393.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="EU_flag_crypto" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-529c23f1a674fb06-346486227836393.webp" /></p>26 ноября Европейский совет выдвинул генерального управляющего Банка международных расчетов (BIS) Пабло Эрнандеса де Коса на пост главы Европейского центрального банка (ЕЦБ).]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Кредитное плечо в криптотрейдинге: как избежать ликвидации и что предлагают CoinW, WEEX, Bitget и Binance</title>
+		<link>https://forklog.com/exclusive/kreditnoe-plecho-v-kriptotrejdinge-kak-izbezhat-likvidatsii-i-chto-predlagayut-coinw-weex-bitget-i-binance</link>
+		
+		<dc:creator><![CDATA[ForkLog]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 14:50:06 +0000</pubDate>
+				<category><![CDATA[Лонгриды]]></category>
+		<category><![CDATA[фьючерсы]]></category>
+		<category><![CDATA[Централизованные биржи (CEX)]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293755</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-04f2792a0c843d98-1168245960357783.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-04f2792a0c843d98-1168245960357783" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-04f2792a0c843d98-1168245960357783.webp" /></p>Разбираемся, как устроены плечо, маржа и цена ликвидации, какие настройки помогают ограничить потери и как работает программа компенсаций «Фонд страхования фьючерсов» на CoinW. ]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Разработанная с помощью ИИ модель квантовой гравитации вызвала споры</title>
+		<link>https://forklog.com/news/ai/razrabotannaya-s-pomoshhyu-ii-model-kvantovoj-gravitatsii-vyzvala-spory</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 14:00:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[квантовые технологии]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293736</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/quantum-computers-kvantovye-kompyutery-2.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="quantum computers квантовые компьютеры 2" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/quantum-computers-kvantovye-kompyutery-2.webp" /></p>Физик Стэнфордского университета и сотрудник OpenAI Венкатеса Чандрасекаран предложил новый подход к квантованию гравитации с использованием GPT-6 Astra. Исследование вызвало разногласия среди ученых относительно его новизны и научной состоятельности.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Около 500 компаний использовали Kalshi для хеджирования рисков</title>
+		<link>https://forklog.com/okolo-500-kompanij-ispolzovali-kalshi-dlya-hedzhirovaniya-riskov</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 13:30:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293735</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/rynki-predskazanij-prediction-markets.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="рынки предсказаний prediction markets" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/rynki-predskazanij-prediction-markets.webp" /></p>С помощью платформы предсказаний Kalshi около 500 фирм защищались от колебаний цен на сырье, аномальной погоды и отключений электричества. Об этом Financial Times рассказал директор сервиса по развитию бизнеса Николас Халл. Предприниматели приобретали событийные контракты на неблагоприятные для себя исходы и получали деньги, если те наступали: например, один нью-йоркский бренд собирался вложить около $9000 в позицию с выплатой до $60 000 на случай новых пошлин на индийский рис. Однако ликвидности пока мало: площадка предложила трейдерам денежные стимулы, а страховой брокер Lockton не заметил особого спроса на такой инструмент.
+]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Биткоин вернулся выше $61 000 на фоне рекордных оттоков из ETF</title>
+		<link>https://forklog.com/news/bitkoin-vernulsya-vyshe-61-000-na-fone-rekordnyh-ottokov-iz-etf</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 13:00:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[ETF]]></category>
+		<category><![CDATA[Фондовый рынок]]></category>
+		<category><![CDATA[Цена биткоина]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293745</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/neubeditelnaya-dinamika-bitkoina-spustya-god-posle-halvinga-bitcoin-dinamics-halving.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="bitcoin price btc цена биткоина" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/neubeditelnaya-dinamika-bitkoina-spustya-god-posle-halvinga-bitcoin-dinamics-halving.webp" /></p>27 ноября биткоин превысил $61 000 на фоне восстановления технологических акций и других рисковых активов. Одновременно чистый отток из американских спотовых ETF на базе первой криптовалюты с начала месяца достиг рекордных $5,39 млрд, согласно данным SoSoValue.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Injective предложила SEC расширить условия торговли токенизированными акциями</title>
+		<link>https://forklog.com/injective-predlozhila-sec-rasshirit-usloviya-torgovli-tokenizirovannymi-aktsiyami</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 12:30:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293732</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-27f22d4b414c803b-3841669557598535.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="RWA tokenization" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-27f22d4b414c803b-3841669557598535.webp" /></p>Компания Injective Labs обратилась к Комиссии по ценным бумагам и биржам США (SEC) с предложением распространить регуляторные послабления на площадки с ончейн-книгами ордеров. Сейчас пятилетний экспериментальный режим охватывает только платформы на базе автоматизированных маркетмейкеров (AMM). 
+
+Для защиты инвесторов разработчики предложили внедрить механизмы мониторинга торгов, ценовые ограничения и возможность приостановки операций.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>СМИ: борьба с дистилляцией замедлила разработку китайских ИИ-моделей</title>
+		<link>https://forklog.com/news/ai/smi-borba-s-distillyatsiej-zamedlila-razrabotku-kitajskih-ii-modelej</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 12:00:00 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[Китай]]></category>
+		<category><![CDATA[США]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293731</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/china-crypto-kitai-kriptovalyuty.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="china crypto китай криптовалюты" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/china-crypto-kitai-kriptovalyuty.webp" /></p>Меры OpenAI и Anthropic против дистилляции замедлили работу китайских ИИ-лабораторий Z.ai и Moonshot AI. Новые ограничения США на доступ к вычислительным мощностям грозят им дальнейшими задержками, пишет Reuters со ссылкой на источники.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Бразильская фондовая биржа B3 выпустит стейблкоин совместно с банками</title>
+		<link>https://forklog.com/brazilskaya-fondovaya-birzha-b3-vypustit-stejblkoin-sovmestno-s-bankami</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 11:25:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293729</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-61f088341e37636e-3696109586455160.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="stablecoin" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-61f088341e37636e-3696109586455160.webp" /></p>Фондовая биржа B3 и шесть финансовых организаций, включая Bradesco, BTG Pactual, Itaú Unibanco и Santander, объединились для разработки привязанного к бразильскому реалу стейблкоина Open BRL. Его планируют использовать для расчетов по операциям с цифровыми активами, включая токенизированные акции. 
+
+За эмиссию и обеспечение токена будет отвечать Banco B3. Запуск платформы намечен на первый квартал 2027 года.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Банк Англии предупредил о системных рисках перехода финсектора на постквантовую криптографию</title>
+		<link>https://forklog.com/news/bank-anglii-predupredil-o-sistemnyh-riskah-perehoda-finsektora-na-postkvantovuyu-kriptografiyu</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 11:02:21 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Великобритания]]></category>
+		<category><![CDATA[квантовая угроза]]></category>
+		<category><![CDATA[квантовые технологии]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293722</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/United-Kingdom-Velikobritaniya.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="United Kingdom Великобритания" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/United-Kingdom-Velikobritaniya.webp" /></p>Угрозу финансовой стабильности Великобритании создает не только будущий квантовый компьютер, но и сам переход на устойчивые к нему методы шифрования. К такому выводу пришел Банк Англии.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Индийский рынок GPU столкнулся с дисбалансом спроса и предложения</title>
+		<link>https://forklog.com/news/ai/indijskij-rynok-gpu-stolknulsya-s-disbalansom-sprosa-i-predlozheniya</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 10:49:23 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Индия]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[облачные вычисления]]></category>
+		<category><![CDATA[чипы]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293721</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-ee1cea31b6cd8297-22026895180417.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-ee1cea31b6cd8297-22026895180417" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-ee1cea31b6cd8297-22026895180417.webp" /></p>Индийские поставщики облачных услуг испытывают сложности с загрузкой вычислительных мощностей, тогда как местным разработчикам искусственного интеллекта не хватает доступных ресурсов. О парадоксе национального рынка GPU рассказало издание The Ken.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>ESMA отложило запуск обновленного реестра MiCA до 2027 года</title>
+		<link>https://forklog.com/esma-otlozhilo-zapusk-obnovlennogo-reestra-mica-do-2027-goda</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 10:30:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293719</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-529c23f1a674fb06-346486227836393.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="EU_flag_crypto" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-529c23f1a674fb06-346486227836393.webp" /></p>Европейское управление по ценным бумагам и рынкам (ESMA) планирует модернизировать реестр криптокомпаний к середине 2027 года, сообщил представитель ведомства. Новая платформа предусматривает автоматизированный сбор и проверку данных, поиск, доступ через API и хранение white paper с историей изменений. 
+
+Изначально запуск системы планировали на середину 2026 года. Перенос обусловлен техническими причинами.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Обзор: Monero столкнулась с делистингами, Zcash получила новые ETF</title>
+		<link>https://forklog.com/news/obzor-monero-stolknulas-s-delistingami-zcash-poluchila-novye-etf</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 09:39:30 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Monero (XMR)]]></category>
+		<category><![CDATA[Zcash (ZEC)]]></category>
+		<category><![CDATA[Приватность и личные данные]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293715</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/monero-monero.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="monero монеро" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/monero-monero.webp" /></p>26 ноября биржа KuCoin объявила о делистинге Monero (XMR) вслед за аналогичным решением MEXC. При этом другая ориентированная на конфиденциальность криптовалюта — Zcash (ZEC) — расширила присутствие на регулируемом инвестиционном рынке США.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Разработчики Ethereum определились с датой активации Glamsterdam в тестнете Hoodi</title>
+		<link>https://forklog.com/razrabotchiki-ethereum-opredelilis-s-datoj-aktivatsii-glamsterdam-v-testnete-hoodi</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 09:20:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293713</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Ethereum-4.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Новости криптовалюты Ethereum (ETH)" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Ethereum-4.webp" /></p>Разработчики Ethereum запланировали запуск Glamsterdam в тестовой сети Hoodi на 15 декабря в 19:12 UTC. Команды клиентов решили сохранить EIP-8037 без изменений, несмотря на риск нарушения работы некоторых смарт-контрактов. 
+
+Изначально обновление планировали активировать 26 октября. Hoodi станет последним тестнетом перед развертыванием хардфорка в основной сети. Дату его запуска пока не определили.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Исследование: перед осенней распродажей акции ИИ-компаний показали признаки пузыря доткомов</title>
+		<link>https://forklog.com/news/ai/issledovanie-pered-osennej-rasprodazhej-aktsii-ii-kompanij-pokazali-priznaki-puzyrya-dotkomov</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 08:05:44 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Искусственный Интеллект]]></category>
+		<category><![CDATA[Исследования]]></category>
+		<category><![CDATA[Фондовый рынок]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293691</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-18b2368cb422d4dc-465809368587172.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="crypto market analysis" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-18b2368cb422d4dc-465809368587172.webp" /></p>Незадолго до осенней распродажи акции связанных с ИИ компаний показывали признаки пузыря масштаба доткомов: в сентябре вероятность такого сценария достигала 97%. Эти данные привела Лондонская школа бизнеса (LBS) со ссылкой на исследование своего сотрудника и ученых Кембриджского университета.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Что такое «отравление» адреса и почему жертва сама отправляет средства мошеннику?</title>
+		<link>https://forklog.com/cryptorium/chto-takoe-otravlenie-adresa-i-pochemu-zhertva-sama-otpravlyaet-sredstva-moshenniku</link>
+		
+		<dc:creator><![CDATA[Алекс Кондратюк]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 07:32:29 +0000</pubDate>
+				<category><![CDATA[Крипториум]]></category>
+		<category><![CDATA[Крипториум: Технические основы]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293694</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-d2243c97d0cae13a-1142864940540562.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="img-d2243c97d0cae13a-1142864940540562" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-d2243c97d0cae13a-1142864940540562.webp" /></p>Как злоумышленники создают адреса-двойники, почему пробный перевод не гарантирует безопасность и как защититься от «отравления» адреса — в новых карточках «Крипториума».]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Разработчик Bitcoin Core нашел способ вычислить IP-адрес кошелька</title>
+		<link>https://forklog.com/news/razrabotchik-bitcoin-core-nashel-sposob-vychislit-ip-adres-koshelka</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 06:35:47 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Bitcoin Core]]></category>
+		<category><![CDATA[Биткоин]]></category>
+		<category><![CDATA[Кошельки]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293684</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/bitcoin-Novosti-bitkoina-tsena-bitkoina.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="bitcoin btc новости цена биткоина" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/bitcoin-Novosti-bitkoina-tsena-bitkoina.webp" /></p>Разработчик Bitcoin Core Абубакар Садик Исмаил описал на форуме Delving Bitcoin атаку, которая позволяет связать биткоин-адрес с IP-адресом узла, где работает кошелек. Злоумышленнику для этого достаточно отправить жертве платеж стоимостью в несколько десятков центов.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Unique Network объявила о закрытии, Bluefin свернет торговлю фьючерсами</title>
+		<link>https://forklog.com/unique-network-i-bluefin-obyavili-o-zakrytii</link>
+		
+		<dc:creator><![CDATA[forklog]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 06:00:00 +0000</pubDate>
+				<category><![CDATA[OneLiners]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293682</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/Closed-min.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Closed-min" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/Closed-min.webp" /></p>Команда NFT-блокчейна Unique из экосистемы Polkadot и Kusama объявила о закрытии проекта 26 января 2027 года. За семь лет сеть не смогла привлечь достаточно пользователей, а средства на ее поддержку закончились. Разработчики посоветовали проектам перенести коллекции в Polkadot AssetHub и выложили код на GitHub.
+
+Децентрализованная биржа Bluefin на Sui прекратит торговлю бессрочными фьючерсами 4 декабря в 21:00 UTC. Пользователям нужно закрыть позиции до этого срока. На Bluefin Perps приходилось 95% исторического объема этого сегмента в Sui. Теперь команда займется спотовой торговлей, токенизацией и RWA.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Китай, Япония, Южная Корея и АСЕАН создадут группу по трансграничным платежам и цифровым активам</title>
+		<link>https://forklog.com/news/kitaj-yaponiya-yuzhnaya-koreya-i-asean-sozdadut-rabochuyu-gruppu-po-transgranichnym-platezham-v-tsifrovyh-aktivah</link>
+		
+		<dc:creator><![CDATA[Мирослава Андреева]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 05:46:06 +0000</pubDate>
+				<category><![CDATA[Новости]]></category>
+		<category><![CDATA[Китай]]></category>
+		<category><![CDATA[Центробанки]]></category>
+		<category><![CDATA[Южная Корея]]></category>
+		<category><![CDATA[Япония]]></category>
+		<guid isPermaLink="false">https://forklog.com/?p=293680</guid>
+
+					<description><![CDATA[<p><img width="1200" height="960" src="https://forklog.com/wp-content/uploads/img-5b3965b698a83be2-465812801688245.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="crypto market analysis 2" decoding="async" loading="lazy" srcset="" data-src="https://forklog.com/wp-content/uploads/img-5b3965b698a83be2-465812801688245.webp" /></p>Страны АСЕАН, Китай, Япония и Южная Корея договорились создать рабочую группу по трансграничным цифровым платежам и регулированию цифровых активов. Решение приняли заместители министров финансов и глав центробанков на встрече в Киото, следует из заявления сопредседателей.]]></description>
+		
+		
+		
+			</item>
+	</channel>
+</rss>
